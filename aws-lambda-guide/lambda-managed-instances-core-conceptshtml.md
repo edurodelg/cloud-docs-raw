@@ -1,0 +1,20 @@
+---
+source_url: https://docs.aws.amazon.com/lambda/latest/dg/lambda-managed-instances-core-concepts.html
+fetched_at: 2026-01-25T12:15:49.812494
+---
+
+# Core concepts
+
+Lambda Managed Instances introduces several core concepts that differ from traditional Lambda functions. Understanding these concepts is essential for effectively deploying and managing your functions on EC2 infrastructure.
+
+**Capacity providers** form the foundation of Lambda Managed Instances. A capacity provider defines the compute infrastructure where your functions execute, including VPC configuration, instance requirements, and scaling policies. Capacity providers also serve as the security boundary for your functions, meaning all functions assigned to the same capacity provider must be mutually trusted.
+
+**Scaling behavior** differs significantly from traditional Lambda functions. Instead of scaling on-demand when invocations arrive, Managed Instances scale asynchronously based on CPU resource utilization. This approach eliminates cold starts but requires planning for traffic growth. If your traffic more than doubles within 5 minutes, you may experience throttles as Lambda scales up capacity to meet demand.
+
+**Security and permissions** require careful consideration. You need operator role permissions to allow Lambda to manage EC2 resources in your capacity providers. Additionally, users need the `lambda:PassCapacityProvider`
+
+permission to assign functions to capacity providers, acting as a security gate to control which functions can run on specific infrastructure.
+
+**Multi-concurrent execution** is a key characteristic of Managed Instances. Each execution environment can handle multiple invocations simultaneously, maximizing resource utilization for IO-heavy applications. This differs from traditional Lambda where each environment processes one request at a time. This execution model requires attention to thread safety, state management, and context isolation depending on your runtime.
+
+The following sections provide detailed information about each core concept.

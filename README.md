@@ -4,9 +4,9 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2012:08%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-305-green)]()
-[![Fuentes](https://img.shields.io/badge/Fuentes-4-orange)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2012:16%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-346-green)]()
+[![Fuentes](https://img.shields.io/badge/Fuentes-5-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
 
@@ -32,12 +32,13 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 
 | Fuente | Archivos | Documentación Original |
 |--------|:--------:|------------------------|
+| [aws-lambda-guide](./aws-lambda-guide/) | 41 | [Docs](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) |
 | [azure-aks](./azure-aks/) | 126 | [Docs](https://learn.microsoft.com/en-us/azure/aks/) |
 | [gcp-cloud-run-python](./gcp-cloud-run-python/) | 84 | [Docs](https://cloud.google.com/python/docs/reference/run/latest) |
 | [gcp-storage-python](./gcp-storage-python/) | 48 | [Docs](https://cloud.google.com/python/docs/reference/storage/latest) |
 | [google-adk-docs](./google-adk-docs/) | 47 | [Docs](https://google.github.io/adk-docs/) |
 
-> **Total:** 305 archivos Markdown
+> **Total:** 346 archivos Markdown
 
 ---
 
@@ -58,7 +59,7 @@ Cada fuente se procesa automáticamente con:
 
 ¡Las contribuciones son bienvenidas! 
 
-**Opción 1:** [Abre un issue](https://github.com/edurodelg/cloudocs-scraper-/issues/new) con:
+**Opción 1:** [Abre un issue](https://github.com/usuario/markdown_scraper/issues/new) con:
 - URL de la documentación
 - Nombre corto para la carpeta
 - (Opcional) Filtros de versión
@@ -73,7 +74,7 @@ Cada fuente se procesa automáticamente con:
 <tr>
 <td width="60%">
 
-Este repositorio se actualiza automáticamente usando el scraper [cloudocs-scraper](https://github.com/edurodelg/cloudocs-scraper-).
+Este repositorio se actualiza automáticamente usando el scraper [cloudocs-scraper](https://github.com/usuario/markdown_scraper).
 
 **Características:**
 - ✅ Respeta `robots.txt` y `Crawl-delay`
@@ -116,6 +117,6 @@ edurodelg/cloud-docs-raw/
 
 **Creado por [Eduardo Rodelgo](https://www.linkedin.com/in/eduardo-rodelgo/)**
 
-Generado con [cloudocs-scraper](https://github.com/edurodelg/cloudocs-scraper-)
+Generado con [cloudocs-scraper](https://github.com/usuario/markdown_scraper)
 
 </div>
