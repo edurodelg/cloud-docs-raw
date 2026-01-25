@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/llms-full.txt
-fetched_at: 2026-01-25T02:08:18.375555
+fetched_at: 2026-01-25T03:15:03.556744
 ---
 
 # Agent Development Kit

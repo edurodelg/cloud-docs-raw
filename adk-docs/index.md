@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/
-fetched_at: 2026-01-25T02:03:32.131818
+fetched_at: 2026-01-25T03:10:10.387046
 ---
 
 # Agent Development Kit

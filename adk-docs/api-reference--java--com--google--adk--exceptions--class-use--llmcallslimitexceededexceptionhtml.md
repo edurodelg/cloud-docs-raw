@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/api-reference/java/com/google/adk/exceptions/class-use/LlmCallsLimitExceededException.html
-fetched_at: 2026-01-25T02:20:49.150745
+fetched_at: 2026-01-25T03:27:33.967703
 ---
 
 # Uses of Classcom.google.adk.exceptions.LlmCallsLimitExceededException

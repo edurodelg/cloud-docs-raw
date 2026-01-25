@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/api-reference/java/com/google/adk/flows/class-use/BaseFlow.html
-fetched_at: 2026-01-25T02:18:44.126778
+fetched_at: 2026-01-25T03:25:28.899617
 ---
 
 # Uses of Interfacecom.google.adk.flows.BaseFlow

@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/api-reference/java/com/google/adk/models/langchain4j/class-use/LangChain4j.html
-fetched_at: 2026-01-25T02:18:41.761424
+fetched_at: 2026-01-25T03:25:26.561599
 ---
 
 # Uses of Classcom.google.adk.models.langchain4j.LangChain4j
