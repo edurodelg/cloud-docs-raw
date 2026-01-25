@@ -4,8 +4,8 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2012:19%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-387-green)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2012:20%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-389-green)]()
 [![Fuentes](https://img.shields.io/badge/Fuentes-6-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
@@ -35,11 +35,11 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 | [aws-ec2-guide](./aws-ec2-guide/) | 41 | [Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html) |
 | [aws-lambda-guide](./aws-lambda-guide/) | 41 | [Docs](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) |
 | [azure-aks](./azure-aks/) | 126 | [Docs](https://learn.microsoft.com/en-us/azure/aks/) |
-| [gcp-cloud-run-python](./gcp-cloud-run-python/) | 84 | [Docs](https://cloud.google.com/python/docs/reference/run/latest) |
+| [gcp-cloud-run-python](./gcp-cloud-run-python/) | 86 | [Docs](https://cloud.google.com/python/docs/reference/run/latest) |
 | [gcp-storage-python](./gcp-storage-python/) | 48 | [Docs](https://cloud.google.com/python/docs/reference/storage/latest) |
 | [google-adk-docs](./google-adk-docs/) | 47 | [Docs](https://google.github.io/adk-docs/) |
 
-> **Total:** 387 archivos Markdown
+> **Total:** 389 archivos Markdown
 
 ---
 

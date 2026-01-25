@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-25T12:20:14.930136
+merged_at: 2026-01-25T12:20:14.945478
 merged_files: 2
 ---
 
@@ -12,19 +12,50 @@ Cada documento está marcado con su fuente original.
 
 ---
 
-<!-- DOCUMENTO FUSIONADO: googlecloudrun_v2typesconditionstate.md -->
-<!-- URL ORIGINAL: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.Condition.State -->
+<!-- DOCUMENTO FUSIONADO: googlecloudrun_v2typesgetrevisionrequest.md -->
+<!-- URL ORIGINAL: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.GetRevisionRequest -->
 
-# Class State (0.14.0)
+# Class GetRevisionRequest (0.14.0)
+
+Request message for obtaining a Revision by its full name.
+
+Attribute
+
+Name
+
+Description
+
+name
+
+str
+Required. The full name of the Revision.
+Format:
+projects/{project}/locations/{location}/services/{service}/revisions/{revision}
 
 [[["Easy to understand","easyToUnderstand","thumb-up"],["Solved my problem","solvedMyProblem","thumb-up"],["Other","otherUp","thumb-up"]],[["Hard to understand","hardToUnderstand","thumb-down"],["Incorrect information or sample code","incorrectInformationOrSampleCode","thumb-down"],["Missing the information/samples I need","missingTheInformationSamplesINeed","thumb-down"],["Other","otherDown","thumb-down"]],["Last updated 2026-01-12 UTC."],[],[]]
 
 
 ---
 
-<!-- DOCUMENTO FUSIONADO: googlecloudrun_v2typesenvvarsource.md -->
-<!-- URL ORIGINAL: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.EnvVarSource -->
+<!-- DOCUMENTO FUSIONADO: googlecloudrun_v2typesgetservicerequest.md -->
+<!-- URL ORIGINAL: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.GetServiceRequest -->
 
-# Class EnvVarSource (0.14.0)
+# Class GetServiceRequest (0.14.0)
+
+Request message for obtaining a Service by its full name.
+
+Attribute
+
+Name
+
+Description
+
+name
+
+str
+Required. The full name of the Service.
+Format:
+projects/{project}/locations/{location}/services/{service},
+where {project} can be project id or number.
 
 [[["Easy to understand","easyToUnderstand","thumb-up"],["Solved my problem","solvedMyProblem","thumb-up"],["Other","otherUp","thumb-up"]],[["Hard to understand","hardToUnderstand","thumb-down"],["Incorrect information or sample code","incorrectInformationOrSampleCode","thumb-down"],["Missing the information/samples I need","missingTheInformationSamplesINeed","thumb-down"],["Other","otherDown","thumb-down"]],["Last updated 2026-01-12 UTC."],[],[]]
