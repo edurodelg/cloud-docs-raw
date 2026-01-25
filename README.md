@@ -4,9 +4,9 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2003:28%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-641-green)]()
-[![Fuentes](https://img.shields.io/badge/Fuentes-4-orange)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2011:49%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-2-green)]()
+[![Fuentes](https://img.shields.io/badge/Fuentes-1-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
 
@@ -32,12 +32,9 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 
 | Fuente | Archivos | Documentación Original |
 |--------|:--------:|------------------------|
-| [adk-docs](./adk-docs/) | 200 | [Docs](https://google.github.io/adk-docs/) |
-| [aws-bedrock](./aws-bedrock/) | 41 | [Docs](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) |
-| [azure-search](./azure-search/) | 200 | [Docs](https://learn.microsoft.com/en-us/azure/search/) |
-| [bigquery-python](./bigquery-python/) | 200 | [Docs](https://docs.cloud.google.com/python/docs/reference/bigquery/latest) |
+| [azure-sdk-for-python](./azure-sdk-for-python/) | 2 | [Docs](https://azure.github.io/azure-sdk-for-python/) |
 
-> **Total:** 641 archivos Markdown
+> **Total:** 2 archivos Markdown
 
 ---
 
