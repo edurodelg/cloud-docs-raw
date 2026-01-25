@@ -4,9 +4,9 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2015:08%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-39-green)]()
-[![Fuentes](https://img.shields.io/badge/Fuentes-1-orange)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2015:11%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-78-green)]()
+[![Fuentes](https://img.shields.io/badge/Fuentes-2-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
 
@@ -32,9 +32,10 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 
 | Fuente | Archivos | Documentación Original |
 |--------|:--------:|------------------------|
+| [aws-ec2-guide](./aws-ec2-guide/) | 39 | [Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html) |
 | [aws-lambda-guide](./aws-lambda-guide/) | 39 | [Docs](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) |
 
-> **Total:** 39 archivos Markdown
+> **Total:** 78 archivos Markdown
 
 ---
 
