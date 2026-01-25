@@ -1,0 +1,22528 @@
+---
+merged_at: 2026-01-25T15:32:35.941065
+merged_files: 3
+---
+
+# Documentos Fusionados
+
+Este archivo contiene 3 documentos fusionados para reducir el número total de archivos.
+Cada documento está marcado con su fuente original.
+
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: _how-to_merged.md -->
+<!-- URL ORIGINAL: N/A -->
+
+# Documentos Fusionados
+
+Este archivo contiene 16 documentos fusionados para reducir el número total de archivos.
+Cada documento está marcado con su fuente original.
+
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: manage-grounding-with-bing.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/manage-grounding-with-bing -->
+
+# Manage Grounding With Bing in Microsoft Foundry and Azure
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Grounding with Bing enables agents to retrieve and incorporate real-time public web data into model-generated responses. It supports summarization, question answering, conversational assistance, and other scenarios by using Grounding with Bing Search or Grounding with Bing Custom Search to fill knowledge gaps.
+
+Grounding is available across features in Foundry Agent Service and Azure AI Search. You might need to disable access to these features to meet compliance, privacy, or data governance requirements.
+
+As an admin, you can manage access to Grounding with Bing in the following ways:
+
+[Disable Grounding with Bing Search tools](#disable-grounding-with-bing-search-tools)in Foundry Agent Service.[Disable web search tool](#disable-web-search-tool)in Foundry Agent Service.[Disable web knowledge](#disable-web-knowledge)in Azure AI Search.
+
+## Disable Grounding with Bing Search tools
+
+You can disable Grounding with Bing Search and/or Grounding with Bing Custom Search at the subscription or resource group level. For more information, see [Disable use of Grounding with Bing Search and Grounding with Bing Custom Search](tools/bing-tools?view=foundry#disable-use-of-grounding-with-bing-search-and-grounding-with-bing-custom-search).
+
+## Disable web search tool
+
+You can disable the web search tool for all accounts in a subscription. For more information, see [Disable Bing Web Search](tools/web-search?view=foundry#disable-bing-web-search).
+
+## Disable web knowledge
+
+You can disable Web Knowledge Source access for all search services in a subscription. For more information, see [Disable use of Web Knowledge Source](../../../search/agentic-knowledge-source-how-to-web-manage?view=foundry#disable-use-of-web-knowledge-source).
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: publish-copilot.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/publish-copilot -->
+
+# Publish agents to Microsoft 365 Copilot and Microsoft Teams
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Use this article to publish a Microsoft Foundry agent so people can use it in Microsoft 365 Copilot and Microsoft Teams.
+
+Publishing creates an agent application with a stable endpoint and then prepares a Microsoft 365 publishing package for testing and distribution.
+
+## Prerequisites
+
+- Access to the
+[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) - A
+[Foundry project](../../how-to/create-projects?view=foundry)with an agent version you tested and want to publish - Permissions to publish agents in your project. For details, see
+[Role-based access control in the Foundry portal](../../concepts/rbac-foundry?view=foundry). - An Azure subscription where you can create Azure Bot Service resources and Microsoft Entra ID app registrations
+
+## Before you begin
+
+- If your agent uses tools that access Azure resources, plan to reassign any required permissions after publishing. A published agent application uses its own agent identity. For details, see
+[Agent identity concepts in Microsoft Foundry](../concepts/agent-identity?view=foundry)and[Publish and share agents in Microsoft Foundry](publish-agent?view=foundry). - Decide whether you want
+**Shared scope**or**Organization scope**for distribution. If you choose**Organization scope**, an admin must approve the app before it's available to users.
+
+## Publish your agent as an agent application
+
+Note
+
+To work programmatically, you can also use the [C# sample](https://github.com/OfficeDev/microsoft-365-agents-toolkit-samples/tree/dev/ProxyAgent-CSharp).
+
+In the Microsoft Foundry portal, select your agent version.
+
+Select
+
+**Publish**to create an agent application.Select
+
+**Publish**again, and then select**Publish to Teams and Microsoft 365 Copilot**.Enter the information in the window that appears.
+
+An application ID and tenant ID are created automatically.
+
+- In the Azure Bot Service dropdown, select
+**Create an Azure Bot Service**to create the bot resource.
+
+- In the Azure Bot Service dropdown, select
+Complete the required metadata, such as the name, description, icons, publisher information, privacy policy, and terms of use.
+
+Don't include secrets in any metadata fields.
+
+Select
+
+**Prepare Agent**to start packaging the agent.When the Microsoft 365 publishing package is ready, choose one of the following options:
+
+- Download the package to test it.
+- Continue the in-product publishing flow for Microsoft Teams and Microsoft 365 Copilot.
+
+
+## Choose a publish scope
+
+Choose the scope that matches how you want people to discover your agent.
+
+**Shared scope**: The agent appears under**Your agents**in the agent store for Microsoft 365 Copilot.**Organization scope**: The agent appears under**Built by your org**in the agent store for Microsoft 365 Copilot. This option requires admin approval.
+
+## Download and test the publishing package
+
+If you download the package, test it before broad distribution.
+
+- After the package finishes preparing, download it from the publishing UI.
+- In Microsoft Teams, upload the downloaded package for testing.
+- Confirm your agent loads and responds as expected.
+
+## Troubleshooting
+
+Use these checks to unblock common publishing issues.
+
+**Azure Bot Service creation fails**: Confirm you have permission to create resources in the selected Azure subscription and that required providers are registered for your subscription.**Organization scope agent doesn't appear**: Confirm an admin approved the app and that app policies in your tenant allow users to access it.**Agent works in Foundry but fails after publishing**: If your agent uses tools that call Azure resources, make sure the published agent identity has the required roles. For details, see[Agent identity concepts in Microsoft Foundry](../concepts/agent-identity?view=foundry).
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: private-tool-catalog.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/private-tool-catalog -->
+
+# Create a private tool catalog (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This feature is currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Use this article to create a private tool catalog for your organization by using [Azure API Center](/en-us/azure/api-center/register-discover-mcp-server). In Foundry Agent Service, developers can discover tools from your private catalog in Foundry Tools.
+
+## Prerequisites
+
+A Foundry project. For setup guidance, see
+
+[Create projects in Microsoft Foundry](../../how-to/create-projects?view=foundry).Permissions to discover and configure tools in your Foundry project. For more information, see
+
+[Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry?view=foundry).An
+
+[Azure API Center](/en-us/azure/api-center/set-up-api-center).Note
+
+The API Center name is the name that developers use to find the catalog in Foundry Tools. Use a descriptive name.
+
+One or more remote MCP servers that you want to share with your organization. Register them with API Center by following
+
+[Configure environments and deployments in Azure API Center](/en-us/azure/api-center/tutorials/configure-environments-deployments).
+
+## Plan access for admins and developers
+
+Decide who manages the catalog and who consumes it.
+
+| Goal | Who | Where | What to do |
+|---|---|---|---|
+| Create and manage the tool catalog | Catalog admins | Azure API Center | Create the API Center resource, register MCP servers, and (optionally) configure authorization settings. |
+| Discover tools from the private catalog | Developers | Azure API Center (RBAC) | Assign access so developers can view the registered MCP servers. |
+| Configure and use tools | Developers | Foundry project | Confirm developers can access the Foundry project and can configure tools in Foundry Tools. |
+
+## Configure authentication (optional)
+
+If your remote MCP server requires authentication, configure it in Azure API Center.
+
+In the
+
+[Azure portal](https://portal.azure.com), go to your API Center resource.Select
+
+**Governance**>**Authorization**.Select
+
+**Add configuration**.Under
+
+**Security scheme**, choose the scheme required by your MCP server (for example,**API Key**,**OAuth**, or**HTTP**bearer token), then provide the required values.Important
+
+Treat any credentials as secrets. Don't paste secrets into prompts or source control. For guidance on authentication approaches in Agent Service (including shared and per-user authentication), see
+
+[MCP server authentication](mcp-authentication?view=foundry).Select the MCP server, then select
+
+**Details**>**Versions**>**Manage access (preview)**.Select the authorization configuration you created.
+
+
+## Give access to your organization
+
+To let developers discover MCP servers from your private tool catalog in Foundry Tools, assign them access to the API Center resource.
+
+- Decide whether to grant access to a security group or to individual users.
+- Assign at least the
+[Azure API Center Data Reader](/en-us/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader)role (or an equivalent custom role) to those users.
+
+## Verify the private tool catalog in Foundry Tools
+
+After you grant access, confirm that developers can find the catalog in Foundry.
+
+- In the Foundry portal, open the project that your developers use.
+- Go to
+**Build**>**Tools**. - Use search and filters to find your private tool catalog by the API Center name.
+- Select a tool from the catalog and review its setup requirements.
+
+To add an MCP server tool to an agent, see [Connect to Model Context Protocol servers](tools/model-context-protocol?view=foundry).
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| You can't find the private tool catalog in Foundry Tools. | You don't have access to the API Center resource, or you're in the wrong Foundry project. | Confirm you have the required API Center role assignment, then confirm you're in the expected Foundry project and go to Build > Tools. |
+| You can see the catalog, but you can't configure a tool. | The tool requires authentication or configuration values you don't have. | Review the tool's setup requirements, then ask a catalog admin for the required access. For MCP authentication options, see
+|
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: agent-365.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/agent-365 -->
+
+# Publish an agent to Agent 365
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Use this article to publish a Microsoft Foundry hosted agent to Microsoft Agent 365 (Agent 365) by running the FoundryA365 sample.
+
+The sample uses the Azure Developer CLI to create the required Azure resources, publish an agent application, and then guides you through admin approval and (optionally) Microsoft Teams configuration.
+
+## Prerequisites
+
+- Enrollment in the
+[Frontier preview program](https://adoption.microsoft.com/en-us/copilot/frontier-program/). - An Azure subscription where you can create resources.
+- The required permissions:
+**Owner**role on the Azure subscription**Azure AI User**or**Cognitive Services User**role at subscription or resource group scope- A tenant admin role for organization-wide configuration
+
+[Azure CLI](/en-us/cli/azure/install-azure-cli)[Azure Developer CLI](/en-us/azure/developer/azure-developer-cli/install-azd)[Docker](https://www.docker.com/)[.NET 9.0 SDK](https://dotnet.microsoft.com/download)- Git
+
+## Before you begin
+
+- Hosted agents are only available in the
+**North Central US**region. Create all resources for this sample in that region. - Start Docker before you deploy.
+- Treat your deployment outputs as sensitive. The
+`azd env get-values`
+
+output can include IDs and endpoints you don't want to publish.
+
+## Run the sample
+
+Use the FoundryA365 sample on GitHub: [https://go.microsoft.com/fwlink/?linkid=2343518](https://go.microsoft.com/fwlink/?linkid=2343518)
+
+Clone the sample repository and switch to the sample folder.
+
+`git clone https://github.com/microsoft-foundry/foundry-samples.git cd foundry-samples\samples\csharp\FoundryA365`
+
+Authenticate to Azure and Azure Developer CLI.
+
+`# Azure CLI az login az login --scope https://ai.azure.com/.default az login --scope https://graph.microsoft.com//.default # Azure Developer CLI azd auth login`
+
+Deploy the sample.
+
+`azd provision --verbose`
+
+Get the deployment outputs.
+
+`azd env get-values`
+
+You use these values in the next steps.
+
+
+## Approve your agent
+
+After the deployment publishes your agent, an admin must approve it before it's available.
+
+- Go to the Microsoft 365 admin center:
+[https://admin.cloud.microsoft/?#/agents/all/requested](https://admin.cloud.microsoft/?#/agents/all/requested) - Under
+**Requests**, find your agent. - Select
+**Approve request and activate**.
+
+## Optional: Configure Microsoft Teams integration
+
+To use your Agent 365 agent in Teams, configure the agent blueprint.
+
+Open the Teams Developer Portal:
+
+[https://dev.teams.microsoft.com/tools/agent-blueprint](https://dev.teams.microsoft.com/tools/agent-blueprint)The portal lists only 100 agent blueprints. If you don't see your agent blueprint, open any agent blueprint and then replace the agent blueprint ID in the URL with your agent blueprint ID.
+
+Get your agent blueprint ID from the deployment outputs.
+
+`azd env get-values`
+
+In the agent blueprint, go to
+
+**Configuration**and set**Bot ID**to your agent blueprint ID.
+
+## Validate
+
+- Confirm the Microsoft 365 admin center approves the agent request.
+- If you configured Teams integration, go to Microsoft Teams and create an agent instance:
+- Go to
+**Apps**. - Go to
+**Agents for your team**. - Find your agent and create an instance.
+
+- Go to
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+`azd provision` fails before resource creation starts |
+Missing permissions | Confirm you have Owner on the subscription and Azure AI User (or Cognitive Services User) at subscription or resource group scope. |
+`azd provision` fails with a region or hosted-agent availability message |
+Wrong region | Create all resources for this sample in North Central US. |
+| Container build or push fails | Docker isn't running | Start Docker, and then run `azd provision --verbose` again. |
+| You can't find the agent to approve | Approval step not completed or you don't have the required tenant permissions | Confirm the deployment completed successfully and you have a tenant admin role to approve requests. |
+| You can't find your blueprint in the Teams Developer Portal list | Portal only shows the first 100 blueprints | Open any blueprint and replace the blueprint ID in the URL with your blueprint ID from `azd env get-values` . |
+
+## How this integration works
+
+Microsoft Agent 365 acts as a control plane for enterprise AI agents. It helps your organization register agents, apply security and compliance controls, and make agents available across Microsoft 365 and other environments.
+
+Agent 365 can help you:
+
+- Manage hosted agents at scale with unified identity and lifecycle controls.
+- Enforce least-privilege access and compliance controls by using Microsoft Defender, Microsoft Entra, and Microsoft Purview.
+- Integrate agents with Microsoft 365 apps.
+- Monitor agent activity through centralized management experiences.
+
+When you use Agent 365 with Microsoft Foundry, this sample sets up:
+
+- A Foundry project configured for hosted agents, including container build and storage.
+- An agent application that provides a stable endpoint and identity.
+- An Azure Bot Service resource that relays requests from Microsoft 365 surfaces to the agent application.
+- A hosted agent built from the sample code as a container image.
+- A deployment that attaches the hosted agent to the agent application.
+
+For more information about agent applications, identity, and publishing behavior in Foundry, see [Publish and share agents in Microsoft Foundry](publish-agent?view=foundry).
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: vs-code-agents-workflow-low-code.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/vs-code-agents-workflow-low-code -->
+
+# Work with Declarative (Low-code) Agent workflows in Visual Studio Code (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+In this article, you learn how to add and use [Foundry Agent workflows](../concepts/workflow?view=foundry) with Azure AI agents by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+
+After you [build an agent in Foundry Agent Service](/en-us/azure/ai-foundry/how-to/develop/vs-code-agents?view=foundry&tabs=windows-powershell&pivots=python&preserve-view=true) by using this Visual Studio Code (VS Code) extension, you can add workflows to your agent.
+
+Foundry Workflows is a UI-based tool in Foundry that creates declarative, predefined sequences of actions including agents, as in Microsoft Agent Framework Workflows.
+
+Workflows let you build intelligent automation systems that blend AI agents with business processes in a visual way. Traditional single-agent systems struggle to handle complex tasks with many parts. When you orchestrate multiple agents, each with specialized skills or roles, you create systems that are more robust, adaptive, and capable of solving real-world problems together.
+
+## What is a declarative agent?
+
+A declarative agent is an AI agent that operates based on predefined rules, workflows, or configurations instead of explicit programming logic. This approach lets users define what the agent should do and how it should behave through high-level specifications. Declarative agents make it easier to create and manage complex interactions without deep coding knowledge.
+
+## View a declarative agent workflow
+
+For declarative agent workflows start by creating a workflow in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). The following sections guide you through the steps to view and test a simple workflow that uses an agent to process user input.
+
+- In Foundry, navigate to your project that contains the workflow you want to work with.
+- Select the
+**Workflows**tab from the left-hand menu. - Select the workflow you want to open in VS Code.
+
+### Open in VS Code - YAML based workflow playground
+
+- Select the
+**Build**tab and then select the**YAML**button on the right-hand side. - Open the YAML directly from Foundry by selecting the
+**Open in VS Code for Web**button. - This action opens the workflow YAML file in the VS Code for Web editor.
+- View both the YAML definition and the visual representation of the workflow in the editor.
+- Edit the YAML as needed to modify the workflow and see the changes reflected in the visual editor.
+- When you're done, save your changes directly back to Foundry from the VS Code for Web editor by selecting Deploy from the ellipsis menu (...) in the upper right corner.
+
+### Open in VS Code from Foundry
+
+- In Foundry, navigate to your project that contains the workflow you want to work with.
+- Select the
+**Workflows**tab from the left-hand menu. - Select the workflow you want to open in VS Code.
+- Select the
+**Build**tab and then select the**Code**button on the right-hand side. - Select the
+**Open in VS Code for the Web**button. - This action opens the workflow code file in the VS Code for Web editor.
+- View both the code definition and the visual representation of the workflow in the editor.
+- Edit the YAML as needed to modify the workflow and see the changes reflected in the visual editor.
+- When you're done, save your changes directly back to Foundry from the VS Code for Web editor by selecting Deploy from the ellipsis menu (...) in the upper right corner.
+
+## Test workflow in playground
+
+To test the workflow in the VS Code extension playground, follow these steps:
+
+- In the "My Resources" section of the VS Code extension, locate and select your Foundry project.
+- Select
+**Declarative Agents**. - Select the version of the workflow you want to test.
+- Right-click the workflow and select
+**Open in Local Agent Playground**. Alternatively, select the**Local Agent Playground**link in the**Tools**subsection, and then select your agent from the dropdown list. This step opens the**Local Agent Playground**pane and starts a conversation with your agent so that you can send messages. - In the input box at the bottom of the
+**Local Agent Playground**pane, type a message to send to the agent and press**Enter**. - Review the agent's response in the conversation.
+
+## Convert YAML based workflow to Agent Framework code
+
+To customize your YAML-based workflows, convert it to Agent Framework code using GitHub Copilot using the following steps:
+
+- Open the workflow YAML file in VS Code.
+- Select
+**Generate Code**button on the top-right of the YAML editor. - Select
+**Generate with Copilot**from the dropdown menu. - Select the programming language you want to generate the code in (Python, C#, or YAML).
+- In the GitHub Copilot pane that opens, the extension creates the code generation prompts for the selected language.
+- GitHub Copilot generates Agent Framework code based on the YAML definition.
+- GitHub Copilot will ask you if you'd like to run the generated code locally in the VS Code extension's local agent playground.
+- The local visualizer opens, and you can see each step as the agent executes.
+- Review and modify the generated code as needed to fit your requirements.
+- Right-click the generated code file and select
+**Deploy to Foundry**to deploy the code back to your Foundry project. - In Foundry, navigate to your project and verify that the code has been successfully deployed.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: ai-gateway.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/ai-gateway -->
+
+# Bring your own AI gateway to Azure AI Agent Service (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+The Azure AI Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability allows you to maintain control over your model endpoints while leveraging the power of Foundry's agent capabilities.
+
+Note
+
+This feature is currently in preview. Consider the preview conditions before enabling this feature.
+
+This capability enables organizations to:
+
+- Maintain control over their model endpoints. Keep your model endpoints secure behind your existing enterprise infrastructure.
+- Integrate securely with enterprise gateways. Leverage your existing gateway investments and security policies.
+- Build agents that leverage models without exposing them publicly.
+- Apply your organization's compliance and governance requirements to AI model access.
+
+View the diagram to understand the potential flows from the Agent service to your gateway and models behind it:
+
+## Prerequisites
+
+- An Azure subscription with access to Microsoft Foundry. Create a Foundry resource in your subscription.
+- Installed
+**Azure CLI**and**Agent SDK**. - Access credentials for your enterprise AI gateway (for example API Management or another non-Azure AI model gateway).
+- GitHub access for
+[Foundry samples](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
+
+## Connections for AI gateway
+
+Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Microsoft Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
+
+## API Management (APIM) connection
+
+APIM connections are specialized model gateway connections designed for Azure API management scenarios. These connections provide intelligent defaults and follow APIM standard conventions while integrating with the broader model gateway ecosystem.
+
+Connections provide:
+
+**APIM category**: Uses`"category": "ApiManagement"`
+
+for proper APIM-specific handling.**Intelligent defaults**: Provides standard APIM endpoints when metadata is not specified.**Convention-based**: Follows Azure API management naming and routing patterns.**Flexible override**: Supports metadata overrides for custom APIM configurations.**Enterprise ready**: Designed for production APIM gateway scenarios.
+
+### APIM specific behavior
+
+**Default endpoints**: When metadata is not provided, APIM connections use these defaults:- List Deployments:
+`/deployments`
+
+- Get Deployment:
+`/deployments/{deploymentName}`
+
+- Provider:
+`AzureOpenAI`
+
+
+- List Deployments:
+**Configuration priority**:- Explicit metadata values (highest priority)
+- APIM standard defaults (fallback)
+
+**Authentication patterns**:**API Key**: Standard subscription key authentication**Microsoft Entra ID**: Enterprise identity integration is coming soon.
+
+
+## Model gateway connection
+
+Model gateway connections provide a unified interface for connecting to various AI model providers through the Azure Machine Learning workspace connection framework. These connections support both static model configuration (predefined models) and dynamic model discovery (runtime model detection). Model gateway connections provide:
+
+**Unified API**: Single connection interface for multiple AI providers (Azure AI, OpenAI, MuleSoft, etc.)**Authentication**: Support for API key authentication with workspace credential management or OAuth2**Discovery Patterns**: Choose between static model lists or dynamic discovery endpoints**Provider Abstraction**: Consistent model format regardless of underlying provider**Enterprise Integration**: Support for enterprise gateways like MuleSoft for multi-provider scenarios
+
+### Connection categories
+
+All ModelGateway connections use `"category": "ModelGateway"`
+
+to ensure proper routing through the model gateway service infrastructure.
+
+#### Discovery Methods
+
+**Static Discovery**: Models are predefined in the connection metadata using the models array. Best for:- Dynamic discovery not possible
+- Fixed model deployments
+- Known model configurations
+- Enterprise scenarios with approved model lists
+
+**Dynamic Discovery**: Models are discovered at runtime using API endpoints defined in modelDiscovery. Best for:- Frequently changing model deployments
+- Provider-managed model catalogs
+- Development and testing scenarios
+
+
+## Authentication Types
+
+The supported authentication types are API key or OAuth 2.0, depending on the connection type. For API Keys, the actual API keys are stored securely and referenced through the credential system.
+
+## Create a model gateway connection
+
+You’ll use the Azure CLI to create a connection of type **model gateway**.
+
+Navigate to the connection samples
+
+[on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md). Select your model gateway connection depending on your requirements.Run the
+
+`az deployment group create`
+
+command to create the connection. For example:`az deployment group create \ --resource-group <your-resource-group> \ --template-file [bicep-file-of-connection-type].bicep \ --parameters @[parameters-file-of-connection-type].json`
+
+View your successful connection creation by navigating to
+
+**Admin**in the Microsoft Foundry portal.
+
+## Deploy a prompt agent using the SDK
+
+After creating the connection, deploy a prompt agent that uses the model gateway connection.
+
+Navigate to the
+
+[Agents SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents)to run a sample agent with the BYO AI gateway feature.Use the Agent SDK to deploy the agent. Update the env variable so that the model name is
+
+`[connection-name]/[model-name]`
+
+. For example:`AZURE_AI_MODEL_DEPLOYMENT_NAME=my-apim-deployment-api-v2/gpt-4o`
+
+
+## Validation
+
+- Confirm the connection is active in Foundry. You should see the connection in the Foundry portal under
+**Operate**-->**Admin**-->**Projects**-->**Connected resources**. - Test the deployed prompt agent by sending a sample prompt.
+
+## Limitations
+
+- This feature is in public preview.
+- You can only use this feature using the Azure CLI and SDK.
+- Supported by Prompt Agents in the Agent SDK.
+- Public networking is supported for either APIM or other self-hosted gateways. For a full network isolation set up, set up Foundry with Standard Secured Agents set-up with virtual network injection. If you are using APIM as your AI gateway and want full network isolation, deploy Foundry and APIM following
+[this GitHub template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview). If you're using your self-hosted gateway as your AI gateway and want full network isolation, ensure that your gateway's endpoints are accessible inside the virtual network injection used by the Agent service. - The Agent tools supported with this feature are CodeInterpreter, Functions, File Search, OpenAPI, Foundry IQ, Sharepoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
+- This feature is different from the AI Gateway in Foundry feature where a new, unique APIM instance is deployed with your Foundry resource. For more on this feature, see
+[Enforce token limits with AI Gateway](/en-us/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: how-to-monitor-agents-dashboard.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/how-to-monitor-agents-dashboard -->
+
+# Monitor AI agents with the Agent Monitoring Dashboard (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Use the Agent Monitoring Dashboard in Microsoft Foundry to track operational metrics and evaluation results for your agents. This dashboard helps you understand token usage, latency, success rates, and evaluation outcomes for production traffic.
+
+## Prerequisites
+
+- A Foundry project. For more information, see
+[Create a Foundry project](../../how-to/create-projects?view=foundry). - At least one deployed agent in your Foundry project.
+- An
+[Azure Monitor Application Insights resource](/en-us/azure/azure-monitor/app/app-insights-overview)connected to your project. - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you might also need access to the associated Log Analytics workspace.
+
+### Confirm you can view telemetry
+
+To view data in the dashboard, make sure your account has access to the connected Application Insights resource.
+
+In the Azure portal, open the Application Insights resource that's connected to your Foundry project.
+
+Select
+
+**Access control (IAM)**.Assign an appropriate role to your user or group.
+
+If you use log-based views, start by granting the
+
+[Log Analytics Reader role](/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
+
+## Connect Application Insights
+
+The Agent Monitoring Dashboard reads telemetry from the Application Insights resource connected to your Foundry project. If you haven't connected Application Insights yet, follow the tracing setup steps and then return to this article.
+
+## View agent metrics
+
+To view metrics for an agent in the Foundry portal:
+
+-
+Sign in to
+
+[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. Navigate to the
+
+**Build**page using the top navigation and select the agent you'd like to view data for.Select the
+
+**Monitor**tab to view operational, evaluation, and red-teaming data for your agent.
+
+The dashboard is designed for quick insights and deep analysis of your agent's performance. It consists of two main areas:
+
+Summary cards at the top for high-level metrics.
+
+Charts and graphs below for granular details. These visualizations reflect data for the selected time range.
+
+
+## Understand the dashboard metrics
+
+Use these definitions to interpret the dashboard:
+
+**Token usage**: Token counts for agent traffic in the selected time range.**Latency**: Response time for agent runs.**Run success rate**: The percentage of runs that complete successfully.**Evaluation metrics**: Scores produced by evaluators that run on sampled agent outputs.**Red teaming results**: Outcomes from scheduled red team scans, if enabled.
+
+## Data retention and cost
+
+Monitoring data is stored in the connected Application Insights resource. Retention and billing follow your Application Insights configuration.
+
+## Configure settings
+
+Use the Monitor settings panel to configure telemetry, evaluations, and security checks for your agents. These settings control which charts the dashboard shows and which evaluations run.
+
+The following table describes the monitoring features available in the Monitor Settings panel:
+
+| Setting | Purpose | Configuration Options |
+|---|---|---|
+Continuous evaluation |
+Runs evaluations on sampled agent responses. | Enable or disable Add evaluators Set the sample rate |
+Scheduled evaluations |
+Runs evaluations on a schedule to validate performance against benchmarks. | Enable or disable Select an evaluation template and run Set a schedule |
+Red team scans |
+Runs adversarial tests to detect risks such as data leakage or prohibited actions. | Enable or disable Select an evaluation template and run Set a schedule |
+Alerts |
+Detects performance anomalies, evaluation failures, and security risks. | Configure alerts for latency, token usage, evaluation scores, or red team findings |
+
+## Set up continuous evaluation (Python SDK)
+
+Use the Python SDK to set up continuous evaluation rules for agent responses.
+
+```
+pip install "azure-ai-projects>=2.0.0b1" python-dotenv
+```
+
+
+Set these environment variables with your own values:
+
+`AZURE_AI_PROJECT_ENDPOINT`
+
+: The Azure AI Project endpoint, as found on the project overview page in the Microsoft Foundry portal.`AZURE_AI_AGENT_NAME`
+
+: The name of the AI agent to use for evaluation.`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+: The deployment name of the AI model.
+
+### Assign permissions for continuous evaluation
+
+To enable continuous evaluation rules, assign the project managed identity the **Azure AI User** role.
+
+- In the Azure portal, open the resource for your Foundry project.
+- Select
+**Access control (IAM)**, and then select**Add**. - Create a role assignment for
+**Azure AI User**. - For the member, select your Foundry project's managed identity.
+
+### Create an agent
+
+```
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+PromptAgentDefinition,
+)
+load_dotenv()
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+project_client.get_openai_client() as openai_client,
+):
+agent = project_client.agents.create_version(
+agent_name=os.environ["AZURE_AI_AGENT_NAME"],
+definition=PromptAgentDefinition(
+model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+instructions="You are a helpful assistant that answers general questions",
+),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+
+
+References: [AIProjectClient](/en-us/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient), [DefaultAzureCredential](/en-us/python/api/azure-identity/azure.identity.defaultazurecredential)
+
+### Create a continuous evaluation rule
+
+Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [What are evaluators?](../../concepts/observability?view=foundry#what-are-evaluators).
+
+```
+from azure.ai.projects.models import (
+EvaluationRule,
+ContinuousEvaluationRuleAction,
+EvaluationRuleFilter,
+EvaluationRuleEventType,
+)
+data_source_config = {"type": "azure_ai_source", "scenario": "responses"}
+testing_criteria = [
+{"type": "azure_ai_evaluator", "name": "violence_detection", "evaluator_name": "builtin.violence"}
+]
+eval_object = openai_client.evals.create(
+name="Continuous Evaluation",
+data_source_config=data_source_config, # type: ignore
+testing_criteria=testing_criteria, # type: ignore
+)
+print(f"Evaluation created (id: {eval_object.id}, name: {eval_object.name})")
+continuous_eval_rule = project_client.evaluation_rules.create_or_update(
+id="my-continuous-eval-rule",
+evaluation_rule=EvaluationRule(
+display_name="My Continuous Eval Rule",
+description="An eval rule that runs on agent response completions",
+action=ContinuousEvaluationRuleAction(eval_id=eval_object.id, max_hourly_runs=100),
+event_type=EvaluationRuleEventType.RESPONSE_COMPLETED,
+filter=EvaluationRuleFilter(agent_name=agent.name),
+enabled=True,
+),
+)
+print(
+f"Continuous Evaluation Rule created (id: {continuous_eval_rule.id}, name: {continuous_eval_rule.display_name})"
+)
+```
+
+
+References: [EvaluationRuleEventType](/en-us/python/api/azure-ai-projects/azure.ai.projects.models.evaluationruleeventtype), [EvaluationRule](/en-us/python/api/azure-ai-projects/azure.ai.projects.models.evaluationrule)
+
+## Verify continuous evaluation results
+
+- Generate agent traffic (for example, run your app or test the agent in the portal).
+- In the Foundry portal, open the agent and select
+**Monitor**. - Review evaluation-related charts for the selected time range.
+
+You can also list recent evaluation runs and open the report URL:
+
+```
+eval_run_list = openai_client.evals.runs.list(
+eval_id=eval_object.id,
+order="desc",
+limit=10,
+)
+if len(eval_run_list.data) > 0 and eval_run_list.data[0].report_url:
+print(f"Report URL: {eval_run_list.data[0].report_url}")
+```
+
+
+## Full sample code
+
+To view the full sample code, see:
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| Dashboard charts are empty | No recent traffic, time range excludes data, or ingestion delay | Generate new agent traffic, expand the time range, and refresh after a few minutes. |
+| You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in Access control (IAM) for the connected resources. For log access, assign the
+|
+| Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the Azure AI User role. |
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: use-your-own-resources.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/use-your-own-resources -->
+
+# Use your own resources
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+Use this article if you want to set up your Foundry project with your own resources.
+
+## Limitations
+
+There are some limitations you should be aware of when you plan to use existing resources with the Foundry Agent Service.
+
+### If you are using a hub-based project or Azure OpenAI Assistants
+
+At this time, there is no direct upgrade path to migrate existing agents or their associated data assets such as files, conversations, or vector stores from a hub-based project to a Microsoft Foundry project. There is also no upgrade path to convert existing Azure OpenAI Assistants into Foundry Agents, nor a way to automatically migrate Assistants' files, conversations, or vector stores.
+
+You can reuse your existing model deployments and quota from Foundry Tools or Azure OpenAI resources within a Foundry project.
+
+### SDK usage with hub-based projects
+
+Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-foundry?view=foundry-classic#types-of-projects) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
+
+If you want to continue using your hub-based project and connection string, you will need to:
+
+Use the connection string for your project located under
+
+**Connection string**in the overview of your project.Use one of the previous versions of the SDK and the associated sample code:
+
+
+### Azure Cosmos DB for NoSQL to store conversations
+
+- Your existing Azure Cosmos DB for NoSQL account used in a
+[standard setup](#choose-basic-or-standard-agent-setup)must have a total throughput limit of at least 3000 RU/s. Both provisioned throughput and serverless are supported. - Three containers will be provisioned in your existing Cosmos DB account, each requiring 1000 RU/s
+
+Note
+
+- Make sure your Azure OpenAI resource and Foundry account and project are in the same region.
+
+## Prerequisites
+
+An Azure subscription -
+
+[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).Ensure that the individual creating the account and project has the
+
+**Azure AI Account Owner**role at the subscription scopeIf configuring a
+
+[standard setup](#choose-basic-or-standard-agent-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage). For more information about RBAC in Foundry, see[RBAC in Foundry](../../concepts/rbac-foundry?view=foundry-classic).- The built-in role needed is
+**Role Based Access Administrator**. - Alternatively, having the
+**Owner**role at the subscription level also satisfies this requirement. - The key permission needed is:
+`Microsoft.Authorization/roleAssignments/write`
+
+
+- The built-in role needed is
+Register providers. The following providers must be registered:
+
+`Microsoft.KeyVault`
+
+`Microsoft.CognitiveServices`
+
+`Microsoft.Storage`
+
+`Microsoft.MachineLearningServices`
+
+`Microsoft.Search`
+
+`Microsoft.App`
+
+`Microsoft.ContainerService`
+
+- To use the
+[Grounding with Bing Search tool](tools/bing-tools?view=foundry-classic):`Microsoft.Bing`
+
+
+`az provider register --namespace 'Microsoft.KeyVault' az provider register --namespace 'Microsoft.CognitiveServices' az provider register --namespace 'Microsoft.Storage' az provider register --namespace 'Microsoft.MachineLearningServices' az provider register --namespace 'Microsoft.Search' az provider register --namespace 'Microsoft.App' az provider register --namespace 'Microsoft.ContainerService' # only to use Grounding with Bing Search tool az provider register --namespace 'Microsoft.Bing'`
+
+
+## Choose basic or standard agent setup
+
+To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization), or the [standard agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization).
+
+**Basic Setup**
+
+This setup is compatible with OpenAI Assistants and manages agent states using the platform's built-in storage. It includes the same tools and capabilities as the Assistants API, with added support for non-OpenAI models and tools such as Azure AI Search, and Bing.
+
+**Standard Setup**
+
+Includes everything in the basic setup and fine-grained control over your data by allowing you to use your own Azure resources. All customer data—including files, conversations, and vector stores are stored in your own Azure resources, giving you full ownership and control.
+
+## Basic agent setup: Use an existing Azure OpenAI resource
+
+Replace the parameter value for `existingAoaiResourceId`
+
+in the [template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization) with the full arm resource ID of the Azure OpenAI resource you want to use.
+
+To get the Azure OpenAI account resource ID, sign in to the Azure CLI and select the subscription with your Foundry Tools account:
+
+`az login`
+
+Replace
+
+`<your-resource-group>`
+
+with the resource group containing your resource and`your-azure-openai-resource-name`
+
+with the name of your AI Service resource, and run:`az cognitiveservices account show --resource-group <your-resource-group> --name <your-ai-service-resource-name> --query "id" --output tsv`
+
+The value returned is the
+
+`existingAoaiResourceId`
+
+you need to use in the template.In the
+
+[basic agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization/main.bicep), replace the following placeholder:`existingAoaiResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}`
+
+
+## Standard agent setup: Use existing service resources and storage accounts
+
+Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep).
+
+### Use an existing Azure OpenAI resource
+
+Follow the steps in basic agent setup to get the Foundry Tools account resource ID.
+
+In the standard agent template file, replace the following placeholders:
+
+`existingAoaiResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}`
+
+
+### Use an existing Azure Storage account for file storage
+
+To get your storage account resource ID, sign in to the Azure CLI and select the subscription with your storage account:
+
+`az login`
+
+Then run the command:
+
+`az storage account show --resource-group <your-resource-group> --name <your-storage-account> --query "id" --output tsv`
+
+The output is the
+
+`aiStorageAccountResourceID`
+
+you need to use in the template.In the standard agent template file, replace the following placeholders:
+
+`aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}`
+
+
+### Use an existing Azure Cosmos DB for NoSQL account for conversation storage
+
+An Azure Cosmos DB for NoSQL account is created for each Foundry account.
+
+For every project under a Foundry account, three containers are deployed within the same Cosmos DB account. Each container requires a minimum of 1000 RU/s.
+
+For example, if two projects are deployed under the same Foundry account, the Cosmos DB account must be configured with at least 6000 RU/s (3 containers × 1000 RU/s × 2 projects) to ensure sufficient throughput.
+
+Both provisioned throughput and serverless modes are supported.
+
+Note
+
+Insufficient RU/s capacity in the Cosmos DB account will result in capability host provisioning failures during deployment.
+
+To get your Azure Cosmos DB account resource ID, sign in to the Azure CLI and select the subscription with your account:
+
+`az login`
+
+Then run the command:
+
+`az cosmosdb show --resource-group <your-resource-group> --name <your-comosdb-account> --query "id" --output tsv`
+
+The output is the
+
+`cosmosDBResourceId`
+
+you need to use in the template.In the standard agent template file, replace the following placeholders:
+
+`cosmosDBResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{cosmosDbAccountName}`
+
+
+### Use an existing Azure AI Search resource
+
+To get your Azure AI Search resource ID, sign into Azure CLI and select the subscription with your search resource:
+
+`az login`
+
+Then run the command:
+
+`az search service show --resource-group <your-resource-group> --name <your-search-service> --query "id" --output tsv`
+
+In the standard agent template file, replace the following placeholders:
+
+`aiSearchServiceResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}`
+
+
+## See also
+
+- Learn about the different
+[tools](tools/overview?view=foundry-classic)agents can use.
+
+- Learn about the different
+[tools](../concepts/tool-catalog?view=foundry-classic)agents can use.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: metrics.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/metrics -->
+
+# Monitor Foundry Agent Service with Azure Monitor
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+This article describes:
+
+- The types of monitoring data you can collect for this service.
+- Ways to analyze that data.
+
+Note
+
+If you're already familiar with this service and/or Azure Monitor and just want to know how to analyze monitoring data, see the [Analyze](#analyze-monitoring-data) section near the end of this article.
+
+When you have critical applications and business processes that rely on Azure resources, you need to monitor and get alerts for your system. The Azure Monitor service collects and aggregates metrics and logs from every component of your system. Azure Monitor provides you with a view of availability, performance, and resilience, and notifies you of issues. You can use the Azure portal, PowerShell, Azure CLI, REST API, or client libraries to set up and view monitoring data.
+
+- For more information on Azure Monitor, see the
+[Azure Monitor overview](/en-us/azure/azure-monitor/overview). - For more information on how to monitor Azure resources in general, see
+[Monitor Azure resources with Azure Monitor](/en-us/azure/azure-monitor/essentials/monitor-azure-resource).
+
+Monitoring is available for agents in a [standard agent setup](../concepts/standard-agent-setup?view=foundry-classic).
+
+Note
+
+This feature is currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Important
+
+Monitoring support is currently limited to Microsoft Foundry hubs. Foundry projects aren't supported.
+
+To learn about Foundry hubs and projects, see [What is Microsoft Foundry?](../../what-is-foundry?view=foundry-classic) and [Migrate from hub-based to Foundry projects](../../how-to/migrate-project?view=foundry-classic).
+
+Note
+
+If you're using a Foundry project, use Foundry monitoring instead of Azure Monitor metrics.
+
+See [Monitor AI Agents with the Agent Monitoring Dashboard (preview)](../../observability/how-to/how-to-monitor-agents-dashboard?view=foundry-classic).
+
+## Prerequisites
+
+- An agent running in a
+[standard agent setup](../concepts/standard-agent-setup?view=foundry-classic). - Access to the Azure resource you want to monitor (and permissions to view monitoring data).
+- If you want to export metrics to Log Analytics or create alerts, you need permissions that allow you to create diagnostic settings and alert rules in your Azure subscription.
+
+## Dashboards
+
+Foundry Agent Service provides out-of-the-box dashboards. There are two key dashboards to monitor your resource:
+
+- The metrics dashboard on the Foundry resource page.
+- The dashboard in the overview pane in the Azure portal.
+
+To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com), select your Agent Service resource, and then select **Monitoring** > **Metrics**.
+
+## Data collection and routing in Azure Monitor
+
+Azure Monitor collects platform metrics automatically for Azure resources. Platform metrics are stored in the Azure Monitor metrics database and are suitable for near real-time charts and metric alerts.
+
+If you want to query metrics in Log Analytics, build workbooks, export to external systems, or retain data longer, configure diagnostic settings to route metrics to other destinations. For more information, see [Monitoring data from Azure resources](/en-us/azure/azure-monitor/essentials/monitor-azure-resource#monitoring-data-from-azure-resources) and [Create diagnostic settings to collect platform logs and metrics in Azure](/en-us/azure/azure-monitor/platform/diagnostic-settings).
+
+Routing metrics to Log Analytics can increase costs. For more information, see [Azure Monitor Logs cost calculations and options](/en-us/azure/azure-monitor/logs/cost-logs).
+
+## Azure Monitor platform metrics
+
+Azure Monitor provides platform metrics for most services. These metrics are:
+
+- Individually defined for each namespace.
+- Stored in the Azure Monitor time-series metrics database.
+- Lightweight and capable of supporting near real-time alerting.
+- Used to track the performance of a resource over time.
+- Collected automatically by Azure Monitor (no configuration required).
+
+For a list of all metrics it's possible to gather for all resources in Azure Monitor, see [Supported metrics in Azure Monitor](/en-us/azure/azure-monitor/platform/metrics-supported).
+
+## Agent Service metrics
+
+Agent Service shares a subset of metrics with other Foundry components. The following metrics are currently available in Azure Monitor:
+
+| Metric | Name in REST API | Unit | Aggregation | Dimensions | Time grain |
+|---|---|---|---|---|---|
+| Agents | `AgentEvents` |
+Count | Average, Maximum, Minimum, Total (Sum) | `EventType` |
+PT1M |
+| Indexed files | `AgentIndexedFilesRead` |
+Count | Average, Maximum, Minimum, Total (Sum) | `ErrorCode` , `Status` , `VectorStoreId` , `AgentId` |
+PT1M |
+| Runs | `AgentRuns` |
+Count | Average, Maximum, Minimum, Total (Sum) | `AgentId` , `RunStatus` , `StatusCode` , `StreamType` , `ThreadId` |
+PT1M |
+| Messages | `AgentUserMessageEvents` |
+Count | Average, Maximum, Minimum, Total (Sum) | `EventType` , `AgentId` , `ThreadId` |
+PT1M |
+| Threads | `AgentThreadEvents` |
+Count | Average, Maximum, Minimum, Total (Sum) | `AgentId` , `EventType` |
+PT1M |
+| Tokens | `AgentTotalTokens` |
+Count | Average, Maximum, Minimum, Total (Sum) | `AgentId` , `ModelName` , `ModelVersion` |
+PT1M |
+| Tool calls | `AgentToolCalls` |
+Count | Average, Maximum, Minimum, Total (Sum) | `AgentId` , `ToolName` |
+PT1M |
+
+For metric definitions, see [Monitoring data reference](../reference/monitor-service?view=foundry-classic).
+
+## Analyze monitoring data
+
+### Use Metrics Explorer in the Azure portal
+
+Azure Monitor supports [Metrics Explorer](/en-us/azure/azure-monitor/essentials/metrics-getting-started), which lets you view and analyze metrics for Azure resources.
+
+Common analysis tasks include:
+
+- Filtering a chart by a dimension (for example, by
+`AgentId`
+
+). - Splitting a chart by a dimension (for example, by
+`RunStatus`
+
+or`ToolName`
+
+). - Changing the time range and aggregation to match your investigation needs.
+
+### Verify you're receiving metrics
+
+If you don't see data right away, confirm that metrics are flowing before you start deeper analysis:
+
+- Generate activity for your agent (for example, create a run and send a few messages).
+- In Metrics Explorer, chart at least one metric (for example,
+`AgentRuns`
+
+) for your Agent Service resource. - If you exported metrics to Log Analytics, wait a few minutes for ingestion, and then run a basic
+`AzureMetrics`
+
+query.
+
+### Export metrics with diagnostic settings
+
+If you want to query metrics in Log Analytics or export them to other systems, configure diagnostic settings for the Agent Service resource and route metrics to one or more destinations.
+
+To configure diagnostic settings in the Azure portal:
+
+- In the
+[Azure portal](https://portal.azure.com), open the Agent Service resource. - Under
+**Monitoring**, select**Diagnostic settings**. - Create a diagnostic setting and choose to export metrics to your destination (for example, a Log Analytics workspace).
+- Save the diagnostic setting.
+
+For more information, see [Create diagnostic settings to collect platform logs and metrics in Azure](/en-us/azure/azure-monitor/platform/diagnostic-settings).
+
+### Query metrics with Log Analytics (KQL)
+
+After you route metrics to a Log Analytics workspace, you can query them with KQL.
+
+The following query returns a sample of metric records:
+
+```
+AzureMetrics
+| take 100
+| project TimeGenerated, MetricName, Total, Count, Maximum, Minimum, Average, TimeGrain, UnitName, ResourceId, Tags
+```
+
+
+To focus on Agent Service runs:
+
+```
+AzureMetrics
+| where MetricName == "AgentRuns"
+| take 100
+| project TimeGenerated, Total, ResourceId
+```
+
+
+For query fundamentals, see [Kusto Query Language (KQL) overview](/en-us/kusto/query/).
+
+## Create alerts
+
+Azure Monitor alerts notify you when conditions are met in your monitoring data. For more information, see [Alerts in Azure Monitor](/en-us/azure/azure-monitor/alerts/alerts-overview).
+
+To create a metric alert rule:
+
+- In the
+[Azure portal](https://portal.azure.com), open the Agent Service resource. - Select
+**Monitoring**>**Alerts**. - Select
+**Create**>**Alert rule**. - Under
+**Condition**, select a metric (for example,`AgentRuns`
+
+). - If needed, use dimensions (for example,
+`RunStatus`
+
+or`StatusCode`
+
+) to scope the alert. - Configure the action group, severity, and evaluation frequency.
+- Select
+**Create**.
+
+For application-layer observability, see [Monitor your generative AI applications (preview)](../../how-to/monitor-applications?view=foundry-classic).
+
+## Troubleshooting
+
+### No data appears in Metrics Explorer
+
+- Confirm you're viewing the correct Agent Service resource.
+- Expand the time range (for example, last 24 hours).
+- Generate new activity (for example, create a run) and refresh the chart.
+- Confirm you have permissions to view monitoring data for the resource.
+
+### No data appears in Log Analytics
+
+- Confirm you created diagnostic settings for the Agent Service resource and selected the correct destination.
+- Wait a few minutes for ingestion, and then rerun your query.
+- Confirm you have permissions to query the Log Analytics workspace.
+
+## Next steps
+
+- If you're using a Foundry project, see
+[Monitor AI Agents with the Agent Monitoring Dashboard (preview)](../../observability/how-to/how-to-monitor-agents-dashboard?view=foundry-classic). - For end-to-end debugging, see
+[Trace and observe AI agents in Foundry (preview)](../../how-to/develop/trace-agents-sdk?view=foundry-classic). - For metric definitions, see
+[Monitoring data reference](../reference/monitor-service?view=foundry-classic).
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: migrate.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/migrate -->
+
+# Upgrading to the new agents developer experience
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Tip
+
+You can use the [available migration tool](https://aka.ms/agent/migrate/tool) to migrate from the Assistants API to Agents.
+
+The new agents offer an upgraded experience which enables developers and enterprises to design intelligent agents that are easy to build, version, operate, and observe. It introduces a modernized API and SDK, new enterprise-grade capabilities, and preserves the identity, governance, and observability features customers rely on today.
+
+Key benefits
+
+The new agents provide the following benefits:
+
+**New Agent Types**: Create prompt-based, workflow-based, or container-based agents.**More models**: Generate responses using any Azure Foundry model either in your agent or directly as a response generation call.**Enterprise Readiness**: Use single tenant storage, with the added option to bring your own Cosmos DB to store state and keep your data secure.**Single or Multi-Agent Workflows**: Easily chain agents for complex workflows.**More features**: Web Search, File Search, Code Interpreter, MCP tool calling, image generation, and reasoning summaries.**Stateful Context**: Automatically retains context across calls unless opted out using store: false.**Deployable Agents**: agents can be exposed as individual endpoints.**Enhanced Security**: Control who can run or modify agent definitions.**Separation of Duties**: Define agents once; execute with various inputs.**Superset of Responses API**: builds on Responses API and adds more capabilities.**Improved State Management**: Uses conversations instead of threads/messages.**Modern API Primitive**: built on Responses API instead of the older Assistants API.**Future proof**: New features and model support will only be added to the new agents.**Lower Costs**: Improved cache utilization reduces costs.**Encrypted Reasoning**: Opt-out of statefulness while retaining advanced reasoning.
+
+## Key changes
+
+| Before | After | Details |
+|---|---|---|
+| Threads | Conversations | Supports streams of items and not just messages. |
+| Runs | Responses | Responses send input items or use a conversation object and receive output items. Tool call loops are explicitly managed. |
+| Assistants / agents | agents (new) | Support for enterprise ready prompt workflow and hosted agents, stateful context by default to use with any Azure Foundry Model |
+
+## Threads to conversations
+
+Threads stored messages on the server-side. A conversation can store items – including messages, tool calls, tool outputs, and other data.
+
+### Requests
+
+**Previous - threads**
+
+```
+thread = client.agents.threads.create(
+messages=[{"role": "user", "content": "Tell me a one line funny story about unicorns"}],
+metadata={"agent": "my-awesome-agent"},
+)
+```
+
+
+**Current - conversations**
+
+```
+conversation = client.conversations.create(
+items=[{"type": "message", "role": "user", "content": "Tell me a one line funny story about unicorns"}],
+metadata={"agent": "my-awesome-agent"}
+)
+```
+
+
+### Responses
+
+**Previous - threads**
+
+```
+{
+"id": "thread_1234abcd",
+"object": "thread",
+"created_at": 1762217858,
+"metadata": {"agent": "my-awesome-agent"},
+"tool_resources": {}
+}
+```
+
+
+**Current - conversations**
+
+```
+{
+"id":"conv_1234abcd",
+"created_at":1762217961,
+"metadata":{"agent":"my-awesome-agent"},
+"object":"conversation"
+}
+```
+
+
+## Runs to responses
+
+Runs are asynchronous processes that executed against threads. See the example below. Responses are simpler: provide a set of input items to execute and get a list of output items back. Responses can be used alone, or also with conversation objects for storing context.
+
+### Requests
+
+**Previous - runs**
+
+```
+thread_id = "thread_abcd1234"
+assistant_id = "asst_efgh5678"
+run = project_client.agents.runs.create(
+thread_id=thread_id,
+agent_id=assistant_id,
+additional_instructions="Please address the user as Jane Doe. The user has a premium account"
+)
+while run.status in ("queued", "in_progress"):
+time.sleep(1)
+run = project_client.agents.runs.get(thread_id=thread_id, run_id=run.id)
+```
+
+
+### Responses
+
+**Previous - runs**
+
+```
+{
+"id": "run_xyz",
+"object": "thread.run",
+"created_at": 1762218810,
+"assistant_id": "asst_efgh5678",
+"thread_id": "thread_abcd1234",
+"status": "completed",
+"started_at": 1762218810,
+"expires_at": null,
+"cancelled_at": null,
+"failed_at": null,
+"completed_at": 1762218812,
+"required_action": null,
+"last_error": null,
+"model": "gpt-4.1",
+"instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers. Please address the user as Jane Doe. The user has a premium account",
+"tools": [
+{
+"type": "code_interpreter"
+}
+],
+"tool_resources": {},
+"metadata": {},
+"temperature": 1.0,
+"top_p": 1.0,
+"max_completion_tokens": null,
+"max_prompt_tokens": null,
+"truncation_strategy": {
+"type": "auto",
+"last_messages": null
+},
+"incomplete_details": null,
+"usage": {
+"prompt_tokens": 1216,
+"completion_tokens": 76,
+"total_tokens": 1292,
+"prompt_token_details": {
+"cached_tokens": 0
+}
+},
+"response_format": "auto",
+"tool_choice": "auto",
+"parallel_tool_calls": true
+}
+```
+
+
+**Current - responses**
+
+```
+{
+"id": "resp_3483e9c8dda4f165006909550333588190afc76a645a0e877a",
+"created_at": 1762219267.0,
+"error": null,
+"incomplete_details": null,
+"instructions": null,
+"metadata": {
+"x-ms-telemetry-agent-kind": "",
+"x-ms-telemetry-user-agent": "OpenAI/Python 2.4.0",
+"x-ms-telemetry-response-start-time": "2025-11-04T01:21:06.5346780+00:00"
+},
+"model": "gpt-4.1",
+"object": "response",
+"output": [
+{
+"id": "msg_3483e9c8dda4f1650069095503abf881909917865574cddf2c",
+"content": [
+{
+"annotations": [],
+"text": "Of course! Here's a simple plot for the line with a rate of change of 4 and a y-intercept of 9.\\n\\nThe equation of the line is:\\n\\n\\\\[ y = 4x + 9 \\\\]\\n\\nLet's draw a graph for it:\\n\\n---\\n\\n```plaintext\\n |\\n20| *\\n | *\\n | *\\n | *\\n10| *\\n | *\\n | *\\n |*\\n +---------------------------\\n -2 -1 0 1 2 3\\n```\\n\\n**Key points:**\\n- The y-intercept is **9**, so at \\\\(x = 0\\\\), \\\\(y = 9\\\\) (point: (0,9))\\n- For each step right (increase in x), y goes up 4 units (rate of change \\\\(m = 4\\\\))\\n - For \\\\(x = 1\\\\): \\\\(y = 4(1) + 9 = 13\\\\) (point: (1,13))\\n - For \\\\(x = -1\\\\): \\\\(y = 4(-1) + 9 = 5\\\\) (point: (-1,5))\\n\\nIf you'd like a precise graph or want to visualize it interactively, let me know!",
+"type": "output_text",
+"logprobs": []
+}
+],
+"role": "assistant",
+"status": "completed",
+"type": "message"
+}
+],
+"parallel_tool_calls": true,
+"temperature": 1.0,
+"tool_choice": "auto",
+"tools": [],
+"top_p": 1.0,
+"background": false,
+"conversation": {
+"id": "conv_3483e9c8dda4f16500GwcAgtdWlSmbMPzYLjWvDjiSe6LSFcC6"
+},
+"max_output_tokens": null,
+"max_tool_calls": null,
+"previous_response_id": null,
+"prompt": null,
+"prompt_cache_key": null,
+"reasoning": {
+"effort": null,
+"generate_summary": null,
+"summary": null
+},
+"safety_identifier": null,
+"service_tier": "default",
+"status": "completed",
+"text": {
+"format": {
+"type": "text"
+},
+"verbosity": "medium"
+},
+"top_logprobs": 0,
+"truncation": "disabled",
+"usage": {
+"input_tokens": 45,
+"input_tokens_details": {
+"cached_tokens": 0
+},
+"output_tokens": 264,
+"output_tokens_details": {
+"reasoning_tokens": 0
+},
+"total_tokens": 309
+},
+"user": null,
+"content_filters": null,
+"store": true
+}
+```
+
+
+## Classic agents to new agents
+
+### Requests
+
+**Previous**
+
+```
+agent = client.agents.create_agent(
+model="gpt-4.1",
+name="my-agent", # Name of the agent
+instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.", # Instructions for the agent
+tools=code_interpreter.definitions, # Attach the tool
+)
+```
+
+
+**Current**
+
+```
+agent = client.agents.create_version(
+agent_name="my-agent",
+definition={
+"kind": "prompt",
+"model": "gpt-4.1",
+"instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers."
+}
+)
+```
+
+
+### Response
+
+**Previous**
+
+```
+{
+'id': 'asst_AVKrdr2KJthDnZiJ51nca1jy',
+'object': 'assistant',
+'created_at': 1762218496,
+'name': 'my-agent',
+'description': None,
+'model': 'gpt-4.1',
+'instructions': 'You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.',
+'tools': [
+{
+'type': 'code_interpreter'
+}
+],
+'top_p': 1.0,
+'temperature': 1.0,
+'tool_resources': {
+'code_interpreter': {
+'file_ids': [
+]
+}
+},
+'metadata': {
+},
+'response_format': 'auto'
+}
+```
+
+
+**Current**
+
+```
+{
+'metadata': {
+},
+'object': 'agent.version',
+'id': 'my-agent:1',
+'name': 'my-agent',
+'version': '1',
+'description': '',
+'created_at': 1762219751,
+'definition': {
+'kind': 'prompt',
+'model': 'gpt-4.1',
+'instructions': 'You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.'
+}
+}
+```
+
+
+## Assistants to new agents
+
+**Previous - assistants**
+
+```
+assistant = client.beta.assistants.create(
+model="gpt-4.1",
+name="my-assistant",
+instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.", # Instructions for the agent
+tools=[{"type": "code_interpreter"}],
+)
+```
+
+
+**Current - new agents**
+
+```
+agent = client.agents.create_version(
+agent_name="my-agent",
+definition={
+"kind": "prompt",
+"model": "gpt-4.1",
+"instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers."
+}
+)
+```
+
+
+## Migrating to new agents
+
+You can use the provided tool [available on GitHub](https://aka.ms/agent/migrate/tool) to migrate your agents and assistants to the new agents. It will only migrate code such as: agent definitions, thread creation, message creation, and run creation. It will not migrate state data like past runs, threads, or messages. After migration, you can run the new code, and any new state data will be created in the updated format.
+
+The following is an example of the previous and current format.
+
+**Previous**
+
+```
+agent = project_client.agents.create_agent(
+model="gpt-4.1",
+name="my-agent",
+instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.", # Instructions for the agent
+tools=[{"type": "code_interpreter"}]
+)
+thread = project_client.agents.threads.create()
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role="user", # Role of the message sender
+content="Hi, Agent! Draw a graph for a line with a rate of change of 4 and y-intercept of 9.", # Message content
+)
+run = project_client.agents.runs.create_and_process(
+thread_id=thread.id,
+agent_id=agent.id,
+additional_instructions="Please address the user as Jane Doe. The user has a premium account",
+)
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages:
+print(f"Role: {message.role}, Content: {message.content}")
+```
+
+
+**Current**
+
+```
+agent = project_client.agents.create_version(
+agent_name="my-agent",
+definition={
+"kind": "prompt",
+"model": "gpt-4.1",
+"instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.",
+"tools": [{"type": "code_interpreter", "container": {"type": "auto"}}]
+}
+)
+conversation = openai_client.conversations.create(
+items=[{"type": "message", "role": "user", "content": "Hi, Agent! Draw a graph for a line with a rate of change of 4 and y-intercept of 9."}],
+)
+response = openai_client.responses.create(
+conversation=conversation.id,
+extra_body={"agent": {"type": "agent_reference", "name": agent.name, "version": agent.version}},
+input = "Please address the user as Jane Doe. The user has a premium account"
+)
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: vs-code-agents-workflow-pro-code.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/vs-code-agents-workflow-pro-code -->
+
+# Work with Hosted (Pro-code) Agents in Visual Studio Code (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+In this article, you learn how to add and use [hosted Foundry Agent workflows](../concepts/hosted-agents?view=foundry) with Azure AI agents by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+
+After you [build an agent in Foundry Agent Service](/en-us/azure/ai-foundry/how-to/develop/vs-code-agents?view=foundry&tabs=windows-powershell&pivots=python&preserve-view=true) by using this Visual Studio Code (VS Code) extension, you can add hosted agent workflows to your agent.
+
+Foundry developers can stay productive by developing, testing, and deploying hosted agent workflows in the familiar environment of VS Code.
+
+## Create a hosted agent workflow
+
+You can use the Foundry for Visual Studio Code extension to create hosted agent workflows. A hosted agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
+
+Open the command palette (
+
+`Ctrl`+`Shift`+`P`).Run this command:
+
+`>Microsoft Foundry: Create a New Hosted Agent`
+
+.Select a programming language.
+
+Select a folder where you want to save your new workflow.
+
+Enter a name for your workflow project.
+
+
+A new folder is created with the necessary files for your hosted agent project, including a sample code file to get you started.
+
+### Install dependencies
+
+Install the required dependencies for your hosted agent project. The dependencies vary based on the programming language that you selected when you created the project.
+
+#### Prerequisites
+
+To run the sample hosted agent Python project, make sure you install Python 3.10 or higher. You also need a Foundry project with a deployed model, or an Azure OpenAI resource.
+
+Give the project's managed identity the required permissions. Assign the built-in [Azure AI User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/en-us/azure/role-based-access-control/built-in-roles/containers#acrpull) roles. Ensure the `acrPull`
+
+role is also assigned to the managed identity of the Foundry project where you plan to deploy the hosted agent.
+
+Important
+
+Check to make sure that your region supports hosted agents. For the latest information on supported regions, see [Region Availability](/en-us/azure/ai-foundry/agents/concepts/hosted-agents?view=foundry&preserve-view=true#region-availability).
+
+#### Setup and installation
+
+Create virtual environment.
+
+`python -m venv .venv`
+
+Activate the virtual environment.
+
+`# PowerShell ./.venv/Scripts/Activate.ps1 # Windows cmd .venv\Scripts\activate.bat # Unix/MacOS source .venv/bin/activate`
+
+Install the following package:
+
+`pip install azure-ai-agentserver-agentframework`
+
+
+#### Prerequisites
+
+To run the sample hosted agent C# project, make sure you have a Foundry project with a deployed model, or an Azure OpenAI resource.
+
+Give the project's managed identity the required permissions. Assign the built-in [Azure AI User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/en-us/azure/role-based-access-control/built-in-roles/containers#acrpull) roles. Ensure the `acrPull`
+
+role is also assigned to the managed identity of the Foundry project where you plan to deploy the hosted agent.
+
+Important
+
+Check to make sure that your region supports hosted agents. For the latest information on supported regions, see [Region Availability](/en-us/azure/ai-foundry/agents/concepts/hosted-agents?view=foundry&preserve-view=true#region-availability).
+
+#### Setup and installation
+
+Download and install the .NET 9 SDK from the
+
+[official .NET website](https://dotnet.microsoft.com/download).Go to your project directory and run this command to get the necessary NuGet packages:
+
+`dotnet restore`
+
+
+## Run your hosted workflow locally
+
+The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Foundry credentials:
+
+```
+AZURE_AI_PROJECT_ENDPOINT=https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>
+AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+```
+
+
+Important
+
+Never commit the `.env`
+
+file to version control. Add it to your `.gitignore`
+
+file.
+
+### Authenticate your hosted agent
+
+The hosted agent sample authenticates using [DefaultAzureCredential](/en-us/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&preserve-view=true). Configure your development environment to provide credentials via one of the supported sources, for example:
+
+- Azure CLI (
+`az login`
+
+) - Visual Studio Code account sign-in
+- Visual Studio account sign-in
+- Environment variables for a service principal (AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET)
+
+Confirm authentication locally by running either the Azure CLI `az account show`
+
+or `az account get-access-token`
+
+commands before running the sample.
+
+You can run the hosted agent in interactive mode or container mode.
+
+### Run your hosted agent in interactive mode
+
+Run the hosted agent directly for development and testing:
+
+```
+python interactive.py
+```
+
+
+### Run your hosted agent in container mode
+
+Tip
+
+Open the local playground before starting the container agent to ensure the visualization functions correctly.
+
+To run the hosted agent in container mode:
+
+- Open the Visual Studio Code Command Palette and execute the
+`Microsoft Foundry: Open Container Agent Playground Locally`
+
+command. - Execute
+`container.py`
+
+to initialize the containerized hosted agent. - Submit a request to the agent through the playground interface. For example, enter a prompt such as: "Create a slogan for a new electric SUV that's affordable and fun to drive."
+- Review the agent's response in the playground interface.
+
+The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Foundry credentials:
+
+Set up your environment variables based on your operating system:
+
+`$env:AZURE_AI_PROJECT_ENDPOINT="https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>" $env:AZURE_AI_MODEL_DEPLOYMENT_NAME="your-deployment-name"`
+
+
+#### Authenticate your hosted agent
+
+The hosted agent sample authenticates using [DefaultAzureCredential](/en-us/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview). Configure your development environment to provide credentials via one of the supported sources, for example:
+
+- Azure CLI (
+`az login`
+
+) - Visual Studio Code account sign-in
+- Visual Studio account sign-in
+- Environment variables for a service principal (AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET)
+
+Confirm authentication locally by running either the Azure CLI `az account show`
+
+or `az account get-access-token`
+
+commands before running the sample.
+
+You can run the hosted agent in interactive mode or container mode.
+
+### Run your hosted agent in interactive mode
+
+Run the hosted agent directly for development and testing:
+
+```
+dotnet build
+dotnet run --interactive
+```
+
+
+### Run your hosted agent in container mode
+
+Tip
+
+Open the local playground before starting the container agent to ensure the visualization functions correctly.
+
+To run the agent in container mode:
+
+- Open the Visual Studio Code Command Palette and execute the
+`Microsoft Foundry: Open Container Agent Playground Locally`
+
+command. - Use the following command to initialize the containerized hosted agent.
+`dotnet build dotnet run`
+
+- Submit a request to the agent through the playground interface. For example, enter a prompt such as: "Create a slogan for a new electric SUV that's affordable and fun to drive."
+- Review the agent's response in the playground interface.
+
+## Visualize hosted agent workflow execution
+
+By using the Foundry for Visual Studio Code extension, you can visualize the interactions between agents and how they collaborate to achieve your desired outcome.
+
+Enable visualization in your workflows by adding the following code snippet:
+
+```
+from agent_framework.observability import setup_observability
+setup_observability(vs_code_extension_port=4319) # Default port is 4319
+```
+
+
+Add the following reference to your csproj file:
+
+```
+<ItemGroup>
+<PackageReference Include="OpenTelemetry" Version="1.12.0" />
+<PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.12.0" />
+<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
+<PackageReference Include="System.Diagnostics.DiagnosticSource" Version="9.0.10" />
+</ItemGroup>
+```
+
+
+Update your program to include the following code snippet:
+
+```
+using System.Diagnostics;
+using OpenTelemetry;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+var otlpEndpoint =
+Environment.GetEnvironmentVariable("OTLP_ENDPOINT") ?? "http://localhost:4319";
+var resourceBuilder = OpenTelemetry
+.Resources.ResourceBuilder.CreateDefault()
+.AddService("WorkflowSample");
+var s_tracerProvider = OpenTelemetry
+.Sdk.CreateTracerProviderBuilder()
+.SetResourceBuilder(resourceBuilder)
+.AddSource("Microsoft.Agents.AI.*") // All agent framework sources
+.SetSampler(new AlwaysOnSampler()) // Ensure all traces are sampled
+.AddOtlpExporter(options =>
+{
+options.Endpoint = new Uri(otlpEndpoint);
+options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
+})
+.Build();
+```
+
+
+### Monitor and visualize your hosted agent workflow
+
+To monitor and visualize your hosted agent workflow execution in real time:
+
+Open the command palette (
+
+`Ctrl`+`Shift`+`P`).Run this command:
+
+`>Microsoft Foundry: Open Visualizer for Hosted Agents`
+
+.
+
+A new tab opens in VS Code to display the execution graph. The visualization updates itself automatically as your workflow progresses, to show the flow between agents and their interactions.
+
+#### Port conflicts
+
+For port conflicts, you can change the visualization port by setting it in the Foundry extension settings. To do that, follow these steps:
+
+- In the left sidebar of VS Code, select the gear icon to open the settings menu.
+- Select
+`Extensions`
+
+>`Microsoft Foundry Configuration`
+
+. - Locate the
+`Hosted Agent Visualization Port`
+
+setting and change it to an available port number. - Restart VS Code to apply the changes.
+
+#### Change port in code
+
+Change the visualization port by setting the `FOUNDRY_OTLP_PORT`
+
+environment variable. Update the observability port in the `workflow.py`
+
+file accordingly.
+
+For example, to change the port to 4318, use this command:
+
+```
+export FOUNDRY_OTLP_PORT=4318
+```
+
+
+In `workflow.py`
+
+, update the port number in the observability configuration:
+
+```
+setup_observability(vs_code_extension_port=4318)
+```
+
+
+Tip
+
+To enable more debugging information, add the `enable_sensitive_data=True`
+
+parameter to the `setup_observability`
+
+function.
+
+For any port conflicts, change the visualization port by setting the `FOUNDRY_OTLP_PORT`
+
+environment variable. Update the OTLP endpoint in your program accordingly.
+
+For example, to change the port to 4318, use this command:
+
+```
+$env:FOUNDRY_OTLP_PORT="4318"
+```
+
+
+In your program, update the OTLP endpoint to use the new port number:
+
+```
+var otlpEndpoint =
+Environment.GetEnvironmentVariable("OTLP_ENDPOINT") ?? "http://localhost:4318";
+```
+
+
+## Deploy the hosted agent
+
+To deploy the hosted agent:
+
+Important
+
+Make sure you give the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to get the required role assignments.
+
+- Open the Visual Studio Code Command Palette and run the
+`Microsoft Foundry: Deploy Hosted Agent`
+
+command. - Configure the deployment settings by selecting your target workspace, specifying the container agent file (
+`container.py`
+
+), and defining any other deployment parameters as needed. - Upon successful deployment, the hosted agent appears in the
+`Hosted Agents (Preview)`
+
+section of the Microsoft Foundry extension tree view. - Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
+
+- Open the Visual Studio Code Command Palette and run the
+`Microsoft Foundry: Deploy Hosted Agent`
+
+command. - Configure the deployment settings by selecting your target workspace, specifying the container agent file (
+`<your-project-name>.csproj`
+
+), and defining any other deployment parameters as needed. - Upon successful deployment, the hosted agent appears in the
+`Hosted Agents (Preview)`
+
+section of the Microsoft Foundry extension tree view. - Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
+
+For more information about publishing hosted agents, see [Publish and share agents in Microsoft Foundry](publish-agent?view=foundry).
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: mcp-authentication.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/mcp-authentication -->
+
+# Set up authentication for Model Context Protocol (MCP) tools (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. This article helps you choose an authentication method and configure it for MCP tools in Foundry Agent Service.
+
+Note
+
+If you don't already have an account with the MCP server publisher, create one through the publisher's website.
+
+## Prerequisites
+
+Before you begin, you need:
+
+- Access to the
+[Foundry portal](https://ai.azure.com/?cid=learnDocs)and a project. If you don't have one, see[Create projects in Foundry](../../how-to/create-projects?view=foundry). - Permissions to create project connections and configure agents. For details, see
+[Role-based access control in the Foundry portal](../../concepts/rbac-foundry?view=foundry). - The remote MCP server endpoint URL you want to connect to.
+- Credentials for your selected authentication method:
+- Key-based authentication: an API key, personal access token (PAT), or other token.
+- Microsoft Entra authentication: role assignments for the agent identity or project managed identity on the underlying service.
+- OAuth identity passthrough: managed OAuth configuration or an OAuth app registration (custom OAuth).
+
+
+## Choose an authentication method
+
+In general, two authentication scenarios exist:
+
+**Shared authentication**: Every user of the agent uses the same identity to authenticate to the MCP server. User context doesn't persist.**Individual authentication**: Each user authenticates with their own account so their user context persists.
+
+Use the following guidance to choose a method:
+
+| Your goal | Recommended method |
+|---|---|
+| Use one shared identity for all users | Key-based authentication or Microsoft Entra authentication |
+| Preserve each user's identity and permissions | OAuth identity passthrough |
+| Avoid managing secrets when the underlying service supports Microsoft Entra | Microsoft Entra authentication |
+| Connect to an MCP server that doesn't require auth | Unauthenticated access |
+
+## Supported authentication methods
+
+| Method | Description | User context persists |
+|---|---|---|
+| Key-based | Provide an API key or access token to authenticate with the MCP server. | No |
+| Microsoft Entra - agent identity | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the MCP server. | Yes |
+| Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
+
+## Key-based authentication
+
+Note
+
+People who have access to the project can access an API key stored in a project connection. Store only shared secrets in a project connection. For user-specific access, use OAuth identity passthrough.
+
+Pass an API key, a personal access token (PAT), or other credentials to MCP servers that support key-based authentication. For improved security, store shared credentials in a project connection instead of passing them at runtime.
+
+When you connect an MCP server to an agent in the Foundry portal, Foundry creates a project connection for you. Provide the credential name and credential value. For example, if you're connecting to the GitHub MCP server, you might provide:
+
+- Credential name:
+`Authorization`
+
+- Credential value:
+`Bearer <your-personal-access-token>`
+
+
+When the agent invokes the MCP server, Agent Service retrieves the credentials from the project connection and passes them to the MCP server.
+
+For security:
+
+- Use least-privilege credentials where possible.
+- Rotate tokens regularly.
+- Restrict access to projects that contain shared secrets.
+
+## Microsoft Entra authentication
+
+Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens.
+
+### Agent identity
+
+Use your agent identity to authenticate with MCP servers that support agent identity authentication. If you create your agent by using Agent Service, you automatically assign an agent identity to it.
+
+Before publishing, all agents in your Foundry project share the same agent identity. After you publish an agent, the agent gets a unique agent identity.
+
+Make sure the agent identity has the required role assignments on the underlying service that powers the MCP server.
+
+When the agent invokes the MCP server, Agent Service uses the available agent identity to request an authorization token and passes it to the MCP server.
+
+### Foundry project managed identity
+
+Use your Foundry project's managed identity to authenticate with MCP servers that support managed identity authentication.
+
+Make sure the project managed identity has the required role assignments on the underlying service that powers the MCP server.
+
+When the agent invokes the MCP server, Agent Service uses the project's managed identity to request an authorization token and passes it to the MCP server.
+
+## OAuth identity passthrough
+
+Note
+
+To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
+
+OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
+
+Use [OAuth identity](/en-us/entra/architecture/auth-oauth2) passthrough to prompt users interacting with your agent to sign in to the MCP server and its underlying service. Agent Service securely stores the user's credentials and uses them only within the context of the agent communicating with the MCP server.
+
+When you use OAuth identity passthrough, Agent Service generates a consent link the first time a particular user needs to authorize access. After the user signs in and consents, the agent can discover and invoke tools on the MCP server with that user's credentials.
+
+Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**.
+
+- With managed OAuth, Microsoft or the MCP server publisher manages the OAuth app.
+- With custom OAuth, you bring your own OAuth app registration.
+
+Note
+
+If you use custom OAuth, you get a redirect URL. Add the redirect URL to your OAuth app so Agent Service can complete the flow.
+
+When you set up **custom OAuth**, provide the following information:
+
+- client ID: required
+- client secret: optional (depends on your OAuth app)
+- auth URL: required
+- refresh URL: required
+- token URL: required
+- scopes: optional
+
+### Bring your own Microsoft Entra app registration
+
+Note
+
+Agent 365 MCP servers are only available to [Frontier tenants](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
+
+To use identity passthrough with Microsoft services, bring your own [Microsoft Entra app registration](/en-us/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you control what permissions you grant.
+
+The following steps use the Agent 365 MCP server as an example:
+
+Follow the
+
+[app registration guide](/en-us/entra/identity-platform/quickstart-register-app)to create a Microsoft Entra app and get the client ID and client secret.Grant
+
+[scoped permissions](/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis)to your Microsoft Entra app.For Agent 365 MCP servers, go to
+
+**Manage**>**API Permissions**and search for**Agent 365 Tools**. If you can't find it, search for`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1`
+
+. Assign the permissions you need and grant admin consent for your tenant.Here are the permissions for each MCP server:
+
+- Microsoft Outlook Mail MCP Server (Frontier):
+`McpServers.Mail.All`
+
+- Microsoft Outlook Calendar MCP Server (Frontier):
+`McpServers.Calendar.All`
+
+- Microsoft Teams MCP Server (Frontier):
+`McpServers.Teams.All`
+
+- Microsoft 365 User Profile MCP Server (Frontier):
+`McpServers.Me.All`
+
+- Microsoft SharePoint and OneDrive MCP Server (Frontier):
+`McpServers.OneDriveSharepoint.All`
+
+- Microsoft SharePoint Lists MCP Server (Frontier):
+`McpServers.SharepointLists.All`
+
+- Microsoft Word MCP Server (Frontier):
+`McpServers.Word.All`
+
+- Microsoft 365 Copilot (Search) MCP Server (Frontier):
+`McpServers.CopilotMCP.All`
+
+- Microsoft 365 Admin Center MCP Server (Frontier):
+`McpServers.M365Admin.All`
+
+- Microsoft Dataverse MCP Server (Frontier):
+`McpServers.Dataverse.All`
+
+
+- Microsoft Outlook Mail MCP Server (Frontier):
+Go back to
+
+[Foundry portal](https://ai.azure.com/build/tools)and configure your MCP server. Connect a tool, go to**Custom**, and then select**MCP**. Provide a name and MCP server endpoint, and then select**OAuth Identity Passthrough**:- client ID and client secret
+- token URL:
+`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+
+- auth URL:
+`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize`
+
+- refresh URL:
+`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+
+- scopes:
+`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above}`
+
+
+After you complete the configuration, you get a
+
+[redirect URL](/en-us/entra/identity-platform/how-to-add-redirect-uri)to add to your Microsoft Entra app.
+
+## Unauthenticated access
+
+Use unauthenticated access only when the MCP server doesn't require authentication.
+
+## Set up authentication for an MCP server
+
+Identify the remote MCP server you want to connect to.
+
+Create or select a project connection that stores the MCP server endpoint, authentication type, and any required credentials.
+
+If you connect the MCP server in the Foundry portal, Foundry creates the project connection for you.
+
+Create or update an agent with an
+
+`mcp`
+
+tool with the following information:`server_url`
+
+: The URL of the MCP server. For example,`https://api.githubcopilot.com/mcp/`
+
+.`server_label`
+
+: A unique identifier of this MCP server to the agent. For example,`github`
+
+.`require_approval`
+
+: Optionally determine whether approval is required. Supported values are:`always`
+
+: A developer needs to provide approval for every call. If you don't provide a value, this value is the default.`never`
+
+: No approval is required.`{"never":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that don't require approval.`{"always":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that require approval.
+
+`project_connection_id`
+
+: The connection name that stores the MCP server endpoint, authentication selection, and relevant information. If you provide different endpoints in the connection versus`server_url`
+
+, the endpoint in the connection is used.
+
+Run the agent.
+
+If the model tries to invoke a tool in your MCP server with approval required or the user needs to sign in for OAuth identity passthrough, review the response output:
+
+- Consent link:
+`oauth_consent_request`
+
+- Approval request:
+`mcp_approval_request`
+
+
+After the user signs in or you approve the call, submit another response to continue.
+
+- Consent link:
+
+## Validate
+
+- Trigger an MCP tool call from your agent.
+- Confirm the tool call completes successfully.
+- If you're using OAuth identity passthrough, confirm a new user gets a consent link and that subsequent tool calls succeed after the user consents.
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+You don't get an `oauth_consent_request` when you expect one |
+The MCP tool isn't configured for OAuth identity passthrough, or the tool call didn't execute | Confirm the project connection is configured for OAuth identity passthrough, and make sure your prompt causes the agent to invoke the MCP tool. |
+| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the Azure AI User role (or higher) on the project. |
+| Key-based authentication fails | Invalid or expired key or token, or the MCP server expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the MCP server documentation. |
+| Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
+| Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling |
+Update `require_approval` to match your approval requirements. |
+
+## Host a local MCP server
+
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/en-us/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following points when attempting to host local MCP servers in the cloud:
+
+| Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+|---|---|---|
+Transport |
+HTTP POST/GET endpoints required. | HTTP streamable required. |
+Code changes |
+The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
+Authentication |
+Custom authentication implementation required. | Use
+Azure Functions requires a key by default, but you can
+|
+
+**Language stack****Container requirements****Dependencies****State****UVX/NPX**`npx`
+
+start commands not supported.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: connected-agents.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/connected-agents -->
+
+# Build collaborative, multi-agent systems with Connected Agents
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Note
+
+This tool is only available in `2025-05-15-preview`
+
+API. We highly recommend you to migrate to use the `2025-11-15-preview`
+
+API version [workflows](../concepts/workflow?view=foundry-classic) for multi-agent orchestration.
+
+Connected agents in Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
+
+Rather than overloading one agent with too many skills, you can build focused, reusable agents that collaborate seamlessly—scaling both performance and maintainability.
+
+## Features
+
+**Simplified workflow design**: Break down complex tasks across specialized agents to reduce complexity and improve clarity.**No custom orchestration required**: The main agent uses natural language to route tasks, eliminating the need for hardcoded logic.**Easy extensibility**: Add new connected agents (for example, translation or risk scoring) without modifying the main agent.**Improved reliability and traceability**: Assign focused responsibilities to each agent for easier debugging and better auditability.**Flexible setup options**: Configure agents using a no-code interface in the Foundry portal or programmatically via the Python SDK.
+
+## Example: building a modular contract review agent with connected agents
+
+As your use cases grow in complexity, you can scale your AI solution by assigning specific responsibilities to multiple connected agents. This lets each agent specialize in a narrow task while the main agent coordinates the overall workflow. This modular design enhances accuracy, maintainability, and traceability—especially for document-heavy domains like legal, compliance, and procurement.
+Let’s walk through a real-world example of how to build a **Contract Review Assistant** using connected agents.
+
+### Architecture Overview
+
+**Main agent – contract orchestrator**
+
+Acts as the central interface. It interprets user prompts (such as "summarize clauses," "compare drafts," or "check compliance"), determines the task type, and delegates it to the appropriate connected agent.
+
+**Tools Used**: None directly**Responsibilities**: Intent classification and delegation**Example Agent Description**:"You are a contract review assistant. Depending on the user query, determine if the task involves clause summarization, document comparison, or compliance checking, and route accordingly."
+
+
+**Connected agent 1: clause summarizer**
+
+Extracts key sections (like Termination, Indemnity, or Confidentiality) from a contract and summarizes them in plain language.
+
+**Tools Used**:- File Search to retrieve the uploaded contract
+- Code Interpreter to scan the document for clause headings and summarize the content
+
+**Responsibilities**: Information extraction and summarization**Example agent description**:"Extract and summarize the 'Termination,' 'Payment terms,' and 'Indemnity' clauses from the provided contract."
+
+
+**Connected agent 2: compliance validator**
+
+Checks the contract against internal standards or uploaded guidelines to identify risky or noncompliant language.
+
+**Tools Used**:- File Search to access internal policy documents or contract templates
+- OpenAPI Tool to call an internal compliance rules API
+- Azure Function or Azure Logic Apps to run simple logic checks (for example required clause presence or threshold validations)
+
+**Responsibilities**: Policy matching and risk flagging**Example Prompt Instruction**:"Review this document against company compliance guidelines and flag any deviations from the approved template."
+
+
+## Limitations
+
+- Connected agents cannot call local functions using the function calling tool. We recommend using the
+[OpenAPI tool](tools/openapi-spec?view=foundry-classic)or[Azure Functions](tools/azure-functions?view=foundry-classic)instead. - It is currently not possible to guarantee citations will be passed from connected agents. You can try using prompt engineering combined with different models to try and improve the possibility that citations will be outputted by the main agent, but results are subject to variability.
+- Connected agents have a maximum depth of 2. A parent agent can have multiple subagent siblings, but subagents cannot have their own subagents. Exceeding this depth results in an
+`Assistant Tool Call Depth Error`
+
+.
+
+## Creating a multi-agent setup
+
+- Navigate to the
+**Agents**page in the portal - Select an existing agent from the list or create a new one.
+- Scroll down to the
+**Connected agents**section in the agent's set up panel and select**Add +**.
+
+In the dialog that appears, choose an agent for the main agent to delegate tasks to, and describe:
+
+- Select an
+**existing agent**from the dropdown. This is the connected agent that the main agent will delegate tasks to. - Enter a
+**unique name**for the connected agent (letters and underscores only). This name is used for API-level function calling. Keep it descriptive and machine-readable to maximize recall accuracy (for example,`summarize_text`
+
+,`lookup_product_info`
+
+). - Add a clear
+**description**of when and why the connected agent should be invoked. This helps guide the main agent’s decision-making on when to hand off tasks to connected agents during runtime.
+
+- Select an
+Select
+
+**Add +**Repeat steps 3–5 to add additional specialized agents to the main agent.
+
+Once the connected agents appear in the setup panel, scroll up and select
+
+**Try in Playground**Use test prompts in the Agent Playground to validate that the main agent correctly routes tasks to the connected agents when applicable. For example, if you’ve created a main agent called
+
+`research_agent`
+
+, which doesn't have any tools configured, and connected an agent named`stock_price_bot`
+
+, try a prompt like:**"What is the current stock price of Microsoft?"**The
+
+`research_agent`
+
+should delegate this request to`stock_price_bot`
+
+based on the routing description you defined.
+
+## Use the .NET SDK
+
+Note
+
+This shows a synchronous usage. You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample23_PersistentAgents_Connected_Agent.md)
+
+To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefinition`
+
+along with the agent ID, name, and a description.
+
+First we need to create agent client and read the environment variables, which will be used in the next steps.
+
+`var projectEndpoint = configuration["ProjectEndpoint"]; var modelDeploymentName = configuration["ModelDeploymentName"]; PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());`
+
+Next we will create the main agent
+
+`mainAgent`
+
+, and the connected`stockAgent`
+
+agent using the agent client. This connected agent will be used to initialize the`ConnectedAgentToolDefinition`
+
+.`PersistentAgent stockAgent = client.Administration.CreateAgent( model: modelDeploymentName, name: "stock_price_bot", instructions: "Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price." // tools: [...] tools that would be used to get stock prices ); ConnectedAgentToolDefinition connectedAgentDefinition = new(new ConnectedAgentDetails(stockAgent.Id, stockAgent.Name, "Gets the stock price of a company")); PersistentAgent mainAgent = client.Administration.CreateAgent( model: modelDeploymentName, name: "stock_price_bot", instructions: "Your job is to get the stock price of a company, using the available tools.", tools: [connectedAgentDefinition] );`
+
+Now we will create the thread, add the message, containing a question for agent and start the run.
+
+`PersistentAgentThread thread = client.Threads.CreateThread(); // Create message to thread PersistentThreadMessage message = client.Messages.CreateMessage( thread.Id, MessageRole.User, "What is the stock price of Microsoft?"); // Run the agent ThreadRun run = client.Runs.CreateRun(thread, agent); do { Thread.Sleep(TimeSpan.FromMilliseconds(500)); run = client.Runs.GetRun(thread.Id, run.Id); } while (run.Status == RunStatus.Queued || run.Status == RunStatus.InProgress); // Confirm that the run completed successfully if (run.Status != RunStatus.Completed) { throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message); }`
+
+Print the agent messages to console in chronological order.
+
+`Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages( threadId: thread.Id, order: ListSortOrder.Ascending ); foreach (PersistentThreadMessage threadMessage in messages) { Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: "); foreach (MessageContent contentItem in threadMessage.ContentItems) { if (contentItem is MessageTextContent textItem) { string response = textItem.Text; if (textItem.Annotations != null) { foreach (MessageTextAnnotation annotation in textItem.Annotations) { if (annotation is MessageTextUriCitationAnnotation urlAnnotation) { response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UriCitation.Title}]({urlAnnotation.UriCitation.Uri})"); } } } Console.Write($"Agent response: {response}"); } else if (contentItem is MessageImageFileContent imageFileItem) { Console.Write($"<image from ID: {imageFileItem.FileId}"); } Console.WriteLine(); } }`
+
+Clean up resources by deleting thread and agent.
+
+`agentClient.DeleteThread(threadId: thread.Id); agentClient.DeleteAgent(agentId: agent.Id); agentClient.DeleteAgent(agentId: connectedAgent.Id);`
+
+
+## Creating a multi-agent setup
+
+To create a multi-agent setup, follow these steps:
+
+Initialize the client object.
+
+`import os from azure.ai.projects import AIProjectClient from azure.ai.agents.models import ConnectedAgentTool, MessageRole from azure.identity import DefaultAzureCredential project_client = AIProjectClient( endpoint=os.environ["PROJECT_ENDPOINT"], credential=DefaultAzureCredential(), )`
+
+Create an agent that will be connected to a "main" agent.
+
+`stock_price_agent = project_client.agents.create_agent( model=os.environ["MODEL_DEPLOYMENT_NAME"], name="stock_price_bot", instructions="Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price.", #tools=... # tools to help the agent get stock prices )`
+
+Initialize the connected agent tool with the agent ID, name, and description
+
+`connected_agent = ConnectedAgentTool( id=stock_price_agent.id, name=stock_price_agent.name, description="Gets the stock price of a company" )`
+
+Create the "main" agent that will use the connected agent.
+
+`agent = project_client.agents.create_agent( model=os.environ["MODEL_DEPLOYMENT_NAME"], name="my-agent", instructions="You are a helpful agent, and use the available tools to get stock prices.", tools=connected_agent.definitions, ) print(f"Created agent, ID: {agent.id}")`
+
+Create a thread and add a message to it.
+
+`thread = project_client.agents.threads.create() print(f"Created thread, ID: {thread.id}") # Create message to thread message = project_client.agents.messages.create( thread_id=thread.id, role=MessageRole.USER, content="What is the stock price of Microsoft?", ) print(f"Created message, ID: {message.id}")`
+
+Create a run and wait for it to complete.
+
+`# Create and process Agent run in thread with tools run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id) print(f"Run finished with status: {run.status}") if run.status == "failed": print(f"Run failed: {run.last_error}") # Delete the Agent when done project_client.agents.delete_agent(agent.id) print("Deleted agent") # Delete the connected Agent when done project_client.agents.delete_agent(stock_price_agent.id) print("Deleted connected agent")`
+
+Print the agent's response. The main agent will compile the responses from the connected agents and provide the response. connected agent responses are only visible to the main agent, and not to the end user.
+
+`# Print the Agent's response message with optional citation response_message = project_client.agents.messages.list(thread_id=thread.id).get_last_message_by_role( MessageRole.AGENT ) if response_message: for text_message in response_message.text_messages: print(f"Agent response: {text_message.text.value}") for annotation in response_message.url_citation_annotations: print(f"URL Citation: [{annotation.url_citation.title}]({annotation.url_citation.url})")`
+
+
+## Publish connected agents to Azure
+
+After testing your connected agents, you can publish them to Azure for production use. The publishing process for connected agents has one key difference from publishing individual agents: **both the main agent and all connected agents must be published separately** as Agent Applications.
+
+### Connected agents-specific considerations
+
+**Publish each agent individually**: Publish the connected agents first, then the main agent. Each receives its own stable endpoint and Agent Identity.**Routing continues to work**: After publishing, the main agent automatically routes to the published connected agents using their Agent IDs in the`ConnectedAgentToolDefinition`
+
+. No code changes are needed.**Identity management**: Published connected agents receive their own Agent Identity. Reconfigure permissions for any Azure resources that your connected agents access, as the shared development identity permissions don't transfer.
+
+For complete publishing instructions, including how to publish agents through the portal or REST API, authentication configuration, and consuming published agents, see [Publish and share agents in Microsoft Foundry](publish-agent?view=foundry-classic).
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: memory-usage.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/memory-usage -->
+
+# Create and use memory in Foundry Agent Service (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Memory in Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
+
+Memory stores act as persistent storage, defining which types of information are relevant to each agent. You control access using the `scope`
+
+parameter, which segments memory across users to ensure secure and isolated experiences.
+
+This article explains how to create, manage, and use memory stores. For conceptual information, see [Memory in Foundry Agent Service](../concepts/what-is-memory?view=foundry).
+
+### Usage support
+
+| Capability | Python SDK | REST API |
+|---|---|---|
+| Create, update, list, and delete memory stores | ✔️ | ✔️ |
+| Update and search memories | ✔️ | ✔️ |
+| Attach memory to a prompt agent | ✔️ | ✔️ |
+
+## Prerequisites
+
+- An Azure subscription.
+[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - A
+[Microsoft Foundry project](../../how-to/create-projects?view=foundry)with[authorization and permissions](#authorization-and-permissions)configured. [Chat model deployment](../../foundry-models/how-to/create-model-deployments?view=foundry)(for example,`gpt-4.1`
+
+) in your project.[Embedding model deployment](../../openai/tutorials/embeddings?view=foundry)(for example,`text-embedding-3-small`
+
+) in your project.- For Python examples, Python 3.8 or later with a
+[configured environment](../../quickstarts/get-started-code?tabs=python&view=foundry&preserve-view=true). - For REST API examples, Azure CLI authenticated to your subscription.
+
+### Authorization and permissions
+
+We recommend [role-based access control](../../concepts/rbac-foundry?view=foundry) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+
+To configure role-based access:
+
+- Sign in to the
+[Azure portal](https://portal.azure.com/). - On your project:
+- From the left pane, select
+**Resource Management**>**Identity**. - Use the toggle to enable a system-assigned managed identity.
+
+- From the left pane, select
+- On the resource that contains your project:
+- From the left pane, select
+**Access control (IAM)**. - Select
+**Add**>**Add role assignment**. - Assign
+**Azure AI User**to the managed identity of your project.
+
+- From the left pane, select
+
+### Set project endpoint
+
+For the Python examples in this article, set an environment variable for your project endpoint:
+
+```
+export FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+```
+
+
+```
+$env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+```
+
+
+## Understand scope
+
+The `scope`
+
+parameter controls how memory is partitioned. Each scope in the memory store keeps an isolated collection of memory items. For example, if you create a customer support agent with memory, each customer should have their own individual memory.
+
+As a developer, you choose the key used to store and retrieve memory items, such as a UUID or a unique user ID in your system.
+
+## Create a memory store
+
+Create a dedicated memory store for each agent to establish clear boundaries for memory access and optimization. When you create a memory store, specify the chat model and embedding model deployments that process your memory content.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import MemoryStoreDefaultDefinition, MemoryStoreDefaultOptions
+from azure.identity import DefaultAzureCredential
+project_client = AIProjectClient(
+endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+memory_store_name = "my_memory_store"
+# Specify memory store options
+options = MemoryStoreDefaultOptions(
+chat_summary_enabled=True,
+user_profile_enabled=True,
+user_profile_details="Avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials"
+)
+# Create memory store
+definition = MemoryStoreDefaultDefinition(
+chat_model="gpt-4.1", # Your chat model deployment name
+embedding_model="text-embedding-3-small", # Your embedding model deployment name
+options=options
+)
+memory_store = project_client.memory_stores.create(
+name=memory_store_name,
+definition=definition,
+description="Memory store for customer support agent",
+)
+print(f"Created memory store: {memory_store.name}")
+```
+
+
+### Customize memory
+
+Customize what information the agent stores to keep memory efficient, relevant, and privacy-respecting. Use the `user_profile_details`
+
+parameter to specify the types of data that are critical to the agent's function.
+
+For example, set `user_profile_details`
+
+to prioritize "flight carrier preference and dietary restrictions" for a travel agent. This focused approach helps the memory system know which details to extract, summarize, and commit to long-term memory.
+
+You can also use this parameter to exclude certain types of data, keeping memory lean and compliant with privacy requirements. For example, set `user_profile_details`
+
+to "avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials."
+
+## Update a memory store
+
+Update memory store properties, such as `description`
+
+or `metadata`
+
+, to better manage memory stores.
+
+```
+# Update memory store properties
+updated_store = project_client.memory_stores.update(
+name=memory_store_name,
+description="Updated description"
+)
+print(f"Updated: {updated_store.description}")
+```
+
+
+## List memory stores
+
+Retrieve a list of memory stores in your project to manage and monitor your memory infrastructure.
+
+```
+# List all memory stores
+stores_list = project_client.memory_stores.list()
+print(f"Found {len(stores_list.data)} memory stores")
+for store in stores_list.data:
+print(f"- {store.name} ({store.description})")
+```
+
+
+## Use memories via an agent tool
+
+After you create a memory store, you can attach the memory search tool to a prompt agent. This tool enables the agent to read from and write to your memory store during conversations. Configure the tool with the appropriate `scope`
+
+and `update_delay`
+
+to control how and when memories are updated.
+
+```
+# Continue from the previous Python snippets.
+from azure.ai.projects.models import MemorySearchTool, PromptAgentDefinition
+# Set scope to associate the memories with
+# You can also use "{{$userId}}" to take the oid of the request authentication header
+scope = "user_123"
+openai_client = project_client.get_openai_client()
+# Create memory search tool
+tool = MemorySearchTool(
+memory_store_name=memory_store_name,
+scope=scope,
+update_delay=1, # Wait 1 second of inactivity before updating memories
+# In a real application, set this to a higher value like 300 (5 minutes, default)
+)
+# Create a prompt agent with memory search tool
+agent = project_client.agents.create_version(
+agent_name="MyAgent",
+definition=PromptAgentDefinition(
+model="gpt-4.1",
+instructions="You are a helpful assistant that answers general questions",
+tools=[tool],
+)
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+
+
+### Create a conversation
+
+You can now create conversations and request agent responses. At the start of each conversation, static memories are injected so the agent has immediate, persistent context. Contextual memories are retrieved per turn based on the latest messages to inform each response.
+
+After each agent response, the service internally calls `update_memories`
+
+. However, actual writes to long‑term memory are debounced by the `update_delay`
+
+setting. The update is scheduled and only completes after the configured period of inactivity.
+
+```
+import time
+# Create a conversation with the agent with memory tool enabled
+conversation = openai_client.conversations.create()
+print(f"Created conversation (id: {conversation.id})")
+# Create an agent response to initial user message
+response = openai_client.responses.create(
+input="I prefer dark roast coffee",
+conversation=conversation.id,
+extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+print(f"Response output: {response.output_text}")
+# After an inactivity in the conversation, memories will be extracted from the conversation and stored
+print("Waiting for memories to be stored...")
+time.sleep(65)
+# Create a new conversation
+new_conversation = openai_client.conversations.create()
+print(f"Created new conversation (id: {new_conversation.id})")
+# Create an agent response with stored memories
+new_response = openai_client.responses.create(
+input="Please order my usual coffee",
+conversation=new_conversation.id,
+extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+print(f"Response output: {new_response.output_text}")
+```
+
+
+## Use memories via APIs
+
+You can interact with a memory store directly using the memory store APIs. Start by adding memories from conversation content to the memory store, and then search for relevant memories to provide context for agent interactions.
+
+### Add memories to a memory store
+
+Add memories by providing conversation content to the memory store. The system preprocesses and postprocesses the data, including memory extraction and consolidation, to optimize the agent's memory. This long-running operation might take about one minute.
+
+Decide how to segment memory across users by specifying the `scope`
+
+parameter. You can scope the memory to a specific end user, a team, or another identifier.
+
+You can update a memory store with content from multiple conversation turns, or update after each turn and chain updates using the previous update operation ID.
+
+```
+# Continue from the previous Python snippets.
+from azure.ai.projects.models import ResponsesUserMessageItemParam
+# Set scope to associate the memories with
+scope = "user_123"
+user_message = ResponsesUserMessageItemParam(
+content="I prefer dark roast coffee and usually drink it in the morning"
+)
+update_poller = project_client.memory_stores.begin_update_memories(
+name=memory_store_name,
+scope=scope,
+items=[user_message], # Pass conversation items that you want to add to memory
+update_delay=0, # Trigger update immediately without waiting for inactivity
+)
+# Wait for the update operation to complete, but can also fire and forget
+update_result = update_poller.result()
+print(f"Updated with {len(update_result.memory_operations)} memory operations")
+for operation in update_result.memory_operations:
+print(
+f" - Operation: {operation.kind}, Memory ID: {operation.memory_item.memory_id}, Content: {operation.memory_item.content}"
+)
+# Extend the previous update with another update and more messages
+new_message = ResponsesUserMessageItemParam(content="I also like cappuccinos in the afternoon")
+new_update_poller = project_client.memory_stores.begin_update_memories(
+name=memory_store_name,
+scope=scope,
+items=[new_message],
+previous_update_id=update_poller.update_id, # Extend from previous update ID
+update_delay=0, # Trigger update immediately without waiting for inactivity
+)
+new_update_result = new_update_poller.result()
+for operation in new_update_result.memory_operations:
+print(
+f" - Operation: {operation.kind}, Memory ID: {operation.memory_item.memory_id}, Content: {operation.memory_item.content}"
+)
+```
+
+
+### Search for memories in a memory store
+
+Search memories to retrieve relevant context for agent interactions. Specify the memory store name and scope to narrow the search.
+
+```
+# Continue from the previous Python snippets.
+from azure.ai.projects.models import MemorySearchOptions, ResponsesUserMessageItemParam
+# Search memories by a query
+query_message = ResponsesUserMessageItemParam(content="What are my coffee preferences?")
+search_response = project_client.memory_stores.search_memories(
+name=memory_store_name,
+scope=scope,
+items=[query_message],
+options=MemorySearchOptions(max_memories=5)
+)
+print(f"Found {len(search_response.memories)} memories")
+for memory in search_response.memories:
+print(f" - Memory ID: {memory.memory_item.memory_id}, Content: {memory.memory_item.content}")
+```
+
+
+### Retrieve static or contextual memories
+
+Often, user profile memories can't be retrieved based on semantic similarity to a user's message. We recommend that you inject static memories into the beginning of each conversation and use contextual memories to generate each agent response.
+
+To retrieve static memories, call
+
+`search_memories`
+
+with a`scope`
+
+but without`items`
+
+or`previous_search_id`
+
+. This returns user profile memories associated with the scope.To retrieve contextual memories, call
+
+`search_memories`
+
+with`items`
+
+set to the latest messages. This can return both user profile and chat summary memories most relevant to the given items.
+
+For more information about user profile and chat summary memories, see [Memory types](../concepts/what-is-memory?view=foundry#memory-types).
+
+## Delete memories
+
+Warning
+
+Before you delete a memory store, consider the impact on dependent agents. Agents with attached memory stores might lose access to historical context.
+
+Memories are organized by scope within a memory store. You can delete memories for a specific scope to remove user-specific data, or you can delete the entire memory store to remove all memories across all scopes.
+
+### Delete memories by scope
+
+Remove all memories associated with a particular user or group scope while preserving the memory store structure. Use this operation to handle user data deletion requests or reset memory for specific users.
+
+```
+# Delete memories for a specific scope
+delete_scope_response = project_client.memory_stores.delete_scope(
+name=memory_store_name,
+scope="user_123"
+)
+print(f"Deleted memories for scope: user_123")
+```
+
+
+### Delete a memory store
+
+Remove the entire memory store and all associated memories across all scopes. This operation is irreversible.
+
+```
+# Delete the entire memory store
+delete_response = project_client.memory_stores.delete(memory_store_name)
+print(f"Deleted memory store: {delete_response.deleted}")
+```
+
+
+## Best practices
+
+**Implement per-user access controls:**Avoid giving agents access to memories shared across all users. Use the`scope`
+
+property to partition the memory store by user. When you share`scope`
+
+across users, use`user_profile_details`
+
+to instruct the memory system not to store personal information.**Map scope to an authenticated user:**When you specify scope in the[memory search tool](#use-memories-via-an-agent-tool), set`scope={{$userId}}`
+
+to map to the user from the authentication token (`{tid}_{oid}`
+
+). This ensures that memory searches automatically target the correct user.**Minimize and protect sensitive data:**Store only what's necessary for your use case. If you must store sensitive data, such as personal data, health data, or confidential business inputs, redact or remove other content that could be used to trace back to an individual.**Support privacy and compliance:**Provide users with transparency, including options to access and delete their data. Record all deletions in a tamper-evident audit trail. Ensure the system adheres to local compliance requirements and regulatory standards.**Segment data and isolate memory:**In multi-agent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.**Monitor memory usage:**Track token usage and memory operations to understand costs and optimize performance.
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| Requests fail with an authentication or authorization error. | Your identity or the project managed identity doesn’t have the required roles. | Verify the roles in
+|
+
+`update_delay`
+
+set to `0`
+
+to trigger processing immediately.`scope`
+
+value doesn’t match the scope used when memories were stored.`memory_search`
+
+tool and references the correct memory store name.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: virtual-networks.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/virtual-networks -->
+
+# Create a new network-secured environment with user-managed identity
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
+
+Tip
+
+See the [FAQ article](../faq?view=foundry-classic#virtual-networking) for common questions when working with Virtual Networks.
+
+Note
+
+End-to-end network isolation is not supported in the new Foundry portal experience. Please use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation is enabled.
+
+## Security features
+
+By default, the Standard Setup with Private Network Isolation ensures:
+
+**No public egress**: foundational infrastructure ensures the right authentication and security for your agents and tools, without you having to do trusted service bypass.**Container injection**: allows the platform network to host APIs and inject a subnet into your network, enabling local communication of your Azure resources within the same virtual network.**Private resource access**: If your resources are marked as private and nondiscoverable from the internet, the platform network can still access them, provided the necessary credentials and authorization are in place.
+
+For customers without an existing virtual network, the Standard Setup with Private Networking template simplifies deployment by automatically provisioning the necessary network infrastructures.
+
+## Architecture diagram
+
+
+### Known limitations
+
+**Subnet IP address limitation**: both subnets must have IP ranges under`10.0.0.0/8`
+
+,`172.16.0.0/12`
+
+or`192.168.0.0/16`
+
+, which are class A, B or C private address ranges reserved for private networking. Public Class A, B or C address ranges are not supported. For more information, see[our Private Network Secured Agent deployment template on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup/README.md).**Agent subnet exclusivity**: The agent subnet cannot be shared by multiple Microsoft Foundry resources. Each Foundry resource must use a dedicated agent subnet.**Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to`Microsoft.App/environment`
+
+. For more on the subnet sizing, see[Configuring virtual networks for Azure Container Apps](/en-us/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).**Agent subnet egress firewall allowlisting**: If you are integrating an Azure Firewall with your private network secured standard agent, please allowlist the Fully Qualified Domain Names (FQDNs) listed under**Managed Identity**in the[Integrate with Azure Firewall](/en-us/azure/container-apps/use-azure-firewall#application-rules)article or add the Service Tag**AzureActiveDirectory**.- Verify no TLS inspection happens in the Firewall that could be adding a self-signed certificate. During failures, inspect if there is any traffic landing on the Firewall and what traffic is being blocked by the Firewall.
+- Additionally, expect traffic to a
+`10.x.x.x`
+
+private IP (for non-class A scenarios) or`100.x.x.x`
+
+private IP (for class A scenario) as necessary traffic to Agent Infra services. Allow this traffic if you are integrating with a Firewall.
+
+**All Foundry workspace resources must be deployed in the same region as the virtual network (VNet)**. This includes Cosmos DB, Storage Account, AI Search, Foundry Account, Project, Managed Identity, Azure OpenAI, or another Foundry resource used for model deployments.**Region availability**:- For supported regions for model deployments, see:
+[Azure OpenAI model region support](../concepts/model-region-support?view=foundry-classic#available-models).
+
+- For supported regions for model deployments, see:
+**Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.**Private MCP Server**: using private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.**Grounding with Bing Search**: Only the following regions are supported:- West Europe
+- Canada East
+- Switzerland North
+- Spain Central
+- UAE North
+- Korea Central
+- Poland Central
+- Southeast Asia
+- West US
+- West US 2
+- West US 3
+- East US
+- East US 2
+- Central US
+- South India
+- Japan East
+- UK South
+- France Central
+- Norway East
+- Australia East
+- Canada Central
+- Sweden Central
+- South Africa North
+- Italy North
+- Brazil South
+
+
+## Prerequisites
+
+An Azure subscription -
+
+[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).Ensure that the individual creating the account and project has the
+
+**Azure AI Account Owner**role at the subscription scopeThe person deploying the template must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage).
+
+- The built-in role needed is
+**Role Based Access Administrator**. - Alternatively, having the
+**Owner**role at the subscription level also satisfies this requirement. - The key permission needed is:
+`Microsoft.Authorization/roleAssignments/write`
+
+
+- The built-in role needed is
+Once the agent environment is configured, ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in
+
+**Azure AI User**[RBAC role](../../concepts/rbac-foundry?view=foundry-classic)for the project.- The minimum set of permissions required is:
+**agents/*/read**,**agents/*/action**,**agents/*/delete**
+
+- The minimum set of permissions required is:
+Register providers. The following providers must be registered:
+
+`Microsoft.KeyVault`
+
+`Microsoft.CognitiveServices`
+
+`Microsoft.Storage`
+
+`Microsoft.MachineLearningServices`
+
+`Microsoft.Search`
+
+`Microsoft.Network`
+
+`Microsoft.App`
+
+`Microsoft.ContainerService`
+
+- To use Bing Search tool:
+`Microsoft.Bing`
+
+
+`az provider register --namespace 'Microsoft.KeyVault' az provider register --namespace 'Microsoft.CognitiveServices' az provider register --namespace 'Microsoft.Storage' az provider register --namespace 'Microsoft.MachineLearningServices' az provider register --namespace 'Microsoft.Search' az provider register --namespace 'Microsoft.Network' az provider register --namespace 'Microsoft.App' az provider register --namespace 'Microsoft.ContainerService' # only to use Grounding with Bing Search tool az provider register --namespace 'Microsoft.Bing'`
+
+
+## Configure a new network-secured environment
+
+Note
+
+- Programmatic deployment is required to set up a network-secured environment for Agent Service. Deployment through the Azure portal is currently not supported.
+- If you want to delete your Foundry resource and Standard Agent with secured network set-up, delete your Foundry resource and virtual network last. Before deleting the virtual network, ensure to delete and
+[purge](../../../ai-services/recover-purge-resources?view=foundry-classic#purge-a-deleted-resource)your Foundry resource. - In the Standard Setup, agents use customer-owned, single-tenant resources. You have full control and visibility over these resources, but you incur costs based on your usage.
+
+You can deploy and customize the Standard Setup with Private Networking using either Bicep or Terraform. The provided samples allow you to bring your own virtual network and customize the deployment to meet your specific requirements:
+
+- Foundry account and Foundry project are created.
+- A gpt-4o model is deployed.
+- Azure resources for storing customer data: Azure Storage, Azure Cosmos DB, and Azure AI Search are automatically created if existing resources are not provided.
+- These resources are connected to your project to store files, threads, and vector data.
+- Microsoft-managed encryption keys for Storage Account and Cognitive Account (Foundry) are used by default.
+
+Select one of the available deployment methods:
+
+**Bicep templates**: follow instructions in[this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).**Terraform configuration**: follow instructions in[this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform/15b-private-network-standard-agent-setup-byovnet).
+
+## Deep Dive Standard Setup with Private Networking Template
+
+When you use the Standard Setup with Private Networking Agent Template, the following will automatically be provisioned, unless you bring your own:
+
+**Network Infrastructure**
+
+- A Virtual Network (192.168.0.0/16) is created
+- Agent Subnet (192.168.0.0/24): Hosts Agent client
+- Private endpoint Subnet (192.168.1.0/24): Hosts private endpoints
+
+**Private DNS Zones**
+The following DNS zones are configured:
+
+- privatelink.blob.core.windows.net
+- privatelink.cognitiveservices.azure.com
+- privatelink.documents.azure.com
+- privatelink.file.core.windows.net
+- privatelink.openai.azure.com
+- privatelink.search.windows.net
+- privatelink.services.ai.azure.com
+
+### Virtual network (Vnet) capabilities
+
+Virtual networks enable you to specify which endpoints can make API calls to your resources. The Azure service automatically rejects API calls from devices outside your defined network. You can establish allowed networks using either formula-based definitions or by creating an exhaustive list of permitted endpoints. This security layer can be combined with other security measures for enhanced protection.
+
+Note
+
+If you bring your existing virtual network and subnet with the *Microsoft.App/environments* delegation, the minimized size of your subnet should be /27 (32 addresses). We recommend a subnet size of /24 (256 addresses), which is the default subnet size set in the network secured template.
+
+### Network rules
+
+All accounts and their corresponding projects are protected by default with **Public network access Disabled flag**, requiring explicit configuration to allow access through private endpoints.
+
+These rules apply to **all protocols**, including REST and WebSocket. Even internal testing tools like Azure portal's test consoles require explicit permission to access your account and its child resources—ensuring complete security across all agent projects.
+
+### Private endpoints
+
+For Agents, private endpoints ensure secure, internal-only connectivity for the following Azure resources:
+
+- Foundry
+- Azure AI Search
+- Azure Storage
+- Azure Cosmos DB
+
+### DNS zone configurations summary
+
+| Private Link Resource Type | Sub Resource | Private DNS Zone Name | Public DNS Zone Forwarders |
+|---|---|---|---|
+Foundry |
+account | `privatelink.cognitiveservices.azure.com` `privatelink.openai.azure.com` `privatelink.services.ai.azure.com` |
+`cognitiveservices.azure.com` `openai.azure.com` `services.ai.azure.com` |
+Azure AI Search |
+searchService | `privatelink.search.windows.net` |
+`search.windows.net` |
+Azure Cosmos DB |
+Sql | `privatelink.documents.azure.com` |
+`documents.azure.com` |
+Azure Storage |
+blob | `privatelink.blob.core.windows.net` |
+`blob.core.windows.net` |
+
+To create a conditional forwarder in the DNS Server to the Azure DNS Virtual Server, use the list of zones mentioned in the above table. The Azure DNS Virtual Server IP address is 168.63.129.16.
+
+### Access your secured agents
+
+Once your template deployment is complete, you can access your Foundry project behind a virtual network using one of the following methods:
+
+**Azure VPN Gateway**: Connects on-premises networks to the virtual network over a private connection. Connection is made over the public internet. There are two types of VPN gateways that you might use:**Point-to-site**: Each client computer uses a VPN client to connect to the virtual network.**Site-to-site**: A VPN device connects the virtual network to your on-premises network.
+
+**ExpressRoute**: Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider.**Azure Bastion**: In this scenario, you create an Azure Virtual Machine (sometimes called a jump box) inside the virtual network. You then connect to the VM using Azure Bastion. Bastion allows you to connect to the VM using either an RDP or SSH session from your local web browser. You then use the jump box as your development environment. Since it is inside the virtual network, it can directly access the workspace.
+
+## Summary
+
+**Private Networking for Standard Agent Setup** delivers enterprise-grade isolation and control:
+
+- ✅ All inbound and outbound traffic remains isolation from public internet
+- ✅ Dedicated private endpoints secure all your customer data
+- ✅ Automatic private DNS resolution for seamless internal access
+- ✅ Strict deny-by-default network rules for maximum security
+
+This setup enables AI agents to operate entirely within a dedicated, isolated virtual network. By leveraging private network isolation (BYO VNet), organizations can enforce custom security policies, ensuring that AI agents operate within their trusted infrastructure.
+
+Our goal is to accelerate the development and deployment of AI agents without compromising critical security requirements. With our bicep and ARM templates, you can quickly set up your agent environment while still maintaining full control over their networking and data.
+
+## Troubleshooting guide
+
+Refer to this guide to resolve errors regarding the standard secured agent template deployment errors or errors post template deployment in the Foundry portal.
+
+### Template deployment errors
+
+`"CreateCapabilityHostRequestDto is invalid: Agents CapabilityHost supports a single, non empty value for vectorStoreConnections property."`
+
+
+`"Agents CapabilityHost supports a single, non empty value for storageConnections property."`
+
+
+`"Agents CapabilityHost supports a single, non empty value for threadStorageConnections property."`
+
+
+**Solution**: Providing all connections to all Bring-your-Own (BYO) resources, requires connections to all BYO resources. You cannot create a secured standard agent in Foundry without all three resources provided.
+
+`"Provided subnet must be of the proper address space. Please provide a subnet which has address space in the range of 172 or 192."`
+
+
+**Solution**: You are not using a proper IP range for your delegated agent subnet. Please verify you are using a valid Private IP address spaces.
+
+`"Subscripton is not registered with the required resource providers, please register with the resource providers Microsoft.App and Microsoft.ContainerService."`
+
+
+**Solution**: You are missing the correct resource registration. Ensure the required resources are registered in your tenant.
+
+```
+az provider register --namespace 'Microsoft.KeyVault'
+az provider register --namespace 'Microsoft.CognitiveServices'
+az provider register --namespace 'Microsoft.Storage'
+az provider register --namespace 'Microsoft.MachineLearningServices'
+az provider register --namespace 'Microsoft.Search'
+az provider register --namespace 'Microsoft.Network'
+az provider register --namespace 'Microsoft.App'
+az provider register --namespace 'Microsoft.ContainerService'
+```
+
+
+`"Failed to create Aml RP virtual workspace due to System.Exception: Failed async operation."`
+
+or `"The resource operation completed with terminal provisioning state 'Failed'. Capability host operation failed."`
+
+
+**Solution**: This is a catch all error we provide. Create a support ticket request to investigate your set-up. Check the capability host for the error.
+
+`"Subnet requires any of the following delegation(s) [Microsoft.App/environments] to reference service association link /subscriptions/11111-aaaaa-2222-bbbb-333333333/resourceGroups/agentRANGEChange/providers/Microsoft.Network/virtualNetworks/my-agent-vnet/subnets/agent-subnet/serviceAssociationLinks/legionservicelink."`
+
+
+**Solution**: This error appears when you try to delete your secured standard template set-up in Azure and did not correctly delete all resources. One solution is to navigate to your Foundry resource page in the Azure portal and select **Manage deleted resources**. From there, purge the resource that the agent was associated with for this virtual network. The other option is to run the `deleteCaphost.sh`
+
+script in the secured standard template.
+
+## Next steps
+
+You've now successfully configured a network-secure account and project, use the [quickstart](../quickstart?view=foundry-classic) to create your first agent.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: publish-agent.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/publish-agent -->
+
+# Publish and share agents in Microsoft Foundry
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Publishing promotes an agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. This article shows you how to publish an agent, configure its authentication and permissions, update published versions, and consume the agent through its stable endpoint.
+
+When you publish an agent, Microsoft Foundry creates an Agent Application resource with a dedicated invocation URL and its own Microsoft Entra agent identity blueprint and agent identity. A deployment is created under the application that references your agent version and registers it in the [Entra Agent Registry](/en-us/entra/agent-id/identity-platform/what-is-agent-registry) for discovery and governance.
+
+Publishing enables you to share agents with teammates, your organization, or customers without granting access to your Foundry project or source code. The stable endpoint remains consistent as you iterate and deploy new agent versions.
+
+## Prerequisites
+
+- A
+[Foundry project](../../how-to/create-projects?view=foundry)with at least one agent version created [Azure AI Project Manager role](../../concepts/rbac-foundry?view=foundry)on the Foundry project scope to publish agents[Azure AI User role](../../concepts/rbac-foundry?view=foundry)on the Agent Application scope to chat with a published agent- Familiarity with
+[Azure role-based access control (RBAC)](/en-us/azure/role-based-access-control/overview)for permission configuration - Familiarity with
+[Agent identity concepts in Foundry](../concepts/agent-identity?view=foundry) - Install the required language runtimes, global tools, and VS Code extensions as described in
+[Prepare your development environment](../../how-to/develop/install-cli-sdk?view=foundry)
+
+Important
+
+Code in this article uses packages that are currently in preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+## When to use agent applications
+
+Anyone with the AI User role on a Foundry project can interact with all the agents it contains with conversations and state shared between all users. This is appropriate for development tasks like authoring, debugging, and testing agents, but it’s not typically suitable for distribution of an agent to non-developers.
+
+Applications address the needs of broader agent distribution by providing a stable endpoint, unique Agent Identity with audit trails, cross-team sharing capabilities, integration with Entra Agent Registry, user data isolation, and the ability to preview the agent as a web application.
+
+Creating an application for an agent enables:
+
+**External sharing**: You can provide access to teammates or customers who shouldn't have access to your Foundry project**SaaS-like behavior**: The application has a stable endpoint so that you can update the application with new versions within Foundry without requiring downstream consumers to make changes**Distinct identity**: The agent has its own identity, RBAC rules, and audit trail separate from the project-level default identity**User data isolation**: The inputs and interactions one user has with the agent aren’t available to any other users by default**Azure Policy integration**: As an ARM resource the application can be governed by Azure Policy
+
+## Understand agent applications and deployments
+
+Before publishing, it's important to understand the relationship between projects, agent versions, applications, and deployments.
+
+
+A Foundry **project** is a work organization concept that groups related resources such as agents, files, and indexes. An **agent** represents a composable unit — defined by its instructions, model, and tools. An **agent version** captures a specific immutable snapshot of an agent. Every time you make changes to your agent, such as updating the prompt or adding tools, a new agent version is created. When you create an agent version, it's exposed under the project where developers with project access can create, run, and test it.
+
+An **Agent Application** projects one or more agents as a service — independently addressable, governable, and equipped with lifecycle and content management capabilities. It provides a durable interface that establishes authentication, identity, and a stable entry point for consumers. A **deployment** is a running instance of an agent version inside an application that can be started, stopped, and updated to reference new agent versions.
+
+During development, all unpublished agents in a project share a default Agent Identity. Once published, an agent receives its own Agent Identity and becomes a nested Azure resource visible in the Azure portal, enabling independent governance and RBAC configuration.
+
+### Routing and version management
+
+Each Agent Application acts as a routing table to specific agent deployments. Currently, an Agent Application supports one active deployment, directing 100% of the traffic received by the application’s endpoint to that deployment. When you publish a new agent version to an existing application, 100% of the traffic received by the application’s endpoint will be directed to the deployment referencing the new agent version.
+
+
+### Anatomy of an Agent Application and deployment
+
+#### Agent Application properties
+
+| Name | Description | Value | Can be specified in request body? |
+|---|---|---|---|
+`displayName` |
+The display name of the agent application | string | ✅ |
+`baseUrl` |
+The agent application’s dedicated endpoint | string | ❌ (read only) |
+`agents` |
+The agents exposed by the application. | array of objects | ✅ |
+`agentIdentityBlueprint` |
+The agent identity blueprint associated with the agent application. | object | ❌ (read only) |
+`defaultInstanceIdentity` |
+The agent identity associated with the agent application | object | ❌ (read only) |
+`authorizationPolicy` |
+Defines how users are allowed to auth to the app. If not specified, this is set by default | object | ✅ |
+`trafficRoutingPolicy` |
+Defines what deployment the agent sends traffic to. Currently, all traffic can only be routed to one deployment. | object | ✅ |
+`provisioningState` |
+Gets the status of the agent application at the time the operation was called. | string | ❌ (read only) |
+`isEnabled` |
+Specifies whether an agent application is enabled or disabled. | boolean | ✅ |
+
+#### Deployment properties
+
+| Name | Description | Value | Can be specified in request body? |
+|---|---|---|---|
+`displayName` |
+The display name of the deployment. | string | ✅ |
+`deploymentId` |
+This is a system-generated unique identifier for each distinct lifetime of a deployment with a given resource identifier. | string | ❌ (read only) |
+`state` |
+The state of the deployment. | enum (`Starting` , `Running` , `Stopping` , `Failed` , `Deleting` , `Deleted` , `Updating` ) |
+❌ (read only) there are explicit APIs like start/stop to control state |
+`protocols` |
+The protocols supported by the deployment | array of objects | ✅ |
+`agents` |
+The agent version attached to a specific deployment. | array of objects | ✅ |
+`provisioningState` |
+Gets the status of the deployment at the time the operation was called. | enum (`Succeeded` , `Failed` , `Canceled` , `Creating` , `Updating` , `Deleting` ) |
+❌ (read only) |
+`deploymentType` |
+The type of agent attached to the deployment | Enum (`Hosted` or `Managed` ) |
+✅ |
+`minReplicas` |
+The minimum number of replicas that are always running. | integer | ✅ (only when deploymentType: `Hosted` ) |
+`maxReplicas` |
+The maximum number of replicas that can be running. | integer | ✅ (only when deploymentType: `Hosted` ) |
+
+## Call agent applications
+
+An Agent Application resource exposes a stable endpoint with multiple protocol and authentication options.
+
+### Protocols
+
+#### Responses
+
+Foundry agents by default expose an OpenAI-compatible protocol based around Responses for interacting with agents.
+
+For applications this is exposed at:
+
+`https://{accountName}.services.ai.azure.com/api/projects/{projectName}/applications/{applicationName}/protocols/openai`
+
+
+The behavior of the OpenAI API exposed through applications has been modified to allow user data isolation. It is more limited than the OpenAI API served by the project endpoint – applications currently remove any ability to provide inputs except through the create response call. Specifically:
+
+- Only the POST /responses API is currently available; all other APIs including /conversations, /files, /vector_stores, and /containers are inaccessible
+- The POST /responses call overrides store to false to prevent storing the response
+
+This means that for multi-turn conversations the conversation history must be stored by the client.
+
+#### Activity Protocol
+
+Foundry agents can also expose the [Activity Protocol](https://github.com/microsoft/Agents/blob/main/specs/activity/protocol-activity.md) used by Azure Bot Service.
+
+For applications this is exposed at:
+
+`https://{accountName}.services.ai.azure.com/api/projects/{projectName}/applications/{applicationName}/protocols/activityprotocol`
+
+
+### Authentication
+
+There are two options for inbound end-user authentication that can be configured on the application:
+
+- Default: The caller must have the Azure RBAC (Role-Based Access Control) permission /applications/invoke/action on the application resource.
+
+API key authentication is not supported for agents through projects or through applications.
+
+## Publish an agent
+
+Note that an agent does not have an intrinsic identity; its tool invocation, when using the "agentic identity" authentication option, is, in fact, using the identity of its serving entity - the project's, for unpublished agents, and the respective application's, for published ones. As a consequence, permissions assigned to a project identity do not transfer to an application upon publishing an agent; you must explicitly (re)assign the necessary privileges to the publishing application's identity.
+
+### Foundry portal
+
+This section shows you how to publish an agent using the Foundry portal interface.
+
+In the Agent Builder, create or select an agent version you want to publish.
+
+Select
+
+**Publish Agent**to create an Agent Application and deployment.Configure authentication for your Agent Application:
+
+- By default, the authentication type is set to RBAC (Role-Based Access Control)
+- End users calling the agent must have Azure RBAC permissions on the application resource
+
+Assign permissions for tool authentication:
+
+- If your agent includes tools that use Agent Identity for authentication, the newly created Agent Identity must have appropriate permissions
+- Navigate to each Azure resource your agent accesses and assign the required RBAC role to the new Agent Identity
+- The shared development identity permissions don't carry over—you must reconfigure permissions for the published agent's identity
+
+After publishing, you can:
+
+- Open app to chat with your published agent application and easily share it with others in the UI (Note: sharing the application automatically grants them the Azure AI User role on the Agent Application resource)
+
+- Share the published endpoint with external consumers
+
+
+### REST API
+
+To publish an agent version you must create an application and deployment that reference your agent version.
+
+Important
+
+Agent Applications are Azure resources. Use the latest API version available for your subscription and account when calling the management endpoint.
+
+- Create agent application. Update agentName field to the name of the agent you want to publish.
+
+```
+PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}?api-version={{api_version}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+{
+"properties":{
+"displayName": "niceapp",
+"agents": [{"agentName": "Publishing Agent"}]
+}
+}
+```
+
+
+- Create a deployment. Replace agentName and agentVersion with the agent version you want to publish.
+
+For prompt and workflow agents:
+
+```
+PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}?api-version={{api_version}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+{
+"properties":{
+"displayName": "Test Managed Deployment",
+"deploymentType": "Managed",
+"protocols": [
+{
+"protocol": "responses",
+"version": "1.0"
+}
+],
+"agents": [
+{
+"agentName": "Publishing Agent",
+"agentVersion": "1"
+}
+]
+}
+}
+```
+
+
+For hosted agents:
+
+```
+PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/default/agentdeployments/{{deployment_name2}}?api-version={{api_version}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+{
+"properties": {
+"displayName": "Test Hosted Deployment",
+"deploymentType": "Hosted",
+"minReplicas": 1,
+"maxReplicas": 1,
+"protocols": [
+{
+"protocol": "responses",
+"version": "1.0"
+}
+],
+"agents": [
+{
+"agentName": "ContainerAgent",
+"agentVersion": "1"
+}
+]
+}
+}
+```
+
+
+## Verify publishing succeeded
+
+After you publish, verify that:
+
+- The Agent Application resource exists.
+- The deployment is running.
+- You can invoke the application endpoint.
+
+### Quick verification by calling the endpoint
+
+- Get an access token for the calling user.
+
+```
+az account get-access-token --resource https://ai.azure.com
+```
+
+
+- Call the Agent Application endpoint (Responses protocol).
+
+```
+curl -X POST \
+"https://<foundry-resource-name>.services.ai.azure.com/api/projects/<project-name>/applications/<app-name>/protocols/openai/responses?api-version=2025-11-15-preview" \
+-H "Authorization: Bearer <access-token>" \
+-H "Content-Type: application/json" \
+-d '{"input":"Say hello"}'
+```
+
+
+If you receive `403 Forbidden`
+
+, confirm the caller has the Azure AI User role on the Agent Application resource.
+
+## Update a published agent application
+
+When you need to roll out a new version of your agent, update the existing application and deployment to reference the new agent version.
+
+### Foundry portal
+
+In the Agent Builder, navigate to the specific agent version you want to publish.
+
+Select
+
+**Publish Updates**.Confirm the update. The Agent Application automatically directs 100% of traffic to the new agent version.
+
+
+The stable endpoint URL remains unchanged, ensuring downstream consumers aren't disrupted by the update.
+
+### REST API
+
+If your agent name remains the same and you only want to roll out a new agent version, update the deployment to reference a new agent version.
+
+```
+PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}?api-version={{api_version}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+{
+"properties":{
+"description": "This is a managed deployment",
+"displayName": "Test Managed Deployment",
+"deploymentType": "Managed",
+"protocols": [
+{
+"protocol": "responses",
+"version": "1.0"
+}
+],
+"agents": [
+{
+"agentName": "Publishing Agent",
+"agentVersion": "<updated-agent-version>"
+}
+]
+}
+}
+```
+
+
+To roll out an agent with a different name you must:
+
+- Update the Agent Application to allow the new agent name
+- Create/update a deployment to reference the new agent version
+- (If new deployment created) Update the Agent Application’s traffic routing policy so 100% of traffic goes to the new deployment (note: we currently enforce 100% of traffic routed to a single deployment)
+
+## Consume your published Agent Application
+
+After publishing, you invoke your agent through its endpoint using the responses protocol. Using the OpenAI-compatible API with Agent Applications provides a familiar interface while leveraging Microsoft Foundry's enterprise capabilities including authentication, governance, and user data isolation.
+
+### Prerequisites for consuming Agent Applications
+
+Before running the code sample, ensure you have:
+
+- Python 3.8 or later installed
+[Azure CLI](/en-us/cli/azure/install-azure-cli)installed and configured- Required Python packages installed:
+`pip install openai azure-identity`
+
+- Authenticated to Azure CLI:
+`az login`
+
+- Azure AI User role on the Agent Application resource you want to invoke
+
+For more details on setting up your development environment, see [Prepare your development environment](../../how-to/develop/install-cli-sdk?view=foundry).
+
+### Use OpenAI client with Agent Applications endpoint
+
+```
+# filepath: Direct OpenAI compatible approach
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+# edit base_url with your <foundry-resource-name>, <project-name>, and <app-name>
+openai = OpenAI(
+api_key=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default"),
+base_url="https://<foundry-resource-name>.services.ai.azure.com/api/projects/<project-name>/applications/<app-name>/protocols/openai",
+default_query = {"api-version": "2025-11-15-preview"}
+)
+response = openai.responses.create(
+input="Write a haiku",
+)
+print(f"Response output: {response.output_text}")
+```
+
+
+This approach authenticates using Azure credentials and requires the caller to have the Azure AI User role on the Agent Application resource.
+
+## Security and privacy considerations
+
+- Use least privilege. Grant users the minimum role they need (for example, separate publish permissions from invoke permissions).
+- Avoid sharing project access when you only need to share an agent. Use the Agent Application endpoint and RBAC on the application resource.
+- Don’t embed access tokens in source code, scripts, or client applications. Use Microsoft Entra authentication flows appropriate for your app.
+- Plan for identity changes when you publish. Tool calls authenticated by agent identity use the application identity after publishing, not the project identity.
+- Store conversation history in your client if you need multi-turn experiences. Agent Applications currently restrict APIs and don’t store responses.
+
+## Troubleshooting
+
+| Issue | Likely cause | Resolution |
+|---|---|---|
+Publish Agent is disabled |
+Missing Azure AI Project Manager role on the project scope | Confirm you have the required role assignment on the Foundry project. |
+`403 Forbidden` when invoking the endpoint |
+Caller lacks invoke permissions on the Agent Application resource | Assign the Azure AI User role on the Agent Application resource to the caller. |
+`401 Unauthorized` when invoking the endpoint |
+The access token is missing, expired, or for the wrong resource | Re-authenticate and request a token for `https://ai.azure.com` . |
+| Tool calls fail after publishing | The Agent Application identity doesn’t have the same access as the project identity | Reassign the required RBAC roles to the published agent identity for any downstream Azure resources it must access. |
+| Multi-turn conversations don’t work as expected | Agent Applications don’t store conversation state for you | Store conversation history in your client and send the context as part of your request. |
+
+## Clean up resources
+
+If you no longer need a published endpoint, delete the Agent Application Azure resource (and its deployments). Deleting the application doesn’t delete your agent versions in the Foundry project.
+
+## Related content
+
+- Learn about
+[Agent identity concepts in Foundry](../concepts/agent-identity?view=foundry) - Learn about
+[Hosted agents](../concepts/hosted-agents?view=foundry) - Learn how to
+[publish agents to Microsoft 365 Copilot and Microsoft Teams](publish-copilot?view=foundry)
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: _tools-classic_merged.md -->
+<!-- URL ORIGINAL: N/A -->
+
+# Documentos Fusionados
+
+Este archivo contiene 19 documentos fusionados para reducir el número total de archivos.
+Cada documento está marcado con su fuente original.
+
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: browser-automation.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/browser-automation -->
+
+# Browser Automation (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+Warning
+
+The Browser Automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. We strongly recommend using the Browser Automation tool on low-privilege virtual machines with no access to sensitive data or critical resources.
+
+The Browser Automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces](/en-us/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
+
+## How it works
+
+The interaction begins when the user sends a user query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following url <url>."* Upon receiving the request, Foundry Agent Service creates an isolated browser session by using your own provisioned Playwright workspace. Each session is sandboxed for privacy and security. The browser session mimics a real user browsing experience, enabling interaction with complex web UIs (for example, class schedules, filters, or booking pages). The browser performs Playwright-driven actions, such as navigating to relevant pages, and applying filters or parameters based on user preferences (such as time, location, instructor). By combining the model with Playwright, the model can see the browser screen by parsing the HTML or XML pages into DOM documents. The model makes decisions and performs actions like clicking, typing, and navigating websites. You should exercise caution when using this tool.
+
+An example flow is:
+
+A user sends a request to the model that includes a call to the Browser Automation tool with the URL you want to go to.
+
+The Browser Automation tool receives a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example, an action might be a screenshot so the model can assess the current state with an updated screenshot or a click with X/Y coordinates indicating where the mouse should be moved.
+
+The Browser Automation tool executes the action in a sandboxed environment.
+
+After executing the action, The Browser Automation tool captures the updated state of the environment as a screenshot.
+
+The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
+
+The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete a booking.
+
+
+## Example scenarios
+
+- Booking and reservations: Automate form filling and schedule confirmation across booking portals.
+- Product discovery: Navigate ecommerce or review sites, search by criteria, and extract summaries.
+
+## Setup
+
+Create a
+
+[Playwright Workspace](https://aka.ms/pww/docs/manage-workspaces)resource.[Generate an access token](https://aka.ms/pww/docs/manage-access-tokens)for the Playwright Workspace resource.- Access the workspace region endpoint in the
+**Workspace Details**page. - Give the project identity a
+**Contributor**role on the Playwright Workspace resource, or[configure a custom role](https://aka.ms/pww/docs/manage-workspace-access).
+
+Create a serverless connection in the Microsoft Foundry project with the Playwright workspace region endpoint and the Playwright workspace Access Token.
+
+Go to the
+
+[Foundry portal](https://ai.azure.com/)and select your project. Go to the**Management center**and select**connected resources**.Create a new
+
+**Serverless Model**connection, and enter the following information.**Target URI**: The Playwright workspace region endpoint, for example`wss://{region}.api.playwright.microsoft.com/playwrightworkspaces/{workspaceId}/browsers`
+
+. The URI should start with`wss://`
+
+instead of`https://`
+
+if presented.
+
+For more information on getting this value, see the
+
+[PlayWright documentation](https://aka.ms/pww/docs/configure-service-endpoint).
+
+For more information on creating a connection, see
+
+[Create a connection](../../../how-to/connections-add?view=foundry-classic).Configure your client by adding a Browser Automation tool using the Azure Playwright connection ID.
+
+
+## Transparency note
+
+Review the [transparency note](/en-us/azure/ai-foundry/responsible-ai/agents/transparency-note#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
+
+Review the [responsible AI considerations](/en-us/azure/ai-foundry/responsible-ai/agents/transparency-note#considerations-when-choosing-a-use-case) when using this tool.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: azure-ai-search.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/azure-ai-search -->
+
+# Azure AI Search tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+The [Azure AI Search](/en-us/azure/search/search-what-is-azure-search) tool in Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
+
+This article describes how to set up the Azure AI Search tool, including creating a project connection and adding the tool to your agent.
+
+## Prerequisites
+
+An
+
+[Azure AI Search index configured for vector search](../../../../search/search-get-started-portal-import-vectors?view=foundry-classic). The index must include:One or more
+
+`Edm.String`
+
+(text) fields attributed as searchable and retrievable.One or more
+
+`Collection(Edm.Single)`
+
+(vector) fields attributed as searchable.
+
+
+Tip
+
+Instead of using an existing index, you can create an index without leaving the Foundry portal. For more information, see the [Add the tool to an agent](#add-the-tool-to-an-agent) section.
+
+## Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Limitations
+
+To use the Azure AI Search tool in the Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After you create the agent programmatically, you can then use it in the portal.
+
+The Azure AI Search tool can only target one index. To use multiple indexes, consider using
+
+[connected agents](../connected-agents?view=foundry-classic), each with a configured index.A Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
+
+Your Azure AI Search resource and Foundry Agent need to be in the same tenant.
+
+
+## Setup
+
+In this section, you create a connection between the Foundry project that contains your agent and the Azure AI Search service that contains your index.
+
+If you already connected your project to your search service, skip this section.
+
+### Get search service connection details
+
+The project connection requires the endpoint of your search service and either key-based authentication or keyless authentication with Microsoft Entra ID.
+
+For keyless authentication, you must enable role-based access control (RBAC) and assign roles to your project's managed identity. Although this method involves extra steps, it enhances security by eliminating the need for hard-coded API keys.
+
+Select the tab for your desired authentication method.
+
+Sign in to the
+
+[Azure portal](https://portal.azure.com/)and select your search service.To get the endpoint:
+
+To get the API key:
+
+
+### Create the project connection
+
+The next step is to create the project connection using the search service details you gathered. The connection name must be the name of your search index. For more information about this step, see [Add a new connection to your project](../../../how-to/connections-add?view=foundry-classic).
+
+Select the tab for your desired usage method.
+
+**Create the following connections.yml file:**
+
+You can use a YAML configuration file for both key-based and keyless authentication. Replace the `name`
+
+, `endpoint`
+
+, and `api_key`
+
+(optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search?view=foundry-classic).
+
+Here's a key-based example:
+
+```
+name: my_project_acs_connection_keys
+type: azure_ai_search
+endpoint: https://contoso.search.windows.net/
+api_key: XXXXXXXXXXXXXXX
+```
+
+
+Here's a keyless example:
+
+```
+name: my_project_acs_connection_keyless
+type: azure_ai_search
+endpoint: https://contoso.search.windows.net/
+```
+
+
+**Then, run the following command:**
+
+Replace `my_resource`
+
+with the resource group that contains your project and `my_project_name`
+
+with the name of your project.
+
+```
+az ml connection create --file {connection.yml} --resource-group {my_resource_group} --workspace-name {my_project_name}
+```
+
+
+## Add the tool to an agent
+
+You can add the Azure AI Search tool to an agent programmatically or through the Foundry portal. For programmatic examples, see [Use an existing index with the Azure AI Search tool](azure-ai-search-samples?view=foundry-classic).
+
+To add the tool through the portal:
+
+From the left pane, select
+
+**Agents**.Select your agent from the list, and then select
+
+**Knowledge**>**Add**.Select
+
+**Azure AI Search**.Under
+
+**Connect to an index**, select**Indexes that are not part of this project**.Under
+
+**Azure AI Search resource connection**, select the project connection you created in the previous section.Under
+
+**Azure AI Search index**, select your vector index.Tip
+
+If you don't have an index, select
+
+**Create a new index**. You're then prompted to name the index, connect to a data source, select an existing embedding model deployment, and agree to the terms.After you create the index, you can use it both inside and outside your agent. For example, you can use the index with the Azure AI Search REST APIs or SDKs.
+
+Under
+
+**Display name**, enter the name of your index.Depending on your index configuration, choose one of the following
+
+[search types](../../../openai/concepts/use-your-data?view=foundry-classic#search-types):**Simple****Semantic****Vector****Hybrid (vector + keyword)****Hybrid + semantic**
+
+By default, the Azure AI Search tool runs a hybrid search (vector + keyword) on all text fields.
+
+Select
+
+**Connect**to add the Azure AI Search tool to your agent.
+
+## Next step
+
+Try some programmatic examples of configuring and using the Azure AI Search tool:
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: deep-research.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/deep-research -->
+
+# Deep Research tool (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+- The
+**parent**Foundry project resource and the contained`o3-deep-research`
+
+model and GPT models**must exist**in the same Azure subscription and region. Supported regions are**West US**and**Norway East**. - This tool is only available in
+`2025-05-15-preview`
+
+API. We highly recommend that you migrate to use the`2025-11-15-preview`
+
+API. This enables you to use the`o3-deep-research`
+
+model with[web search](../tools/web-search?view=foundry-classic)or MCP tool.
+
+The Deep Research tool in the Foundry Agent Service enables you to integrate a web-based research capability into your systems. The Deep Research capability is a specialized AI capability designed to perform in-depth, multi-step research using data from the public web.
+
+## Usage support
+
+The deep research tool is a **code-only release** and available for use using the Agents Python SDK once you complete the Microsoft Foundry project setup described in the following sections.
+
+| Azure AI foundry portal | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+Note
+
+Once the agent is running, some elements of the agent and thread runs can show up in the Foundry user interface.
+
+## Integrated with Grounding with Bing Search
+
+The deep research tool is tightly integrated with Grounding with Bing Search and only supports web-based research. Once the task is scoped, the agent using the Deep Research tool invokes the [Grounding with Bing Search](bing-grounding?view=foundry-classic) tool to gather a curated set of recent web data designed to provide the research model with a foundation of authoritative, high quality, up-to-date sources.
+
+Important
+
+- Your usage of Grounding with Bing Search can incur costs. See the
+[pricing page](https://www.microsoft.com/bing/apis/grounding-pricing)for details. - By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at
+[https://www.microsoft.com/en-us/bing/apis/grounding-legal](https://www.microsoft.com/en-us/bing/apis/grounding-legal), which may be updated from time to time. - When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have the same compliance standards and certifications as the Agent Service, as described in the
+[Grounding with Bing Search Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
+
+Note
+
+When using Grounding with Bing Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes.
+
+## Regions supported
+
+The Deep Research tool is supported in the following regions where the deep research model is available for deployment.
+
+| West US | Norway East |
+|---|---|
+| ✔️ | ✔️ |
+
+## GPT-4o model for clarifying research scope
+
+The Deep Research tool uses the `gpt-4o`
+
+model to clarify the question contained in the user prompt, gather additional context if needed, and precisely scope the research task. This model is deployed during configuration of the Deep Research tool.
+
+Note
+
+Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
+
+## Deep research model for analysis
+
+**Model name**:`o3-deep-research`
+
+**Deployment type**: Global Standard**Available regions**: West US, Norway East**Quotas and limits**: Enterprise:`30K RPS / 30M TPM`
+
+, Default:`3K RPS / 3M TPM`
+
+
+## Research tool prerequisites
+
+- If you already have access to the Azure OpenAI
+`o3`
+
+model, no request is required to access the`o3-deep-research`
+
+model. Otherwise, fill out the[request form](https://aka.ms/OAI/deepresearchaccess). - An Azure subscription with the ability to create Foundry project, Grounding with Bing Search, deep research model and GPT model resources
+[Set up your environment](../../environment-setup?view=foundry-classic)in the**West US**and**Norway East**regions. [Grounding with Bing Search tool](bing-grounding?view=foundry-classic)resource for connecting to your Foundry project.[Model deployments](../../../model-inference/how-to/create-model-deployments?view=foundry-classic)for the following models`o3-deep-research`
+
+version`2025-06-26`
+
+. This model is available in`West US`
+
+and`Norway East`
+
+.- The
+`gpt-4o`
+
+model for intent clarification. Deploy this model in the same region.
+
+
+## Research tool setup
+
+To use the Deep Research tool, you need to create the Foundry type project, add your Grounding with Bing Search resource as a new connection, deploy the `o3-deep-research-model`
+
+, and deploy the selected Azure OpenAI GPT model.
+
+Navigate to the
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs)and create a new project.Select the Foundry project type.
+
+Update the project name and description.
+
+Navigate to the
+
+**Models + Endpoints**tab.Deploy the
+
+`o3-deep-research-model`
+
+model.Deploy an Azure OpenAI GPT model. For example
+
+`gpt-4o`
+
+.Connect a Grounding with Bing Search account.
+
+
+## Transparency, safety, and compliance
+
+The output is a structured report that documents not only the comprehensive answer, but also provides source citations and describes the model's reasoning path, including any clarifications requested during the session. This makes every answer fully auditable. See the [Transparency note for Azure OpenAI](/en-us/azure/ai-foundry/responsible-ai/openai/transparency-note) for more information.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: openapi-spec.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/openapi-spec -->
+
+# How to use Foundry Agent Service with OpenAPI Specified Tools
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+You can now connect your Azure AI Agent to an external API by using an OpenAPI 3.0 specified tool, enabling scalable interoperability with various applications. By using managed identities (Microsoft Entra ID) for authentication, you can securely enable your custom tools to authenticate access and connections. This approach is ideal for integrating with existing infrastructure or web services.
+
+OpenAPI Specified tool improves your function calling experience by providing standardized, automated, and scalable API integrations that enhance the capabilities and efficiency of your agent. [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for describing HTTP APIs. This standard helps people understand how an API works, how a sequence of APIs works together, and it supports generating client code, creating tests, applying design standards, and more. Currently, the OpenAPI 3.0 specified tools support three authentication types: `anonymous`
+
+, `API key`
+
+, and `managed identity`
+
+.
+
+### Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+- Ensure you complete the prerequisites and setup steps in the
+[quickstart](../../quickstart?view=foundry-classic). - Check the OpenAPI spec for the following requirements:
+- Although not required by the OpenAPI spec, each function must have an
+`operationId`
+
+to work with the OpenAPI tool. - The
+`operationId`
+
+should only contain letters,`-`
+
+, and`_`
+
+. You can modify it to meet this requirement. Use a descriptive name to help models efficiently decide which function to use.
+
+- Although not required by the OpenAPI spec, each function must have an
+
+## Authenticate with API key
+
+By using API key authentication, you can authenticate your OpenAPI spec through different methods, such as an API key or Bearer token. Each OpenAPI spec supports only one API key security schema. If you need multiple security schemas, create multiple OpenAPI spec tools.
+
+Update your OpenAPI spec security schemas. It has a
+
+`securitySchemes`
+
+section and one scheme of type`apiKey`
+
+. For example:`"securitySchemes": { "apiKeyHeader": { "type": "apiKey", "name": "x-api-key", "in": "header" } }`
+
+You usually only need to update the
+
+`name`
+
+field, which corresponds to the name of`key`
+
+in the connection. If the security schemes include multiple schemes, keep only one of them.Update your OpenAPI spec to include a
+
+`security`
+
+section:`"security": [ { "apiKeyHeader": [] } ]`
+
+Remove any parameter in the OpenAPI spec that needs API key, because the API key is stored and passed through a connection, as described later in this article.
+
+Create a
+
+`custom keys`
+
+connection to store your API key.Go to the
+
+[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)and select**Management center**from the left navigation pane.Select
+
+**Connected resources**under the AI project in the left navigation pane.Select
+
+**+ new connection**in the settings page.Note
+
+If you regenerate the API key at a later date, you need to update the connection with the new key.
+
+Select
+
+**custom keys**in**other resource types**.Enter the following information
+
+key:
+
+`name`
+
+field of your security scheme. In this example, it should be`x-api-key`
+
+`"securitySchemes": { "apiKeyHeader": { "type": "apiKey", "name": "x-api-key", "in": "header" } }`
+
+value: YOUR_API_KEY
+
+Connection name: YOUR_CONNECTION_NAME (You use this connection name in the sample code below.)
+
+Access: you can choose either
+
+*this project only*or*shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
+
+
+After you create a connection, use it through the SDK or REST API. Use the tabs at the top of this article to see code examples.
+
+
+## Authenticate with managed identity (Microsoft Entra ID)
+
+[Microsoft Entra ID](/en-us/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security when you authenticate your APIs without needing to use API keys. After you set up managed identity authentication, the Foundry Tool your agent uses handles the authentication.
+
+When configuring managed identity authentication, you need to provide an **Audience** value. The audience is the OAuth2 resource identifier (also called scope or application ID URI) that identifies which API or service the managed identity can access.
+
+**Common audience values:**
+
+- Foundry Tools (formerly Azure AI services or Cognitive Services):
+`https://cognitiveservices.azure.com/`
+
+- Azure Resource Manager APIs:
+`https://management.azure.com/`
+
+- Microsoft Graph:
+`https://graph.microsoft.com/`
+
+- Custom APIs registered in Microsoft Entra ID: Use the
+**Application ID URI**found in the API's app registration
+
+To set up authentication by using Managed Identity:
+
+Make sure your Foundry resource has a system assigned managed identity enabled.
+
+Create a resource for the service you want to connect to through OpenAPI spec.
+
+Assign the proper access to the resource.
+
+Select
+
+**Access Control**for your resource.Select
+
+**Add**and then**add role assignment**at the top of the screen.Select the proper role assignment needed. Usually, it requires at least the
+
+*READER*role. Then select**Next**.Select
+
+**Managed identity**and then select**select members**.In the managed identity dropdown menu, search for
+
+**Foundry Tools**and then select the Foundry Tool of your agent.Select
+
+**Finish**.
+
+After you complete the setup, you can use the tool through the Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: code-interpreter.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/code-interpreter -->
+
+# Foundry Agent Service Code Interpreter
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
+
+Important
+
+Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Agent calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
+
+## Prerequisites
+
+## Code samples
+
+### Create an agent with code interpreter
+
+```
+code_interpreter = CodeInterpreterTool()
+# An agent is created with the Code Interpreter capabilities:
+agent = project_client.agents.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent",
+instructions="You are helpful agent",
+tools=code_interpreter.definitions,
+tool_resources=code_interpreter.resources,
+)
+```
+
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can use the `upload_and_poll`
+
+function.
+
+```
+file = agents_client.files.upload_and_poll(file_path=asset_file_path, purpose=FilePurpose.AGENTS)
+print(f"Uploaded file, file ID: {file.id}")
+code_interpreter = CodeInterpreterTool(file_ids=[file.id])
+```
+
+
+### Create an agent with code interpreter
+
+```
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "My Friendly Test Agent",
+instructions: "You politely help with math questions. Use the code interpreter tool when asked to visualize numbers.",
+tools: [new CodeInterpreterToolDefinition()]
+);
+```
+
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can attach it to your message.
+
+```
+PersistentAgentFileInfo uploadedAgentFile = client.Files.UploadFile(
+filePath: "sample_file_for_upload.txt",
+purpose: PersistentAgentFilePurpose.Agents);
+var fileId = uploadedAgentFile.Id;
+var attachment = new MessageAttachment(
+fileId: fileId,
+tools: tools
+);
+// attach the file to the message
+PersistentThreadMessage message = client.Messages.CreateMessage(
+threadId: thread.Id,
+role: MessageRole.User,
+content: "Can you give me the documented information in this file?",
+attachments: [attachment]
+);
+```
+
+
+### Create an agent with code interpreter
+
+```
+// Create the code interpreter tool
+const codeInterpreterTool = ToolUtility.createCodeInterpreterTool();
+// Enable the code interpreter tool during agent creation
+const agent = await client.createAgent("gpt-4o", {
+name: "my-agent",
+instructions: "You are a helpful agent",
+tools: [codeInterpreterTool.definition],
+toolResources: codeInterpreterTool.resources,
+});
+console.log(`Created agent, agent ID: ${agent.id}`);
+```
+
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can attach it to the tool.
+
+```
+// Upload file and wait for it to be processed
+const filePath = "./examplefile.csv";
+const localFileStream = fs.createReadStream(filePath);
+const localFile = await client.files.upload(localFileStream, "assistants", {
+fileName: "localFile",
+});
+// Create code interpreter tool
+const codeInterpreterTool = ToolUtility.createCodeInterpreterTool([localFile.id]);
+```
+
+
+### Create an agent with the code interpreter tool
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are an AI assistant that can write code to help answer math questions.",
+"tools": [
+{ "type": "code_interpreter" }
+],
+"model": "gpt-4o-mini",
+"tool_resources"{
+"code interpreter": {
+}
+}
+}'
+```
+
+
+```
+String agentName = "code_interpreter_agent";
+CodeInterpreterToolDefinition ciTool = new CodeInterpreterToolDefinition();
+CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName).setName(agentName).setInstructions("You are a helpful agent").setTools(Arrays.asList(ciTool));
+PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+```
+
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can attach it to the tool.
+
+```
+FileInfo uploadedFile = filesClient.uploadFile(new UploadFileRequest(
+new FileDetails(BinaryData.fromFile(htmlFile))
+.setFilename("sample.html"), FilePurpose.AGENTS));
+MessageAttachment messageAttachment = new MessageAttachment(Arrays.asList(BinaryData.fromObject(ciTool))).setFileId(uploadedFile.getId());
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"What does the attachment say?",
+Arrays.asList(messageAttachment),
+null);
+```
+
+
+### Supported models
+
+The [models page](../../quotas-limits?view=foundry-classic) contains the most up-to-date information on regions/models where agents and code interpreter are supported.
+
+We recommend using Agents with the latest models to take advantage of the new features, larger context windows, and more up-to-date training data.
+
+### Supported file types
+
+| File format | MIME Type |
+|---|---|
+`.c` |
+`text/x-c` |
+`.cpp` |
+`text/x-c++` |
+`.csv` |
+`application/csv` |
+`.docx` |
+`application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
+`.html` |
+`text/html` |
+`.java` |
+`text/x-java` |
+`.json` |
+`application/json` |
+`.md` |
+`text/markdown` |
+`.pdf` |
+`application/pdf` |
+`.php` |
+`text/x-php` |
+`.pptx` |
+`application/vnd.openxmlformats-officedocument.presentationml.presentation` |
+`.py` |
+`text/x-python` |
+`.py` |
+`text/x-script.python` |
+`.rb` |
+`text/x-ruby` |
+`.tex` |
+`text/x-tex` |
+`.txt` |
+`text/plain` |
+`.css` |
+`text/css` |
+`.jpeg` |
+`image/jpeg` |
+`.jpg` |
+`image/jpeg` |
+`.js` |
+`text/javascript` |
+`.gif` |
+`image/gif` |
+`.png` |
+`image/png` |
+`.tar` |
+`application/x-tar` |
+`.ts` |
+`application/typescript` |
+`.xlsx` |
+`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` |
+`.xml` |
+`application/xml` or `text/xml` |
+`.zip` |
+`application/zip` |
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: model-context-protocol.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/model-context-protocol -->
+
+# Connect to Model Context Protocol servers (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+You can extend the capabilities of your Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Foundry Agent Service, can access.
+
+MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
+
+## Considerations for using non-Microsoft services and servers
+
+Your use of connected non-Microsoft services is subject to the terms between you and the service provider. When you connect to a non-Microsoft service, some of your data (such as prompt content) is passed to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
+
+The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. Microsoft has no responsibility to you or others in relation to your use of any remote MCP servers.
+
+We recommend that you carefully review and track what MCP servers you add to Foundry Agent Service. We also recommend that you rely on servers hosted by trusted service providers themselves rather than proxies.
+
+The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. We recommend that you review all data that's shared with remote MCP servers and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data.
+
+## How it works
+
+You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label`
+
+value within the same agent and a `server_url`
+
+value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
+
+The MCP tool supports custom headers, so you can connect to the MCP servers by using the authentication schemas that they require or by passing other headers that the MCP servers require. You can specify headers only by including them in `tool_resources`
+
+at each run. In this way, you can put API keys, OAuth access tokens, or other credentials directly in your request.
+
+The most commonly used header is the authorization header. Headers that you pass in are available only for the current run and aren't persisted.
+
+For more information on using MCP, see:
+
+[Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)on the Model Context Protocol website.[Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667)in the Microsoft Security Community Blog.
+
+## Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| - | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
+
+## Setup
+
+Create a Foundry agent by following the steps in the
+
+[quickstart](../../quickstart?view=foundry-classic).Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update a Foundry agent with an
+
+`mcp`
+
+tool with the following information:`server_url`
+
+: The URL of the MCP server; for example,`https://api.githubcopilot.com/mcp/`
+
+.`server_label`
+
+: A unique identifier of this MCP server to the agent; for example,`github`
+
+.`allowed_tools`
+
+: An optional list of tools that this agent can access and use.
+
+Create a run and pass additional information about the
+
+`mcp`
+
+tool in`tool_resources`
+
+with headers:`tool_label`
+
+: Use the identifier that you provided when you created the agent.`headers`
+
+: Pass a set of headers that the MCP server requires.`require_approval`
+
+: Optionally determine whether approval is required. Supported values are:`always`
+
+: A developer needs to provide approval for every call. If you don't provide a value, this one is the default.`never`
+
+: No approval is required.`{"never":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that don't require approval.`{"always":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that require approval.
+
+
+If the model tries to invoke a tool in your MCP server with approval required, you get a run status of
+
+`requires_action`
+
+. In the`requires_action`
+
+field, you can get more details on which tool in the MCP server is called, arguments to be passed, and`call_id`
+
+value. Review the tool and arguments so that you can make an informed decision for approval.Submit your approval to the agent with
+
+`call_id`
+
+by setting`approve`
+
+to`true`
+
+.
+
+## Host a local MCP server
+
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/en-us/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+
+| Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+|---|---|---|
+Transport |
+HTTP POST/GET endpoints required. | HTTP streamable required. |
+Code changes |
+Container rebuild required. | Azure Functions-specific configuration files required in the root directory. |
+Authentication |
+Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
+Language |
+Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
+Container Requirements |
+Linux (linux/amd64) only. No privileged containers. | Containerized servers are not supported. |
+Dependencies |
+All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
+State |
+Stateless only. | Stateless only. |
+UVX/NPX |
+Supported. | Not supported. `npx` start commands not supported. |
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: file-search.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/file-search -->
+
+# Foundry Agent Service file search tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.
+
+Note
+
+Using the standard agent setup, the improved file search tool ensures your files remain in your own storage, and your Azure AI Search resource is used to ingest them, ensuring you maintain complete control over your data.
+
+### File sources
+
+- Upload local files
+- Azure Blob Storage
+
+### Usage support
+
+Note
+
+The file search tool is currently unavailable in the following regions:
+
+- Italy north
+- Brazil south
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | File upload only | File upload and using bring-your-own blob storage |
+
+## Dependency on agent setup
+
+### Basic agent setup
+
+The file search tool has the same functionality as Azure OpenAI Assistants. Microsoft managed search and storage resources are used.
+
+- Uploaded files get stored in Microsoft managed storage
+- A vector store is created using a Microsoft managed search resource
+
+### Standard agent setup
+
+The file search tool uses the Azure AI Search and Azure Blob Storage resources you connected during agent setup.
+
+- Uploaded files get stored in your connected Azure Blob Storage account
+- Vector stores get created using your connected Azure AI Search resource
+
+For both agent setups, the service handles the entire ingestion process, which includes:
+
+- Automatically parsing and chunking documents
+- Generating and storing embeddings
+- Utilizing both vector and keyword searches to retrieve relevant content for user queries.
+
+There is no difference in the code between the two setups; the only variation is in where your files and created vector stores are stored.
+
+## How it works
+
+The file search tool implements several retrieval best practices out of the box to help you extract the right data from your files and augment the model’s responses. The file search tool:
+
+- Rewrites user queries to optimize them for search.
+- Breaks down complex user queries into multiple searches it can run in parallel.
+- Runs both keyword and semantic searches across both agent and thread vector stores.
+- Reranks search results to pick the most relevant ones before generating the final response.
+- By default, the file search tool uses the following settings:
+- Chunk size: 800 tokens
+- Chunk overlap: 400 tokens
+- Embedding model: text-embedding-3-large at 256 dimensions
+- Maximum number of chunks added to context: 20
+
+
+## Vector stores
+
+Vector store objects give the file search tool the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and threads. Currently you can attach at most one vector store to an agent and at most one vector store to a thread.
+
+Similarly, these files can be removed from a vector store by either:
+
+- Deleting the vector store file object or,
+- By deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
+
+The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
+
+## Ensuring vector store readiness before creating runs
+
+We highly recommend that you ensure all files in a vector_store are fully processed before you create a run. This ensures that all the data in your vector store is searchable. You can check for vector store readiness by using the polling helpers in the SDKs, or by manually polling the vector store object to ensure the status is completed.
+
+As a fallback, there's a 60-second maximum wait in the run object when the thread's vector store contains files that are still being processed. This is to ensure that any files your users upload in a thread are fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
+
+## Creating vector stores and adding files
+
+Adding files to vector stores is an async operation. To ensure the operation is complete, we recommend that you use the 'create and poll' helpers in our official SDKs. If you're not using the SDKs, you can retrieve the `vector_store`
+
+object and monitor its `file_counts`
+
+property to see the result of the file ingestion operation.
+
+Files can also be added to a vector store after it's created by creating vector store files.
+
+```
+# create a vector store with no file and wait for it to be processed
+vector_store = project_client.agents.vector_stores.create_and_poll(data_sources=[], name="sample_vector_store")
+print(f"Created vector store, vector store ID: {vector_store.id}")
+# add the file to the vector store or you can supply file ids in the vector store creation
+vector_store_file_batch = project_client.agents.vector_store_file_batches.create_and_poll(
+vector_store_id=vector_store.id, file_ids=[file.id]
+)
+print(f"Created vector store file batch, vector store file batch ID: {vector_store_file_batch.id}")
+```
+
+
+Alternatively, you can add several files to a vector store by creating batches of up to 500 files.
+
+```
+batch = project_client.agents.vector_store_file_batches.create_and_poll(
+vector_store_id=vector_store.id,
+file_ids=[file_1.id, file_2.id, file_3.id, file_4.id, file_5.id]
+)
+```
+
+
+### Basic agent setup: Deleting files from vector stores
+
+Files can be removed from a vector store by either:
+
+- Deleting the vector store file object or,
+- Deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
+
+The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
+
+## Remove vector store
+
+You can remove a vector store from the file search tool.
+
+```
+file_search_tool.remove_vector_store(vector_store.id)
+print(f"Removed vector store from file search, vector store ID: {vector_store.id}")
+project_client.agents.update_agent(
+agent_id=agent.id, tools=file_search_tool.definitions, tool_resources=file_search_tool.resources
+)
+print(f"Updated agent, agent ID: {agent.id}")
+```
+
+
+## Deleting vector stores
+
+```
+project_client.agents.vector_stores.delete(vector_store.id)
+print("Deleted vector store")
+```
+
+
+## Managing costs with expiration policies
+
+For basic agent setup, the `file_search`
+
+tool uses the `vector_stores`
+
+object as its resource and you're billed based on the size of the vector_store objects created. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
+
+To help you manage the costs associated with these vector_store objects, we added support for expiration policies in the `vector_store`
+
+object. You can set these policies when creating or updating the `vector_store`
+
+object.
+
+```
+vector_store = project_client.agents.vector_stores.create_and_poll(
+name="Product Documentation",
+file_ids=[file_1.id],
+expires_after={
+"anchor": "last_active_at",
+"days": 7
+}
+)
+```
+
+
+### Thread vector stores have default expiration policies
+
+Vector stores created using thread helpers (like `tool_resources.file_search.vector_stores`
+
+in Threads or `message.attachments`
+
+in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
+
+When a vector store expires, the runs on that thread fail. To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
+
+## Supported file types
+
+Note
+
+For text/ MIME types, the encoding must be either utf-8, utf-16, or ASCII.
+
+| File format | MIME Type |
+|---|---|
+`.c` |
+`text/x-c` |
+`.cs` |
+`text/x-csharp` |
+`.cpp` |
+`text/x-c++` |
+`.doc` |
+`application/msword` |
+`.docx` |
+`application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
+`.html` |
+`text/html` |
+`.java` |
+`text/x-java` |
+`.json` |
+`application/json` |
+`.md` |
+`text/markdown` |
+`.pdf` |
+`application/pdf` |
+`.php` |
+`text/x-php` |
+`.pptx` |
+`application/vnd.openxmlformats-officedocument.presentationml.presentation` |
+`.py` |
+`text/x-python` |
+`.py` |
+`text/x-script.python` |
+`.rb` |
+`text/x-ruby` |
+`.tex` |
+`text/x-tex` |
+`.txt` |
+`text/plain` |
+`.css` |
+`text/css` |
+`.js` |
+`text/javascript` |
+`.sh` |
+`application/x-sh` |
+`.ts` |
+`application/typescript` |
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: bing-custom-search-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/bing-custom-search-samples -->
+
+# How to use Grounding with Bing Custom Search (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+This article provides step-by-step instructions and code samples for using the Grounding with Bing Custom Search tool in the Foundry Agent Service.
+
+Go to the
+
+**Agents**screen for your agent in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). Scroll down the Setup pane on the right to**knowledge**. Then select**Add**.Select the
+
+**Grounding with Bing Custom Search**tool.Select to create a new connection or use an existing connection.
+
+- For a new connection, select your Grounding with Bing Custom Search resource.
+
+After you connect to a resource, select the configuration name.
+
+Save the tool and start chatting with your agent.
+
+
+## Prerequisites
+
+Your Foundry Project endpoint.
+
+You can find your endpoint in the
+
+**overview**for your project in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), under**Libraries**>**Foundry**.Save this endpoint to an environment variable named
+
+`PROJECT_ENDPOINT`
+
+.The name of your Grounding with Bing Custom Search resource name. Find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Then select**Connected resources**.Save this resource name to an environment variable named
+
+`BING_CUSTOM_CONNECTION_NAME`
+
+.The name of your Grounding with Bing Custom Search configuration, which contains the URLs you want to allow or disallow. Find it by navigating to the overview page for your resource in the
+
+[Azure portal](https://portal.azure.com/). Select**Configurations**, then select your configuration.Save this configuration name to an environment variable named
+
+`BING_CUSTOM_INSTANCE_NAME`
+
+.The names of your model's deployment name. Find it in
+
+**Models + Endpoints**in the left navigation menu.Save the name of your model deployment name as an environment variable named
+
+`MODEL_DEPLOYMENT_NAME`
+
+.
+
+## Create a project client
+
+Create a client object that holds the connection string for connecting to your AI project and other resources.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import BingCustomSearchTool
+# Create an Azure AI Client from an endpoint, copied from your Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"] # Ensure the PROJECT_ENDPOINT environment variable is set
+# Create an AIProjectClient instance
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential(),
+)
+```
+
+
+## Create an agent with the Grounding with Bing Custom Search tool enabled
+
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent.
+
+```
+bing_custom_connection = project_client.connections.get(name=os.environ["BING_CUSTOM_CONNECTION_NAME"])
+conn_id = bing_custom_connection.id
+print(conn_id)
+configuration_name = os.environ["BING_CUSTOM_INSTANCE_NAME"]
+# Initialize Bing Custom Search tool with connection id and configuration name
+bing_custom_tool = BingCustomSearchTool(connection_id=conn_id, instance_name=configuration_name)
+# Create agent with the bing custom search tool and process assistant run
+with project_client:
+agents_client = project_client.agents
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent",
+instructions="You are a helpful agent",
+tools=bing_custom_tool.definitions,
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+
+## Create a thread
+
+```
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Create message to thread
+message = agents_client.messages.create(
+thread_id=thread.id,
+role="user",
+content="How many medals did the USA win in the 2024 summer olympics?",
+)
+print(f"Created message, ID: {message.id}")
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+# Create and process Agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Uncomment these lines to delete the Agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id)
+for msg in messages:
+if msg.text_messages:
+for text_message in msg.text_messages:
+print(f"Agent response: {text_message.text.value}")
+for annotation in msg.url_citation_annotations:
+print(f"URL Citation: [{annotation.url_citation.title}]({annotation.url_citation.url})")
+```
+
+
+### Understand URL citations in the response
+
+When the agent response includes URL citations, you can show them to users as a list of references.
+
+In the Python SDK, you can find the answer text in `msg.text_messages[*].text.value`
+
+. You can find the citations in `msg.url_citation_annotations[*].url_citation`
+
+.
+
+The following example prints the answer followed by a de-duplicated list of references:
+
+```
+messages = agents_client.messages.list(thread_id=thread.id)
+for msg in messages:
+if msg.text_messages:
+answer = "\n".join(t.text.value for t in msg.text_messages)
+print(answer)
+if msg.url_citation_annotations:
+print("\nReferences")
+seen_urls = set()
+for ann in msg.url_citation_annotations:
+url = ann.url_citation.url
+title = ann.url_citation.title or url
+if url not in seen_urls:
+print(f"- {title}: {url}")
+seen_urls.add(url)
+```
+
+
+Important
+
+- This REST API enables developers to invoke the Grounding with Bing Custom Search tool through the Agent Service. It doesn't send calls to the Grounding with Bing Custom Search API directly.
+- The following samples apply if you're using
+**Foundry Project**resource with Microsoft Fabric tool through REST API call. - Your connection ID should be in this format:
+`/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>`
+
+.
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and `API_VERSION`
+
+.
+
+## Create an agent with the Grounding with Bing Custom Search tool enabled
+
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful agent.",
+"name": "my-agent",
+"model": "gpt-4o",
+"tools": [
+{
+"type": "bing_custom_search",
+"bing_custom_search": {
+"search_configurations": [
+{
+"connection_id": /subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>,
+"instance_name": <your_custom_search_configuration_name>,
+"count": 7,
+"market": "en-US",
+"set_lang": "en",
+"freshness": "day",
+}
+]
+}
+}
+]
+}'
+```
+
+
+## Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+## Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "<ask a question tailored towards your web domains>"
+}'
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Custom Search tool to provide a response to the user's question.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: overview.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/overview -->
+
+# What are tools in Foundry Agent Service?
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent Service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service.
+
+Note
+
+The new Microsoft Foundry portal and agents API provide additional tools. See the [tool catalog article](../../concepts/tool-catalog?view=foundry-classic) for more information.
+
+## Knowledge tools
+
+To keep your AI agent informed with richer context from various data sources. The Foundry Agent Service has covered a wide range of data types:
+
+**private data**: Azure AI Search, File Search, Microsoft Fabric, and more**public web data**: Grounding with Bing Search**licensed data**: Tripadvisor, Morningstar**unstructured data**: Azure AI Search, File Search**structured data**: Microsoft Fabric and more
+
+## Action tools
+
+To streamline workflows with your AI agent with capabilities to take actions, the Foundry Agent Service provides different action tools for you with different level of flexibility, control, and ease of integration:
+
+**Deep Research tool**: Web-based integrated deep research pipeline with the`o3-deep-research`
+
+model and Grounding with Bing Search.**Azure Logic Apps**: Low-code / no-code solution to add a workflow to your AI Agent**OpenAPI Spec tool**: Bring an existing OpenAPI specification of a service API you want to add to your AI agent, with no or minor changes.**MCP tool**: Bring an existing Model Context Protocol (MCP) endpoint that you want to add to your AI agent.**Function calling**: Write your own custom, stateless functions to define the expected behaviors.**Azure Functions**: Write and manage your own custom, stateful functions.**Browser Automation**: Perform real-world browser tasks through natural language prompts.
+
+## How does a tool work in the Foundry Agent Service?
+
+Tools are optional capabilities you can add to your AI agent for AI models to decide and pick based on the user query and context. When a user sends a query, the AI model identifies the intent with the context and potentially rewrites the user query. Then the AI model decides which tools to be called for each run. For example, if you add both the Grounding with Bing Search tool and the Azure AI Search tool to your agent and ask "*what is the weather in Seattle today?*", the model will identify your intent to ask about real-time information and more likely to invoke the Grounding with Bing Search tool.
+
+You can add tools at the agent, thread, or run level. By providing tools at a narrower level, the tool resources will **override** tool resources at a broader level. For example, tool resources at the run level override tool resources at thread level. Currently, you can add multiple tools but you can add **one instance of each** of the following tools: File Search, Azure AI Search, Grounding with Bing Search, Grounding with Bing Custom Search, Microsoft Fabric, and other tools under `knowledge`
+
+section.
+
+When a user sends a query to the agent, it will create a [thread, run, and message](../../concepts/threads-runs-messages?view=foundry-classic). For each run, the AI model decides what tools to invoke based on the user intent and available tool resources. Based on the tool outputs, the AI model might decide to invoke another tool or call the same tool again to get more context. For example, when you use Grounding with Bing Search tool, you might see multiple Bing Search queries when [tracing a thread](../../../how-to/develop/trace-agents-sdk?view=foundry-classic). This means the AI model actually calls the Grounding with Bing Search tool multiple times with different queries to get more information. If you want to learn more about what tools are called and how the AI model invokes them, check the run step details.
+
+There are various ways to influence how your AI agent invokes tools:
+
+The
+
+`tool_choice`
+
+parameter: Most deterministic way of controlling which (if any) tool is called by the model. By default, it is set to`auto`
+
+, which means the AI model will decide. If you want to**force**the model to call a specific tool, you can provide the specification of this tool, for example`run = project_client.agents.runs.create_and_process( thread_id=thread.id, agent_id=agent.id, tool_choice={"type": "bing_grounding"} # specify the tool to use )`
+
+The
+
+`instructions`
+
+parameter: Nondeterministic. Use the instructions to help the AI model understand your use case and the purposes of each tool. You want to tell the AI model what information or actions each tool can do. For example "*use the AI Search tool*." Sometimes the user query can be responded by the model's base knowledge or by the tools, you want to provide instructions like "`<tool_name>`
+
+for product related information, use the Fabric tool`<tool_name>`
+
+for sales related information*use the tool outputs to generate a response, don't use your own knowledge.*"
+
+## Prerequisites
+
+[A created agent](../../quickstart?view=foundry-classic)- Make sure your AI model has enough Tokens-Per-Minute (TPM) allocated. We recommend having a minimum of 30k TPM. You can change the TPM allocation by going to
+**models + endpoints**in the[Foundry portal](https://ai.azure.com/?cid=learnDocs)and edit your model.
+
+## Built-in tools
+
+The Foundry Agent Service provides the following built-in tools. You can use them with the REST API, SDK, and Microsoft Foundry portal.
+
+| Tool | Description |
+|---|---|
+|
+
+[Azure Functions](azure-functions?view=foundry-classic)[Browser Automation](browser-automation?view=foundry-classic)[Code Interpreter](code-interpreter?view=foundry-classic)[Deep Research (preview)](deep-research?view=foundry-classic)[File Search](file-search?view=foundry-classic)[Function calling](function-calling?view=foundry-classic)[Grounding with Bing Search](bing-grounding?view=foundry-classic)[Grounding with Bing Custom Search (preview)](bing-custom-search?view=foundry-classic)[Model Context Protocol (preview)](model-context-protocol?view=foundry-classic)[Microsoft Fabric (preview)](fabric?view=foundry-classic)[Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815)to unlock powerful data analysis capabilities.[OpenAPI 3.0 Specified tool](openapi-spec?view=foundry-classic)## Non-Microsoft tools
+
+The following tools are authored by third-party partners. Use the links below to view the documentation and code samples.
+
+Important
+
+- Your use of connected non-Microsoft services is subject to the terms between you and the service provider. By connecting to a non-Microsoft service, you acknowledge that some of your data, such as prompt content, is passed to the non-Microsoft service, and/or your application might receive data from the non-Microsoft service. You are responsible for your use (and any charges associated with your use) of non-Microsoft services and data.
+- The code in these non-Microsoft files were created by third parties, not Microsoft, and have not been tested or verified by Microsoft. Your use of the code samples is subject to the terms provided by the relevant third party. By using any third-party sample in this file, you are acknowledging that Microsoft has no responsibility to you or others with respect to these samples.
+
+| Tool | Description |
+|---|---|
+|
+
+[Celonis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Celonis)[InsureMO Insurance Quotation](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/InsureMO)[LEGALFLY](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/legalfly)[LexisNexis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/LexisNexis)[MiHCM](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/MiHCM)[Morningstar](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Morningstar)[Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Trademo_Global_trade)[Tripadvisor](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Tripadvisor)## Best Practices
+
+### Use system instruction to help model invoke the right tool
+
+In order for the model to understand which tools to use, you want to provide detailed instruction for the model to describe when and how to use the tool. You might want to consider providing the following information:
+
+- Primary Objective: what is the objective of this agent? what is the goal of related tasks? what are the expected outcomes?
+- Your responsibilities: what tasks you expect the agent to perform. For example, calling Grounding with Bing Search tool to get the latest information about local events.
+- Inputs you may receive: what inputs do you expect the agent to receive?
+- For each tool:
+- The tool name
+- A description of the tool
+- Triggers: when do you expect this tool to be called? What type of information will be searched? What will queries contain?
+- An example of a query
+
+
+For example, you might provide tool instructions like the following for the Grounding with Bing Search tool:
+
+Grounding with Bing Search tool
+
+- Use: Gather external trends or news to enrich the post with real-time insights.
+- Trigger this when:
+- The user asks to reference recent data or competitive context.
+- Example: "Can you reference the latest industry trends?" or "What are competitors doing?".
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: fabric.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/fabric -->
+
+# Use the Microsoft Fabric data agent (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+Integrate your Microsoft Foundry Agent with the [ Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights.
+
+You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, the will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, the agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection.
+
+## Usage support
+
+Note
+
+The Fabric data agent only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+You have created and published a Fabric data agent endpoint
+
+Developers and end users have at least
+
+`Azure AI User`
+
+RBAC role.Developers and end users have at least
+
+`READ`
+
+access to the Fabric data agent and the underlying data sources it connects with.Your Fabric Data Agent and Foundry Agent need to be in the same tenant.
+
+Your Foundry Project endpoint.
+
+You can find your endpoint in the
+
+**overview**for your project in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), under**Libraries**>**Foundry**.Save this endpoint to an environment variable named
+
+`PROJECT_ENDPOINT`
+
+.The name of your Microsoft Fabric connection name. You can find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Then selecting**Connected resources**.Save this endpoint to an environment variable named
+
+`FABRIC_CONNECTION_ID`
+
+The names of your model's deployment name. You can find it in
+
+**Models + Endpoints**in the left navigation menu.Save the name of your model deployment name as an environment variable named
+
+`MODEL_DEPLOYMENT_NAME`
+
+.
+
+## Setup
+
+Note
+
+- The model you selected in Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+- To help your model invoke your Microsoft Fabric tool in the expected way, make sure you update agent instructions with descriptions of your Fabric data agent and what data it can access. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as
+`gpt-4o-mini`
+
+. You can also use`tool_choice`
+
+parameter in SDK or API to force Fabric tool to be invoked at each run.
+
+Create a Foundry Agent by following the steps in the
+
+[quickstart](../../quickstart?view=foundry-classic).Create and publish a
+
+[Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)Note
+
+- Make sure you have
+**published**the data agent in Fabric.
+
+- Make sure you have
+
+You can add the Microsoft Fabric tool to an agent programmatically using the code examples listed at the top of this article, or the Foundry portal. If you want to use the portal:
+
+Navigate to the
+
+**Agents**screen for your agent in[Foundry](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to**knowledge**. Then select**Add**.Select
+
+**Microsoft Fabric**and follow the prompts to add the tool. You can add only one per agent.Click to add new connections. Once you have added a connection, you can directly select from existing list.
+
+To create a new connection, you need to find
+
+`workspace-id`
+
+and`artifact-id`
+
+in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like`https://<environment>.fabric.microsoft.com/groups/<workspace_id>/aiskills/<artifact-id>`
+
+Then, you can add both to your connection. Make sure you have checked
+
+`is secret`
+
+for both of them
+
+
+## Create a project client
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import FabricTool, ListSortOrder
+# Retrieve the endpoint and credentials
+project_endpoint = os.environ["PROJECT_ENDPOINT"] # Ensure the PROJECT_ENDPOINT environment variable is set
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential(),
+)
+```
+
+
+## Create an agent with the Microsoft Fabric tool enabled
+
+To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Foundry portal.
+
+```
+# The Fabric connection id can be found in the Foundry project as a property of the Fabric tool
+# Your connection id is in the format /subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-fabric-connection-name>
+# Retrieve the Fabric connection ID from environment variables
+conn_id = os.environ["FABRIC_CONNECTION_ID"] # Ensure the FABRIC_CONNECTION_ID environment variable is set
+# Initialize the FabricTool with the connection ID
+fabric = FabricTool(connection_id=conn_id)
+# Create an agent with the Fabric tool
+# Create an Agent with the Fabric tool and process an Agent run
+with project_client:
+agents_client = project_client.agents
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent",
+instructions="You are a helpful agent",
+tools=fabric.definitions,
+)
+print(f"Created Agent, ID: {agent.id}")
+```
+
+
+## Create a thread
+
+```
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Create a message in the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role="user", # Role of the message sender
+content="What insights can you provide from the Fabric resource?", # Message content
+)
+print(f"Created message, ID: {message['id']}")
+```
+
+
+## Create a run and check the output
+
+```
+# Create and process an Agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Uncomment the following lines to delete the agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+for msg in messages:
+if msg.text_messages:
+last_text = msg.text_messages[-1]
+print(f"{msg.role}: {last_text.text.value}")
+```
+
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+and `API_VERSION`
+
+. For `API_VERSION`
+
+, make sure you are using `2025-05-15-preview`
+
+.
+
+Important
+
+The following samples are applicable if you are using **Foundry Project** resource with Microsoft Fabric tool through REST API call
+Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>`
+
+
+### Create an agent with the Microsoft Fabric tool enabled
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful agent.",
+"name": "my-agent",
+"model": "gpt-4o",
+"tools": [
+{
+"type": "fabric_dataagent",
+"fabric_dataagent": {
+"connections": [
+{
+"connection_id": "/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>"
+}
+]
+}
+}
+]
+}'
+```
+
+
+### Create a thread
+
+#### Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+#### Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "<question related to your data>"
+}'
+```
+
+
+### Create a run and check the output
+
+#### Run the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+#### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+#### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: azure-functions.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/azure-functions -->
+
+# Use Azure Functions with Foundry Agent Service
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+[Azure Functions](/en-us/azure/azure-functions/functions-overview) is a serverless compute service that you can use to extend your Foundry Agent Service agents with custom tools built using code. This approach is especially useful when you need your agent to integrate with systems within your enterprise.
+
+Functions offer several hosting plans. The [Flex Consumption plan](/en-us/azure/azure-functions/flex-consumption-plan) is ideal for hosting your custom tools because it provides:
+
+- Scale-to-zero serverless hosting with consumption-based pricing.
+- Identity-based access to resources in Azure, including resources within virtual networks.
+- Declarative data source connections through
+[input/output bindings](/en-us/azure/azure-functions/functions-triggers-bindings).
+
+## When to use Azure Functions vs function calling
+
+While [function calling](function-calling?view=foundry-classic) allows you to define tools that run in-process with your agent code, hosting custom tools on Azure Functions provides additional enterprise capabilities when you need:
+
+**Separation of concerns**: Isolate your business logic from agent code, enabling independent development, testing, and deployment cycles.**Centralized management**: Create reusable tools that multiple agents, applications, or teams can consume consistently.**Security isolation**: Control agent access to tools separately from tool access to enterprise resources. This approach allows you to assign agents only the specific permissions they need to call the tool without having to provide direct access to underlying databases, APIs, or networks.**External dependencies**: Leverage non-Microsoft libraries, specific runtime environments, or your legacy system integrations.**Complex operations**: Handle multistep workflows and data transformations, or offload computationally intensive operations.**Asynchronous processing**: Execute long-running operations with retry capabilities and resilient message handling.
+
+## Integration options
+
+Foundry Agent Service provides two primary ways for your agents to access Azure Functions-hosted tools:
+
+| Feature | Model Context Protocol (MCP) servers | Azure Queue storage-based tools |
+|---|---|---|
+How does it work? |
+Agents connect to your function app in Azure by using the MCP protocol. The function app itself serves as a custom MCP server, exposing your individual functions as tools. A custom MCP server abstracts the complexity of hosting and exposing tools from your agent project and promotes reusability of your code. | Agents communicate with tool code in your function app in Azure through Queue storage by placing messages in a queue, which triggers tool code execution. The function app listens to the input queues, processes messages asynchronously, and returns a response to a second queue. |
+When to use it? |
+✔ Best for leveraging the industry standard protocol for agent tool integration. ✔ Provides real-time, synchronous interactions with immediate responses. |
+✔ Best for asynchronous workflows that don't require real time responses. ✔ Ideal for background processing and reliable message delivery with retry capabilities. |
+SDK configuration |
+Generic
+|
+
+[Azure Functions tool](azure-functions-samples?view=foundry-classic)**Get started**[How to use Azure Functions with MCP](/en-us/azure/azure-functions/functions-create-ai-enabled-apps#remote-mcp-servers)[How to use Azure Functions with queues](azure-functions-samples?view=foundry-classic)For HTTP-trigger functions, you can also integrate by describing the function through an OpenAPI specification and registering it as a callable tool by using the [OpenAPI tool](openapi-spec?view=foundry-classic) in your agent configuration. This approach provides flexibility for existing HTTP-based functions, but it requires additional setup to define the API specification.
+
+## Supported models
+
+To use all features of function calling, including parallel functions, you need to use a model that was released after November 6, 2023.
+
+## Create and deploy the queue-based tool integration sample
+
+The rest of this article demonstrates how to use an Azure Developer CLI (`azd`
+
+) sample that configures a Foundry Agent Service project with Functions to support queue-based tool integration for agents.
+
+Note
+
+For detailed instructions on how to define and host Functions-based tools as MCP servers, see [Host MCP servers in Azure Functions](/en-us/azure/azure-functions/functions-create-ai-enabled-apps#remote-mcp-servers).
+
+### Prerequisites
+
+[Azure Functions Core Tools v4.x](/en-us/azure/azure-functions/functions-run-local)[A deployed agent with the standard setup](../../environment-setup?view=foundry-classic#choose-your-setup)Note
+
+The basic agent setup isn't supported.
+
+[Azurite](https://github.com/Azure/Azurite)- An Azure account with an active subscription.
+[Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
+### Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+### Initialize the project template
+
+This project uses `azd`
+
+to simplify creating Azure resources and deploying your code. This deployment follows current best practices for secure and scalable Functions deployments. You can find the template and code used here on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python).
+
+Run this
+
+`azd init`
+
+command in a terminal window to initialize your project from the azd template:`azd init --template azure-functions-ai-services-agent-python`
+
+
+When prompted, provide an environment name, such as `ai-services-agent-python`
+
+. In `azd`
+
+, the environment maintains a unique deployment context for your app, and you can define more than one. The environment name is also used in the name of the resource group and other resources you create in Azure.
+
+Run this command to allow local setup scripts to run successfully, which depends on your local operating system:
+
+
+### Provision resources
+
+Run the `azd provision`
+
+command to create the required resources in Azure:
+
+```
+azd provision
+```
+
+
+When prompted, provide these required deployment parameters:
+
+| Prompt | Description |
+|---|---|
+| Select an Azure Subscription to use | Choose the subscription in which you want your resources to be created. |
+location deployment parameter |
+Azure region in which to create the resource group that contains the new Azure resources. Only regions that currently support the Flex Consumption plan are shown. |
+vnetEnabled deployment parameter |
+While the template supports creating resources inside a virtual network, to simplify deployment and testing, choose `False` . |
+
+The `main.bicep`
+
+deployment file is then read by `azd`
+
+and used to create these resources in Azure:
+
+- Flex Consumption plan and function app
+- Agent platform in Foundry, including:
+- Services account
+- Model deployment
+- Project
+- Agents
+- Search
+- Azure Cosmos DB account (used by search)
+
+- Azure Storage (required by Functions and AI agents) and Application Insights (recommended)
+- Access policies and roles for your accounts
+- Service-to-service connections using managed identities (instead of stored connection strings)
+
+You can also use these integrated Azure resources in the article [How to use queue-based Azure Functions with Microsoft Foundry agents](azure-functions-samples?view=foundry-classic).
+
+Post-provision scripts also create a `local.settings.json`
+
+file, which Functions requires to run locally. The generated file should look like this:
+
+```
+{
+"IsEncrypted": false,
+"Values": {
+"AzureWebJobsStorage": "UseDevelopmentStorage=true",
+"FUNCTIONS_WORKER_RUNTIME": "python",
+"STORAGE_CONNECTION__queueServiceUri": "https://<storageaccount>.queue.core.windows.net",
+"PROJECT_CONNECTION_STRING": "<project connection for AI Project>"
+}
+}
+```
+
+
+### Run your app in Visual Studio Code
+
+- Open the folder in a new terminal.
+- Run the
+`code .`
+
+code command to open the project in Visual Studio Code. - In the command palette (F1), type
+`Azurite: Start`
+
+, which enables debugging with local storage for the Functions runtime. - Press
+**Run/Debug (F5)**to run in the debugger. Select**Debug anyway**if prompted about local emulator not running. - Send POST
+`prompt`
+
+endpoints respectively using your HTTP test tool. If you have the[RestClient](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)extension installed, you can execute requests directly from theproject file.`test.http`
+
+
+### Deploy to Azure
+
+Run this `azd deploy`
+
+command to publish your project code to the function app and related Azure resources you just provisioned:
+
+```
+azd deploy
+```
+
+
+After publishing completes successfully, `azd`
+
+provides you with the URL endpoints of your new functions, but without the function key values required to access the endpoints. You can use the Azure Functions Core Tools command `func azure functionapp list-functions`
+
+with the `--show-keys`
+
+option to obtain the keys for your function endpoints. For more information, see [Work with access keys in Azure Functions](/en-us/azure/azure-functions/function-keys-how-to?branch=main&tabs=azure-cli#get-your-function-access-keys).
+
+### Redeploy your code
+
+You can run also the `azd up`
+
+command as many times as you need to both provision your Azure resources and deploy code updates to your function app.
+
+Note
+
+Deployed code files are always overwritten by the latest deployment package.
+
+### Clean up resources
+
+When you're done working with your function app and related resources, use this command to delete the function app and its related resources from Azure and avoid incurring any further costs (`--purge`
+
+doesn't leave a soft delete of AI resource and recovers your quota):
+
+```
+azd down --purge
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: bing-grounding.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/bing-grounding -->
+
+# Grounding with Bing Search
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+**Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be used or not. If so, it uses Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.
+
+You can ask questions such as "*what is the top news today*" or "*what is the recent update in the retail industry in the US?*", which require real-time public data.
+
+Developers and end users don't have access to raw content returned from Grounding with Bing Search. The model response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. You can retrieve the **model response** by accessing the data in the thread that was created. These two *references* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements). See the [how to display Grounding with Bing Search results](#how-to-display-grounding-with-bing-search-results) section for details.
+
+Important
+
+- Your usage of Grounding with Bing Search can incur costs. See the
+[pricing page](https://www.microsoft.com/en-us/bing/apis/grounding-pricing)for details. - By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at
+[https://www.microsoft.com/en-us/bing/apis/grounding-legal](https://www.microsoft.com/en-us/bing/apis/grounding-legal), which might be updated from time to time. - When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have the same compliance standards and certifications as the Foundry Agent Service, as described in the
+[Grounding with Bing Search Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
+
+## How Grounding with Bing Search works
+
+The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."* Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave.
+
+When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing search query (which is [visible to developers](#how-to-display-grounding-with-bing-search-results)).
+Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output.
+
+Note
+
+When using Grounding with Bing Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes.
+
+The authorization will happen between Grounding with Bing Search service and Agent Service. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether the use of Grounding with Bing Search in your agent meets your needs and requirements.
+
+Transactions with your Grounding with Bing resource are counted by the number of tool calls per run. You can see how many tool calls are made from the run step.
+
+## Supported capabilities and known issues
+
+- Grounding with Bing Search tool is designed to retrieve real-time information from web, NOT specific web domains.
+- NOT Recommended to
+**summarize**an entire web page. - Within one run, the AI model will evaluate the tool outputs and may decide to invoke the tool again for more information and context. AI model may also decide which pieces of tool outputs are used to generate the response.
+- Azure AI Agent service will return
+**AI model generated response**as output so end-to-end latency will be impacted pre-/post-processing of LLMs. - Grounding with Bing Search tool does NOT return the tool output to developers and end users.
+- Grounding with Bing Search only works with agents that are not using VPN or Private Endpoints. The agent must have normal network access.
+
+## Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Setup
+
+Note
+
+- Grounding with Bing Search works with
+[all Azure OpenAI models](../../concepts/model-region-support?view=foundry-classic)that Agent Service supports, except`gpt-4o-mini, 2024-07-18`
+
+and gpt-5 models.
+
+Create an Azure AI Agent by following the steps in the
+
+[quickstart](../../quickstart?view=foundry-classic).Create a Grounding with Bing Search resource. You need to have
+
+**Owner**or `**Contributor**role in your subscription or resource group to create it.- You can create one in the
+[Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
+
+- You can also create one through code-first experience. If so, you need to manually
+[register](/en-us/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider)Bing Search as an Azure resource provider. You must have permission to perform the`/register/action`
+
+operation for the resource provider. The permission is included in the**Contributor**and**Owner**roles.
+
+`az provider register --namespace 'Microsoft.Bing'`
+
+- You can create one in the
+After you have created a Grounding with Bing Search resource, you can find it in
+
+[Azure portal](https://portal.azure.com/#home). Navigate to the resource group you've created the resource in, search for the Grounding with Bing Search resource you have created.
+
+## Optional parameters
+
+When you add the Grounding with Bing Search tool to your agent, you can pass the following parameters. These parameters will impact the Grounding with Bing Search tool output, and the AI model might not fully use all of the outputs. See the [code examples](bing-code-samples?view=foundry-classic) for information on API version support and how to pass these parameters.
+
+| Name | Value | Type | Required |
+|---|---|---|---|
+`count` |
+The number of search results to return in the response. The default is 5 and the maximum value is 50. The actual number delivered may be less than requested. It is possible for multiple pages to include some overlap in results. This parameter affects only web page results. It's possible that AI model might not use all search results returned by Bing. | `UnsignedShort` |
+No |
+`freshness` |
+Filter search results by the following case-insensitive age values: Day: Return webpages that Bing discovered within the last 24 hours.Week: Return webpages that Bing discovered within the last 7 days.Month: Return webpages that Bing discovered within the last 30 days. To get articles discovered by Bing during a specific timeframe, specify a date range in the form: `YYYY-MM-DD..YYYY-MM-DD` . For example, `freshness=2019-02-01..2019-05-30` . To limit the results to a single date, set this parameter to a specific date. For example, `freshness=2019-02-04` . |
+String | No |
+`market` |
+The market where the results come from. Typically, `mkt` is the country where the user is making the request from. However, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form: `<language>-<country/region>` . For example, `en-US` . The string is case insensitive. For a list of possible market values, see
+|
+String | No |
+`set_lang` |
+The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. Using 4-letter codes is preferred. For a list of supported language codes, see
+Bing loads the localized strings if `setlang` contains a valid 2-letter neutral culture code (`fr` ) or a valid 4-letter specific culture code (`fr-ca` ). For example, for `fr-ca` , Bing loads the `fr` neutral culture code strings.If `setlang` is not valid (for example, `zh` ) or Bing doesn’t support the language (for example, `af` , `af-na` ), Bing defaults to `en` (English).To specify the 2-letter code, set this parameter to an ISO 639-1 language code. To specify the 4-letter code, use the form `<language>-<country/region>` where `<language>` is an ISO 639-1 language code (neutral culture) and `<country/region>` is an ISO 3166 country/region (specific culture) code. For example, use `en-US` for United States English.Although optional, you should always specify the language. Typically, you set `setLang` to the same language specified by `mkt` unless the user wants the user interface strings displayed in a different language. |
+String | No |
+
+## How to display Grounding with Bing Search results
+
+According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations`
+
+parameter in API response and Bing search query URLs through `runstep`
+
+details. To render the webpage, we recommend you replace the endpoint of Bing search query URLs with `www.bing.com`
+
+and your Bing search query URL would look like "https://www.bing.com/search?q={search query}"
+
+```
+run_steps = project_client.agents.runs_steps.list(run_id=run.id, thread_id=thread.id)
+run_steps_data = run_steps['data']
+print(f"Last run step detail: {run_steps_data}")
+```
+
+
+## Next steps
+
+See [code samples](bing-code-samples?view=foundry-classic) for using the Grounding with Bing tool programmatically.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: bing-custom-search.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/bing-custom-search -->
+
+# Grounding with Bing Custom Search (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+Grounding with Bing Custom Search tool allows your Azure AI Agents to search within a configurable set of public web domains. It allows you to define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing. You need to first create a Grounding with Bing Custom Search resource in Azure portal.
+
+Once the resource is deployed, go to **Configurations** in the Microsoft Foundry portal, and create a configuration instance to include content only from websites that your users care about. Instructions about how to create your custom configuration can be found in the [setup section](#setup).
+
+Once the tool is configured, you can connect it to your Azure AI Agent. When a user sends a query, the agent will decide if Grounding with Bing Custom Search should be leveraged or not. If so, it will use Bing to search over the domains you specify and return relevant chunks. Lastly, Azure AI Agents will use the returned chunks to generate a response to return to the user
+
+Important
+
+- Your usage of Grounding with Bing Custom Search can incur costs. See the pricing page for details.
+- By creating and using a Grounding with Bing Custom Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the
+[terms of use](https://www.microsoft.com/bing/apis/grounding-legal), which may be updated periodically. - When you use Grounding with Bing Custom Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search isn't subject to the same data processing terms (including location of processing) and doesn't have the same compliance standards and certifications as the Foundry Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether use of Grounding with Bing Custom Search in your agent meets your needs and requirements.
+
+## How Grounding with Bing Custom Search works
+
+The user query is the message that an end user sends to an agent, such as "what water bottle is available?" (assuming you create an instance to Contoso product websites). Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave.
+
+When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing Custom Search query (which is visible to developers). Grounding with Bing Custom Search returns relevant search results to the customer's model deployment, which then generates the final output.
+
+Note
+
+When you use Grounding with Bing Custom Search, the Bing Custom Search query, the configuration instance, tool parameters, and your resource key are sent to Bing. The query doesn't include any end user-specific information. You send your resource key to Bing solely for billing and rate limiting purposes.
+
+The authorization will happen between Grounding with Bing Custom Search service and Foundry Agent service. Any Bing Custom Search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key and configuration instance, outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search is subject to Bing's terms and don't have the same compliance standards and certifications as the Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether the use of Grounding with Bing Custom Search in your agent meets your needs and requirements.
+
+Developers and end users don't have access to raw content returned from Grounding with Bing Custom Search. The model response, however, includes citations with links to the websites used to generate the response and is allowed to be stored using the mechanisms provided by the Agents Service. You can retrieve the model response by accessing the data in the thread that was created. These references must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Custom Search's Use and Display Requirements.
+
+## Understand citations in the agent response
+
+When Grounding with Bing Custom Search contributes to an agent response, the response can include URL citations that help users verify the answer.
+
+In the client SDKs, URL citations are returned as annotations on the agent message. Each citation includes a title and URL that you can show to users as a list of references.
+
+For an end-to-end example that prints citations from a thread message, see the [code samples](bing-custom-search-samples?view=foundry-classic).
+
+Transactions with your Grounding with Bing resource are counted by the number of tool calls per run. You can see how many tool calls are made from the run step.
+
+## Setup
+
+Note
+
+Grounding with Bing Search tool works in your network secured Foundry, but the tool doesn't respect your VPN or Private Endpoints to Foundry. It acts as a public endpoint. Please make this security consideration when you use network secured Foundry with this tool.
+
+Create an Azure AI Agent by following the steps in the
+
+[quickstart](../../quickstart?view=foundry-classic).Create a Grounding with Bing Custom Search resource in the
+
+[Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingCustomSearch). You need to have**Owner**or**Contributor**role in your subscription or resource group to create it. Make sure you create this Grounding with Bing Custom Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.After you have created a Grounding with Bing Custom Search resource, you can create a configuration instance.
+
+Go to the Grounding with Bing Custom Search resource created
+
+Select
+
+**Resource Management**on the left panel.Select
+
+**Configurations**.Select
+
+**Create a new configuration**.
+
+
+When you create or update a configuration, enter the following information:
+
+The name of your configuration. You can change this name at any time.
+
+Include URLs to define your search slices in at least one of the following fields:
+
+Note
+
+Grounding with Bing Custom Search only returns results for domains and webpages that are public and indexed by Bing.
+
+- Domain (for example,
+`https://www.microsoft.com`
+
+) - Domain and path (for example,
+`https://www.microsoft.com/surface`
+
+) - Webpage (for example,
+`https://www.microsoft.com/en-us/p/surface-earbuds/8r9cpq146064`
+
+)
+
+Allowed domains to search against. For allowed domains, if you want to include subpages, make sure the domains have at most two levels of subpages.
+
+Blocked domains to exclude from the search space.
+
+
+- Domain (for example,
+Determine if you want to include subpages. A subpage slice specifies a domain path. Bing searches all content found at and below the path. You can specify a maximum of two subfolders in the path. For example,
+
+`www.microsoft.com/windows/`
+
+.Adjust ranking if needed.
+
+Navigate to the
+
+**Agents**screen for your agent in the[Foundry portal](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to**knowledge**. Then select**Add**.Select the
+
+**Grounding with Bing Custom Search**tool.Select to create a new connection, or use an existing connection
+
+- For a new connection, select your Grounding with Bing Custom Search resource.
+
+Once you have connected to a resource, select the configuration name.
+
+Save the tool and start chatting with your agent.
+
+
+## Custom Search configuration capabilities
+
+Grounding with Bing Custom Search is a powerful tool that allows you to select a subspace of the web to limit your Agent’s grounding knowledge. Here you can find a few tips for how to take the maximum advantage of this capability:
+
+If you own a public site that you want to include in the search but Bing hasn't indexed, see the
+
+[Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a)for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date.You can only block certain domains and perform a search against the rest of the Web (a competitor’s site, for example).
+
+
+## Optional parameters
+
+When you add the Grounding with Bing Custom Search tool to your agent, you can pass the following parameters. These parameters will impact the Grounding with Bing Custom Search tool output, and the AI model might not fully use all of the outputs. See the [code examples](bing-custom-search-samples?view=foundry-classic) for information on API version support and how to pass these parameters.
+
+| Name | Value | Type | Required |
+|---|---|---|---|
+`count` |
+The number of search results to return in the response. The default is 5 and the maximum value is 50. The actual number delivered might be less than requested. It's possible for multiple pages to include some overlap in results. This parameter affects only web page results. It's possible that AI model might not use all search results returned by Bing. | `UnsignedShort` |
+No |
+`freshness` |
+Filter search results by the following case-insensitive age values: Day: Return webpages that Bing discovered within the last 24 hours.Week: Return webpages that Bing discovered within the last 7 days.Month: Return webpages that Bing discovered within the last 30 days. To get articles discovered by Bing during a specific timeframe, specify a date range in the form: `YYYY-MM-DD..YYYY-MM-DD` . For example, `freshness=2019-02-01..2019-05-30` . To limit the results to a single date, set this parameter to a specific date. For example, `freshness=2019-02-04` . |
+String | No |
+`market` |
+The market where the results come from. Typically, `mkt` is the country/region where the user is making the request from. However, it could be a different country/region if the user isn't located in a country/region where Bing delivers results. The market must be in the form: `<language>-<country/region>` . For example, `en-US` . The string is case insensitive. For a list of possible market values, see
+|
+String | No |
+`set_lang` |
+The language to use for user interface strings. Specify the language by using either a 2-letter or 4-letter code. Using 4-letter codes is preferred. For a list of supported language codes, see
+Bing loads the localized strings if `setlang` contains a valid 2-letter neutral culture code (`fr` ) or a valid 4-letter specific culture code (`fr-ca` ). For example, for `fr-ca` , Bing loads the `fr` neutral culture code strings.If `setlang` isn't valid (for example, `zh` ) or Bing doesn’t support the language (for example, `af` , `af-na` ), Bing defaults to `en` (English).To specify the 2-letter code, set this parameter to an ISO 639-1 language code. To specify the 4-letter code, use the form `<language>-<country/region>` where `<language>` is an ISO 639-1 language code (neutral culture) and `<country/region>` is an ISO 3166 country or region (specific culture) code. For example, use `en-US` for United States English.Although optional, always specify the language. Typically, set `setLang` to the same language specified by `mkt` unless the user wants the user interface strings displayed in a different language. |
+String | No |
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: model-context-protocol-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/model-context-protocol-samples -->
+
+# How to use the Model Context Protocol (MCP) tool (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+This article provides code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
+
+## Prerequisites
+
+- A
+[configured MCP server](model-context-protocol?view=foundry-classic#setup), such as the GitHub MCP server.
+
+Install the
+
+`Azure.AI.Agents.Persistent`
+
+and`Azure.Identity`
+
+NuGet packages to your project:`dotnet add package Azure.AI.Agents.Persistent dotnet add package Azure.Identity`
+
+
+Note
+
+**MCP server authentication**: Many MCP servers require authentication through custom headers, such as API keys, Bearer tokens, or OAuth credentials. Use the `UpdateHeader`
+
+method (C#) or `update_headers`
+
+method (Python) to pass authentication headers to your MCP server. For more information about authentication and security considerations, see the [How it works](model-context-protocol?view=foundry&preserve-view=true#how-it-works) section in the **Connect to Model Context Protocol servers** documentation.
+
+## Code samples
+
+## Create a project client
+
+Make sure your code includes the required `using`
+
+statements for this example.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+```
+
+
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
+
+Note
+
+You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent/samples).
+
+```
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var mcpServerUrl = System.Environment.GetEnvironmentVariable("MCP_SERVER_URL");
+var mcpServerLabel = System.Environment.GetEnvironmentVariable("MCP_SERVER_LABEL");
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Create the MCP tool definition
+
+Create the MCP tool definition and configure the allowed tools.
+
+```
+// Create MCP tool definition
+MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
+// Configure allowed tools (optional)
+string searchApiCode = "search_azure_rest_api_code";
+mcpTool.AllowedTools.Add(searchApiCode);
+```
+
+
+Use the `MCPToolDefinition`
+
+during the agent initialization.
+
+```
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "my-mcp-agent",
+instructions: "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
+tools: [mcpTool]);
+```
+
+
+## Create a thread and add a message
+
+Create the thread, add the message containing a question for the agent, and start the run with MCP tool resources.
+
+```
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
+// Create message to thread
+PersistentThreadMessage message = agentClient.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"Please summarize the Azure REST API specifications Readme");
+MCPToolResource mcpToolResource = new(mcpServerLabel);
+mcpToolResource.UpdateHeader("SuperSecret", "123456");
+ToolResources toolResources = mcpToolResource.ToToolResources();
+// Run the agent with MCP tool resources
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent, toolResources);
+// Handle run execution and tool approvals
+while (run.Status == RunStatus.Queued || run.Status == RunStatus.InProgress || run.Status == RunStatus.RequiresAction)
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(1000));
+run = agentClient.Runs.GetRun(thread.Id, run.Id);
+if (run.Status == RunStatus.RequiresAction && run.RequiredAction is SubmitToolApprovalAction toolApprovalAction)
+{
+var toolApprovals = new List<ToolApproval>();
+foreach (var toolCall in toolApprovalAction.SubmitToolApproval.ToolCalls)
+{
+if (toolCall is RequiredMcpToolCall mcpToolCall)
+{
+Console.WriteLine($"Approving MCP tool call: {mcpToolCall.Name}, Arguments: {mcpToolCall.Arguments}");
+toolApprovals.Add(new ToolApproval(mcpToolCall.Id, approve: true)
+{
+Headers = { ["SuperSecret"] = "123456" }
+});
+}
+}
+if (toolApprovals.Count > 0)
+{
+run = agentClient.Runs.SubmitToolOutputsToRun(thread.Id, run.Id, toolApprovals: toolApprovals);
+}
+}
+}
+```
+
+
+## Print the messages
+
+```
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+Console.Write(textItem.Text);
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}>");
+}
+Console.WriteLine();
+}
+}
+```
+
+
+## Optional: Delete the agent
+
+When you finish using your agent, delete it by using the following code:
+
+```
+agentClient.Threads.DeleteThread(threadId: thread.Id);
+agentClient.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+
+## Create an Agent with the MCP Tool
+
+The following code sample begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client. It then creates an agent, adds a message to a thread, and runs the agent.
+
+```
+# Import necessary libraries
+import os, time
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import (
+ListSortOrder,
+McpTool,
+RequiredMcpToolCall,
+RunStepActivityDetails,
+SubmitToolApprovalAction,
+ToolApproval,
+)
+# Get MCP server configuration from environment variables
+mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://gitmcp.io/Azure/azure-rest-api-specs")
+mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "github")
+project_client = AIProjectClient(
+endpoint=os.environ["PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+# Initialize agent MCP tool
+mcp_tool = McpTool(
+server_label=mcp_server_label,
+server_url=mcp_server_url,
+allowed_tools=[], # Optional: specify allowed tools
+)
+# You can also add or remove allowed tools dynamically
+search_api_code = "search_azure_rest_api_code"
+mcp_tool.allow_tool(search_api_code)
+print(f"Allowed tools: {mcp_tool.allowed_tools}")
+# Create agent with MCP tool and process agent run
+with project_client:
+agents_client = project_client.agents
+# Create a new agent.
+# NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-mcp-agent",
+instructions="You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
+tools=mcp_tool.definitions,
+)
+print(f"Created agent, ID: {agent.id}")
+print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Create message to thread
+message = agents_client.messages.create(
+thread_id=thread.id,
+role="user",
+content="Please summarize the Azure REST API specifications Readme",
+)
+print(f"Created message, ID: {message.id}")
+# Create and process agent run in thread with MCP tools
+mcp_tool.update_headers("SuperSecret", "123456")
+# mcp_tool.set_approval_mode("never") # Uncomment to disable approval requirement
+run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
+print(f"Created run, ID: {run.id}")
+while run.status in ["queued", "in_progress", "requires_action"]:
+time.sleep(1)
+run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
+if run.status == "requires_action" and isinstance(run.required_action, SubmitToolApprovalAction):
+tool_calls = run.required_action.submit_tool_approval.tool_calls
+if not tool_calls:
+print("No tool calls provided - cancelling run")
+agents_client.runs.cancel(thread_id=thread.id, run_id=run.id)
+break
+tool_approvals = []
+for tool_call in tool_calls:
+if isinstance(tool_call, RequiredMcpToolCall):
+try:
+print(f"Approving tool call: {tool_call}")
+tool_approvals.append(
+ToolApproval(
+tool_call_id=tool_call.id,
+approve=True,
+headers=mcp_tool.headers,
+)
+)
+except Exception as e:
+print(f"Error approving tool_call {tool_call.id}: {e}")
+print(f"tool_approvals: {tool_approvals}")
+if tool_approvals:
+agents_client.runs.submit_tool_outputs(
+thread_id=thread.id, run_id=run.id, tool_approvals=tool_approvals
+)
+print(f"Current run status: {run.status}")
+print(f"Run completed with status: {run.status}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Display run steps and tool calls
+run_steps = agents_client.run_steps.list(thread_id=thread.id, run_id=run.id)
+# Loop through each step
+for step in run_steps:
+print(f"Step {step['id']} status: {step['status']}")
+# Check if there are tool calls in the step details
+step_details = step.get("step_details", {})
+tool_calls = step_details.get("tool_calls", [])
+if tool_calls:
+print(" MCP Tool calls:")
+for call in tool_calls:
+print(f" Tool Call ID: {call.get('id')}")
+print(f" Type: {call.get('type')}")
+if isinstance(step_details, RunStepActivityDetails):
+for activity in step_details.activities:
+for function_name, function_definition in activity.tools.items():
+print(
+f' The function {function_name} with description "{function_definition.description}" will be called.:'
+)
+if len(function_definition.parameters) > 0:
+print(" Function parameters:")
+for argument, func_argument in function_definition.parameters.properties.items():
+print(f" {argument}")
+print(f" Type: {func_argument.type}")
+print(f" Description: {func_argument.description}")
+else:
+print("This function has no parameters")
+print() # add an extra newline between steps
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+print("\nConversation:")
+print("-" * 50)
+for msg in messages:
+if msg.text_messages:
+last_text = msg.text_messages[-1]
+print(f"{msg.role.upper()}: {last_text.text.value}")
+print("-" * 50)
+# Example of dynamic tool management
+print(f"\nDemonstrating dynamic tool management:")
+print(f"Current allowed tools: {mcp_tool.allowed_tools}")
+# Remove a tool
+try:
+mcp_tool.disallow_tool(search_api_code)
+print(f"After removing {search_api_code}: {mcp_tool.allowed_tools}")
+except ValueError as e:
+print(f"Error removing tool: {e}")
+# Clean-up and delete the agent once the run is finished.
+# NOTE: Comment out this line if you plan to reuse the agent later.
+agents_client.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+## Next steps
+
+Follow the [REST API quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and `API_VERSION`
+
+.
+
+## Create an agent with the MCP tool enabled
+
+To make the MCP tool available to your agent, initialize a tool with the server endpoint, server label, and more:
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d "{
+"instructions": "You are a customer support chatbot. Use the tools provided and your knowledge base to best respond to customer queries.",
+"tools": [
+{
+"type": "mcp",
+"server_label": "<unique name for your MCP server>",
+"server_url": "<your MCP server URL>",
+"allowed_tools": ["<tool_name>"], # optional
+}
+],
+"name": "my-assistant",
+"model": "gpt-4o",
+}"
+```
+
+
+## Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+## Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "<user input related to the MCP server you connect>"
+}'
+```
+
+
+## Create a run and check the output
+
+Create a run to pass headers for the tool. You can see that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+The `require_approval`
+
+parameter is optional. Supported values are:
+
+`always`
+
+: A developer needs to provide approval for every call. If you don't provide a value, this value is the default.`never`
+
+: No approval is required.`{"never":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that don't require approval.`{"always":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that require approval.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "<agent_id>",
+"tool_resources": {
+"mcp": [
+{
+"server_label": "<the same unique name you provided during agent creation>",
+"require_approval": "always" #always by default
+"headers": {
+"Authorization": "Bearer <token>",
+}
+}
+]
+},
+}'
+```
+
+
+## Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+If the model tries to invoke a tool in your MCP server with approval required, you get a run with `requires_action`
+
+status:
+
+```
+{
+"id": "run_123",
+"object": "thread.run",
+...
+"status": "requires_action",
+...
+"required_action": {
+"type": "submit_tool_approval",
+"submit_tool_approval": {
+"tool_calls": [
+{
+"id": "call_123",
+"type": "mcp",
+"arguments": "{...}",
+"name": "<tool_name>",
+"server_label": "<server_label_you_provided>"
+}
+]
+}
+},
+...
+"tools": [
+{
+"type": "mcp",
+"server_label": "<server_label_you_provided>",
+"server_url": "<server_url_you_provided>",
+"allowed_tools": null
+}
+],
+...
+}
+```
+
+
+Carefully review the tool and arguments to be passed so that you can make an informed decision for approval.
+
+## Submit your approval
+
+If you decide to approve, set the `approve`
+
+parameter to `true`
+
+with the `id`
+
+value for the preceding tool calls:
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123/submit_tool_outputs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"tool_approvals": [
+{
+"tool_call_id": "call_abc123",
+"approve": true,
+"headers": {
+}
+}
+]
+}
+```
+
+
+## Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: deep-research-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/deep-research-samples -->
+
+# How to use the Deep Research tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+- The
+**parent**Foundry project resource and the contained`o3-deep-research`
+
+model and GPT models**must exist**in the same Azure subscription and region. Supported regions are**West US**and**Norway East**. - This tool is only available in
+`2025-05-15-preview`
+
+API. We highly recommend that you migrate to use the`2025-11-15-preview`
+
+API. This enables you to use the`o3-deep-research`
+
+model with[web search](../tools/web-search?view=foundry-classic)or MCP tool.
+
+Use this article to learn how to use the Deep Research tool with the Azure AI Projects SDK, including code examples and setup instructions.
+
+## Prerequisites
+
+The requirements in the
+
+[Deep Research overview](deep-research?view=foundry-classic).Your Microsoft Foundry Project endpoint.
+
+You can find your endpoint in the
+
+**overview**for your project in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), under**Libraries**>**Foundry**.Save this endpoint to an environment variable named
+
+`PROJECT_ENDPOINT`
+
+.The deployment names of your
+
+`o3-deep-research-model`
+
+and`gpt-4o`
+
+models. You can find them in**Models + Endpoints**in the left navigation menu.Save the name of your
+
+`o3-deep-research`
+
+deployment name as an environment variable named`DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME`
+
+and the`gpt-4o`
+
+deployment name as an environment variable named`MODEL_DEPLOYMENT_NAME`
+
+.
+
+Note
+
+Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
+
+The connection ID for your Grounding with Bing Search resource. You can find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Then selecting**Connected resources**. Then select your bing resource.Copy the ID, and save it to an environment variable named
+
+`AZURE_BING_CONECTION_ID`
+
+.
+
+## Create an agent with the Deep Research tool
+
+Note
+
+You need version `1.1.0-beta.4`
+
+or later of the `Azure.AI.Agents.Persistent`
+
+package, and the `Azure.Identity`
+
+package.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using System.Collections.Generic;
+using System.Text;
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var deepResearchModelDeploymentName = System.Environment.GetEnvironmentVariable("DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME");
+var connectionId = System.Environment.GetEnvironmentVariable("AZURE_BING_CONECTION_ID");
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+// DeepResearchToolDefinition should be initialized with the name of deep research model and the Bing connection ID,
+// needed to perform the search in the internet.
+DeepResearchToolDefinition deepResearch = new(
+new DeepResearchDetails(
+model: deepResearchModelDeploymentName,
+bingGroundingConnections: [
+new DeepResearchBingGroundingConnection(connectionId)
+]
+)
+);
+// NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "Science Tutor",
+instructions: "You are a helpful Agent that assists in researching scientific topics.",
+tools: [deepResearch]
+);
+//Create a thread and run and wait for the run to complete.
+PersistentAgentThreadCreationOptions threadOp = new();
+threadOp.Messages.Add(new ThreadMessageOptions(
+role: MessageRole.User,
+content: "Research the current state of studies on orca intelligence and orca language, " +
+"including what is currently known about orcas' cognitive capabilities, " +
+"communication systems and problem-solving reflected in recent publications in top their scientific" +
+"journals like Science, Nature and PNAS."
+));
+ThreadAndRunOptions opts = new()
+{
+ThreadOptions = threadOp,
+};
+ThreadRun run = client.CreateThreadAndRun(
+assistantId: agent.Id,
+options: opts
+);
+Console.WriteLine("Start processing the message... this may take a few minutes to finish. Be patient!");
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = client.Runs.GetRun(run.ThreadId, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress);
+// We will create a helper function PrintMessagesAndSaveSummary, which prints the response from the agent,
+// and replaces the reference placeholders by links in Markdown format.
+// It also saves the research summary in the file for convenience.
+static void PrintMessagesAndSaveSummary(IEnumerable<PersistentThreadMessage> messages, string summaryFilePath)
+{
+string lastAgentMessage = default;
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+StringBuilder sbAgentMessage = new();
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+string response = textItem.Text;
+if (textItem.Annotations != null)
+{
+foreach (MessageTextAnnotation annotation in textItem.Annotations)
+{
+if (annotation is MessageTextUriCitationAnnotation uriAnnotation)
+{
+response = response.Replace(uriAnnotation.Text, $" [{uriAnnotation.UriCitation.Title}]({uriAnnotation.UriCitation.Uri})");
+}
+}
+}
+if (threadMessage.Role == MessageRole.Agent)
+sbAgentMessage.Append(response);
+Console.Write($"Agent response: {response}");
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}");
+}
+Console.WriteLine();
+}
+if (threadMessage.Role == MessageRole.Agent)
+lastAgentMessage = sbAgentMessage.ToString();
+}
+if (!string.IsNullOrEmpty(lastAgentMessage))
+{
+File.WriteAllText(
+path: summaryFilePath,
+contents: lastAgentMessage);
+}
+}
+//List the messages, print them and save the result in research_summary.md file.
+//The file will be saved next to the compiled executable.
+Pageable<PersistentThreadMessage> messages
+= client.Messages.GetMessages(
+threadId: run.ThreadId, order: ListSortOrder.Ascending);
+PrintMessagesAndSaveSummary([.. messages], "research_summary.md");
+// NOTE: Comment out these two lines if you want to delete the agent.
+client.Threads.DeleteThread(threadId: run.ThreadId);
+client.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+
+The name of your Grounding with Bing Search resource name. You can find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Select**Connected resources**, then select your Grounding with Bing Search resource.Copy the ID, and save it to an environment variable named
+
+`AZURE_BING_CONECTION_ID`
+
+.Save this endpoint to an environment variable named
+
+`BING_RESOURCE_NAME`
+
+.
+
+## Create an agent with the Deep Research tool
+
+Note
+
+You need the latest preview version of the `@azure/ai-projects`
+
+package.
+
+```
+import type {
+MessageTextContent,
+ThreadMessage,
+DeepResearchToolDefinition,
+MessageTextUrlCitationAnnotation,
+} from "@azure/ai-agents";
+import { AgentsClient, isOutputOfType } from "@azure/ai-agents";
+import { DefaultAzureCredential } from "@azure/identity";
+import "dotenv/config";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project endpoint>";
+const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
+const deepResearchModelDeploymentName =
+process.env["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"];
+const bingConnectionId = process.env["AZURE_BING_CONNECTION_ID"] || "<connection-id>";
+/**
+* Fetches and prints new agent response from the thread
+* @param threadId - The thread ID
+* @param client - The AgentsClient instance
+* @param lastMessageId - The ID of the last message processed
+* @returns The ID of the newest message, or undefined if no new message
+*/
+async function fetchAndPrintNewAgentResponse(
+threadId: string,
+client: AgentsClient,
+lastMessageId?: string,
+): Promise<string | undefined> {
+const messages = client.messages.list(threadId);
+let latestMessage: ThreadMessage | undefined;
+for await (const msg of messages) {
+if (msg.role === "assistant") {
+latestMessage = msg;
+break;
+}
+}
+if (!latestMessage || latestMessage.id === lastMessageId) {
+return lastMessageId;
+}
+console.log("\nAgent response:");
+// Print text content
+for (const content of latestMessage.content) {
+if (isOutputOfType<MessageTextContent>(content, "text")) {
+console.log(content.text.value);
+}
+}
+const urlCitations = getUrlCitationsFromMessage(latestMessage);
+if (urlCitations.length > 0) {
+console.log("\nURL Citations:");
+for (const citation of urlCitations) {
+console.log(`URL Citations: [${citation.title}](${citation.url})`);
+}
+}
+return latestMessage.id;
+}
+/**
+* Extracts URL citations from a thread message
+* @param message - The thread message
+* @returns Array of URL citations
+*/
+function getUrlCitationsFromMessage(message: ThreadMessage): Array<{ title: string; url: string }> {
+const citations: Array<{ title: string; url: string }> = [];
+for (const content of message.content) {
+if (isOutputOfType<MessageTextContent>(content, "text")) {
+for (const annotation of content.text.annotations) {
+if (isOutputOfType<MessageTextUrlCitationAnnotation>(annotation, "url_citation")) {
+citations.push({
+title: annotation.urlCitation.title || annotation.urlCitation.url,
+url: annotation.urlCitation.url,
+});
+}
+}
+}
+}
+return citations;
+}
+/**
+* Creates a research summary from the final message
+* @param message - The thread message containing the research results
+* @param filepath - The file path to write the summary to
+*/
+function createResearchSummary(message: ThreadMessage): void {
+if (!message) {
+console.log("No message content provided, cannot create research summary.");
+return;
+}
+let content = "";
+// Write text summary
+const textSummaries: string[] = [];
+for (const contentItem of message.content) {
+if (isOutputOfType<MessageTextContent>(contentItem, "text")) {
+textSummaries.push(contentItem.text.value.trim());
+}
+}
+content += textSummaries.join("\n\n");
+// Write unique URL citations, if present
+const urlCitations = getUrlCitationsFromMessage(message);
+if (urlCitations.length > 0) {
+content += "\n\n## References\n";
+const seenUrls = new Set<string>();
+for (const citation of urlCitations) {
+if (!seenUrls.has(citation.url)) {
+content += `- [${citation.title}](${citation.url})\n`;
+seenUrls.add(citation.url);
+}
+}
+}
+// writeFileSync(filepath, content, "utf-8");
+console.log(`Research summary created:\n${content}`);
+// console.log(`Research summary written to '${filepath}'.`);
+}
+export async function main(): Promise<void> {
+// Create an Azure AI Client
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+// Create Deep Research tool definition
+const deepResearchTool: DeepResearchToolDefinition = {
+type: "deep_research",
+deepResearch: {
+deepResearchModel: deepResearchModelDeploymentName,
+deepResearchBingGroundingConnections: [
+{
+connectionId: bingConnectionId,
+},
+],
+},
+};
+// Create agent with the Deep Research tool
+const agent = await client.createAgent(modelDeploymentName, {
+name: "my-agent",
+instructions: "You are a helpful Agent that assists in researching scientific topics.",
+tools: [deepResearchTool],
+});
+console.log(`Created agent, ID: ${agent.id}`);
+// Create thread for communication
+const thread = await client.threads.create();
+console.log(`Created thread, ID: ${thread.id}`);
+// Create message to thread
+const message = await client.messages.create(
+thread.id,
+"user",
+"Research the current scientific understanding of orca intelligence and communication, focusing on recent (preferably past 5 years) peer-reviewed studies, comparisons with other intelligent species such as dolphins or primates, specific cognitive abilities like problem-solving and social learning, and detailed analyses of vocal and non-vocal communication systems—please include notable authors or landmark papers if applicable.",
+);
+console.log(`Created message, ID: ${message.id}`);
+console.log("Start processing the message... this may take a few minutes to finish. Be patient!");
+// Create and poll the run
+const run = await client.runs.create(thread.id, agent.id);
+let lastMessageId: string | undefined;
+// Poll the run status
+let currentRun = run;
+while (currentRun.status === "queued" || currentRun.status === "in_progress") {
+await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second
+currentRun = await client.runs.get(thread.id, run.id);
+lastMessageId = await fetchAndPrintNewAgentResponse(thread.id, client, lastMessageId);
+console.log(`Run status: ${currentRun.status}`);
+}
+console.log(`Run finished with status: ${currentRun.status}, ID: ${currentRun.id}`);
+if (currentRun.status === "failed") {
+console.log(`Run failed: ${currentRun.lastError}`);
+}
+// Fetch the final message from the agent and create a research summary
+const messages = client.messages.list(thread.id, { order: "desc", limit: 10 });
+let finalMessage: ThreadMessage | undefined;
+for await (const msg of messages) {
+if (msg.role === "assistant") {
+finalMessage = msg;
+break;
+}
+}
+if (finalMessage) {
+createResearchSummary(finalMessage);
+}
+// Clean-up and delete the agent once the run is finished
+await client.deleteAgent(agent.id);
+console.log("Deleted agent");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+The name of your Grounding with Bing Search resource name. You can find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Then select**Connected resources**.Save this endpoint to an environment variable named
+
+`BING_RESOURCE_NAME`
+
+.
+
+## Create an agent with the Deep Research tool
+
+The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects`
+
+library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
+
+```
+python -m venv env
+# after creating the virtual environment, activate it with:
+.\env\Scripts\activate
+```
+
+
+You can install the package with the following command:
+
+```
+pip install --pre azure-ai-projects
+```
+
+
+```
+import os, time
+from typing import Optional
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents import AgentsClient
+from azure.ai.agents.models import DeepResearchTool, MessageRole, ThreadMessage
+def fetch_and_print_new_agent_response(
+thread_id: str,
+agents_client: AgentsClient,
+last_message_id: Optional[str] = None,
+) -> Optional[str]:
+response = agents_client.messages.get_last_message_by_role(
+thread_id=thread_id,
+role=MessageRole.AGENT,
+)
+if not response or response.id == last_message_id:
+return last_message_id # No new content
+print("\nAgent response:")
+print("\n".join(t.text.value for t in response.text_messages))
+for ann in response.url_citation_annotations:
+print(f"URL Citation: [{ann.url_citation.title}]({ann.url_citation.url})")
+return response.id
+def create_research_summary(
+message : ThreadMessage,
+filepath: str = "research_summary.md"
+) -> None:
+if not message:
+print("No message content provided, cannot create research summary.")
+return
+with open(filepath, "w", encoding="utf-8") as fp:
+# Write text summary
+text_summary = "\n\n".join([t.text.value.strip() for t in message.text_messages])
+fp.write(text_summary)
+# Write unique URL citations, if present
+if message.url_citation_annotations:
+fp.write("\n\n## References\n")
+seen_urls = set()
+for ann in message.url_citation_annotations:
+url = ann.url_citation.url
+title = ann.url_citation.title or url
+if url not in seen_urls:
+fp.write(f"- [{title}]({url})\n")
+seen_urls.add(url)
+print(f"Research summary written to '{filepath}'.")
+project_client = AIProjectClient(
+endpoint=os.environ["PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+conn_id = project_client.connections.get(name=os.environ["BING_RESOURCE_NAME"]).id
+# Initialize a Deep Research tool with Bing Connection ID and Deep Research model deployment name
+deep_research_tool = DeepResearchTool(
+bing_grounding_connection_id=conn_id,
+deep_research_model=os.environ["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"],
+)
+# Create Agent with the Deep Research tool and process Agent run
+agents_client = AgentsClient(
+endpoint=os.environ["PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential()
+)
+# Create a new agent that has the Deep Research tool attached.
+# NOTE: To add Deep Research to an existing agent, fetch it with `get_agent(agent_id)` and then,
+# update the agent with the Deep Research tool.
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent",
+instructions="You are a helpful Agent that assists in researching scientific topics.",
+tools=deep_research_tool.definitions,
+)
+# agent = agent_poller.result() # Wait for completion
+# [END create_agent_with_deep_research_tool]
+print(f"Created agent, ID: {agent.id}")
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Create message to thread
+message = agents_client.messages.create(
+thread_id=thread.id,
+role="user",
+content=(
+"Assess the UK outlook for 2026 - economic growth and inflation, based on IMF sources and provide a detailed report."
+),
+)
+print(f"Created message, ID: {message.id}")
+print(f"Start processing the message... this may take a few minutes to finish. Be patient!")
+# Poll the run as long as run status is queued or in progress
+run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id)
+last_message_id = None
+while run.status in ("queued", "in_progress"):
+time.sleep(1)
+run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
+last_message_id = fetch_and_print_new_agent_response(
+thread_id=thread.id,
+agents_client=agents_client,
+last_message_id=last_message_id,
+)
+print(f"Run status: {run.status}")
+print(f"Run finished with status: {run.status}, ID: {run.id}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Fetch the final message from the agent in the thread and create a research summary
+final_message = agents_client.messages.get_last_message_by_role(
+thread_id=thread.id, role=MessageRole.AGENT
+)
+if final_message:
+create_research_summary(final_message)
+# Clean-up and delete the agent once the run is finished.
+# NOTE: Comment out this line if you plan to reuse the agent later.
+agents_client.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+Note
+
+- Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
+- Currently, Foundry Agent Playground UI only supports starting runs in streaming mode, and as a result, users might experience connection drops and timeouts. Use the supported methods above which uses runs in non-streaming mode.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: bing-code-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/bing-code-samples -->
+
+# How to use Grounding with Bing Search
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
+
+## Prerequisites
+
+- A
+[connected Grounding with Bing Search resource](bing-grounding?view=foundry-classic#setup). - Your connection ID needs to be in this format:
+`/subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.CognitiveServices/accounts/<ai_service_name>/projects/<project_name>/connections/<connection_name>`
+
+
+Important
+
+There are requirements for displaying Grounding with Bing Search results. See the [overview article](bing-grounding?view=foundry-classic#how-to-display-grounding-with-bing-search-results) for details.
+
+In the
+
+[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)navigate to the**Agents**screen for your agent. Scroll down the**Setup**pane on the right to**knowledge**. Then select**Add**.Select
+
+**Grounding with Bing Search**and follow the prompts to add the tool. Note you can add only one per agent.Select
+
+**Add**to add new connections. Once you add a connection, you can directly select from existing list.Select the Grounding with Bing Search resource you want to use and select
+
+**Add connection**.
+
+## Create a project client
+
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import BingGroundingTool
+# Create an Azure AI Client from an endpoint, copied from your Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"] # Ensure the PROJECT_ENDPOINT environment variable is set
+# Create an AIProjectClient instance
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential() # Use Azure Default Credential for authentication
+)
+```
+
+
+## Create an agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+conn_id = os.environ["BING_CONNECTION_NAME"] # Ensure the BING_CONNECTION_NAME environment variable is set
+# Initialize the Bing Grounding tool
+bing = BingGroundingTool(connection_id=conn_id)
+with project_client:
+# Create an agent with the Bing Grounding tool
+agent = project_client.agents.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"], # Model deployment name
+name="my-agent", # Name of the agent
+instructions="You are a helpful agent", # Instructions for the agent
+tools=bing.definitions, # Attach the Bing Grounding tool
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+
+## Create a thread
+
+```
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Add a message to the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role="user", # Role of the message sender
+content="What is the weather in Seattle today?", # Message content
+)
+print(f"Created message, ID: {message['id']}")
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+# Create and process an agent run
+run = project_client.agents.runs.create_and_process(
+thread_id=thread.id,
+agent_id=agent.id,
+# tool_choice={"type": "bing_grounding"} # optional, you can force the model to use Grounding with Bing Search tool
+)
+print(f"Run finished with status: {run.status}")
+# Check if the run failed
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Fetch and log all messages
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages:
+print(f"Role: {message.role}, Content: {message.content}")
+```
+
+
+## Optionally output the run steps used by the agent
+
+```
+run_steps = project_client.agents.run_steps.list(thread_id=thread.id, run_id=run.id)
+for step in run_steps:
+print(f"Step {step['id']} status: {step['status']}")
+# Check if there are tool calls in the step details
+step_details = step.get("step_details", {})
+tool_calls = step_details.get("tool_calls", [])
+if tool_calls:
+print(" Tool calls:")
+for call in tool_calls:
+print(f" Tool Call ID: {call.get('id')}")
+print(f" Type: {call.get('type')}")
+function_details = call.get("function", {})
+if function_details:
+print(f" Function name: {function_details.get('name')}")
+print() # add an extra newline between steps
+```
+
+
+## Delete the agent when done
+
+```
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+## Create a project client
+
+Create a client object that contains the project endpoint for connecting to your AI project and other resources.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
+var bingConnectionId = System.Environment.GetEnvironmentVariable("BingConnectionId");
+// Create the Agent Client
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Create an agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+BingGroundingToolDefinition bingGroundingTool = new(
+new BingGroundingSearchToolParameters(
+[new BingGroundingSearchConfiguration(bingConnectionId)]
+)
+);
+// Create the Agent
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "my-agent",
+instructions: "Use the bing grounding tool to answer questions.",
+tools: [bingGroundingTool]
+);
+```
+
+
+## Create a thread and run
+
+```
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
+// Create message and run the agent
+PersistentThreadMessage message = agentClient.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"How does wikipedia explain Euler's Identity?");
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
+```
+
+
+## Wait for the agent to complete and print the output
+
+First, wait for the agent to complete the run by polling its status. The model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+// Wait for the agent to finish running
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = agentClient.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress);
+// Confirm that the run completed successfully
+if (run.Status != RunStatus.Completed)
+{
+throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+}
+```
+
+
+Then, retrieve and process the messages from the completed run.
+
+```
+// Retrieve all messages from the agent client
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+// Process messages in order
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+string response = textItem.Text;
+// If we have Text URL citation annotations, reformat the response to show title & URL for citations
+if (textItem.Annotations != null)
+{
+foreach (MessageTextAnnotation annotation in textItem.Annotations)
+{
+if (annotation is MessageTextUriCitationAnnotation urlAnnotation)
+{
+response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UriCitation.Title}]({urlAnnotation.UriCitation.Uri})");
+}
+}
+}
+Console.Write($"Agent response: {response}");
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}");
+}
+Console.WriteLine();
+}
+}
+```
+
+
+## Optionally output the run steps used by the agent
+
+```
+// Retrieve the run steps used by the agent and print those to the console
+Console.WriteLine("Run Steps used by Agent:");
+Pageable<RunStep> runSteps = agentClient.Runs.GetRunSteps(run);
+foreach (var step in runSteps)
+{
+Console.WriteLine($"Step ID: {step.Id}, Total Tokens: {step.Usage.TotalTokens}, Status: {step.Status}, Type: {step.Type}");
+if (step.StepDetails is RunStepMessageCreationDetails messageCreationDetails)
+{
+Console.WriteLine($" Message Creation Id: {messageCreationDetails.MessageCreation.MessageId}");
+}
+else if (step.StepDetails is RunStepToolCallDetails toolCallDetails)
+{
+// We know this agent only has the Bing Grounding tool, so we can cast it directly
+foreach (RunStepBingGroundingToolCall toolCall in toolCallDetails.ToolCalls)
+{
+Console.WriteLine($" Tool Call Details: {toolCall.GetType()}");
+foreach (var result in toolCall.BingGrounding)
+{
+Console.WriteLine($" {result.Key}: {result.Value}");
+}
+}
+}
+}
+```
+
+
+## Clean up resources
+
+Clean up the resources from this sample.
+
+```
+// Delete thread and agent
+agentClient.Threads.DeleteThread(threadId: thread.Id);
+agentClient.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+
+## Create a project client
+
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
+
+```
+const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
+const { delay } = require("@azure/core-util");
+const { DefaultAzureCredential } = require("@azure/identity");
+require("dotenv/config");
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+// Create an Azure AI Client
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Create an agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+const connectionId = process.env["AZURE_BING_CONNECTION_ID"] || "<connection-name>";
+// Initialize agent bing tool with the connection id
+const bingTool = ToolUtility.createBingGroundingTool([{ connectionId: connectionId }]);
+// Create agent with the bing tool and process assistant run
+const agent = await client.createAgent("gpt-4o", {
+name: "my-agent",
+instructions: "You are a helpful agent",
+tools: [bingTool.definition],
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+
+## Create a thread
+
+```
+// Create thread for communication
+const thread = await client.threads.create();
+console.log(`Created thread, thread ID: ${thread.id}`);
+// Create message to thread
+const message = await client.messages.create(
+thread.id,
+"user",
+"How does wikipedia explain Euler's Identity?",
+);
+console.log(`Created message, message ID : ${message.id}`);
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+// Create and process agent run in thread with tools
+let run = await client.runs.create(thread.id, agent.id);
+while (run.status === "queued" || run.status === "in_progress") {
+await delay(1000);
+run = await client.runs.get(thread.id, run.id);
+}
+if (run.status === "failed") {
+console.log(`Run failed: ${run.lastError?.message}`);
+}
+console.log(`Run finished with status: ${run.status}`);
+// Delete the assistant when done
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
+// Fetch and log all messages
+const messagesIterator = client.messages.list(thread.id);
+console.log(`Messages:`);
+// Get the first message
+const firstMessage = await messagesIterator.next();
+if (!firstMessage.done && firstMessage.value) {
+const agentMessage = firstMessage.value.content[0];
+if (isOutputOfType(agentMessage, "text")) {
+const textContent = agentMessage;
+console.log(`Text Message Content - ${textContent.text.value}`);
+}
+}
+```
+
+
+Important
+
+- This REST API enables developers to invoke the Grounding with Bing Search tool through the Foundry Agent Service. It doesn't send calls to the Grounding with Bing Search API directly.
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and `API_VERSION`
+
+.
+
+## Create an agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful agent.",
+"name": "my-agent",
+"model": "gpt-4o",
+"tools": [
+{
+"type": "bing_grounding",
+"bing_grounding": {
+"search_configurations": [
+{
+"connection_id": "<your_connection_id>",
+"count": 7,
+"market": "en-US",
+"set_lang": "en",
+"freshness": "Week",
+}
+]
+}
+}
+]
+}'
+```
+
+
+## Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+## Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "What is the weather in Seattle?"
+}'
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+## Code example
+
+```
+package com.example.agents;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.BingGroundingSearchConfiguration;
+import com.azure.ai.agents.persistent.models.BingGroundingSearchToolParameters;
+import com.azure.ai.agents.persistent.models.BingGroundingToolDefinition;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.util.Arrays;
+public class AgentExample {
+public static void main(String[] args) {
+// variables for authenticating requests to the agent service
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+String bingConnectionId = System.getenv("BING_CONNECTION_ID");
+PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+.credential(new DefaultAzureCredentialBuilder().build());
+PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+ThreadsClient threadsClient = agentsClient.getThreadsClient();
+MessagesClient messagesClient = agentsClient.getMessagesClient();
+RunsClient runsClient = agentsClient.getRunsClient();
+BingGroundingSearchConfiguration searchConfiguration = new BingGroundingSearchConfiguration(bingConnectionId);
+BingGroundingSearchToolParameters searchToolParameters
+= new BingGroundingSearchToolParameters(Arrays.asList(searchConfiguration));
+BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(searchToolParameters);
+String agentName = "bing_grounding_example";
+CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+.setName(agentName)
+.setInstructions("You are a helpful agent")
+.setTools(Arrays.asList(bingGroundingTool));
+PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"How does wikipedia explain Euler's Identity?");
+try {
+//run agent
+CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+.setAdditionalInstructions("");
+ThreadRun threadRun = runsClient.createRun(createRunOptions);
+waitForRunCompletion(thread.getId(), threadRun, runsClient);
+printRunMessages(messagesClient, thread.getId());
+} catch (InterruptedException e) {
+throw new RuntimeException(e);
+} finally {
+//cleanup
+threadsClient.deleteThread(thread.getId());
+administrationClient.deleteAgent(agent.getId());
+}
+}
+// A helper function to print messages from the agent
+public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+for (ThreadMessage message : runMessages) {
+System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+for (MessageContent contentItem : message.getContent()) {
+if (contentItem instanceof MessageTextContent) {
+System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+} else if (contentItem instanceof MessageImageFileContent) {
+String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+System.out.print("Image from ID: " + imageFileId);
+}
+System.out.println();
+}
+}
+}
+// a helper function to wait until a run has completed running
+public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+throws InterruptedException {
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(threadId, threadRun.getId());
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+}
+}
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: azure-ai-search-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/azure-ai-search-samples -->
+
+# How to use an existing index with the Azure AI Search tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+This article explains how to use an existing search index with the [Azure AI Search](/en-us/azure/search/search-what-is-azure-search) tool.
+
+## Prerequisites
+
+- Completion of the
+[Azure AI Search tool setup](../tools/azure-ai-search?view=foundry-classic&pivot=overview-azure-ai-search).
+
+## Add the Azure AI Search tool to an agent
+
+Sign in to the
+
+[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)and select your project.From the left pane, select
+
+**Agents**.Select your agent from the list, and then select
+
+**Knowledge**>**Add**.Select
+
+**Azure AI Search**.Follow the prompts to add the Azure AI Search tool.
+
+
+## Create an Azure AI Client
+
+First, create an Azure AI Client using the endpoint of your Foundry project.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+# Retrieve the endpoint from environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential(exclude_interactive_browser_credential=False)
+)
+```
+
+
+## Configure the Azure AI Search tool
+
+Using the connection ID of your Azure AI Search service, configure the Azure AI Search tool to use your search index.
+
+```
+from azure.ai.agents.models import AzureAISearchTool, AzureAISearchQueryType
+from azure.ai.projects.models import ConnectionType
+# Define the Azure AI Search connection ID and index name
+azure_ai_conn_id = project_client.connections.get_default(ConnectionType.AZURE_AI_SEARCH).id
+# Find the index name on the Search Management > Indexes page of your Azure AI Search service
+index_name = "sample_index"
+# Initialize the Azure AI Search tool
+ai_search = AzureAISearchTool(
+index_connection_id=azure_ai_conn_id,
+index_name=index_name,
+query_type=AzureAISearchQueryType.SIMPLE, # Use SIMPLE query type
+top_k=3, # Retrieve the top 3 results
+filter="", # Optional filter for search results
+)
+```
+
+
+## Create an agent with the Azure AI Search tool enabled
+
+Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Foundry portal. You can also change the agent's name and instructions to suit your needs.
+
+```
+# Define the model deployment name
+model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"]
+# Create an agent with the Azure AI Search tool
+agent = project_client.agents.create_agent(
+model=model_deployment_name,
+name="my-agent",
+instructions="You are a helpful agent",
+tools=ai_search.definitions,
+tool_resources=ai_search.resources,
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+
+## Ask the agent questions about data in the index
+
+Now that the agent is created, you can ask it questions about the data in your search index.
+
+```
+from azure.ai.agents.models import MessageRole, ListSortOrder
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Send a message to the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role=MessageRole.USER,
+content="What is the temperature rating of the cozynights sleeping bag?",
+)
+print(f"Created message, ID: {message['id']}")
+# Create and process a run with the specified thread and agent
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+# Check if the run failed
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Fetch and log all messages in the thread
+messages = project_client.agents.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+for message in messages.data:
+print(f"Role: {message.role}, Content: {message.content}")
+```
+
+
+## Clean up resources
+
+After you complete these operations, delete the agent to clean up resources.
+
+```
+# Delete the agent
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+## Create a project client
+
+Create a client object that contains the endpoint of your Foundry project, which enables connections to your project and other resources.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Threading;
+// Get connection information from app configuration
+IConfigurationRoot configuration = new ConfigurationBuilder()
+.SetBasePath(AppContext.BaseDirectory)
+.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+.Build();
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+var azureAiSearchConnectionId = configuration["AzureAiSearchConnectionId"];
+// Create the agent client
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Configure the Azure AI Search tool
+
+Using the connection ID of your Azure AI Search service, configure the Azure AI Search tool to use your search index.
+
+```
+AzureAISearchToolResource searchResource = new(
+indexConnectionId: azureAiSearchConnectionId,
+indexName: "sample_index",
+topK: 5,
+filter: "category eq 'sleeping bag'",
+queryType: AzureAISearchQueryType.Simple
+);
+ToolResources toolResource = new() { AzureAISearch = searchResource };
+```
+
+
+## Create an agent with the Azure AI Search tool enabled
+
+Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Foundry portal. You can also change the agent's name and instructions to suit your needs.
+
+```
+// Create an agent with Tools and Tool Resources
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "my-agent",
+instructions: "Use the index provided to answer questions.",
+tools: [new AzureAISearchToolDefinition()],
+toolResources: toolResource
+);
+```
+
+
+## Ask the agent questions about data in the index
+
+Now that the agent is created, you can ask it questions about the data in your search index.
+
+```
+// Create thread for communication
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
+// Create message and run the agent
+PersistentThreadMessage message = agentClient.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"What is the temperature rating of the cozynights sleeping bag?");
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
+```
+
+
+## Wait for the agent to complete and print the output
+
+Wait for the agent to finish running and print the output to the console.
+
+```
+// Wait for the agent to finish running
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = agentClient.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress);
+// Confirm that the run completed successfully
+if (run.Status != RunStatus.Completed)
+{
+throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+}
+// Retrieve the messages from the agent client
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+// Process messages in order
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+// Annotate only agent messages
+if (threadMessage.Role == MessageRole.Agent && textItem.Annotations.Count > 0)
+{
+string annotatedText = textItem.Text;
+// If there are text URL citation annotations, reformat the response to show the title and URL for citations
+foreach (MessageTextAnnotation annotation in textItem.Annotations)
+{
+if (annotation is MessageTextUriCitationAnnotation urlAnnotation)
+{
+annotatedText = annotatedText.Replace(
+urlAnnotation.Text,
+$" [see {urlAnnotation.UriCitation.Title}] ({urlAnnotation.UriCitation.Uri})");
+}
+}
+Console.Write(annotatedText);
+}
+else
+{
+Console.Write(textItem.Text);
+}
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}");
+}
+Console.WriteLine();
+}
+}
+```
+
+
+## Optionally output the run steps used by the agent
+
+```
+// Retrieve the run steps used by the agent and print them to the console
+Console.WriteLine("Run Steps used by Agent:");
+Pageable<RunStep> runSteps = agentClient.Runs.GetRunSteps(run);
+foreach (var step in runSteps)
+{
+Console.WriteLine($"Step ID: {step.Id}, Total Tokens: {step.Usage.TotalTokens}, Status: {step.Status}, Type: {step.Type}");
+if (step.StepDetails is RunStepMessageCreationDetails messageCreationDetails)
+{
+Console.WriteLine($" Message Creation Id: {messageCreationDetails.MessageCreation.MessageId}");
+}
+else if (step.StepDetails is RunStepToolCallDetails toolCallDetails)
+{
+// This agent only has the Azure AI Search tool, so we can cast it directly
+foreach (RunStepAzureAISearchToolCall toolCall in toolCallDetails.ToolCalls)
+{
+Console.WriteLine($" Tool Call Details: {toolCall.GetType()}");
+foreach (var result in toolCall.AzureAISearch)
+{
+Console.WriteLine($" {result.Key}: {result.Value}");
+}
+}
+}
+}
+```
+
+
+## Clean up resources
+
+Delete the resources from this sample.
+
+```
+// Clean up resources
+agentClient.Threads.DeleteThread(thread.Id);
+agentClient.Administration.DeleteAgent(agent.Id);
+```
+
+
+## Create an Azure AI Client
+
+First, create an Azure AI Client using the endpoint of your Foundry project.
+
+```
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+if (!projectString) {
+throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set in the environment variables");
+}
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Configure the Azure AI Search tool
+
+Using the connection ID of your Azure AI Search service, configure the Azure AI Search tool to use your search index.
+
+```
+const connectionId = process.env["AZURE_AI_CONNECTION_ID"] || "<connection-name>";
+const azureAISearchTool = ToolUtility.createAzureAISearchTool(connectionId, "ai-search-sample", {
+queryType: "simple",
+topK: 3,
+filter: "",
+indexConnectionId: "",
+indexName: "",
+});
+```
+
+
+## Create an agent with the Azure AI Search tool enabled
+
+Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Foundry portal. You can also change the agent's name and instructions to suit your needs.
+
+```
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+name: "my-agent",
+instructions: "You are a helpful agent",
+tools: [azureAISearchTool.definition],
+toolResources: azureAISearchTool.resources,
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+
+## Ask the agent questions about data in the index
+
+Now that the agent is created, you can ask it questions about the data in your search index.
+
+```
+// Create thread for communication
+const thread = await client.threads.create();
+console.log(`Created thread, thread ID: ${thread.id}`);
+// Create message to thread
+const message = await client.messages.create(
+thread.id,
+"user",
+"What is the temperature rating of the cozynights sleeping bag?",
+);
+console.log(`Created message, message ID : ${message.id}`);
+// Create and process the agent run in thread with tools
+let run = await client.runs.create(thread.id, agent.id);
+while (run.status === "queued" || run.status === "in_progress") {
+await delay(1000);
+run = await client.runs.get(thread.id, run.id);
+}
+if (run.status === "failed") {
+console.log(`Run failed:`, JSON.stringify(run, null, 2));
+}
+console.log(`Run finished with status: ${run.status}`);
+// Fetch run steps to get the details of agent run
+const runSteps = await client.runSteps.list(thread.id, run.id);
+for await (const step of runSteps) {
+console.log(`Step ID: ${step.id}, Status: ${step.status}`);
+const stepDetails = step.stepDetails;
+if (isOutputOfType(stepDetails, "tool_calls")) {
+const toolCalls = stepDetails.toolCalls;
+for (const toolCall of toolCalls) {
+console.log(`Tool Call ID: ${toolCall.id}, Tool type: ${toolCall.type}`);
+if (isOutputOfType(toolCall, "azure_ai_search")) {
+{
+const azureAISearch = toolCall.azureAISearch;
+if (azureAISearch) {
+console.log(`Azure AI Search Tool Call input: ${azureAISearch.input}`);
+console.log(`Azure AI Search Tool Call output: ${azureAISearch.output}`);
+}
+}
+}
+}
+}
+}
+// Delete the assistant when done
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
+// Fetch and log all messages
+const messagesIterator = client.messages.list(thread.id);
+console.log(`Messages:`);
+// Get the first message
+for await (const m of messagesIterator) {
+if (m.content.length > 0) {
+const agentMessage = m.content[0];
+if (isOutputOfType(agentMessage, "text")) {
+const textContent = agentMessage;
+console.log(`Text Message Content - ${textContent.text.value}`);
+}
+}
+break; // Just process the first message
+}
+```
+
+
+- Completion of the
+[REST API quickstart](../../quickstart?view=foundry-classic&pivots=rest-api)to get values for the`AGENT_TOKEN`
+
+,`AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and`API_VERSION`
+
+environment variables.
+
+## Get the connection ID for the Azure AI Search resource
+
+To get the connection ID:
+
+Sign in to the
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs)and select your project.On the
+
+**Overview**page, select**Open in management center**.From the left pane, select
+
+**Connected resources**, and then select your Azure AI Search service.Copy everything that comes after
+
+`wsid=`
+
+in the browser URL.
+
+## Configure the Azure AI Search tool
+
+Using the connection ID you got in the previous step, configure the Azure AI Search tool to use your search index.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful agent.",
+"name": "my-agent",
+"tools": [
+{"type": "azure_ai_search"}
+],
+"model": "gpt-4o-mini",
+"tool_resources": {
+"azure_ai_search": {
+"indexes": [
+{
+"index_connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.CognitiveServices/accounts/<your-foundry-name>/projects/<your-project-name>/connections/<your-azure-ai-search-connection-name>",
+"index_name": "<your-index-name>",
+"query_type": "semantic"
+}
+]
+}
+}
+}'
+```
+
+
+### Ask the agent questions about data in the index
+
+Now that the agent is created, you can ask it questions about the data in your search index.
+
+#### Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+#### Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "what are my health insurance plan coverage types?"
+}'
+```
+
+
+#### Run the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+#### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+#### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+## Code example
+
+```
+package com.example.agents;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.AISearchIndexResource;
+import com.azure.ai.agents.persistent.models.AzureAISearchToolDefinition;
+import com.azure.ai.agents.persistent.models.AzureAISearchToolResource;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.ToolResources;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.net.URL;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.Arrays;
+public class AgentExample {
+public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
+// variables for authenticating requests to the agent service
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+String aiSearchConnectionId = System.getenv("AZURE_AI_CONNECTION_ID");
+String indexName = "my-index";
+PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+.credential(new DefaultAzureCredentialBuilder().build());
+PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+ThreadsClient threadsClient = agentsClient.getThreadsClient();
+MessagesClient messagesClient = agentsClient.getMessagesClient();
+RunsClient runsClient = agentsClient.getRunsClient();
+AISearchIndexResource indexResource = new AISearchIndexResource()
+.setIndexConnectionId(aiSearchConnectionId)
+.setIndexName(indexName);
+ToolResources toolResources = new ToolResources()
+.setAzureAISearch(new AzureAISearchToolResource()
+.setIndexList(Arrays.asList(indexResource)));
+String agentName = "ai_search_example";
+CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+.setName(agentName)
+.setInstructions("You are a helpful agent")
+.setTools(Arrays.asList(new AzureAISearchToolDefinition()))
+.setToolResources(toolResources);
+PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"<question about information in search index>");
+try {
+//run agent
+CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+.setAdditionalInstructions("");
+ThreadRun threadRun = runsClient.createRun(createRunOptions);
+waitForRunCompletion(thread.getId(), threadRun, runsClient);
+printRunMessages(messagesClient, thread.getId());
+} catch (InterruptedException e) {
+throw new RuntimeException(e);
+} finally {
+//cleanup
+threadsClient.deleteThread(thread.getId());
+administrationClient.deleteAgent(agent.getId());
+}
+}
+// A helper function to print messages from the agent
+public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+for (ThreadMessage message : runMessages) {
+System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+for (MessageContent contentItem : message.getContent()) {
+if (contentItem instanceof MessageTextContent) {
+System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+} else if (contentItem instanceof MessageImageFileContent) {
+String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+System.out.print("Image from ID: " + imageFileId);
+}
+System.out.println();
+}
+}
+}
+// a helper function to wait until a run has completed running
+public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+throws InterruptedException {
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(threadId, threadRun.getId());
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+}
+private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
+URL resource = AgentExample.class.getClassLoader().getResource(fileName);
+if (resource == null) {
+throw new FileNotFoundException("File not found");
+}
+File file = new File(resource.toURI());
+return file.toPath();
+}
+}
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: azure-functions-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/azure-functions-samples -->
+
+# How to use queue-based Azure Functions with Microsoft Foundry agents
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+This article shows how to use a queue-based integrated tool approach to enable Microsoft Foundry agents to access code deployed to Azure Functions. In this approach, agents access tool code asynchronously in Azure Functions by means of separate input and output message queues in Azure Queue storage.
+
+Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionsTool`
+
+. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation.
+
+## Prerequisites
+
+- A prepared environment. See the
+[overview](azure-functions?view=foundry-classic)article for details.
+
+Note
+
+You must have a [A deployed agent with the standard setup](../../environment-setup?view=foundry-classic#choose-your-setup). The basic agent setup isn't supported.
+
+Tip
+
+You can find a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python)
+
+## Define a function for your agent to call
+
+Start by defining an Azure queue trigger function that processes function calls from the queue. For example:
+
+```
+app = func.FunctionApp()
+@app.queue_trigger(arg_name="msg", queue_name="azure-function-foo-input", connection="STORAGE_CONNECTION")
+@app.queue_output(arg_name="outputQueue", queue_name="azure-function-foo-output", connection="STORAGE_CONNECTION")
+def queue_trigger(inputQueue: func.QueueMessage, outputQueue: func.Out[str]):
+try:
+messagepayload = json.loads(inputQueue.get_body().decode("utf-8"))
+logging.info(f'The function receives the following message: {json.dumps(messagepayload)}')
+location = messagepayload["location"]
+weather_result = f"Weather is {len(location)} degrees and sunny in {location}"
+response_message = {
+"Value": weather_result,
+"CorrelationId": messagepayload["CorrelationId"]
+}
+logging.info(f'The function returns the following message through the {outputQueue} queue: {json.dumps(response_message)}')
+outputQueue.set(json.dumps(response_message))
+except Exception as e:
+logging.error(f"Error processing message: {e}")
+```
+
+
+## Configure the Azure Function tool
+
+First, define the Azure Function tool, specifying its name, description, parameters, and storage queue configurations.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import AzureFunctionStorageQueue, AzureFunctionTool
+# Retrieve the storage service endpoint from environment variables
+storage_service_endpoint = os.environ["STORAGE_SERVICE_ENDPONT"]
+# Define the Azure Function tool
+azure_function_tool = AzureFunctionTool(
+name="foo", # Name of the tool
+description="Get answers from the foo bot.", # Description of the tool's purpose
+parameters={ # Define the parameters required by the tool
+"type": "object",
+"properties": {
+"query": {"type": "string", "description": "The question to ask."},
+"outputqueueuri": {"type": "string", "description": "The full output queue URI."},
+},
+},
+input_queue=AzureFunctionStorageQueue( # Input queue configuration
+queue_name="azure-function-foo-input",
+storage_service_endpoint=storage_service_endpoint,
+),
+output_queue=AzureFunctionStorageQueue( # Output queue configuration
+queue_name="azure-function-foo-output",
+storage_service_endpoint=storage_service_endpoint,
+),
+)
+```
+
+
+## Create an AI project client and agent
+
+Next, create an AI project client and then create an agent, attaching the Azure Function tool defined previously.
+
+```
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+endpoint=os.environ["PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential()
+)
+# Create an agent with the Azure Function tool
+agent = project_client.agents.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"], # Model deployment name
+name="azure-function-agent-foo", # Name of the agent
+instructions=(
+"You are a helpful support agent. Use the provided function any time the prompt contains the string "
+"'What would foo say?'. When you invoke the function, ALWAYS specify the output queue URI parameter as "
+f"'{storage_service_endpoint}/azure-function-tool-output'. Always respond with \"Foo says\" and then the response from the tool."
+),
+tools=azure_function_tool.definitions, # Attach the tool definitions to the agent
+)
+print(f"Created agent, agent ID: {agent.id}")
+```
+
+
+## Create a thread for the agent
+
+```
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, thread ID: {thread.id}")
+```
+
+
+## Create a run and check the output
+
+```
+# Create a message in the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role="user",
+content="What is the most prevalent element in the universe? What would foo say?",
+)
+print(f"Created message, message ID: {message['id']}")
+# Create and process a run for the agent to handle the message
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+# Check if the run failed
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+```
+
+
+## Get the result of the run
+
+```
+# Retrieve and print all messages from the thread
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for msg in messages:
+print(f"Role: {msg['role']}, Content: {msg['content']}")# Get messages from the assistant thread
+# Get the last message from the assistant
+last_msg = messages.get_last_text_message_by_sender("assistant")
+if last_msg:
+print(f"Last Message: {last_msg.text.value}")
+# Delete the agent once done
+project_client.agents.delete_agent(agent.id)
+print(f"Deleted agent")
+```
+
+
+For any issues with the Python code, create an issue on the [sample code repository](https://github.com/azure-ai-foundry/foundry-samples)
+
+## Create an agent
+
+In the sample below we create a client and an agent that has the tools definition for the Azure Function
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+and `API_VERSION`
+
+.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful support agent. Answer the user's questions to the best of your ability.",
+"name": "azure-function-agent-get-weather",
+"model": "gpt-4o-mini",
+"tools": [
+{
+"type": "azure_function",
+"azure_function": {
+"function": {
+"name": "GetWeather",
+"description": "Get the weather in a location.",
+"parameters": {
+"type": "object",
+"properties": {
+"location": {"type": "string", "description": "The location to look up."}
+},
+"required": ["location"]
+}
+},
+"input_binding": {
+"type": "storage_queue",
+"storage_queue": {
+"queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
+"queue_name": "input"
+}
+},
+"output_binding": {
+"type": "storage_queue",
+"storage_queue": {
+"queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
+"queue_name": "output"
+}
+}
+}
+}
+]
+}'
+```
+
+
+## Create a thread for the agent
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+## Create a run and check the output
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "What is the weather in Seattle, WA?"
+}'
+```
+
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+## Get the result of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+Tip
+
+You can find a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-dotnet)
+
+## Prerequisites for .NET Azure Function Sample
+
+To make a function call, we need to create and deploy the Azure function. In the code snippet, we have an example of function on C# which can be used by the earlier code.
+
+```
+namespace FunctionProj
+{
+public class Response
+{
+public required string Value { get; set; }
+public required string CorrelationId { get; set; }
+}
+public class Arguments
+{
+public required string OutputQueueUri { get; set; }
+public required string CorrelationId { get; set; }
+}
+public class Foo
+{
+private readonly ILogger<Foo> _logger;
+public Foo(ILogger<Foo> logger)
+{
+_logger = logger;
+}
+[Function("Foo")]
+public void Run([QueueTrigger("azure-function-foo-input")] Arguments input, FunctionContext executionContext)
+{
+var logger = executionContext.GetLogger("Foo");
+logger.LogInformation("C# Queue function processed a request.");
+// We have to provide the Managed identity for function resource
+// and allow this identity a Queue Data Contributor role on the storage account.
+var cred = new DefaultAzureCredential();
+var queueClient = new QueueClient(new Uri(input.OutputQueueUri), cred,
+new QueueClientOptions { MessageEncoding = QueueMessageEncoding.Base64 });
+var response = new Response
+{
+Value = "Bar",
+// Important! Correlation ID must match the input correlation ID.
+CorrelationId = input.CorrelationId
+};
+var jsonResponse = JsonSerializer.Serialize(response);
+queueClient.SendMessage(jsonResponse);
+}
+}
+}
+```
+
+
+In this code we define function input and output class: `Arguments`
+
+and `Response`
+
+respectively. These two data classes are serialized in JSON. It's important that these both contain the `CorrelationId`
+
+, which is the same between input and output.
+
+In our example the function is stored in the storage account, created with the AI hub. For that we need to allow key access to that storage. In the Azure portal, go to Storage account > Settings > Configuration and set "Allow storage account key access" to Enabled. If it isn't done, the error that is displayed is "The remote server returned an error: (403) Forbidden." To create the function resource that will host our function, install azure-cli python package and run the next command:
+
+```
+pip install -U azure-cli
+az login
+az functionapp create --resource-group your-resource-group --consumption-plan-location region --runtime dotnet-isolated --functions-version 4 --name function_name --storage-account storage_account_already_present_in_resource_group --app-insights existing_or_new_application_insights_name
+```
+
+
+This function writes data to the output queue and hence needs to be authenticated to Azure, so we'll need to assign the function system identity and provide it `Storage Queue Data Contributor`
+
+. To do that in Azure portal, select the function, located in `your-resource-group`
+
+resource group and in Settings > Identity, switch it on and select Save. After that assign the `Storage Queue Data Contributor`
+
+permission on storage account used by our function (`storage_account_already_present_in_resource_group`
+
+in the script above) for the assigned system managed identity.
+
+Now we'll create the function itself. Install [.NET](https://dotnet.microsoft.com/download) and [Core Tools](https://go.microsoft.com/fwlink/?linkid=2174087) and create the function project using next commands.
+
+```
+func init FunctionProj --worker-runtime dotnet-isolated --target-framework net8.0
+cd FunctionProj
+func new --name foo --template "HTTP trigger" --authlevel "anonymous"
+dotnet add package Azure.Identity
+dotnet add package Microsoft.Azure.Functions.Worker.Extensions.Storage.Queues --prerelease
+```
+
+
+Note
+
+There's an "Azure Queue Storage trigger," however the attempt to use it results in error for now.
+We have created a project, containing HTTP-triggered Azure function with the logic in `Foo.cs`
+
+file. As far as we need to trigger Azure function by a new message in the queue, we replace the content of a Foo.cs by the C# sample code above.
+To deploy the function, run the command from dotnet project folder:
+
+```
+func azure functionapp publish function_name
+```
+
+
+In the `storage_account_already_present_in_resource_group`
+
+select the `Queue service`
+
+and create two queues: `azure-function-foo-input`
+
+and `azure-function-tool-output`
+
+. The same queues are used in our sample. To check that the function is working, place the next message into the `azure-function-foo-input`
+
+and replace `storage_account_already_present_in_resource_group`
+
+by the actual resource group name, or just copy the output queue address.
+
+```
+{
+"OutputQueueUri": "https://storage_account_already_present_in_resource_group.queue.core.windows.net/azure-function-tool-output",
+"CorrelationId": "42"
+}
+```
+
+
+Next, we monitor the output queue or the message. You should receive the next message.
+
+```
+{
+"Value": "Bar",
+"CorrelationId": "42"
+}
+```
+
+
+The input `CorrelationId`
+
+is the same as output.
+
+Tip
+
+Place multiple messages to input queue and keep second internet browser window with the output queue open and hit the refresh button on the portal user interface, so that you won't miss the message. If the message instead went to `azure-function-foo-input-poison`
+
+queue, the function completed with error, check your setup.
+After testing the function and making sure it works, make sure that the Azure AI Project has the following roles for the storage account: `Storage Account Contributor`
+
+, `Storage Blob Data Contributor`
+
+, `Storage File Data Privileged Contributor`
+
+, `Storage Queue Data Contributor`
+
+and `Storage Table Data Contributor`
+
+. Now the function is ready to be used by the agent.
+
+In the example below we're calling function "foo," which responds "Bar."
+
+## Create a client, tool definition and agent
+
+Get the necessary configuration, initialize the `PersistentAgentsClient`
+
+, define the `AzureFunctionToolDefinition`
+
+for the Azure Function, and then create the agent.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
+//Get configuration from appsettings.json.
+IConfigurationRoot configuration = new ConfigurationBuilder()
+.SetBasePath(AppContext.BaseDirectory)
+.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+.Build();
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+var storageQueueUri = configuration["StorageQueueURI"];
+//Initialize PersistentAgentsClient.
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+//Define Azure Function tool definition.
+AzureFunctionToolDefinition azureFnTool = new(
+name: "foo",
+description: "Get answers from the foo bot.",
+inputBinding: new AzureFunctionBinding(
+new AzureFunctionStorageQueue(
+queueName: "azure-function-foo-input",
+storageServiceEndpoint: storageQueueUri
+)
+),
+outputBinding: new AzureFunctionBinding(
+new AzureFunctionStorageQueue(
+queueName: "azure-function-tool-output",
+storageServiceEndpoint: storageQueueUri
+)
+),
+parameters: BinaryData.FromObjectAsJson(
+new
+{
+Type = "object",
+Properties = new
+{
+query = new
+{
+Type = "string",
+Description = "The question to ask.",
+},
+outputqueueuri = new
+{
+Type = "string",
+Description = "The full output queue uri."
+}
+},
+},
+new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
+)
+);
+//Create agent and give it the Azure Function tool.
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "azure-function-agent-foo",
+instructions: "You are a helpful support agent. Use the provided function any "
++ "time the prompt contains the string 'What would foo say?'. When you invoke "
++ "the function, ALWAYS specify the output queue uri parameter as "
++ $"'{storageQueueUri}/azure-function-tool-output'. Always responds with "
++ "\"Foo says\" and then the response from the tool.",
+tools: [azureFnTool]
+);
+```
+
+
+## Create a thread and add a message
+
+Next, create a new persistent agent thread and add an initial user message to it.
+
+```
+PersistentAgentThread thread = client.Threads.CreateThread();
+client.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"What is the most prevalent element in the universe? What would foo say?");
+```
+
+
+### Create and monitor a run
+
+Then, create a run for the agent on the thread and poll its status until it completes or requires action.
+
+```
+ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = client.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress
+|| run.Status == RunStatus.RequiresAction);
+```
+
+
+## Process the results
+
+After the run is complete, we retrieve and process the messages from the thread.
+
+```
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+foreach (MessageContent content in threadMessage.ContentItems)
+{
+switch (content)
+{
+case MessageTextContent textItem:
+Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+break;
+}
+}
+}
+```
+
+
+## Clean up resources
+
+Finally, clean up the created resources by deleting the thread and the agent.
+
+```
+client.Threads.DeleteThread(thread.Id);
+client.Administration.DeleteAgent(agent.Id);
+```
+
+
+## Code example
+
+```
+package com.example.agents;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.implementation.models.CreateAgentRequest;
+import com.azure.ai.agents.persistent.models.AzureFunctionBinding;
+import com.azure.ai.agents.persistent.models.AzureFunctionDefinition;
+import com.azure.ai.agents.persistent.models.AzureFunctionStorageQueue;
+import com.azure.ai.agents.persistent.models.AzureFunctionToolDefinition;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FunctionDefinition;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.HttpHeaderName;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.RequestOptions;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+public class AgentExample {
+public static void main(String[] args) {
+// variables for authenticating requests to the agent service
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+String storageQueueUri = System.getenv("STORAGE_QUEUE_URI");
+String azureFunctionName = System.getenv("AZURE_FUNCTION_NAME");
+PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+.credential(new DefaultAzureCredentialBuilder().build());
+PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+ThreadsClient threadsClient = agentsClient.getThreadsClient();
+MessagesClient messagesClient = agentsClient.getMessagesClient();
+RunsClient runsClient = agentsClient.getRunsClient();
+FunctionDefinition fnDef = new FunctionDefinition(
+azureFunctionName,
+BinaryData.fromObject(
+mapOf(
+"type", "object",
+"properties", mapOf(
+"location",
+mapOf("type", "string", "description", "The location to look up")
+),
+"required", new String[]{"location"}
+)
+)
+);
+AzureFunctionDefinition azureFnDef = new AzureFunctionDefinition(
+fnDef,
+new AzureFunctionBinding(new AzureFunctionStorageQueue(storageQueueUri, "agent-input")),
+new AzureFunctionBinding(new AzureFunctionStorageQueue(storageQueueUri, "agent-output"))
+);
+AzureFunctionToolDefinition azureFnTool = new AzureFunctionToolDefinition(azureFnDef);
+String agentName = "azure_function_example";
+RequestOptions requestOptions = new RequestOptions()
+.setHeader(HttpHeaderName.fromString("x-ms-enable-preview"), "true");
+CreateAgentRequest createAgentRequestObj = new CreateAgentRequest(modelName)
+.setName(agentName)
+.setInstructions("You are a helpful agent. Use the provided function any time "
++ "you are asked with the weather of any location")
+.setTools(Arrays.asList(azureFnTool));
+BinaryData createAgentRequest = BinaryData.fromObject(createAgentRequestObj);
+PersistentAgent agent = administrationClient.createAgentWithResponse(createAgentRequest, requestOptions)
+.getValue().toObject(PersistentAgent.class);
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"What is the weather in Seattle, WA?");
+try {
+//run agent
+CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+.setAdditionalInstructions("");
+ThreadRun threadRun = runsClient.createRun(createRunOptions);
+waitForRunCompletion(thread.getId(), threadRun, runsClient);
+printRunMessages(messagesClient, thread.getId());
+} catch (InterruptedException e) {
+throw new RuntimeException(e);
+} finally {
+//cleanup
+threadsClient.deleteThread(thread.getId());
+administrationClient.deleteAgent(agent.getId());
+}
+}
+// Use "Map.of" if available
+@SuppressWarnings("unchecked")
+private static <T> Map<String, T> mapOf(Object... inputs) {
+Map<String, T> map = new HashMap<>();
+for (int i = 0; i < inputs.length; i += 2) {
+String key = (String) inputs[i];
+T value = (T) inputs[i + 1];
+map.put(key, value);
+}
+return map;
+}
+// A helper function to print messages from the agent
+public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+for (ThreadMessage message : runMessages) {
+System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+for (MessageContent contentItem : message.getContent()) {
+if (contentItem instanceof MessageTextContent) {
+System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+} else if (contentItem instanceof MessageImageFileContent) {
+String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+System.out.print("Image from ID: " + imageFileId);
+}
+System.out.println();
+}
+}
+}
+// a helper function to wait until a run has completed running
+public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+throws InterruptedException {
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(threadId, threadRun.getId());
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+}
+}
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: function-calling.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/function-calling -->
+
+# Azure AI Agents function calling
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+By using Azure AI Agents function calling, you can extend agent capabilities by defining custom functions. When an agent determines that a function needs to be called, it returns metadata with the function name and arguments. Your application code executes the function and returns results. This guide shows you how to implement function calling in Python, C#, JavaScript, Java, and REST API to create powerful AI workflows.
+
+Note
+
+- The agent requests function calls from your code, and your application executes the functions. Run executions expire 10 minutes after creation, so ensure your functions complete and return responses within this time limit.
+- Both the Microsoft Foundry portal and the Microsoft Foundry SDK support function calling. When you create agents with function calling capabilities, they appear in both portals. However, executing function calling requires your custom code. The portals facilitate agent configuration and monitoring but can't directly execute your custom functions.
+
+### Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Best practices
+
+### Multi-turn function calling
+
+The agent may require multiple function calls to complete a single user request. For example, if a user asks "What's the weather like in my favorite city?", the agent might:
+
+- First call
+`getUserFavoriteCity()`
+
+to determine the city - Then call
+`getWeather(location)`
+
+with the result
+
+Your polling loop must handle multiple `requires_action`
+
+states in sequence. Don't assume the run completes after submitting one function result—continue polling until the run status is `completed`
+
+or a terminal state (`failed`
+
+, `cancelled`
+
+, `expired`
+
+).
+
+### Error handling in functions
+
+When your function execution fails, you have two options:
+
+**Return an error message**- Submit a descriptive error as the tool output. The agent can use this to provide a helpful response to the user.**Cancel the run**- If the error is unrecoverable, cancel the run and handle it in your application.
+
+```
+# Example: Returning an error message
+if error_occurred:
+tool_outputs.append({
+"tool_call_id": tool_call.id,
+"output": json.dumps({"error": "Location not found. Please provide a valid city name."})
+})
+```
+
+
+### Timeout considerations
+
+Runs expire **10 minutes** after creation. Plan your function implementations accordingly:
+
+- If your function makes external API calls, set appropriate timeouts
+- For long-running operations, consider returning a partial result or status update
+- Monitor run status and handle
+`expired`
+
+status gracefully
+
+### Polling with backoff
+
+Instead of polling with a fixed delay, consider exponential backoff to reduce API calls:
+
+```
+# Example: Exponential backoff polling
+import time
+delay = 0.5 # Start with 500ms
+max_delay = 5 # Cap at 5 seconds
+while run.status in ["queued", "in_progress", "requires_action"]:
+time.sleep(delay)
+run = project_client.agents.runs.get(thread_id=thread.id, run_id=run.id)
+if run.status == "requires_action":
+# Handle function call, reset delay after action
+delay = 0.5
+else:
+# Increase delay for next poll
+delay = min(delay * 1.5, max_delay)
+```
+
+
+### Function definition best practices
+
+**Use clear descriptions**- The agent uses your function descriptions to decide when to call them. Be specific about what each function does and when it should be used.**Validate required parameters**- Mark parameters as`required`
+
+in your schema if they're necessary for the function to work correctly.**Keep parameter names intuitive**- Use names like`location`
+
+,`temperature_unit`
+
+rather than abbreviations.**Return structured JSON**- Return JSON objects rather than plain strings to give the agent more context about the result.
+
+## Function calling code example
+
+Note
+
+You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_streaming/sample_agents_stream_eventhandler_with_functions.py).
+
+The following Python code demonstrates how to implement an agent with function calling capabilities. This example shows:
+
+**Define function tools**- Create Python functions (like`fetch_weather`
+
+) that the agent can request to call.**Register functions with the agent**- Provide function definitions to the agent so it knows what capabilities are available.**Create and run the agent**- Set up the agent, thread, and message to start a conversation.**Handle function call requests**- When the agent determines it needs a function, poll the run status and detect when`status == "requires_action"`
+
+.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Return results**- Submit the function output back to the agent to continue the conversation.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
+
+Use the following code sample to create an agent and call the function.
+
+```
+import os, time
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.agents.models import FunctionTool
+import json
+import datetime
+from typing import Any, Callable, Set, Dict, List, Optional
+# Start by defining a function for your agent to call.
+# When you create a function for an agent to call, you describe its structure
+# with any required parameters in a docstring.
+def fetch_weather(location: str) -> str:
+"""
+Fetches the weather information for the specified location.
+:param location: The location to fetch weather for.
+:return: Weather information as a JSON string.
+"""
+# Mock weather data for demonstration purposes
+mock_weather_data = {"New York": "Sunny, 25°C", "London": "Cloudy, 18°C", "Tokyo": "Rainy, 22°C"}
+weather = mock_weather_data.get(location, "Weather data not available for this location.")
+return json.dumps({"weather": weather})
+# Define user functions
+user_functions = {fetch_weather}
+# Retrieve the project endpoint from environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]
+model_name = os.environ["MODEL_DEPLOYMENT_NAME"]
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential()
+)
+# Initialize the FunctionTool with user-defined functions
+functions = FunctionTool(functions=user_functions)
+with project_client:
+# Create an agent with custom functions
+agent = project_client.agents.create_agent(
+model=model_name,
+name="my-agent",
+instructions="You are a helpful agent",
+tools=functions.definitions,
+)
+print(f"Created agent, ID: {agent.id}")
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Send a message to the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role="user",
+content="Hello, send an email with the datetime and weather information in New York?",
+)
+print(f"Created message, ID: {message['id']}")
+# Create and process a run for the agent to handle the message
+run = project_client.agents.runs.create(thread_id=thread.id, agent_id=agent.id)
+print(f"Created run, ID: {run.id}")
+# Poll the run status until it is completed or requires action
+while run.status in ["queued", "in_progress", "requires_action"]:
+time.sleep(1)
+run = project_client.agents.runs.get(thread_id=thread.id, run_id=run.id)
+if run.status == "requires_action":
+tool_calls = run.required_action.submit_tool_outputs.tool_calls
+tool_outputs = []
+for tool_call in tool_calls:
+if tool_call.function.name == "fetch_weather":
+output = fetch_weather("New York")
+tool_outputs.append({"tool_call_id": tool_call.id, "output": output})
+project_client.agents.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
+print(f"Run completed with status: {run.status}")
+# Fetch and log all messages from the thread
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages:
+print(f"Role: {message['role']}, Content: {message['content']}")
+# Delete the agent after use
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+## Function calling code example
+
+Note
+
+You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample8_PersistentAgents_FunctionsWithStreaming.md).
+
+The following C# code demonstrates how to implement an agent with function calling capabilities. This example shows:
+
+**Define function tools**- Create C# methods (like`GetWeatherAtLocation`
+
+) that the agent can request to call.**Create function definitions**- Use`FunctionToolDefinition`
+
+to describe each function's purpose and parameters to the agent.**Implement function execution logic**- Build a helper method to route function call requests to your actual C# methods.**Create and run the agent**- Set up the agent, thread, and message to start a conversation.**Handle function call requests**- Poll the run status and detect when`Status == RunStatus.RequiresAction`
+
+.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Return results**- Submit the function output back to the agent using`SubmitToolOutputsToRun`
+
+.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
+
+### Configure the client and define functions
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
+//First, set up the configuration using `appsettings.json`, load it, and create a `PersistentAgentsClient`.
+IConfigurationRoot configuration = new ConfigurationBuilder()
+.SetBasePath(AppContext.BaseDirectory)
+.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+.Build();
+// Read necessary configuration values (Project Endpoint and Model Deployment Name)
+var projectEndpoint = configuration["PROJECT_ENDPOINT"];
+var modelDeploymentName = configuration["MODEL_DEPLOYMENT_NAME"];
+// Initialize the client to interact with the Azure AI Agents Persistent Client using default credentials
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+//Define the local C# functions that your agent can call,
+//along with their `FunctionToolDefinition` to describe their purpose and parameters to the agent.
+string GetUserFavoriteCity() => "Seattle, WA";
+// Definition for the GetUserFavoriteCity function, describing its purpose to the agent
+FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
+// Function to get a city's nickname based on its location
+string GetCityNickname(string location) => location switch
+{
+"Seattle, WA" => "The Emerald City",
+// Handle cases where the nickname is not known
+_ => throw new NotImplementedException(),
+};
+// Definition for the GetCityNickname function, including parameter description
+FunctionToolDefinition getCityNicknameTool = new(
+name: "getCityNickname",
+description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+// Define the expected parameters (location string)
+parameters: BinaryData.FromObjectAsJson(
+new
+{
+Type = "object",
+Properties = new
+{
+Location = new
+{
+Type = "string",
+Description = "The city and state, e.g. San Francisco, CA",
+},
+},
+Required = new[] { "location" },
+},
+new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+// Function to get weather at a specific location, with an optional temperature unit
+string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
+{
+"Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
+// Handle cases where weather data is not available
+_ => throw new NotImplementedException()
+};
+// Definition for the GetWeatherAtLocation function, specifying parameters and enum for unit
+FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
+name: "getCurrentWeatherAtLocation",
+description: "Gets the current weather at a provided location.",
+// Define expected parameters (location string, optional unit enum)
+parameters: BinaryData.FromObjectAsJson(
+new
+{
+Type = "object",
+Properties = new
+{
+Location = new
+{
+Type = "string",
+Description = "The city and state, e.g. San Francisco, CA",
+},
+Unit = new
+{
+Type = "string",
+Enum = new[] { "c", "f" },
+},
+},
+Required = new[] { "location" },
+},
+new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+//Implement function execution logic
+/*
+Create a helper function, `GetResolvedToolOutput`, to process `RequiredToolCall` objects from the agent.
+This function will invoke the appropriate C# local function and return its output to the agent.
+*/
+ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
+{
+// Check if the required call is a function call
+if (toolCall is RequiredFunctionToolCall functionToolCall)
+{
+// Execute GetUserFavoriteCity if its name matches
+if (functionToolCall.Name == getUserFavoriteCityTool.Name)
+{
+return new ToolOutput(toolCall, GetUserFavoriteCity());
+}
+// Parse the arguments provided by the agent for other functions
+using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
+// Execute GetCityNickname if its name matches
+if (functionToolCall.Name == getCityNicknameTool.Name)
+{
+// Extract the 'location' argument
+string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+return new ToolOutput(toolCall, GetCityNickname(locationArgument));
+}
+// Execute GetWeatherAtLocation if its name matches
+if (functionToolCall.Name == getCurrentWeatherAtLocationTool.Name)
+{
+// Extract the 'location' argument
+string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+// Check if the optional 'unit' argument was provided
+if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+{
+string unitArgument = unitElement.GetString();
+return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument, unitArgument));
+}
+// Call without the unit if it wasn't provided
+return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument));
+}
+}
+// Return null if the tool call type isn't handled
+return null;
+}
+//Create agent and conversation thread
+/*
+Create the `PersistentAgent`, providing the model deployment name, a descriptive name,
+instructions for its behavior, and the list of `FunctionToolDefinitions` it can use.
+Then, create a `PersistentAgentThread` and add an initial user message to start the conversation.
+*/
+// Create the agent instance
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "SDK Test Agent - Functions",
+instructions: "You are a weather bot. Use the provided functions to help answer questions. "
++ "Customize your responses to the user's preferences as much as possible and use friendly "
++ "nicknames for cities whenever possible.",
+tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
+// Create a new conversation thread for the agent
+PersistentAgentThread thread = client.Threads.CreateThread();
+// Add the initial user message to the thread
+client.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"What's the weather like in my favorite city?");
+//Process run and handle function calls
+/*
+Create a `ThreadRun` for the agent on the thread. Poll for the run's completion status.
+If the run status is `RequiresAction`, it means the agent needs to call one of your local functions.
+Use the `GetResolvedToolOutput` helper to get the function's result and submit it back to the run.
+Start a run for the agent to process the messages in the thread
+*/
+ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
+// Loop to check the run status and handle required actions
+do
+{
+// Wait briefly before checking the status again
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+// Get the latest status of the run
+run = client.Runs.GetRun(thread.Id, run.Id);
+// Check if the agent requires a function call to proceed
+if (run.Status == RunStatus.RequiresAction
+&& run.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
+{
+// Prepare a list to hold the outputs of the tool calls
+List<ToolOutput> toolOutputs = [];
+// Iterate through each required tool call
+foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
+{
+// Execute the function and get the output using the helper method
+toolOutputs.Add(GetResolvedToolOutput(toolCall));
+}
+// Submit the collected tool outputs back to the run
+run = client.Runs.SubmitToolOutputsToRun(run, toolOutputs, null);
+}
+}
+// Continue looping while the run is in progress or requires action
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress
+|| run.Status == RunStatus.RequiresAction);
+// Retrieve and display results
+/*
+After the run completes, retrieve all messages from the thread to see the full conversation,
+including the agent's final response.
+*/
+// Retrieve all messages from the completed thread, oldest first
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+// Iterate through each message in the thread
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+// Iterate through content items in the message (usually just one text item)
+foreach (MessageContent content in threadMessage.ContentItems)
+{
+// Process based on content type
+switch (content)
+{
+// If it's a text message
+case MessageTextContent textItem:
+// Print the role (user/agent) and the text content
+Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+break;
+// Add handling for other content types if necessary (e.g., images)
+}
+}
+}
+// Clean up resources
+/*
+Finally, clean up the created resources by deleting the thread and the agent.
+*/
+// Delete the conversation thread
+client.Threads.DeleteThread(threadId: thread.Id);
+// Delete the agent definition
+client.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+
+## Function calling code example
+
+The following JavaScript code demonstrates how to implement an agent with function calling capabilities. This example shows how to:
+
+**Define function tools**- Create JavaScript functions (like`getWeather`
+
+) that the agent can request to call.**Create a function executor class**- Use`FunctionToolExecutor`
+
+to organize functions and their definitions.**Register functions with the agent**- Provide function definitions by using`ToolUtility.createFunctionTool`
+
+.**Create and run the agent**- Set up the agent, thread, and message to start a conversation.**Handle function call requests**- Poll the run status and detect when`status === "requires_action"`
+
+.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Return results**- Submit the function output back to the agent by using`submitToolOutputs`
+
+.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
+
+```
+// Define a function for your agent to call
+/*
+Start by defining a function for your agent to call. When you create a function for an agent to call,
+you describe its structure of it with any required parameters in a docstring.
+*/
+const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
+const { delay } = require("@azure/core-util");
+const { DefaultAzureCredential } = require("@azure/identity");
+require("dotenv/config");
+class FunctionToolExecutor {
+functionTools;
+constructor() {
+this.functionTools = [
+{
+func: this.getUserFavoriteCity,
+...ToolUtility.createFunctionTool({
+name: "getUserFavoriteCity",
+description: "Gets the user's favorite city.",
+parameters: {},
+}),
+},
+{
+func: this.getCityNickname,
+...ToolUtility.createFunctionTool({
+name: "getCityNickname",
+description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+parameters: {
+type: "object",
+properties: {
+location: { type: "string", description: "The city and state, e.g. Seattle, Wa" },
+},
+},
+}),
+},
+{
+func: this.getWeather,
+...ToolUtility.createFunctionTool({
+name: "getWeather",
+description: "Gets the weather for a location.",
+parameters: {
+type: "object",
+properties: {
+location: { type: "string", description: "The city and state, e.g. Seattle, Wa" },
+unit: { type: "string", enum: ["c", "f"] },
+},
+},
+}),
+},
+];
+}
+getUserFavoriteCity() {
+return { location: "Seattle, WA" };
+}
+getCityNickname(_location) {
+return { nickname: "The Emerald City" };
+}
+getWeather(_location, unit) {
+return { weather: unit === "f" ? "72f" : "22c" };
+}
+invokeTool(toolCall) {
+console.log(`Function tool call - ${toolCall.function.name}`);
+const args = [];
+if (toolCall.function.parameters) {
+try {
+const params = JSON.parse(toolCall.function.parameters);
+for (const key in params) {
+if (Object.prototype.hasOwnProperty.call(params, key)) {
+args.push(params[key]);
+}
+}
+} catch (error) {
+console.error(`Failed to parse parameters: ${toolCall.function.parameters}`, error);
+return undefined;
+}
+}
+const result = this.functionTools
+.find((tool) => tool.definition.function.name === toolCall.function.name)
+?.func(...args);
+return result
+? {
+toolCallId: toolCall.id,
+output: JSON.stringify(result),
+}
+: undefined;
+}
+getFunctionDefinitions() {
+return this.functionTools.map((tool) => {
+return tool.definition;
+});
+}
+}
+// Create a client and agent
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+const modelName = process.env["MODEL_DEPLOYMENT_NAME"];
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+const functionToolExecutor = new FunctionToolExecutor();
+const functionTools = functionToolExecutor.getFunctionDefinitions();
+const agent = await client.createAgent(modelName, {
+name: "my-agent",
+instructions:
+"You are a weather bot. Use the provided functions to help answer questions. Customize your responses to the user's preferences as much as possible and use friendly nicknames for cities whenever possible.",
+tools: functionTools,
+});
+console.log(`Created agent, agent ID: ${agent.id}`);
+// Create a thread
+const thread = await client.threads.create();
+console.log(`Created Thread, thread ID: ${thread.id}`);
+// Create message
+const message = await client.messages.create(
+thread.id,
+"user",
+"What's the weather like in my favorite city?",
+);
+console.log(`Created message, message ID ${message.id}`);
+// Create a run and check the output
+let run = await client.runs.create(thread.id, agent.id);
+console.log(`Created Run, Run ID: ${run.id}`);
+while (["queued", "in_progress", "requires_action"].includes(run.status)) {
+await delay(1000);
+run = await client.runs.get(thread.id, run.id);
+console.log(`Current Run status - ${run.status}, run ID: ${run.id}`);
+if (run.status === "requires_action" && run.requiredAction) {
+console.log(`Run requires action - ${run.requiredAction}`);
+if (isOutputOfType(run.requiredAction, "submit_tool_outputs")) {
+const submitToolOutputsActionOutput = run.requiredAction;
+const toolCalls = submitToolOutputsActionOutput.submitToolOutputs.toolCalls;
+const toolResponses = [];
+for (const toolCall of toolCalls) {
+if (isOutputOfType(toolCall, "function")) {
+const toolResponse = functionToolExecutor.invokeTool(toolCall);
+if (toolResponse) {
+toolResponses.push(toolResponse);
+}
+}
+}
+if (toolResponses.length > 0) {
+run = await client.runs.submitToolOutputs(thread.id, run.id, toolResponses);
+console.log(`Submitted tool response - ${run.status}`);
+}
+}
+}
+}
+console.log(`Run status - ${run.status}, run ID: ${run.id}`);
+const messages = client.messages.list(thread.id);
+for await (const threadMessage of messages) {
+console.log(
+`Thread Message Created at - ${threadMessage.createdAt} - Role - ${threadMessage.role}`,
+);
+threadMessage.content.forEach((content) => {
+if (isOutputOfType(content, "text")) {
+const textContent = content;
+console.log(`Text Message Content - ${textContent.text.value}`);
+} else if (isOutputOfType(content, "image_file")) {
+const imageContent = content;
+console.log(`Image Message Content - ${imageContent.imageFile.fileId}`);
+}
+});
+}
+// Delete agent - comment this out if you want to keep your agent
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
+```
+
+
+## Function calling code example
+
+The following REST API examples demonstrate how to implement an agent with function calling capabilities. This example shows:
+
+**Define function tools**- Describe your function structure with parameters in the agent creation request.**Create the agent**- Register the agent with function definitions so it knows what capabilities are available.**Create a thread and add messages**- Set up the conversation thread and add the user's question.**Run the thread**- Start the agent execution to process the message.**Poll run status**- Check the run status to detect when the agent requests a function call.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Submit function results**- Return the function output to the agent so that the run can continue and complete.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, the run status indicates `requires_action`
+
+with function call details. Your application code must detect this, execute the appropriate function, and submit the results back to the agent via the API.
+
+### Define a function for your agent to call
+
+Start by defining a function for your agent to call. When you create a function for an agent to call, describe its structure with any required parameters in a docstring. See the other SDK languages for example functions.
+
+### Create an agent
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and `API_VERSION`
+
+.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a weather bot. Use the provided functions to answer questions.",
+"model": "gpt-4o-mini",
+"tools": [
+{
+"type": "function",
+"function": {
+"name": "get_weather",
+"description": "Get the weather in location",
+"parameters": {
+"type": "object",
+"properties": {
+"location": {
+"type": "string",
+"description": "The city name, for example San Francisco"
+}
+},
+"required": ["location"]
+}
+}
+}
+]
+}'
+```
+
+
+### Create a thread
+
+Capture the `id`
+
+from the response (for example, `thread_abc123`
+
+) so you can reuse it in later requests.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{}'
+```
+
+
+#### Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "What is the weather in Seattle?"
+}'
+```
+
+
+### Run the thread
+
+Store the returned `run`
+
+identifier (for example, `run_abc123`
+
+) for subsequent polling requests.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123"
+}'
+```
+
+
+### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+When the agent needs one of your functions, the run enters the `requires_action`
+
+state. The response includes the `required_action.submit_tool_outputs.tool_calls`
+
+array, which lists the name of the function to call and its arguments.
+
+```
+{
+"id": "run_abc123",
+"status": "requires_action",
+"required_action": {
+"type": "submit_tool_outputs",
+"submit_tool_outputs": {
+"tool_calls": [
+{
+"id": "call_123",
+"type": "function",
+"function": {
+"name": "get_weather",
+"arguments": "{\"location\":\"Seattle\"}"
+}
+}
+]
+}
+}
+}
+```
+
+
+When you detect the `requires_action`
+
+status:
+
+- Extract the
+`tool_calls`
+
+array from`required_action.submit_tool_outputs.tool_calls`
+
+. - For each tool call, use the
+`function.name`
+
+and`function.arguments`
+
+values to execute your own function implementation. - Capture the output from your function.
+- Submit the results by using the following endpoint, matching each output to its
+`tool_call_id`
+
+.
+
+### Submit function results to the run
+
+After your code executes the function, send the output back to the run by calling `submit-tool-outputs`
+
+. Use the `tool_call_id`
+
+from the polling response so the service can match your output to the original request.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123/submit-tool-outputs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"tool_outputs": [
+{
+"tool_call_id": "call_123",
+"output": "{\"forecast\":\"Rainy and 55 F\"}"
+}
+]
+}'
+```
+
+
+Submitting the output moves the run back to the `in_progress`
+
+state. Continue polling until the status changes to `completed`
+
+.
+
+### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+## Function calling code example
+
+The following Java code demonstrates how to implement an agent with function calling capabilities. This example shows:
+
+**Define function tools**- Create Java functions (like`getUserFavoriteCity`
+
+and`getCityNickname`
+
+) that the agent can request to call.**Create function definitions**- Use`FunctionToolDefinition`
+
+to describe each function's purpose and parameters to the agent.**Implement function execution logic**- Build a resolver function to route function call requests to your actual Java methods.**Create and run the agent**- Set up the agent, thread, and message to start a conversation.**Handle function call requests**- Poll the run status and detect when`status == RunStatus.REQUIRES_ACTION`
+
+.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Return results**- Submit the function output back to the agent using`submitToolOutputsToRun`
+
+.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
+
+```
+package com.example.agents;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FunctionDefinition;
+import com.azure.ai.agents.persistent.models.FunctionToolDefinition;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RequiredFunctionToolCall;
+import com.azure.ai.agents.persistent.models.RequiredToolCall;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.SubmitToolOutputsAction;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.ToolOutput;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import java.net.URL;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+public class AgentExample {
+public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
+// variables for authenticating requests to the agent service
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+.credential(new DefaultAzureCredentialBuilder().build());
+PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+ThreadsClient threadsClient = agentsClient.getThreadsClient();
+MessagesClient messagesClient = agentsClient.getMessagesClient();
+RunsClient runsClient = agentsClient.getRunsClient();
+Supplier<String> getUserFavoriteCity = () -> "Seattle, WA";
+FunctionToolDefinition getUserFavoriteCityTool = new FunctionToolDefinition(
+new FunctionDefinition(
+"getUserFavoriteCity",
+BinaryData.fromObject(
+new Object()
+))
+);
+Function<String, String> getCityNickname = location -> {
+return "The Emerald City";
+};
+FunctionToolDefinition getCityNicknameTool = new FunctionToolDefinition(
+new FunctionDefinition(
+"getCityNickname",
+BinaryData.fromObject(
+mapOf(
+"type", "object",
+"properties", mapOf(
+"location",
+mapOf(
+"type", "string",
+"description", "The city and state, e.g. San Francisco, CA")
+),
+"required", new String[]{"location"}))
+).setDescription("Get the nickname of a city")
+);
+Function<RequiredToolCall, ToolOutput> getResolvedToolOutput = toolCall -> {
+if (toolCall instanceof RequiredFunctionToolCall) {
+RequiredFunctionToolCall functionToolCall = (RequiredFunctionToolCall) toolCall;
+String functionName = functionToolCall.getFunction().getName();
+if (functionName.equals("getUserFavoriteCity")) {
+return new ToolOutput().setToolCallId(functionToolCall.getId())
+.setOutput(getUserFavoriteCity.get());
+} else if (functionName.equals("getCityNickname")) {
+String arguments = functionToolCall.getFunction().getArguments();
+try {
+JsonNode root = new JsonMapper().readTree(arguments);
+String location = String.valueOf(root.get("location").asText());
+return new ToolOutput().setToolCallId(functionToolCall.getId())
+.setOutput(getCityNickname.apply(location));
+} catch (JsonProcessingException e) {
+throw new RuntimeException(e);
+}
+}
+}
+return null;
+};
+String agentName = "functions_example";
+CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+.setName(agentName)
+.setInstructions("You are a weather bot. Use the provided functions to help answer questions. "
++ "Customize your responses to the user's preferences as much as possible and use friendly "
++ "nicknames for cities whenever possible.")
+.setTools(Arrays.asList(getUserFavoriteCityTool, getCityNicknameTool));
+PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"What's the nickname of my favorite city?");
+try {
+//run agent
+CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+.setAdditionalInstructions("");
+ThreadRun threadRun = runsClient.createRun(createRunOptions);
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(thread.getId(), threadRun.getId());
+if (threadRun.getStatus() == RunStatus.REQUIRES_ACTION
+&& threadRun.getRequiredAction() instanceof SubmitToolOutputsAction) {
+SubmitToolOutputsAction submitToolsOutputAction = (SubmitToolOutputsAction) (threadRun.getRequiredAction());
+ArrayList<ToolOutput> toolOutputs = new ArrayList<ToolOutput>();
+for (RequiredToolCall toolCall : submitToolsOutputAction.getSubmitToolOutputs().getToolCalls()) {
+toolOutputs.add(getResolvedToolOutput.apply(toolCall));
+}
+threadRun = runsClient.submitToolOutputsToRun(thread.getId(), threadRun.getId(), toolOutputs);
+}
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+printRunMessages(messagesClient, thread.getId());
+} catch (InterruptedException e) {
+throw new RuntimeException(e);
+} finally {
+//cleanup
+threadsClient.deleteThread(thread.getId());
+administrationClient.deleteAgent(agent.getId());
+}
+}
+// Use "Map.of" if available
+@SuppressWarnings("unchecked")
+private static <T> Map<String, T> mapOf(Object... inputs) {
+Map<String, T> map = new HashMap<>();
+for (int i = 0; i < inputs.length; i += 2) {
+String key = (String) inputs[i];
+T value = (T) inputs[i + 1];
+map.put(key, value);
+}
+return map;
+}
+// A helper function to print messages from the agent
+public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+for (ThreadMessage message : runMessages) {
+System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+for (MessageContent contentItem : message.getContent()) {
+if (contentItem instanceof MessageTextContent) {
+System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+} else if (contentItem instanceof MessageImageFileContent) {
+String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+System.out.print("Image from ID: " + imageFileId);
+}
+System.out.println();
+}
+}
+}
+// a helper function to wait until a run has completed running
+public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+throws InterruptedException {
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(threadId, threadRun.getId());
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+}
+private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
+URL resource = AgentExample.class.getClassLoader().getResource(fileName);
+if (resource == null) {
+throw new FileNotFoundException("File not found");
+}
+File file = new File(resource.toURI());
+return file.toPath();
+}
+@FunctionalInterface
+public interface Supplier<T> extends java.util.function.Supplier<T> {
+/**
+* Retrieves an instance of the appropriate type. The returned object may or may not be a new
+* instance, depending on the implementation.
+*
+* @return an instance of the appropriate type
+*/
+@Override
+T get();
+}
+}
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: _tools_merged.md -->
+<!-- URL ORIGINAL: N/A -->
+
+# Documentos Fusionados
+
+Este archivo contiene 32 documentos fusionados para reducir el número total de archivos.
+Cada documento está marcado con su fuente original.
+
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: sharepoint.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/sharepoint -->
+
+# Use the Microsoft SharePoint tool (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+Note
+
+This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/en-us/sharepoint/).
+
+Integrate your agents with the **Microsoft SharePoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies`
+
+to ground your Agents with that data. When a user sends a query, the agent will determine if SharePoint should be leveraged or not. If so, it will send a query using the SharePoint tool, which checks if the user has a Microsoft 365 Copilot license and use managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent will generate responses based on retrieved information. With identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection.
+
+## How it works
+
+The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint empowered by [Microsoft 365 Copilot API](/en-us/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, you can enter the sites or folders to connect with, and SharePoint tool will leverage [built-in indexing capabilities](/en-us/microsoftsearch/semantic-index-for-copilot) to enhance search and retrieval experience, including intelligent indexing, query processing, and content chunking.
+
+Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content.
+
+Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as Identity Passthrough/On-Behalf-Of (OBO) authentication ensure proper access control, allowing end users to receive responses generated from SharePoint documents they have permission to access. With OBO authentication, the Foundry Agent service uses the end user’s identity to authorize and retrieve relevant SharePoint documents, generating responses tailored towards specific end users.
+
+## Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+- Developers and end users have Microsoft 365 Copilot license, as required by
+[Microsoft 365 Copilot API](/en-us/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). - Developers and end users have at least
+`Azure AI User`
+
+RBAC role. - Developers and end users have at least
+`READ`
+
+access to the SharePoint site.
+
+## Setup
+
+Note
+
+- Supported document types: text data in the following format:
+`.pdf`
+
+,`.docx`
+
+,`.ppt`
+
+,`.txt`
+
+,`.aspx`
+
+
+- We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents.
+
+- The SharePoint tool only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
+- Your SharePoint site and Microsoft Foundry agent need to be in the same tenant.
+
+Create an agent by following the steps in the
+
+[quickstart](../../quickstart?view=foundry-classic).You can add the SharePoint tool to an agent programmatically using the code examples listed at the top of this article, or the Foundry portal. If you want to use the portal, in either the
+
+**Create and debug**or**Agent playground**screen for your agent, scroll down the setup pane on the right to knowledge. Then select**Add**.Select
+
+**SharePoint**and follow the prompts to add the tool. You can only add one per agent.Click to add a new connection. Once you have added a connection, you can directly select from existing list.
+
+To create a new connection, you need to find
+
+`site_url`
+
+in your SharePoint site. You can add either a SharePoint site or a SharePoint folder. For a SharePoint site, it will look like`https://microsoft.sharepoint.com/teams/<site_name>`
+
+. For a SharePoint folder, it will look like`https://microsoft.sharepoint.com/teams/<site_name>/Shared%20documents/<folder_name>`
+
+Note
+
+- Your
+`site_url`
+
+needs to follow the format above. If you copy the entire value from the address bar of your SharePoint, it won't work.
+
+- Your
+Then, you can add it to your connection. Make sure you have selected the
+
+**is secret**option.
+
+
+## Next steps
+
+[How to use the SharePoint tool](sharepoint-samples?view=foundry-classic)- Reference articles for content retrieval used by the tool:
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: custom-code-interpreter.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/custom-code-interpreter -->
+
+# Custom code interpreter tool for agents (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+By using a custom code interpreter for your agent, you can customize the resources, available Python packages, and [Azure Container Apps environment](/en-us/azure/container-apps/environment) that the agent uses to run the Python code it writes. The code interpreter container exposes a Model Context Protocol (MCP) server.
+
+Use a custom code interpreter when you need more control over the runtime than the built-in [Code Interpreter tool for agents](code-interpreter?view=foundry) provides.
+
+For more information about MCP and how agents connect to MCP tools, see [Connect to Model Context Protocol servers (preview)](model-context-protocol?view=foundry).
+
+## Usage support
+
+This article uses the Azure CLI and a runnable sample project.
+
+For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
+
+## Prerequisites
+
+To use the preview feature, you need the following prerequisites:
+
+- The
+[Azure CLI](/en-us/cli/azure/install-azure-cli). - Optionally install
+`uv`
+
+as an alternative to`pip`
+
+.`uv`
+
+is a fast package and project manager for Python projects. You can install it by following the instructions at[Installing uv](https://docs.astral.sh/uv/getting-started/installation/)in the official documentation. - An Azure subscription and resource group with the following permissions:
+- The latest prerelease package. See the
+[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true)for details.
+
+## Before you begin
+
+This procedure provisions Azure infrastructure, including Azure Container Apps resources. Review Azure cost and governance requirements for your organization before you deploy.
+
+## Custom code interpreter example
+
+The following console commands and code samples show how to create an agent that uses a custom code interpreter MCP server.
+
+### Enable MCP server for dynamic sessions
+
+To enable the preview feature, run the following commands.
+
+```
+az feature register --namespace Microsoft.App --name SessionPoolsSupportMCP
+az provider register -n Microsoft.App
+```
+
+
+### Get the sample code
+
+Clone the [sample code in the GitHub repo](https://github.com/azure-ai-foundry/foundry-samples) and navigate to the `samples/python/hosted-agents/code-interpreter-custom`
+
+folder in your terminal.
+
+### Provision the infrastructure
+
+To provision the infrastructure, run the following command by using the Azure CLI (`az`
+
+):
+
+```
+az deployment group create \
+--name custom-code-interpreter \
+--subscription <your_subscription> \
+--resource-group <your_resource_group> \
+--template-file ./infra.bicep
+```
+
+
+Note
+
+This process can take a while. Allocating the dynamic session pool can take up to one hour, depending on the number of standby instances you request.
+
+### Use the custom code interpreter in an agent
+
+Copy the `.env.sample`
+
+file from the repository to `.env`
+
+and fill in the values with the output from the preceding deployment. You can find this output in the Azure portal under the resource group.
+
+Install the Python dependencies by using `uv sync`
+
+or `pip install`
+
+. Finally, run `./main.py`
+
+.
+
+## Verify your setup
+
+After you provision the infrastructure and run the sample:
+
+- Confirm the Azure deployment completes successfully.
+- Confirm the sample can connect by using the values in your
+`.env`
+
+file. - In Microsoft Foundry, verify your agent calls the tool by using tracing. For more information, see
+[Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
+
+## Troubleshooting
+
+### Feature registration is still pending
+
+If `az feature register`
+
+returns a `Registering`
+
+state, wait for the registration to complete and then run `az provider register -n Microsoft.App`
+
+again.
+
+### Deployment fails
+
+If `az deployment group create`
+
+fails:
+
+- Confirm you have the required role assignments in the target subscription and resource group.
+- Confirm the resource group exists and the selected region supports the deployed resources.
+
+### The agent doesn't call the tool
+
+Use tracing in Microsoft Foundry to confirm whether a tool call occurred. For guidance on validating tool invocation, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
+
+## Limitations
+
+The APIs don't directly support file input or output, or the use of file stores. To get data in and out, you must use URLs, such as data URLs for small files and Azure Blob Service shared access signature (SAS) URLs for large files.
+
+## Security
+
+If you use SAS URLs to pass data in or out of the runtime:
+
+- Use short-lived SAS tokens.
+- Don't log SAS URLs or store them in source control.
+- Scope permissions to the minimum required (for example, read-only or write-only).
+
+## Clean up
+
+To stop billing for provisioned resources, delete the resources created by the sample deployment. If you used a dedicated resource group for this article, delete the resource group.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: browser-automation.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/browser-automation -->
+
+# Browser Automation (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+Warning
+
+The Browser Automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. We strongly recommend using the Browser Automation tool on low-privilege virtual machines with no access to sensitive data or critical resources.
+
+The Browser Automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces](/en-us/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
+
+## How it works
+
+The interaction begins when the user sends a user query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following url <url>."* Upon receiving the request, Foundry Agent Service creates an isolated browser session by using your own provisioned Playwright workspace. Each session is sandboxed for privacy and security. The browser session mimics a real user browsing experience, enabling interaction with complex web UIs (for example, class schedules, filters, or booking pages). The browser performs Playwright-driven actions, such as navigating to relevant pages, and applying filters or parameters based on user preferences (such as time, location, instructor). By combining the model with Playwright, the model can see the browser screen by parsing the HTML or XML pages into DOM documents. The model makes decisions and performs actions like clicking, typing, and navigating websites. You should exercise caution when using this tool.
+
+An example flow is:
+
+A user sends a request to the model that includes a call to the Browser Automation tool with the URL you want to go to.
+
+The Browser Automation tool receives a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example, an action might be a screenshot so the model can assess the current state with an updated screenshot or a click with X/Y coordinates indicating where the mouse should be moved.
+
+The Browser Automation tool executes the action in a sandboxed environment.
+
+After executing the action, The Browser Automation tool captures the updated state of the environment as a screenshot.
+
+The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
+
+The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete a booking.
+
+
+## Example scenarios
+
+- Booking and reservations: Automate form filling and schedule confirmation across booking portals.
+- Product discovery: Navigate ecommerce or review sites, search by criteria, and extract summaries.
+
+## Setup
+
+Create a
+
+[Playwright Workspace](https://aka.ms/pww/docs/manage-workspaces)resource.[Generate an access token](https://aka.ms/pww/docs/manage-access-tokens)for the Playwright Workspace resource.- Access the workspace region endpoint in the
+**Workspace Details**page. - Give the project identity a
+**Contributor**role on the Playwright Workspace resource, or[configure a custom role](https://aka.ms/pww/docs/manage-workspace-access).
+
+Create a serverless connection in the Microsoft Foundry project with the Playwright workspace region endpoint and the Playwright workspace Access Token.
+
+Go to the
+
+[Foundry portal](https://ai.azure.com/)and select your project. Go to the**Management center**and select**connected resources**.Create a new
+
+**Serverless Model**connection, and enter the following information.**Target URI**: The Playwright workspace region endpoint, for example`wss://{region}.api.playwright.microsoft.com/playwrightworkspaces/{workspaceId}/browsers`
+
+. The URI should start with`wss://`
+
+instead of`https://`
+
+if presented.
+
+For more information on getting this value, see the
+
+[PlayWright documentation](https://aka.ms/pww/docs/configure-service-endpoint).
+
+For more information on creating a connection, see
+
+[Create a connection](../../../how-to/connections-add?view=foundry-classic).Configure your client by adding a Browser Automation tool using the Azure Playwright connection ID.
+
+
+## Transparency note
+
+Review the [transparency note](/en-us/azure/ai-foundry/responsible-ai/agents/transparency-note#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
+
+Review the [responsible AI considerations](/en-us/azure/ai-foundry/responsible-ai/agents/transparency-note#considerations-when-choosing-a-use-case) when using this tool.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: sharepoint-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/sharepoint-samples -->
+
+# How to use the SharePoint tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+Note
+
+This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/en-us/sharepoint/).
+
+Use this article to find step-by-step instructions and code samples for using the SharePoint tool in Agent Service.
+
+## Prerequisites
+
+Your Microsoft Foundry Project endpoint.
+
+You can find your endpoint in the
+
+**overview**for your project in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), under**Libraries**>**Foundry**.Save this endpoint to an environment variable named
+
+`PROJECT_ENDPOINT`
+
+.The name of your SharePoint connection name. Find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Then select**Connected resources**.Save this endpoint to an environment variable named
+
+`SHAREPOINT_RESOURCE_NAME`
+
+.The names of your model's deployment name. Find it in
+
+**Models + Endpoints**in the left navigation menu.Save the name of your model deployment name as an environment variable named
+
+`MODEL_DEPLOYMENT_NAME`
+
+.
+
+## Create a project client
+
+Create a client object that contains the connection string for connecting to your AI project and other resources.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import SharepointTool
+# Retrieve the endpoint and credentials
+project_endpoint = os.environ["PROJECT_ENDPOINT"] # Ensure the PROJECT_ENDPOINT environment variable is set
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+endpoint=os.environ["PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+```
+
+
+## Create an agent with the SharePoint tool enabled
+
+To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Foundry portal.
+
+```
+conn_id = project_client.connections.get(name=os.environ["SHAREPOINT_RESOURCE_NAME"]).id
+# Initialize Sharepoint tool with connection id
+sharepoint = SharepointTool(connection_id=conn_id)
+# Create an agent with the Fabric tool
+# Create an Agent with the Fabric tool and process an Agent run
+with project_client:
+agents_client = project_client.agents
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent",
+instructions="You are a helpful agent",
+tools=sharepoint.definitions,
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+
+## Create a thread
+
+```
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Create message to thread
+message = agents_client.messages.create(
+thread_id=thread.id,
+role="user",
+content="Hello, summarize the key points of the <sharepoint_resource_document>",
+)
+print(f"Created message, ID: {message.id}")
+```
+
+
+## Create a run and check the output
+
+```
+# Create and process agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Uncomment the following lines to delete the agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id)
+for msg in messages:
+if msg.text_messages:
+last_text = msg.text_messages[-1]
+print(f"{msg.role}: {last_text.text.value}")
+```
+
+
+## Create an agent
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and `API_VERSION`
+
+.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful agent.",
+"name": "my-agent",
+"model": "gpt-4o",
+"tools": [
+{
+"type": "sharepoint_grounding",
+"sharepoint_grounding": {
+"connections": [
+{
+"connection_id": "/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-sharepoint-connection-name>"
+}
+]
+}
+}
+]
+}'
+```
+
+
+## Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+### Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "What is the weather in Seattle?"
+}'
+```
+
+
+## Run the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+## Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+## Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: azure-ai-search.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/azure-ai-search -->
+
+# Azure AI Search tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+The [Azure AI Search](/en-us/azure/search/search-what-is-azure-search) tool in Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
+
+This article describes how to set up the Azure AI Search tool, including creating a project connection and adding the tool to your agent.
+
+## Prerequisites
+
+An
+
+[Azure AI Search index configured for vector search](../../../../search/search-get-started-portal-import-vectors?view=foundry-classic). The index must include:One or more
+
+`Edm.String`
+
+(text) fields attributed as searchable and retrievable.One or more
+
+`Collection(Edm.Single)`
+
+(vector) fields attributed as searchable.
+
+
+Tip
+
+Instead of using an existing index, you can create an index without leaving the Foundry portal. For more information, see the [Add the tool to an agent](#add-the-tool-to-an-agent) section.
+
+## Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Limitations
+
+To use the Azure AI Search tool in the Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After you create the agent programmatically, you can then use it in the portal.
+
+The Azure AI Search tool can only target one index. To use multiple indexes, consider using
+
+[connected agents](../connected-agents?view=foundry-classic), each with a configured index.A Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
+
+Your Azure AI Search resource and Foundry Agent need to be in the same tenant.
+
+
+## Setup
+
+In this section, you create a connection between the Foundry project that contains your agent and the Azure AI Search service that contains your index.
+
+If you already connected your project to your search service, skip this section.
+
+### Get search service connection details
+
+The project connection requires the endpoint of your search service and either key-based authentication or keyless authentication with Microsoft Entra ID.
+
+For keyless authentication, you must enable role-based access control (RBAC) and assign roles to your project's managed identity. Although this method involves extra steps, it enhances security by eliminating the need for hard-coded API keys.
+
+Select the tab for your desired authentication method.
+
+Sign in to the
+
+[Azure portal](https://portal.azure.com/)and select your search service.To get the endpoint:
+
+To get the API key:
+
+
+### Create the project connection
+
+The next step is to create the project connection using the search service details you gathered. The connection name must be the name of your search index. For more information about this step, see [Add a new connection to your project](../../../how-to/connections-add?view=foundry-classic).
+
+Select the tab for your desired usage method.
+
+**Create the following connections.yml file:**
+
+You can use a YAML configuration file for both key-based and keyless authentication. Replace the `name`
+
+, `endpoint`
+
+, and `api_key`
+
+(optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search?view=foundry-classic).
+
+Here's a key-based example:
+
+```
+name: my_project_acs_connection_keys
+type: azure_ai_search
+endpoint: https://contoso.search.windows.net/
+api_key: XXXXXXXXXXXXXXX
+```
+
+
+Here's a keyless example:
+
+```
+name: my_project_acs_connection_keyless
+type: azure_ai_search
+endpoint: https://contoso.search.windows.net/
+```
+
+
+**Then, run the following command:**
+
+Replace `my_resource`
+
+with the resource group that contains your project and `my_project_name`
+
+with the name of your project.
+
+```
+az ml connection create --file {connection.yml} --resource-group {my_resource_group} --workspace-name {my_project_name}
+```
+
+
+## Add the tool to an agent
+
+You can add the Azure AI Search tool to an agent programmatically or through the Foundry portal. For programmatic examples, see [Use an existing index with the Azure AI Search tool](azure-ai-search-samples?view=foundry-classic).
+
+To add the tool through the portal:
+
+From the left pane, select
+
+**Agents**.Select your agent from the list, and then select
+
+**Knowledge**>**Add**.Select
+
+**Azure AI Search**.Under
+
+**Connect to an index**, select**Indexes that are not part of this project**.Under
+
+**Azure AI Search resource connection**, select the project connection you created in the previous section.Under
+
+**Azure AI Search index**, select your vector index.Tip
+
+If you don't have an index, select
+
+**Create a new index**. You're then prompted to name the index, connect to a data source, select an existing embedding model deployment, and agree to the terms.After you create the index, you can use it both inside and outside your agent. For example, you can use the index with the Azure AI Search REST APIs or SDKs.
+
+Under
+
+**Display name**, enter the name of your index.Depending on your index configuration, choose one of the following
+
+[search types](../../../openai/concepts/use-your-data?view=foundry-classic#search-types):**Simple****Semantic****Vector****Hybrid (vector + keyword)****Hybrid + semantic**
+
+By default, the Azure AI Search tool runs a hybrid search (vector + keyword) on all text fields.
+
+Select
+
+**Connect**to add the Azure AI Search tool to your agent.
+
+## Next step
+
+Try some programmatic examples of configuring and using the Azure AI Search tool:
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: deep-research.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/deep-research -->
+
+# Deep Research tool (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+- The
+**parent**Foundry project resource and the contained`o3-deep-research`
+
+model and GPT models**must exist**in the same Azure subscription and region. Supported regions are**West US**and**Norway East**. - This tool is only available in
+`2025-05-15-preview`
+
+API. We highly recommend that you migrate to use the`2025-11-15-preview`
+
+API. This enables you to use the`o3-deep-research`
+
+model with[web search](../tools/web-search?view=foundry-classic)or MCP tool.
+
+The Deep Research tool in the Foundry Agent Service enables you to integrate a web-based research capability into your systems. The Deep Research capability is a specialized AI capability designed to perform in-depth, multi-step research using data from the public web.
+
+## Usage support
+
+The deep research tool is a **code-only release** and available for use using the Agents Python SDK once you complete the Microsoft Foundry project setup described in the following sections.
+
+| Azure AI foundry portal | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+Note
+
+Once the agent is running, some elements of the agent and thread runs can show up in the Foundry user interface.
+
+## Integrated with Grounding with Bing Search
+
+The deep research tool is tightly integrated with Grounding with Bing Search and only supports web-based research. Once the task is scoped, the agent using the Deep Research tool invokes the [Grounding with Bing Search](bing-grounding?view=foundry-classic) tool to gather a curated set of recent web data designed to provide the research model with a foundation of authoritative, high quality, up-to-date sources.
+
+Important
+
+- Your usage of Grounding with Bing Search can incur costs. See the
+[pricing page](https://www.microsoft.com/bing/apis/grounding-pricing)for details. - By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at
+[https://www.microsoft.com/en-us/bing/apis/grounding-legal](https://www.microsoft.com/en-us/bing/apis/grounding-legal), which may be updated from time to time. - When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have the same compliance standards and certifications as the Agent Service, as described in the
+[Grounding with Bing Search Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
+
+Note
+
+When using Grounding with Bing Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes.
+
+## Regions supported
+
+The Deep Research tool is supported in the following regions where the deep research model is available for deployment.
+
+| West US | Norway East |
+|---|---|
+| ✔️ | ✔️ |
+
+## GPT-4o model for clarifying research scope
+
+The Deep Research tool uses the `gpt-4o`
+
+model to clarify the question contained in the user prompt, gather additional context if needed, and precisely scope the research task. This model is deployed during configuration of the Deep Research tool.
+
+Note
+
+Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
+
+## Deep research model for analysis
+
+**Model name**:`o3-deep-research`
+
+**Deployment type**: Global Standard**Available regions**: West US, Norway East**Quotas and limits**: Enterprise:`30K RPS / 30M TPM`
+
+, Default:`3K RPS / 3M TPM`
+
+
+## Research tool prerequisites
+
+- If you already have access to the Azure OpenAI
+`o3`
+
+model, no request is required to access the`o3-deep-research`
+
+model. Otherwise, fill out the[request form](https://aka.ms/OAI/deepresearchaccess). - An Azure subscription with the ability to create Foundry project, Grounding with Bing Search, deep research model and GPT model resources
+[Set up your environment](../../environment-setup?view=foundry-classic)in the**West US**and**Norway East**regions. [Grounding with Bing Search tool](bing-grounding?view=foundry-classic)resource for connecting to your Foundry project.[Model deployments](../../../model-inference/how-to/create-model-deployments?view=foundry-classic)for the following models`o3-deep-research`
+
+version`2025-06-26`
+
+. This model is available in`West US`
+
+and`Norway East`
+
+.- The
+`gpt-4o`
+
+model for intent clarification. Deploy this model in the same region.
+
+
+## Research tool setup
+
+To use the Deep Research tool, you need to create the Foundry type project, add your Grounding with Bing Search resource as a new connection, deploy the `o3-deep-research-model`
+
+, and deploy the selected Azure OpenAI GPT model.
+
+Navigate to the
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs)and create a new project.Select the Foundry project type.
+
+Update the project name and description.
+
+Navigate to the
+
+**Models + Endpoints**tab.Deploy the
+
+`o3-deep-research-model`
+
+model.Deploy an Azure OpenAI GPT model. For example
+
+`gpt-4o`
+
+.Connect a Grounding with Bing Search account.
+
+
+## Transparency, safety, and compliance
+
+The output is a structured report that documents not only the comprehensive answer, but also provides source citations and describes the model's reasoning path, including any clarifications requested during the session. This makes every answer fully auditable. See the [Transparency note for Azure OpenAI](/en-us/azure/ai-foundry/responsible-ai/openai/transparency-note) for more information.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: openapi-spec.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/openapi-spec -->
+
+# How to use Foundry Agent Service with OpenAPI Specified Tools
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+You can now connect your Azure AI Agent to an external API by using an OpenAPI 3.0 specified tool, enabling scalable interoperability with various applications. By using managed identities (Microsoft Entra ID) for authentication, you can securely enable your custom tools to authenticate access and connections. This approach is ideal for integrating with existing infrastructure or web services.
+
+OpenAPI Specified tool improves your function calling experience by providing standardized, automated, and scalable API integrations that enhance the capabilities and efficiency of your agent. [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for describing HTTP APIs. This standard helps people understand how an API works, how a sequence of APIs works together, and it supports generating client code, creating tests, applying design standards, and more. Currently, the OpenAPI 3.0 specified tools support three authentication types: `anonymous`
+
+, `API key`
+
+, and `managed identity`
+
+.
+
+### Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+- Ensure you complete the prerequisites and setup steps in the
+[quickstart](../../quickstart?view=foundry-classic). - Check the OpenAPI spec for the following requirements:
+- Although not required by the OpenAPI spec, each function must have an
+`operationId`
+
+to work with the OpenAPI tool. - The
+`operationId`
+
+should only contain letters,`-`
+
+, and`_`
+
+. You can modify it to meet this requirement. Use a descriptive name to help models efficiently decide which function to use.
+
+- Although not required by the OpenAPI spec, each function must have an
+
+## Authenticate with API key
+
+By using API key authentication, you can authenticate your OpenAPI spec through different methods, such as an API key or Bearer token. Each OpenAPI spec supports only one API key security schema. If you need multiple security schemas, create multiple OpenAPI spec tools.
+
+Update your OpenAPI spec security schemas. It has a
+
+`securitySchemes`
+
+section and one scheme of type`apiKey`
+
+. For example:`"securitySchemes": { "apiKeyHeader": { "type": "apiKey", "name": "x-api-key", "in": "header" } }`
+
+You usually only need to update the
+
+`name`
+
+field, which corresponds to the name of`key`
+
+in the connection. If the security schemes include multiple schemes, keep only one of them.Update your OpenAPI spec to include a
+
+`security`
+
+section:`"security": [ { "apiKeyHeader": [] } ]`
+
+Remove any parameter in the OpenAPI spec that needs API key, because the API key is stored and passed through a connection, as described later in this article.
+
+Create a
+
+`custom keys`
+
+connection to store your API key.Go to the
+
+[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)and select**Management center**from the left navigation pane.Select
+
+**Connected resources**under the AI project in the left navigation pane.Select
+
+**+ new connection**in the settings page.Note
+
+If you regenerate the API key at a later date, you need to update the connection with the new key.
+
+Select
+
+**custom keys**in**other resource types**.Enter the following information
+
+key:
+
+`name`
+
+field of your security scheme. In this example, it should be`x-api-key`
+
+`"securitySchemes": { "apiKeyHeader": { "type": "apiKey", "name": "x-api-key", "in": "header" } }`
+
+value: YOUR_API_KEY
+
+Connection name: YOUR_CONNECTION_NAME (You use this connection name in the sample code below.)
+
+Access: you can choose either
+
+*this project only*or*shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
+
+
+After you create a connection, use it through the SDK or REST API. Use the tabs at the top of this article to see code examples.
+
+
+## Authenticate with managed identity (Microsoft Entra ID)
+
+[Microsoft Entra ID](/en-us/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security when you authenticate your APIs without needing to use API keys. After you set up managed identity authentication, the Foundry Tool your agent uses handles the authentication.
+
+When configuring managed identity authentication, you need to provide an **Audience** value. The audience is the OAuth2 resource identifier (also called scope or application ID URI) that identifies which API or service the managed identity can access.
+
+**Common audience values:**
+
+- Foundry Tools (formerly Azure AI services or Cognitive Services):
+`https://cognitiveservices.azure.com/`
+
+- Azure Resource Manager APIs:
+`https://management.azure.com/`
+
+- Microsoft Graph:
+`https://graph.microsoft.com/`
+
+- Custom APIs registered in Microsoft Entra ID: Use the
+**Application ID URI**found in the API's app registration
+
+To set up authentication by using Managed Identity:
+
+Make sure your Foundry resource has a system assigned managed identity enabled.
+
+Create a resource for the service you want to connect to through OpenAPI spec.
+
+Assign the proper access to the resource.
+
+Select
+
+**Access Control**for your resource.Select
+
+**Add**and then**add role assignment**at the top of the screen.Select the proper role assignment needed. Usually, it requires at least the
+
+*READER*role. Then select**Next**.Select
+
+**Managed identity**and then select**select members**.In the managed identity dropdown menu, search for
+
+**Foundry Tools**and then select the Foundry Tool of your agent.Select
+
+**Finish**.
+
+After you complete the setup, you can use the tool through the Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: code-interpreter.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/code-interpreter -->
+
+# Foundry Agent Service Code Interpreter
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
+
+Important
+
+Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Agent calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
+
+## Prerequisites
+
+## Code samples
+
+### Create an agent with code interpreter
+
+```
+code_interpreter = CodeInterpreterTool()
+# An agent is created with the Code Interpreter capabilities:
+agent = project_client.agents.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent",
+instructions="You are helpful agent",
+tools=code_interpreter.definitions,
+tool_resources=code_interpreter.resources,
+)
+```
+
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can use the `upload_and_poll`
+
+function.
+
+```
+file = agents_client.files.upload_and_poll(file_path=asset_file_path, purpose=FilePurpose.AGENTS)
+print(f"Uploaded file, file ID: {file.id}")
+code_interpreter = CodeInterpreterTool(file_ids=[file.id])
+```
+
+
+### Create an agent with code interpreter
+
+```
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "My Friendly Test Agent",
+instructions: "You politely help with math questions. Use the code interpreter tool when asked to visualize numbers.",
+tools: [new CodeInterpreterToolDefinition()]
+);
+```
+
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can attach it to your message.
+
+```
+PersistentAgentFileInfo uploadedAgentFile = client.Files.UploadFile(
+filePath: "sample_file_for_upload.txt",
+purpose: PersistentAgentFilePurpose.Agents);
+var fileId = uploadedAgentFile.Id;
+var attachment = new MessageAttachment(
+fileId: fileId,
+tools: tools
+);
+// attach the file to the message
+PersistentThreadMessage message = client.Messages.CreateMessage(
+threadId: thread.Id,
+role: MessageRole.User,
+content: "Can you give me the documented information in this file?",
+attachments: [attachment]
+);
+```
+
+
+### Create an agent with code interpreter
+
+```
+// Create the code interpreter tool
+const codeInterpreterTool = ToolUtility.createCodeInterpreterTool();
+// Enable the code interpreter tool during agent creation
+const agent = await client.createAgent("gpt-4o", {
+name: "my-agent",
+instructions: "You are a helpful agent",
+tools: [codeInterpreterTool.definition],
+toolResources: codeInterpreterTool.resources,
+});
+console.log(`Created agent, agent ID: ${agent.id}`);
+```
+
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can attach it to the tool.
+
+```
+// Upload file and wait for it to be processed
+const filePath = "./examplefile.csv";
+const localFileStream = fs.createReadStream(filePath);
+const localFile = await client.files.upload(localFileStream, "assistants", {
+fileName: "localFile",
+});
+// Create code interpreter tool
+const codeInterpreterTool = ToolUtility.createCodeInterpreterTool([localFile.id]);
+```
+
+
+### Create an agent with the code interpreter tool
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are an AI assistant that can write code to help answer math questions.",
+"tools": [
+{ "type": "code_interpreter" }
+],
+"model": "gpt-4o-mini",
+"tool_resources"{
+"code interpreter": {
+}
+}
+}'
+```
+
+
+```
+String agentName = "code_interpreter_agent";
+CodeInterpreterToolDefinition ciTool = new CodeInterpreterToolDefinition();
+CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName).setName(agentName).setInstructions("You are a helpful agent").setTools(Arrays.asList(ciTool));
+PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+```
+
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can attach it to the tool.
+
+```
+FileInfo uploadedFile = filesClient.uploadFile(new UploadFileRequest(
+new FileDetails(BinaryData.fromFile(htmlFile))
+.setFilename("sample.html"), FilePurpose.AGENTS));
+MessageAttachment messageAttachment = new MessageAttachment(Arrays.asList(BinaryData.fromObject(ciTool))).setFileId(uploadedFile.getId());
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"What does the attachment say?",
+Arrays.asList(messageAttachment),
+null);
+```
+
+
+### Supported models
+
+The [models page](../../quotas-limits?view=foundry-classic) contains the most up-to-date information on regions/models where agents and code interpreter are supported.
+
+We recommend using Agents with the latest models to take advantage of the new features, larger context windows, and more up-to-date training data.
+
+### Supported file types
+
+| File format | MIME Type |
+|---|---|
+`.c` |
+`text/x-c` |
+`.cpp` |
+`text/x-c++` |
+`.csv` |
+`application/csv` |
+`.docx` |
+`application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
+`.html` |
+`text/html` |
+`.java` |
+`text/x-java` |
+`.json` |
+`application/json` |
+`.md` |
+`text/markdown` |
+`.pdf` |
+`application/pdf` |
+`.php` |
+`text/x-php` |
+`.pptx` |
+`application/vnd.openxmlformats-officedocument.presentationml.presentation` |
+`.py` |
+`text/x-python` |
+`.py` |
+`text/x-script.python` |
+`.rb` |
+`text/x-ruby` |
+`.tex` |
+`text/x-tex` |
+`.txt` |
+`text/plain` |
+`.css` |
+`text/css` |
+`.jpeg` |
+`image/jpeg` |
+`.jpg` |
+`image/jpeg` |
+`.js` |
+`text/javascript` |
+`.gif` |
+`image/gif` |
+`.png` |
+`image/png` |
+`.tar` |
+`application/x-tar` |
+`.ts` |
+`application/typescript` |
+`.xlsx` |
+`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` |
+`.xml` |
+`application/xml` or `text/xml` |
+`.zip` |
+`application/zip` |
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: model-context-protocol.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/model-context-protocol -->
+
+# Connect to Model Context Protocol servers (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+You can extend the capabilities of your Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Foundry Agent Service, can access.
+
+MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
+
+## Considerations for using non-Microsoft services and servers
+
+Your use of connected non-Microsoft services is subject to the terms between you and the service provider. When you connect to a non-Microsoft service, some of your data (such as prompt content) is passed to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
+
+The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. Microsoft has no responsibility to you or others in relation to your use of any remote MCP servers.
+
+We recommend that you carefully review and track what MCP servers you add to Foundry Agent Service. We also recommend that you rely on servers hosted by trusted service providers themselves rather than proxies.
+
+The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. We recommend that you review all data that's shared with remote MCP servers and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data.
+
+## How it works
+
+You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label`
+
+value within the same agent and a `server_url`
+
+value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
+
+The MCP tool supports custom headers, so you can connect to the MCP servers by using the authentication schemas that they require or by passing other headers that the MCP servers require. You can specify headers only by including them in `tool_resources`
+
+at each run. In this way, you can put API keys, OAuth access tokens, or other credentials directly in your request.
+
+The most commonly used header is the authorization header. Headers that you pass in are available only for the current run and aren't persisted.
+
+For more information on using MCP, see:
+
+[Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)on the Model Context Protocol website.[Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667)in the Microsoft Security Community Blog.
+
+## Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| - | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
+
+## Setup
+
+Create a Foundry agent by following the steps in the
+
+[quickstart](../../quickstart?view=foundry-classic).Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update a Foundry agent with an
+
+`mcp`
+
+tool with the following information:`server_url`
+
+: The URL of the MCP server; for example,`https://api.githubcopilot.com/mcp/`
+
+.`server_label`
+
+: A unique identifier of this MCP server to the agent; for example,`github`
+
+.`allowed_tools`
+
+: An optional list of tools that this agent can access and use.
+
+Create a run and pass additional information about the
+
+`mcp`
+
+tool in`tool_resources`
+
+with headers:`tool_label`
+
+: Use the identifier that you provided when you created the agent.`headers`
+
+: Pass a set of headers that the MCP server requires.`require_approval`
+
+: Optionally determine whether approval is required. Supported values are:`always`
+
+: A developer needs to provide approval for every call. If you don't provide a value, this one is the default.`never`
+
+: No approval is required.`{"never":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that don't require approval.`{"always":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that require approval.
+
+
+If the model tries to invoke a tool in your MCP server with approval required, you get a run status of
+
+`requires_action`
+
+. In the`requires_action`
+
+field, you can get more details on which tool in the MCP server is called, arguments to be passed, and`call_id`
+
+value. Review the tool and arguments so that you can make an informed decision for approval.Submit your approval to the agent with
+
+`call_id`
+
+by setting`approve`
+
+to`true`
+
+.
+
+## Host a local MCP server
+
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/en-us/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+
+| Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+|---|---|---|
+Transport |
+HTTP POST/GET endpoints required. | HTTP streamable required. |
+Code changes |
+Container rebuild required. | Azure Functions-specific configuration files required in the root directory. |
+Authentication |
+Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
+Language |
+Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
+Container Requirements |
+Linux (linux/amd64) only. No privileged containers. | Containerized servers are not supported. |
+Dependencies |
+All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
+State |
+Stateless only. | Stateless only. |
+UVX/NPX |
+Supported. | Not supported. `npx` start commands not supported. |
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: governance.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/governance -->
+
+# Tools governance with AI Gateway (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+AI Gateway in Microsoft Foundry provides a single, governed entry point for tools added to Microsoft Foundry projects. After a gateway is connected, all new MCP tools route through a secure gateway endpoint where authentication, policies, and usage limits are consistently enforced.
+
+Note
+
+Only new MCP tools created in the Microsoft Foundry portal that don't use managed OAuth are routed through AI Gateway.
+
+## Prerequisites
+
+To enable governance for tools using AI Gateway in Microsoft Foundry:
+
+- AI Gateway must be connected to the Microsoft Foundry resource
+- Governance is activated at the Microsoft Foundry resource level. All governance functionality depends on this connection.
+
+- The MCP server must support one of the following authentication methods:
+- Managed identity (Microsoft Entra)
+- Key-based (API key or token)
+- Custom OAuth identity passthrough
+- Unauthenticated (if applicable)
+
+
+## Key benefits
+
+- Secure routing for all new MCP tools using a gateway endpoint
+- Consistent access control and authentication enforcement
+- Centralized observability for gateway traffic (such as logs and metrics)
+- Unified policies for throttling, IP restrictions, and routing
+- Seamless reuse of tools through public and private catalogs
+
+## Enable AI Gateway for your Foundry resource
+
+If AI Gateway isn't already connected to your Foundry resource, enable it first.
+
+- Follow the steps in
+[Configure AI Gateway in the Foundry portal](../../../configuration/enable-ai-api-management-gateway-portal?view=foundry). - Return to this article after AI Gateway is connected to your Foundry resource.
+
+## Govern a tool
+
+### Add a tool
+
+To add a tool to be governed, use the Foundry portal. You can add a tool using the tool catalog by selecting **Tools** > **Catalog**, then choosing an MCP server to add.
+
+You can also add a custom tool by selecting **Build** > **Tools** > **Custom** > **Model Context Protocol**. Then paste your MCP server endpoint and select an authentication type.
+
+For more information about MCP tools, see [Connect to Model Context Protocol servers](model-context-protocol?view=foundry).
+
+### Confirm routing
+
+Ensure the following information is correct for your MCP server:
+
+- Remote MCP server endpoint (AI gateway endpoint)
+- Redirect URL (if using custom OAuth identity passthrough)
+- Authentication method (key-based auth, OAuth identity passthrough)
+- Which agents are using this tool
+
+### Apply policies
+
+Navigate to the [Azure portal](https://portal.azure.com/) page for your resource. Select **API Management** to apply needed policies for governance. [Policies](/en-us/azure/api-management/api-management-howto-policies) must be applied through API Management. Common policies include:
+
+Rate limiting - limit how many calls a project or user can make a minute.
+
+`<inbound> <base /> <rate-limit-by-key calls="60" renewal-period="60" counter-key="@(context.Request.IpAddress)" /> </inbound>`
+
+IP filtering - allow requests only from trusted networks.
+
+`<inbound> <base /> <ip-filter action="allow"> <address>10.0.0.0/24</address> <!-- internal network --> <address>20.50.123.45</address> <!-- trusted app --> </ip-filter> </inbound>`
+
+Correlation ID - add a unique request ID so you can trace requests later in logs.
+
+`<inbound> <base /> <set-header name="X-Correlation-Id" exists-action="override"> <value>@(context.RequestId)</value> </set-header> </inbound>`
+
+Remove sensitive headers - clean up incoming requests to protect credentials or session data.
+
+`<inbound> <base /> <set-header name="Cookie" exists-action="delete" /> <set-header name="Referer" exists-action="delete" /> </inbound>`
+
+Important
+
+Avoid deleting authentication headers (such as
+
+`Authorization`
+
+) unless you're sure the MCP server doesn't require them.Simple routing control - if you have different backends (like ones for different geographies), you can route requests based on a header.
+
+`<inbound> <base /> <choose> <when condition="@(context.Request.Headers.GetValueOrDefault('X-Region','us') == 'eu')"> <set-backend-service base-url="https://europe-api.contoso-mcp.net" /> </when> <otherwise> <set-backend-service base-url="https://us-api.contoso-mcp.net" /> </otherwise> </choose> </inbound>`
+
+
+For more policy XML examples, see the [API Management policy snippets](https://github.com/Azure/api-management-policy-snippets) repository on GitHub.
+
+### Test with an agent
+
+After you configure your MCP server, you can test it in the Microsoft Foundry portal.
+
+## Verify governance is working
+
+Use these checks to confirm traffic is routed through AI Gateway and policies are applied.
+
+- In Foundry Tools, open your MCP tool configuration.
+- Confirm the configured tool endpoint points to the AI Gateway (not directly to your MCP server).
+- In the Azure portal, open the API Management instance connected to your Foundry resource.
+- Review metrics and logs to confirm requests appear when your agent calls the tool.
+
+## Security considerations
+
+- Treat API keys, tokens, and OAuth client secrets as secrets. Store shared credentials in a project connection when possible, and limit who can access the project.
+- Apply the least-privilege principle for managed identity and Microsoft Entra access.
+- Review which headers you forward to backends. Remove only headers you don't need, and avoid stripping required authentication headers.
+
+For MCP authentication options, see [Authentication support for the Model Context Protocol (MCP) tool (preview)](../mcp-authentication?view=foundry).
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| The tool still calls the MCP server directly. | The tool was created before AI Gateway was connected, or the tool isn't eligible for gateway routing (for example, it uses managed OAuth). | Recreate the tool after AI Gateway is connected, and confirm the tool is an MCP tool that doesn't use managed OAuth. |
+| Tool calls fail after you add API Management policies. | A policy blocks traffic (rate limits, IP filtering) or modifies headers required by the MCP server. | Temporarily disable policies to isolate the cause, then refine the policy conditions. Avoid deleting required authentication headers. |
+| OAuth sign-in fails for custom OAuth identity passthrough. | Redirect URL or OAuth app configuration is incorrect. | Re-check the redirect URL in your OAuth app registration and confirm required OAuth settings. For options and terminology, see
+|
+
+## Limitations
+
+- Only MCP tools are supported today. Foundry-based tools such as SharePoint, code-first MCP tools, tools with managed OAuth, or OpenAPI tools are not supported.
+- Tool traces are not logged by AI Gateway.
+- Gateway routing is only applied at tool creation. Existing tools aren't automatically mediated with AI Gateway.
+- Application of API management policies is only supported in the Azure portal, not the Microsoft Foundry portal.
+
+For a broader list of Agent Service tool support when working with gateways, see [Bring your own AI gateway to Azure AI Agent Service (preview)](../ai-gateway?view=foundry).
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: computer-use-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/computer-use-samples -->
+
+# How to use the Computer Use Tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+Use this article to learn how to use the Computer Use tool with the Azure AI Projects SDK.
+
+## Prerequisites
+
+The requirements in the
+
+[Computer Use Tool overview](deep-research?view=foundry-classic).Your Microsoft Foundry Project endpoint.
+
+You can find your endpoint in the
+
+**overview**for your project in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), under**Libraries**>**Foundry**.Save this endpoint to an environment variable named
+
+`PROJECT_ENDPOINT`
+
+.The deployment name of your Computer Use model. You can find it in
+
+**Models + Endpoints**in the left navigation menu.Save the name of your model's deployment name as an environment variable named
+
+`COMPUTER_USE_MODEL_DEPLOYMENT_NAME`
+
+.Before using the tool, you need to set up an environment that can capture screenshots and execute the recommended actions by the agent. We recommend using a sandboxed environment, such as Playwright for safety reasons.
+
+
+The Computer Use tool requires the latest prerelease versions of the `azure-ai-projects`
+
+library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
+
+```
+python -m venv env
+# after creating the virtual environment, activate it with:
+.\env\Scripts\activate
+```
+
+
+You can install the package with the following command:
+
+```
+pip install --pre azure-ai-projects, azure-identity, azure-ai-agents
+```
+
+
+## Code example
+
+The following code sample shows a basic API request. Once the initial API request is sent, you would perform a loop where the specified action is performed in your application code, sending a screenshot with each turn so the model can evaluate the updated state of the environment. You can see an example integration for a similar API in the [Azure OpenAI documentation](../../../openai/how-to/computer-use?view=foundry-classic#playwright-integration).
+
+```
+import os, time, base64
+from typing import List
+from azure.ai.agents.models._models import ComputerScreenshot, TypeAction
+from azure.ai.projects import AIProjectClient
+from azure.ai.agents.models import (
+MessageRole,
+RunStepToolCallDetails,
+RunStepComputerUseToolCall,
+ComputerUseTool,
+ComputerToolOutput,
+MessageInputContentBlock,
+MessageImageUrlParam,
+MessageInputTextBlock,
+MessageInputImageUrlBlock,
+RequiredComputerUseToolCall,
+SubmitToolOutputsAction,
+)
+from azure.identity import DefaultAzureCredential
+def image_to_base64(image_path: str) -> str:
+"""
+Convert an image file to a Base64-encoded string.
+:param image_path: The path to the image file (e.g. 'image_file.png')
+:return: A Base64-encoded string representing the image.
+:raises FileNotFoundError: If the provided file path does not exist.
+:raises OSError: If there's an error reading the file.
+"""
+if not os.path.isfile(image_path):
+raise FileNotFoundError(f"File not found at: {image_path}")
+try:
+with open(image_path, "rb") as image_file:
+file_data = image_file.read()
+return base64.b64encode(file_data).decode("utf-8")
+except Exception as exc:
+raise OSError(f"Error reading file '{image_path}'") from exc
+asset_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../assets/cua_screenshot.jpg"))
+action_result_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../assets/cua_screenshot_next.jpg"))
+project_client = AIProjectClient(endpoint=os.environ["PROJECT_ENDPOINT"], credential=DefaultAzureCredential())
+# Initialize Computer Use tool with a browser-sized viewport
+environment = os.environ.get("COMPUTER_USE_ENVIRONMENT", "windows")
+computer_use = ComputerUseTool(display_width=1026, display_height=769, environment=environment)
+with project_client:
+agents_client = project_client.agents
+# Create a new Agent that has the Computer Use tool attached.
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent-computer-use",
+instructions="""
+You are an computer automation assistant.
+Use the computer_use_preview tool to interact with the screen when needed.
+""",
+tools=computer_use.definitions,
+)
+print(f"Created agent, ID: {agent.id}")
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
+input_message = (
+"I can see a web browser with bing.com open and the cursor in the search box."
+"Type 'movies near me' without pressing Enter or any other key. Only type 'movies near me'."
+)
+image_base64 = image_to_base64(asset_file_path)
+img_url = f"data:image/jpeg;base64,{image_base64}"
+url_param = MessageImageUrlParam(url=img_url, detail="high")
+content_blocks: List[MessageInputContentBlock] = [
+MessageInputTextBlock(text=input_message),
+MessageInputImageUrlBlock(image_url=url_param),
+]
+# Create message to thread
+message = agents_client.messages.create(thread_id=thread.id, role=MessageRole.USER, content=content_blocks)
+print(f"Created message, ID: {message.id}")
+run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id)
+print(f"Created run, ID: {run.id}")
+# create a fake screenshot showing the text typed in
+result_image_base64 = image_to_base64(action_result_file_path)
+result_img_url = f"data:image/jpeg;base64,{result_image_base64}"
+computer_screenshot = ComputerScreenshot(image_url=result_img_url)
+while run.status in ["queued", "in_progress", "requires_action"]:
+time.sleep(1)
+run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
+if run.status == "requires_action" and isinstance(run.required_action, SubmitToolOutputsAction):
+print("Run requires action:")
+tool_calls = run.required_action.submit_tool_outputs.tool_calls
+if not tool_calls:
+print("No tool calls provided - cancelling run")
+agents_client.runs.cancel(thread_id=thread.id, run_id=run.id)
+break
+tool_outputs = []
+for tool_call in tool_calls:
+if isinstance(tool_call, RequiredComputerUseToolCall):
+print(tool_call)
+try:
+action = tool_call.computer_use_preview.action
+print(f"Executing computer use action: {action.type}")
+if isinstance(action, TypeAction):
+print(f" Text to type: {action.text}")
+#(add hook to input text in managed environment API here)
+tool_outputs.append(
+ComputerToolOutput(tool_call_id=tool_call.id, output=computer_screenshot)
+)
+if isinstance(action, ComputerScreenshot):
+print(f" Screenshot requested")
+# (add hook to take screenshot in managed environment API here)
+tool_outputs.append(
+ComputerToolOutput(tool_call_id=tool_call.id, output=computer_screenshot)
+)
+except Exception as e:
+print(f"Error executing tool_call {tool_call.id}: {e}")
+print(f"Tool outputs: {tool_outputs}")
+if tool_outputs:
+agents_client.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
+print(f"Current run status: {run.status}")
+print(f"Run completed with status: {run.status}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Fetch run steps to get the details of the agent run
+run_steps = agents_client.run_steps.list(thread_id=thread.id, run_id=run.id)
+for step in run_steps:
+print(f"Step {step.id} status: {step.status}")
+print(step)
+if isinstance(step.step_details, RunStepToolCallDetails):
+print(" Tool calls:")
+run_step_tool_calls = step.step_details.tool_calls
+for call in run_step_tool_calls:
+print(f" Tool call ID: {call.id}")
+print(f" Tool call type: {call.type}")
+if isinstance(call, RunStepComputerUseToolCall):
+details = call.computer_use_preview
+print(f" Computer use action type: {details.action.type}")
+print() # extra newline between tool calls
+print() # extra newline between run steps
+# Optional: Delete the agent once the run is finished.
+agents_client.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+## Next steps
+
+[Python agent samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents)[Azure OpenAI Computer Use example Playwright integration](../../../openai/how-to/computer-use?view=foundry-classic#playwright-integration)- The Azure OpenAI API has implementation differences compared to the Agent Service, and these examples may need to be adapted to work with agents.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: computer-use.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/computer-use -->
+
+# Foundry Agent Service Computer Use Tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+Warning
+
+The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note?view=foundry-classic#risk-and-limitations-of-computer-use-preview).
+
+Use this article to learn how to work with the Computer Use Tool in Foundry Agent Service. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces. With Computer Use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content.
+
+## Features
+
+Autonomous navigation: For example, Computer Use can open applications, click buttons, fill out forms, and navigate multi-page workflows.
+
+Dynamic adaptation: Interpreting UI changes and adjusting actions accordingly.
+
+Cross-application task execution: Can operate across web-based and desktop applications.
+
+Natural language interface: Users can describe a task in plain language, and the Computer Use model determines which UI interactions to execute.
+
+
+## Request access
+
+For access to the `computer-use-preview`
+
+model, registration is required and access will be granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models will still need to request access for this model.
+
+To request access, see the [application form](https://aka.ms/oai/cuaaccess).
+
+Once access has been granted, you will need to create a deployment for the model.
+
+## Differences between Browser Automation and Computer Use
+
+The following table lists some of the differences between the Computer Use Tool and [Browser Automation](browser-automation?view=foundry-classic) Tool.
+
+| Feature | Browser Automation | Computer Use Tool |
+|---|---|---|
+| Model support | All GPT models | `Computer-use-preview` model only |
+| Can I visualize what's happening? | No | Yes |
+| How it understands the screen | Parses the HTML or XML pages into DOM documents | Raw pixel data from screenshots |
+| How it acts | A list of actions provided by the model | Virtual keyboard and mouse |
+| Is it multi-step? | Yes | Yes |
+| Interfaces | Browser | Computer and browser |
+| Do I need to bring my own resource? | Your own Playwright resource with the keys stored as a connection. | No additional resource required but we highly recommend running this tool in a sandboxed environment. |
+
+## Regional support
+
+In order to use the Computer Use Tool, you need to have a [Computer Use model](../../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#computer-use-preview) deployment. The Computer Use model is available in the following regions:
+
+`eastus2`
+
+`swedencentral`
+
+`southindia`
+
+
+## Understanding the Computer Use integration
+
+When working with the Computer Use tool, you typically would perform the following to integrate it into your application.
+
+Send a request to the model that includes a call to the Computer Use tool, and the display size and environment. You can also include a screenshot of the initial state of the environment in the first API request.
+
+Receive a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example an action might be screenshot so the model can assess the current state with an updated screenshot, or click with X/Y coordinates indicating where the mouse should be moved.
+
+Execute the action using your application code on your computer or browser environment.
+
+After executing the action, capture the updated state of the environment as a screenshot.
+
+Send a new request with the updated state as a
+
+`tool_call_output`
+
+, and repeat this loop until the model stops requesting actions or you decide to stop.Note
+
+Before using the tool, you need to set up an environment that can capture screenshots and execute the recommended actions by the agent. We recommend using a sandboxed environment, such as Playwright for safety reasons.
+
+
+## Handling conversation history
+
+You can use the `tool_call_id`
+
+parameter to link the current request to the previous response. Using this parameter is recommended if you don't want to manage the conversation history.
+
+If you don't use this parameter, you should make sure to include all the items returned in the response output of the previous request in your inputs array. This includes reasoning items if present.
+
+## Safety checks
+
+Warning
+
+Computer Use carries substantial security and privacy risks and user responsibility. Computer Use comes with significant security and privacy risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages, desktops, or other operating environments which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users’ browsers, computers, and any accounts to which AI has access, including personal, financial, or enterprise systems.
+
+We strongly recommend using the Computer Use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note?view=foundry-classic#risk-and-limitations-of-computer-use-preview).
+
+The API has safety checks to help protect against prompt injection and model mistakes. These checks include:
+
+**Malicious instruction detection**: The system evaluates the screenshot image and checks if it contains adversarial content that might change the model's behavior.
+
+**Irrelevant domain detection**: The system evaluates the `current_url`
+
+parameter (if provided) and checks if the current domain is considered relevant given the conversation history.
+
+**Sensitive domain detection**: The system checks the `current_url`
+
+parameter (if provided) and raises a warning when it detects the user is on a sensitive domain.
+
+If one or more of the above checks is triggered, a safety check is raised when the model returns the next `computer_call`
+
+with the `pending_safety_checks`
+
+parameter.
+
+```
+"output": [
+{
+"type": "reasoning",
+"id": "rs_67cb...",
+"summary": [
+{
+"type": "summary_text",
+"text": "Exploring 'File' menu option."
+}
+]
+},
+{
+"type": "computer_call",
+"id": "cu_67cb...",
+"call_id": "call_nEJ...",
+"action": {
+"type": "click",
+"button": "left",
+"x": 135,
+"y": 193
+},
+"pending_safety_checks": [
+{
+"id": "cu_sc_67cb...",
+"code": "malicious_instructions",
+"message": "We've detected instructions that may cause your application to perform malicious or unauthorized actions. Please acknowledge this warning if you'd like to proceed."
+}
+],
+"status": "completed"
+}
+]
+```
+
+
+You need to pass the safety checks back as `acknowledged_safety_checks`
+
+in the next request in order to proceed.
+
+```
+"input":[
+{
+"type": "computer_call_output",
+"call_id": "<call_id>",
+"acknowledged_safety_checks": [
+{
+"id": "<safety_check_id>",
+"code": "malicious_instructions",
+"message": "We've detected instructions that may cause your application to perform malicious or unauthorized actions. Please acknowledge this warning if you'd like to proceed."
+}
+],
+"output": {
+"type": "computer_screenshot",
+"image_url": "<image_url>"
+}
+}
+]
+```
+
+
+## Safety check handling
+
+In all cases where `pending_safety_checks`
+
+are returned, actions should be handed over to the end user to confirm proper model behavior and accuracy.
+
+`malicious_instructions`
+
+and `irrelevant_domain`
+
+: end users should review model actions and confirm that the model is behaving as intended.
+
+`sensitive_domain`
+
+: ensure an end user is actively monitoring the model actions on these sites. Exact implementation of this "watch mode" can vary by application, but a potential example could be collecting user impression data on the site to make sure there is active end user engagement with the application.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: file-search.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/file-search -->
+
+# Foundry Agent Service file search tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.
+
+Note
+
+Using the standard agent setup, the improved file search tool ensures your files remain in your own storage, and your Azure AI Search resource is used to ingest them, ensuring you maintain complete control over your data.
+
+### File sources
+
+- Upload local files
+- Azure Blob Storage
+
+### Usage support
+
+Note
+
+The file search tool is currently unavailable in the following regions:
+
+- Italy north
+- Brazil south
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | File upload only | File upload and using bring-your-own blob storage |
+
+## Dependency on agent setup
+
+### Basic agent setup
+
+The file search tool has the same functionality as Azure OpenAI Assistants. Microsoft managed search and storage resources are used.
+
+- Uploaded files get stored in Microsoft managed storage
+- A vector store is created using a Microsoft managed search resource
+
+### Standard agent setup
+
+The file search tool uses the Azure AI Search and Azure Blob Storage resources you connected during agent setup.
+
+- Uploaded files get stored in your connected Azure Blob Storage account
+- Vector stores get created using your connected Azure AI Search resource
+
+For both agent setups, the service handles the entire ingestion process, which includes:
+
+- Automatically parsing and chunking documents
+- Generating and storing embeddings
+- Utilizing both vector and keyword searches to retrieve relevant content for user queries.
+
+There is no difference in the code between the two setups; the only variation is in where your files and created vector stores are stored.
+
+## How it works
+
+The file search tool implements several retrieval best practices out of the box to help you extract the right data from your files and augment the model’s responses. The file search tool:
+
+- Rewrites user queries to optimize them for search.
+- Breaks down complex user queries into multiple searches it can run in parallel.
+- Runs both keyword and semantic searches across both agent and thread vector stores.
+- Reranks search results to pick the most relevant ones before generating the final response.
+- By default, the file search tool uses the following settings:
+- Chunk size: 800 tokens
+- Chunk overlap: 400 tokens
+- Embedding model: text-embedding-3-large at 256 dimensions
+- Maximum number of chunks added to context: 20
+
+
+## Vector stores
+
+Vector store objects give the file search tool the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and threads. Currently you can attach at most one vector store to an agent and at most one vector store to a thread.
+
+Similarly, these files can be removed from a vector store by either:
+
+- Deleting the vector store file object or,
+- By deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
+
+The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
+
+## Ensuring vector store readiness before creating runs
+
+We highly recommend that you ensure all files in a vector_store are fully processed before you create a run. This ensures that all the data in your vector store is searchable. You can check for vector store readiness by using the polling helpers in the SDKs, or by manually polling the vector store object to ensure the status is completed.
+
+As a fallback, there's a 60-second maximum wait in the run object when the thread's vector store contains files that are still being processed. This is to ensure that any files your users upload in a thread are fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
+
+## Creating vector stores and adding files
+
+Adding files to vector stores is an async operation. To ensure the operation is complete, we recommend that you use the 'create and poll' helpers in our official SDKs. If you're not using the SDKs, you can retrieve the `vector_store`
+
+object and monitor its `file_counts`
+
+property to see the result of the file ingestion operation.
+
+Files can also be added to a vector store after it's created by creating vector store files.
+
+```
+# create a vector store with no file and wait for it to be processed
+vector_store = project_client.agents.vector_stores.create_and_poll(data_sources=[], name="sample_vector_store")
+print(f"Created vector store, vector store ID: {vector_store.id}")
+# add the file to the vector store or you can supply file ids in the vector store creation
+vector_store_file_batch = project_client.agents.vector_store_file_batches.create_and_poll(
+vector_store_id=vector_store.id, file_ids=[file.id]
+)
+print(f"Created vector store file batch, vector store file batch ID: {vector_store_file_batch.id}")
+```
+
+
+Alternatively, you can add several files to a vector store by creating batches of up to 500 files.
+
+```
+batch = project_client.agents.vector_store_file_batches.create_and_poll(
+vector_store_id=vector_store.id,
+file_ids=[file_1.id, file_2.id, file_3.id, file_4.id, file_5.id]
+)
+```
+
+
+### Basic agent setup: Deleting files from vector stores
+
+Files can be removed from a vector store by either:
+
+- Deleting the vector store file object or,
+- Deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
+
+The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
+
+## Remove vector store
+
+You can remove a vector store from the file search tool.
+
+```
+file_search_tool.remove_vector_store(vector_store.id)
+print(f"Removed vector store from file search, vector store ID: {vector_store.id}")
+project_client.agents.update_agent(
+agent_id=agent.id, tools=file_search_tool.definitions, tool_resources=file_search_tool.resources
+)
+print(f"Updated agent, agent ID: {agent.id}")
+```
+
+
+## Deleting vector stores
+
+```
+project_client.agents.vector_stores.delete(vector_store.id)
+print("Deleted vector store")
+```
+
+
+## Managing costs with expiration policies
+
+For basic agent setup, the `file_search`
+
+tool uses the `vector_stores`
+
+object as its resource and you're billed based on the size of the vector_store objects created. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
+
+To help you manage the costs associated with these vector_store objects, we added support for expiration policies in the `vector_store`
+
+object. You can set these policies when creating or updating the `vector_store`
+
+object.
+
+```
+vector_store = project_client.agents.vector_stores.create_and_poll(
+name="Product Documentation",
+file_ids=[file_1.id],
+expires_after={
+"anchor": "last_active_at",
+"days": 7
+}
+)
+```
+
+
+### Thread vector stores have default expiration policies
+
+Vector stores created using thread helpers (like `tool_resources.file_search.vector_stores`
+
+in Threads or `message.attachments`
+
+in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
+
+When a vector store expires, the runs on that thread fail. To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
+
+## Supported file types
+
+Note
+
+For text/ MIME types, the encoding must be either utf-8, utf-16, or ASCII.
+
+| File format | MIME Type |
+|---|---|
+`.c` |
+`text/x-c` |
+`.cs` |
+`text/x-csharp` |
+`.cpp` |
+`text/x-c++` |
+`.doc` |
+`application/msword` |
+`.docx` |
+`application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
+`.html` |
+`text/html` |
+`.java` |
+`text/x-java` |
+`.json` |
+`application/json` |
+`.md` |
+`text/markdown` |
+`.pdf` |
+`application/pdf` |
+`.php` |
+`text/x-php` |
+`.pptx` |
+`application/vnd.openxmlformats-officedocument.presentationml.presentation` |
+`.py` |
+`text/x-python` |
+`.py` |
+`text/x-script.python` |
+`.rb` |
+`text/x-ruby` |
+`.tex` |
+`text/x-tex` |
+`.txt` |
+`text/plain` |
+`.css` |
+`text/css` |
+`.js` |
+`text/javascript` |
+`.sh` |
+`application/x-sh` |
+`.ts` |
+`application/typescript` |
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: bing-custom-search-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/bing-custom-search-samples -->
+
+# How to use Grounding with Bing Custom Search (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+This article provides step-by-step instructions and code samples for using the Grounding with Bing Custom Search tool in the Foundry Agent Service.
+
+Go to the
+
+**Agents**screen for your agent in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). Scroll down the Setup pane on the right to**knowledge**. Then select**Add**.Select the
+
+**Grounding with Bing Custom Search**tool.Select to create a new connection or use an existing connection.
+
+- For a new connection, select your Grounding with Bing Custom Search resource.
+
+After you connect to a resource, select the configuration name.
+
+Save the tool and start chatting with your agent.
+
+
+## Prerequisites
+
+Your Foundry Project endpoint.
+
+You can find your endpoint in the
+
+**overview**for your project in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), under**Libraries**>**Foundry**.Save this endpoint to an environment variable named
+
+`PROJECT_ENDPOINT`
+
+.The name of your Grounding with Bing Custom Search resource name. Find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Then select**Connected resources**.Save this resource name to an environment variable named
+
+`BING_CUSTOM_CONNECTION_NAME`
+
+.The name of your Grounding with Bing Custom Search configuration, which contains the URLs you want to allow or disallow. Find it by navigating to the overview page for your resource in the
+
+[Azure portal](https://portal.azure.com/). Select**Configurations**, then select your configuration.Save this configuration name to an environment variable named
+
+`BING_CUSTOM_INSTANCE_NAME`
+
+.The names of your model's deployment name. Find it in
+
+**Models + Endpoints**in the left navigation menu.Save the name of your model deployment name as an environment variable named
+
+`MODEL_DEPLOYMENT_NAME`
+
+.
+
+## Create a project client
+
+Create a client object that holds the connection string for connecting to your AI project and other resources.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import BingCustomSearchTool
+# Create an Azure AI Client from an endpoint, copied from your Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"] # Ensure the PROJECT_ENDPOINT environment variable is set
+# Create an AIProjectClient instance
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential(),
+)
+```
+
+
+## Create an agent with the Grounding with Bing Custom Search tool enabled
+
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent.
+
+```
+bing_custom_connection = project_client.connections.get(name=os.environ["BING_CUSTOM_CONNECTION_NAME"])
+conn_id = bing_custom_connection.id
+print(conn_id)
+configuration_name = os.environ["BING_CUSTOM_INSTANCE_NAME"]
+# Initialize Bing Custom Search tool with connection id and configuration name
+bing_custom_tool = BingCustomSearchTool(connection_id=conn_id, instance_name=configuration_name)
+# Create agent with the bing custom search tool and process assistant run
+with project_client:
+agents_client = project_client.agents
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent",
+instructions="You are a helpful agent",
+tools=bing_custom_tool.definitions,
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+
+## Create a thread
+
+```
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Create message to thread
+message = agents_client.messages.create(
+thread_id=thread.id,
+role="user",
+content="How many medals did the USA win in the 2024 summer olympics?",
+)
+print(f"Created message, ID: {message.id}")
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+# Create and process Agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Uncomment these lines to delete the Agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id)
+for msg in messages:
+if msg.text_messages:
+for text_message in msg.text_messages:
+print(f"Agent response: {text_message.text.value}")
+for annotation in msg.url_citation_annotations:
+print(f"URL Citation: [{annotation.url_citation.title}]({annotation.url_citation.url})")
+```
+
+
+### Understand URL citations in the response
+
+When the agent response includes URL citations, you can show them to users as a list of references.
+
+In the Python SDK, you can find the answer text in `msg.text_messages[*].text.value`
+
+. You can find the citations in `msg.url_citation_annotations[*].url_citation`
+
+.
+
+The following example prints the answer followed by a de-duplicated list of references:
+
+```
+messages = agents_client.messages.list(thread_id=thread.id)
+for msg in messages:
+if msg.text_messages:
+answer = "\n".join(t.text.value for t in msg.text_messages)
+print(answer)
+if msg.url_citation_annotations:
+print("\nReferences")
+seen_urls = set()
+for ann in msg.url_citation_annotations:
+url = ann.url_citation.url
+title = ann.url_citation.title or url
+if url not in seen_urls:
+print(f"- {title}: {url}")
+seen_urls.add(url)
+```
+
+
+Important
+
+- This REST API enables developers to invoke the Grounding with Bing Custom Search tool through the Agent Service. It doesn't send calls to the Grounding with Bing Custom Search API directly.
+- The following samples apply if you're using
+**Foundry Project**resource with Microsoft Fabric tool through REST API call. - Your connection ID should be in this format:
+`/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>`
+
+.
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and `API_VERSION`
+
+.
+
+## Create an agent with the Grounding with Bing Custom Search tool enabled
+
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful agent.",
+"name": "my-agent",
+"model": "gpt-4o",
+"tools": [
+{
+"type": "bing_custom_search",
+"bing_custom_search": {
+"search_configurations": [
+{
+"connection_id": /subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>,
+"instance_name": <your_custom_search_configuration_name>,
+"count": 7,
+"market": "en-US",
+"set_lang": "en",
+"freshness": "day",
+}
+]
+}
+}
+]
+}'
+```
+
+
+## Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+## Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "<ask a question tailored towards your web domains>"
+}'
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Custom Search tool to provide a response to the user's question.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: overview.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/overview -->
+
+# What are tools in Foundry Agent Service?
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent Service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service.
+
+Note
+
+The new Microsoft Foundry portal and agents API provide additional tools. See the [tool catalog article](../../concepts/tool-catalog?view=foundry-classic) for more information.
+
+## Knowledge tools
+
+To keep your AI agent informed with richer context from various data sources. The Foundry Agent Service has covered a wide range of data types:
+
+**private data**: Azure AI Search, File Search, Microsoft Fabric, and more**public web data**: Grounding with Bing Search**licensed data**: Tripadvisor, Morningstar**unstructured data**: Azure AI Search, File Search**structured data**: Microsoft Fabric and more
+
+## Action tools
+
+To streamline workflows with your AI agent with capabilities to take actions, the Foundry Agent Service provides different action tools for you with different level of flexibility, control, and ease of integration:
+
+**Deep Research tool**: Web-based integrated deep research pipeline with the`o3-deep-research`
+
+model and Grounding with Bing Search.**Azure Logic Apps**: Low-code / no-code solution to add a workflow to your AI Agent**OpenAPI Spec tool**: Bring an existing OpenAPI specification of a service API you want to add to your AI agent, with no or minor changes.**MCP tool**: Bring an existing Model Context Protocol (MCP) endpoint that you want to add to your AI agent.**Function calling**: Write your own custom, stateless functions to define the expected behaviors.**Azure Functions**: Write and manage your own custom, stateful functions.**Browser Automation**: Perform real-world browser tasks through natural language prompts.
+
+## How does a tool work in the Foundry Agent Service?
+
+Tools are optional capabilities you can add to your AI agent for AI models to decide and pick based on the user query and context. When a user sends a query, the AI model identifies the intent with the context and potentially rewrites the user query. Then the AI model decides which tools to be called for each run. For example, if you add both the Grounding with Bing Search tool and the Azure AI Search tool to your agent and ask "*what is the weather in Seattle today?*", the model will identify your intent to ask about real-time information and more likely to invoke the Grounding with Bing Search tool.
+
+You can add tools at the agent, thread, or run level. By providing tools at a narrower level, the tool resources will **override** tool resources at a broader level. For example, tool resources at the run level override tool resources at thread level. Currently, you can add multiple tools but you can add **one instance of each** of the following tools: File Search, Azure AI Search, Grounding with Bing Search, Grounding with Bing Custom Search, Microsoft Fabric, and other tools under `knowledge`
+
+section.
+
+When a user sends a query to the agent, it will create a [thread, run, and message](../../concepts/threads-runs-messages?view=foundry-classic). For each run, the AI model decides what tools to invoke based on the user intent and available tool resources. Based on the tool outputs, the AI model might decide to invoke another tool or call the same tool again to get more context. For example, when you use Grounding with Bing Search tool, you might see multiple Bing Search queries when [tracing a thread](../../../how-to/develop/trace-agents-sdk?view=foundry-classic). This means the AI model actually calls the Grounding with Bing Search tool multiple times with different queries to get more information. If you want to learn more about what tools are called and how the AI model invokes them, check the run step details.
+
+There are various ways to influence how your AI agent invokes tools:
+
+The
+
+`tool_choice`
+
+parameter: Most deterministic way of controlling which (if any) tool is called by the model. By default, it is set to`auto`
+
+, which means the AI model will decide. If you want to**force**the model to call a specific tool, you can provide the specification of this tool, for example`run = project_client.agents.runs.create_and_process( thread_id=thread.id, agent_id=agent.id, tool_choice={"type": "bing_grounding"} # specify the tool to use )`
+
+The
+
+`instructions`
+
+parameter: Nondeterministic. Use the instructions to help the AI model understand your use case and the purposes of each tool. You want to tell the AI model what information or actions each tool can do. For example "*use the AI Search tool*." Sometimes the user query can be responded by the model's base knowledge or by the tools, you want to provide instructions like "`<tool_name>`
+
+for product related information, use the Fabric tool`<tool_name>`
+
+for sales related information*use the tool outputs to generate a response, don't use your own knowledge.*"
+
+## Prerequisites
+
+[A created agent](../../quickstart?view=foundry-classic)- Make sure your AI model has enough Tokens-Per-Minute (TPM) allocated. We recommend having a minimum of 30k TPM. You can change the TPM allocation by going to
+**models + endpoints**in the[Foundry portal](https://ai.azure.com/?cid=learnDocs)and edit your model.
+
+## Built-in tools
+
+The Foundry Agent Service provides the following built-in tools. You can use them with the REST API, SDK, and Microsoft Foundry portal.
+
+| Tool | Description |
+|---|---|
+|
+
+[Azure Functions](azure-functions?view=foundry-classic)[Browser Automation](browser-automation?view=foundry-classic)[Code Interpreter](code-interpreter?view=foundry-classic)[Deep Research (preview)](deep-research?view=foundry-classic)[File Search](file-search?view=foundry-classic)[Function calling](function-calling?view=foundry-classic)[Grounding with Bing Search](bing-grounding?view=foundry-classic)[Grounding with Bing Custom Search (preview)](bing-custom-search?view=foundry-classic)[Model Context Protocol (preview)](model-context-protocol?view=foundry-classic)[Microsoft Fabric (preview)](fabric?view=foundry-classic)[Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815)to unlock powerful data analysis capabilities.[OpenAPI 3.0 Specified tool](openapi-spec?view=foundry-classic)## Non-Microsoft tools
+
+The following tools are authored by third-party partners. Use the links below to view the documentation and code samples.
+
+Important
+
+- Your use of connected non-Microsoft services is subject to the terms between you and the service provider. By connecting to a non-Microsoft service, you acknowledge that some of your data, such as prompt content, is passed to the non-Microsoft service, and/or your application might receive data from the non-Microsoft service. You are responsible for your use (and any charges associated with your use) of non-Microsoft services and data.
+- The code in these non-Microsoft files were created by third parties, not Microsoft, and have not been tested or verified by Microsoft. Your use of the code samples is subject to the terms provided by the relevant third party. By using any third-party sample in this file, you are acknowledging that Microsoft has no responsibility to you or others with respect to these samples.
+
+| Tool | Description |
+|---|---|
+|
+
+[Celonis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Celonis)[InsureMO Insurance Quotation](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/InsureMO)[LEGALFLY](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/legalfly)[LexisNexis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/LexisNexis)[MiHCM](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/MiHCM)[Morningstar](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Morningstar)[Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Trademo_Global_trade)[Tripadvisor](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Tripadvisor)## Best Practices
+
+### Use system instruction to help model invoke the right tool
+
+In order for the model to understand which tools to use, you want to provide detailed instruction for the model to describe when and how to use the tool. You might want to consider providing the following information:
+
+- Primary Objective: what is the objective of this agent? what is the goal of related tasks? what are the expected outcomes?
+- Your responsibilities: what tasks you expect the agent to perform. For example, calling Grounding with Bing Search tool to get the latest information about local events.
+- Inputs you may receive: what inputs do you expect the agent to receive?
+- For each tool:
+- The tool name
+- A description of the tool
+- Triggers: when do you expect this tool to be called? What type of information will be searched? What will queries contain?
+- An example of a query
+
+
+For example, you might provide tool instructions like the following for the Grounding with Bing Search tool:
+
+Grounding with Bing Search tool
+
+- Use: Gather external trends or news to enrich the post with real-time insights.
+- Trigger this when:
+- The user asks to reference recent data or competitive context.
+- Example: "Can you reference the latest industry trends?" or "What are competitors doing?".
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: fabric.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/fabric -->
+
+# Use the Microsoft Fabric data agent (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+Integrate your Microsoft Foundry Agent with the [ Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights.
+
+You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, the will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, the agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection.
+
+## Usage support
+
+Note
+
+The Fabric data agent only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+You have created and published a Fabric data agent endpoint
+
+Developers and end users have at least
+
+`Azure AI User`
+
+RBAC role.Developers and end users have at least
+
+`READ`
+
+access to the Fabric data agent and the underlying data sources it connects with.Your Fabric Data Agent and Foundry Agent need to be in the same tenant.
+
+Your Foundry Project endpoint.
+
+You can find your endpoint in the
+
+**overview**for your project in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), under**Libraries**>**Foundry**.Save this endpoint to an environment variable named
+
+`PROJECT_ENDPOINT`
+
+.The name of your Microsoft Fabric connection name. You can find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Then selecting**Connected resources**.Save this endpoint to an environment variable named
+
+`FABRIC_CONNECTION_ID`
+
+The names of your model's deployment name. You can find it in
+
+**Models + Endpoints**in the left navigation menu.Save the name of your model deployment name as an environment variable named
+
+`MODEL_DEPLOYMENT_NAME`
+
+.
+
+## Setup
+
+Note
+
+- The model you selected in Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+- To help your model invoke your Microsoft Fabric tool in the expected way, make sure you update agent instructions with descriptions of your Fabric data agent and what data it can access. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as
+`gpt-4o-mini`
+
+. You can also use`tool_choice`
+
+parameter in SDK or API to force Fabric tool to be invoked at each run.
+
+Create a Foundry Agent by following the steps in the
+
+[quickstart](../../quickstart?view=foundry-classic).Create and publish a
+
+[Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)Note
+
+- Make sure you have
+**published**the data agent in Fabric.
+
+- Make sure you have
+
+You can add the Microsoft Fabric tool to an agent programmatically using the code examples listed at the top of this article, or the Foundry portal. If you want to use the portal:
+
+Navigate to the
+
+**Agents**screen for your agent in[Foundry](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to**knowledge**. Then select**Add**.Select
+
+**Microsoft Fabric**and follow the prompts to add the tool. You can add only one per agent.Click to add new connections. Once you have added a connection, you can directly select from existing list.
+
+To create a new connection, you need to find
+
+`workspace-id`
+
+and`artifact-id`
+
+in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like`https://<environment>.fabric.microsoft.com/groups/<workspace_id>/aiskills/<artifact-id>`
+
+Then, you can add both to your connection. Make sure you have checked
+
+`is secret`
+
+for both of them
+
+
+## Create a project client
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import FabricTool, ListSortOrder
+# Retrieve the endpoint and credentials
+project_endpoint = os.environ["PROJECT_ENDPOINT"] # Ensure the PROJECT_ENDPOINT environment variable is set
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential(),
+)
+```
+
+
+## Create an agent with the Microsoft Fabric tool enabled
+
+To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Foundry portal.
+
+```
+# The Fabric connection id can be found in the Foundry project as a property of the Fabric tool
+# Your connection id is in the format /subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-fabric-connection-name>
+# Retrieve the Fabric connection ID from environment variables
+conn_id = os.environ["FABRIC_CONNECTION_ID"] # Ensure the FABRIC_CONNECTION_ID environment variable is set
+# Initialize the FabricTool with the connection ID
+fabric = FabricTool(connection_id=conn_id)
+# Create an agent with the Fabric tool
+# Create an Agent with the Fabric tool and process an Agent run
+with project_client:
+agents_client = project_client.agents
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent",
+instructions="You are a helpful agent",
+tools=fabric.definitions,
+)
+print(f"Created Agent, ID: {agent.id}")
+```
+
+
+## Create a thread
+
+```
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Create a message in the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role="user", # Role of the message sender
+content="What insights can you provide from the Fabric resource?", # Message content
+)
+print(f"Created message, ID: {message['id']}")
+```
+
+
+## Create a run and check the output
+
+```
+# Create and process an Agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Uncomment the following lines to delete the agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+for msg in messages:
+if msg.text_messages:
+last_text = msg.text_messages[-1]
+print(f"{msg.role}: {last_text.text.value}")
+```
+
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+and `API_VERSION`
+
+. For `API_VERSION`
+
+, make sure you are using `2025-05-15-preview`
+
+.
+
+Important
+
+The following samples are applicable if you are using **Foundry Project** resource with Microsoft Fabric tool through REST API call
+Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>`
+
+
+### Create an agent with the Microsoft Fabric tool enabled
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful agent.",
+"name": "my-agent",
+"model": "gpt-4o",
+"tools": [
+{
+"type": "fabric_dataagent",
+"fabric_dataagent": {
+"connections": [
+{
+"connection_id": "/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>"
+}
+]
+}
+}
+]
+}'
+```
+
+
+### Create a thread
+
+#### Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+#### Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "<question related to your data>"
+}'
+```
+
+
+### Create a run and check the output
+
+#### Run the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+#### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+#### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: azure-functions.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/azure-functions -->
+
+# Use Azure Functions with Foundry Agent Service
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+[Azure Functions](/en-us/azure/azure-functions/functions-overview) is a serverless compute service that you can use to extend your Foundry Agent Service agents with custom tools built using code. This approach is especially useful when you need your agent to integrate with systems within your enterprise.
+
+Functions offer several hosting plans. The [Flex Consumption plan](/en-us/azure/azure-functions/flex-consumption-plan) is ideal for hosting your custom tools because it provides:
+
+- Scale-to-zero serverless hosting with consumption-based pricing.
+- Identity-based access to resources in Azure, including resources within virtual networks.
+- Declarative data source connections through
+[input/output bindings](/en-us/azure/azure-functions/functions-triggers-bindings).
+
+## When to use Azure Functions vs function calling
+
+While [function calling](function-calling?view=foundry-classic) allows you to define tools that run in-process with your agent code, hosting custom tools on Azure Functions provides additional enterprise capabilities when you need:
+
+**Separation of concerns**: Isolate your business logic from agent code, enabling independent development, testing, and deployment cycles.**Centralized management**: Create reusable tools that multiple agents, applications, or teams can consume consistently.**Security isolation**: Control agent access to tools separately from tool access to enterprise resources. This approach allows you to assign agents only the specific permissions they need to call the tool without having to provide direct access to underlying databases, APIs, or networks.**External dependencies**: Leverage non-Microsoft libraries, specific runtime environments, or your legacy system integrations.**Complex operations**: Handle multistep workflows and data transformations, or offload computationally intensive operations.**Asynchronous processing**: Execute long-running operations with retry capabilities and resilient message handling.
+
+## Integration options
+
+Foundry Agent Service provides two primary ways for your agents to access Azure Functions-hosted tools:
+
+| Feature | Model Context Protocol (MCP) servers | Azure Queue storage-based tools |
+|---|---|---|
+How does it work? |
+Agents connect to your function app in Azure by using the MCP protocol. The function app itself serves as a custom MCP server, exposing your individual functions as tools. A custom MCP server abstracts the complexity of hosting and exposing tools from your agent project and promotes reusability of your code. | Agents communicate with tool code in your function app in Azure through Queue storage by placing messages in a queue, which triggers tool code execution. The function app listens to the input queues, processes messages asynchronously, and returns a response to a second queue. |
+When to use it? |
+✔ Best for leveraging the industry standard protocol for agent tool integration. ✔ Provides real-time, synchronous interactions with immediate responses. |
+✔ Best for asynchronous workflows that don't require real time responses. ✔ Ideal for background processing and reliable message delivery with retry capabilities. |
+SDK configuration |
+Generic
+|
+
+[Azure Functions tool](azure-functions-samples?view=foundry-classic)**Get started**[How to use Azure Functions with MCP](/en-us/azure/azure-functions/functions-create-ai-enabled-apps#remote-mcp-servers)[How to use Azure Functions with queues](azure-functions-samples?view=foundry-classic)For HTTP-trigger functions, you can also integrate by describing the function through an OpenAPI specification and registering it as a callable tool by using the [OpenAPI tool](openapi-spec?view=foundry-classic) in your agent configuration. This approach provides flexibility for existing HTTP-based functions, but it requires additional setup to define the API specification.
+
+## Supported models
+
+To use all features of function calling, including parallel functions, you need to use a model that was released after November 6, 2023.
+
+## Create and deploy the queue-based tool integration sample
+
+The rest of this article demonstrates how to use an Azure Developer CLI (`azd`
+
+) sample that configures a Foundry Agent Service project with Functions to support queue-based tool integration for agents.
+
+Note
+
+For detailed instructions on how to define and host Functions-based tools as MCP servers, see [Host MCP servers in Azure Functions](/en-us/azure/azure-functions/functions-create-ai-enabled-apps#remote-mcp-servers).
+
+### Prerequisites
+
+[Azure Functions Core Tools v4.x](/en-us/azure/azure-functions/functions-run-local)[A deployed agent with the standard setup](../../environment-setup?view=foundry-classic#choose-your-setup)Note
+
+The basic agent setup isn't supported.
+
+[Azurite](https://github.com/Azure/Azurite)- An Azure account with an active subscription.
+[Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
+### Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+### Initialize the project template
+
+This project uses `azd`
+
+to simplify creating Azure resources and deploying your code. This deployment follows current best practices for secure and scalable Functions deployments. You can find the template and code used here on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python).
+
+Run this
+
+`azd init`
+
+command in a terminal window to initialize your project from the azd template:`azd init --template azure-functions-ai-services-agent-python`
+
+
+When prompted, provide an environment name, such as `ai-services-agent-python`
+
+. In `azd`
+
+, the environment maintains a unique deployment context for your app, and you can define more than one. The environment name is also used in the name of the resource group and other resources you create in Azure.
+
+Run this command to allow local setup scripts to run successfully, which depends on your local operating system:
+
+
+### Provision resources
+
+Run the `azd provision`
+
+command to create the required resources in Azure:
+
+```
+azd provision
+```
+
+
+When prompted, provide these required deployment parameters:
+
+| Prompt | Description |
+|---|---|
+| Select an Azure Subscription to use | Choose the subscription in which you want your resources to be created. |
+location deployment parameter |
+Azure region in which to create the resource group that contains the new Azure resources. Only regions that currently support the Flex Consumption plan are shown. |
+vnetEnabled deployment parameter |
+While the template supports creating resources inside a virtual network, to simplify deployment and testing, choose `False` . |
+
+The `main.bicep`
+
+deployment file is then read by `azd`
+
+and used to create these resources in Azure:
+
+- Flex Consumption plan and function app
+- Agent platform in Foundry, including:
+- Services account
+- Model deployment
+- Project
+- Agents
+- Search
+- Azure Cosmos DB account (used by search)
+
+- Azure Storage (required by Functions and AI agents) and Application Insights (recommended)
+- Access policies and roles for your accounts
+- Service-to-service connections using managed identities (instead of stored connection strings)
+
+You can also use these integrated Azure resources in the article [How to use queue-based Azure Functions with Microsoft Foundry agents](azure-functions-samples?view=foundry-classic).
+
+Post-provision scripts also create a `local.settings.json`
+
+file, which Functions requires to run locally. The generated file should look like this:
+
+```
+{
+"IsEncrypted": false,
+"Values": {
+"AzureWebJobsStorage": "UseDevelopmentStorage=true",
+"FUNCTIONS_WORKER_RUNTIME": "python",
+"STORAGE_CONNECTION__queueServiceUri": "https://<storageaccount>.queue.core.windows.net",
+"PROJECT_CONNECTION_STRING": "<project connection for AI Project>"
+}
+}
+```
+
+
+### Run your app in Visual Studio Code
+
+- Open the folder in a new terminal.
+- Run the
+`code .`
+
+code command to open the project in Visual Studio Code. - In the command palette (F1), type
+`Azurite: Start`
+
+, which enables debugging with local storage for the Functions runtime. - Press
+**Run/Debug (F5)**to run in the debugger. Select**Debug anyway**if prompted about local emulator not running. - Send POST
+`prompt`
+
+endpoints respectively using your HTTP test tool. If you have the[RestClient](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)extension installed, you can execute requests directly from theproject file.`test.http`
+
+
+### Deploy to Azure
+
+Run this `azd deploy`
+
+command to publish your project code to the function app and related Azure resources you just provisioned:
+
+```
+azd deploy
+```
+
+
+After publishing completes successfully, `azd`
+
+provides you with the URL endpoints of your new functions, but without the function key values required to access the endpoints. You can use the Azure Functions Core Tools command `func azure functionapp list-functions`
+
+with the `--show-keys`
+
+option to obtain the keys for your function endpoints. For more information, see [Work with access keys in Azure Functions](/en-us/azure/azure-functions/function-keys-how-to?branch=main&tabs=azure-cli#get-your-function-access-keys).
+
+### Redeploy your code
+
+You can run also the `azd up`
+
+command as many times as you need to both provision your Azure resources and deploy code updates to your function app.
+
+Note
+
+Deployed code files are always overwritten by the latest deployment package.
+
+### Clean up resources
+
+When you're done working with your function app and related resources, use this command to delete the function app and its related resources from Azure and avoid incurring any further costs (`--purge`
+
+doesn't leave a soft delete of AI resource and recovers your quota):
+
+```
+azd down --purge
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: bing-grounding.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/bing-grounding -->
+
+# Grounding with Bing Search
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+**Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be used or not. If so, it uses Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.
+
+You can ask questions such as "*what is the top news today*" or "*what is the recent update in the retail industry in the US?*", which require real-time public data.
+
+Developers and end users don't have access to raw content returned from Grounding with Bing Search. The model response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. You can retrieve the **model response** by accessing the data in the thread that was created. These two *references* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements). See the [how to display Grounding with Bing Search results](#how-to-display-grounding-with-bing-search-results) section for details.
+
+Important
+
+- Your usage of Grounding with Bing Search can incur costs. See the
+[pricing page](https://www.microsoft.com/en-us/bing/apis/grounding-pricing)for details. - By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at
+[https://www.microsoft.com/en-us/bing/apis/grounding-legal](https://www.microsoft.com/en-us/bing/apis/grounding-legal), which might be updated from time to time. - When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have the same compliance standards and certifications as the Foundry Agent Service, as described in the
+[Grounding with Bing Search Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
+
+## How Grounding with Bing Search works
+
+The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."* Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave.
+
+When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing search query (which is [visible to developers](#how-to-display-grounding-with-bing-search-results)).
+Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output.
+
+Note
+
+When using Grounding with Bing Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes.
+
+The authorization will happen between Grounding with Bing Search service and Agent Service. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether the use of Grounding with Bing Search in your agent meets your needs and requirements.
+
+Transactions with your Grounding with Bing resource are counted by the number of tool calls per run. You can see how many tool calls are made from the run step.
+
+## Supported capabilities and known issues
+
+- Grounding with Bing Search tool is designed to retrieve real-time information from web, NOT specific web domains.
+- NOT Recommended to
+**summarize**an entire web page. - Within one run, the AI model will evaluate the tool outputs and may decide to invoke the tool again for more information and context. AI model may also decide which pieces of tool outputs are used to generate the response.
+- Azure AI Agent service will return
+**AI model generated response**as output so end-to-end latency will be impacted pre-/post-processing of LLMs. - Grounding with Bing Search tool does NOT return the tool output to developers and end users.
+- Grounding with Bing Search only works with agents that are not using VPN or Private Endpoints. The agent must have normal network access.
+
+## Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Setup
+
+Note
+
+- Grounding with Bing Search works with
+[all Azure OpenAI models](../../concepts/model-region-support?view=foundry-classic)that Agent Service supports, except`gpt-4o-mini, 2024-07-18`
+
+and gpt-5 models.
+
+Create an Azure AI Agent by following the steps in the
+
+[quickstart](../../quickstart?view=foundry-classic).Create a Grounding with Bing Search resource. You need to have
+
+**Owner**or `**Contributor**role in your subscription or resource group to create it.- You can create one in the
+[Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
+
+- You can also create one through code-first experience. If so, you need to manually
+[register](/en-us/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider)Bing Search as an Azure resource provider. You must have permission to perform the`/register/action`
+
+operation for the resource provider. The permission is included in the**Contributor**and**Owner**roles.
+
+`az provider register --namespace 'Microsoft.Bing'`
+
+- You can create one in the
+After you have created a Grounding with Bing Search resource, you can find it in
+
+[Azure portal](https://portal.azure.com/#home). Navigate to the resource group you've created the resource in, search for the Grounding with Bing Search resource you have created.
+
+## Optional parameters
+
+When you add the Grounding with Bing Search tool to your agent, you can pass the following parameters. These parameters will impact the Grounding with Bing Search tool output, and the AI model might not fully use all of the outputs. See the [code examples](bing-code-samples?view=foundry-classic) for information on API version support and how to pass these parameters.
+
+| Name | Value | Type | Required |
+|---|---|---|---|
+`count` |
+The number of search results to return in the response. The default is 5 and the maximum value is 50. The actual number delivered may be less than requested. It is possible for multiple pages to include some overlap in results. This parameter affects only web page results. It's possible that AI model might not use all search results returned by Bing. | `UnsignedShort` |
+No |
+`freshness` |
+Filter search results by the following case-insensitive age values: Day: Return webpages that Bing discovered within the last 24 hours.Week: Return webpages that Bing discovered within the last 7 days.Month: Return webpages that Bing discovered within the last 30 days. To get articles discovered by Bing during a specific timeframe, specify a date range in the form: `YYYY-MM-DD..YYYY-MM-DD` . For example, `freshness=2019-02-01..2019-05-30` . To limit the results to a single date, set this parameter to a specific date. For example, `freshness=2019-02-04` . |
+String | No |
+`market` |
+The market where the results come from. Typically, `mkt` is the country where the user is making the request from. However, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form: `<language>-<country/region>` . For example, `en-US` . The string is case insensitive. For a list of possible market values, see
+|
+String | No |
+`set_lang` |
+The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. Using 4-letter codes is preferred. For a list of supported language codes, see
+Bing loads the localized strings if `setlang` contains a valid 2-letter neutral culture code (`fr` ) or a valid 4-letter specific culture code (`fr-ca` ). For example, for `fr-ca` , Bing loads the `fr` neutral culture code strings.If `setlang` is not valid (for example, `zh` ) or Bing doesn’t support the language (for example, `af` , `af-na` ), Bing defaults to `en` (English).To specify the 2-letter code, set this parameter to an ISO 639-1 language code. To specify the 4-letter code, use the form `<language>-<country/region>` where `<language>` is an ISO 639-1 language code (neutral culture) and `<country/region>` is an ISO 3166 country/region (specific culture) code. For example, use `en-US` for United States English.Although optional, you should always specify the language. Typically, you set `setLang` to the same language specified by `mkt` unless the user wants the user interface strings displayed in a different language. |
+String | No |
+
+## How to display Grounding with Bing Search results
+
+According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations`
+
+parameter in API response and Bing search query URLs through `runstep`
+
+details. To render the webpage, we recommend you replace the endpoint of Bing search query URLs with `www.bing.com`
+
+and your Bing search query URL would look like "https://www.bing.com/search?q={search query}"
+
+```
+run_steps = project_client.agents.runs_steps.list(run_id=run.id, thread_id=thread.id)
+run_steps_data = run_steps['data']
+print(f"Last run step detail: {run_steps_data}")
+```
+
+
+## Next steps
+
+See [code samples](bing-code-samples?view=foundry-classic) for using the Grounding with Bing tool programmatically.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: bing-custom-search.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/bing-custom-search -->
+
+# Grounding with Bing Custom Search (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+Grounding with Bing Custom Search tool allows your Azure AI Agents to search within a configurable set of public web domains. It allows you to define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing. You need to first create a Grounding with Bing Custom Search resource in Azure portal.
+
+Once the resource is deployed, go to **Configurations** in the Microsoft Foundry portal, and create a configuration instance to include content only from websites that your users care about. Instructions about how to create your custom configuration can be found in the [setup section](#setup).
+
+Once the tool is configured, you can connect it to your Azure AI Agent. When a user sends a query, the agent will decide if Grounding with Bing Custom Search should be leveraged or not. If so, it will use Bing to search over the domains you specify and return relevant chunks. Lastly, Azure AI Agents will use the returned chunks to generate a response to return to the user
+
+Important
+
+- Your usage of Grounding with Bing Custom Search can incur costs. See the pricing page for details.
+- By creating and using a Grounding with Bing Custom Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the
+[terms of use](https://www.microsoft.com/bing/apis/grounding-legal), which may be updated periodically. - When you use Grounding with Bing Custom Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search isn't subject to the same data processing terms (including location of processing) and doesn't have the same compliance standards and certifications as the Foundry Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether use of Grounding with Bing Custom Search in your agent meets your needs and requirements.
+
+## How Grounding with Bing Custom Search works
+
+The user query is the message that an end user sends to an agent, such as "what water bottle is available?" (assuming you create an instance to Contoso product websites). Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave.
+
+When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing Custom Search query (which is visible to developers). Grounding with Bing Custom Search returns relevant search results to the customer's model deployment, which then generates the final output.
+
+Note
+
+When you use Grounding with Bing Custom Search, the Bing Custom Search query, the configuration instance, tool parameters, and your resource key are sent to Bing. The query doesn't include any end user-specific information. You send your resource key to Bing solely for billing and rate limiting purposes.
+
+The authorization will happen between Grounding with Bing Custom Search service and Foundry Agent service. Any Bing Custom Search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key and configuration instance, outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search is subject to Bing's terms and don't have the same compliance standards and certifications as the Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether the use of Grounding with Bing Custom Search in your agent meets your needs and requirements.
+
+Developers and end users don't have access to raw content returned from Grounding with Bing Custom Search. The model response, however, includes citations with links to the websites used to generate the response and is allowed to be stored using the mechanisms provided by the Agents Service. You can retrieve the model response by accessing the data in the thread that was created. These references must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Custom Search's Use and Display Requirements.
+
+## Understand citations in the agent response
+
+When Grounding with Bing Custom Search contributes to an agent response, the response can include URL citations that help users verify the answer.
+
+In the client SDKs, URL citations are returned as annotations on the agent message. Each citation includes a title and URL that you can show to users as a list of references.
+
+For an end-to-end example that prints citations from a thread message, see the [code samples](bing-custom-search-samples?view=foundry-classic).
+
+Transactions with your Grounding with Bing resource are counted by the number of tool calls per run. You can see how many tool calls are made from the run step.
+
+## Setup
+
+Note
+
+Grounding with Bing Search tool works in your network secured Foundry, but the tool doesn't respect your VPN or Private Endpoints to Foundry. It acts as a public endpoint. Please make this security consideration when you use network secured Foundry with this tool.
+
+Create an Azure AI Agent by following the steps in the
+
+[quickstart](../../quickstart?view=foundry-classic).Create a Grounding with Bing Custom Search resource in the
+
+[Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingCustomSearch). You need to have**Owner**or**Contributor**role in your subscription or resource group to create it. Make sure you create this Grounding with Bing Custom Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.After you have created a Grounding with Bing Custom Search resource, you can create a configuration instance.
+
+Go to the Grounding with Bing Custom Search resource created
+
+Select
+
+**Resource Management**on the left panel.Select
+
+**Configurations**.Select
+
+**Create a new configuration**.
+
+
+When you create or update a configuration, enter the following information:
+
+The name of your configuration. You can change this name at any time.
+
+Include URLs to define your search slices in at least one of the following fields:
+
+Note
+
+Grounding with Bing Custom Search only returns results for domains and webpages that are public and indexed by Bing.
+
+- Domain (for example,
+`https://www.microsoft.com`
+
+) - Domain and path (for example,
+`https://www.microsoft.com/surface`
+
+) - Webpage (for example,
+`https://www.microsoft.com/en-us/p/surface-earbuds/8r9cpq146064`
+
+)
+
+Allowed domains to search against. For allowed domains, if you want to include subpages, make sure the domains have at most two levels of subpages.
+
+Blocked domains to exclude from the search space.
+
+
+- Domain (for example,
+Determine if you want to include subpages. A subpage slice specifies a domain path. Bing searches all content found at and below the path. You can specify a maximum of two subfolders in the path. For example,
+
+`www.microsoft.com/windows/`
+
+.Adjust ranking if needed.
+
+Navigate to the
+
+**Agents**screen for your agent in the[Foundry portal](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to**knowledge**. Then select**Add**.Select the
+
+**Grounding with Bing Custom Search**tool.Select to create a new connection, or use an existing connection
+
+- For a new connection, select your Grounding with Bing Custom Search resource.
+
+Once you have connected to a resource, select the configuration name.
+
+Save the tool and start chatting with your agent.
+
+
+## Custom Search configuration capabilities
+
+Grounding with Bing Custom Search is a powerful tool that allows you to select a subspace of the web to limit your Agent’s grounding knowledge. Here you can find a few tips for how to take the maximum advantage of this capability:
+
+If you own a public site that you want to include in the search but Bing hasn't indexed, see the
+
+[Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a)for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date.You can only block certain domains and perform a search against the rest of the Web (a competitor’s site, for example).
+
+
+## Optional parameters
+
+When you add the Grounding with Bing Custom Search tool to your agent, you can pass the following parameters. These parameters will impact the Grounding with Bing Custom Search tool output, and the AI model might not fully use all of the outputs. See the [code examples](bing-custom-search-samples?view=foundry-classic) for information on API version support and how to pass these parameters.
+
+| Name | Value | Type | Required |
+|---|---|---|---|
+`count` |
+The number of search results to return in the response. The default is 5 and the maximum value is 50. The actual number delivered might be less than requested. It's possible for multiple pages to include some overlap in results. This parameter affects only web page results. It's possible that AI model might not use all search results returned by Bing. | `UnsignedShort` |
+No |
+`freshness` |
+Filter search results by the following case-insensitive age values: Day: Return webpages that Bing discovered within the last 24 hours.Week: Return webpages that Bing discovered within the last 7 days.Month: Return webpages that Bing discovered within the last 30 days. To get articles discovered by Bing during a specific timeframe, specify a date range in the form: `YYYY-MM-DD..YYYY-MM-DD` . For example, `freshness=2019-02-01..2019-05-30` . To limit the results to a single date, set this parameter to a specific date. For example, `freshness=2019-02-04` . |
+String | No |
+`market` |
+The market where the results come from. Typically, `mkt` is the country/region where the user is making the request from. However, it could be a different country/region if the user isn't located in a country/region where Bing delivers results. The market must be in the form: `<language>-<country/region>` . For example, `en-US` . The string is case insensitive. For a list of possible market values, see
+|
+String | No |
+`set_lang` |
+The language to use for user interface strings. Specify the language by using either a 2-letter or 4-letter code. Using 4-letter codes is preferred. For a list of supported language codes, see
+Bing loads the localized strings if `setlang` contains a valid 2-letter neutral culture code (`fr` ) or a valid 4-letter specific culture code (`fr-ca` ). For example, for `fr-ca` , Bing loads the `fr` neutral culture code strings.If `setlang` isn't valid (for example, `zh` ) or Bing doesn’t support the language (for example, `af` , `af-na` ), Bing defaults to `en` (English).To specify the 2-letter code, set this parameter to an ISO 639-1 language code. To specify the 4-letter code, use the form `<language>-<country/region>` where `<language>` is an ISO 639-1 language code (neutral culture) and `<country/region>` is an ISO 3166 country or region (specific culture) code. For example, use `en-US` for United States English.Although optional, always specify the language. Typically, set `setLang` to the same language specified by `mkt` unless the user wants the user interface strings displayed in a different language. |
+String | No |
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: web-search.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/web-search -->
+
+# Web search tool (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+The web search tool in Foundry Agent Service enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations, helping you build agents that provide current, factual information to users.
+
+Important
+
+- Web Search (preview) uses Grounding with Bing Search and Grounding with Bing Custom Search, which are
+[First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services)governed by these[Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise)and the[Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). - The Microsoft
+[Data Protection Addendum](https://aka.ms/dpa)doesn't apply to data sent to Grounding with Bing Search and Grounding with Bing Custom Search. When you use Grounding with Bing Search and Grounding with Bing Custom Search, data transfers occur outside compliance and geographic boundaries. - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See
+[pricing](https://www.microsoft.com/bing/apis/grounding-pricing)for details. - See the
+[management section](#administrator-control-for-the-web-search-tool)for information about how Azure admins can manage access to use of web search.
+
+### Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+- A
+[basic or standard agent environment](../../environment-setup?view=foundry) - The latest prerelease package. See the
+[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true#install-and-authenticate)for details. - Azure credentials configured for authentication (such as
+`DefaultAzureCredential`
+
+). - Environment variables configured:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+(or`PROJECT_ENDPOINT`
+
+): Your Foundry project endpoint URL.`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+(or`MODEL_DEPLOYMENT_NAME`
+
+): Your model deployment name.
+
+
+## Code examples
+
+Note
+
+See [best practices](../../concepts/tool-best-practice?view=foundry) for information on optimizing tool usage.
+
+### Set up the AI Project client
+
+The following example shows how to set up the AI Project client by using the Azure Identity library for authentication.
+
+```
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, WebSearchPreviewTool, ApproximateLocation
+load_dotenv()
+project_client = AIProjectClient(
+endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+openai_client = project_client.get_openai_client()
+```
+
+
+### Create an agent with the web search tool
+
+The following example shows how to create an agent version that uses the web search tool.
+
+```
+from azure.ai.projects.models import PromptAgentDefinition, WebSearchPreviewTool, ApproximateLocation
+agent = project_client.agents.create_version(
+agent_name="MyAgent",
+definition=PromptAgentDefinition(
+model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+instructions="You are a helpful assistant that can search the web",
+tools=[
+WebSearchPreviewTool(
+user_location=ApproximateLocation(country="GB", city="London", region="London")
+)
+],
+),
+description="Agent for web search.",
+)
+```
+
+
+### Expected output
+
+The following is an example of the expected output when creating an agent with the web search tool:
+
+```
+Agent created (id: 12345, name: MyAgent, version: 1)
+```
+
+
+In this example, you use the agent to perform the web search in the given location. The example in this section uses synchronous calls. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample13_WebSearch.md) in the Azure SDK for .NET repository on GitHub.
+
+```
+// Create project client and read the environment variables, which will be used in the next steps.
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Create an agent capable of using Web search and set the location to "London" in the WebSearchToolLocation.
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+Instructions = "You are a helpful assistant that can search the web",
+Tools = {
+ResponseTool.CreateWebSearchTool(userLocation: WebSearchToolLocation.CreateApproximateLocation(
+country: "GB",
+city: "London",
+region: "London"
+)
+),
+}
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+agentName: "myAgent",
+options: new(agentDefinition));
+// Ask a question related to London.
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ResponseResult response = responseClient.CreateResponse("Show me the latest London Underground service updates");
+// Create the response and throw an exception if the response contains an error.
+Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+Console.WriteLine(response.GetOutputText());
+// Delete the created agent version.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+
+## Expected output
+
+The following is an example of the expected output when running the C# code:
+
+```
+Creating agent with web search tool...
+Agent created (id: 12345, name: myAgent, version: 1)
+Response: The agent returns a grounded response that includes citations.
+Agent deleted
+```
+
+
+### Create a response by using the web search tool
+
+The following example shows how to create a response by using an agent that has the web search tool enabled.
+
+```
+curl --request POST \
+--url "$PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"agent": {
+"type": "agent_reference",
+"name": "{{agentVersion.name}}"
+},
+"input": [{
+"type": "message",
+"role": "user",
+"content": [
+{
+"type": "input_text",
+"text": "how is the weather in seattle today?"
+}
+]
+}],
+"stream": true
+}'
+```
+
+
+### Expected output
+
+The following example shows the expected output when using the web search tool via the REST API:
+
+```
+{
+"id": "resp_abc123xyz",
+"object": "response",
+"created_at": 1702345678,
+"status": "completed",
+"output_text": "Here is a grounded response with citations.",
+"output_items": [
+{
+"type": "message",
+"content": [
+{
+"type": "output_text",
+"text": "Here is a grounded response with citations.",
+"annotations": [
+{
+"type": "url_citation",
+"url": "https://contoso.com/example-source",
+"start_index": 0,
+"end_index": 43
+}
+]
+}
+]
+}
+]
+}
+```
+
+
+## Use the web search tool with TypeScript
+
+The following TypeScript example demonstrates how to create an agent with the web search tool. For an example that uses JavaScript, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentWebSearch.js) example in the Azure SDK for JavaScript repository on GitHub.
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+export async function main(): Promise<void> {
+// Create AI Project client
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+const openAIClient = await project.getOpenAIClient();
+console.log("Creating agent with web search tool...");
+// Create Agent with web search tool
+const agent = await project.agents.createVersion("agent-web-search", {
+kind: "prompt",
+model: deploymentName,
+instructions: "You are a helpful assistant that can search the web",
+tools: [
+{
+type: "web_search_preview",
+user_location: {
+type: "approximate",
+country: "GB",
+city: "London",
+region: "London",
+},
+},
+],
+});
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+// Create a conversation for the agent interaction
+const conversation = await openAIClient.conversations.create();
+console.log(`Created conversation (id: ${conversation.id})`);
+// Send a query to search the web
+console.log("\nSending web search query...");
+const response = await openAIClient.responses.create(
+{
+conversation: conversation.id,
+input: "Show me the latest London Underground service updates",
+},
+{
+body: { agent: { name: agent.name, type: "agent_reference" } },
+},
+);
+console.log(`Response: ${response.output_text}`);
+// Clean up resources
+console.log("\nCleaning up resources...");
+await openAIClient.conversations.delete(conversation.id);
+console.log("Conversation deleted");
+await project.agents.deleteVersion(agent.name, agent.version);
+console.log("Agent deleted");
+console.log("\nWeb search sample completed!");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+### Expected output
+
+The following example shows the expected output when running the TypeScript code:
+
+```
+Creating agent with web search tool...
+Agent created (id: 12345, name: agent-web-search, version: 1)
+Created conversation (id: 67890)
+Sending web search query...
+Response: The agent returns a grounded response that includes citations.
+Cleaning up resources...
+Conversation deleted
+Agent deleted
+Web search sample completed!
+```
+
+
+## Configure the web search tool
+
+You can configure web search behavior when you create your agent.
+
+### Options
+
+`user_location`
+
+: Helps web search return results relevant to a user’s geography. Use an approximate location when you want results localized to a country/region/city.`search_context_size`
+
+: Controls how much context window space to use for the search. Supported values are`low`
+
+,`medium`
+
+, and`high`
+
+. The default is`medium`
+
+.
+
+## Security and privacy considerations
+
+- Treat web search results as untrusted input. Validate and sanitize data before you use it in downstream systems.
+- Avoid sending secrets or sensitive personal data in prompts that might be forwarded to external services.
+- Review the terms, privacy, and data boundary notes in the preview section of this article before enabling web search in production.
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| Web search isn’t used and no citations appear | The model didn’t determine that web search was needed, or the prompt didn’t request current information | Update your instructions to explicitly allow web search for up-to-date questions, and ask a query that requires current information. |
+| Requests fail after enabling web search | Web search is disabled at the subscription level | Ask an admin to enable web search. See
+|
+
+## Administrator control for the web search tool
+
+You can enable or disable the web search tool in Foundry Agent Service at the subscription level by using Azure CLI. This setting applies to all accounts within the specified subscription.
+
+### Prerequisites
+
+Before running the following commands, make sure that you:
+
+- Have
+[Azure CLI](/en-us/cli/azure/install-azure-cli)installed. - Are signed in to Azure by using
+`az login`
+
+. - Have Owner or Contributor access to the subscription.
+
+### Disable Bing Web Search
+
+To disable the web search tool for all accounts in a subscription, run the following command:
+
+```
+az feature register \
+--name OpenAI.BlockedTools.web_search \
+--namespace Microsoft.CognitiveServices \
+--subscription "<subscription-id>"
+```
+
+
+This command disables web search across all accounts in the specified subscription.
+
+### Enable Bing Web Search
+
+To enable the web search tool, run the following command:
+
+```
+az feature unregister \
+--name OpenAI.BlockedTools.web_search \
+--namespace Microsoft.CognitiveServices \
+--subscription "<subscription-id>"
+```
+
+
+This command enables web search functionality for all accounts in the subscription.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: model-context-protocol-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples -->
+
+# How to use the Model Context Protocol (MCP) tool (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+This article provides code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
+
+## Prerequisites
+
+- A
+[configured MCP server](model-context-protocol?view=foundry-classic#setup), such as the GitHub MCP server.
+
+Install the
+
+`Azure.AI.Agents.Persistent`
+
+and`Azure.Identity`
+
+NuGet packages to your project:`dotnet add package Azure.AI.Agents.Persistent dotnet add package Azure.Identity`
+
+
+Note
+
+**MCP server authentication**: Many MCP servers require authentication through custom headers, such as API keys, Bearer tokens, or OAuth credentials. Use the `UpdateHeader`
+
+method (C#) or `update_headers`
+
+method (Python) to pass authentication headers to your MCP server. For more information about authentication and security considerations, see the [How it works](model-context-protocol?view=foundry&preserve-view=true#how-it-works) section in the **Connect to Model Context Protocol servers** documentation.
+
+## Code samples
+
+## Create a project client
+
+Make sure your code includes the required `using`
+
+statements for this example.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+```
+
+
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
+
+Note
+
+You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent/samples).
+
+```
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var mcpServerUrl = System.Environment.GetEnvironmentVariable("MCP_SERVER_URL");
+var mcpServerLabel = System.Environment.GetEnvironmentVariable("MCP_SERVER_LABEL");
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Create the MCP tool definition
+
+Create the MCP tool definition and configure the allowed tools.
+
+```
+// Create MCP tool definition
+MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
+// Configure allowed tools (optional)
+string searchApiCode = "search_azure_rest_api_code";
+mcpTool.AllowedTools.Add(searchApiCode);
+```
+
+
+Use the `MCPToolDefinition`
+
+during the agent initialization.
+
+```
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "my-mcp-agent",
+instructions: "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
+tools: [mcpTool]);
+```
+
+
+## Create a thread and add a message
+
+Create the thread, add the message containing a question for the agent, and start the run with MCP tool resources.
+
+```
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
+// Create message to thread
+PersistentThreadMessage message = agentClient.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"Please summarize the Azure REST API specifications Readme");
+MCPToolResource mcpToolResource = new(mcpServerLabel);
+mcpToolResource.UpdateHeader("SuperSecret", "123456");
+ToolResources toolResources = mcpToolResource.ToToolResources();
+// Run the agent with MCP tool resources
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent, toolResources);
+// Handle run execution and tool approvals
+while (run.Status == RunStatus.Queued || run.Status == RunStatus.InProgress || run.Status == RunStatus.RequiresAction)
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(1000));
+run = agentClient.Runs.GetRun(thread.Id, run.Id);
+if (run.Status == RunStatus.RequiresAction && run.RequiredAction is SubmitToolApprovalAction toolApprovalAction)
+{
+var toolApprovals = new List<ToolApproval>();
+foreach (var toolCall in toolApprovalAction.SubmitToolApproval.ToolCalls)
+{
+if (toolCall is RequiredMcpToolCall mcpToolCall)
+{
+Console.WriteLine($"Approving MCP tool call: {mcpToolCall.Name}, Arguments: {mcpToolCall.Arguments}");
+toolApprovals.Add(new ToolApproval(mcpToolCall.Id, approve: true)
+{
+Headers = { ["SuperSecret"] = "123456" }
+});
+}
+}
+if (toolApprovals.Count > 0)
+{
+run = agentClient.Runs.SubmitToolOutputsToRun(thread.Id, run.Id, toolApprovals: toolApprovals);
+}
+}
+}
+```
+
+
+## Print the messages
+
+```
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+Console.Write(textItem.Text);
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}>");
+}
+Console.WriteLine();
+}
+}
+```
+
+
+## Optional: Delete the agent
+
+When you finish using your agent, delete it by using the following code:
+
+```
+agentClient.Threads.DeleteThread(threadId: thread.Id);
+agentClient.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+
+## Create an Agent with the MCP Tool
+
+The following code sample begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client. It then creates an agent, adds a message to a thread, and runs the agent.
+
+```
+# Import necessary libraries
+import os, time
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import (
+ListSortOrder,
+McpTool,
+RequiredMcpToolCall,
+RunStepActivityDetails,
+SubmitToolApprovalAction,
+ToolApproval,
+)
+# Get MCP server configuration from environment variables
+mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://gitmcp.io/Azure/azure-rest-api-specs")
+mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "github")
+project_client = AIProjectClient(
+endpoint=os.environ["PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+# Initialize agent MCP tool
+mcp_tool = McpTool(
+server_label=mcp_server_label,
+server_url=mcp_server_url,
+allowed_tools=[], # Optional: specify allowed tools
+)
+# You can also add or remove allowed tools dynamically
+search_api_code = "search_azure_rest_api_code"
+mcp_tool.allow_tool(search_api_code)
+print(f"Allowed tools: {mcp_tool.allowed_tools}")
+# Create agent with MCP tool and process agent run
+with project_client:
+agents_client = project_client.agents
+# Create a new agent.
+# NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-mcp-agent",
+instructions="You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
+tools=mcp_tool.definitions,
+)
+print(f"Created agent, ID: {agent.id}")
+print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Create message to thread
+message = agents_client.messages.create(
+thread_id=thread.id,
+role="user",
+content="Please summarize the Azure REST API specifications Readme",
+)
+print(f"Created message, ID: {message.id}")
+# Create and process agent run in thread with MCP tools
+mcp_tool.update_headers("SuperSecret", "123456")
+# mcp_tool.set_approval_mode("never") # Uncomment to disable approval requirement
+run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
+print(f"Created run, ID: {run.id}")
+while run.status in ["queued", "in_progress", "requires_action"]:
+time.sleep(1)
+run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
+if run.status == "requires_action" and isinstance(run.required_action, SubmitToolApprovalAction):
+tool_calls = run.required_action.submit_tool_approval.tool_calls
+if not tool_calls:
+print("No tool calls provided - cancelling run")
+agents_client.runs.cancel(thread_id=thread.id, run_id=run.id)
+break
+tool_approvals = []
+for tool_call in tool_calls:
+if isinstance(tool_call, RequiredMcpToolCall):
+try:
+print(f"Approving tool call: {tool_call}")
+tool_approvals.append(
+ToolApproval(
+tool_call_id=tool_call.id,
+approve=True,
+headers=mcp_tool.headers,
+)
+)
+except Exception as e:
+print(f"Error approving tool_call {tool_call.id}: {e}")
+print(f"tool_approvals: {tool_approvals}")
+if tool_approvals:
+agents_client.runs.submit_tool_outputs(
+thread_id=thread.id, run_id=run.id, tool_approvals=tool_approvals
+)
+print(f"Current run status: {run.status}")
+print(f"Run completed with status: {run.status}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Display run steps and tool calls
+run_steps = agents_client.run_steps.list(thread_id=thread.id, run_id=run.id)
+# Loop through each step
+for step in run_steps:
+print(f"Step {step['id']} status: {step['status']}")
+# Check if there are tool calls in the step details
+step_details = step.get("step_details", {})
+tool_calls = step_details.get("tool_calls", [])
+if tool_calls:
+print(" MCP Tool calls:")
+for call in tool_calls:
+print(f" Tool Call ID: {call.get('id')}")
+print(f" Type: {call.get('type')}")
+if isinstance(step_details, RunStepActivityDetails):
+for activity in step_details.activities:
+for function_name, function_definition in activity.tools.items():
+print(
+f' The function {function_name} with description "{function_definition.description}" will be called.:'
+)
+if len(function_definition.parameters) > 0:
+print(" Function parameters:")
+for argument, func_argument in function_definition.parameters.properties.items():
+print(f" {argument}")
+print(f" Type: {func_argument.type}")
+print(f" Description: {func_argument.description}")
+else:
+print("This function has no parameters")
+print() # add an extra newline between steps
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+print("\nConversation:")
+print("-" * 50)
+for msg in messages:
+if msg.text_messages:
+last_text = msg.text_messages[-1]
+print(f"{msg.role.upper()}: {last_text.text.value}")
+print("-" * 50)
+# Example of dynamic tool management
+print(f"\nDemonstrating dynamic tool management:")
+print(f"Current allowed tools: {mcp_tool.allowed_tools}")
+# Remove a tool
+try:
+mcp_tool.disallow_tool(search_api_code)
+print(f"After removing {search_api_code}: {mcp_tool.allowed_tools}")
+except ValueError as e:
+print(f"Error removing tool: {e}")
+# Clean-up and delete the agent once the run is finished.
+# NOTE: Comment out this line if you plan to reuse the agent later.
+agents_client.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+## Next steps
+
+Follow the [REST API quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and `API_VERSION`
+
+.
+
+## Create an agent with the MCP tool enabled
+
+To make the MCP tool available to your agent, initialize a tool with the server endpoint, server label, and more:
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d "{
+"instructions": "You are a customer support chatbot. Use the tools provided and your knowledge base to best respond to customer queries.",
+"tools": [
+{
+"type": "mcp",
+"server_label": "<unique name for your MCP server>",
+"server_url": "<your MCP server URL>",
+"allowed_tools": ["<tool_name>"], # optional
+}
+],
+"name": "my-assistant",
+"model": "gpt-4o",
+}"
+```
+
+
+## Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+## Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "<user input related to the MCP server you connect>"
+}'
+```
+
+
+## Create a run and check the output
+
+Create a run to pass headers for the tool. You can see that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+The `require_approval`
+
+parameter is optional. Supported values are:
+
+`always`
+
+: A developer needs to provide approval for every call. If you don't provide a value, this value is the default.`never`
+
+: No approval is required.`{"never":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that don't require approval.`{"always":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that require approval.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "<agent_id>",
+"tool_resources": {
+"mcp": [
+{
+"server_label": "<the same unique name you provided during agent creation>",
+"require_approval": "always" #always by default
+"headers": {
+"Authorization": "Bearer <token>",
+}
+}
+]
+},
+}'
+```
+
+
+## Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+If the model tries to invoke a tool in your MCP server with approval required, you get a run with `requires_action`
+
+status:
+
+```
+{
+"id": "run_123",
+"object": "thread.run",
+...
+"status": "requires_action",
+...
+"required_action": {
+"type": "submit_tool_approval",
+"submit_tool_approval": {
+"tool_calls": [
+{
+"id": "call_123",
+"type": "mcp",
+"arguments": "{...}",
+"name": "<tool_name>",
+"server_label": "<server_label_you_provided>"
+}
+]
+}
+},
+...
+"tools": [
+{
+"type": "mcp",
+"server_label": "<server_label_you_provided>",
+"server_url": "<server_url_you_provided>",
+"allowed_tools": null
+}
+],
+...
+}
+```
+
+
+Carefully review the tool and arguments to be passed so that you can make an informed decision for approval.
+
+## Submit your approval
+
+If you decide to approve, set the `approve`
+
+parameter to `true`
+
+with the `id`
+
+value for the preceding tool calls:
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123/submit_tool_outputs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"tool_approvals": [
+{
+"tool_call_id": "call_abc123",
+"approve": true,
+"headers": {
+}
+}
+]
+}
+```
+
+
+## Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: image-generation.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/image-generation -->
+
+# Use the image generation tool (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Important
+
+- The Image Generation tool uses the
+`gpt-image-1`
+
+model. Learn about intended uses, capabilities, limitations, risks, and considerations in the[Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note?view=foundry&tabs=image). - You also need to deploy a compatible Azure OpenAI model in the same Foundry project that you're using. Compatible models include
+`gpt-4o`
+
+,`gpt-4o-mini`
+
+,`gpt-4.1`
+
+,`gpt-4.1-mini`
+
+,`gpt-4.1-nano`
+
+,`o3`
+
+, and`gpt-5`
+
+series models.
+
+The Foundry Agent Service enables image generation by using the image generation tool in conversations and multistep workflows. Use it to generate images from text prompts and to return base64-encoded image output that you can save to a file.
+
+## Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+- An Azure account with an active subscription.
+- A Foundry project.
+- A basic or standard agent environment. See
+[agent environment setup](../../environment-setup?view=foundry). - Permissions to create and manage agent versions in the project.
+- Two model deployments in the same Foundry project:
+- A compatible Azure OpenAI model deployment for the agent (for example,
+`gpt-4o`
+
+). - An image generation model deployment (
+`gpt-image-1`
+
+).
+
+- A compatible Azure OpenAI model deployment for the agent (for example,
+
+Set these environment variables for the samples:
+
+`FOUNDRY_PROJECT_ENDPOINT`
+
+`FOUNDRY_MODEL_DEPLOYMENT_NAME`
+
+`IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME`
+
+
+## Set up image generation
+
+- Deploy your orchestrator model (for example,
+`gpt-4o`
+
+) to your Foundry project. - Deploy
+`gpt-image-1`
+
+to the same Foundry project. - Confirm your region and model support for image generation. See
+[Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry). - Configure the environment variables listed in the prerequisites.
+
+## Code examples
+
+Before you start, make sure you have the latest prerelease package. For more information, see the [quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true).
+
+## Create an agent with the image generation tool
+
+This sample creates an agent with the image generation tool, generates an image, and saves it to a file.
+
+```
+import base64
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, ImageGenTool
+project_client = AIProjectClient(
+endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+with project_client:
+openai_client = project_client.get_openai_client()
+agent = project_client.agents.create_version(
+agent_name="agent-image-generation",
+definition=PromptAgentDefinition(
+model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+instructions="Generate images based on user prompts.",
+tools=[ImageGenTool(quality="low", size="1024x1024")],
+),
+description="Agent for image generation.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+response = openai_client.responses.create(
+input="Generate an image of the Microsoft logo.",
+extra_headers={
+"x-ms-oai-image-generation-deployment": os.environ["IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME"],
+},
+extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+print(f"Response created: {response.id}")
+image_items = [item for item in (response.output or []) if item.type == "image_generation_call"]
+if image_items and getattr(image_items[0], "result", None):
+print("Downloading generated image...")
+file_path = os.path.abspath("microsoft.png")
+with open(file_path, "wb") as f:
+f.write(base64.b64decode(image_items[0].result))
+print(f"Image downloaded and saved to: {file_path}")
+else:
+print("No image data found in the response.")
+project_client.agents.delete_version(agent.name, agent.version)
+print("Agent deleted")
+```
+
+
+## Sample for image generation in Azure.AI.Projects.OpenAI.
+
+In this example, you generate an image based on a simple prompt. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample2_Image_Generation.md) example in the Azure SDK for .NET repository on GitHub.
+
+```
+// Read the environment variables
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+var imageGenerationDeploymentName = System.Environment.GetEnvironmentVariable("IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME");
+// Create the AI Project client with custom header policy
+AIProjectClientOptions projectOptions = new();
+projectOptions.AddPolicy(new HeaderPolicy(imageGenerationDeploymentName), PipelinePosition.PerCall);
+// Create the AI Project client
+AIProjectClient projectClient = new(
+endpoint: new Uri(projectEndpoint),
+tokenProvider: new DefaultAzureCredential(),
+options: projectOptions
+);
+// Use the client to create the versioned agent object.
+// To generate images, we need to provide agent with the ImageGenerationTool
+// when creating this tool. The ImageGenerationTool parameters include
+// the image generation model, image quality and resolution.
+// Supported image generation models include gpt-image-1.
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+Instructions = "Generate images based on user prompts.",
+Tools = {
+ResponseTool.CreateImageGenerationTool(
+model: imageGenerationDeploymentName,
+quality: ImageGenerationToolQuality.Low,
+size:ImageGenerationToolSize.W1024xH1024
+)
+}
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+agentName: "myAgent",
+options: new(agentDefinition));
+// To use image generation, provide the custom header to web requests,
+// which contain the model deployment name, for example:
+// `x-ms-oai-image-generation-deployment: gpt-image-1`.
+// To implement it, create a custom header policy.
+internal class HeaderPolicy(string image_deployment) : PipelinePolicy
+{
+private const string image_deployment_header = "x-ms-oai-image-generation-deployment";
+public override void Process(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int currentIndex)
+{
+message.Request.Headers.Add(image_deployment_header, image_deployment);
+ProcessNext(message, pipeline, currentIndex);
+}
+public override async ValueTask ProcessAsync(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int currentIndex)
+{
+// Add your desired header name and value
+message.Request.Headers.Add(image_deployment_header, image_deployment);
+await ProcessNextAsync(message, pipeline, currentIndex);
+}
+}
+// Use the policy to create the `OpenAIClient` object and create
+// the `ResponsesClient` by asking the Agent to generate the image.
+ProjectOpenAIClientOptions options = new();
+ProjectOpenAIClient openAIClient = projectClient.GetProjectOpenAIClient();
+ProjectResponsesClient responseClient = openAIClient.GetProjectResponsesClientForAgent(new AgentReference(name: agentVersion.Name));
+ResponseResult response = responseClient.CreateResponse("Generate parody of Newton with apple.");
+// Parse the ResponseResult object and save the generated image.
+foreach (ResponseItem item in response.OutputItems)
+{
+if (item is ImageGenerationCallResponseItem imageItem)
+{
+File.WriteAllBytes("newton.png", imageItem.ImageResultBytes.ToArray());
+Console.WriteLine($"Image downloaded and saved to: {Path.GetFullPath("newton.png")}");
+}
+}
+// Clean up resources by deleting the Agent.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+
+### Expected output
+
+When you run the sample, you see the following output:
+
+```
+Agent created (id: <agent-id>, name: myAgent, version: 1)
+Image downloaded and saved to: /path/to/newton.png
+Agent deleted
+```
+
+
+## Create an agent with the image generation tool
+
+The following example creates an agent that uses the image generation tool.
+
+```
+curl --request POST \
+--url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H 'Content-Type: application/json' \
+-d '{
+"description": "Test agent for image generation capabilities",
+"definition": {
+"kind": "prompt",
+"model": "{{model}}",
+"tools": [
+{
+"type": "image_generation"
+}
+],
+"instructions": "You are a creative assistant that generates images when requested. Please respond to image generation requests clearly and concisely."
+}
+}'
+```
+
+
+## Create a response
+
+```
+curl --request POST \
+--url $FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H 'Content-Type: application/json' \
+-H "x-ms-oai-image-generation-deployment: $IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME" \
+-d '{
+"agent": {
+"type": "agent_reference",
+"name": "{{agentVersion.name}}",
+"version": "{{agentVersion.version}}"
+},
+"metadata": {
+"test_response": "image_generation_enabled",
+"test_scenario": "basic_imagegen"
+},
+"input": [{
+"type": "message",
+"role": "user",
+"content": [
+{
+"type": "input_text",
+"text": "Please generate small image of a sunset over a mountain lake."
+}
+]
+}],
+"background": true,
+"stream": false
+}'
+```
+
+
+## Create an agent with image generation tool
+
+This sample demonstrates how to create an AI agent with image generation capabilities by using the Azure AI Projects client. The agent generates images based on text prompts and saves them to files. For a JavaScript example, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentImageGeneration.js) in the Azure SDK for JavaScript repository on GitHub.
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import * as fs from "fs";
+import * as path from "path";
+import { fileURLToPath } from "url";
+import "dotenv/config";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName =
+process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const imageDeploymentName =
+process.env["IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME"] || "<image generation deployment name>";
+export async function main(): Promise<void> {
+// Create AI Project client
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+const openAIClient = await project.getOpenAIClient();
+console.log("Creating agent with image generation tool...");
+// Create Agent with image generation tool
+const agent = await project.agents.createVersion("agent-image-generation", {
+kind: "prompt",
+model: deploymentName,
+instructions: "Generate images based on user prompts",
+tools: [
+{
+type: "image_generation",
+quality: "low",
+size: "1024x1024",
+},
+],
+});
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+// Generate image using the agent
+console.log("\nGenerating image...");
+const response = await openAIClient.responses.create(
+{
+input: "Generate an image of Microsoft logo.",
+},
+{
+body: { agent: { name: agent.name, type: "agent_reference" } },
+headers: { "x-ms-oai-image-generation-deployment": imageDeploymentName },
+},
+);
+console.log(`Response created: ${response.id}`);
+// Extract and save the generated image
+const imageData = response.output?.filter((output) => output.type === "image_generation_call");
+if (imageData && imageData.length > 0 && imageData[0].result) {
+console.log("Downloading generated image...");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const filename = "microsoft.png";
+const filePath = path.join(__dirname, filename);
+// Decode base64 and save to file
+const imageBuffer = Buffer.from(imageData[0].result, "base64");
+fs.writeFileSync(filePath, imageBuffer);
+console.log(`Image downloaded and saved to: ${path.resolve(filePath)}`);
+} else {
+console.log("No image data found in the response.");
+}
+// Clean up resources
+console.log("\nCleaning up resources...");
+await project.agents.deleteVersion(agent.name, agent.version);
+console.log("Agent deleted");
+console.log("\nImage generation sample completed!");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+### Expected output
+
+When you run the sample, you see the following output:
+
+```
+Creating agent with image generation tool...
+Agent created (id: <agent-id>, name: agent-image-generation, version: 1)
+Generating image...
+Response created: <response-id>
+Downloading generated image...
+Image downloaded and saved to: /path/to/microsoft.png
+Cleaning up resources...
+Agent deleted
+```
+
+
+## When to use the image generation tool
+
+Compared to Azure OpenAI's Image API, the image generation tool in Agent Service offers several advantages:
+
+**Streaming**: You can display partial image outputs during generation to improve perceived latency.
+
+**Flexible inputs**: The tool accepts image file IDs as inputs, in addition to raw image bytes.
+
+## Optional parameters
+
+| Parameter | Description |
+|---|---|
+`size` |
+Image size. One of `1024x1024` , `1024x1536` , `1536x1024` , or `auto` . |
+`quality` |
+Image quality. One of `low` , `medium` , `high` , or `auto` . |
+`background` |
+Background type. One of `transparent` , `opaque` , or `auto` . |
+`output_format` |
+Output format. One of `png` , `webp` , or `jpeg` . |
+`output_compression` |
+Compression level for `webp` and `jpeg` output (0-100). |
+`moderation` |
+Moderation level for the generated image. One of `auto` or `low` . |
+`partial_images` |
+Number of partial images to generate in streaming mode (0-3). |
+`input_image_mask` |
+Optional mask for inpainting. Provide `image_url` (base64) or `file_id` . |
+
+Use the Responses API if you want to:
+
+- Build conversational image experiences with GPT Image.
+- Stream partial image results during generation for a smoother user experience.
+
+## Write effective text-to-image prompts
+
+Describe the subject you want to see and the visual style you want. You can use words like "draw" or "edit" to guide the model.
+
+Content filtering can block image generation if the service detects unsafe content in your prompt. For more information, see [Content filter](../../../openai/concepts/content-filter?view=foundry).
+
+Tip
+
+For a thorough look at how you can tweak your text prompts to generate different kinds of images, see [Image prompt engineering techniques](../../../openai/concepts/gpt-4-v-prompt-engineering?view=foundry).
+
+## Verify the tool ran
+
+Use either of these approaches to confirm that image generation ran successfully:
+
+- In the response payload, look for an output item with
+`type`
+
+set to`image_generation_call`
+
+. - In the Foundry portal, open tracing/debug for your run to confirm the tool call and inspect inputs and outputs.
+
+If you see only text output and no `image_generation_call`
+
+item, the request might not be routed to image generation. Review the troubleshooting section.
+
+## Troubleshooting
+
+Use these checks to unblock common configuration issues:
+
+- Verify both deployments exist in the same Foundry project: your orchestrator model (for example,
+`gpt-4o`
+
+) and`gpt-image-1`
+
+. - Verify the header
+`x-ms-oai-image-generation-deployment`
+
+is present on the Responses request and that its value matches your image generation deployment name. - Verify
+`FOUNDRY_MODEL_DEPLOYMENT_NAME`
+
+is set to your orchestrator deployment name, not the image generation deployment. - If your prompt doesn’t produce an image, check whether content filtering blocked the request. See
+[Content filter](../../../openai/concepts/content-filter?view=foundry). - If the tool isn't available in your region or with your orchestrator model, see
+[Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: deep-research-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/deep-research-samples -->
+
+# How to use the Deep Research tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+- The
+**parent**Foundry project resource and the contained`o3-deep-research`
+
+model and GPT models**must exist**in the same Azure subscription and region. Supported regions are**West US**and**Norway East**. - This tool is only available in
+`2025-05-15-preview`
+
+API. We highly recommend that you migrate to use the`2025-11-15-preview`
+
+API. This enables you to use the`o3-deep-research`
+
+model with[web search](../tools/web-search?view=foundry-classic)or MCP tool.
+
+Use this article to learn how to use the Deep Research tool with the Azure AI Projects SDK, including code examples and setup instructions.
+
+## Prerequisites
+
+The requirements in the
+
+[Deep Research overview](deep-research?view=foundry-classic).Your Microsoft Foundry Project endpoint.
+
+You can find your endpoint in the
+
+**overview**for your project in the[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), under**Libraries**>**Foundry**.Save this endpoint to an environment variable named
+
+`PROJECT_ENDPOINT`
+
+.The deployment names of your
+
+`o3-deep-research-model`
+
+and`gpt-4o`
+
+models. You can find them in**Models + Endpoints**in the left navigation menu.Save the name of your
+
+`o3-deep-research`
+
+deployment name as an environment variable named`DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME`
+
+and the`gpt-4o`
+
+deployment name as an environment variable named`MODEL_DEPLOYMENT_NAME`
+
+.
+
+Note
+
+Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
+
+The connection ID for your Grounding with Bing Search resource. You can find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Then selecting**Connected resources**. Then select your bing resource.Copy the ID, and save it to an environment variable named
+
+`AZURE_BING_CONECTION_ID`
+
+.
+
+## Create an agent with the Deep Research tool
+
+Note
+
+You need version `1.1.0-beta.4`
+
+or later of the `Azure.AI.Agents.Persistent`
+
+package, and the `Azure.Identity`
+
+package.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using System.Collections.Generic;
+using System.Text;
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var deepResearchModelDeploymentName = System.Environment.GetEnvironmentVariable("DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME");
+var connectionId = System.Environment.GetEnvironmentVariable("AZURE_BING_CONECTION_ID");
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+// DeepResearchToolDefinition should be initialized with the name of deep research model and the Bing connection ID,
+// needed to perform the search in the internet.
+DeepResearchToolDefinition deepResearch = new(
+new DeepResearchDetails(
+model: deepResearchModelDeploymentName,
+bingGroundingConnections: [
+new DeepResearchBingGroundingConnection(connectionId)
+]
+)
+);
+// NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "Science Tutor",
+instructions: "You are a helpful Agent that assists in researching scientific topics.",
+tools: [deepResearch]
+);
+//Create a thread and run and wait for the run to complete.
+PersistentAgentThreadCreationOptions threadOp = new();
+threadOp.Messages.Add(new ThreadMessageOptions(
+role: MessageRole.User,
+content: "Research the current state of studies on orca intelligence and orca language, " +
+"including what is currently known about orcas' cognitive capabilities, " +
+"communication systems and problem-solving reflected in recent publications in top their scientific" +
+"journals like Science, Nature and PNAS."
+));
+ThreadAndRunOptions opts = new()
+{
+ThreadOptions = threadOp,
+};
+ThreadRun run = client.CreateThreadAndRun(
+assistantId: agent.Id,
+options: opts
+);
+Console.WriteLine("Start processing the message... this may take a few minutes to finish. Be patient!");
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = client.Runs.GetRun(run.ThreadId, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress);
+// We will create a helper function PrintMessagesAndSaveSummary, which prints the response from the agent,
+// and replaces the reference placeholders by links in Markdown format.
+// It also saves the research summary in the file for convenience.
+static void PrintMessagesAndSaveSummary(IEnumerable<PersistentThreadMessage> messages, string summaryFilePath)
+{
+string lastAgentMessage = default;
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+StringBuilder sbAgentMessage = new();
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+string response = textItem.Text;
+if (textItem.Annotations != null)
+{
+foreach (MessageTextAnnotation annotation in textItem.Annotations)
+{
+if (annotation is MessageTextUriCitationAnnotation uriAnnotation)
+{
+response = response.Replace(uriAnnotation.Text, $" [{uriAnnotation.UriCitation.Title}]({uriAnnotation.UriCitation.Uri})");
+}
+}
+}
+if (threadMessage.Role == MessageRole.Agent)
+sbAgentMessage.Append(response);
+Console.Write($"Agent response: {response}");
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}");
+}
+Console.WriteLine();
+}
+if (threadMessage.Role == MessageRole.Agent)
+lastAgentMessage = sbAgentMessage.ToString();
+}
+if (!string.IsNullOrEmpty(lastAgentMessage))
+{
+File.WriteAllText(
+path: summaryFilePath,
+contents: lastAgentMessage);
+}
+}
+//List the messages, print them and save the result in research_summary.md file.
+//The file will be saved next to the compiled executable.
+Pageable<PersistentThreadMessage> messages
+= client.Messages.GetMessages(
+threadId: run.ThreadId, order: ListSortOrder.Ascending);
+PrintMessagesAndSaveSummary([.. messages], "research_summary.md");
+// NOTE: Comment out these two lines if you want to delete the agent.
+client.Threads.DeleteThread(threadId: run.ThreadId);
+client.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+
+The name of your Grounding with Bing Search resource name. You can find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Select**Connected resources**, then select your Grounding with Bing Search resource.Copy the ID, and save it to an environment variable named
+
+`AZURE_BING_CONECTION_ID`
+
+.Save this endpoint to an environment variable named
+
+`BING_RESOURCE_NAME`
+
+.
+
+## Create an agent with the Deep Research tool
+
+Note
+
+You need the latest preview version of the `@azure/ai-projects`
+
+package.
+
+```
+import type {
+MessageTextContent,
+ThreadMessage,
+DeepResearchToolDefinition,
+MessageTextUrlCitationAnnotation,
+} from "@azure/ai-agents";
+import { AgentsClient, isOutputOfType } from "@azure/ai-agents";
+import { DefaultAzureCredential } from "@azure/identity";
+import "dotenv/config";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project endpoint>";
+const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
+const deepResearchModelDeploymentName =
+process.env["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"];
+const bingConnectionId = process.env["AZURE_BING_CONNECTION_ID"] || "<connection-id>";
+/**
+* Fetches and prints new agent response from the thread
+* @param threadId - The thread ID
+* @param client - The AgentsClient instance
+* @param lastMessageId - The ID of the last message processed
+* @returns The ID of the newest message, or undefined if no new message
+*/
+async function fetchAndPrintNewAgentResponse(
+threadId: string,
+client: AgentsClient,
+lastMessageId?: string,
+): Promise<string | undefined> {
+const messages = client.messages.list(threadId);
+let latestMessage: ThreadMessage | undefined;
+for await (const msg of messages) {
+if (msg.role === "assistant") {
+latestMessage = msg;
+break;
+}
+}
+if (!latestMessage || latestMessage.id === lastMessageId) {
+return lastMessageId;
+}
+console.log("\nAgent response:");
+// Print text content
+for (const content of latestMessage.content) {
+if (isOutputOfType<MessageTextContent>(content, "text")) {
+console.log(content.text.value);
+}
+}
+const urlCitations = getUrlCitationsFromMessage(latestMessage);
+if (urlCitations.length > 0) {
+console.log("\nURL Citations:");
+for (const citation of urlCitations) {
+console.log(`URL Citations: [${citation.title}](${citation.url})`);
+}
+}
+return latestMessage.id;
+}
+/**
+* Extracts URL citations from a thread message
+* @param message - The thread message
+* @returns Array of URL citations
+*/
+function getUrlCitationsFromMessage(message: ThreadMessage): Array<{ title: string; url: string }> {
+const citations: Array<{ title: string; url: string }> = [];
+for (const content of message.content) {
+if (isOutputOfType<MessageTextContent>(content, "text")) {
+for (const annotation of content.text.annotations) {
+if (isOutputOfType<MessageTextUrlCitationAnnotation>(annotation, "url_citation")) {
+citations.push({
+title: annotation.urlCitation.title || annotation.urlCitation.url,
+url: annotation.urlCitation.url,
+});
+}
+}
+}
+}
+return citations;
+}
+/**
+* Creates a research summary from the final message
+* @param message - The thread message containing the research results
+* @param filepath - The file path to write the summary to
+*/
+function createResearchSummary(message: ThreadMessage): void {
+if (!message) {
+console.log("No message content provided, cannot create research summary.");
+return;
+}
+let content = "";
+// Write text summary
+const textSummaries: string[] = [];
+for (const contentItem of message.content) {
+if (isOutputOfType<MessageTextContent>(contentItem, "text")) {
+textSummaries.push(contentItem.text.value.trim());
+}
+}
+content += textSummaries.join("\n\n");
+// Write unique URL citations, if present
+const urlCitations = getUrlCitationsFromMessage(message);
+if (urlCitations.length > 0) {
+content += "\n\n## References\n";
+const seenUrls = new Set<string>();
+for (const citation of urlCitations) {
+if (!seenUrls.has(citation.url)) {
+content += `- [${citation.title}](${citation.url})\n`;
+seenUrls.add(citation.url);
+}
+}
+}
+// writeFileSync(filepath, content, "utf-8");
+console.log(`Research summary created:\n${content}`);
+// console.log(`Research summary written to '${filepath}'.`);
+}
+export async function main(): Promise<void> {
+// Create an Azure AI Client
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+// Create Deep Research tool definition
+const deepResearchTool: DeepResearchToolDefinition = {
+type: "deep_research",
+deepResearch: {
+deepResearchModel: deepResearchModelDeploymentName,
+deepResearchBingGroundingConnections: [
+{
+connectionId: bingConnectionId,
+},
+],
+},
+};
+// Create agent with the Deep Research tool
+const agent = await client.createAgent(modelDeploymentName, {
+name: "my-agent",
+instructions: "You are a helpful Agent that assists in researching scientific topics.",
+tools: [deepResearchTool],
+});
+console.log(`Created agent, ID: ${agent.id}`);
+// Create thread for communication
+const thread = await client.threads.create();
+console.log(`Created thread, ID: ${thread.id}`);
+// Create message to thread
+const message = await client.messages.create(
+thread.id,
+"user",
+"Research the current scientific understanding of orca intelligence and communication, focusing on recent (preferably past 5 years) peer-reviewed studies, comparisons with other intelligent species such as dolphins or primates, specific cognitive abilities like problem-solving and social learning, and detailed analyses of vocal and non-vocal communication systems—please include notable authors or landmark papers if applicable.",
+);
+console.log(`Created message, ID: ${message.id}`);
+console.log("Start processing the message... this may take a few minutes to finish. Be patient!");
+// Create and poll the run
+const run = await client.runs.create(thread.id, agent.id);
+let lastMessageId: string | undefined;
+// Poll the run status
+let currentRun = run;
+while (currentRun.status === "queued" || currentRun.status === "in_progress") {
+await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second
+currentRun = await client.runs.get(thread.id, run.id);
+lastMessageId = await fetchAndPrintNewAgentResponse(thread.id, client, lastMessageId);
+console.log(`Run status: ${currentRun.status}`);
+}
+console.log(`Run finished with status: ${currentRun.status}, ID: ${currentRun.id}`);
+if (currentRun.status === "failed") {
+console.log(`Run failed: ${currentRun.lastError}`);
+}
+// Fetch the final message from the agent and create a research summary
+const messages = client.messages.list(thread.id, { order: "desc", limit: 10 });
+let finalMessage: ThreadMessage | undefined;
+for await (const msg of messages) {
+if (msg.role === "assistant") {
+finalMessage = msg;
+break;
+}
+}
+if (finalMessage) {
+createResearchSummary(finalMessage);
+}
+// Clean-up and delete the agent once the run is finished
+await client.deleteAgent(agent.id);
+console.log("Deleted agent");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+The name of your Grounding with Bing Search resource name. You can find it in the Foundry portal by selecting
+
+**Management center**from the left navigation menu. Then select**Connected resources**.Save this endpoint to an environment variable named
+
+`BING_RESOURCE_NAME`
+
+.
+
+## Create an agent with the Deep Research tool
+
+The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects`
+
+library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
+
+```
+python -m venv env
+# after creating the virtual environment, activate it with:
+.\env\Scripts\activate
+```
+
+
+You can install the package with the following command:
+
+```
+pip install --pre azure-ai-projects
+```
+
+
+```
+import os, time
+from typing import Optional
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents import AgentsClient
+from azure.ai.agents.models import DeepResearchTool, MessageRole, ThreadMessage
+def fetch_and_print_new_agent_response(
+thread_id: str,
+agents_client: AgentsClient,
+last_message_id: Optional[str] = None,
+) -> Optional[str]:
+response = agents_client.messages.get_last_message_by_role(
+thread_id=thread_id,
+role=MessageRole.AGENT,
+)
+if not response or response.id == last_message_id:
+return last_message_id # No new content
+print("\nAgent response:")
+print("\n".join(t.text.value for t in response.text_messages))
+for ann in response.url_citation_annotations:
+print(f"URL Citation: [{ann.url_citation.title}]({ann.url_citation.url})")
+return response.id
+def create_research_summary(
+message : ThreadMessage,
+filepath: str = "research_summary.md"
+) -> None:
+if not message:
+print("No message content provided, cannot create research summary.")
+return
+with open(filepath, "w", encoding="utf-8") as fp:
+# Write text summary
+text_summary = "\n\n".join([t.text.value.strip() for t in message.text_messages])
+fp.write(text_summary)
+# Write unique URL citations, if present
+if message.url_citation_annotations:
+fp.write("\n\n## References\n")
+seen_urls = set()
+for ann in message.url_citation_annotations:
+url = ann.url_citation.url
+title = ann.url_citation.title or url
+if url not in seen_urls:
+fp.write(f"- [{title}]({url})\n")
+seen_urls.add(url)
+print(f"Research summary written to '{filepath}'.")
+project_client = AIProjectClient(
+endpoint=os.environ["PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+conn_id = project_client.connections.get(name=os.environ["BING_RESOURCE_NAME"]).id
+# Initialize a Deep Research tool with Bing Connection ID and Deep Research model deployment name
+deep_research_tool = DeepResearchTool(
+bing_grounding_connection_id=conn_id,
+deep_research_model=os.environ["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"],
+)
+# Create Agent with the Deep Research tool and process Agent run
+agents_client = AgentsClient(
+endpoint=os.environ["PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential()
+)
+# Create a new agent that has the Deep Research tool attached.
+# NOTE: To add Deep Research to an existing agent, fetch it with `get_agent(agent_id)` and then,
+# update the agent with the Deep Research tool.
+agent = agents_client.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"],
+name="my-agent",
+instructions="You are a helpful Agent that assists in researching scientific topics.",
+tools=deep_research_tool.definitions,
+)
+# agent = agent_poller.result() # Wait for completion
+# [END create_agent_with_deep_research_tool]
+print(f"Created agent, ID: {agent.id}")
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Create message to thread
+message = agents_client.messages.create(
+thread_id=thread.id,
+role="user",
+content=(
+"Assess the UK outlook for 2026 - economic growth and inflation, based on IMF sources and provide a detailed report."
+),
+)
+print(f"Created message, ID: {message.id}")
+print(f"Start processing the message... this may take a few minutes to finish. Be patient!")
+# Poll the run as long as run status is queued or in progress
+run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id)
+last_message_id = None
+while run.status in ("queued", "in_progress"):
+time.sleep(1)
+run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
+last_message_id = fetch_and_print_new_agent_response(
+thread_id=thread.id,
+agents_client=agents_client,
+last_message_id=last_message_id,
+)
+print(f"Run status: {run.status}")
+print(f"Run finished with status: {run.status}, ID: {run.id}")
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Fetch the final message from the agent in the thread and create a research summary
+final_message = agents_client.messages.get_last_message_by_role(
+thread_id=thread.id, role=MessageRole.AGENT
+)
+if final_message:
+create_research_summary(final_message)
+# Clean-up and delete the agent once the run is finished.
+# NOTE: Comment out this line if you plan to reuse the agent later.
+agents_client.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+Note
+
+- Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
+- Currently, Foundry Agent Playground UI only supports starting runs in streaming mode, and as a result, users might experience connection drops and timeouts. Use the supported methods above which uses runs in non-streaming mode.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: knowledge-retrieval.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval -->
+
+# Connect a Foundry IQ knowledge base to Foundry Agent Service
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+In this article, you learn how to connect an agent in Microsoft Foundry to a knowledge base in Foundry IQ, an agentic retrieval workload powered by Azure AI Search. The connection uses the [Model Context Protocol (MCP)](model-context-protocol?view=foundry) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
+
+- Plans and decomposes a user query into subqueries.
+- Processes the subqueries simultaneously using keyword, vector, or hybrid techniques.
+- Applies semantic reranking to identify the most relevant results.
+- Synthesizes the results into a unified response with source references.
+
+The agent uses the response to ground its answers in enterprise data or web sources, ensuring factual accuracy and transparency through source attribution.
+
+For an end-to-end example of integrating Azure AI Search and Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
+
+### Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | - | - | - | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+- An
+[Azure AI Search service](/en-us/azure/search/search-create-service-portal)with a[knowledge base](/en-us/azure/search/agentic-retrieval-how-to-create-knowledge-base)containing one or more[knowledge sources](/en-us/azure/search/agentic-knowledge-source-overview). - A
+[Microsoft Foundry project](../../../how-to/create-projects?view=foundry)with an[LLM deployment](../../../foundry-models/how-to/create-model-deployments?view=foundry), such as`gpt-4.1-mini`
+
+. [Authentication and permissions](#authentication-and-permissions)on your search service and project.- The latest preview Python SDK or the 2025-11-01-preview REST API version.
+
+### Authentication and permissions
+
+We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+
+- On the parent resource of your project, you need the
+**Azure AI User**role to access model deployments and create agents.**Owners**automatically get this role when they create the resource. Other users need a specific role assignment. For more information, see[Role-based access control in Foundry portal](/en-us/azure/ai-foundry/concepts/rbac-foundry). - On the parent resource of your project, you need the
+**Azure AI Project Manager**role to create a project connection for MCP authentication and either**Azure AI User**or**Azure AI Project Manager**to use the MCP tool in agents. - On your project, create a system-assigned managed identity for interactions with Azure AI Search.
+
+### Required values
+
+Use the following values in the code samples.
+
+| Value | Where to get it | Example |
+|---|---|---|
+Project endpoint (`project_endpoint` ) |
+Find it in your project details in the Microsoft Foundry portal. | `https://your-resource.services.ai.azure.com/api/projects/your-project` |
+Project resource ID (`project_resource_id` ) |
+Copy the project ARM resource ID from Azure portal or use Azure CLI to query the resource ID. | `/subscriptions/.../resourceGroups/.../providers/Microsoft.MachineLearningServices/workspaces/.../projects/...` |
+Azure AI Search endpoint (`search_service_endpoint` ) |
+Find it on your Azure AI Search service Overview page (the service URL) in the Azure portal. |
+`https://your-search-service.search.windows.net` |
+Knowledge base name (`knowledge_base_name` ) |
+Use the knowledge base name you created in Azure AI Search. | `hr-policy-kb` |
+Project connection name (`project_connection_name` ) |
+Choose a name for the project connection you create. | `my-kb-mcp-connection` |
+Agent name (`agent_name` ) |
+Choose a name for the agent version you create. | `hr-assistant` |
+Model deployment name (`deployed_LLM` ) |
+Find it in your Microsoft Foundry project model deployments. | `gpt-4.1-mini` |
+
+## Understand Foundry IQ
+
+Foundry IQ creates a separation of concerns between domain knowledge and agent logic, enabling retrieval-augmented generation (RAG) and grounding at scale. Instead of bundling retrieval complexity into each agent, you create a knowledge base that represents a complete domain of knowledge, such as human resources or sales. Your agents then call the knowledge base to ground their responses in relevant, up-to-date information.
+
+This separation has two key benefits:
+
+- You can independently update a knowledge base without modifying agents.
+- Multiple agents can share the same knowledge base, avoiding duplicate configurations.
+
+### How Foundry IQ works
+
+Powered by [Azure AI Search](/en-us/azure/search/search-what-is-azure-search), Foundry IQ consists of knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
+
+Although knowledge bases support [answer synthesis](/en-us/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Foundry Agent Service. This mode ensures the agent receives verbatim content instead of pre-generated answers, providing full control over response format and quality.
+
+### How Foundry Agent Service uses knowledge bases
+
+[Foundry Agent Service](../../overview?view=foundry) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
+
+## Create a project connection
+
+Create a `RemoteTool`
+
+connection on your Microsoft Foundry project. This connection uses the project's managed identity to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
+
+```
+import requests
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+# Provide connection details
+credential = DefaultAzureCredential()
+project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
+project_connection_name = "{project_connection_name}"
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
+# Get bearer token for authentication
+bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
+headers = {
+"Authorization": f"Bearer {bearer_token_provider()}",
+}
+# Create project connection
+response = requests.put(
+f"https://management.azure.com{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview",
+headers = headers,
+json = {
+"name": project_connection_name,
+"type": "Microsoft.MachineLearningServices/workspaces/connections",
+"properties": {
+"authType": "ProjectManagedIdentity",
+"category": "RemoteTool",
+"target": mcp_endpoint,
+"isSharedToAll": True,
+"audience": "https://search.azure.com/",
+"metadata": { "ApiType": "Azure" }
+}
+}
+)
+response.raise_for_status()
+print(f"Connection '{project_connection_name}' created or updated successfully.")
+```
+
+
+## Optimize agent instructions for knowledge retrieval
+
+To improve knowledge base invocations and produce citation-backed answers, start with instructions like the following:
+
+```
+You are a helpful assistant.
+Use the knowledge base tool to answer user questions.
+If the knowledge base doesn't contain the answer, respond with "I don't know".
+When you use information from the knowledge base, include citations to the retrieved sources.
+```
+
+
+This instruction template optimizes for:
+
+**Higher MCP tool invocation rates**: Explicit directives ensure the agent consistently calls the knowledge base tool rather than relying on its training data.**Clear source attribution**: Citations make it easier to validate where information came from.
+
+Tip
+
+While this template provides a strong foundation, evaluate and iterate on the instructions based on your specific use case and objectives. Test different variations to find what works best for your scenario.
+
+## Create an agent with the MCP tool
+
+Create an agent that integrates the knowledge base as an MCP tool. The agent uses a system prompt to instruct when and how to call the knowledge base. It follows instructions on how to answer questions and automatically maintains its tool configuration and settings across conversation sessions.
+
+Add the knowledge base MCP tool with the project connection you previously created. This tool orchestrates query planning, decomposition, and retrieval across configured knowledge sources. The agent uses this tool to answer queries.
+
+Note
+
+Azure AI Search knowledge bases expose the `knowledge_base_retrieve`
+
+MCP tool for agent integration. This is the only tool currently supported for use with Foundry Agent Service.
+
+```
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, MCPTool
+from azure.identity import DefaultAzureCredential
+# Provide agent configuration details
+credential = DefaultAzureCredential()
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview"
+project_endpoint = "{project_endpoint}" # e.g. https://your-foundry-resource.services.ai.azure.com/api/projects/your-foundry-project
+project_connection_name = "{project_connection_name}"
+agent_name = "{agent_name}"
+agent_model = "{deployed_LLM}" # e.g. gpt-4.1-mini
+# Create project client
+project_client = AIProjectClient(endpoint = project_endpoint, credential = credential)
+# Define agent instructions (see "Optimize agent instructions" section for guidance)
+instructions = """
+You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
+Every answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`
+If you cannot find the answer in the provided knowledge base you must respond with "I don't know".
+"""
+# Create MCP tool with knowledge base connection
+mcp_kb_tool = MCPTool(
+server_label = "knowledge-base",
+server_url = mcp_endpoint,
+require_approval = "never",
+allowed_tools = ["knowledge_base_retrieve"],
+project_connection_id = project_connection_name
+)
+# Create agent with MCP tool
+agent = project_client.agents.create_version(
+agent_name = agent_name,
+definition = PromptAgentDefinition(
+model = agent_model,
+instructions = instructions,
+tools = [mcp_kb_tool]
+)
+)
+print(f"Agent '{agent_name}' created or updated successfully.")
+```
+
+
+### Connect to a remote SharePoint knowledge source
+
+Optionally, if your knowledge base includes a [remote SharePoint knowledge source](/en-us/azure/search/agentic-knowledge-source-how-to-sharepoint-remote), you must also include the `x-ms-query-source-authorization`
+
+header in the MCP tool connection.
+
+```
+from azure.identity import get_bearer_token_provider
+# Create MCP tool with SharePoint authorization header
+mcp_kb_tool = MCPTool(
+server_label = "knowledge-base",
+server_url = mcp_endpoint,
+require_approval = "never",
+allowed_tools = ["knowledge_base_retrieve"],
+project_connection_id = project_connection_name,
+headers = {
+"x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+}
+)
+```
+
+
+## Invoke the agent with a query
+
+Create a conversation session and send a user query to the agent. When appropriate, the agent orchestrates calls to the MCP tool to retrieve relevant content from the knowledge base. The agent then synthesizes this content into a natural-language response that cites the source documents.
+
+```
+# Get the OpenAI client for responses and conversations
+openai_client = project_client.get_openai_client()
+# Create conversation
+conversation = openai_client.conversations.create()
+# Send request to trigger the MCP tool
+response = openai_client.responses.create(
+conversation = conversation.id,
+input = """
+Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
+Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
+""",
+extra_body = {"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+print(f"Response: {response.output_text}")
+```
+
+
+The output should be similar to the following:
+
+```
+Response: Suburban belts display larger December brightening than urban cores, even though absolute light levels are higher downtown, primarily because holiday lights increase most dramatically in the suburbs and outskirts of major cities. This is due to more yard space and a prevalence of single-family homes in suburban areas, which results in greater use of decorative holiday lighting. By contrast, central urban areas experience a smaller increase in lighting during the holidays, typically 20 to 30 percent brightening, because of their different building structures and possibly less outdoor space for such decorations. This pattern holds true across the United States as part of the nationally shared tradition of increased holiday lighting in December (Sources: earth_at_night_508_page_174, earth_at_night_508_page_176, earth_at_night_508_page_175).
+The Phoenix nighttime street grid is sharply visible from space due to the city's layout along a regular grid of city blocks and streets with extensive street lighting. The major street grid is oriented mostly north-south, with notable diagonal thoroughfares like Grand Avenue that are also brightly lit. The illuminated grid reflects the widespread suburban and residential development fueled by automobile use in the 20th century, which led to optimal access routes to new real estate on the city's borders. Large shopping centers, strip malls, gas stations, and other commercial properties at major intersections also contribute to the brightness. Additionally, parts of the Phoenix metropolitan area remain dark where there are parks, recreational land, and agricultural fields, providing contrast that highlights the lit urban grid (Sources: earth_at_night_508_page_104, earth_at_night_508_page_105).
+In contrast, large stretches of the interstate between Midwestern cities remain comparatively dim because although the transportation corridors are well-established, many rural and agricultural areas lack widespread nighttime lighting. The interstate highways are visible but do not have the same continuous bright lighting found in the dense urban grids and commercial suburban zones. The transportation network is extensive, but many roadways running through less populated regions have limited illumination, which renders them less visible in nighttime satellite imagery (Sources: earth_at_night_508_page_124, earth_at_night_508_page_125).
+References:
+- earth_at_night_508_page_174, earth_at_night_508_page_176, earth_at_night_508_page_175 (Holiday lighting and suburban December brightening)
+- earth_at_night_508_page_104, earth_at_night_508_page_105 (Phoenix urban grid visibility)
+- earth_at_night_508_page_124, earth_at_night_508_page_125 (Interstate lighting and Midwestern dim stretches)
+```
+
+
+## Delete the agent and project connection
+
+```
+# Delete the agent
+project_client.agents.delete_version(agent.name, agent.version)
+print(f"Agent '{agent.name}' version '{agent.version}' deleted successfully.")
+# Delete the project connection (Azure Resource Manager)
+import requests
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+credential = DefaultAzureCredential()
+project_resource_id = "{project_resource_id}"
+project_connection_name = "{project_connection_name}"
+bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
+headers = {"Authorization": f"Bearer {bearer_token_provider()}"}
+response = requests.delete(
+f"https://management.azure.com{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview",
+headers=headers,
+)
+response.raise_for_status()
+print(f"Project connection '{project_connection_name}' deleted successfully.")
+```
+
+
+Note
+
+Deleting your agent and project connection doesn't delete your knowledge base or its knowledge sources. You must delete these objects separately on your Azure AI Search service. For more information, see [Delete a knowledge base](/en-us/azure/search/agentic-retrieval-how-to-create-knowledge-base?#delete-a-knowledge-base) and [Delete a knowledge source](/en-us/azure/search/agentic-knowledge-source-how-to-search-index#delete-a-knowledge-source).
+
+## Troubleshooting
+
+This section helps you troubleshoot common issues when connecting Foundry Agent Service to a Foundry IQ knowledge base.
+
+### Authorization failures (401/403)
+
+- If you get a 403 from Azure AI Search, confirm the project's managed identity has the
+**Search Index Data Reader**role on the search service (and**Search Index Data Contributor**if you write to indexes). - If you get a 403 from Azure Resource Manager when you create or delete the project connection, confirm your user or service principal has permissions on the Microsoft Foundry resource and project.
+- If you use keyless authentication, confirm your environment is signed in to the correct tenant and subscription.
+
+### MCP endpoint errors (400/404)
+
+- Confirm
+`search_service_endpoint`
+
+is the Azure AI Search service URL, such as`https://<name>.search.windows.net`
+
+. - Confirm
+`knowledge_base_name`
+
+matches the knowledge base you created in Azure AI Search. - Confirm you use the
+`2025-11-01-preview`
+
+API version for the knowledge base MCP endpoint.
+
+### The agent doesn't ground answers
+
+- Confirm the agent has the MCP tool configured and
+`allowed_tools`
+
+includes`knowledge_base_retrieve`
+
+. - Update your agent instructions to explicitly require using the knowledge base and to return "I don't know" when retrieval doesn't contain the answer.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: bing-code-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/bing-code-samples -->
+
+# How to use Grounding with Bing Search
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
+
+## Prerequisites
+
+- A
+[connected Grounding with Bing Search resource](bing-grounding?view=foundry-classic#setup). - Your connection ID needs to be in this format:
+`/subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.CognitiveServices/accounts/<ai_service_name>/projects/<project_name>/connections/<connection_name>`
+
+
+Important
+
+There are requirements for displaying Grounding with Bing Search results. See the [overview article](bing-grounding?view=foundry-classic#how-to-display-grounding-with-bing-search-results) for details.
+
+In the
+
+[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)navigate to the**Agents**screen for your agent. Scroll down the**Setup**pane on the right to**knowledge**. Then select**Add**.Select
+
+**Grounding with Bing Search**and follow the prompts to add the tool. Note you can add only one per agent.Select
+
+**Add**to add new connections. Once you add a connection, you can directly select from existing list.Select the Grounding with Bing Search resource you want to use and select
+
+**Add connection**.
+
+## Create a project client
+
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import BingGroundingTool
+# Create an Azure AI Client from an endpoint, copied from your Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"] # Ensure the PROJECT_ENDPOINT environment variable is set
+# Create an AIProjectClient instance
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential() # Use Azure Default Credential for authentication
+)
+```
+
+
+## Create an agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+conn_id = os.environ["BING_CONNECTION_NAME"] # Ensure the BING_CONNECTION_NAME environment variable is set
+# Initialize the Bing Grounding tool
+bing = BingGroundingTool(connection_id=conn_id)
+with project_client:
+# Create an agent with the Bing Grounding tool
+agent = project_client.agents.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"], # Model deployment name
+name="my-agent", # Name of the agent
+instructions="You are a helpful agent", # Instructions for the agent
+tools=bing.definitions, # Attach the Bing Grounding tool
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+
+## Create a thread
+
+```
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Add a message to the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role="user", # Role of the message sender
+content="What is the weather in Seattle today?", # Message content
+)
+print(f"Created message, ID: {message['id']}")
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+# Create and process an agent run
+run = project_client.agents.runs.create_and_process(
+thread_id=thread.id,
+agent_id=agent.id,
+# tool_choice={"type": "bing_grounding"} # optional, you can force the model to use Grounding with Bing Search tool
+)
+print(f"Run finished with status: {run.status}")
+# Check if the run failed
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Fetch and log all messages
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages:
+print(f"Role: {message.role}, Content: {message.content}")
+```
+
+
+## Optionally output the run steps used by the agent
+
+```
+run_steps = project_client.agents.run_steps.list(thread_id=thread.id, run_id=run.id)
+for step in run_steps:
+print(f"Step {step['id']} status: {step['status']}")
+# Check if there are tool calls in the step details
+step_details = step.get("step_details", {})
+tool_calls = step_details.get("tool_calls", [])
+if tool_calls:
+print(" Tool calls:")
+for call in tool_calls:
+print(f" Tool Call ID: {call.get('id')}")
+print(f" Type: {call.get('type')}")
+function_details = call.get("function", {})
+if function_details:
+print(f" Function name: {function_details.get('name')}")
+print() # add an extra newline between steps
+```
+
+
+## Delete the agent when done
+
+```
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+## Create a project client
+
+Create a client object that contains the project endpoint for connecting to your AI project and other resources.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
+var bingConnectionId = System.Environment.GetEnvironmentVariable("BingConnectionId");
+// Create the Agent Client
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Create an agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+BingGroundingToolDefinition bingGroundingTool = new(
+new BingGroundingSearchToolParameters(
+[new BingGroundingSearchConfiguration(bingConnectionId)]
+)
+);
+// Create the Agent
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "my-agent",
+instructions: "Use the bing grounding tool to answer questions.",
+tools: [bingGroundingTool]
+);
+```
+
+
+## Create a thread and run
+
+```
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
+// Create message and run the agent
+PersistentThreadMessage message = agentClient.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"How does wikipedia explain Euler's Identity?");
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
+```
+
+
+## Wait for the agent to complete and print the output
+
+First, wait for the agent to complete the run by polling its status. The model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+// Wait for the agent to finish running
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = agentClient.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress);
+// Confirm that the run completed successfully
+if (run.Status != RunStatus.Completed)
+{
+throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+}
+```
+
+
+Then, retrieve and process the messages from the completed run.
+
+```
+// Retrieve all messages from the agent client
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+// Process messages in order
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+string response = textItem.Text;
+// If we have Text URL citation annotations, reformat the response to show title & URL for citations
+if (textItem.Annotations != null)
+{
+foreach (MessageTextAnnotation annotation in textItem.Annotations)
+{
+if (annotation is MessageTextUriCitationAnnotation urlAnnotation)
+{
+response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UriCitation.Title}]({urlAnnotation.UriCitation.Uri})");
+}
+}
+}
+Console.Write($"Agent response: {response}");
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}");
+}
+Console.WriteLine();
+}
+}
+```
+
+
+## Optionally output the run steps used by the agent
+
+```
+// Retrieve the run steps used by the agent and print those to the console
+Console.WriteLine("Run Steps used by Agent:");
+Pageable<RunStep> runSteps = agentClient.Runs.GetRunSteps(run);
+foreach (var step in runSteps)
+{
+Console.WriteLine($"Step ID: {step.Id}, Total Tokens: {step.Usage.TotalTokens}, Status: {step.Status}, Type: {step.Type}");
+if (step.StepDetails is RunStepMessageCreationDetails messageCreationDetails)
+{
+Console.WriteLine($" Message Creation Id: {messageCreationDetails.MessageCreation.MessageId}");
+}
+else if (step.StepDetails is RunStepToolCallDetails toolCallDetails)
+{
+// We know this agent only has the Bing Grounding tool, so we can cast it directly
+foreach (RunStepBingGroundingToolCall toolCall in toolCallDetails.ToolCalls)
+{
+Console.WriteLine($" Tool Call Details: {toolCall.GetType()}");
+foreach (var result in toolCall.BingGrounding)
+{
+Console.WriteLine($" {result.Key}: {result.Value}");
+}
+}
+}
+}
+```
+
+
+## Clean up resources
+
+Clean up the resources from this sample.
+
+```
+// Delete thread and agent
+agentClient.Threads.DeleteThread(threadId: thread.Id);
+agentClient.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+
+## Create a project client
+
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
+
+```
+const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
+const { delay } = require("@azure/core-util");
+const { DefaultAzureCredential } = require("@azure/identity");
+require("dotenv/config");
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+// Create an Azure AI Client
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Create an agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+const connectionId = process.env["AZURE_BING_CONNECTION_ID"] || "<connection-name>";
+// Initialize agent bing tool with the connection id
+const bingTool = ToolUtility.createBingGroundingTool([{ connectionId: connectionId }]);
+// Create agent with the bing tool and process assistant run
+const agent = await client.createAgent("gpt-4o", {
+name: "my-agent",
+instructions: "You are a helpful agent",
+tools: [bingTool.definition],
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+
+## Create a thread
+
+```
+// Create thread for communication
+const thread = await client.threads.create();
+console.log(`Created thread, thread ID: ${thread.id}`);
+// Create message to thread
+const message = await client.messages.create(
+thread.id,
+"user",
+"How does wikipedia explain Euler's Identity?",
+);
+console.log(`Created message, message ID : ${message.id}`);
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+// Create and process agent run in thread with tools
+let run = await client.runs.create(thread.id, agent.id);
+while (run.status === "queued" || run.status === "in_progress") {
+await delay(1000);
+run = await client.runs.get(thread.id, run.id);
+}
+if (run.status === "failed") {
+console.log(`Run failed: ${run.lastError?.message}`);
+}
+console.log(`Run finished with status: ${run.status}`);
+// Delete the assistant when done
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
+// Fetch and log all messages
+const messagesIterator = client.messages.list(thread.id);
+console.log(`Messages:`);
+// Get the first message
+const firstMessage = await messagesIterator.next();
+if (!firstMessage.done && firstMessage.value) {
+const agentMessage = firstMessage.value.content[0];
+if (isOutputOfType(agentMessage, "text")) {
+const textContent = agentMessage;
+console.log(`Text Message Content - ${textContent.text.value}`);
+}
+}
+```
+
+
+Important
+
+- This REST API enables developers to invoke the Grounding with Bing Search tool through the Foundry Agent Service. It doesn't send calls to the Grounding with Bing Search API directly.
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and `API_VERSION`
+
+.
+
+## Create an agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful agent.",
+"name": "my-agent",
+"model": "gpt-4o",
+"tools": [
+{
+"type": "bing_grounding",
+"bing_grounding": {
+"search_configurations": [
+{
+"connection_id": "<your_connection_id>",
+"count": 7,
+"market": "en-US",
+"set_lang": "en",
+"freshness": "Week",
+}
+]
+}
+}
+]
+}'
+```
+
+
+## Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+## Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "What is the weather in Seattle?"
+}'
+```
+
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+## Code example
+
+```
+package com.example.agents;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.BingGroundingSearchConfiguration;
+import com.azure.ai.agents.persistent.models.BingGroundingSearchToolParameters;
+import com.azure.ai.agents.persistent.models.BingGroundingToolDefinition;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.util.Arrays;
+public class AgentExample {
+public static void main(String[] args) {
+// variables for authenticating requests to the agent service
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+String bingConnectionId = System.getenv("BING_CONNECTION_ID");
+PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+.credential(new DefaultAzureCredentialBuilder().build());
+PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+ThreadsClient threadsClient = agentsClient.getThreadsClient();
+MessagesClient messagesClient = agentsClient.getMessagesClient();
+RunsClient runsClient = agentsClient.getRunsClient();
+BingGroundingSearchConfiguration searchConfiguration = new BingGroundingSearchConfiguration(bingConnectionId);
+BingGroundingSearchToolParameters searchToolParameters
+= new BingGroundingSearchToolParameters(Arrays.asList(searchConfiguration));
+BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(searchToolParameters);
+String agentName = "bing_grounding_example";
+CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+.setName(agentName)
+.setInstructions("You are a helpful agent")
+.setTools(Arrays.asList(bingGroundingTool));
+PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"How does wikipedia explain Euler's Identity?");
+try {
+//run agent
+CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+.setAdditionalInstructions("");
+ThreadRun threadRun = runsClient.createRun(createRunOptions);
+waitForRunCompletion(thread.getId(), threadRun, runsClient);
+printRunMessages(messagesClient, thread.getId());
+} catch (InterruptedException e) {
+throw new RuntimeException(e);
+} finally {
+//cleanup
+threadsClient.deleteThread(thread.getId());
+administrationClient.deleteAgent(agent.getId());
+}
+}
+// A helper function to print messages from the agent
+public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+for (ThreadMessage message : runMessages) {
+System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+for (MessageContent contentItem : message.getContent()) {
+if (contentItem instanceof MessageTextContent) {
+System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+} else if (contentItem instanceof MessageImageFileContent) {
+String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+System.out.print("Image from ID: " + imageFileId);
+}
+System.out.println();
+}
+}
+}
+// a helper function to wait until a run has completed running
+public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+throws InterruptedException {
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(threadId, threadRun.getId());
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+}
+}
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: azure-ai-search-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/azure-ai-search-samples -->
+
+# How to use an existing index with the Azure AI Search tool
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the classic version of the agents API.
+
+This article explains how to use an existing search index with the [Azure AI Search](/en-us/azure/search/search-what-is-azure-search) tool.
+
+## Prerequisites
+
+- Completion of the
+[Azure AI Search tool setup](../tools/azure-ai-search?view=foundry-classic&pivot=overview-azure-ai-search).
+
+## Add the Azure AI Search tool to an agent
+
+Sign in to the
+
+[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)and select your project.From the left pane, select
+
+**Agents**.Select your agent from the list, and then select
+
+**Knowledge**>**Add**.Select
+
+**Azure AI Search**.Follow the prompts to add the Azure AI Search tool.
+
+
+## Create an Azure AI Client
+
+First, create an Azure AI Client using the endpoint of your Foundry project.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+# Retrieve the endpoint from environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential(exclude_interactive_browser_credential=False)
+)
+```
+
+
+## Configure the Azure AI Search tool
+
+Using the connection ID of your Azure AI Search service, configure the Azure AI Search tool to use your search index.
+
+```
+from azure.ai.agents.models import AzureAISearchTool, AzureAISearchQueryType
+from azure.ai.projects.models import ConnectionType
+# Define the Azure AI Search connection ID and index name
+azure_ai_conn_id = project_client.connections.get_default(ConnectionType.AZURE_AI_SEARCH).id
+# Find the index name on the Search Management > Indexes page of your Azure AI Search service
+index_name = "sample_index"
+# Initialize the Azure AI Search tool
+ai_search = AzureAISearchTool(
+index_connection_id=azure_ai_conn_id,
+index_name=index_name,
+query_type=AzureAISearchQueryType.SIMPLE, # Use SIMPLE query type
+top_k=3, # Retrieve the top 3 results
+filter="", # Optional filter for search results
+)
+```
+
+
+## Create an agent with the Azure AI Search tool enabled
+
+Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Foundry portal. You can also change the agent's name and instructions to suit your needs.
+
+```
+# Define the model deployment name
+model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"]
+# Create an agent with the Azure AI Search tool
+agent = project_client.agents.create_agent(
+model=model_deployment_name,
+name="my-agent",
+instructions="You are a helpful agent",
+tools=ai_search.definitions,
+tool_resources=ai_search.resources,
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+
+## Ask the agent questions about data in the index
+
+Now that the agent is created, you can ask it questions about the data in your search index.
+
+```
+from azure.ai.agents.models import MessageRole, ListSortOrder
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Send a message to the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role=MessageRole.USER,
+content="What is the temperature rating of the cozynights sleeping bag?",
+)
+print(f"Created message, ID: {message['id']}")
+# Create and process a run with the specified thread and agent
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+# Check if the run failed
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Fetch and log all messages in the thread
+messages = project_client.agents.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+for message in messages.data:
+print(f"Role: {message.role}, Content: {message.content}")
+```
+
+
+## Clean up resources
+
+After you complete these operations, delete the agent to clean up resources.
+
+```
+# Delete the agent
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+## Create a project client
+
+Create a client object that contains the endpoint of your Foundry project, which enables connections to your project and other resources.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Threading;
+// Get connection information from app configuration
+IConfigurationRoot configuration = new ConfigurationBuilder()
+.SetBasePath(AppContext.BaseDirectory)
+.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+.Build();
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+var azureAiSearchConnectionId = configuration["AzureAiSearchConnectionId"];
+// Create the agent client
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Configure the Azure AI Search tool
+
+Using the connection ID of your Azure AI Search service, configure the Azure AI Search tool to use your search index.
+
+```
+AzureAISearchToolResource searchResource = new(
+indexConnectionId: azureAiSearchConnectionId,
+indexName: "sample_index",
+topK: 5,
+filter: "category eq 'sleeping bag'",
+queryType: AzureAISearchQueryType.Simple
+);
+ToolResources toolResource = new() { AzureAISearch = searchResource };
+```
+
+
+## Create an agent with the Azure AI Search tool enabled
+
+Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Foundry portal. You can also change the agent's name and instructions to suit your needs.
+
+```
+// Create an agent with Tools and Tool Resources
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "my-agent",
+instructions: "Use the index provided to answer questions.",
+tools: [new AzureAISearchToolDefinition()],
+toolResources: toolResource
+);
+```
+
+
+## Ask the agent questions about data in the index
+
+Now that the agent is created, you can ask it questions about the data in your search index.
+
+```
+// Create thread for communication
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
+// Create message and run the agent
+PersistentThreadMessage message = agentClient.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"What is the temperature rating of the cozynights sleeping bag?");
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
+```
+
+
+## Wait for the agent to complete and print the output
+
+Wait for the agent to finish running and print the output to the console.
+
+```
+// Wait for the agent to finish running
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = agentClient.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress);
+// Confirm that the run completed successfully
+if (run.Status != RunStatus.Completed)
+{
+throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+}
+// Retrieve the messages from the agent client
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+// Process messages in order
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+// Annotate only agent messages
+if (threadMessage.Role == MessageRole.Agent && textItem.Annotations.Count > 0)
+{
+string annotatedText = textItem.Text;
+// If there are text URL citation annotations, reformat the response to show the title and URL for citations
+foreach (MessageTextAnnotation annotation in textItem.Annotations)
+{
+if (annotation is MessageTextUriCitationAnnotation urlAnnotation)
+{
+annotatedText = annotatedText.Replace(
+urlAnnotation.Text,
+$" [see {urlAnnotation.UriCitation.Title}] ({urlAnnotation.UriCitation.Uri})");
+}
+}
+Console.Write(annotatedText);
+}
+else
+{
+Console.Write(textItem.Text);
+}
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}");
+}
+Console.WriteLine();
+}
+}
+```
+
+
+## Optionally output the run steps used by the agent
+
+```
+// Retrieve the run steps used by the agent and print them to the console
+Console.WriteLine("Run Steps used by Agent:");
+Pageable<RunStep> runSteps = agentClient.Runs.GetRunSteps(run);
+foreach (var step in runSteps)
+{
+Console.WriteLine($"Step ID: {step.Id}, Total Tokens: {step.Usage.TotalTokens}, Status: {step.Status}, Type: {step.Type}");
+if (step.StepDetails is RunStepMessageCreationDetails messageCreationDetails)
+{
+Console.WriteLine($" Message Creation Id: {messageCreationDetails.MessageCreation.MessageId}");
+}
+else if (step.StepDetails is RunStepToolCallDetails toolCallDetails)
+{
+// This agent only has the Azure AI Search tool, so we can cast it directly
+foreach (RunStepAzureAISearchToolCall toolCall in toolCallDetails.ToolCalls)
+{
+Console.WriteLine($" Tool Call Details: {toolCall.GetType()}");
+foreach (var result in toolCall.AzureAISearch)
+{
+Console.WriteLine($" {result.Key}: {result.Value}");
+}
+}
+}
+}
+```
+
+
+## Clean up resources
+
+Delete the resources from this sample.
+
+```
+// Clean up resources
+agentClient.Threads.DeleteThread(thread.Id);
+agentClient.Administration.DeleteAgent(agent.Id);
+```
+
+
+## Create an Azure AI Client
+
+First, create an Azure AI Client using the endpoint of your Foundry project.
+
+```
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+if (!projectString) {
+throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set in the environment variables");
+}
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+```
+
+
+## Configure the Azure AI Search tool
+
+Using the connection ID of your Azure AI Search service, configure the Azure AI Search tool to use your search index.
+
+```
+const connectionId = process.env["AZURE_AI_CONNECTION_ID"] || "<connection-name>";
+const azureAISearchTool = ToolUtility.createAzureAISearchTool(connectionId, "ai-search-sample", {
+queryType: "simple",
+topK: 3,
+filter: "",
+indexConnectionId: "",
+indexName: "",
+});
+```
+
+
+## Create an agent with the Azure AI Search tool enabled
+
+Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Foundry portal. You can also change the agent's name and instructions to suit your needs.
+
+```
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+name: "my-agent",
+instructions: "You are a helpful agent",
+tools: [azureAISearchTool.definition],
+toolResources: azureAISearchTool.resources,
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+
+## Ask the agent questions about data in the index
+
+Now that the agent is created, you can ask it questions about the data in your search index.
+
+```
+// Create thread for communication
+const thread = await client.threads.create();
+console.log(`Created thread, thread ID: ${thread.id}`);
+// Create message to thread
+const message = await client.messages.create(
+thread.id,
+"user",
+"What is the temperature rating of the cozynights sleeping bag?",
+);
+console.log(`Created message, message ID : ${message.id}`);
+// Create and process the agent run in thread with tools
+let run = await client.runs.create(thread.id, agent.id);
+while (run.status === "queued" || run.status === "in_progress") {
+await delay(1000);
+run = await client.runs.get(thread.id, run.id);
+}
+if (run.status === "failed") {
+console.log(`Run failed:`, JSON.stringify(run, null, 2));
+}
+console.log(`Run finished with status: ${run.status}`);
+// Fetch run steps to get the details of agent run
+const runSteps = await client.runSteps.list(thread.id, run.id);
+for await (const step of runSteps) {
+console.log(`Step ID: ${step.id}, Status: ${step.status}`);
+const stepDetails = step.stepDetails;
+if (isOutputOfType(stepDetails, "tool_calls")) {
+const toolCalls = stepDetails.toolCalls;
+for (const toolCall of toolCalls) {
+console.log(`Tool Call ID: ${toolCall.id}, Tool type: ${toolCall.type}`);
+if (isOutputOfType(toolCall, "azure_ai_search")) {
+{
+const azureAISearch = toolCall.azureAISearch;
+if (azureAISearch) {
+console.log(`Azure AI Search Tool Call input: ${azureAISearch.input}`);
+console.log(`Azure AI Search Tool Call output: ${azureAISearch.output}`);
+}
+}
+}
+}
+}
+}
+// Delete the assistant when done
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
+// Fetch and log all messages
+const messagesIterator = client.messages.list(thread.id);
+console.log(`Messages:`);
+// Get the first message
+for await (const m of messagesIterator) {
+if (m.content.length > 0) {
+const agentMessage = m.content[0];
+if (isOutputOfType(agentMessage, "text")) {
+const textContent = agentMessage;
+console.log(`Text Message Content - ${textContent.text.value}`);
+}
+}
+break; // Just process the first message
+}
+```
+
+
+- Completion of the
+[REST API quickstart](../../quickstart?view=foundry-classic&pivots=rest-api)to get values for the`AGENT_TOKEN`
+
+,`AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and`API_VERSION`
+
+environment variables.
+
+## Get the connection ID for the Azure AI Search resource
+
+To get the connection ID:
+
+Sign in to the
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs)and select your project.On the
+
+**Overview**page, select**Open in management center**.From the left pane, select
+
+**Connected resources**, and then select your Azure AI Search service.Copy everything that comes after
+
+`wsid=`
+
+in the browser URL.
+
+## Configure the Azure AI Search tool
+
+Using the connection ID you got in the previous step, configure the Azure AI Search tool to use your search index.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful agent.",
+"name": "my-agent",
+"tools": [
+{"type": "azure_ai_search"}
+],
+"model": "gpt-4o-mini",
+"tool_resources": {
+"azure_ai_search": {
+"indexes": [
+{
+"index_connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.CognitiveServices/accounts/<your-foundry-name>/projects/<your-project-name>/connections/<your-azure-ai-search-connection-name>",
+"index_name": "<your-index-name>",
+"query_type": "semantic"
+}
+]
+}
+}
+}'
+```
+
+
+### Ask the agent questions about data in the index
+
+Now that the agent is created, you can ask it questions about the data in your search index.
+
+#### Create a thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+#### Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "what are my health insurance plan coverage types?"
+}'
+```
+
+
+#### Run the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+#### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+#### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+## Code example
+
+```
+package com.example.agents;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.AISearchIndexResource;
+import com.azure.ai.agents.persistent.models.AzureAISearchToolDefinition;
+import com.azure.ai.agents.persistent.models.AzureAISearchToolResource;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.ToolResources;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.net.URL;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.Arrays;
+public class AgentExample {
+public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
+// variables for authenticating requests to the agent service
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+String aiSearchConnectionId = System.getenv("AZURE_AI_CONNECTION_ID");
+String indexName = "my-index";
+PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+.credential(new DefaultAzureCredentialBuilder().build());
+PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+ThreadsClient threadsClient = agentsClient.getThreadsClient();
+MessagesClient messagesClient = agentsClient.getMessagesClient();
+RunsClient runsClient = agentsClient.getRunsClient();
+AISearchIndexResource indexResource = new AISearchIndexResource()
+.setIndexConnectionId(aiSearchConnectionId)
+.setIndexName(indexName);
+ToolResources toolResources = new ToolResources()
+.setAzureAISearch(new AzureAISearchToolResource()
+.setIndexList(Arrays.asList(indexResource)));
+String agentName = "ai_search_example";
+CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+.setName(agentName)
+.setInstructions("You are a helpful agent")
+.setTools(Arrays.asList(new AzureAISearchToolDefinition()))
+.setToolResources(toolResources);
+PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"<question about information in search index>");
+try {
+//run agent
+CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+.setAdditionalInstructions("");
+ThreadRun threadRun = runsClient.createRun(createRunOptions);
+waitForRunCompletion(thread.getId(), threadRun, runsClient);
+printRunMessages(messagesClient, thread.getId());
+} catch (InterruptedException e) {
+throw new RuntimeException(e);
+} finally {
+//cleanup
+threadsClient.deleteThread(thread.getId());
+administrationClient.deleteAgent(agent.getId());
+}
+}
+// A helper function to print messages from the agent
+public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+for (ThreadMessage message : runMessages) {
+System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+for (MessageContent contentItem : message.getContent()) {
+if (contentItem instanceof MessageTextContent) {
+System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+} else if (contentItem instanceof MessageImageFileContent) {
+String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+System.out.print("Image from ID: " + imageFileId);
+}
+System.out.println();
+}
+}
+}
+// a helper function to wait until a run has completed running
+public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+throws InterruptedException {
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(threadId, threadRun.getId());
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+}
+private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
+URL resource = AgentExample.class.getClassLoader().getResource(fileName);
+if (resource == null) {
+throw new FileNotFoundException("File not found");
+}
+File file = new File(resource.toURI());
+return file.toPath();
+}
+}
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: agent-to-agent.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/agent-to-agent -->
+
+# Add an A2A agent endpoint to Foundry Agent Service (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Note
+
+See [best practices](../../concepts/tool-best-practice?view=foundry) for information on optimizing tool usage.
+
+You can extend the capabilities of your Microsoft Foundry agent by adding an Agent2Agent (A2A) agent endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A Tool enables agent-to-agent communication, making it easier to share context between Foundry agents and external agent endpoints through a standardized protocol. This guide shows you how to configure and use the A2A tool in your Foundry Agent Service.
+
+Connecting agents via the A2A tool versus a multi-agent workflow:
+
+**Using the A2A tool**: When Agent A calls Agent B through the A2A tool, Agent B's answer goes back to Agent A. Agent A then summarizes the answer and generates a response for the user. Agent A keeps control and continues to handle future user input.**Using a multi-agent workflow**: When Agent A calls Agent B through a workflow or other multi-agent orchestration, Agent B takes full responsibility for answering the user. Agent A is out of the loop. Agent B handles all subsequent user input. For more information, see[Build a workflow in Microsoft Foundry](../../concepts/workflow?view=foundry).
+
+## Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+- An Azure subscription with an active Foundry project.
+- A model deployment (for example, gpt-4) in your Foundry project.
+- Required Azure role: On the Foundry resource,
+**Contributor**or**Owner**for management and**Azure AI User**for building an agent. - SDK installation:
+- Python:
+`pip install azure-ai-projects[agents]`
+
+(latest prerelease) - C#:
+`Azure.AI.Projects`
+
+NuGet package - TypeScript:
+`@azure/ai-projects`
+
+npm package
+
+- Python:
+- Environment variables configured:
+`FOUNDRY_PROJECT_ENDPOINT`
+
+: Your project endpoint URL.`FOUNDRY_MODEL_DEPLOYMENT_NAME`
+
+: Your model deployment name.`A2A_PROJECT_CONNECTION_NAME`
+
+: Your A2A connection name (created in the Foundry portal).`A2A_PROJECT_CONNECTION_ID`
+
+: Your A2A connection resource ID (required for some SDKs). The format is`/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}`
+
+.`A2A_BASE_URI`
+
+(optional): The base URI for the A2A endpoint.
+
+- An A2A connection configured in your Foundry project. For connection setup and REST examples, see
+[Create an A2A connection](#create-an-a2a-connection).
+
+## Create an A2A connection
+
+Create a project connection for your A2A endpoint so you can store authentication securely and reuse it across agent versions.
+
+For details about supported authentication approaches, see [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication?view=foundry).
+
+### Create the connection in the Foundry portal
+
+- Sign in to
+[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. - Select
+**Tools**. - Select
+**Connect tool**. - Select the
+**Custom**tab. - Select
+**Agent2Agent (A2A)**, and then select**Create**. - Enter a
+**Name**and an**A2A Agent Endpoint**. - Under
+**Authentication**, select an authentication method. For key-based authentication, set the credential name (for example,`x-api-key`
+
+) and the corresponding secret value.
+
+### Get the connection identifier for code
+
+Depending on the SDK sample you follow, use either:
+
+- The connection name (
+`A2A_PROJECT_CONNECTION_NAME`
+
+), and resolve it to a connection ID in code. - The connection resource ID (
+`A2A_PROJECT_CONNECTION_ID`
+
+). If you create the connection by using the REST API, you already know the resource ID because it's part of the request URL.
+
+## Quick verification
+
+Before you troubleshoot A2A-specific issues, verify you can authenticate and connect to your Foundry project.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+load_dotenv()
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+print("Connected to project.")
+```
+
+
+If this code runs without errors, your credentials and `FOUNDRY_PROJECT_ENDPOINT`
+
+are configured correctly.
+
+## Code example
+
+Note
+
+You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true#get-ready-to-code) for details.
+
+## Create an agent with the A2A tool
+
+```
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+PromptAgentDefinition,
+A2ATool,
+)
+load_dotenv()
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+project_client.get_openai_client() as openai_client,
+):
+a2a_connection = project_client.connections.get(
+os.environ["A2A_PROJECT_CONNECTION_NAME"],
+)
+tool = A2ATool(
+project_connection_id=a2a_connection.id,
+)
+agent = project_client.agents.create_version(
+agent_name="MyAgent",
+definition=PromptAgentDefinition(
+model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+instructions="You are a helpful assistant.",
+tools=[tool],
+),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+user_input = input("Enter your question (e.g., 'What can the secondary agent do?'): \n")
+stream_response = openai_client.responses.create(
+stream=True,
+tool_choice="required",
+input=user_input,
+extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+for event in stream_response:
+if event.type == "response.created":
+print(f"Follow-up response created with ID: {event.response.id}")
+elif event.type == "response.output_text.delta":
+print(f"Delta: {event.delta}")
+elif event.type == "response.text.done":
+print(f"\nFollow-up response done!")
+elif event.type == "response.output_item.done":
+item = event.item
+if item.type == "remote_function_call":
+print(f"Call ID: {getattr(item, 'call_id')}")
+print(f"Label: {getattr(item, 'label')}")
+elif event.type == "response.completed":
+print(f"\nFollow-up completed!")
+print(f"Full response: {event.response.output_text}")
+print("\nCleaning up...")
+project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
+```
+
+
+### Expected output
+
+The agent responds with information about the secondary agent's capabilities, demonstrating successful A2A communication. You see streaming delta text as the response is generated, followed by completion messages. The output includes the follow-up response ID, text deltas, and a final summary of what the secondary agent can do.
+
+## Create an agent with the A2A tool
+
+This example creates an agent that can call a remote A2A endpoint. For the connection setup steps, see [Create an A2A connection](#create-an-a2a-connection).
+
+```
+// Create an Agent client and read the environment variables, which will be used in the next steps.
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+var a2aConnectionName = System.Environment.GetEnvironmentVariable("A2A_PROJECT_CONNECTION_NAME");
+var a2aBaseUri = System.Environment.GetEnvironmentVariable("A2A_BASE_URI");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Create the A2ATool and provide it with the A2A connection ID.
+AIProjectConnection a2aConnection = projectClient.Connections.GetConnection(connectionName: a2aConnectionName);
+A2ATool a2aTool = new()
+{
+ProjectConnectionId = a2aConnection.Id
+};
+if (!string.Equals(a2aConnection.Type.ToString(), "RemoteA2A"))
+{
+if (a2aBaseUri is null)
+{
+throw new InvalidOperationException($"The connection {a2aConnection.Name} is of {a2aConnection.Type.ToString()} type and does not carry the A2A service base URI. Please provide this value through A2A_BASE_URI environment variable.");
+}
+// Provide the service endpoint as a baseUri parameter
+// if the connection is not of a RemoteA2A type.
+a2aTool.BaseUri = new Uri(a2aBaseUri);
+}
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+Instructions = "You are a helpful assistant.",
+Tools = { a2aTool }
+};
+// Create the Agent version with the A2A tool.
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+agentName: "myAgent",
+options: new(agentDefinition));
+// Create the response and make sure we are always using tool.
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+CreateResponseOptions responseOptions = new()
+{
+ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+InputItems = { ResponseItem.CreateUserMessageItem("What can the secondary agent do?") },
+};
+ResponseResult response = responseClient.CreateResponse(responseOptions);
+// Print the Agent output.
+if (response.Status != ResponseStatus.Completed)
+{
+throw new InvalidOperationException($"Response did not complete. Status: {response.Status}");
+}
+Console.WriteLine(response.GetOutputText());
+// Clean up the created Agent version.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+
+## Create an A2A connection with the REST API
+
+Use these examples to create a project connection that stores your authentication information.
+
+To get an access token for the Azure Resource Manager endpoint:
+
+```
+az account get-access-token --scope https://management.azure.com/.default --query accessToken -o tsv
+```
+
+
+### Key-based
+
+```
+curl --request PUT \
+--url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+--header 'Authorization: Bearer {{token}}' \
+--header 'Content-Type: application/json' \
+--data '{
+"tags": null,
+"location": null,
+"name": "{{connection_name}}",
+"type": "Microsoft.MachineLearningServices/workspaces/connections",
+"properties": {
+"authType": "CustomKeys",
+"group": "ServicesAndApps",
+"category": "RemoteA2A",
+"expiryTime": null,
+"target": "{{a2a_endpoint}}",
+"isSharedToAll": true,
+"sharedUserList": [],
+"Credentials": {
+"Keys": {
+"{{key_name}}": "{{key_value}}"
+}
+},
+"metadata": {
+"ApiType": "Azure"
+}
+}
+}'
+```
+
+
+### Managed OAuth Identity Passthrough
+
+This option is supported when you select **Managed OAuth** in the Foundry tool catalog.
+
+```
+curl --request PUT \
+--url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+--header 'Authorization: Bearer {{token}}' \
+--header 'Content-Type: application/json' \
+--data '{
+"tags": null,
+"location": null,
+"name": "{{connection_name}}",
+"type": "Microsoft.MachineLearningServices/workspaces/connections",
+"properties": {
+"authType": "OAuth2",
+"group": "ServicesAndApps",
+"category": "RemoteA2A",
+"expiryTime": null,
+"target": "{{a2a_endpoint}}",
+"isSharedToAll": true,
+"sharedUserList": [],
+"useCustomConnector": false,
+"connectorName": "{{connector_name}}",
+"Credentials": {},
+"metadata": {
+"ApiType": "Azure"
+}
+}
+}'
+```
+
+
+### Custom OAuth Identity Passthrough
+
+Custom OAuth doesn't support the update operation. Create a new connection if you want to update certain values.
+
+If your OAuth app doesn't require a client secret, omit `ClientSecret`
+
+.
+
+```
+curl --request PUT \
+--url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+--header 'Authorization: Bearer {{token}}' \
+--header 'Content-Type: application/json' \
+--data '{
+"tags": null,
+"location": null,
+"name": "{{connection_name}}",
+"type": "Microsoft.MachineLearningServices/workspaces/connections",
+"properties": {
+"authType": "OAuth2",
+"group": "ServicesAndApps",
+"category": "RemoteA2A",
+"expiryTime": null,
+"target": "{{a2a_endpoint}}",
+"isSharedToAll": true,
+"sharedUserList": [],
+"TokenUrl": "{{token_url}}",
+"AuthorizationUrl": "{{authorization_url}}",
+"RefreshUrl": "{{refresh_url}}",
+"Scopes": [
+"{{scope}}"
+],
+"Credentials": {
+"ClientId": "{{client_id}}",
+"ClientSecret": "{{client_secret}}"
+},
+"metadata": {
+"ApiType": "Azure"
+}
+}
+}'
+```
+
+
+### Foundry Project Managed Identity
+
+```
+curl --request PUT \
+--url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+--header 'Authorization: Bearer {{token}}' \
+--header 'Content-Type: application/json' \
+--data '{
+"tags": null,
+"location": null,
+"name": "{{connection_name}}",
+"type": "Microsoft.MachineLearningServices/workspaces/connections",
+"properties": {
+"authType": "ProjectManagedIdentity",
+"group": "ServicesAndApps",
+"category": "RemoteA2A",
+"expiryTime": null,
+"target": "{{a2a_endpoint}}",
+"isSharedToAll": true,
+"sharedUserList": [],
+"audience": "{{audience}}",
+"Credentials": {},
+"metadata": {
+"ApiType": "Azure"
+}
+}
+}'
+```
+
+
+### Agent identity
+
+```
+curl --request PUT \
+--url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+--header 'Authorization: Bearer {{token}}' \
+--header 'Content-Type: application/json' \
+--data '{
+"tags": null,
+"location": null,
+"name": "{{connection_name}}",
+"type": "Microsoft.MachineLearningServices/workspaces/connections",
+"properties": {
+"authType": "AgenticIdentity",
+"group": "ServicesAndApps",
+"category": "RemoteA2A",
+"expiryTime": null,
+"target": "{{a2a_endpoint}}",
+"isSharedToAll": true,
+"sharedUserList": [],
+"audience": "{{audience}}",
+"Credentials": {},
+"metadata": {
+"ApiType": "Azure"
+}
+}
+}'
+```
+
+
+## Add A2A tool to Foundry Agent Service
+
+### Create an agent version with the A2A tool
+
+```
+curl --request POST \
+--url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H 'Content-Type: application/json' \
+-d '{
+"description": "Test agent version description",
+"definition": {
+"kind": "prompt",
+"model": "{{model}}",
+"tools": [
+{
+"type": "a2a_preview",
+"base_url": "{{a2a_endpoint}}",
+"project_connection_id": "{{project_connection_id}}"
+}
+],
+"instructions": "You are a helpful agent."
+}
+}'
+```
+
+
+This sample demonstrates how to create an AI agent with A2A capabilities by using the `A2ATool`
+
+and the Azure AI Projects client. The agent can communicate with other agents and provide responses based on inter-agent interactions by using the A2A protocol.
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import * as readline from "readline";
+import "dotenv/config";
+// Load environment variables
+const projectEndpoint = process.env.FOUNDRY_PROJECT_ENDPOINT || "<project endpoint>";
+const deploymentName = process.env.FOUNDRY_MODEL_DEPLOYMENT_NAME || "<model deployment name>";
+const a2aProjectConnectionId =
+process.env.A2A_PROJECT_CONNECTION_ID || "<a2a project connection id>";
+export async function main(): Promise<void> {
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+const openAIClient = await project.getOpenAIClient();
+console.log("Creating agent with A2A tool...");
+// Create the agent with A2A tool
+const agent = await project.agents.createVersion("MyA2AAgent", {
+kind: "prompt",
+model: deploymentName,
+instructions: "You are a helpful assistant.",
+// Define A2A tool for agent-to-agent communication
+tools: [
+{
+type: "a2a_preview",
+project_connection_id: a2aProjectConnectionId,
+},
+],
+});
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+// Prompt user for input
+const rl = readline.createInterface({
+input: process.stdin,
+output: process.stdout,
+});
+const userInput = await new Promise<string>((resolve) => {
+rl.question("Enter your question (e.g., 'What can the secondary agent do?'): \n", (answer) => {
+rl.close();
+resolve(answer);
+});
+});
+console.log("\nSending request to A2A agent with streaming...");
+const streamResponse = await openAIClient.responses.create(
+{
+input: userInput,
+stream: true,
+},
+{
+body: {
+agent: { name: agent.name, type: "agent_reference" },
+tool_choice: "required",
+},
+},
+);
+// Process the streaming response
+for await (const event of streamResponse) {
+if (event.type === "response.created") {
+console.log(`Follow-up response created with ID: ${event.response.id}`);
+} else if (event.type === "response.output_text.delta") {
+process.stdout.write(event.delta);
+} else if (event.type === "response.output_text.done") {
+console.log("\n\nFollow-up response done!");
+} else if (event.type === "response.output_item.done") {
+const item = event.item as any;
+if (item.type === "remote_function_call") {
+// Add your handling logic for remote function call items here
+const callId = item.call_id;
+const label = item.label;
+console.log(`Call ID: ${callId ?? "None"}`);
+console.log(`Label: ${label ?? "None"}`);
+}
+} else if (event.type === "response.completed") {
+console.log("\nFollow-up completed!");
+}
+}
+// Clean up resources by deleting the agent version
+// This prevents accumulation of unused resources in your project
+console.log("\nCleaning up resources...");
+await project.agents.deleteVersion(agent.name, agent.version);
+console.log("Agent deleted");
+console.log("\nAgent-to-Agent sample completed!");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+## Troubleshooting
+
+- The agent doesn't invoke the A2A tool:
+- Confirm your agent definition includes the A2A tool and you configured the connection.
+- If you're using responses, confirm you're not forcing a different tool and that your prompt requires calling the remote agent.
+
+- Authentication failures (401 or 403):
+- Confirm the connection's authentication type matches your endpoint requirements.
+- For key-based auth, confirm the credential name matches what the endpoint expects, such as
+`x-api-key`
+
+or`Authorization`
+
+.
+
+- The SDK sample can't find the connection:
+- Confirm
+`A2A_PROJECT_CONNECTION_NAME`
+
+matches the connection name you created in Foundry. - If you're using
+`A2A_PROJECT_CONNECTION_ID`
+
+, confirm it's a full resource ID in the format shown in[Prerequisites](#prerequisites).
+
+- Confirm
+- Network or TLS errors:
+- Confirm the endpoint is publicly reachable from your environment and uses a valid TLS certificate.
+
+
+## Considerations for using non-Microsoft services and servers
+
+You're subject to the terms between you and the service provider when you use connected non-Microsoft services and servers ("non-Microsoft services"). Under your agreement governing use of Microsoft Online services, non-Microsoft services are non-Microsoft Products. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft services, or your application might receive data from the non-Microsoft services. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
+
+Third parties, not Microsoft, create the non-Microsoft services, including A2A agent endpoints, that you decide to use with the A2A tool described in this article. Microsoft didn't test or verify these A2A agent endpoints. Microsoft has no responsibility to you or others in relation to your use of any non-Microsoft services.
+
+Carefully review and track the A2A agent endpoints you add to Foundry Agent Service. Rely on endpoints hosted by trusted service providers themselves rather than proxies.
+
+The A2A tool allows you to pass custom headers, such as authentication keys or schemas, that an A2A agent endpoint might need. Review all data that you share with non-Microsoft services, including A2A agent endpoints, and log the data for auditing purposes. Be aware of non-Microsoft practices for retention and location of data.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: azure-functions-samples.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/azure-functions-samples -->
+
+# How to use queue-based Azure Functions with Microsoft Foundry agents
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+This article shows how to use a queue-based integrated tool approach to enable Microsoft Foundry agents to access code deployed to Azure Functions. In this approach, agents access tool code asynchronously in Azure Functions by means of separate input and output message queues in Azure Queue storage.
+
+Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionsTool`
+
+. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation.
+
+## Prerequisites
+
+- A prepared environment. See the
+[overview](azure-functions?view=foundry-classic)article for details.
+
+Note
+
+You must have a [A deployed agent with the standard setup](../../environment-setup?view=foundry-classic#choose-your-setup). The basic agent setup isn't supported.
+
+Tip
+
+You can find a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python)
+
+## Define a function for your agent to call
+
+Start by defining an Azure queue trigger function that processes function calls from the queue. For example:
+
+```
+app = func.FunctionApp()
+@app.queue_trigger(arg_name="msg", queue_name="azure-function-foo-input", connection="STORAGE_CONNECTION")
+@app.queue_output(arg_name="outputQueue", queue_name="azure-function-foo-output", connection="STORAGE_CONNECTION")
+def queue_trigger(inputQueue: func.QueueMessage, outputQueue: func.Out[str]):
+try:
+messagepayload = json.loads(inputQueue.get_body().decode("utf-8"))
+logging.info(f'The function receives the following message: {json.dumps(messagepayload)}')
+location = messagepayload["location"]
+weather_result = f"Weather is {len(location)} degrees and sunny in {location}"
+response_message = {
+"Value": weather_result,
+"CorrelationId": messagepayload["CorrelationId"]
+}
+logging.info(f'The function returns the following message through the {outputQueue} queue: {json.dumps(response_message)}')
+outputQueue.set(json.dumps(response_message))
+except Exception as e:
+logging.error(f"Error processing message: {e}")
+```
+
+
+## Configure the Azure Function tool
+
+First, define the Azure Function tool, specifying its name, description, parameters, and storage queue configurations.
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import AzureFunctionStorageQueue, AzureFunctionTool
+# Retrieve the storage service endpoint from environment variables
+storage_service_endpoint = os.environ["STORAGE_SERVICE_ENDPONT"]
+# Define the Azure Function tool
+azure_function_tool = AzureFunctionTool(
+name="foo", # Name of the tool
+description="Get answers from the foo bot.", # Description of the tool's purpose
+parameters={ # Define the parameters required by the tool
+"type": "object",
+"properties": {
+"query": {"type": "string", "description": "The question to ask."},
+"outputqueueuri": {"type": "string", "description": "The full output queue URI."},
+},
+},
+input_queue=AzureFunctionStorageQueue( # Input queue configuration
+queue_name="azure-function-foo-input",
+storage_service_endpoint=storage_service_endpoint,
+),
+output_queue=AzureFunctionStorageQueue( # Output queue configuration
+queue_name="azure-function-foo-output",
+storage_service_endpoint=storage_service_endpoint,
+),
+)
+```
+
+
+## Create an AI project client and agent
+
+Next, create an AI project client and then create an agent, attaching the Azure Function tool defined previously.
+
+```
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+endpoint=os.environ["PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential()
+)
+# Create an agent with the Azure Function tool
+agent = project_client.agents.create_agent(
+model=os.environ["MODEL_DEPLOYMENT_NAME"], # Model deployment name
+name="azure-function-agent-foo", # Name of the agent
+instructions=(
+"You are a helpful support agent. Use the provided function any time the prompt contains the string "
+"'What would foo say?'. When you invoke the function, ALWAYS specify the output queue URI parameter as "
+f"'{storage_service_endpoint}/azure-function-tool-output'. Always respond with \"Foo says\" and then the response from the tool."
+),
+tools=azure_function_tool.definitions, # Attach the tool definitions to the agent
+)
+print(f"Created agent, agent ID: {agent.id}")
+```
+
+
+## Create a thread for the agent
+
+```
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, thread ID: {thread.id}")
+```
+
+
+## Create a run and check the output
+
+```
+# Create a message in the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role="user",
+content="What is the most prevalent element in the universe? What would foo say?",
+)
+print(f"Created message, message ID: {message['id']}")
+# Create and process a run for the agent to handle the message
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+# Check if the run failed
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+```
+
+
+## Get the result of the run
+
+```
+# Retrieve and print all messages from the thread
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for msg in messages:
+print(f"Role: {msg['role']}, Content: {msg['content']}")# Get messages from the assistant thread
+# Get the last message from the assistant
+last_msg = messages.get_last_text_message_by_sender("assistant")
+if last_msg:
+print(f"Last Message: {last_msg.text.value}")
+# Delete the agent once done
+project_client.agents.delete_agent(agent.id)
+print(f"Deleted agent")
+```
+
+
+For any issues with the Python code, create an issue on the [sample code repository](https://github.com/azure-ai-foundry/foundry-samples)
+
+## Create an agent
+
+In the sample below we create a client and an agent that has the tools definition for the Azure Function
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+and `API_VERSION`
+
+.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a helpful support agent. Answer the user's questions to the best of your ability.",
+"name": "azure-function-agent-get-weather",
+"model": "gpt-4o-mini",
+"tools": [
+{
+"type": "azure_function",
+"azure_function": {
+"function": {
+"name": "GetWeather",
+"description": "Get the weather in a location.",
+"parameters": {
+"type": "object",
+"properties": {
+"location": {"type": "string", "description": "The location to look up."}
+},
+"required": ["location"]
+}
+},
+"input_binding": {
+"type": "storage_queue",
+"storage_queue": {
+"queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
+"queue_name": "input"
+}
+},
+"output_binding": {
+"type": "storage_queue",
+"storage_queue": {
+"queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
+"queue_name": "output"
+}
+}
+}
+}
+]
+}'
+```
+
+
+## Create a thread for the agent
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d ''
+```
+
+
+## Create a run and check the output
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "What is the weather in Seattle, WA?"
+}'
+```
+
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123",
+}'
+```
+
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+## Get the result of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+Tip
+
+You can find a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-dotnet)
+
+## Prerequisites for .NET Azure Function Sample
+
+To make a function call, we need to create and deploy the Azure function. In the code snippet, we have an example of function on C# which can be used by the earlier code.
+
+```
+namespace FunctionProj
+{
+public class Response
+{
+public required string Value { get; set; }
+public required string CorrelationId { get; set; }
+}
+public class Arguments
+{
+public required string OutputQueueUri { get; set; }
+public required string CorrelationId { get; set; }
+}
+public class Foo
+{
+private readonly ILogger<Foo> _logger;
+public Foo(ILogger<Foo> logger)
+{
+_logger = logger;
+}
+[Function("Foo")]
+public void Run([QueueTrigger("azure-function-foo-input")] Arguments input, FunctionContext executionContext)
+{
+var logger = executionContext.GetLogger("Foo");
+logger.LogInformation("C# Queue function processed a request.");
+// We have to provide the Managed identity for function resource
+// and allow this identity a Queue Data Contributor role on the storage account.
+var cred = new DefaultAzureCredential();
+var queueClient = new QueueClient(new Uri(input.OutputQueueUri), cred,
+new QueueClientOptions { MessageEncoding = QueueMessageEncoding.Base64 });
+var response = new Response
+{
+Value = "Bar",
+// Important! Correlation ID must match the input correlation ID.
+CorrelationId = input.CorrelationId
+};
+var jsonResponse = JsonSerializer.Serialize(response);
+queueClient.SendMessage(jsonResponse);
+}
+}
+}
+```
+
+
+In this code we define function input and output class: `Arguments`
+
+and `Response`
+
+respectively. These two data classes are serialized in JSON. It's important that these both contain the `CorrelationId`
+
+, which is the same between input and output.
+
+In our example the function is stored in the storage account, created with the AI hub. For that we need to allow key access to that storage. In the Azure portal, go to Storage account > Settings > Configuration and set "Allow storage account key access" to Enabled. If it isn't done, the error that is displayed is "The remote server returned an error: (403) Forbidden." To create the function resource that will host our function, install azure-cli python package and run the next command:
+
+```
+pip install -U azure-cli
+az login
+az functionapp create --resource-group your-resource-group --consumption-plan-location region --runtime dotnet-isolated --functions-version 4 --name function_name --storage-account storage_account_already_present_in_resource_group --app-insights existing_or_new_application_insights_name
+```
+
+
+This function writes data to the output queue and hence needs to be authenticated to Azure, so we'll need to assign the function system identity and provide it `Storage Queue Data Contributor`
+
+. To do that in Azure portal, select the function, located in `your-resource-group`
+
+resource group and in Settings > Identity, switch it on and select Save. After that assign the `Storage Queue Data Contributor`
+
+permission on storage account used by our function (`storage_account_already_present_in_resource_group`
+
+in the script above) for the assigned system managed identity.
+
+Now we'll create the function itself. Install [.NET](https://dotnet.microsoft.com/download) and [Core Tools](https://go.microsoft.com/fwlink/?linkid=2174087) and create the function project using next commands.
+
+```
+func init FunctionProj --worker-runtime dotnet-isolated --target-framework net8.0
+cd FunctionProj
+func new --name foo --template "HTTP trigger" --authlevel "anonymous"
+dotnet add package Azure.Identity
+dotnet add package Microsoft.Azure.Functions.Worker.Extensions.Storage.Queues --prerelease
+```
+
+
+Note
+
+There's an "Azure Queue Storage trigger," however the attempt to use it results in error for now.
+We have created a project, containing HTTP-triggered Azure function with the logic in `Foo.cs`
+
+file. As far as we need to trigger Azure function by a new message in the queue, we replace the content of a Foo.cs by the C# sample code above.
+To deploy the function, run the command from dotnet project folder:
+
+```
+func azure functionapp publish function_name
+```
+
+
+In the `storage_account_already_present_in_resource_group`
+
+select the `Queue service`
+
+and create two queues: `azure-function-foo-input`
+
+and `azure-function-tool-output`
+
+. The same queues are used in our sample. To check that the function is working, place the next message into the `azure-function-foo-input`
+
+and replace `storage_account_already_present_in_resource_group`
+
+by the actual resource group name, or just copy the output queue address.
+
+```
+{
+"OutputQueueUri": "https://storage_account_already_present_in_resource_group.queue.core.windows.net/azure-function-tool-output",
+"CorrelationId": "42"
+}
+```
+
+
+Next, we monitor the output queue or the message. You should receive the next message.
+
+```
+{
+"Value": "Bar",
+"CorrelationId": "42"
+}
+```
+
+
+The input `CorrelationId`
+
+is the same as output.
+
+Tip
+
+Place multiple messages to input queue and keep second internet browser window with the output queue open and hit the refresh button on the portal user interface, so that you won't miss the message. If the message instead went to `azure-function-foo-input-poison`
+
+queue, the function completed with error, check your setup.
+After testing the function and making sure it works, make sure that the Azure AI Project has the following roles for the storage account: `Storage Account Contributor`
+
+, `Storage Blob Data Contributor`
+
+, `Storage File Data Privileged Contributor`
+
+, `Storage Queue Data Contributor`
+
+and `Storage Table Data Contributor`
+
+. Now the function is ready to be used by the agent.
+
+In the example below we're calling function "foo," which responds "Bar."
+
+## Create a client, tool definition and agent
+
+Get the necessary configuration, initialize the `PersistentAgentsClient`
+
+, define the `AzureFunctionToolDefinition`
+
+for the Azure Function, and then create the agent.
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
+//Get configuration from appsettings.json.
+IConfigurationRoot configuration = new ConfigurationBuilder()
+.SetBasePath(AppContext.BaseDirectory)
+.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+.Build();
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+var storageQueueUri = configuration["StorageQueueURI"];
+//Initialize PersistentAgentsClient.
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+//Define Azure Function tool definition.
+AzureFunctionToolDefinition azureFnTool = new(
+name: "foo",
+description: "Get answers from the foo bot.",
+inputBinding: new AzureFunctionBinding(
+new AzureFunctionStorageQueue(
+queueName: "azure-function-foo-input",
+storageServiceEndpoint: storageQueueUri
+)
+),
+outputBinding: new AzureFunctionBinding(
+new AzureFunctionStorageQueue(
+queueName: "azure-function-tool-output",
+storageServiceEndpoint: storageQueueUri
+)
+),
+parameters: BinaryData.FromObjectAsJson(
+new
+{
+Type = "object",
+Properties = new
+{
+query = new
+{
+Type = "string",
+Description = "The question to ask.",
+},
+outputqueueuri = new
+{
+Type = "string",
+Description = "The full output queue uri."
+}
+},
+},
+new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
+)
+);
+//Create agent and give it the Azure Function tool.
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "azure-function-agent-foo",
+instructions: "You are a helpful support agent. Use the provided function any "
++ "time the prompt contains the string 'What would foo say?'. When you invoke "
++ "the function, ALWAYS specify the output queue uri parameter as "
++ $"'{storageQueueUri}/azure-function-tool-output'. Always responds with "
++ "\"Foo says\" and then the response from the tool.",
+tools: [azureFnTool]
+);
+```
+
+
+## Create a thread and add a message
+
+Next, create a new persistent agent thread and add an initial user message to it.
+
+```
+PersistentAgentThread thread = client.Threads.CreateThread();
+client.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"What is the most prevalent element in the universe? What would foo say?");
+```
+
+
+### Create and monitor a run
+
+Then, create a run for the agent on the thread and poll its status until it completes or requires action.
+
+```
+ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = client.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress
+|| run.Status == RunStatus.RequiresAction);
+```
+
+
+## Process the results
+
+After the run is complete, we retrieve and process the messages from the thread.
+
+```
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+foreach (MessageContent content in threadMessage.ContentItems)
+{
+switch (content)
+{
+case MessageTextContent textItem:
+Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+break;
+}
+}
+}
+```
+
+
+## Clean up resources
+
+Finally, clean up the created resources by deleting the thread and the agent.
+
+```
+client.Threads.DeleteThread(thread.Id);
+client.Administration.DeleteAgent(agent.Id);
+```
+
+
+## Code example
+
+```
+package com.example.agents;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.implementation.models.CreateAgentRequest;
+import com.azure.ai.agents.persistent.models.AzureFunctionBinding;
+import com.azure.ai.agents.persistent.models.AzureFunctionDefinition;
+import com.azure.ai.agents.persistent.models.AzureFunctionStorageQueue;
+import com.azure.ai.agents.persistent.models.AzureFunctionToolDefinition;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FunctionDefinition;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.HttpHeaderName;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.RequestOptions;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+public class AgentExample {
+public static void main(String[] args) {
+// variables for authenticating requests to the agent service
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+String storageQueueUri = System.getenv("STORAGE_QUEUE_URI");
+String azureFunctionName = System.getenv("AZURE_FUNCTION_NAME");
+PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+.credential(new DefaultAzureCredentialBuilder().build());
+PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+ThreadsClient threadsClient = agentsClient.getThreadsClient();
+MessagesClient messagesClient = agentsClient.getMessagesClient();
+RunsClient runsClient = agentsClient.getRunsClient();
+FunctionDefinition fnDef = new FunctionDefinition(
+azureFunctionName,
+BinaryData.fromObject(
+mapOf(
+"type", "object",
+"properties", mapOf(
+"location",
+mapOf("type", "string", "description", "The location to look up")
+),
+"required", new String[]{"location"}
+)
+)
+);
+AzureFunctionDefinition azureFnDef = new AzureFunctionDefinition(
+fnDef,
+new AzureFunctionBinding(new AzureFunctionStorageQueue(storageQueueUri, "agent-input")),
+new AzureFunctionBinding(new AzureFunctionStorageQueue(storageQueueUri, "agent-output"))
+);
+AzureFunctionToolDefinition azureFnTool = new AzureFunctionToolDefinition(azureFnDef);
+String agentName = "azure_function_example";
+RequestOptions requestOptions = new RequestOptions()
+.setHeader(HttpHeaderName.fromString("x-ms-enable-preview"), "true");
+CreateAgentRequest createAgentRequestObj = new CreateAgentRequest(modelName)
+.setName(agentName)
+.setInstructions("You are a helpful agent. Use the provided function any time "
++ "you are asked with the weather of any location")
+.setTools(Arrays.asList(azureFnTool));
+BinaryData createAgentRequest = BinaryData.fromObject(createAgentRequestObj);
+PersistentAgent agent = administrationClient.createAgentWithResponse(createAgentRequest, requestOptions)
+.getValue().toObject(PersistentAgent.class);
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"What is the weather in Seattle, WA?");
+try {
+//run agent
+CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+.setAdditionalInstructions("");
+ThreadRun threadRun = runsClient.createRun(createRunOptions);
+waitForRunCompletion(thread.getId(), threadRun, runsClient);
+printRunMessages(messagesClient, thread.getId());
+} catch (InterruptedException e) {
+throw new RuntimeException(e);
+} finally {
+//cleanup
+threadsClient.deleteThread(thread.getId());
+administrationClient.deleteAgent(agent.getId());
+}
+}
+// Use "Map.of" if available
+@SuppressWarnings("unchecked")
+private static <T> Map<String, T> mapOf(Object... inputs) {
+Map<String, T> map = new HashMap<>();
+for (int i = 0; i < inputs.length; i += 2) {
+String key = (String) inputs[i];
+T value = (T) inputs[i + 1];
+map.put(key, value);
+}
+return map;
+}
+// A helper function to print messages from the agent
+public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+for (ThreadMessage message : runMessages) {
+System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+for (MessageContent contentItem : message.getContent()) {
+if (contentItem instanceof MessageTextContent) {
+System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+} else if (contentItem instanceof MessageImageFileContent) {
+String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+System.out.print("Image from ID: " + imageFileId);
+}
+System.out.println();
+}
+}
+}
+// a helper function to wait until a run has completed running
+public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+throws InterruptedException {
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(threadId, threadRun.getId());
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+}
+}
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: ai-search.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/ai-search -->
+
+# Azure AI Search tool for agents
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+- There are new ways to add knowledge to your agent. For the latest recommended approach, see
+[Connect a Foundry IQ knowledge base to Foundry Agent Service](knowledge-retrieval?view=foundry). - For information on optimizing tool usage, see
+[best practices](../../concepts/tool-best-practice?view=foundry).
+
+The [Azure AI Search](../../../../search/search-what-is-azure-search?view=foundry) tool in Microsoft Foundry Agent Service connects an agent to an Azure AI Search index. Use this tool to retrieve indexed documents so the agent can ground responses in your proprietary content with citations.
+
+## Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+Java SDK samples aren't available yet.
+
+## Prerequisites
+
+- A
+[basic or standard agent environment](../../environment-setup?view=foundry). - The latest prerelease package. See the
+[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true#get-ready-to-code)for details.**Python**:`pip install azure-ai-projects --pre`
+
+**C#**: Install the`Azure.AI.Projects`
+
+NuGet package (prerelease)**JavaScript/TypeScript**:`npm install @azure/ai-projects`
+
+
+- An Azure subscription and Microsoft Foundry project with:
+- Project endpoint
+- Model deployment name
+- Authentication configured (for example,
+`DefaultAzureCredential`
+
+)
+
+- An
+[Azure AI Search index configured for vector search](../../../../search/search-get-started-portal-import-vectors?view=foundry)with:- One or more
+`Edm.String`
+
+fields that are searchable and retrievable - One or more
+`Collection(Edm.Single)`
+
+vector fields that are searchable - At least one retrievable text field that contains the content you want the agent to cite
+- A retrievable field that contains a source URL (and optionally a title) so citations can include a link
+
+- One or more
+- A connection between your Foundry project and your Azure AI Search service (see
+[Setup](#setup)). - For keyless authentication, assign the following Azure role-based access control (RBAC) roles to your project's managed identity:
+**Search Index Data Contributor****Search Service Contributor**
+
+
+### Environment variables used in this article
+
+| Variable | Description |
+|---|---|
+`FOUNDRY_PROJECT_ENDPOINT` |
+Your Foundry project endpoint. |
+`FOUNDRY_MODEL_DEPLOYMENT_NAME` |
+Your model deployment name. |
+`AZURE_AI_SEARCH_CONNECTION_NAME` |
+The name of your project connection to Azure AI Search (used by the SDK samples to look up the connection ID). |
+`AZURE_AI_SEARCH_CONNECTION_ID` |
+The resource ID of your project connection to Azure AI Search (used by the TypeScript and REST samples). |
+`AI_SEARCH_INDEX_NAME` |
+Your Azure AI Search index name. |
+
+## Parameters for the Azure AI Search tool
+
+| Azure AI Search tool parameter | Required | Notes |
+|---|---|---|
+`project_connection_id` |
+Yes | The resource ID of the project connection to Azure AI Search. |
+`index_name` |
+Yes | The name of the index in your Azure AI Search resource. |
+`top_k` |
+No | Defaults to 5. |
+`query_type` |
+No | Defaults to `vector_semantic_hybrid` . Supported values: `simple` , `vector` , `semantic` , `vector_simple_hybrid` , `vector_semantic_hybrid` . |
+`filter` |
+No | Applies to all queries the agent makes to the index. |
+
+## Code example
+
+Note
+
+- You need the latest prerelease package. For more information, see the
+[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true#get-ready-to-code). - If you're using the REST or TypeScript sample, the connection ID is in the format
+`/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{connectionName}}`
+
+. - If you're using the Python or C# sample, you can provide the connection name and retrieve the connection ID with the SDK.
+
+## Use agents with Azure AI Search tool
+
+```
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+AzureAISearchAgentTool,
+PromptAgentDefinition,
+AzureAISearchToolResource,
+AISearchIndexResource,
+AzureAISearchQueryType,
+)
+load_dotenv()
+project_client = AIProjectClient(
+endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+openai_client = project_client.get_openai_client()
+with project_client:
+azs_connection = project_client.connections.get(os.environ["AZURE_AI_SEARCH_CONNECTION_NAME"])
+connection_id = azs_connection.id
+print(f"Azure AI Search connection ID: {connection_id}")
+agent = project_client.agents.create_version(
+agent_name="MyAgent",
+definition=PromptAgentDefinition(
+model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+instructions="""You are a helpful assistant. You must always provide citations for
+answers using the tool and render them as: `[message_idx:search_idx†source]`.""",
+tools=[
+AzureAISearchAgentTool(
+azure_ai_search=AzureAISearchToolResource(
+indexes=[
+AISearchIndexResource(
+project_connection_id=connection_id,
+index_name=os.environ["AI_SEARCH_INDEX_NAME"],
+query_type=AzureAISearchQueryType.SIMPLE,
+),
+]
+)
+)
+],
+),
+description="You are a helpful agent.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+user_input = input(
+"""Enter your question for the AI Search agent available in the index
+(e.g., 'Tell me about the mental health services available from Premera'): \n"""
+)
+stream_response = openai_client.responses.create(
+stream=True,
+tool_choice="required",
+input=user_input,
+extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+for event in stream_response:
+if event.type == "response.created":
+print(f"Follow-up response created with ID: {event.response.id}")
+elif event.type == "response.output_text.delta":
+print(f"Delta: {event.delta}")
+elif event.type == "response.text.done":
+print(f"\nFollow-up response done!")
+elif event.type == "response.output_item.done":
+if event.item.type == "message":
+item = event.item
+if item.content[-1].type == "output_text":
+text_content = item.content[-1]
+for annotation in text_content.annotations:
+if annotation.type == "url_citation":
+print(
+f"URL Citation: {annotation.url}, "
+f"Start index: {annotation.start_index}, "
+f"End index: {annotation.end_index}"
+)
+elif event.type == "response.completed":
+print(f"\nFollow-up completed!")
+print(f"Full response: {event.response.output_text}")
+print("\nCleaning up...")
+project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
+```
+
+
+### Expected outcome
+
+The agent queries the search index and returns a response with inline citations. Console output shows the agent ID, streaming delta updates as the response generates, URL citations with start and end indices, and the final complete response text. The agent is then successfully deleted.
+
+The following sample code shows synchronous examples of how to use the Azure AI Search tool in [Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI) to query an index. For asynchronous C# examples, see the [GitHub repo](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI).
+
+## Use agents with Azure AI Search tool
+
+This example shows how to use the Azure AI Search tool with agents to query an index.
+
+```
+// Read the environment variables to be used in the next steps.
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
+var aiSearchIndexName = System.Environment.GetEnvironmentVariable("AI_SEARCH_INDEX_NAME");
+// Create an AIProjectClient object that will be used to create the agent and query the index.
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Resolve the project connection ID from the connection name.
+AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+// Create an AzureAISearchToolIndex object that defines the index and the search parameters.
+AzureAISearchToolIndex index = new()
+{
+ProjectConnectionId = aiSearchConnection.Id,
+IndexName = aiSearchIndexName,
+TopK = 5,
+Filter = "category eq 'sleeping bag'",
+QueryType = AzureAISearchQueryType.Simple
+};
+// Create the agent definition with the Azure AI Search tool.
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
+Tools = { new AzureAISearchAgentTool(new AzureAISearchToolOptions(indexes: [index])) }
+};
+// Create the agent version with the agent definition.
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+agentName: "myAgent",
+options: new(agentDefinition));
+// Create an OpenAIResponse object with the ProjectResponsesClient object.
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+OpenAIResponse response = responseClient.CreateResponse("What is the temperature rating of the cozynights sleeping bag?");
+// In the search, an index containing "embedding", "token", "category", "title", and "url" fields is used.
+// The last two fields are needed to get citation title and URL, which the agent retrieves.
+// To get the reference, you need to parse the output items.
+// You can do it in this GetFormattedAnnotation helper method.
+private static string GetFormattedAnnotation(OpenAIResponse response)
+{
+foreach (ResponseItem item in response.OutputItems)
+{
+if (item is MessageResponseItem messageItem)
+{
+foreach (ResponseContentPart content in messageItem.Content)
+{
+foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+{
+if (annotation is UriCitationMessageAnnotation uriAnnotation)
+{
+return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+}
+}
+}
+}
+}
+return "";
+}
+// Use the helper method to output the result.
+Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}");
+// Finally, delete all the resources you created in this sample.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+
+### Expected outcome
+
+The agent queries the specified index for information about the sleeping bag. The response includes the temperature rating and a formatted citation with the document title and URL. The response status is `Completed`
+
+, and the agent version is successfully deleted.
+
+## Use agents with Azure AI Search tool for streaming scenarios
+
+This example shows how to use the Azure AI Search tool with agents to query an index in a streaming scenario.
+
+```
+// Read the environment variables to be used in the next steps
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
+var aiSearchIndexName = System.Environment.GetEnvironmentVariable("AI_SEARCH_INDEX_NAME");
+// Create an AIProjectClient object that will be used to create the agent and query the index.
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Resolve the project connection ID from the connection name.
+AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+// Create an AzureAISearchToolIndex object that defines the index and the search parameters.
+AzureAISearchToolIndex index = new()
+{
+ProjectConnectionId = aiSearchConnection.Id,
+IndexName = aiSearchIndexName,
+TopK = 5,
+Filter = "category eq 'sleeping bag'",
+QueryType = AzureAISearchQueryType.Simple
+};
+// Create the agent definition with the Azure AI Search tool.
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
+Tools = { new AzureAISearchAgentTool(new AzureAISearchToolOptions(indexes: [index])) }
+};
+// Create the agent version with the agent definition.
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+agentName: "myAgent",
+options: new(agentDefinition));
+// Use an index containing "embedding", "token", "category", "title", and "url" fields.
+// The last two fields are needed to get citation title and URL, retrieved by the agent.
+// To get the reference, parse the output items. Use this GetFormattedAnnotation helper method.
+private static string GetFormattedAnnotation(ResponseItem item)
+{
+if (item is MessageResponseItem messageItem)
+{
+foreach (ResponseContentPart content in messageItem.Content)
+{
+foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+{
+if (annotation is UriCitationMessageAnnotation uriAnnotation)
+{
+return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+}
+}
+}
+}
+return "";
+}
+// Create an OpenAIResponse object with the ProjectResponsesClient object.
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+string annotation = "";
+string text = "";
+// Stream the response from the agent and parse the output items for citations.
+foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponseStreaming("What is the temperature rating of the cozynights sleeping bag?"))
+{
+if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
+{
+Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
+}
+else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
+{
+Console.WriteLine($"Delta: {textDelta.Delta}");
+}
+else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
+{
+text = textDoneUpdate.Text;
+}
+else if (streamResponse is StreamingResponseOutputItemDoneUpdate itemDoneUpdate)
+{
+if (annotation.Length == 0)
+{
+annotation = GetFormattedAnnotation(itemDoneUpdate.Item);
+}
+}
+else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
+{
+throw new InvalidOperationException($"The stream has failed: {errorUpdate.Message}");
+}
+}
+Console.WriteLine($"{text}{annotation}");
+// Finally, delete all the resources that were created in this sample.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+
+### Expected outcome
+
+The streaming response displays the agent's response creation, text deltas as they stream in real-time, and a formatted citation when complete. The final output includes the sleeping bag temperature rating with document reference. The agent version is deleted after the query completes.
+
+## Use agents with Azure AI Search tool
+
+The following example shows how to use the Azure AI Search tool with the REST API to query an index. The example uses cURL, but you can use any HTTP client.
+
+```
+curl --request POST \
+--url "$FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+--data '{
+"model": "$FOUNDRY_MODEL_DEPLOYMENT_NAME",
+"input": "Tell me about the mental health services available from Premera.",
+"tool_choice": "required",
+"tools": [
+{
+"type": "azure_ai_search",
+"azure_ai_search": {
+"indexes": [
+{
+"project_connection_id": "$AZURE_AI_SEARCH_CONNECTION_ID",
+"index_name": "$AI_SEARCH_INDEX_NAME",
+"query_type": "semantic",
+"top_k": 5
+}
+]
+}
+}
+]
+}'
+```
+
+
+### Expected outcome
+
+The API returns a JSON response containing the agent's answer about mental health services from the Premera index. The response includes citations and references to the indexed documents used to generate the answer.
+
+## Use agents with Azure AI Search tool
+
+This sample demonstrates how to create an AI agent with Azure AI Search capabilities by using the `AzureAISearchAgentTool`
+
+and synchronous Azure AI Projects client. The agent can search indexed content and provide responses with citations from search results.
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import * as readline from "readline";
+import "dotenv/config";
+// Load environment variables
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const aiSearchConnectionId =
+process.env["AZURE_AI_SEARCH_CONNECTION_ID"] || "<ai search project connection id>";
+const aiSearchIndexName = process.env["AI_SEARCH_INDEX_NAME"] || "<ai search index name>";
+export async function main(): Promise<void> {
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+const openAIClient = await project.getOpenAIClient();
+console.log("Creating agent with Azure AI Search tool...");
+// Define Azure AI Search tool that searches indexed content
+const agent = await project.agents.createVersion("MyAISearchAgent", {
+kind: "prompt",
+model: deploymentName,
+instructions:
+"You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `[message_idx:search_idx†source]`.",
+tools: [
+{
+type: "azure_ai_search",
+azure_ai_search: {
+indexes: [
+{
+project_connection_id: aiSearchConnectionId,
+index_name: aiSearchIndexName,
+query_type: "simple",
+},
+],
+},
+},
+],
+});
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+// Prompt user for input
+const rl = readline.createInterface({
+input: process.stdin,
+output: process.stdout,
+});
+const userInput = await new Promise<string>((resolve) => {
+rl.question(
+"Enter your question for the AI Search agent available in the index (e.g., 'Tell me about the mental health services available from Premera'): \n",
+(answer) => {
+rl.close();
+resolve(answer);
+},
+);
+});
+console.log("\nSending request to AI Search agent with streaming...");
+const streamResponse = await openAIClient.responses.create(
+{
+input: userInput,
+stream: true,
+},
+{
+body: {
+agent: { name: agent.name, type: "agent_reference" },
+tool_choice: "required",
+},
+},
+);
+// Process the streaming response
+for await (const event of streamResponse) {
+if (event.type === "response.created") {
+console.log(`Follow-up response created with ID: ${event.response.id}`);
+} else if (event.type === "response.output_text.delta") {
+process.stdout.write(event.delta);
+} else if (event.type === "response.output_text.done") {
+console.log("\n\nFollow-up response done!");
+} else if (event.type === "response.output_item.done") {
+if (event.item.type === "message") {
+const item = event.item;
+if (item.content && item.content.length > 0) {
+const lastContent = item.content[item.content.length - 1];
+if (lastContent.type === "output_text" && lastContent.annotations) {
+for (const annotation of lastContent.annotations) {
+if (annotation.type === "url_citation") {
+console.log(
+`URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+);
+}
+}
+}
+}
+}
+} else if (event.type === "response.completed") {
+console.log("\nFollow-up completed!");
+}
+}
+// Clean up resources by deleting the agent version
+// This prevents accumulation of unused resources in your project
+console.log("\nCleaning up resources...");
+await project.agents.deleteVersion(agent.name, agent.version);
+console.log("Agent deleted");
+console.log("\nAzure AI Search agent sample completed!");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+### Expected outcome
+
+The application creates an agent with Azure AI Search capabilities, prompts for user input, queries the search index, and streams the response with real-time delta updates. Console output includes the agent ID, streaming text deltas, URL citations with indices, and confirmation of successful agent deletion. The agent provides answers grounded in the indexed content with proper citations.
+
+## Limitations
+
+- To use the Azure AI Search tool in the Microsoft Foundry portal behind a virtual network, create an agent by using the SDK or REST API. After you create the agent programmatically, you can use it in the portal.
+- The Azure AI Search tool can only target one index.
+- A Microsoft Foundry resource with basic agent deployments doesn't support private Azure AI Search resources, nor Azure AI Search with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
+- Your Azure AI Search resource and your Microsoft Foundry Agent must be in the same tenant.
+
+## Verify results
+
+After you run a sample, validate that the agent is grounding responses from your index.
+
+- Ask a question that you know is answered in a specific indexed document.
+- Confirm the response includes citations.
+- If you're streaming, confirm you see
+`url_citation`
+
+annotations in the response.
+
+## Setup
+
+In this section, you create a connection between the Microsoft Foundry project that contains your agent and the Azure AI Search service that contains your index.
+
+If you already connected your project to your search service, skip this section.
+
+To create the connection, you need your search service endpoint and authentication method. The following steps guide you through gathering these details.
+
+### Get search service connection details
+
+The project connection requires the endpoint of your search service and either key-based authentication or keyless authentication with Microsoft Entra ID.
+
+For keyless authentication, you must enable role-based access control (RBAC) and assign roles to your project's managed identity. Although this method involves extra steps, it enhances security by eliminating the need for hard-coded API keys.
+
+Select the tab for your desired authentication method.
+
+Sign in to the
+
+[Azure portal](https://portal.azure.com/)and select your search service.To get the endpoint:
+
+To get the API key:
+
+- From the left pane, select
+**Settings**>**Keys**. - Select
+**Both**to enable both key-based and keyless authentication, which is recommended for most scenarios.
+
+- Make a note of one of the keys under
+**Manage admin keys**.
+
+- From the left pane, select
+
+### Create the project connection
+
+Next, create the project connection by using the search service details you gathered.
+
+Use one of the following options.
+
+**Create the following connection.yml file:**
+
+You can use a YAML configuration file for both key-based and keyless authentication. Replace the `name`
+
+, `endpoint`
+
+, and `api_key`
+
+(optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search?view=foundry).
+
+Here's a key-based example:
+
+```
+name: my_project_acs_connection_keys
+type: azure_ai_search
+endpoint: https://contoso.search.windows.net/
+api_key: XXXXXXXXXXXXXXX
+```
+
+
+Important
+
+Don't put real keys in source control. Store secrets in a secure store (for example, Azure Key Vault) and inject them at deployment time.
+
+Here's a keyless example:
+
+```
+name: my_project_acs_connection_keyless
+type: azure_ai_search
+endpoint: https://contoso.search.windows.net/
+```
+
+
+**Then, run the following command:**
+
+Replace the placeholders with the resource group and project name.
+
+```
+az ml connection create --file connection.yml --resource-group <resource-group> --workspace-name <project-name>
+```
+
+
+### Confirm the connection ID
+
+If you use the REST or TypeScript sample, you need the project connection ID.
+
+**Python**
+
+```
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+load_dotenv()
+project_client = AIProjectClient(
+endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+connection = project_client.connections.get(os.environ["AZURE_AI_SEARCH_CONNECTION_NAME"])
+print(connection.id)
+```
+
+
+**C#**
+
+```
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+AIProjectConnection connection = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+Console.WriteLine(connection.Id);
+```
+
+
+## Troubleshooting
+
+### The response has no citations
+
+- Confirm your agent instructions request citations.
+- If you're streaming, confirm you receive
+`url_citation`
+
+annotations.
+
+### The tool can't access the index (401/403)
+
+- If you use keyless authentication, confirm the managed identity for your Foundry project has the
+**Search Index Data Contributor**and**Search Service Contributor**roles on the Azure AI Search resource. - If you use key-based authentication, confirm the API key is correct and enabled.
+- For role guidance, see
+[Azure role-based access control in Foundry](../../../concepts/rbac-foundry?view=foundry).
+
+### The tool returns "index not found"
+
+- Confirm
+`AI_SEARCH_INDEX_NAME`
+
+matches the index name in your Azure AI Search resource. - Confirm the project connection points to the Azure AI Search resource that contains the index.
+
+## Related content
+
+[Connect a Foundry IQ knowledge base to Foundry Agent Service](knowledge-retrieval?view=foundry)
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: function-calling.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/function-calling -->
+
+# Azure AI Agents function calling
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This article refers to the classic version of the agents API.
+
+By using Azure AI Agents function calling, you can extend agent capabilities by defining custom functions. When an agent determines that a function needs to be called, it returns metadata with the function name and arguments. Your application code executes the function and returns results. This guide shows you how to implement function calling in Python, C#, JavaScript, Java, and REST API to create powerful AI workflows.
+
+Note
+
+- The agent requests function calls from your code, and your application executes the functions. Run executions expire 10 minutes after creation, so ensure your functions complete and return responses within this time limit.
+- Both the Microsoft Foundry portal and the Microsoft Foundry SDK support function calling. When you create agents with function calling capabilities, they appear in both portals. However, executing function calling requires your custom code. The portals facilitate agent configuration and monitoring but can't directly execute your custom functions.
+
+### Usage support
+
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Best practices
+
+### Multi-turn function calling
+
+The agent may require multiple function calls to complete a single user request. For example, if a user asks "What's the weather like in my favorite city?", the agent might:
+
+- First call
+`getUserFavoriteCity()`
+
+to determine the city - Then call
+`getWeather(location)`
+
+with the result
+
+Your polling loop must handle multiple `requires_action`
+
+states in sequence. Don't assume the run completes after submitting one function result—continue polling until the run status is `completed`
+
+or a terminal state (`failed`
+
+, `cancelled`
+
+, `expired`
+
+).
+
+### Error handling in functions
+
+When your function execution fails, you have two options:
+
+**Return an error message**- Submit a descriptive error as the tool output. The agent can use this to provide a helpful response to the user.**Cancel the run**- If the error is unrecoverable, cancel the run and handle it in your application.
+
+```
+# Example: Returning an error message
+if error_occurred:
+tool_outputs.append({
+"tool_call_id": tool_call.id,
+"output": json.dumps({"error": "Location not found. Please provide a valid city name."})
+})
+```
+
+
+### Timeout considerations
+
+Runs expire **10 minutes** after creation. Plan your function implementations accordingly:
+
+- If your function makes external API calls, set appropriate timeouts
+- For long-running operations, consider returning a partial result or status update
+- Monitor run status and handle
+`expired`
+
+status gracefully
+
+### Polling with backoff
+
+Instead of polling with a fixed delay, consider exponential backoff to reduce API calls:
+
+```
+# Example: Exponential backoff polling
+import time
+delay = 0.5 # Start with 500ms
+max_delay = 5 # Cap at 5 seconds
+while run.status in ["queued", "in_progress", "requires_action"]:
+time.sleep(delay)
+run = project_client.agents.runs.get(thread_id=thread.id, run_id=run.id)
+if run.status == "requires_action":
+# Handle function call, reset delay after action
+delay = 0.5
+else:
+# Increase delay for next poll
+delay = min(delay * 1.5, max_delay)
+```
+
+
+### Function definition best practices
+
+**Use clear descriptions**- The agent uses your function descriptions to decide when to call them. Be specific about what each function does and when it should be used.**Validate required parameters**- Mark parameters as`required`
+
+in your schema if they're necessary for the function to work correctly.**Keep parameter names intuitive**- Use names like`location`
+
+,`temperature_unit`
+
+rather than abbreviations.**Return structured JSON**- Return JSON objects rather than plain strings to give the agent more context about the result.
+
+## Function calling code example
+
+Note
+
+You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_streaming/sample_agents_stream_eventhandler_with_functions.py).
+
+The following Python code demonstrates how to implement an agent with function calling capabilities. This example shows:
+
+**Define function tools**- Create Python functions (like`fetch_weather`
+
+) that the agent can request to call.**Register functions with the agent**- Provide function definitions to the agent so it knows what capabilities are available.**Create and run the agent**- Set up the agent, thread, and message to start a conversation.**Handle function call requests**- When the agent determines it needs a function, poll the run status and detect when`status == "requires_action"`
+
+.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Return results**- Submit the function output back to the agent to continue the conversation.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
+
+Use the following code sample to create an agent and call the function.
+
+```
+import os, time
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.agents.models import FunctionTool
+import json
+import datetime
+from typing import Any, Callable, Set, Dict, List, Optional
+# Start by defining a function for your agent to call.
+# When you create a function for an agent to call, you describe its structure
+# with any required parameters in a docstring.
+def fetch_weather(location: str) -> str:
+"""
+Fetches the weather information for the specified location.
+:param location: The location to fetch weather for.
+:return: Weather information as a JSON string.
+"""
+# Mock weather data for demonstration purposes
+mock_weather_data = {"New York": "Sunny, 25°C", "London": "Cloudy, 18°C", "Tokyo": "Rainy, 22°C"}
+weather = mock_weather_data.get(location, "Weather data not available for this location.")
+return json.dumps({"weather": weather})
+# Define user functions
+user_functions = {fetch_weather}
+# Retrieve the project endpoint from environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]
+model_name = os.environ["MODEL_DEPLOYMENT_NAME"]
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+endpoint=project_endpoint,
+credential=DefaultAzureCredential()
+)
+# Initialize the FunctionTool with user-defined functions
+functions = FunctionTool(functions=user_functions)
+with project_client:
+# Create an agent with custom functions
+agent = project_client.agents.create_agent(
+model=model_name,
+name="my-agent",
+instructions="You are a helpful agent",
+tools=functions.definitions,
+)
+print(f"Created agent, ID: {agent.id}")
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+# Send a message to the thread
+message = project_client.agents.messages.create(
+thread_id=thread.id,
+role="user",
+content="Hello, send an email with the datetime and weather information in New York?",
+)
+print(f"Created message, ID: {message['id']}")
+# Create and process a run for the agent to handle the message
+run = project_client.agents.runs.create(thread_id=thread.id, agent_id=agent.id)
+print(f"Created run, ID: {run.id}")
+# Poll the run status until it is completed or requires action
+while run.status in ["queued", "in_progress", "requires_action"]:
+time.sleep(1)
+run = project_client.agents.runs.get(thread_id=thread.id, run_id=run.id)
+if run.status == "requires_action":
+tool_calls = run.required_action.submit_tool_outputs.tool_calls
+tool_outputs = []
+for tool_call in tool_calls:
+if tool_call.function.name == "fetch_weather":
+output = fetch_weather("New York")
+tool_outputs.append({"tool_call_id": tool_call.id, "output": output})
+project_client.agents.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
+print(f"Run completed with status: {run.status}")
+# Fetch and log all messages from the thread
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages:
+print(f"Role: {message['role']}, Content: {message['content']}")
+# Delete the agent after use
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+## Function calling code example
+
+Note
+
+You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample8_PersistentAgents_FunctionsWithStreaming.md).
+
+The following C# code demonstrates how to implement an agent with function calling capabilities. This example shows:
+
+**Define function tools**- Create C# methods (like`GetWeatherAtLocation`
+
+) that the agent can request to call.**Create function definitions**- Use`FunctionToolDefinition`
+
+to describe each function's purpose and parameters to the agent.**Implement function execution logic**- Build a helper method to route function call requests to your actual C# methods.**Create and run the agent**- Set up the agent, thread, and message to start a conversation.**Handle function call requests**- Poll the run status and detect when`Status == RunStatus.RequiresAction`
+
+.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Return results**- Submit the function output back to the agent using`SubmitToolOutputsToRun`
+
+.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
+
+### Configure the client and define functions
+
+```
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
+//First, set up the configuration using `appsettings.json`, load it, and create a `PersistentAgentsClient`.
+IConfigurationRoot configuration = new ConfigurationBuilder()
+.SetBasePath(AppContext.BaseDirectory)
+.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+.Build();
+// Read necessary configuration values (Project Endpoint and Model Deployment Name)
+var projectEndpoint = configuration["PROJECT_ENDPOINT"];
+var modelDeploymentName = configuration["MODEL_DEPLOYMENT_NAME"];
+// Initialize the client to interact with the Azure AI Agents Persistent Client using default credentials
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+//Define the local C# functions that your agent can call,
+//along with their `FunctionToolDefinition` to describe their purpose and parameters to the agent.
+string GetUserFavoriteCity() => "Seattle, WA";
+// Definition for the GetUserFavoriteCity function, describing its purpose to the agent
+FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
+// Function to get a city's nickname based on its location
+string GetCityNickname(string location) => location switch
+{
+"Seattle, WA" => "The Emerald City",
+// Handle cases where the nickname is not known
+_ => throw new NotImplementedException(),
+};
+// Definition for the GetCityNickname function, including parameter description
+FunctionToolDefinition getCityNicknameTool = new(
+name: "getCityNickname",
+description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+// Define the expected parameters (location string)
+parameters: BinaryData.FromObjectAsJson(
+new
+{
+Type = "object",
+Properties = new
+{
+Location = new
+{
+Type = "string",
+Description = "The city and state, e.g. San Francisco, CA",
+},
+},
+Required = new[] { "location" },
+},
+new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+// Function to get weather at a specific location, with an optional temperature unit
+string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
+{
+"Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
+// Handle cases where weather data is not available
+_ => throw new NotImplementedException()
+};
+// Definition for the GetWeatherAtLocation function, specifying parameters and enum for unit
+FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
+name: "getCurrentWeatherAtLocation",
+description: "Gets the current weather at a provided location.",
+// Define expected parameters (location string, optional unit enum)
+parameters: BinaryData.FromObjectAsJson(
+new
+{
+Type = "object",
+Properties = new
+{
+Location = new
+{
+Type = "string",
+Description = "The city and state, e.g. San Francisco, CA",
+},
+Unit = new
+{
+Type = "string",
+Enum = new[] { "c", "f" },
+},
+},
+Required = new[] { "location" },
+},
+new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+//Implement function execution logic
+/*
+Create a helper function, `GetResolvedToolOutput`, to process `RequiredToolCall` objects from the agent.
+This function will invoke the appropriate C# local function and return its output to the agent.
+*/
+ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
+{
+// Check if the required call is a function call
+if (toolCall is RequiredFunctionToolCall functionToolCall)
+{
+// Execute GetUserFavoriteCity if its name matches
+if (functionToolCall.Name == getUserFavoriteCityTool.Name)
+{
+return new ToolOutput(toolCall, GetUserFavoriteCity());
+}
+// Parse the arguments provided by the agent for other functions
+using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
+// Execute GetCityNickname if its name matches
+if (functionToolCall.Name == getCityNicknameTool.Name)
+{
+// Extract the 'location' argument
+string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+return new ToolOutput(toolCall, GetCityNickname(locationArgument));
+}
+// Execute GetWeatherAtLocation if its name matches
+if (functionToolCall.Name == getCurrentWeatherAtLocationTool.Name)
+{
+// Extract the 'location' argument
+string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+// Check if the optional 'unit' argument was provided
+if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+{
+string unitArgument = unitElement.GetString();
+return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument, unitArgument));
+}
+// Call without the unit if it wasn't provided
+return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument));
+}
+}
+// Return null if the tool call type isn't handled
+return null;
+}
+//Create agent and conversation thread
+/*
+Create the `PersistentAgent`, providing the model deployment name, a descriptive name,
+instructions for its behavior, and the list of `FunctionToolDefinitions` it can use.
+Then, create a `PersistentAgentThread` and add an initial user message to start the conversation.
+*/
+// Create the agent instance
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "SDK Test Agent - Functions",
+instructions: "You are a weather bot. Use the provided functions to help answer questions. "
++ "Customize your responses to the user's preferences as much as possible and use friendly "
++ "nicknames for cities whenever possible.",
+tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
+// Create a new conversation thread for the agent
+PersistentAgentThread thread = client.Threads.CreateThread();
+// Add the initial user message to the thread
+client.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"What's the weather like in my favorite city?");
+//Process run and handle function calls
+/*
+Create a `ThreadRun` for the agent on the thread. Poll for the run's completion status.
+If the run status is `RequiresAction`, it means the agent needs to call one of your local functions.
+Use the `GetResolvedToolOutput` helper to get the function's result and submit it back to the run.
+Start a run for the agent to process the messages in the thread
+*/
+ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
+// Loop to check the run status and handle required actions
+do
+{
+// Wait briefly before checking the status again
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+// Get the latest status of the run
+run = client.Runs.GetRun(thread.Id, run.Id);
+// Check if the agent requires a function call to proceed
+if (run.Status == RunStatus.RequiresAction
+&& run.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
+{
+// Prepare a list to hold the outputs of the tool calls
+List<ToolOutput> toolOutputs = [];
+// Iterate through each required tool call
+foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
+{
+// Execute the function and get the output using the helper method
+toolOutputs.Add(GetResolvedToolOutput(toolCall));
+}
+// Submit the collected tool outputs back to the run
+run = client.Runs.SubmitToolOutputsToRun(run, toolOutputs, null);
+}
+}
+// Continue looping while the run is in progress or requires action
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress
+|| run.Status == RunStatus.RequiresAction);
+// Retrieve and display results
+/*
+After the run completes, retrieve all messages from the thread to see the full conversation,
+including the agent's final response.
+*/
+// Retrieve all messages from the completed thread, oldest first
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+// Iterate through each message in the thread
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+// Iterate through content items in the message (usually just one text item)
+foreach (MessageContent content in threadMessage.ContentItems)
+{
+// Process based on content type
+switch (content)
+{
+// If it's a text message
+case MessageTextContent textItem:
+// Print the role (user/agent) and the text content
+Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+break;
+// Add handling for other content types if necessary (e.g., images)
+}
+}
+}
+// Clean up resources
+/*
+Finally, clean up the created resources by deleting the thread and the agent.
+*/
+// Delete the conversation thread
+client.Threads.DeleteThread(threadId: thread.Id);
+// Delete the agent definition
+client.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+
+## Function calling code example
+
+The following JavaScript code demonstrates how to implement an agent with function calling capabilities. This example shows how to:
+
+**Define function tools**- Create JavaScript functions (like`getWeather`
+
+) that the agent can request to call.**Create a function executor class**- Use`FunctionToolExecutor`
+
+to organize functions and their definitions.**Register functions with the agent**- Provide function definitions by using`ToolUtility.createFunctionTool`
+
+.**Create and run the agent**- Set up the agent, thread, and message to start a conversation.**Handle function call requests**- Poll the run status and detect when`status === "requires_action"`
+
+.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Return results**- Submit the function output back to the agent by using`submitToolOutputs`
+
+.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
+
+```
+// Define a function for your agent to call
+/*
+Start by defining a function for your agent to call. When you create a function for an agent to call,
+you describe its structure of it with any required parameters in a docstring.
+*/
+const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
+const { delay } = require("@azure/core-util");
+const { DefaultAzureCredential } = require("@azure/identity");
+require("dotenv/config");
+class FunctionToolExecutor {
+functionTools;
+constructor() {
+this.functionTools = [
+{
+func: this.getUserFavoriteCity,
+...ToolUtility.createFunctionTool({
+name: "getUserFavoriteCity",
+description: "Gets the user's favorite city.",
+parameters: {},
+}),
+},
+{
+func: this.getCityNickname,
+...ToolUtility.createFunctionTool({
+name: "getCityNickname",
+description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+parameters: {
+type: "object",
+properties: {
+location: { type: "string", description: "The city and state, e.g. Seattle, Wa" },
+},
+},
+}),
+},
+{
+func: this.getWeather,
+...ToolUtility.createFunctionTool({
+name: "getWeather",
+description: "Gets the weather for a location.",
+parameters: {
+type: "object",
+properties: {
+location: { type: "string", description: "The city and state, e.g. Seattle, Wa" },
+unit: { type: "string", enum: ["c", "f"] },
+},
+},
+}),
+},
+];
+}
+getUserFavoriteCity() {
+return { location: "Seattle, WA" };
+}
+getCityNickname(_location) {
+return { nickname: "The Emerald City" };
+}
+getWeather(_location, unit) {
+return { weather: unit === "f" ? "72f" : "22c" };
+}
+invokeTool(toolCall) {
+console.log(`Function tool call - ${toolCall.function.name}`);
+const args = [];
+if (toolCall.function.parameters) {
+try {
+const params = JSON.parse(toolCall.function.parameters);
+for (const key in params) {
+if (Object.prototype.hasOwnProperty.call(params, key)) {
+args.push(params[key]);
+}
+}
+} catch (error) {
+console.error(`Failed to parse parameters: ${toolCall.function.parameters}`, error);
+return undefined;
+}
+}
+const result = this.functionTools
+.find((tool) => tool.definition.function.name === toolCall.function.name)
+?.func(...args);
+return result
+? {
+toolCallId: toolCall.id,
+output: JSON.stringify(result),
+}
+: undefined;
+}
+getFunctionDefinitions() {
+return this.functionTools.map((tool) => {
+return tool.definition;
+});
+}
+}
+// Create a client and agent
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+const modelName = process.env["MODEL_DEPLOYMENT_NAME"];
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+const functionToolExecutor = new FunctionToolExecutor();
+const functionTools = functionToolExecutor.getFunctionDefinitions();
+const agent = await client.createAgent(modelName, {
+name: "my-agent",
+instructions:
+"You are a weather bot. Use the provided functions to help answer questions. Customize your responses to the user's preferences as much as possible and use friendly nicknames for cities whenever possible.",
+tools: functionTools,
+});
+console.log(`Created agent, agent ID: ${agent.id}`);
+// Create a thread
+const thread = await client.threads.create();
+console.log(`Created Thread, thread ID: ${thread.id}`);
+// Create message
+const message = await client.messages.create(
+thread.id,
+"user",
+"What's the weather like in my favorite city?",
+);
+console.log(`Created message, message ID ${message.id}`);
+// Create a run and check the output
+let run = await client.runs.create(thread.id, agent.id);
+console.log(`Created Run, Run ID: ${run.id}`);
+while (["queued", "in_progress", "requires_action"].includes(run.status)) {
+await delay(1000);
+run = await client.runs.get(thread.id, run.id);
+console.log(`Current Run status - ${run.status}, run ID: ${run.id}`);
+if (run.status === "requires_action" && run.requiredAction) {
+console.log(`Run requires action - ${run.requiredAction}`);
+if (isOutputOfType(run.requiredAction, "submit_tool_outputs")) {
+const submitToolOutputsActionOutput = run.requiredAction;
+const toolCalls = submitToolOutputsActionOutput.submitToolOutputs.toolCalls;
+const toolResponses = [];
+for (const toolCall of toolCalls) {
+if (isOutputOfType(toolCall, "function")) {
+const toolResponse = functionToolExecutor.invokeTool(toolCall);
+if (toolResponse) {
+toolResponses.push(toolResponse);
+}
+}
+}
+if (toolResponses.length > 0) {
+run = await client.runs.submitToolOutputs(thread.id, run.id, toolResponses);
+console.log(`Submitted tool response - ${run.status}`);
+}
+}
+}
+}
+console.log(`Run status - ${run.status}, run ID: ${run.id}`);
+const messages = client.messages.list(thread.id);
+for await (const threadMessage of messages) {
+console.log(
+`Thread Message Created at - ${threadMessage.createdAt} - Role - ${threadMessage.role}`,
+);
+threadMessage.content.forEach((content) => {
+if (isOutputOfType(content, "text")) {
+const textContent = content;
+console.log(`Text Message Content - ${textContent.text.value}`);
+} else if (isOutputOfType(content, "image_file")) {
+const imageContent = content;
+console.log(`Image Message Content - ${imageContent.imageFile.fileId}`);
+}
+});
+}
+// Delete agent - comment this out if you want to keep your agent
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
+```
+
+
+## Function calling code example
+
+The following REST API examples demonstrate how to implement an agent with function calling capabilities. This example shows:
+
+**Define function tools**- Describe your function structure with parameters in the agent creation request.**Create the agent**- Register the agent with function definitions so it knows what capabilities are available.**Create a thread and add messages**- Set up the conversation thread and add the user's question.**Run the thread**- Start the agent execution to process the message.**Poll run status**- Check the run status to detect when the agent requests a function call.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Submit function results**- Return the function output to the agent so that the run can continue and complete.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, the run status indicates `requires_action`
+
+with function call details. Your application code must detect this, execute the appropriate function, and submit the results back to the agent via the API.
+
+### Define a function for your agent to call
+
+Start by defining a function for your agent to call. When you create a function for an agent to call, describe its structure with any required parameters in a docstring. See the other SDK languages for example functions.
+
+### Create an agent
+
+Follow the [REST API Quickstart](../../quickstart?view=foundry-classic&pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`
+
+, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`
+
+, and `API_VERSION`
+
+.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"instructions": "You are a weather bot. Use the provided functions to answer questions.",
+"model": "gpt-4o-mini",
+"tools": [
+{
+"type": "function",
+"function": {
+"name": "get_weather",
+"description": "Get the weather in location",
+"parameters": {
+"type": "object",
+"properties": {
+"location": {
+"type": "string",
+"description": "The city name, for example San Francisco"
+}
+},
+"required": ["location"]
+}
+}
+}
+]
+}'
+```
+
+
+### Create a thread
+
+Capture the `id`
+
+from the response (for example, `thread_abc123`
+
+) so you can reuse it in later requests.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{}'
+```
+
+
+#### Add a user question to the thread
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"role": "user",
+"content": "What is the weather in Seattle?"
+}'
+```
+
+
+### Run the thread
+
+Store the returned `run`
+
+identifier (for example, `run_abc123`
+
+) for subsequent polling requests.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"assistant_id": "asst_abc123"
+}'
+```
+
+
+### Retrieve the status of the run
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+When the agent needs one of your functions, the run enters the `requires_action`
+
+state. The response includes the `required_action.submit_tool_outputs.tool_calls`
+
+array, which lists the name of the function to call and its arguments.
+
+```
+{
+"id": "run_abc123",
+"status": "requires_action",
+"required_action": {
+"type": "submit_tool_outputs",
+"submit_tool_outputs": {
+"tool_calls": [
+{
+"id": "call_123",
+"type": "function",
+"function": {
+"name": "get_weather",
+"arguments": "{\"location\":\"Seattle\"}"
+}
+}
+]
+}
+}
+}
+```
+
+
+When you detect the `requires_action`
+
+status:
+
+- Extract the
+`tool_calls`
+
+array from`required_action.submit_tool_outputs.tool_calls`
+
+. - For each tool call, use the
+`function.name`
+
+and`function.arguments`
+
+values to execute your own function implementation. - Capture the output from your function.
+- Submit the results by using the following endpoint, matching each output to its
+`tool_call_id`
+
+.
+
+### Submit function results to the run
+
+After your code executes the function, send the output back to the run by calling `submit-tool-outputs`
+
+. Use the `tool_call_id`
+
+from the polling response so the service can match your output to the original request.
+
+```
+curl --request POST \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123/submit-tool-outputs?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"tool_outputs": [
+{
+"tool_call_id": "call_123",
+"output": "{\"forecast\":\"Rainy and 55 F\"}"
+}
+]
+}'
+```
+
+
+Submitting the output moves the run back to the `in_progress`
+
+state. Continue polling until the status changes to `completed`
+
+.
+
+### Retrieve the agent response
+
+```
+curl --request GET \
+--url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+-H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+
+## Function calling code example
+
+The following Java code demonstrates how to implement an agent with function calling capabilities. This example shows:
+
+**Define function tools**- Create Java functions (like`getUserFavoriteCity`
+
+and`getCityNickname`
+
+) that the agent can request to call.**Create function definitions**- Use`FunctionToolDefinition`
+
+to describe each function's purpose and parameters to the agent.**Implement function execution logic**- Build a resolver function to route function call requests to your actual Java methods.**Create and run the agent**- Set up the agent, thread, and message to start a conversation.**Handle function call requests**- Poll the run status and detect when`status == RunStatus.REQUIRES_ACTION`
+
+.**Execute functions**-**Your code is responsible for calling the actual function**- the agent doesn't execute it automatically.**Return results**- Submit the function output back to the agent using`submitToolOutputsToRun`
+
+.
+
+Important
+
+The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
+
+```
+package com.example.agents;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FunctionDefinition;
+import com.azure.ai.agents.persistent.models.FunctionToolDefinition;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RequiredFunctionToolCall;
+import com.azure.ai.agents.persistent.models.RequiredToolCall;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.SubmitToolOutputsAction;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.ToolOutput;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import java.net.URL;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+public class AgentExample {
+public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
+// variables for authenticating requests to the agent service
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+.credential(new DefaultAzureCredentialBuilder().build());
+PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+ThreadsClient threadsClient = agentsClient.getThreadsClient();
+MessagesClient messagesClient = agentsClient.getMessagesClient();
+RunsClient runsClient = agentsClient.getRunsClient();
+Supplier<String> getUserFavoriteCity = () -> "Seattle, WA";
+FunctionToolDefinition getUserFavoriteCityTool = new FunctionToolDefinition(
+new FunctionDefinition(
+"getUserFavoriteCity",
+BinaryData.fromObject(
+new Object()
+))
+);
+Function<String, String> getCityNickname = location -> {
+return "The Emerald City";
+};
+FunctionToolDefinition getCityNicknameTool = new FunctionToolDefinition(
+new FunctionDefinition(
+"getCityNickname",
+BinaryData.fromObject(
+mapOf(
+"type", "object",
+"properties", mapOf(
+"location",
+mapOf(
+"type", "string",
+"description", "The city and state, e.g. San Francisco, CA")
+),
+"required", new String[]{"location"}))
+).setDescription("Get the nickname of a city")
+);
+Function<RequiredToolCall, ToolOutput> getResolvedToolOutput = toolCall -> {
+if (toolCall instanceof RequiredFunctionToolCall) {
+RequiredFunctionToolCall functionToolCall = (RequiredFunctionToolCall) toolCall;
+String functionName = functionToolCall.getFunction().getName();
+if (functionName.equals("getUserFavoriteCity")) {
+return new ToolOutput().setToolCallId(functionToolCall.getId())
+.setOutput(getUserFavoriteCity.get());
+} else if (functionName.equals("getCityNickname")) {
+String arguments = functionToolCall.getFunction().getArguments();
+try {
+JsonNode root = new JsonMapper().readTree(arguments);
+String location = String.valueOf(root.get("location").asText());
+return new ToolOutput().setToolCallId(functionToolCall.getId())
+.setOutput(getCityNickname.apply(location));
+} catch (JsonProcessingException e) {
+throw new RuntimeException(e);
+}
+}
+}
+return null;
+};
+String agentName = "functions_example";
+CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+.setName(agentName)
+.setInstructions("You are a weather bot. Use the provided functions to help answer questions. "
++ "Customize your responses to the user's preferences as much as possible and use friendly "
++ "nicknames for cities whenever possible.")
+.setTools(Arrays.asList(getUserFavoriteCityTool, getCityNicknameTool));
+PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+thread.getId(),
+MessageRole.USER,
+"What's the nickname of my favorite city?");
+try {
+//run agent
+CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+.setAdditionalInstructions("");
+ThreadRun threadRun = runsClient.createRun(createRunOptions);
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(thread.getId(), threadRun.getId());
+if (threadRun.getStatus() == RunStatus.REQUIRES_ACTION
+&& threadRun.getRequiredAction() instanceof SubmitToolOutputsAction) {
+SubmitToolOutputsAction submitToolsOutputAction = (SubmitToolOutputsAction) (threadRun.getRequiredAction());
+ArrayList<ToolOutput> toolOutputs = new ArrayList<ToolOutput>();
+for (RequiredToolCall toolCall : submitToolsOutputAction.getSubmitToolOutputs().getToolCalls()) {
+toolOutputs.add(getResolvedToolOutput.apply(toolCall));
+}
+threadRun = runsClient.submitToolOutputsToRun(thread.getId(), threadRun.getId(), toolOutputs);
+}
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+printRunMessages(messagesClient, thread.getId());
+} catch (InterruptedException e) {
+throw new RuntimeException(e);
+} finally {
+//cleanup
+threadsClient.deleteThread(thread.getId());
+administrationClient.deleteAgent(agent.getId());
+}
+}
+// Use "Map.of" if available
+@SuppressWarnings("unchecked")
+private static <T> Map<String, T> mapOf(Object... inputs) {
+Map<String, T> map = new HashMap<>();
+for (int i = 0; i < inputs.length; i += 2) {
+String key = (String) inputs[i];
+T value = (T) inputs[i + 1];
+map.put(key, value);
+}
+return map;
+}
+// A helper function to print messages from the agent
+public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+for (ThreadMessage message : runMessages) {
+System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+for (MessageContent contentItem : message.getContent()) {
+if (contentItem instanceof MessageTextContent) {
+System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+} else if (contentItem instanceof MessageImageFileContent) {
+String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+System.out.print("Image from ID: " + imageFileId);
+}
+System.out.println();
+}
+}
+}
+// a helper function to wait until a run has completed running
+public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+throws InterruptedException {
+do {
+Thread.sleep(500);
+threadRun = runsClient.getRun(threadId, threadRun.getId());
+}
+while (
+threadRun.getStatus() == RunStatus.QUEUED
+|| threadRun.getStatus() == RunStatus.IN_PROGRESS
+|| threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+if (threadRun.getStatus() == RunStatus.FAILED) {
+System.out.println(threadRun.getLastError().getMessage());
+}
+}
+private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
+URL resource = AgentExample.class.getClassLoader().getResource(fileName);
+if (resource == null) {
+throw new FileNotFoundException("File not found");
+}
+File file = new File(resource.toURI());
+return file.toPath();
+}
+@FunctionalInterface
+public interface Supplier<T> extends java.util.function.Supplier<T> {
+/**
+* Retrieves an instance of the appropriate type. The returned object may or may not be a new
+* instance, depending on the implementation.
+*
+* @return an instance of the appropriate type
+*/
+@Override
+T get();
+}
+}
+```
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: openapi.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/openapi -->
+
+# Connect to an OpenAPI specification
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Connect your Microsoft Foundry Agent Service to external APIs by using OpenAPI 3.0 tools with support for anonymous, API key, and managed identity authentication. This integration enables scalable interoperability with existing infrastructure and web services.
+
+OpenAPI tools improve your agent's function calling capabilities by providing standardized, automated API integrations. [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication types with OpenAPI 3.0 tools: `anonymous`
+
+, `API key`
+
+, and `managed identity`
+
+.
+
+### Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- An Azure subscription with the right permissions.
+- Azure RBAC role: Contributor or Owner on the Foundry project.
+- A Foundry project created with an endpoint configured.
+- An AI model deployed in your project.
+- A
+[basic or standard agent environment](../../environment-setup?view=foundry). - SDK installed for your preferred language:
+- Python:
+`azure-ai-projects`
+
+(latest prerelease version) - C#:
+`Azure.AI.Projects.OpenAI`
+
+- TypeScript/JavaScript:
+`@azure/ai-projects`
+
+
+- Python:
+- Environment variables set:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+: Your Foundry project endpoint URL.`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+: Your deployed model name.
+
+- OpenAPI 3.0 specification file that meets these requirements:
+- Each function must have an
+`operationId`
+
+(required for the OpenAPI tool). `operationId`
+
+should only contain letters,`-`
+
+, and`_`
+
+.- Use descriptive names to help models efficiently decide which function to use.
+- Supported content type: "application/json", "application/json-patch+json"
+
+- Each function must have an
+- For managed identity authentication: Reader role or higher on target service resources.
+- For API key/token authentication: a project connection configured with your API key or token. See
+[Add a new connection to your project](../../../how-to/connections-add?view=foundry).
+
+## Limitations
+
+- Your OpenAPI spec must include
+`operationId`
+
+for each operation, and`operationId`
+
+can include only letters,`-`
+
+, and`_`
+
+. - Supported content types:
+`application/json`
+
+,`application/json-patch+json`
+
+. - For API key authentication, use one API key security scheme per OpenAPI tool. If you need multiple security schemes, create multiple OpenAPI tools.
+
+## Code example
+
+Note
+
+- You need the latest prerelease package. See the
+[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true#get-ready-to-code)for details. - If you use API key for authentication, your connection ID should be in the format of
+`/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
+
+.
+
+Important
+
+**For API key authentication to work**, your OpenAPI specification file must include:
+
+- A
+`securitySchemes`
+
+section with your API key configuration, such as the header name and parameter name. - A
+`security`
+
+section that references the security scheme. - A project connection configured with the matching key name and value.
+
+Without these configurations, the API key isn't included in requests. For detailed setup instructions, see the [Authenticate with API key](#authenticate-with-api-key) section.
+You can also use token-based authentication (for example, a Bearer token) by storing the token in a project connection.
+
+### Quick verification
+
+First, verify your environment is configured correctly:
+
+```
+# Verify authentication and project connection
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from dotenv import load_dotenv
+load_dotenv()
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+with DefaultAzureCredential() as credential, \
+AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
+print(f"Successfully connected to project")
+```
+
+
+If this command runs without errors, you're ready to create an agent with OpenAPI tools.
+
+### Complete example
+
+```
+# Import required libraries
+import os
+import jsonref
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition
+load_dotenv()
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+project_client.get_openai_client() as openai_client,
+):
+weather_asset_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../assets/weather_openapi.json"))
+with open(weather_asset_file_path, "r") as f:
+openapi_weather = jsonref.loads(f.read())
+# Initialize agent OpenApi tool using the read in OpenAPI spec
+weather_tool = {
+"type": "openapi",
+"openapi":{
+"name": "weather",
+"spec": openapi_weather,
+"auth": {
+"type": "anonymous"
+},
+}
+}
+# If you want to use key-based authentication
+# IMPORTANT: Your OpenAPI spec must include securitySchemes and security sections
+# Example spec structure for API key auth:
+# {
+# "components": {
+# "securitySchemes": {
+# "apiKeyHeader": {
+# "type": "apiKey",
+# "name": "x-api-key", # This must match the key name in your project connection
+# "in": "header"
+# }
+# }
+# },
+# "security": [{"apiKeyHeader": []}]
+# }
+openapi_connection = project_client.connections.get(os.environ["OPENAPI_PROJECT_CONNECTION_NAME"])
+connection_id = openapi_connection.id
+print(f"OpenAPI connection ID: {connection_id}")
+openapi_key_auth_tool={
+"type": "openapi",
+"openapi":{
+"name": "TOOL_NAME",
+"spec": SPEC_NAME, # Must include securitySchemes and security sections
+"auth": {
+"type": "project_connection",
+"security_scheme": {
+"project_connection_id": connection_id
+}
+},
+}
+}
+# If you want to use Managed Identity authentication
+openapi_mi_auth_tool={
+"type": "openapi",
+"openapi":{
+"name": "TOOL_NAME",
+"description": "",
+"spec": SPEC_NAME,
+"auth": {
+"type": "managed_identity",
+"security_scheme": {
+"audience": "" #audience to the service, such as https://ai.azure.com
+}
+},
+}
+}
+agent = project_client.agents.create_version(
+agent_name="MyAgent23",
+definition=PromptAgentDefinition(
+model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+instructions="You are a helpful assistant.",
+tools=[weather_tool],
+),
+description="You are a helpful assistant.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+response = openai_client.responses.create(
+input="What's the weather in Seattle?",
+extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+print(f"Response created: {response.output_text}")
+print("\nCleaning up...")
+project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
+```
+
+
+### What this code does
+
+This example creates an agent with an OpenAPI tool that calls the wttr.in weather API using anonymous authentication. When you run the code:
+
+- It loads the weather OpenAPI specification from a local JSON file.
+- Creates an agent with the weather tool configured for anonymous access.
+- Sends a query asking about Seattle's weather.
+- The agent uses the OpenAPI tool to call the weather API and returns formatted results.
+- Cleans up by deleting the agent version.
+
+### Required inputs
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+- Local file:
+`weather_openapi.json`
+
+(OpenAPI specification)
+
+### Expected output
+
+```
+Agent created (id: asst_abc123, name: MyAgent23, version: 1)
+Response created: The weather in Seattle is currently cloudy with a temperature of 52°F (11°C)...
+Cleaning up...
+Agent deleted
+```
+
+
+### Common errors
+
+`FileNotFoundError`
+
+: OpenAPI specification file not found at specified path`KeyError`
+
+: Missing required environment variables`AuthenticationError`
+
+: Invalid credentials or insufficient permissions, or missing`securitySchemes`
+
+in OpenAPI spec for API key authentication- Invalid
+`operationId`
+
+format in OpenAPI spec causes tool registration failure **API key not injected**: Verify your OpenAPI spec includes both`securitySchemes`
+
+and`security`
+
+sections, and that the key name matches your project connection
+
+## Sample of using Agents with OpenAPI tool
+
+This example demonstrates how to use services described by an [OpenAPI specification](https://spec.openapis.org/oas/latest.html) by using an agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
+
+```
+// Utility method to get the OpenAPI specification file from the Assets folder.
+private static string GetFile([CallerFilePath] string pth = "")
+{
+var dirName = Path.GetDirectoryName(pth) ?? "";
+return Path.Combine(dirName, "Assets", "weather_openapi.json");
+}
+// First, create an agent client and read the environment variables, which will be used in the next steps.
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Create an Agent with `OpenAPIAgentTool` and anonymous authentication.
+string filePath = GetFile();
+OpenAPIFunctionDefinition toolDefinition = new(
+name: "get_weather",
+spec: BinaryData.FromBytes(BinaryData.FromBytes(File.ReadAllBytes(filePath))),
+auth: new OpenAPIAnonymousAuthenticationDetails()
+);
+toolDefinition.Description = "Retrieve weather information for a location.";
+OpenAPIAgentTool openapiTool = new(toolDefinition);
+// Create the agent definition and the agent version.
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+Instructions = "You are a helpful assistant.",
+Tools = { openapiTool }
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+agentName: "myAgent",
+options: new(agentDefinition));
+// Create a response object and ask the question about the weather in Seattle, WA.
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+OpenAIResponse response = responseClient.CreateResponse(
+userInputText: "Use the OpenAPI tool to print out, what is the weather in Seattle, WA today."
+);
+Console.WriteLine(response.GetOutputText());
+// Finally, delete all the resources created in this sample.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+
+### What this code does
+
+This C# example creates an agent with an OpenAPI tool that retrieves weather information from wttr.in by using anonymous authentication. When you run the code:
+
+- It reads the weather OpenAPI specification from a local JSON file.
+- Creates an agent with the weather tool configured.
+- Sends a request asking about Seattle's weather using the OpenAPI tool.
+- The agent calls the weather API and returns the results.
+- Cleans up by deleting the agent.
+
+### Required inputs
+
+- Environment variables:
+`PROJECT_ENDPOINT`
+
+,`MODEL_DEPLOYMENT_NAME`
+
+- Local file:
+`Assets/weather_openapi.json`
+
+(OpenAPI specification)
+
+### Expected output
+
+```
+The weather in Seattle, WA today is cloudy with temperatures around 52°F...
+```
+
+
+### Common errors
+
+`FileNotFoundException`
+
+: OpenAPI specification file not found in Assets folder`ArgumentNullException`
+
+: Missing required environment variables`UnauthorizedAccessException`
+
+: Invalid credentials or insufficient RBAC permissions**API key not injected**: Verify your OpenAPI spec includes both`securitySchemes`
+
+(in`components`
+
+) and`security`
+
+sections with matching scheme names
+
+## Sample of using Agents with OpenAPI tool on Web service, requiring authentication
+
+In this example, you use services with an OpenAPI specification by using the agent in a scenario that requires authentication. You use the TripAdvisor specification.
+
+The TripAdvisor service requires key-based authentication. To create a connection in the Azure portal, open Microsoft Foundry and, at the left panel select **Management center** and then select **Connected resources**. Finally, create new connection of **Custom keys** type. Name it `tripadvisor`
+
+and add a key value pair. Add key named `key`
+
+and enter a value with your TripAdvisor key.
+
+```
+// Utility method to get the OpenAPI specification file from the Assets folder.
+private static string GetFile([CallerFilePath] string pth = "")
+{
+var dirName = Path.GetDirectoryName(pth) ?? "";
+return Path.Combine(dirName, "Assets", "tripadvisor_openapi.json");
+}
+// First, we need to create agent client and read the environment variables, which will be used in the next steps.
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Create an Agent with `OpenAPIAgentTool` and authentication by project connection security scheme.
+string filePath = GetFile();
+AIProjectConnection tripadvisorConnection = projectClient.Connections.GetConnection("tripadvisor");
+OpenAPIFunctionDefinition toolDefinition = new(
+name: "tripadvisor",
+spec: BinaryData.FromBytes(BinaryData.FromBytes(File.ReadAllBytes(filePath))),
+auth: new OpenAPIProjectConnectionAuthenticationDetails(new OpenAPIProjectConnectionSecurityScheme(
+projectConnectionId: tripadvisorConnection.Id
+))
+);
+toolDefinition.Description = "Trip Advisor API to get travel information.";
+OpenAPIAgentTool openapiTool = new(toolDefinition);
+// Create the agent definition and the agent version.
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+Instructions = "You are a helpful assistant.",
+Tools = { openapiTool }
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+agentName: "myAgent",
+options: new(agentDefinition));
+// Create a response object and ask the question about the hotels in France.
+// Test the Web service access before you run production scenarios.
+// It can be done by setting:
+// ToolChoice = ResponseToolChoice.CreateRequiredChoice()`
+// in the ResponseCreationOptions. This setting will
+// force Agent to use tool and will trigger the error if it is not accessible.
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ResponseCreationOptions responseOptions = new()
+{
+ToolChoice = ResponseToolChoice.CreateRequiredChoice()
+};
+OpenAIResponse response = responseClient.CreateResponse(
+userInputText: "Recommend me 5 top hotels in paris, France.",
+options: responseOptions
+);
+Console.WriteLine(response.GetOutputText());
+// Finally, delete all the resources we have created in this sample.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+
+### What this code does
+
+This C# example demonstrates using an OpenAPI tool with API key authentication through a project connection. When you run the code:
+
+- It loads the TripAdvisor OpenAPI specification from a local file.
+- Retrieves the
+`tripadvisor`
+
+project connection containing your API key. - Creates an agent with the TripAdvisor tool configured to use the connection for authentication.
+- Sends a request for hotel recommendations in Paris.
+- The agent calls the TripAdvisor API using your stored API key and returns results.
+- Cleans up by deleting the agent.
+
+### Required inputs
+
+- Environment variables:
+`PROJECT_ENDPOINT`
+
+,`MODEL_DEPLOYMENT_NAME`
+
+- Local file:
+`Assets/tripadvisor_openapi.json`
+
+- Project connection:
+`tripadvisor`
+
+with valid API key configured
+
+### Expected output
+
+```
+Here are 5 top hotels in Paris, France:
+1. Hotel Name - Rating: 4.5/5, Location: ...
+2. Hotel Name - Rating: 4.4/5, Location: ...
+...
+```
+
+
+### Common errors
+
+`ConnectionNotFoundException`
+
+: No project connection named`tripadvisor`
+
+found.`AuthenticationException`
+
+: Invalid API key in project connection, or missing/incorrect`securitySchemes`
+
+configuration in OpenAPI spec.- Tool not used: Verify
+`ToolChoice = ResponseToolChoice.CreateRequiredChoice()`
+
+forces tool usage. **API key not passed to API**: Ensure the OpenAPI spec has proper`securitySchemes`
+
+and`security`
+
+sections configured.
+
+The following examples show how to call an OpenAPI tool by using the REST API.
+
+### Anonymous authentication
+
+```
+curl --request POST \
+--url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+--header "Authorization: Bearer $AGENT_TOKEN" \
+--header "Content-Type: application/json" \
+--data '{
+"model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+"input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
+"tools": [
+{
+"type": "openapi",
+"openapi": {
+"name": "weather",
+"description": "Tool to get weather data",
+"auth": { "type": "anonymous" },
+"spec": {
+"openapi": "3.1.0",
+"info": {
+"title": "get weather data",
+"description": "Retrieves current weather data for a location.",
+"version": "v1.0.0"
+},
+"servers": [{ "url": "https://wttr.in" }],
+"paths": {
+"/{location}": {
+"get": {
+"description": "Get weather information for a specific location",
+"operationId": "GetCurrentWeather",
+"parameters": [
+{
+"name": "location",
+"in": "path",
+"description": "City or location to retrieve the weather for",
+"required": true,
+"schema": { "type": "string" }
+},
+{
+"name": "format",
+"in": "query",
+"description": "Format in which to return data. Always use 3.",
+"required": true,
+"schema": { "type": "integer", "default": 3 }
+}
+],
+"responses": {
+"200": {
+"description": "Successful response",
+"content": {
+"text/plain": {
+"schema": { "type": "string" }
+}
+}
+},
+"404": { "description": "Location not found" }
+}
+}
+}
+}
+}
+}
+}
+]
+}'
+```
+
+
+### API key authentication (project connection)
+
+```
+curl --request POST \
+--url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+--header "Authorization: Bearer $AGENT_TOKEN" \
+--header "Content-Type: application/json" \
+--data '{
+"model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+"input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
+"tools": [
+{
+"type": "openapi",
+"openapi": {
+"name": "weather",
+"description": "Tool to get weather data",
+"auth": {
+"type": "project_connection",
+"security_scheme": {
+"project_connection_id": "'$WEATHER_APP_PROJECT_CONNECTION_ID'"
+}
+},
+"spec": {
+"openapi": "3.1.0",
+"info": {
+"title": "get weather data",
+"description": "Retrieves current weather data for a location.",
+"version": "v1.0.0"
+},
+"servers": [{ "url": "https://wttr.in" }],
+"paths": {
+"/{location}": {
+"get": {
+"description": "Get weather information for a specific location",
+"operationId": "GetCurrentWeather",
+"parameters": [
+{
+"name": "location",
+"in": "path",
+"description": "City or location to retrieve the weather for",
+"required": true,
+"schema": { "type": "string" }
+},
+{
+"name": "format",
+"in": "query",
+"description": "Format in which to return data. Always use 3.",
+"required": true,
+"schema": { "type": "integer", "default": 3 }
+}
+],
+"responses": {
+"200": {
+"description": "Successful response",
+"content": {
+"text/plain": {
+"schema": { "type": "string" }
+}
+}
+},
+"404": { "description": "Location not found" }
+}
+}
+}
+},
+"components": {
+"securitySchemes": {
+"apiKeyHeader": {
+"type": "apiKey",
+"name": "x-api-key",
+"in": "header"
+}
+}
+},
+"security": [
+{ "apiKeyHeader": [] }
+]
+}
+}
+}
+]
+}'
+```
+
+
+### Managed identity authentication
+
+```
+curl --request POST \
+--url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+--header "Authorization: Bearer $AGENT_TOKEN" \
+--header "Content-Type: application/json" \
+--data '{
+"model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+"input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
+"tools": [
+{
+"type": "openapi",
+"openapi": {
+"name": "weather",
+"description": "Tool to get weather data",
+"auth": {
+"type": "managed_identity",
+"security_scheme": {
+"audience": "'$MANAGED_IDENTITY_AUDIENCE'"
+}
+},
+"spec": {
+"openapi": "3.1.0",
+"info": {
+"title": "get weather data",
+"description": "Retrieves current weather data for a location.",
+"version": "v1.0.0"
+},
+"servers": [{ "url": "https://wttr.in" }],
+"paths": {
+"/{location}": {
+"get": {
+"description": "Get weather information for a specific location",
+"operationId": "GetCurrentWeather",
+"parameters": [
+{
+"name": "location",
+"in": "path",
+"description": "City or location to retrieve the weather for",
+"required": true,
+"schema": { "type": "string" }
+},
+{
+"name": "format",
+"in": "query",
+"description": "Format in which to return data. Always use 3.",
+"required": true,
+"schema": { "type": "integer", "default": 3 }
+}
+],
+"responses": {
+"200": {
+"description": "Successful response",
+"content": {
+"text/plain": {
+"schema": { "type": "string" }
+}
+}
+},
+"404": { "description": "Location not found" }
+}
+}
+}
+}
+}
+}
+}
+]
+}'
+```
+
+
+### What this code does
+
+This REST API example shows how to call an OpenAPI tool with different authentication methods. The request:
+
+- Sends a query to the agent asking about Seattle's weather.
+- Includes the OpenAPI tool definition inline with the weather API specification.
+- Shows three authentication options (anonymous, API key via project connection, managed identity) as commented alternatives.
+- The agent uses the tool to call the weather API and returns formatted results.
+
+### Required inputs
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`API_VERSION`
+
+,`AGENT_TOKEN`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+. - For API key auth:
+`WEATHER_APP_PROJECT_CONNECTION_ID`
+
+. - For managed identity auth:
+`MANAGED_IDENTITY_AUDIENCE`
+
+. - Inline OpenAPI specification in request body.
+
+### Expected output
+
+```
+{
+"id": "resp_abc123",
+"object": "response",
+"output": [
+{
+"type": "message",
+"content": [
+{
+"type": "text",
+"text": "The weather in Seattle, WA today is cloudy with a temperature of 52°F (11°C)..."
+}
+]
+}
+]
+}
+```
+
+
+### Common errors
+
+`401 Unauthorized`
+
+: Invalid or missing`AGENT_TOKEN`
+
+, or API key not injected because`securitySchemes`
+
+and`security`
+
+are missing in your OpenAPI spec`404 Not Found`
+
+: Incorrect endpoint or model deployment name`400 Bad Request`
+
+: Malformed OpenAPI specification or invalid auth configuration**API key not sent with request**: Verify the`components.securitySchemes`
+
+section in your OpenAPI spec is properly configured (not empty) and matches your project connection key name
+
+## Create an agent with OpenAPI tool capabilities
+
+The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities by using the `OpenApiAgentTool`
+
+and synchronous Azure AI Projects client. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import {
+AIProjectClient,
+OpenApiAgentTool,
+OpenApiFunctionDefinition,
+OpenApiAnonymousAuthDetails,
+} from "@azure/ai-projects";
+import * as fs from "fs";
+import * as path from "path";
+import "dotenv/config";
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const weatherSpecPath = path.resolve(__dirname, "../assets", "weather_openapi.json");
+function loadOpenApiSpec(specPath: string): unknown {
+if (!fs.existsSync(specPath)) {
+throw new Error(`OpenAPI specification not found at: ${specPath}`);
+}
+try {
+const data = fs.readFileSync(specPath, "utf-8");
+return JSON.parse(data);
+} catch (error) {
+throw new Error(`Failed to read or parse OpenAPI specification at ${specPath}: ${error}`);
+}
+}
+function createWeatherTool(spec: unknown): OpenApiAgentTool {
+const auth: OpenApiAnonymousAuthDetails = { type: "anonymous" };
+const definition: OpenApiFunctionDefinition = {
+name: "get_weather",
+description: "Retrieve weather information for a location using wttr.in",
+spec,
+auth,
+};
+return {
+type: "openapi",
+openapi: definition,
+};
+}
+export async function main(): Promise<void> {
+console.log("Loading OpenAPI specifications from assets directory...");
+const weatherSpec = loadOpenApiSpec(weatherSpecPath);
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+const openAIClient = await project.getOpenAIClient();
+console.log("Creating agent with OpenAPI tool...");
+const agent = await project.agents.createVersion("MyOpenApiAgent", {
+kind: "prompt",
+model: deploymentName,
+instructions:
+"You are a helpful assistant that can call external APIs defined by OpenAPI specs to answer user questions.",
+tools: [createWeatherTool(weatherSpec)],
+});
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+console.log("\nSending request to OpenAPI-enabled agent with streaming...");
+const streamResponse = await openAIClient.responses.create(
+{
+input:
+"What's the weather in Seattle and how should I plan my outfit for the day based on the forecast?",
+stream: true,
+},
+{
+body: {
+agent: { name: agent.name, type: "agent_reference" },
+tool_choice: "required",
+},
+},
+);
+// Process the streaming response
+for await (const event of streamResponse) {
+if (event.type === "response.created") {
+console.log(`Follow-up response created with ID: ${event.response.id}`);
+} else if (event.type === "response.output_text.delta") {
+process.stdout.write(event.delta);
+} else if (event.type === "response.output_text.done") {
+console.log("\n\nFollow-up response done!");
+} else if (event.type === "response.output_item.done") {
+const item = event.item as any;
+if (item.type === "message") {
+const content = item.content?.[item.content.length - 1];
+if (content?.type === "output_text" && content.annotations) {
+for (const annotation of content.annotations) {
+if (annotation.type === "url_citation") {
+console.log(
+`URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+);
+}
+}
+}
+} else if (item.type === "tool_call") {
+console.log(`Tool call completed: ${item.name ?? "unknown"}`);
+}
+} else if (event.type === "response.completed") {
+console.log("\nFollow-up completed!");
+}
+}
+// Clean up resources by deleting the agent version
+// This prevents accumulation of unused resources in your project
+console.log("\nCleaning up resources...");
+await project.agents.deleteVersion(agent.name, agent.version);
+console.log("Agent deleted");
+console.log("\nOpenAPI agent sample completed!");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+### What this code does
+
+This TypeScript example creates an agent with an OpenAPI tool for weather data by using anonymous authentication. When you run the code:
+
+- It loads the weather OpenAPI specification from a local JSON file.
+- Creates an agent with the weather tool configured.
+- Sends a streaming request asking about Seattle's weather and outfit planning.
+- Processes the streaming response and displays deltas as they arrive.
+- It forces tool usage by using
+`tool_choice: "required"`
+
+to ensure the API is called. - Cleans up by deleting the agent.
+
+## Required inputs
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`MODEL_DEPLOYMENT_NAME`
+
+- Local file:
+`../assets/weather_openapi.json`
+
+(OpenAPI specification)
+
+### Expected output
+
+```
+Loading OpenAPI specifications from assets directory...
+Creating agent with OpenAPI tool...
+Agent created (id: asst_abc123, name: MyOpenApiAgent, version: 1)
+Sending request to OpenAPI-enabled agent with streaming...
+Follow-up response created with ID: resp_xyz789
+The weather in Seattle is currently...
+Tool call completed: get_weather
+Follow-up completed!
+Cleaning up resources...
+Agent deleted
+OpenAPI agent sample completed!
+```
+
+
+### Common errors
+
+`Error: OpenAPI specification not found`
+
+: File path incorrect or file missing- Missing environment variables causes initialization failure
+`AuthenticationError`
+
+: Invalid Azure credentials**API key not working**: If switching from anonymous to API key auth, ensure your OpenAPI spec has`securitySchemes`
+
+and`security`
+
+properly configured
+
+## Create an agent that uses OpenAPI tools authenticated with a project connection
+
+The following TypeScript code example demonstrates how to create an AI agent that uses OpenAPI tools authenticated through a project connection. The agent loads the TripAdvisor OpenAPI specification from local assets and can invoke the API through the configured project connection. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApiConnectionAuth.js) in the Azure SDK for JavaScript repository on GitHub.
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import {
+AIProjectClient,
+OpenApiAgentTool,
+OpenApiFunctionDefinition,
+OpenApiProjectConnectionAuthDetails,
+} from "@azure/ai-projects";
+import * as fs from "fs";
+import * as path from "path";
+import "dotenv/config";
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const tripAdvisorProjectConnectionId =
+process.env["TRIPADVISOR_PROJECT_CONNECTION_ID"] || "<tripadvisor project connection id>";
+const tripAdvisorSpecPath = path.resolve(__dirname, "../assets", "tripadvisor_openapi.json");
+function loadOpenApiSpec(specPath: string): unknown {
+if (!fs.existsSync(specPath)) {
+throw new Error(`OpenAPI specification not found at: ${specPath}`);
+}
+try {
+const data = fs.readFileSync(specPath, "utf-8");
+return JSON.parse(data);
+} catch (error) {
+throw new Error(`Failed to read or parse OpenAPI specification at ${specPath}: ${error}`);
+}
+}
+function createTripAdvisorTool(spec: unknown): OpenApiAgentTool {
+const auth: OpenApiProjectConnectionAuthDetails = {
+type: "project_connection",
+security_scheme: {
+project_connection_id: tripAdvisorProjectConnectionId,
+},
+};
+const definition: OpenApiFunctionDefinition = {
+name: "get_tripadvisor_location_details",
+description:
+"Fetch TripAdvisor location details, reviews, or photos using the Content API via project connection auth.",
+spec,
+auth,
+};
+return {
+type: "openapi",
+openapi: definition,
+};
+}
+export async function main(): Promise<void> {
+console.log("Loading TripAdvisor OpenAPI specification from assets directory...");
+const tripAdvisorSpec = loadOpenApiSpec(tripAdvisorSpecPath);
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+const openAIClient = await project.getOpenAIClient();
+console.log("Creating agent with OpenAPI project-connection tool...");
+const agent = await project.agents.createVersion("MyOpenApiConnectionAgent", {
+kind: "prompt",
+model: deploymentName,
+instructions:
+"You are a travel assistant that consults the TripAdvisor Content API via project connection to answer user questions about locations.",
+tools: [createTripAdvisorTool(tripAdvisorSpec)],
+});
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+console.log("\nSending request to TripAdvisor OpenAPI agent with streaming...");
+const streamResponse = await openAIClient.responses.create(
+{
+input:
+"Provide a quick overview of the TripAdvisor location 293919 including its name, rating, and review count.",
+stream: true,
+},
+{
+body: {
+agent: { name: agent.name, type: "agent_reference" },
+tool_choice: "required",
+},
+},
+);
+// Process the streaming response
+for await (const event of streamResponse) {
+if (event.type === "response.created") {
+console.log(`Follow-up response created with ID: ${event.response.id}`);
+} else if (event.type === "response.output_text.delta") {
+process.stdout.write(event.delta);
+} else if (event.type === "response.output_text.done") {
+console.log("\n\nFollow-up response done!");
+} else if (event.type === "response.output_item.done") {
+const item = event.item as any;
+if (item.type === "message") {
+const content = item.content?.[item.content.length - 1];
+if (content?.type === "output_text" && content.annotations) {
+for (const annotation of content.annotations) {
+if (annotation.type === "url_citation") {
+console.log(
+`URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+);
+}
+}
+}
+} else if (item.type === "tool_call") {
+console.log(`Tool call completed: ${item.name ?? "unknown"}`);
+}
+} else if (event.type === "response.completed") {
+console.log("\nFollow-up completed!");
+}
+}
+// Clean up resources by deleting the agent version
+// This prevents accumulation of unused resources in your project
+console.log("\nCleaning up resources...");
+await project.agents.deleteVersion(agent.name, agent.version);
+console.log("Agent deleted");
+console.log("\nTripAdvisor OpenAPI agent sample completed!");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+### What this code does
+
+This TypeScript example demonstrates using an OpenAPI tool with API key authentication through a project connection. When you run the code:
+
+- It loads the TripAdvisor OpenAPI specification from a local file.
+- It configures authentication by using the
+`TRIPADVISOR_PROJECT_CONNECTION_ID`
+
+environment variable. - It creates an agent with the TripAdvisor tool that uses the project connection for API key authentication.
+- It sends a streaming request for TripAdvisor location details.
+- It forces tool usage by using
+`tool_choice: "required"`
+
+to ensure the API is called. - It processes and displays the streaming response.
+- It cleans up by deleting the agent.
+
+### Required inputs
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`MODEL_DEPLOYMENT_NAME`
+
+,`TRIPADVISOR_PROJECT_CONNECTION_ID`
+
+- Local file:
+`../assets/tripadvisor_openapi.json`
+
+- Project connection configured with TripAdvisor API key
+
+### Expected output
+
+```
+Loading TripAdvisor OpenAPI specification from assets directory...
+Creating agent with OpenAPI project-connection tool...
+Agent created (id: asst_abc123, name: MyOpenApiConnectionAgent, version: 1)
+Sending request to TripAdvisor OpenAPI agent with streaming...
+Follow-up response created with ID: resp_xyz789
+Location 293919 is the Eiffel Tower in Paris, France. It has a rating of 4.5 stars with over 140,000 reviews...
+Tool call completed: get_tripadvisor_location_details
+Follow-up completed!
+Cleaning up resources...
+Agent deleted
+TripAdvisor OpenAPI agent sample completed!
+```
+
+
+### Common errors
+
+`Error: OpenAPI specification not found`
+
+: Check the file path.- Connection not found: Verify
+`TRIPADVISOR_PROJECT_CONNECTION_ID`
+
+is correct and connection exists. `AuthenticationException`
+
+: Invalid API key in project connection.**API key not injected in requests**: Your OpenAPI spec must include proper`securitySchemes`
+
+(under`components`
+
+) and`security`
+
+sections. The key name in`securitySchemes`
+
+must match the key in your project connection.`Content type is not supported`
+
+: Currently, only these two content types are supported:`application/json`
+
+and`application/json-patch+json`
+
+.
+
+## Security and data considerations
+
+When you connect an agent to an OpenAPI tool, the agent can send request parameters derived from user input to the target API.
+
+- Use project connections for secrets (API keys and tokens). Avoid putting secrets in an OpenAPI spec file or source code.
+- Review what data the API receives and what it returns before you use the tool in production.
+- Use least-privilege access. For managed identity, assign only the roles the target service requires.
+
+## Authenticate with API key
+
+By using API key authentication, you can authenticate your OpenAPI spec by using various methods such as an API key or Bearer token. You can use only one API key security schema per OpenAPI spec. If you need multiple security schemas, create multiple OpenAPI spec tools.
+
+Update your OpenAPI spec security schemas. It has a
+
+`securitySchemes`
+
+section and one scheme of type`apiKey`
+
+. For example:`"securitySchemes": { "apiKeyHeader": { "type": "apiKey", "name": "x-api-key", "in": "header" } }`
+
+You usually only need to update the
+
+`name`
+
+field, which corresponds to the name of`key`
+
+in the connection. If the security schemes include multiple schemes, keep only one of them.Update your OpenAPI spec to include a
+
+`security`
+
+section:`"security": [ { "apiKeyHeader": [] } ]`
+
+Remove any parameter in the OpenAPI spec that needs API key, because API key is stored and passed through a connection, as described later in this article.
+
+Create a connection to store your API key.
+
+Go to the
+
+[Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs)and open your project.Create or select a connection that stores the secret. See
+
+[Add a new connection to your project](../../../how-to/connections-add?view=foundry).Note
+
+If you regenerate the API key at a later date, you need to update the connection with the new key.
+
+Enter the following information
+
+key:
+
+`name`
+
+field of your security scheme. In this example, it should be`x-api-key`
+
+`"securitySchemes": { "apiKeyHeader": { "type": "apiKey", "name": "x-api-key", "in": "header" } }`
+
+value: YOUR_API_KEY
+
+
+After you create a connection, you can use it through the SDK or REST API. Use the tabs at the top of this article to see code examples.
+
+
+## Authenticate by using managed identity (Microsoft Entra ID)
+
+[Microsoft Entra ID](/en-us/entra/fundamentals/what-is-entra) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security to your APIs without needing to use API keys. When you set up managed identity authentication, the agent authenticates through the Foundry tool it uses.
+
+To set up authentication by using Managed Identity:
+
+Make sure your Foundry resource has system assigned managed identity enabled.
+
+Create a resource for the service you want to connect to through OpenAPI spec.
+
+Assign proper access to the resource.
+
+Select
+
+**Access Control**for your resource.Select
+
+**Add**and then**add role assignment**at the top of the screen.Select the proper role assignment needed, usually it requires at least the
+
+*READER*role. Then select**Next**.Select
+
+**Managed identity**and then select**select members**.In the managed identity dropdown menu, search for
+
+**Foundry Account**and then select the Foundry account of your agent.Select
+
+**Finish**.
+
+When you finish the setup, you can continue by using the tool through the Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
+
+
+## Troubleshooting
+
+### API key isn't included in requests
+
+- Verify your OpenAPI spec includes both
+`components.securitySchemes`
+
+and a top-level`security`
+
+section that references the scheme. - Verify the scheme
+`name`
+
+(for example,`x-api-key`
+
+) matches the key name stored in your project connection. - Remove any API key parameter from the OpenAPI spec if you expect the tool to inject the key from the project connection.
+
+### The agent doesn't call the tool
+
+- Force tool usage in your client when you're validating connectivity.
+- TypeScript: set
+`tool_choice: "required"`
+
+. - C#: set
+`ToolChoice = ResponseToolChoice.CreateRequiredChoice()`
+
+.
+
+- TypeScript: set
+- Make sure your OpenAPI spec uses descriptive
+`operationId`
+
+values so the model can choose the right operation.
+
+### Authentication fails for managed identity
+
+- Confirm that system-assigned managed identity is enabled for your Foundry resource.
+- Confirm the managed identity has the required role on the target resource.
+
+
+---
+
+<!-- DOCUMENTO FUSIONADO: bing-tools.md -->
+<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/bing-tools -->
+
+# Grounding agents with Bing Search tools
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Traditional language models work with a knowledge cutoff. They can't access new information beyond a fixed point in time. By using Grounding with Bing Search and Grounding with Bing Custom Search (preview), your agents can incorporate real-time public web data when generating responses. By using these tools, you can ask questions such as "what is the top AI news today".
+
+The grounding process involves several key steps:
+
+**Query formulation**: The agent identifies information gaps and constructs search queries.**Search execution**: The grounding tool submits queries to search engines and retrieves results.**Information synthesis**: The agent processes search results and integrates findings into responses.**Source attribution**: The agent provides transparency by citing search sources.
+
+Important
+
+- Grounding with Bing Search and Grounding with Bing Custom Search are
+[First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services)with[terms for online services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS). They're governed by the[Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise)and the[Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). - The Microsoft
+[Data Protection Addendum](https://aka.ms/dpa)doesn't apply to data sent to Grounding with Bing Search or Grounding with Bing Custom Search. When you use these services, your data flows outside the Azure compliance and Geo boundary. This also means use of these services waives all elevated Government Community Cloud security and compliance commitments, including data sovereignty and screened/citizenship-based support, as applicable. - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See pricing for
+[details](https://www.microsoft.com/bing/apis/grounding-pricing). - See the
+[manage section](#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search)for information about how Azure admins can manage access to use of Grounding with Bing Search and Grounding with Bing Custom Search.
+
+### Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- An Azure subscription with the right permissions.
+- Azure RBAC roles:
+**Contributor**or**Owner**role at the subscription or resource group level to create Bing resources and get resource keys.**Azure AI Project Manager**role to create project connections in Foundry. For more information, see[Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry?view=foundry&preserve-view=true).
+
+- A Foundry project created with a configured endpoint.
+- An AI model deployed in your project.
+- SDK installed for your preferred language:
+- Python:
+`azure-ai-projects`
+
+(latest prerelease version) - C#:
+`Azure.AI.Projects.OpenAI`
+
+- TypeScript/JavaScript:
+`@azure/ai-projects`
+
+
+- Python:
+- Environment variables set up:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+: Your Foundry project endpoint URL.`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+: Your deployed model name.`BING_PROJECT_CONNECTION_ID`
+
+: Your Grounding with Bing Search project connection ID.`BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`
+
+: Your Grounding with Bing Custom Search project connection ID.- For Bing Custom Search:
+`BING_CUSTOM_SEARCH_INSTANCE_NAME`
+
+: Your custom search instance name. - For REST samples:
+`API_VERSION`
+
+,`AGENT_TOKEN`
+
+.
+
+- A Bing Grounding or Bing Custom Search resource created and connected to your Foundry project. A paid subscription is required to create a Grounding with Bing Search or Grounding with Bing Custom Search resource.
+- The Grounding with Bing Search tool works in your network secured Foundry, but the tool doesn't respect your VPN or Private Endpoints. It acts as a public endpoint. Please make this security consideration when you use network secured Foundry with this tool.
+
+## Setup
+
+In this section, you add a project connection for the Bing resource and capture the project connection ID that the tool configuration requires.
+
+If you already have a project connection ID for the Bing resource you want to use, skip this section.
+
+Add the appropriate connection to your project.
+
+For step-by-step instructions, see
+
+[Add a new connection to your project](../../../how-to/connections-add?view=foundry&preserve-view=true).Get the project connection ID from the connection details and set it as an environment variable.
+
+
+- For Grounding with Bing Search: set
+`BING_PROJECT_CONNECTION_ID`
+
+. - For Grounding with Bing Custom Search: set
+`BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`
+
+.
+
+The project connection ID uses the format:
+
+`/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
+
+
+## Available tools
+
+| Tool | Description | Use case |
+|---|---|---|
+| Grounding with Bing Search | Gives agents standard access to Bing's search capabilities. | Scenarios requiring broad knowledge access. |
+| Grounding with Bing Custom Search (preview) | Allows agents to search within a configurable set of public web domains. You define the parts of the web you want to draw from so users only see relevant results from domains you choose. | Scenarios requiring information management. |
+
+Note
+
+See [best practices](../../concepts/tool-best-practice?view=foundry) for information on optimizing tool usage.
+
+## Code examples
+
+Note
+
+- You need the latest prerelease package. See the
+[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true#get-ready-to-code)for details. - Your connection ID should be in the format of
+`/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
+
+.
+
+The following examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries.
+
+### Grounding with Bing Search
+
+```
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+PromptAgentDefinition,
+BingGroundingAgentTool,
+BingGroundingSearchToolParameters,
+BingGroundingSearchConfiguration,
+)
+load_dotenv()
+project_client = AIProjectClient(
+endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+openai_client = project_client.get_openai_client()
+with project_client:
+connection_id = os.environ["BING_PROJECT_CONNECTION_ID"]
+print(f"Grounding with Bing Search connection ID: {connection_id}")
+agent = project_client.agents.create_version(
+agent_name="MyAgent",
+definition=PromptAgentDefinition(
+model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+instructions="You are a helpful assistant.",
+tools=[
+BingGroundingAgentTool(
+bing_grounding=BingGroundingSearchToolParameters(
+search_configurations=[
+BingGroundingSearchConfiguration(
+project_connection_id=connection_id
+)
+]
+)
+)
+],
+),
+description="You are a helpful agent.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+stream_response = openai_client.responses.create(
+stream=True,
+tool_choice="required",
+input="What is today's date and weather in Seattle?",
+extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+for event in stream_response:
+if event.type == "response.created":
+print(f"Follow-up response created with ID: {event.response.id}")
+elif event.type == "response.output_text.delta":
+print(f"Delta: {event.delta}")
+elif event.type == "response.text.done":
+print(f"\nFollow-up response done!")
+elif event.type == "response.output_item.done":
+if event.item.type == "message":
+item = event.item
+if item.content[-1].type == "output_text":
+text_content = item.content[-1]
+for annotation in text_content.annotations:
+if annotation.type == "url_citation":
+print(f"URL Citation: {annotation.url}")
+elif event.type == "response.completed":
+print(f"\nFollow-up completed!")
+print(f"Full response: {event.response.output_text}")
+```
+
+
+### What this code does
+
+This example creates an agent with grounding by using the Bing Search tool that can retrieve real-time information from the web. When you run the code:
+
+- It creates an
+`AIProjectClient`
+
+and authenticates by using your Azure credentials. - Creates an agent with the Bing grounding tool configured by using your Bing connection.
+- Sends a query asking about current date and weather in Seattle.
+- The agent uses the Bing grounding tool to search the web and streams the response.
+- Extracts and displays URL citations from the search results.
+
+### Required inputs
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+,`BING_PROJECT_CONNECTION_ID`
+
+- Azure credentials configured for
+`DefaultAzureCredential`
+
+
+### Expected output
+
+```
+Agent created (id: asst_abc123, name: MyAgent, version: 1)
+Follow-up response created with ID: resp_xyz789
+Delta: Today
+Delta: 's date
+Delta: is December 12, 2025...
+Follow-up response done!
+URL Citation: https://www.weather.gov/seattle/
+Follow-up completed!
+Full response: Today's date is December 12, 2025, and the weather in Seattle is...
+```
+
+
+### Grounding with Bing Custom Search (preview)
+
+```
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+PromptAgentDefinition,
+BingCustomSearchAgentTool,
+BingCustomSearchToolParameters,
+BingCustomSearchConfiguration,
+)
+load_dotenv()
+project_client = AIProjectClient(
+endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+# Get the OpenAI client for responses and conversations
+openai_client = project_client.get_openai_client()
+connection_id = os.environ["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID"]
+print(f"Grounding with Bing Custom Search connection ID: {connection_id}")
+bing_custom_search_tool = BingCustomSearchAgentTool(
+bing_custom_search_preview=BingCustomSearchToolParameters(
+search_configurations=[
+BingCustomSearchConfiguration(
+project_connection_id=connection_id,
+instance_name=os.environ["BING_CUSTOM_SEARCH_INSTANCE_NAME"],
+)
+]
+)
+)
+with project_client:
+agent = project_client.agents.create_version(
+agent_name="MyAgent",
+definition=PromptAgentDefinition(
+model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+instructions="""You are a helpful agent that can use Bing Custom Search tools to assist users.
+Use the available Bing Custom Search tools to answer questions and perform tasks.""",
+tools=[bing_custom_search_tool],
+),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+user_input = input(
+"Enter your question for the Bing Custom Search agent " "(e.g., 'Tell me more about foundry agent service'): \n"
+)
+# Send initial request that will trigger the Bing Custom Search tool
+stream_response = openai_client.responses.create(
+stream=True,
+input=user_input,
+extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+for event in stream_response:
+if event.type == "response.created":
+print(f"Follow-up response created with ID: {event.response.id}")
+elif event.type == "response.output_text.delta":
+print(f"Delta: {event.delta}")
+elif event.type == "response.text.done":
+print(f"\nFollow-up response done!")
+elif event.type == "response.output_item.done":
+if event.item.type == "message":
+item = event.item
+if item.content[-1].type == "output_text":
+text_content = item.content[-1]
+for annotation in text_content.annotations:
+if annotation.type == "url_citation":
+print(
+f"URL Citation: {annotation.url}, "
+f"Start index: {annotation.start_index}, "
+f"End index: {annotation.end_index}"
+)
+elif event.type == "response.completed":
+print(f"\nFollow-up completed!")
+print(f"Full response: {event.response.output_text}")
+```
+
+
+**What this code does**
+
+This example creates an agent with Grounding with Bing Custom Search tool that searches within a configurable set of public web domains. When you run the code:
+
+- It creates an
+`AIProjectClient`
+
+and authenticates by using your Azure credentials. - Creates an agent with the Bing Custom Search tool configured by using your custom search instance.
+- Prompts for user input asking about specific topics within your configured domains.
+- The agent uses the Bing Custom Search tool to search only your specified domains and streams the response.
+- Extracts and displays URL citations with start and end positions from the custom search results.
+
+**Required inputs**
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+,`BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`
+
+,`BING_CUSTOM_SEARCH_INSTANCE_NAME`
+
+- Azure credentials configured for
+`DefaultAzureCredential`
+
+- User input at runtime
+
+**Expected output**
+
+```
+Agent created (id: asst_abc123, name: MyAgent, version: 1)
+Enter your question for the Bing Custom Search agent (e.g., 'Tell me more about foundry agent service'):
+Tell me more about foundry agent service
+Follow-up response created with ID: resp_xyz789
+Delta: Microsoft
+Delta: Foundry
+Delta: Agent Service...
+Follow-up response done!
+URL Citation: https://learn.microsoft.com/azure/ai-foundry/agents, Start index: 45, End index: 120
+Follow-up completed!
+Full response: Microsoft Foundry Agent Service enables you to build...
+```
+
+
+The following C# examples demonstrate how to create an agent with Grounding with Bing Search tool, and how to use the agent to respond to user queries. These examples use synchronous calls for simplicity. For asynchronous examples, see the [agent tools C# samples](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples).
+
+To enable your Agent to use Bing search API, use `BingGroundingAgentTool`
+
+.
+
+## Grounding with Bing Search
+
+```
+// Read the environment variables, which will be used in the next steps.
+var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
+var bingProjectConnectionId = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_ID");
+// Create an instance of AIProjectClient.
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Create the agent version with Bing grounding tool
+BingGroundingAgentTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
+searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingProjectConnectionId)]
+)
+);
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+Instructions = "You are a helpful agent.",
+Tools = { bingGroundingAgentTool, }
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+agentName: "myAgent",
+options: new(agentDefinition));
+// Output the agent version info
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+OpenAIResponse response = responseClient.CreateResponse("How does wikipedia explain Euler's Identity?");
+// Helper method to extract and format URL citation annotations
+private static string GetFormattedAnnotation(OpenAIResponse response)
+{
+foreach (ResponseItem item in response.OutputItems)
+{
+if (item is MessageResponseItem messageItem)
+{
+foreach (ResponseContentPart content in messageItem.Content)
+{
+foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+{
+if (annotation is UriCitationMessageAnnotation uriAnnotation)
+{
+return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+}
+}
+}
+}
+}
+return "";
+}
+// Validate and print the response
+Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}");
+// Clean up resources by deleting the agent version
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+
+### What this code does
+
+This example creates an agent that uses the Grounding with Bing Search tool and demonstrates synchronous response handling. When you run the code:
+
+- It creates an AIProjectClient by using your project endpoint.
+- Retrieves the Bing connection configuration from your project.
+- Creates an agent with the Bing grounding tool configured.
+- Sends a query asking how Wikipedia explains Euler's Identity.
+- The agent uses the Bing grounding tool to search and returns formatted results with URL citations.
+- Cleans up by deleting the agent version.
+
+### Required inputs
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+,`BING_PROJECT_CONNECTION_ID`
+
+- Azure credentials configured for
+`DefaultAzureCredential`
+
+
+### Expected output
+
+```
+Euler's identity is considered one of the most elegant equations in mathematics... [Euler's identity - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_identity)
+```
+
+
+## Grounding with Bing in streaming scenarios
+
+```
+// Read the environment variables, which will be used in the next steps
+var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
+var bingProjectConnectionId = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_ID");
+// Create an instance of AIProjectClient
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Create the agent version with Bing grounding tool
+BingGroundingAgentTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
+searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingProjectConnectionId)]
+)
+);
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+Instructions = "You are a helpful agent.",
+Tools = { bingGroundingAgentTool }
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+agentName: "myAgent",
+options: new(agentDefinition));
+// Helper method to extract and format URL citation annotations
+private static string GetFormattedAnnotation(ResponseItem item)
+{
+if (item is MessageResponseItem messageItem)
+{
+foreach (ResponseContentPart content in messageItem.Content)
+{
+foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+{
+if (annotation is UriCitationMessageAnnotation uriAnnotation)
+{
+return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+}
+}
+}
+}
+return "";
+}
+// Stream the response from the agent version
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+string annotation = "";
+string text = "";
+// Parse the streaming response and output the results
+foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponseStreaming("How does wikipedia explain Euler's Identity?"))
+{
+if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
+{
+Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
+}
+else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
+{
+Console.WriteLine($"Delta: {textDelta.Delta}");
+}
+else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
+{
+text = textDoneUpdate.Text;
+}
+else if (streamResponse is StreamingResponseOutputItemDoneUpdate itemDoneUpdate)
+{
+if (annotation.Length == 0)
+{
+annotation = GetFormattedAnnotation(itemDoneUpdate.Item);
+}
+}
+else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
+{
+throw new InvalidOperationException($"The stream has failed: {errorUpdate.Message}");
+}
+}
+Console.WriteLine($"{text}{annotation}");
+// Clean up resources by deleting the agent version
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+
+### What this code does
+
+This example creates an agent with grounding by using the Bing Search tool and demonstrates streaming response handling. When you run the code:
+
+- It creates an AIProjectClient by using your project endpoint.
+- Retrieves the Bing connection configuration from your project.
+- Creates an agent with the Bing grounding tool configured.
+- Sends a query asking how Wikipedia explains Euler's Identity.
+- The agent uses the Bing grounding tool and streams the response in real-time.
+- Processes streaming events including delta text updates and citation extraction.
+- Cleans up by deleting the agent version.
+
+### Required inputs
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+,`BING_PROJECT_CONNECTION_ID`
+
+- Azure credentials configured for
+`DefaultAzureCredential`
+
+
+### Expected output
+
+```
+Stream response created with ID: resp_xyz789
+Delta: Euler
+Delta: 's
+Delta: Identity
+Delta: is one of the most...
+Euler's Identity is one of the most elegant equations in mathematics... [Euler's identity - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_identity)
+```
+
+
+The following REST API examples demonstrate how to use Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools to respond to user queries.
+
+### Grounding with Bing Search
+
+### Authentication setup
+
+Before running REST API calls, configure authentication:
+
+Set environment variables:
+
+`AZURE_AI_PROJECT_ENDPOINT`
+
+: Your Foundry project endpoint URL.`API_VERSION`
+
+: API version (for example,`2025-11-15-preview`
+
+).`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+: Your deployed model name.`BING_PROJECT_CONNECTION_ID`
+
+: Your Grounding with Bing Search project connection ID.
+
+Obtain a bearer token:
+
+`az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv`
+
+`curl --request POST \ --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \ -H "Authorization: Bearer $AGENT_TOKEN" \ -H "Content-Type: application/json" \ -d '{ "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'", "input": "How does Wikipedia explain Euler\u0027s identity?", "tool_choice": "required", "tools": [ { "type": "bing_grounding", "bing_grounding": { "search_configurations": [ { "project_connection_id": "'$BING_PROJECT_CONNECTION_ID'", "count": 7, "market": "en-US", "set_lang": "en", "freshness": "7d" } ] } } ] }'`
+
+
+### What this code does
+
+This REST API request creates a response using Grounding with Bing Search. The request:
+
+- Sends a POST request to the Foundry responses endpoint.
+- Includes the model deployment and user input in the request body.
+- Configures the Bing grounding tool with search parameters (count, market, language, freshness).
+- Returns a response with web search results and citations.
+
+### Required inputs
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`API_VERSION`
+
+,`AGENT_TOKEN`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+,`BING_PROJECT_CONNECTION_ID`
+
+. - Valid bearer token with appropriate permissions.
+
+### Expected output
+
+JSON response with:
+
+`id`
+
+: Response identifier`output_text`
+
+: Generated text with grounded information`citations`
+
+: Array of URL citations used to generate the response
+
+### Grounding with Bing Custom Search (preview)
+
+```
+curl --request POST \
+--url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+-H "Authorization: Bearer $AGENT_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+"model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+"input": "How does Wikipedia explain Euler\u0027s identity?",
+"tool_choice": "required",
+"tools": [
+{
+"type": "bing_custom_search_preview",
+"bing_custom_search_preview": {
+"search_configurations": [
+{
+"project_connection_id": "'$BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID'",
+"instance_name": "'$BING_CUSTOM_SEARCH_INSTANCE_NAME'",
+"count": 7,
+"market": "en-US",
+"set_lang": "en",
+"freshness": "7d"
+}
+]
+}
+}
+]
+}'
+```
+
+
+### What this code does
+
+This REST API request creates a response using Grounding with Bing Custom Search. The request:
+
+- Sends a POST request to the Foundry responses endpoint.
+- Includes the model deployment and user input in the request body.
+- Configures the Bing Custom Search tool with your instance name and search parameters.
+- Returns a response with custom search results limited to your configured domains.
+
+### Required inputs
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`API_VERSION`
+
+,`AGENT_TOKEN`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+,`BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`
+
+,`BING_CUSTOM_SEARCH_INSTANCE_NAME`
+
+- Valid bearer token with appropriate permissions.
+- Bing Custom Search instance already configured with target domains
+
+### Expected output
+
+JSON response with:
+
+`id`
+
+: Response identifier`output_text`
+
+: Generated text with information from your custom domain set`citations`
+
+: Array of URL citations from your configured domains
+
+The following TypeScript examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries. For JavaScript examples, see the [agent tools JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools) in the Azure SDK for JavaScript repository on GitHub.
+
+### Grounding with Bing Search
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName =
+process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const bingProjectConnectionId =
+process.env["BING_PROJECT_CONNECTION_ID"] || "<bing project connection id>";
+export async function main(): Promise<void> {
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+const openAIClient = await project.getOpenAIClient();
+console.log("Creating agent with Bing grounding tool...");
+const agent = await project.agents.createVersion("MyBingGroundingAgent", {
+kind: "prompt",
+model: deploymentName,
+instructions: "You are a helpful assistant.",
+tools: [
+{
+type: "bing_grounding",
+bing_grounding: {
+search_configurations: [
+{
+project_connection_id: bingProjectConnectionId,
+},
+],
+},
+},
+],
+});
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+// Send request that requires current information from the web
+console.log("\nSending request to Bing grounding agent with streaming...");
+const streamResponse = await openAIClient.responses.create(
+{
+input: "What is today's date and weather in Seattle?",
+stream: true,
+},
+{
+body: {
+agent: { name: agent.name, type: "agent_reference" },
+tool_choice: "required",
+},
+},
+);
+// Process the streaming response
+for await (const event of streamResponse) {
+if (event.type === "response.created") {
+console.log(`Follow-up response created with ID: ${event.response.id}`);
+} else if (event.type === "response.output_text.delta") {
+process.stdout.write(event.delta);
+} else if (event.type === "response.output_text.done") {
+console.log("\n\nFollow-up response done!");
+} else if (event.type === "response.output_item.done") {
+if (event.item.type === "message") {
+const item = event.item;
+if (item.content && item.content.length > 0) {
+const lastContent = item.content[item.content.length - 1];
+if (lastContent.type === "output_text" && lastContent.annotations) {
+for (const annotation of lastContent.annotations) {
+if (annotation.type === "url_citation") {
+console.log(
+`URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+);
+}
+}
+}
+}
+}
+} else if (event.type === "response.completed") {
+console.log("\nFollow-up completed!");
+}
+}
+// Clean up resources by deleting the agent version
+// This prevents accumulation of unused resources in your project
+console.log("\nCleaning up resources...");
+await project.agents.deleteVersion(agent.name, agent.version);
+console.log("Agent deleted");
+console.log("\nBing grounding agent sample completed!");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+**What this code does**
+
+This example creates an agent with grounding by using the Bing Search tool that can retrieve real-time information from the web. When you run the code:
+
+- It creates an
+`AIProjectClient`
+
+and authenticates by using your Azure credentials. - Creates an agent with the Bing grounding tool configured by using your Bing connection.
+- Sends a query asking about current date and weather in Seattle with tool choice set to "required".
+- The agent uses the Bing grounding tool to search the web and streams the response.
+- Processes streaming events and extracts URL citations with their positions in the text.
+- Cleans up by deleting the agent version.
+
+**Required inputs**
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+,`BING_PROJECT_CONNECTION_ID`
+
+- Azure credentials configured for
+`DefaultAzureCredential`
+
+
+**Expected output**
+
+```
+Creating agent with Bing grounding tool...
+Agent created (id: asst_abc123, name: MyBingGroundingAgent, version: 1)
+Sending request to Bing grounding agent with streaming...
+Follow-up response created with ID: resp_xyz789
+Today's date is December 12, 2025, and the weather in Seattle...
+Follow-up response done!
+URL Citation: https://www.weather.gov/seattle/, Start index: 45, End index: 120
+Follow-up completed!
+Cleaning up resources...
+Agent deleted
+Bing grounding agent sample completed!
+```
+
+
+### Grounding with Bing Custom Search (preview)
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import * as readline from "readline";
+import "dotenv/config";
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName =
+process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const bingCustomSearchProjectConnectionId =
+process.env["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID"] ||
+"<bing custom search project connection id>";
+const bingCustomSearchInstanceName =
+process.env["BING_CUSTOM_SEARCH_INSTANCE_NAME"] || "<bing custom search instance name>";
+export async function main(): Promise<void> {
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+const openAIClient = await project.getOpenAIClient();
+console.log("Creating agent with Bing Custom Search tool...");
+const agent = await project.agents.createVersion("MyAgent", {
+kind: "prompt",
+model: deploymentName,
+instructions:
+"You are a helpful agent that can use Bing Custom Search tools to assist users. Use the available Bing Custom Search tools to answer questions and perform tasks.",
+tools: [
+{
+type: "bing_custom_search_preview",
+bing_custom_search_preview: {
+search_configurations: [
+{
+project_connection_id: bingCustomSearchProjectConnectionId,
+instance_name: bingCustomSearchInstanceName,
+},
+],
+},
+},
+],
+});
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+// Prompt user for input
+const rl = readline.createInterface({
+input: process.stdin,
+output: process.stdout,
+});
+const userInput = await new Promise<string>((resolve) => {
+rl.question(
+"Enter your question for the Bing Custom Search agent (e.g., 'Tell me more about foundry agent service'): \n",
+(answer) => {
+rl.close();
+resolve(answer);
+},
+);
+});
+// Send initial request that will trigger the Bing Custom Search tool
+console.log("\nSending request to Bing Custom Search agent with streaming...");
+const streamResponse = await openAIClient.responses.create(
+{
+input: userInput,
+stream: true,
+},
+{
+body: {
+agent: { name: agent.name, type: "agent_reference" },
+},
+},
+);
+// Process the streaming response
+for await (const event of streamResponse) {
+if (event.type === "response.created") {
+console.log(`Follow-up response created with ID: ${event.response.id}`);
+} else if (event.type === "response.output_text.delta") {
+process.stdout.write(event.delta);
+} else if (event.type === "response.output_text.done") {
+console.log("\n\nFollow-up response done!");
+} else if (event.type === "response.output_item.done") {
+if (event.item.type === "message") {
+const item = event.item;
+if (item.content && item.content.length > 0) {
+const lastContent = item.content[item.content.length - 1];
+if (lastContent.type === "output_text" && lastContent.annotations) {
+for (const annotation of lastContent.annotations) {
+if (annotation.type === "url_citation") {
+console.log(
+`URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+);
+}
+}
+}
+}
+}
+} else if (event.type === "response.completed") {
+console.log("\nFollow-up completed!");
+}
+}
+// Clean up resources by deleting the agent version
+// This prevents accumulation of unused resources in your project
+console.log("\nCleaning up resources...");
+await project.agents.deleteVersion(agent.name, agent.version);
+console.log("Agent deleted");
+console.log("\nBing Custom Search agent sample completed!");
+}
+main().catch((err) => {
+console.error("The sample encountered an error:", err);
+});
+```
+
+
+**What this code does**
+
+This example creates an agent with Grounding with Bing Custom Search tool that searches within your configured domains. When you run the code:
+
+- It creates an
+`AIProjectClient`
+
+and authenticates by using your Azure credentials. - Creates an agent with the Bing Custom Search tool configured by using your custom search instance.
+- Prompts for user input at runtime through the command line.
+- The agent uses the Bing Custom Search tool to search only your specified domains and streams the response.
+- Processes streaming events and extracts URL citations with their positions in the text.
+- Cleans up by deleting the agent version.
+
+**Required inputs**
+
+- Environment variables:
+`AZURE_AI_PROJECT_ENDPOINT`
+
+,`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+,`BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`
+
+,`BING_CUSTOM_SEARCH_INSTANCE_NAME`
+
+- Azure credentials configured for
+`DefaultAzureCredential`
+
+- User input provided at runtime via console
+
+**Expected output**
+
+```
+Creating agent with Bing Custom Search tool...
+Agent created (id: asst_abc123, name: MyAgent, version: 1)
+Enter your question for the Bing Custom Search agent (e.g., 'Tell me more about foundry agent service'):
+Tell me more about foundry agent service
+Sending request to Bing Custom Search agent with streaming...
+Follow-up response created with ID: resp_xyz789
+Microsoft Foundry Agent Service enables you to build...
+Follow-up response done!
+URL Citation: https://learn.microsoft.com/azure/ai-foundry/agents, Start index: 0, End index: 89
+Follow-up completed!
+Cleaning up resources...
+Agent deleted
+Bing Custom Search agent sample completed!
+```
+
+
+## How it works
+
+The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."* Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave.
+
+When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing search query (which is [visible to developers](#how-to-display-search-results)).
+Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output.
+
+Note
+
+When you use Grounding with Bing Search or Grounding with Bing Custom Search, the only information sent to Bing is the Bing search query, tool parameters, and your resource key. The service doesn't send any end user-specific information. Your resource key is sent to Bing solely for billing and rate limiting purposes.
+
+Authorization happens between the Grounding with Bing Search or Grounding with Bing Custom Search service and Foundry Agent Service. Any Bing search query that the service generates and sends to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and doesn't have the same compliance standards and certifications as the Agent Service, as described in the [Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise). You're responsible for assessing whether the use of Grounding with Bing Search or Grounding with Bing Custom Search in your agent meets your needs and requirements.
+
+Transactions with your Grounding with Bing resource are counted by the number of tool calls per run. You can see how many tool calls are made from the run step.
+
+Developers and end users don't have access to raw content returned from Grounding with Bing Search. The model response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. You can retrieve the **model response** by accessing the data in the conversation that was created. These two *references* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/bing/apis/grounding-legal-enterprise#use-and-display-requirements). See the [how to display Grounding with Bing Search results](#how-to-display-search-results) section for details.
+
+## How to display search results
+
+According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/bing/apis/grounding-legal-enterprise#use-and-display-requirements#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find this information in the API response, in the `arguments`
+
+parameter. To render the webpage, replace the endpoint of Bing search query URLs with `www.bing.com`
+
+and your Bing search query URL would look like `https://www.bing.com/search?q={search query}`
+
+.
+
+## Grounding with Bing Custom Search configuration
+
+Grounding with Bing Custom Search is a powerful tool that you can use to select a subspace of the web to limit your agent’s grounding knowledge. Here are a few tips to help you take full advantage of this capability:
+
+- If you own a public site that you want to include in the search but Bing hasn't indexed, see the
+[Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a)for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. - You need at least the contributor role for the Bing Custom Search resource to create a configuration.
+- You can only block certain domains and perform a search against the rest of the web (a competitor's site, for example).
+- Grounding with Bing Custom Search only returns results for domains and webpages that are public and indexed by Bing.
+- Domain (for example,
+`https://www.microsoft.com`
+
+) - Domain and path (for example,
+`https://www.microsoft.com/surface`
+
+) - Webpage (for example,
+`https://www.microsoft.com/en-us/p/surface-earbuds/8r9cpq146064`
+
+)
+
+- Domain (for example,
+
+## Supported capabilities and known issues
+
+- The Grounding with Bing Search tool is designed to retrieve real-time information from the web, not specific web domains. For retrieving information from specific domains, use the Grounding with Bing Custom Search tool.
+- Don't
+**summarize**an entire web page. - Within one run, the AI model evaluates the tool outputs and might decide to invoke the tool again for more information and context. The AI model might also decide which pieces of tool outputs are used to generate the response.
+- Azure AI Agent service returns
+**AI model generated response**as output so end-to-end latency is impacted by pre-/post-processing of LLMs. - The Grounding with Bing Search and Grounding with Bing Custom Search tools don't return the tool output to developers and end users.
+- Grounding with Bing Search and Grounding with Bing Custom Search only works with agents that aren't using VPN or Private Endpoints. The agent must have normal network access.
+- Customers should leverage default citations pattern - the links sent in
+`annotation`
+
+- for links from the Grounding with Bing tools, not asking the model to generate.
+
+## Troubleshooting
+
+Use this section to resolve common issues when using Grounding with Bing Search tools.
+
+### Connection ID format errors
+
+**Problem**: Error message stating invalid connection ID format.
+
+**Solution**: Verify your connection ID matches the required format:
+
+```
+/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}
+```
+
+
+Replace all placeholder values (including `{{`
+
+and `}}`
+
+) with your actual resource identifiers.
+
+### Authentication failures
+
+**Problem**: "Unauthorized" or "Forbidden" errors when creating agents or running queries.
+
+**Solution**:
+
+- Verify you have the required RBAC roles:
+**Contributor**or**Owner**role for creating Bing resources**Azure AI Project Manager**role for creating project connections
+
+- Check that your Azure credentials are properly configured:
+- For Python/TypeScript:
+`DefaultAzureCredential`
+
+can authenticate - For REST: Bearer token is valid and not expired
+
+- For Python/TypeScript:
+- Run
+`az login`
+
+to refresh your credentials if you're using Azure CLI
+
+### Network connectivity problems
+
+**Problem**: Grounding with Bing Search requests time out or can't connect.
+
+**Solution**: Grounding with Bing Search and Grounding with Bing Custom Search don't work with VPN or Private Endpoints. Ensure:
+
+- Your network has normal internet access.
+- You're not using a VPN connection.
+- Private Endpoints aren't configured for the agent service.
+- Firewall rules allow outbound connections to Bing services.
+
+### Custom search returns no results
+
+**Problem**: Bing Custom Search returns empty results or doesn't find expected content.
+
+**Solution**:
+
+- Verify your custom search instance is properly configured with target domains.
+- Ensure the domains you want to search are public and indexed by Bing.
+- Check that the configured domains match your search query expectations.
+- If your site isn't indexed, see
+[Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a)for indexing instructions. - Wait for Bing to crawl recently added or updated content (can take several days).
+
+### Missing or invalid environment variables
+
+**Problem**: Code fails with `KeyError`
+
+or "environment variable not found" errors.
+
+**Solution**: Ensure you set all required environment variables:
+
+`AZURE_AI_PROJECT_ENDPOINT`
+
+`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+`BING_PROJECT_CONNECTION_ID`
+
+or`BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`
+
+- For custom search:
+`BING_CUSTOM_SEARCH_INSTANCE_NAME`
+
+- For REST API:
+`API_VERSION`
+
+,`AGENT_TOKEN`
+
+
+Create a `.env`
+
+file or set system environment variables with these values.
+
+### Agent doesn't use the grounding tool
+
+**Problem**: Agent responds without calling the Bing grounding tool.
+
+**Solution**:
+
+- Ensure your query requires current information that the model doesn't know.
+- For explicit tool usage, set
+`tool_choice="required"`
+
+in your request (Python/TypeScript examples show this). - Verify the tool is properly configured in the agent definition.
+- Check agent instructions encourage using available tools for current information.
+
+### Instance name not found for Grounding with Bing Custom Search tool
+
+**Problem**:
+
+```
+{"error": "Tool_User_Error", "message": "[bing_search] Failed to call Get Custom Search Instance with status 404: {\"error\":{\"code\":\"ResourceNotFound\",\"message\":\"Instance or Customer not found\",\"target\":\"instanceName or customerId\"}}."}
+```
+
+
+**Solution**:
+
+- Ensure your instance name is in the Grounding with Bing Custom Search resource you are using.
+- Double check if your instance name is spelled correctly.
+
+## Manage Grounding with Bing Search and Grounding with Bing Custom Search
+
+Admins can use RBAC role assignments to enable or disable the use of Grounding with Bing and Grounding with Bing Custom Search within the subscription or resource group.
+
+- The admin registers
+`Microsoft.Bing`
+
+in the Azure subscription. The admin needs permissions to perform the`/register/action`
+
+operation for the resource provider. The Contributor and Owner roles include this permission. For more information about how to register, see[Azure resource providers and types](/en-us/azure/azure-resource-manager/management/resource-providers-and-types). - After the admin registers
+`Microsoft.Bing`
+
+, users with permissions can create, delete, or retrieve the resource key for a Grounding with Bing and/or Grounding with Bing Custom Search resource. These users need the**Contributor**or**Owner**role at the subscription or resource group level. - After creating a Grounding with Bing and/or Grounding with Bing Custom Search resource, users with permissions can create a Microsoft Foundry connection to connect to the resource and use it as a tool in Foundry Agent Service. These users need at least the
+**Azure AI Project Manager**role.
+
+### Disable use of Grounding with Bing Search and Grounding with Bing Custom Search
+
+- The admin needs the
+**Owner**or**Contributor**role in the subscription. - The admin deletes all Grounding with Bing Search and Grounding with Bing Custom Search resources in the subscription.
+- The admin unregisters the
+`Microsoft.Bing`
+
+resource provider in the subscription (you can't unregister before deleting all resources). For more information, see[Azure resource providers and types](/en-us/azure/azure-resource-manager/management/resource-providers-and-types). - The admin creates an Azure Policy to disallow creation of Grounding with Bing Search and Grounding with Bing Custom Search resources in their subscription, following the
+[sample](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json).
+
+## Next steps
+
+[Tool use best practices](../../concepts/tool-best-practice?view=foundry)- Learn optimization strategies for agent tools[Web search tool (preview)](web-search?view=foundry)- Use web search without configuring Bing tool parameters[Manage Grounding with Bing in Microsoft Foundry and Azure](../manage-grounding-with-bing?view=foundry)- Control and disable Grounding with Bing features[Connect OpenAPI tools to agents](openapi?view=foundry)- Integrate custom APIs with your agents[Discover tools in the Foundry Tools (preview)](../../concepts/tool-catalog?view=foundry)- Explore all available agent tools in Foundry Agent Service
