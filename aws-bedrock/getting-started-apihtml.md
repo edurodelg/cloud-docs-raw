@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started-api.html
-fetched_at: 2026-01-25T02:03:58.247579
+fetched_at: 2026-01-25T03:10:35.428513
 ---
 
 # Get started with the API

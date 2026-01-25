@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/claude-messages-thinking-encryption.html
-fetched_at: 2026-01-25T02:06:48.601628
+fetched_at: 2026-01-25T03:13:25.668672
 ---
 
 # Thinking encryption

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-access-product-ids.html
-fetched_at: 2026-01-25T02:05:13.862255
+fetched_at: 2026-01-25T03:11:50.477413
 ---
 
 # Use product ID condition keys to control

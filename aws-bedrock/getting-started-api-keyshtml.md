@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started-api-keys.html
-fetched_at: 2026-01-25T02:04:03.283738
+fetched_at: 2026-01-25T03:10:40.454249
 ---
 
 # Get started with Amazon Bedrock API keys: Generate a 30-day key and make your first API call

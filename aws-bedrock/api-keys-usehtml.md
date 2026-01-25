@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-use.html
-fetched_at: 2026-01-25T02:04:48.503691
+fetched_at: 2026-01-25T03:11:25.483211
 ---
 
 # Use an Amazon Bedrock API key

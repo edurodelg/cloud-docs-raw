@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/models-get-info.html
-fetched_at: 2026-01-25T02:05:23.189865
+fetched_at: 2026-01-25T03:12:00.466304
 ---
 
 # Get information about foundation models

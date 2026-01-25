@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/models-features.html
-fetched_at: 2026-01-25T02:05:44.421421
+fetched_at: 2026-01-25T03:12:21.714548
 ---
 
 # Model support by feature in Amazon Bedrock

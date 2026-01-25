@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html
-fetched_at: 2026-01-25T02:05:08.298934
+fetched_at: 2026-01-25T03:11:45.568577
 ---
 
 # Access Amazon Bedrock foundation models

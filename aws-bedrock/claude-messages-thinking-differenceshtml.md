@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/claude-messages-thinking-differences.html
-fetched_at: 2026-01-25T02:06:53.492843
+fetched_at: 2026-01-25T03:13:30.502224
 ---
 
 # Differences in thinking

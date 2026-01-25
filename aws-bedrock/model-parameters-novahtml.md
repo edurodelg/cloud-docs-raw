@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-nova.html
-fetched_at: 2026-01-25T02:05:53.323291
+fetched_at: 2026-01-25T03:12:30.475577
 ---
 
 # Amazon Nova models

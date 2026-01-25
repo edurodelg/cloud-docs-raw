@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-modify.html
-fetched_at: 2026-01-25T02:04:53.613405
+fetched_at: 2026-01-25T03:11:30.476382
 ---
 
 # Modify permissions for long-term and short-term Amazon Bedrock API keys

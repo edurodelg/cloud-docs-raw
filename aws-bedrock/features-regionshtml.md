@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/features-regions.html
-fetched_at: 2026-01-25T02:05:38.689930
+fetched_at: 2026-01-25T03:12:16.830466
 ---
 
 # Feature support by AWS Region in Amazon Bedrock

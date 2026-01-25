@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-text-completion.html
-fetched_at: 2026-01-25T02:06:28.232025
+fetched_at: 2026-01-25T03:13:05.552654
 ---
 
 # Anthropic Claude Text Completions API

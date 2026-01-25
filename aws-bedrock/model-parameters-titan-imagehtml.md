@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-titan-image.html
-fetched_at: 2026-01-25T02:06:08.623975
+fetched_at: 2026-01-25T03:12:45.638150
 ---
 
 # Amazon Titan Image Generator G1 models

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/claude-messages-extended-thinking.html
-fetched_at: 2026-01-25T02:06:43.826407
+fetched_at: 2026-01-25T03:13:21.299439
 ---
 
 # Extended thinking

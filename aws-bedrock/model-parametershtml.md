@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html
-fetched_at: 2026-01-25T02:05:48.371427
+fetched_at: 2026-01-25T03:12:25.480301
 ---
 
 # Inference request parameters and response fields for foundation models

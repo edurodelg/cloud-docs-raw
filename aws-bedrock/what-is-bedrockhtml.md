@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html
-fetched_at: 2026-01-25T02:03:32.912473
+fetched_at: 2026-01-25T03:10:10.308144
 ---
 
 # What is Amazon Bedrock?

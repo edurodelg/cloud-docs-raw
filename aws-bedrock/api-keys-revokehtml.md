@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-revoke.html
-fetched_at: 2026-01-25T02:04:58.430566
+fetched_at: 2026-01-25T03:11:35.561530
 ---
 
 # Handle compromised long-term and short-term Amazon Bedrock API keys

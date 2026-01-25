@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/sdk-general-information-section.html
-fetched_at: 2026-01-25T02:04:23.355822
+fetched_at: 2026-01-25T03:11:00.606145
 ---
 
 # Using Amazon Bedrock with an AWS SDK

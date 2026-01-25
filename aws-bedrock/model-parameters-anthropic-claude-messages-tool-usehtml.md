@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages-tool-use.html
-fetched_at: 2026-01-25T02:06:38.750350
+fetched_at: 2026-01-25T03:13:15.951121
 ---
 
 # Tool use

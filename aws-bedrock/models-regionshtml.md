@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html
-fetched_at: 2026-01-25T02:05:36.171426
+fetched_at: 2026-01-25T03:12:13.551539
 ---
 
 # Model support by AWS Region in Amazon Bedrock

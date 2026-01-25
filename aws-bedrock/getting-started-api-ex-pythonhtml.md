@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started-api-ex-python.html
-fetched_at: 2026-01-25T02:04:13.347587
+fetched_at: 2026-01-25T03:10:50.809513
 ---
 
 # Run example Amazon Bedrock API requests through the AWS SDK for Python (Boto3)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-generate.html
-fetched_at: 2026-01-25T02:04:43.276106
+fetched_at: 2026-01-25T03:11:20.756870
 ---
 
 # Generate an Amazon Bedrock API key

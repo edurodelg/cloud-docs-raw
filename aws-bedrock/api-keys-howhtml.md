@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-how.html
-fetched_at: 2026-01-25T02:04:33.403749
+fetched_at: 2026-01-25T03:11:10.807213
 ---
 
 # How Amazon Bedrock API keys work

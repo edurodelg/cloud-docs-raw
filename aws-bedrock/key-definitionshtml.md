@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/key-definitions.html
-fetched_at: 2026-01-25T02:03:43.424070
+fetched_at: 2026-01-25T03:10:20.198216
 ---
 
 # Key terminology

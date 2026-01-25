@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-titan-embed-mm.html
-fetched_at: 2026-01-25T02:06:18.210593
+fetched_at: 2026-01-25T03:12:55.511058
 ---
 
 # Amazon Titan Multimodal Embeddings G1

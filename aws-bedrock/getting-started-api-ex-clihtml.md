@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started-api-ex-cli.html
-fetched_at: 2026-01-25T02:04:08.496577
+fetched_at: 2026-01-25T03:10:45.476709
 ---
 
 # Run example Amazon Bedrock API requests with the AWS Command Line Interface

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started-console.html
-fetched_at: 2026-01-25T02:03:52.933842
+fetched_at: 2026-01-25T03:10:30.537964
 ---
 
 # Get started in the Amazon Bedrock console

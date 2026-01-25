@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models-reference.html
-fetched_at: 2026-01-25T02:05:18.820839
+fetched_at: 2026-01-25T03:11:55.476769
 ---
 
 # Amazon Bedrock foundation model information

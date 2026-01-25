@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started-api-ex-sm.html
-fetched_at: 2026-01-25T02:04:18.348808
+fetched_at: 2026-01-25T03:10:56.514164
 ---
 
 # Run example Amazon Bedrock API requests using an Amazon SageMaker AI notebook

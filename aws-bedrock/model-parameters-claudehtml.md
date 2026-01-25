@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-claude.html
-fetched_at: 2026-01-25T02:06:23.275852
+fetched_at: 2026-01-25T03:13:00.535700
 ---
 
 # Anthropic Claude models

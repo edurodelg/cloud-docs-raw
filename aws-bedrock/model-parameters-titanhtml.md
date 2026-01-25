@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-titan.html
-fetched_at: 2026-01-25T02:05:58.174525
+fetched_at: 2026-01-25T03:12:35.571617
 ---
 
 # Amazon Titan models

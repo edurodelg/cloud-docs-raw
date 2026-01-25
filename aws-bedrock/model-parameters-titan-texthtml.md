@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-titan-text.html
-fetched_at: 2026-01-25T02:06:03.215256
+fetched_at: 2026-01-25T03:12:40.819641
 ---
 
 # Amazon Titan Text models

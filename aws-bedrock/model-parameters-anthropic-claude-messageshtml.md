@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html
-fetched_at: 2026-01-25T02:06:33.696631
+fetched_at: 2026-01-25T03:13:10.838418
 ---
 
 # Anthropic Claude

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html
-fetched_at: 2026-01-25T02:03:47.898223
+fetched_at: 2026-01-25T03:10:25.590937
 ---
 
 # Get started with Amazon Bedrock

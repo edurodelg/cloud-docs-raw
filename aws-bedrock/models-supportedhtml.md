@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html
-fetched_at: 2026-01-25T02:05:29.375364
+fetched_at: 2026-01-25T03:12:06.657948
 ---
 
 # Supported foundation models in Amazon Bedrock

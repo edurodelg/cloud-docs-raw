@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-permissions.html
-fetched_at: 2026-01-25T02:05:03.501935
+fetched_at: 2026-01-25T03:11:40.496751
 ---
 
 # Control permissions for generating and using Amazon Bedrock API keys

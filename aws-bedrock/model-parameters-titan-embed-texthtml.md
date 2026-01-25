@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-titan-embed-text.html
-fetched_at: 2026-01-25T02:06:13.541185
+fetched_at: 2026-01-25T03:12:50.511540
 ---
 
 # Amazon Titan Embeddings G1 - Text
