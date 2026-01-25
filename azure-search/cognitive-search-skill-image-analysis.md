@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/cognitive-search-skill-image-analysis
-fetched_at: 2026-01-25T02:08:06.841752
+fetched_at: 2026-01-25T03:14:52.182746
 ---
 
 # Image Analysis cognitive skill

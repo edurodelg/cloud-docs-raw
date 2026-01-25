@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/knowledge-store-create-rest
-fetched_at: 2026-01-25T02:07:44.613478
+fetched_at: 2026-01-25T03:14:30.776454
 ---
 
 # Create a knowledge store using REST

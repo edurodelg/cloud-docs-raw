@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-indexer-access-control-lists-and-role-based-access
-fetched_at: 2026-01-25T02:10:32.196342
+fetched_at: 2026-01-25T03:17:01.719810
 ---
 
 # Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights

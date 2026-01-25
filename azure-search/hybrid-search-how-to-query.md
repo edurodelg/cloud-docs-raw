@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/hybrid-search-how-to-query
-fetched_at: 2026-01-25T02:04:13.581323
+fetched_at: 2026-01-25T03:10:57.990694
 ---
 
 # Create a hybrid query in Azure AI Search

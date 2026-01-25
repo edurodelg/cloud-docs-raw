@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-get-started-portal-import-vectors
-fetched_at: 2026-01-25T02:04:28.198687
+fetched_at: 2026-01-25T03:11:11.753585
 ---
 
 # Quickstart: Vector search in the Azure portal

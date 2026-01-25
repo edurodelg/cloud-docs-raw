@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/knowledge-store-projection-example-long
-fetched_at: 2026-01-25T02:11:29.283251
+fetched_at: 2026-01-25T03:17:50.887070
 ---
 
 # Example of shapes and projections in a knowledge store

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-index-onelake-files
-fetched_at: 2026-01-25T02:04:33.819610
+fetched_at: 2026-01-25T03:11:17.499833
 ---
 
 # Index data from OneLake files and shortcuts

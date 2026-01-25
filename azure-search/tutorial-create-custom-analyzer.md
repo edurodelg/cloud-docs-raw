@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-create-custom-analyzer
-fetched_at: 2026-01-25T02:07:40.456924
+fetched_at: 2026-01-25T03:14:26.479884
 ---
 
 # Tutorial: Create a custom analyzer for phone numbers

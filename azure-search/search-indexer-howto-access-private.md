@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-indexer-howto-access-private
-fetched_at: 2026-01-25T02:05:38.974849
+fetched_at: 2026-01-25T03:12:24.639910
 ---
 
 # Make outbound connections through a shared private link

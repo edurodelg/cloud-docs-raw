@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-csharp-orders
-fetched_at: 2026-01-25T02:11:56.824412
+fetched_at: 2026-01-25T03:18:12.699652
 ---
 
 # Tutorial: Order search results using the .NET SDK

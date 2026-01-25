@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-index-sql-database
-fetched_at: 2026-01-25T02:04:35.435547
+fetched_at: 2026-01-25T03:11:19.137834
 ---
 
 # Index data from Azure SQL Database

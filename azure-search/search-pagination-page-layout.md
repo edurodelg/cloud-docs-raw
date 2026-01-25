@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-pagination-page-layout
-fetched_at: 2026-01-25T02:05:23.999181
+fetched_at: 2026-01-25T03:12:07.721836
 ---
 
 # Shape search results or modify search results composition in Azure AI Search

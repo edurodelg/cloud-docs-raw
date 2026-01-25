@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-create-index
-fetched_at: 2026-01-25T02:06:29.827152
+fetched_at: 2026-01-25T03:13:16.005301
 ---
 
 # Create an index for agentic retrieval in Azure AI Search

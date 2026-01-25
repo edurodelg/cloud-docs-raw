@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-get-started-text
-fetched_at: 2026-01-25T02:03:51.263355
+fetched_at: 2026-01-25T03:10:32.666532
 ---
 
 # Quickstart: Full-text search

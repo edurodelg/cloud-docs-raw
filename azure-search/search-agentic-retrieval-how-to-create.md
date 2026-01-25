@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-agentic-retrieval-how-to-create
-fetched_at: 2026-01-25T02:11:02.024493
+fetched_at: 2026-01-25T03:17:28.791777
 ---
 
 # Create a knowledge base in Azure AI Search

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/security-controls-policy
-fetched_at: 2026-01-25T02:10:37.284939
+fetched_at: 2026-01-25T03:17:05.788730
 ---
 
 # Azure Policy Regulatory Compliance controls for Azure AI Search

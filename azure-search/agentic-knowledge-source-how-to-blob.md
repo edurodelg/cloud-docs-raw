@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-blob
-fetched_at: 2026-01-25T02:06:19.034273
+fetched_at: 2026-01-25T03:13:05.282450
 ---
 
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2

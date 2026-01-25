@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-security-overview
-fetched_at: 2026-01-25T02:05:29.755980
+fetched_at: 2026-01-25T03:12:17.127624
 ---
 
 # Security in Azure AI Search

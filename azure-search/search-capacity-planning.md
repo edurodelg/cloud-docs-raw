@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-capacity-planning
-fetched_at: 2026-01-25T02:05:53.410751
+fetched_at: 2026-01-25T03:12:39.413594
 ---
 
 # Estimate and manage capacity of a search service

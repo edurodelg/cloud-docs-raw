@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-api-migration
-fetched_at: 2026-01-25T02:07:25.058134
+fetched_at: 2026-01-25T03:14:11.279977
 ---
 
 # Upgrade to the latest REST API in Azure AI Search

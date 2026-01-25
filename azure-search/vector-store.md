@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/vector-store
-fetched_at: 2026-01-25T02:06:41.173292
+fetched_at: 2026-01-25T03:13:27.512266
 ---
 
 # Vector indexes in Azure AI Search

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-get-started-agentic-retrieval
-fetched_at: 2026-01-25T02:03:42.101382
+fetched_at: 2026-01-25T03:10:21.505039
 ---
 
 # Quickstart: Agentic retrieval

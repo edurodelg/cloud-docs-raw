@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-index-cosmosdb-gremlin
-fetched_at: 2026-01-25T02:08:50.796404
+fetched_at: 2026-01-25T03:15:30.257892
 ---
 
 # Index data from Azure Cosmos DB for Apache Gremlin for queries in Azure AI Search

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-index-sharepoint-online
-fetched_at: 2026-01-25T02:07:48.888767
+fetched_at: 2026-01-25T03:14:35.200199
 ---
 
 # Index data from SharePoint document libraries

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-document-layout-multimodal-embeddings
-fetched_at: 2026-01-25T02:07:00.786388
+fetched_at: 2026-01-25T03:13:47.649773
 ---
 
 # Tutorial: Vectorize from a structured document layout

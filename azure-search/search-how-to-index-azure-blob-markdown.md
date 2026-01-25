@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-index-azure-blob-markdown
-fetched_at: 2026-01-25T02:09:17.423487
+fetched_at: 2026-01-25T03:15:54.581419
 ---
 
 # Index Markdown blobs and files in Azure AI Search

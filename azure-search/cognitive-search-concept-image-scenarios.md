@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/cognitive-search-concept-image-scenarios
-fetched_at: 2026-01-25T02:07:50.441189
+fetched_at: 2026-01-25T03:14:39.828995
 ---
 
 # Extract text and information from images by using AI enrichment

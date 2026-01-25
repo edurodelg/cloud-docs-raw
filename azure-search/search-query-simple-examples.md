@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-query-simple-examples
-fetched_at: 2026-01-25T02:05:15.317528
+fetched_at: 2026-01-25T03:11:59.842864
 ---
 
 # Examples of simple search queries in Azure AI Search

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-security-manage-encryption-keys
-fetched_at: 2026-01-25T02:05:31.427306
+fetched_at: 2026-01-25T03:12:18.484717
 ---
 
 # Configure customer-managed keys for data encryption in Azure AI Search

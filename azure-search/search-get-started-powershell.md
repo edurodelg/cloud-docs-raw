@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-get-started-powershell
-fetched_at: 2026-01-25T02:11:49.793117
+fetched_at: 2026-01-25T03:18:06.951862
 ---
 
 # Quickstart: Full-text search

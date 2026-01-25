@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-import-data-portal
-fetched_at: 2026-01-25T02:05:42.079160
+fetched_at: 2026-01-25T03:12:27.843744
 ---
 
 # Import data wizards in the Azure portal

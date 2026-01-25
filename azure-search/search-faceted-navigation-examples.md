@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-faceted-navigation-examples
-fetched_at: 2026-01-25T02:09:14.248539
+fetched_at: 2026-01-25T03:15:51.087890
 ---
 
 # Faceted navigation examples

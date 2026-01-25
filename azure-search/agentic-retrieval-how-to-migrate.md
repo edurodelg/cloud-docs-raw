@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-migrate
-fetched_at: 2026-01-25T02:06:32.806473
+fetched_at: 2026-01-25T03:13:19.525467
 ---
 
 # Migrate agentic retrieval code to the latest version

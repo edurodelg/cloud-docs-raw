@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-indexer-troubleshooting
-fetched_at: 2026-01-25T02:09:34.701705
+fetched_at: 2026-01-25T03:16:09.920656
 ---
 
 # Indexer troubleshooting guidance for Azure AI Search

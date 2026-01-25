@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-index-azure-blob-storage
-fetched_at: 2026-01-25T02:04:38.126639
+fetched_at: 2026-01-25T03:11:22.109694
 ---
 
 # Index data from Azure Blob Storage

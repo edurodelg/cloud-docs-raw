@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-indexer-field-mappings
-fetched_at: 2026-01-25T02:07:55.156054
+fetched_at: 2026-01-25T03:14:41.623095
 ---
 
 # Field mappings and transformations using Azure AI Search indexers

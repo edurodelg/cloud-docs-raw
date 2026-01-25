@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-query-lucene-examples
-fetched_at: 2026-01-25T02:07:03.860565
+fetched_at: 2026-01-25T03:13:51.107889
 ---
 
 # Examples of full Lucene search syntax (advanced queries)

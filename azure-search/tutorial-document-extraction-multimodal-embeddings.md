@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-document-extraction-multimodal-embeddings
-fetched_at: 2026-01-25T02:06:56.421238
+fetched_at: 2026-01-25T03:13:44.745883
 ---
 
 # Tutorial: Vectorize images and text

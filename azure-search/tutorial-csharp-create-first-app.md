@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-csharp-create-first-app
-fetched_at: 2026-01-25T02:11:55.114567
+fetched_at: 2026-01-25T03:18:11.203646
 ---
 
 # Tutorial: Create your first search app in Azure Cognitive Search using the .NET SDK

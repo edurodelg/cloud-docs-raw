@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-create-pipeline
-fetched_at: 2026-01-25T02:06:17.612326
+fetched_at: 2026-01-25T03:13:03.864585
 ---
 
 # Tutorial: Build an end-to-end agentic retrieval solution using Azure AI Search

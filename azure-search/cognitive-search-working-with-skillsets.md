@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/cognitive-search-working-with-skillsets
-fetched_at: 2026-01-25T02:07:37.512888
+fetched_at: 2026-01-25T03:14:23.412544
 ---
 
 # Skillset concepts in Azure AI Search

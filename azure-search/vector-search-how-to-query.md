@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-query
-fetched_at: 2026-01-25T02:03:58.177649
+fetched_at: 2026-01-25T03:10:40.376975
 ---
 
 # Create a vector query in Azure AI Search

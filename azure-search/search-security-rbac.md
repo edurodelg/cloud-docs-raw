@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-security-rbac
-fetched_at: 2026-01-25T02:05:32.984865
+fetched_at: 2026-01-25T03:12:19.919153
 ---
 
 # Connect to Azure AI Search using roles

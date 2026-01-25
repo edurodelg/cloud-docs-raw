@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-define-index-projections
-fetched_at: 2026-01-25T02:11:51.137795
+fetched_at: 2026-01-25T03:18:08.191884
 ---
 
 # Define an index projection for parent-child indexing

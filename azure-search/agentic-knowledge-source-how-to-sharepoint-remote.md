@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-sharepoint-remote
-fetched_at: 2026-01-25T02:06:22.303223
+fetched_at: 2026-01-25T03:13:08.843340
 ---
 
 # Create a remote SharePoint knowledge source

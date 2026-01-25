@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-howto-run-reset-indexers
-fetched_at: 2026-01-25T02:08:52.338863
+fetched_at: 2026-01-25T03:15:31.640583
 ---
 
 # Run or reset indexers, skills, or documents

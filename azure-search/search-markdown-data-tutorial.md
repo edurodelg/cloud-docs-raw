@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-markdown-data-tutorial
-fetched_at: 2026-01-25T02:11:38.912412
+fetched_at: 2026-01-25T03:17:59.533906
 ---
 
 # Tutorial: Index nested Markdown blobs from Azure Storage using REST

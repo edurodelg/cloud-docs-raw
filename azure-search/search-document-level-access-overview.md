@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-document-level-access-overview
-fetched_at: 2026-01-25T02:05:37.070061
+fetched_at: 2026-01-25T03:12:23.243688
 ---
 
 # Document-level access control in Azure AI Search

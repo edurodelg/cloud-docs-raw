@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-document-extraction-image-verbalization
-fetched_at: 2026-01-25T02:06:54.464470
+fetched_at: 2026-01-25T03:13:42.097819
 ---
 
 # Tutorial: Verbalize images using generative AI

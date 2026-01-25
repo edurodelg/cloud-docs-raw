@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-manage-azure-cli
-fetched_at: 2026-01-25T02:05:58.099174
+fetched_at: 2026-01-25T03:12:43.919728
 ---
 
 # Manage your Azure AI Search service using the Azure CLI

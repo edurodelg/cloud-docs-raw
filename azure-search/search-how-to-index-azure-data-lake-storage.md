@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-index-azure-data-lake-storage
-fetched_at: 2026-01-25T02:06:44.160615
+fetched_at: 2026-01-25T03:13:30.427926
 ---
 
 # Index data from Azure Data Lake Storage Gen2

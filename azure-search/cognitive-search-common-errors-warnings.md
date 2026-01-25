@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/cognitive-search-common-errors-warnings
-fetched_at: 2026-01-25T02:09:36.542806
+fetched_at: 2026-01-25T03:16:11.433842
 ---
 
 # Troubleshooting common indexer errors and warnings in Azure AI Search

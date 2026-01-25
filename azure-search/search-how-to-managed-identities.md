@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-managed-identities
-fetched_at: 2026-01-25T02:05:40.648308
+fetched_at: 2026-01-25T03:12:26.439841
 ---
 
 # Configure a search service to connect using a managed identity

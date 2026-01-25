@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-sharepoint-indexed
-fetched_at: 2026-01-25T02:06:24.090216
+fetched_at: 2026-01-25T03:13:10.274107
 ---
 
 # Create an indexed SharePoint knowledge source

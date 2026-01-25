@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-create-index
-fetched_at: 2026-01-25T02:03:56.174831
+fetched_at: 2026-01-25T03:10:38.863976
 ---
 
 # Create a vector index in Azure AI Search

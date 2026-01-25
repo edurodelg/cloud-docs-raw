@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/reference-stopwords
-fetched_at: 2026-01-25T02:06:34.725679
+fetched_at: 2026-01-25T03:13:21.775561
 ---
 
 # Stopwords reference (Microsoft analyzers)

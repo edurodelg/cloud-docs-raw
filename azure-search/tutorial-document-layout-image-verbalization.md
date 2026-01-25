@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-document-layout-image-verbalization
-fetched_at: 2026-01-25T02:06:58.513673
+fetched_at: 2026-01-25T03:13:46.049651
 ---
 
 # Tutorial: Verbalize images from a structured document layout

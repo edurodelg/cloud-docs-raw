@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/cognitive-search-attach-cognitive-services
-fetched_at: 2026-01-25T02:06:09.135269
+fetched_at: 2026-01-25T03:12:55.432671
 ---
 
 # Attach a billable resource to a skillset in Azure AI Search

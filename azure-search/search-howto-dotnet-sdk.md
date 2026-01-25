@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-howto-dotnet-sdk
-fetched_at: 2026-01-25T02:07:34.537397
+fetched_at: 2026-01-25T03:14:20.772091
 ---
 
 # How to use Azure.Search.Documents in a .NET application

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-howto-create-indexers
-fetched_at: 2026-01-25T02:07:23.445149
+fetched_at: 2026-01-25T03:14:09.450347
 ---
 
 # Create an indexer in Azure AI Search

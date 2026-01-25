@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-multiple-data-sources
-fetched_at: 2026-01-25T02:07:31.333997
+fetched_at: 2026-01-25T03:14:17.276000
 ---
 
 # Tutorial: Index from multiple data sources using the .NET SDK

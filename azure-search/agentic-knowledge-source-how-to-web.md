@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-web
-fetched_at: 2026-01-25T02:06:27.116789
+fetched_at: 2026-01-25T03:13:13.051456
 ---
 
 # Create a Web Knowledge Source resource

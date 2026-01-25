@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-onelake
-fetched_at: 2026-01-25T02:06:20.841729
+fetched_at: 2026-01-25T03:13:07.234341
 ---
 
 # Create a OneLake knowledge source

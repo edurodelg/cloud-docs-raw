@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-relevance-overview
-fetched_at: 2026-01-25T02:04:48.469130
+fetched_at: 2026-01-25T03:11:32.133484
 ---
 
 # Relevance in Azure AI Search

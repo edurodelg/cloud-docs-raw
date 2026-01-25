@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/cognitive-search-skill-deprecated
-fetched_at: 2026-01-25T02:11:21.546433
+fetched_at: 2026-01-25T03:17:43.865168
 ---
 
 # Deprecated Cognitive Skills in Azure AI Search

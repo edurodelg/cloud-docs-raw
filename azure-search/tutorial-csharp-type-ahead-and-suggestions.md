@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-csharp-type-ahead-and-suggestions
-fetched_at: 2026-01-25T02:08:28.483651
+fetched_at: 2026-01-25T03:15:06.709293
 ---
 
 # Tutorial: Add autocomplete and suggestions using the .NET SDK

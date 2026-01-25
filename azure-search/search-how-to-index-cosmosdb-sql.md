@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-index-cosmosdb-sql
-fetched_at: 2026-01-25T02:04:36.763226
+fetched_at: 2026-01-25T03:11:20.582105
 ---
 
 # Index data from Azure Cosmos DB for NoSQL for queries in Azure AI Search

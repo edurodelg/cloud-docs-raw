@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-limits-quotas-capacity
-fetched_at: 2026-01-25T02:05:55.033050
+fetched_at: 2026-01-25T03:12:40.915050
 ---
 
 # Service limits in Azure AI Search

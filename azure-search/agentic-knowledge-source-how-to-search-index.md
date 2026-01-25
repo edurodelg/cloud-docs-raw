@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-search-index
-fetched_at: 2026-01-25T02:06:25.446076
+fetched_at: 2026-01-25T03:13:11.679755
 ---
 
 # Create a search index knowledge source

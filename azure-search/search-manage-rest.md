@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-manage-rest
-fetched_at: 2026-01-25T02:05:59.451253
+fetched_at: 2026-01-25T03:12:45.256517
 ---
 
 # Manage your Azure AI Search service using REST APIs

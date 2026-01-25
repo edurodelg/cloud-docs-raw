@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/index-add-scoring-profiles
-fetched_at: 2026-01-25T02:05:10.804439
+fetched_at: 2026-01-25T03:11:55.200455
 ---
 
 # Add scoring profiles to boost search scores

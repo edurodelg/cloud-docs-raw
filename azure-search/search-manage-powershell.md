@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-manage-powershell
-fetched_at: 2026-01-25T02:05:56.733771
+fetched_at: 2026-01-25T03:12:42.449052
 ---
 
 # Manage your Azure AI Search service using PowerShell

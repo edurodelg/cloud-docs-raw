@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-faq-frequently-asked-questions
-fetched_at: 2026-01-25T02:03:36.427432
+fetched_at: 2026-01-25T03:10:15.035995
 ---
 
 # Azure AI Search Frequently Asked Questions

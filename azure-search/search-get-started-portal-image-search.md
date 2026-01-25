@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-get-started-portal-image-search
-fetched_at: 2026-01-25T02:06:48.736777
+fetched_at: 2026-01-25T03:13:34.802236
 ---
 
 # Quickstart: Multimodal search in the Azure portal

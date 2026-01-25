@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-skillset
-fetched_at: 2026-01-25T02:07:29.994526
+fetched_at: 2026-01-25T03:14:15.716044
 ---
 
 # Tutorial: Skillsets in Azure AI Search

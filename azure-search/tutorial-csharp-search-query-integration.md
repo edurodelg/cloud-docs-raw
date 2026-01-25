@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-csharp-search-query-integration
-fetched_at: 2026-01-25T02:11:12.033529
+fetched_at: 2026-01-25T03:17:36.878053
 ---
 
 # Step 4 - Explore the .NET search code

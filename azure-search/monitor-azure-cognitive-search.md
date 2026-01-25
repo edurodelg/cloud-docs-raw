@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/monitor-azure-cognitive-search
-fetched_at: 2026-01-25T02:05:47.939421
+fetched_at: 2026-01-25T03:12:33.419880
 ---
 
 # Monitor Azure AI Search

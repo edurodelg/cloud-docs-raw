@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/index-add-custom-analyzers
-fetched_at: 2026-01-25T02:04:44.200449
+fetched_at: 2026-01-25T03:11:27.941176
 ---
 
 # Add custom analyzers to string fields in an Azure AI Search index

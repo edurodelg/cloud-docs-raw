@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/whats-new
-fetched_at: 2026-01-25T02:09:12.721092
+fetched_at: 2026-01-25T03:15:49.650171
 ---
 
 # What's new in Azure AI Search

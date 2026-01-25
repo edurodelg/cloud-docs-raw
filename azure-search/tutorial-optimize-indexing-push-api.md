@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-optimize-indexing-push-api
-fetched_at: 2026-01-25T02:07:33.000261
+fetched_at: 2026-01-25T03:14:18.896554
 ---
 
 # Tutorial: Optimize indexing using the push API

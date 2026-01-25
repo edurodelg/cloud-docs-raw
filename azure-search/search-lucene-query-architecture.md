@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-lucene-query-architecture
-fetched_at: 2026-01-25T02:03:46.170183
+fetched_at: 2026-01-25T03:10:26.624906
 ---
 
 # Full-text search in Azure AI Search

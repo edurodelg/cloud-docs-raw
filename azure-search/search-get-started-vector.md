@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-get-started-vector
-fetched_at: 2026-01-25T02:03:53.676402
+fetched_at: 2026-01-25T03:10:35.138208
 ---
 
 # Quickstart: Vector search

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/tutorial-csharp-paging
-fetched_at: 2026-01-25T02:11:32.474545
+fetched_at: 2026-01-25T03:17:53.680221
 ---
 
 # Tutorial: Add paging to search results using the .NET SDK

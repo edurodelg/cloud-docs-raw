@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-integrated-vectorization
-fetched_at: 2026-01-25T02:09:06.088704
+fetched_at: 2026-01-25T03:15:44.422930
 ---
 
 # Set up integrated vectorization in Azure AI Search using REST

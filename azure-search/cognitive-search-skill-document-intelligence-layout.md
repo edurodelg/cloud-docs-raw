@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/cognitive-search-skill-document-intelligence-layout
-fetched_at: 2026-01-25T02:06:51.575950
+fetched_at: 2026-01-25T03:13:37.703510
 ---
 
 # Document Layout skill

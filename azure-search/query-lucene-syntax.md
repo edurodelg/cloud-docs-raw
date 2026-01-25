@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/query-lucene-syntax
-fetched_at: 2026-01-25T02:05:09.219027
+fetched_at: 2026-01-25T03:11:53.779292
 ---
 
 # Lucene query syntax in Azure AI Search

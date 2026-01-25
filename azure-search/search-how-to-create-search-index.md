@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-how-to-create-search-index
-fetched_at: 2026-01-25T02:03:54.974987
+fetched_at: 2026-01-25T03:10:36.580550
 ---
 
 # Create an index in Azure AI Search

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-analyzers
-fetched_at: 2026-01-25T02:07:09.001579
+fetched_at: 2026-01-25T03:13:55.057234
 ---
 
 # Analyzers for text processing in Azure AI Search

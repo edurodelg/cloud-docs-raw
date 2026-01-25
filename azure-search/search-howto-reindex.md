@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/search/search-howto-reindex
-fetched_at: 2026-01-25T02:07:07.652107
+fetched_at: 2026-01-25T03:13:53.720154
 ---
 
 # Update or rebuild an index in Azure AI Search
