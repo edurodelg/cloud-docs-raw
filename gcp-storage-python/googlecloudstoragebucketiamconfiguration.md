@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.bucket.IAMConfiguration
-fetched_at: 2026-01-25T12:07:33.139994
+fetched_at: 2026-01-25T12:21:29.344163
 ---
 
 # Class IAMConfiguration (3.7.0)

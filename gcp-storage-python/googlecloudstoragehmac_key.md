@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.hmac_key
-fetched_at: 2026-01-25T12:08:13.638377
+fetched_at: 2026-01-25T12:22:12.620650
 ---
 
 # Module hmac_key (3.7.0)

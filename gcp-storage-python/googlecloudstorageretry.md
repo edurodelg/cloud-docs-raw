@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.retry
-fetched_at: 2026-01-25T12:08:23.133021
+fetched_at: 2026-01-25T12:22:28.867369
 ---
 
 # Module retry (3.7.0)
