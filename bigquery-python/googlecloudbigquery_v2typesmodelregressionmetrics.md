@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.RegressionMetrics
-fetched_at: 2026-01-25T02:13:43.939309
+fetched_at: 2026-01-25T03:20:02.086481
 ---
 
 # Class RegressionMetrics (3.40.0)

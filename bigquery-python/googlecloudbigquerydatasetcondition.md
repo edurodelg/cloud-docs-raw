@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.dataset.Condition
-fetched_at: 2026-01-25T02:05:30.983905
+fetched_at: 2026-01-25T03:11:59.957959
 ---
 
 # Class Condition (3.40.0)

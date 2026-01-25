@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.QueryPlanEntry
-fetched_at: 2026-01-25T02:09:22.483353
+fetched_at: 2026-01-25T03:15:34.824645
 ---
 
 # Class QueryPlanEntry (3.40.0)

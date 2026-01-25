@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.TrainingRun.TrainingOptions
-fetched_at: 2026-01-25T02:14:03.683683
+fetched_at: 2026-01-25T03:20:22.701106
 ---
 
 # Class TrainingOptions (3.40.0)

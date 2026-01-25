@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.MultiClassClassificationMetrics.ConfusionMatrix.Entry
-fetched_at: 2026-01-25T02:13:35.253311
+fetched_at: 2026-01-25T03:19:52.632117
 ---
 
 # Class Entry (3.40.0)

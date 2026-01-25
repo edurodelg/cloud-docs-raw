@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.routine.Routine
-fetched_at: 2026-01-25T02:10:51.100534
+fetched_at: 2026-01-25T03:17:09.104531
 ---
 
 # Class Routine (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.routine.ExternalRuntimeOptions
-fetched_at: 2026-01-25T02:10:46.341634
+fetched_at: 2026-01-25T03:17:03.701656
 ---
 
 # Class ExternalRuntimeOptions (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.external_config.ExternalCatalogDatasetOptions
-fetched_at: 2026-01-25T02:07:40.228946
+fetched_at: 2026-01-25T03:14:00.128735
 ---
 
 # Class ExternalCatalogDatasetOptions (3.40.0)

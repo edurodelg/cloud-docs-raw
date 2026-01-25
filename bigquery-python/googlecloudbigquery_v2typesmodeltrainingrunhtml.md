@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.TrainingRun.html
-fetched_at: 2026-01-25T02:14:42.812755
+fetched_at: 2026-01-25T03:21:01.096259
 ---
 
 # Class TrainingRun (3.40.0)

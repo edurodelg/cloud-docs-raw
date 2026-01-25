@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.external_config.HivePartitioningOptions
-fetched_at: 2026-01-25T02:08:03.822811
+fetched_at: 2026-01-25T03:14:11.135962
 ---
 
 # Class HivePartitioningOptions (3.40.0)

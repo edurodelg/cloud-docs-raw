@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.query.RangeQueryParameterType
-fetched_at: 2026-01-25T02:10:22.439248
+fetched_at: 2026-01-25T03:16:32.842268
 ---
 
 # Class RangeQueryParameterType (3.40.0)

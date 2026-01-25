@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/query
-fetched_at: 2026-01-25T02:05:08.078491
+fetched_at: 2026-01-25T03:11:35.751001
 ---
 
 # Query Resource Classes

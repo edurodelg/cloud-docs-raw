@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/dbapi
-fetched_at: 2026-01-25T02:04:56.187186
+fetched_at: 2026-01-25T03:11:24.842626
 ---
 
 # DB-API Reference

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.CopyJobConfig
-fetched_at: 2026-01-25T02:08:50.302969
+fetched_at: 2026-01-25T03:14:49.029274
 ---
 
 # Class CopyJobConfig (3.40.0)

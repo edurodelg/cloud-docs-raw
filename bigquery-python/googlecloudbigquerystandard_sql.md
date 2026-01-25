@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.standard_sql
-fetched_at: 2026-01-25T02:11:17.006439
+fetched_at: 2026-01-25T03:17:34.437885
 ---
 
 # Module standard_sql (3.40.0)

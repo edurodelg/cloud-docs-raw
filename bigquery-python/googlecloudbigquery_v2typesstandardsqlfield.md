@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.StandardSqlField
-fetched_at: 2026-01-25T02:14:18.789970
+fetched_at: 2026-01-25T03:20:36.916331
 ---
 
 # Class StandardSqlField (3.40.0)

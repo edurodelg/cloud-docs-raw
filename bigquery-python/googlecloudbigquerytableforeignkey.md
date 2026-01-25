@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.table.ForeignKey
-fetched_at: 2026-01-25T02:11:38.703392
+fetched_at: 2026-01-25T03:17:54.979022
 ---
 
 # Class ForeignKey (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.schema.ForeignTypeInfo
-fetched_at: 2026-01-25T02:11:05.045145
+fetched_at: 2026-01-25T03:17:22.817745
 ---
 
 # Class ForeignTypeInfo (3.40.0)

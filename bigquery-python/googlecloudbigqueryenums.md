@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.enums
-fetched_at: 2026-01-25T02:06:21.471142
+fetched_at: 2026-01-25T03:12:43.920598
 ---
 
 # Module enums (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.QueryJobConfig
-fetched_at: 2026-01-25T02:09:20.188391
+fetched_at: 2026-01-25T03:15:32.249365
 ---
 
 # Class QueryJobConfig (3.40.0)

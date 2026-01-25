@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/enums
-fetched_at: 2026-01-25T02:04:58.305899
+fetched_at: 2026-01-25T03:11:26.952947
 ---
 
 # BigQuery Enums

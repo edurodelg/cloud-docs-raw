@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.IncrementalResultStats
-fetched_at: 2026-01-25T02:09:07.550770
+fetched_at: 2026-01-25T03:15:06.225275
 ---
 
 # Class IncrementalResultStats (3.40.0)

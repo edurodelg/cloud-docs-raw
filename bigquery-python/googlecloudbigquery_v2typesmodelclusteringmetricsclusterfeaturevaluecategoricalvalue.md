@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.ClusteringMetrics.Cluster.FeatureValue.CategoricalValue
-fetched_at: 2026-01-25T02:12:49.746507
+fetched_at: 2026-01-25T03:19:08.833998
 ---
 
 # Class CategoricalValue (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.query.UDFResource
-fetched_at: 2026-01-25T02:10:37.078269
+fetched_at: 2026-01-25T03:16:48.197322
 ---
 
 # Class UDFResource (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.external_config.ExternalCatalogTableOptions
-fetched_at: 2026-01-25T02:07:47.164448
+fetched_at: 2026-01-25T03:14:02.316701
 ---
 
 # Class ExternalCatalogTableOptions (3.40.0)

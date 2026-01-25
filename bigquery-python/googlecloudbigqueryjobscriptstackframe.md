@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.ScriptStackFrame
-fetched_at: 2026-01-25T02:09:36.199444
+fetched_at: 2026-01-25T03:15:48.746453
 ---
 
 # Class ScriptStackFrame (3.40.0)

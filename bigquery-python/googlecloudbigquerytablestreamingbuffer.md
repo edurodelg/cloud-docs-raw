@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.table.StreamingBuffer
-fetched_at: 2026-01-25T02:11:55.995131
+fetched_at: 2026-01-25T03:18:12.082074
 ---
 
 # Class StreamingBuffer (3.40.0)

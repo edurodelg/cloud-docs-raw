@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/magics
-fetched_at: 2026-01-25T02:05:05.219862
+fetched_at: 2026-01-25T03:11:33.431586
 ---
 
 # IPython Magics for BigQuery

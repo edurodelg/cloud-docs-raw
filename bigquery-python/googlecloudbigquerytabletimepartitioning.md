@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.table.TimePartitioning
-fetched_at: 2026-01-25T02:12:06.728950
+fetched_at: 2026-01-25T03:18:23.038451
 ---
 
 # Class TimePartitioning (3.40.0)

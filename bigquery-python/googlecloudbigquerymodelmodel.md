@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.model.Model
-fetched_at: 2026-01-25T02:09:56.638892
+fetched_at: 2026-01-25T03:16:09.338130
 ---
 
 # Class Model (3.40.0)

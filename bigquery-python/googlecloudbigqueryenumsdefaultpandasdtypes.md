@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.enums.DefaultPandasDTypes
-fetched_at: 2026-01-25T02:06:41.091889
+fetched_at: 2026-01-25T03:13:06.942618
 ---
 
 # Class DefaultPandasDTypes (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.ReservationUsage
-fetched_at: 2026-01-25T02:09:29.574373
+fetched_at: 2026-01-25T03:15:41.474231
 ---
 
 # Class ReservationUsage (3.40.0)

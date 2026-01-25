@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.query.ScalarQueryParameterType
-fetched_at: 2026-01-25T02:10:27.296625
+fetched_at: 2026-01-25T03:16:38.172488
 ---
 
 # Class ScalarQueryParameterType (3.40.0)

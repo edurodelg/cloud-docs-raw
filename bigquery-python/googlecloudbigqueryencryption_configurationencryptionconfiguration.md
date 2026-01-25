@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.encryption_configuration.EncryptionConfiguration
-fetched_at: 2026-01-25T02:06:17.194114
+fetched_at: 2026-01-25T03:12:41.475767
 ---
 
 # Class EncryptionConfiguration (3.40.0)

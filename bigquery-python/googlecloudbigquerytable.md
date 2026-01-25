@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.table
-fetched_at: 2026-01-25T02:11:29.439757
+fetched_at: 2026-01-25T03:17:46.478421
 ---
 
 # Module table (3.40.0)

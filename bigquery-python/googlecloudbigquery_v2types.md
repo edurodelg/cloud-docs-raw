@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types
-fetched_at: 2026-01-25T02:12:11.150539
+fetched_at: 2026-01-25T03:18:27.397609
 ---
 
 # Package types (3.40.0)

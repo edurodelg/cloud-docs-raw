@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.base
-fetched_at: 2026-01-25T02:08:16.353175
+fetched_at: 2026-01-25T03:14:22.597317
 ---
 
 # Module base (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.table.Table
-fetched_at: 2026-01-25T02:11:58.035300
+fetched_at: 2026-01-25T03:18:14.233476
 ---
 
 # Class Table (3.40.0)

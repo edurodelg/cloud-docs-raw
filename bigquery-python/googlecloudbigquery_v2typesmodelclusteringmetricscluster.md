@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.ClusteringMetrics.Cluster
-fetched_at: 2026-01-25T02:12:45.335633
+fetched_at: 2026-01-25T03:19:03.981681
 ---
 
 # Class Cluster (3.40.0)

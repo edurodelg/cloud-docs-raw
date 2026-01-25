@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.external_config
-fetched_at: 2026-01-25T02:07:27.213839
+fetched_at: 2026-01-25T03:13:49.393644
 ---
 
 # Module external_config (3.40.0)

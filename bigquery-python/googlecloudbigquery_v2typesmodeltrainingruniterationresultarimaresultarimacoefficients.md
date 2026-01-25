@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.TrainingRun.IterationResult.ArimaResult.ArimaCoefficients
-fetched_at: 2026-01-25T02:13:57.072523
+fetched_at: 2026-01-25T03:20:15.383780
 ---
 
 # Class ArimaCoefficients (3.40.0)

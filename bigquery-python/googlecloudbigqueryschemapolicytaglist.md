@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.schema.PolicyTagList
-fetched_at: 2026-01-25T02:11:07.287159
+fetched_at: 2026-01-25T03:17:25.611265
 ---
 
 # Class PolicyTagList (3.40.0)

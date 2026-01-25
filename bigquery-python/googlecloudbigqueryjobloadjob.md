@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.LoadJob
-fetched_at: 2026-01-25T02:09:10.229521
+fetched_at: 2026-01-25T03:15:14.370221
 ---
 
 # Class LoadJob (3.40.0)

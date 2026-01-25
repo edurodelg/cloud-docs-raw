@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.table.BigLakeConfiguration
-fetched_at: 2026-01-25T02:11:31.657655
+fetched_at: 2026-01-25T03:17:48.395896
 ---
 
 # Class BigLakeConfiguration (3.40.0)

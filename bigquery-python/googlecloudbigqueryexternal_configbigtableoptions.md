@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.external_config.BigtableOptions
-fetched_at: 2026-01-25T02:07:35.578017
+fetched_at: 2026-01-25T03:13:56.119302
 ---
 
 # Class BigtableOptions (3.40.0)

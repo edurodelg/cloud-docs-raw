@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.format_options
-fetched_at: 2026-01-25T02:08:06.238016
+fetched_at: 2026-01-25T03:14:13.413812
 ---
 
 # Module format_options (3.40.0)

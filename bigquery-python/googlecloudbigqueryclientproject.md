@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.client.Project
-fetched_at: 2026-01-25T02:05:22.641931
+fetched_at: 2026-01-25T03:11:51.178488
 ---
 
 # Class Project (3.40.0)

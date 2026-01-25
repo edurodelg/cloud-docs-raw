@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.query
-fetched_at: 2026-01-25T02:10:03.960685
+fetched_at: 2026-01-25T03:16:20.261540
 ---
 
 # Module query (3.40.0)

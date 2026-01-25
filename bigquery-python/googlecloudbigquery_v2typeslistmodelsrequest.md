@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.ListModelsRequest
-fetched_at: 2026-01-25T02:12:20.526074
+fetched_at: 2026-01-25T03:18:37.233855
 ---
 
 # Class ListModelsRequest (3.40.0)

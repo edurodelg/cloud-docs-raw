@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.MultiClassClassificationMetrics
-fetched_at: 2026-01-25T02:13:30.652317
+fetched_at: 2026-01-25T03:19:48.047823
 ---
 
 # Class MultiClassClassificationMetrics (3.40.0)

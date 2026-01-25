@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.GlobalExplanation
-fetched_at: 2026-01-25T02:13:08.988148
+fetched_at: 2026-01-25T03:19:28.267740
 ---
 
 # Class GlobalExplanation (3.40.0)

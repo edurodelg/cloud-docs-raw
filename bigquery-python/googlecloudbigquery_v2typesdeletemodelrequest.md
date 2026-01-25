@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.DeleteModelRequest
-fetched_at: 2026-01-25T02:12:13.545413
+fetched_at: 2026-01-25T03:18:29.818027
 ---
 
 # Class DeleteModelRequest (3.40.0)

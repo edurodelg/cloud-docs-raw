@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.dataset.Dataset.html
-fetched_at: 2026-01-25T02:14:47.364912
+fetched_at: 2026-01-25T03:21:05.783215
 ---
 
 # Class Dataset (3.40.0)

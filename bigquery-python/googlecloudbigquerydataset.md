@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.dataset
-fetched_at: 2026-01-25T02:05:25.163432
+fetched_at: 2026-01-25T03:11:54.596345
 ---
 
 # Module dataset (3.40.0)

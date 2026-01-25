@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.enums.RoundingMode
-fetched_at: 2026-01-25T02:07:05.709308
+fetched_at: 2026-01-25T03:13:27.899999
 ---
 
 # Class RoundingMode (3.40.0)

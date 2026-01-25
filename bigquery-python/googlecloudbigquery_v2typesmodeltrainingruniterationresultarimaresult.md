@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.TrainingRun.IterationResult.ArimaResult
-fetched_at: 2026-01-25T02:13:54.915119
+fetched_at: 2026-01-25T03:20:13.326070
 ---
 
 # Class ArimaResult (3.40.0)

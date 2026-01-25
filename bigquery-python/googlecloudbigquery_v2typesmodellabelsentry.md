@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.LabelsEntry
-fetched_at: 2026-01-25T02:13:20.888832
+fetched_at: 2026-01-25T03:19:39.373826
 ---
 
 # Class LabelsEntry (3.40.0)

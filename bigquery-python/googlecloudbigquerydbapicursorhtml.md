@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.dbapi.Cursor.html
-fetched_at: 2026-01-25T02:14:32.055757
+fetched_at: 2026-01-25T03:20:50.233106
 ---
 
 # Class Cursor (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.encryption_configuration
-fetched_at: 2026-01-25T02:06:14.900993
+fetched_at: 2026-01-25T03:12:39.520405
 ---
 
 # Module encryption_configuration (3.40.0)

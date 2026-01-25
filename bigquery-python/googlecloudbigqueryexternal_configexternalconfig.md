@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.external_config.ExternalConfig
-fetched_at: 2026-01-25T02:07:50.250856
+fetched_at: 2026-01-25T03:14:04.502317
 ---
 
 # Class ExternalConfig (3.40.0)

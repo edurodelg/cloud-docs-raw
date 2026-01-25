@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.TimelineEntry
-fetched_at: 2026-01-25T02:09:43.454645
+fetched_at: 2026-01-25T03:15:56.767647
 ---
 
 # Class TimelineEntry (3.40.0)

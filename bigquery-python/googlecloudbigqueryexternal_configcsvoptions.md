@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.external_config.CSVOptions
-fetched_at: 2026-01-25T02:07:37.891104
+fetched_at: 2026-01-25T03:13:58.206297
 ---
 
 # Class CSVOptions (3.40.0)

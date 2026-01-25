@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.BinaryClassificationMetrics.BinaryConfusionMatrix
-fetched_at: 2026-01-25T02:12:40.951511
+fetched_at: 2026-01-25T03:18:58.707186
 ---
 
 # Class BinaryConfusionMatrix (3.40.0)

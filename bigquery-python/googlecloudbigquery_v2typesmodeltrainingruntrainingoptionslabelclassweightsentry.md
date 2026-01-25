@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.TrainingRun.TrainingOptions.LabelClassWeightsEntry
-fetched_at: 2026-01-25T02:14:05.842512
+fetched_at: 2026-01-25T03:20:24.675120
 ---
 
 # Class LabelClassWeightsEntry (3.40.0)

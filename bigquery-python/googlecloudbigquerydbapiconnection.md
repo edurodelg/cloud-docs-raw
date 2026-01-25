@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.dbapi.Connection
-fetched_at: 2026-01-25T02:05:46.100198
+fetched_at: 2026-01-25T03:12:11.649253
 ---
 
 # Class Connection (3.40.0)

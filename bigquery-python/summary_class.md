@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/summary_class
-fetched_at: 2026-01-25T02:04:36.239768
+fetched_at: 2026-01-25T03:11:12.691419
 ---
 
 # Package Classes (3.40.0)

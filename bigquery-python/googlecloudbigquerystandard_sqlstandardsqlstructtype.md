@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.standard_sql.StandardSqlStructType
-fetched_at: 2026-01-25T02:11:23.536485
+fetched_at: 2026-01-25T03:17:41.546711
 ---
 
 # Class StandardSqlStructType (3.40.0)

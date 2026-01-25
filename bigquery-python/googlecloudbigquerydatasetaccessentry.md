@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.dataset.AccessEntry
-fetched_at: 2026-01-25T02:05:28.045342
+fetched_at: 2026-01-25T03:11:56.976251
 ---
 
 # Class AccessEntry (3.40.0)

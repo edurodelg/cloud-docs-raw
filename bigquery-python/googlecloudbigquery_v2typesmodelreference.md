@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.ModelReference
-fetched_at: 2026-01-25T02:14:07.929313
+fetched_at: 2026-01-25T03:20:26.950005
 ---
 
 # Class ModelReference (3.40.0)

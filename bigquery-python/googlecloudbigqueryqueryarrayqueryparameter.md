@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.query.ArrayQueryParameter
-fetched_at: 2026-01-25T02:10:06.143949
+fetched_at: 2026-01-25T03:16:22.906364
 ---
 
 # Class ArrayQueryParameter (3.40.0)

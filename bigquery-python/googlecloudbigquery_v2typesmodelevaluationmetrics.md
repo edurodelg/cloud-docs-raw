@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.EvaluationMetrics
-fetched_at: 2026-01-25T02:13:04.802140
+fetched_at: 2026-01-25T03:19:22.942812
 ---
 
 # Class EvaluationMetrics (3.40.0)

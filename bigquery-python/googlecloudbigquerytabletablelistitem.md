@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.table.TableListItem
-fetched_at: 2026-01-25T02:12:02.555409
+fetched_at: 2026-01-25T03:18:18.819221
 ---
 
 # Class TableListItem (3.40.0)

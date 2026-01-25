@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.format_options.AvroOptions
-fetched_at: 2026-01-25T02:08:09.770521
+fetched_at: 2026-01-25T03:14:15.420662
 ---
 
 # Class AvroOptions (3.40.0)

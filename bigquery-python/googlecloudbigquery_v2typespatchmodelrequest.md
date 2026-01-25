@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.PatchModelRequest
-fetched_at: 2026-01-25T02:14:10.220696
+fetched_at: 2026-01-25T03:20:29.432764
 ---
 
 # Class PatchModelRequest (3.40.0)

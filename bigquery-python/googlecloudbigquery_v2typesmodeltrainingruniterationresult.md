@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.TrainingRun.IterationResult
-fetched_at: 2026-01-25T02:13:52.837367
+fetched_at: 2026-01-25T03:20:10.964075
 ---
 
 # Class IterationResult (3.40.0)

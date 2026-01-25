@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.query.ConnectionProperty
-fetched_at: 2026-01-25T02:10:17.551422
+fetched_at: 2026-01-25T03:16:27.598726
 ---
 
 # Class ConnectionProperty (3.40.0)

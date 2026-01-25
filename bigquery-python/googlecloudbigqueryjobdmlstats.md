@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.DmlStats
-fetched_at: 2026-01-25T02:08:57.997899
+fetched_at: 2026-01-25T03:14:55.591148
 ---
 
 # Class DmlStats (3.40.0)

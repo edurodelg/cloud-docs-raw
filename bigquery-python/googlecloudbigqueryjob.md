@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job
-fetched_at: 2026-01-25T02:08:13.919493
+fetched_at: 2026-01-25T03:14:20.609442
 ---
 
 # Package job (3.40.0)

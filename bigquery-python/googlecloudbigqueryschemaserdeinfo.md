@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.schema.SerDeInfo
-fetched_at: 2026-01-25T02:11:12.184065
+fetched_at: 2026-01-25T03:17:30.108481
 ---
 
 # Class SerDeInfo (3.40.0)

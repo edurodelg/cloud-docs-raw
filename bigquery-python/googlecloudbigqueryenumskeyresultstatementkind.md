@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.enums.KeyResultStatementKind
-fetched_at: 2026-01-25T02:06:58.337284
+fetched_at: 2026-01-25T03:13:20.926874
 ---
 
 # Class KeyResultStatementKind (3.40.0)

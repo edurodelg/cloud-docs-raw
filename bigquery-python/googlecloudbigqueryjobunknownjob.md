@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.UnknownJob
-fetched_at: 2026-01-25T02:09:49.442484
+fetched_at: 2026-01-25T03:16:02.108597
 ---
 
 # Class UnknownJob (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.external_config.BigtableColumnFamily
-fetched_at: 2026-01-25T02:07:32.790608
+fetched_at: 2026-01-25T03:13:54.084114
 ---
 
 # Class BigtableColumnFamily (3.40.0)

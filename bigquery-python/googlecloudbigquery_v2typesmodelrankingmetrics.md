@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.RankingMetrics
-fetched_at: 2026-01-25T02:13:41.800844
+fetched_at: 2026-01-25T03:19:59.518801
 ---
 
 # Class RankingMetrics (3.40.0)

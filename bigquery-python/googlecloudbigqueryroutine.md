@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.routine
-fetched_at: 2026-01-25T02:10:41.700221
+fetched_at: 2026-01-25T03:16:53.844523
 ---
 
 # Package routine (3.40.0)

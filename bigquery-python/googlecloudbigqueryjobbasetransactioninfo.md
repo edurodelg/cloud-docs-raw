@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.base.TransactionInfo
-fetched_at: 2026-01-25T02:08:40.539851
+fetched_at: 2026-01-25T03:14:33.582828
 ---
 
 # Class TransactionInfo (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.routine.RoutineArgument
-fetched_at: 2026-01-25T02:10:53.227838
+fetched_at: 2026-01-25T03:17:11.230896
 ---
 
 # Class RoutineArgument (3.40.0)

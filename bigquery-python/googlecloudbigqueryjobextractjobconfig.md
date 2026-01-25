@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.ExtractJobConfig
-fetched_at: 2026-01-25T02:09:05.311519
+fetched_at: 2026-01-25T03:15:03.958735
 ---
 
 # Class ExtractJobConfig (3.40.0)

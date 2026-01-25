@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/upgrading
-fetched_at: 2026-01-25T02:05:10.552892
+fetched_at: 2026-01-25T03:11:38.255270
 ---
 
 # 3.0.0 Migration Guide

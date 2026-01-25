@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.model.TransformColumn
-fetched_at: 2026-01-25T02:10:01.170679
+fetched_at: 2026-01-25T03:16:14.830243
 ---
 
 # Class TransformColumn (3.40.0)

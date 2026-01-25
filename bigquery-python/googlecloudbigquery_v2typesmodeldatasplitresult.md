@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery_v2.types.Model.DataSplitResult
-fetched_at: 2026-01-25T02:12:59.956991
+fetched_at: 2026-01-25T03:19:18.853289
 ---
 
 # Class DataSplitResult (3.40.0)

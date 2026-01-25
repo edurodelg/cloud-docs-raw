@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.schema.FieldElementType
-fetched_at: 2026-01-25T02:11:02.772823
+fetched_at: 2026-01-25T03:17:20.299216
 ---
 
 # Class FieldElementType (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.format_options.ParquetOptions
-fetched_at: 2026-01-25T02:08:11.694875
+fetched_at: 2026-01-25T03:14:17.603514
 ---
 
 # Class ParquetOptions (3.40.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.query.StructQueryParameterType
-fetched_at: 2026-01-25T02:10:34.369337
+fetched_at: 2026-01-25T03:16:45.779756
 ---
 
 # Class StructQueryParameterType (3.40.0)

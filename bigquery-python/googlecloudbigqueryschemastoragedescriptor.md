@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.schema.StorageDescriptor
-fetched_at: 2026-01-25T02:11:14.294423
+fetched_at: 2026-01-25T03:17:32.134508
 ---
 
 # Class StorageDescriptor (3.40.0)

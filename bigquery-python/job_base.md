@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/job_base
-fetched_at: 2026-01-25T02:05:03.107371
+fetched_at: 2026-01-25T03:11:31.224619
 ---
 
 # Common Job Resource Classes

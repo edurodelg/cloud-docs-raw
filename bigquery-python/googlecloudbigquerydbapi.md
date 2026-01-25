@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.dbapi
-fetched_at: 2026-01-25T02:05:43.878110
+fetched_at: 2026-01-25T03:12:08.553943
 ---
 
 # Package dbapi (3.40.0)

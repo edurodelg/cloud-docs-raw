@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.ScriptOptions
-fetched_at: 2026-01-25T02:09:33.951313
+fetched_at: 2026-01-25T03:15:46.325220
 ---
 
 # Class ScriptOptions (3.40.0)

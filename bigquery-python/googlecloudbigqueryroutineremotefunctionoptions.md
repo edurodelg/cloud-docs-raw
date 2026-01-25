@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.routine.RemoteFunctionOptions
-fetched_at: 2026-01-25T02:10:48.704940
+fetched_at: 2026-01-25T03:17:06.160559
 ---
 
 # Class RemoteFunctionOptions (3.40.0)
