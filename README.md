@@ -4,9 +4,9 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2012:25%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-491-green)]()
-[![Fuentes](https://img.shields.io/badge/Fuentes-7-orange)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2012:26%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-532-green)]()
+[![Fuentes](https://img.shields.io/badge/Fuentes-8-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
 
@@ -32,6 +32,7 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 
 | Fuente | Archivos | Documentación Original |
 |--------|:--------:|------------------------|
+| [aws-dynamodb-guide](./aws-dynamodb-guide/) | 41 | [Docs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html) |
 | [aws-ec2-guide](./aws-ec2-guide/) | 41 | [Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html) |
 | [aws-lambda-guide](./aws-lambda-guide/) | 41 | [Docs](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) |
 | [aws-s3-guide](./aws-s3-guide/) | 41 | [Docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
@@ -40,7 +41,7 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 | [gcp-storage-python](./gcp-storage-python/) | 48 | [Docs](https://cloud.google.com/python/docs/reference/storage/latest) |
 | [google-adk-docs](./google-adk-docs/) | 47 | [Docs](https://google.github.io/adk-docs/) |
 
-> **Total:** 491 archivos Markdown
+> **Total:** 532 archivos Markdown
 
 ---
 
