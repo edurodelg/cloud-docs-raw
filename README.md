@@ -5,8 +5,8 @@
 ### Documentación técnica de servicios cloud en formato Markdown
 
 [![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2012:06%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-173-green)]()
-[![Fuentes](https://img.shields.io/badge/Fuentes-2-orange)]()
+[![Archivos](https://img.shields.io/badge/Archivos-257-green)]()
+[![Fuentes](https://img.shields.io/badge/Fuentes-3-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
 
@@ -33,9 +33,10 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 | Fuente | Archivos | Documentación Original |
 |--------|:--------:|------------------------|
 | [azure-aks](./azure-aks/) | 126 | [Docs](https://learn.microsoft.com/en-us/azure/aks/) |
+| [gcp-cloud-run-python](./gcp-cloud-run-python/) | 84 | [Docs](https://cloud.google.com/python/docs/reference/run/latest) |
 | [google-adk-docs](./google-adk-docs/) | 47 | [Docs](https://google.github.io/adk-docs/) |
 
-> **Total:** 173 archivos Markdown
+> **Total:** 257 archivos Markdown
 
 ---
 
