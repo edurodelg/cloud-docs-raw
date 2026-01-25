@@ -4,9 +4,9 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2011:49%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-2-green)]()
-[![Fuentes](https://img.shields.io/badge/Fuentes-1-orange)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2011:52%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-43-green)]()
+[![Fuentes](https://img.shields.io/badge/Fuentes-2-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
 
@@ -32,9 +32,10 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 
 | Fuente | Archivos | Documentación Original |
 |--------|:--------:|------------------------|
+| [aws-lambda-guide](./aws-lambda-guide/) | 41 | [Docs](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) |
 | [azure-sdk-for-python](./azure-sdk-for-python/) | 2 | [Docs](https://azure.github.io/azure-sdk-for-python/) |
 
-> **Total:** 2 archivos Markdown
+> **Total:** 43 archivos Markdown
 
 ---
 
