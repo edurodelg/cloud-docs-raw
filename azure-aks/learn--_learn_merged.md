@@ -1,19 +1,11 @@
 ---
-merged_at: 2026-01-25T15:16:20.745905
+merged_at: 2026-01-26T20:54:25.734164
 merged_files: 11
 ---
 
-# Documentos Fusionados
-
-Este archivo contiene 11 documentos fusionados para reducir el número total de archivos.
-Cada documento está marcado con su fuente original.
-
-
 
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-windows-container-deploy-terraform.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-terraform -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-terraform -->
 
 # Quickstart: Create a Windows-based Azure Kubernetes Service (AKS) cluster using Terraform
 
@@ -178,11 +170,8 @@ Run
 
 [Troubleshoot common problems when using Terraform on Azure](/en-us/azure/developer/terraform/troubleshoot).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-windows-container-deploy-portal.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-portal -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-portal -->
 
 # Deploy a Windows Server container on an Azure Kubernetes Service (AKS) cluster using the Azure portal
 
@@ -361,11 +350,8 @@ In this quickstart, you deployed a Kubernetes cluster and then deployed an ASP.N
 
 To learn more about AKS, and to walk through a complete code-to-deployment example, continue to the Kubernetes cluster tutorial.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-kubernetes-deploy-powershell.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-powershell -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-powershell -->
 
 # Quickstart: Deploy an Azure Kubernetes Service (AKS) cluster using Azure PowerShell
 
@@ -551,11 +537,8 @@ In this quickstart, you deployed a Kubernetes cluster and then deployed a simple
 
 To learn more about AKS and walk through a complete code-to-deployment example, continue to the Kubernetes cluster tutorial.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-kubernetes-deploy-portal.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal -->
 
 # Quickstart: Deploy an Azure Kubernetes Service (AKS) cluster using Azure portal
 
@@ -750,11 +733,8 @@ In this quickstart, you deployed a Kubernetes cluster, and then deployed a simpl
 
 To learn more about AKS and walk through a complete code-to-deployment example, continue to the Kubernetes cluster tutorial series.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-kubernetes-deploy-cli.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli -->
 
 # Quickstart: Deploy an Azure Kubernetes Service (AKS) cluster using Azure CLI
 
@@ -1009,11 +989,8 @@ In this quickstart, you deployed a Kubernetes cluster and then deployed a simple
 
 To learn more about AKS and do a complete code-to-deployment example, continue to the Kubernetes cluster tutorial.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-flatcar-deploy-cli.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-flatcar-deploy-cli -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-flatcar-deploy-cli -->
 
 # Quickstart: Deploy an Azure Kubernetes Service (AKS) cluster with Flatcar Container Linux for AKS (preview) using Azure CLI
 
@@ -1319,11 +1296,8 @@ In this quickstart, you deployed a Kubernetes cluster and then deployed a simple
 
 To learn more about AKS and do a complete code-to-deployment example, continue to the Kubernetes cluster tutorial.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-windows-container-deploy-powershell.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-powershell -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-powershell -->
 
 # Deploy a Windows Server container on an Azure Kubernetes Service (AKS) cluster using PowerShell
 
@@ -1649,11 +1623,8 @@ In this quickstart, you deployed a Kubernetes cluster and then deployed an ASP.N
 
 To learn more about AKS, and to walk through a complete code-to-deployment example, continue to the Kubernetes cluster tutorial.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-kubernetes-deploy-rm-template.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-rm-template -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-rm-template -->
 
 # Quickstart: Deploy an Azure Kubernetes Service (AKS) cluster using an ARM template
 
@@ -1981,11 +1952,8 @@ In this quickstart, you deployed a Kubernetes cluster and then deployed a simple
 
 To learn more about AKS and walk through a complete code-to-deployment example, continue to the Kubernetes cluster tutorial.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-windows-container-deploy-cli.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-cli -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-cli -->
 
 # Deploy a Windows Server container on an Azure Kubernetes Service (AKS) cluster using Azure CLI
 
@@ -2321,11 +2289,8 @@ In this quickstart, you deployed a Kubernetes cluster and then deployed an ASP.N
 
 To learn more about AKS, and to walk through a complete code-to-deployment example, continue to the Kubernetes cluster tutorial.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-flatcar-deploy-arm-template.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-flatcar-deploy-arm-template -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-flatcar-deploy-arm-template -->
 
 # Quickstart: Deploy an Azure Kubernetes Service (AKS) cluster with Flatcar Container Linux for AKS (preview) using an ARM template
 
@@ -2732,11 +2697,8 @@ In this quickstart, you deployed a Kubernetes cluster and then deployed a simple
 
 To learn more about AKS and walk through a complete code-to-deployment example, continue to the Kubernetes cluster tutorial.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-kubernetes-automatic-deploy.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-automatic-deploy -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-automatic-deploy -->
 
 # Quickstart: Create an Azure Kubernetes Service (AKS) Automatic cluster
 

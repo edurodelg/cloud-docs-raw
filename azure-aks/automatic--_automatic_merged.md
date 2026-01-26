@@ -1,19 +1,11 @@
 ---
-merged_at: 2026-01-25T15:16:20.749184
+merged_at: 2026-01-26T20:54:25.736380
 merged_files: 3
 ---
 
-# Documentos Fusionados
-
-Este archivo contiene 3 documentos fusionados para reducir el número total de archivos.
-Cada documento está marcado con su fuente original.
-
-
 
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-automatic-managed-network.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/automatic/quick-automatic-managed-network -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/automatic/quick-automatic-managed-network -->
 
 # Quickstart: Create an Azure Kubernetes Service (AKS) Automatic cluster
 
@@ -453,11 +445,8 @@ In this quickstart, you deployed a Kubernetes cluster using [AKS Automatic](../i
 
 To learn more about AKS Automatic, continue to the introduction.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-automatic-custom-network.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/automatic/quick-automatic-custom-network -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/automatic/quick-automatic-custom-network -->
 
 # Quickstart: Create an Azure Kubernetes Service (AKS) Automatic cluster in a custom virtual network
 
@@ -1047,11 +1036,8 @@ In this quickstart, you deployed a Kubernetes cluster using [AKS Automatic](../i
 
 To learn more about AKS Automatic, continue to the introduction.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quick-automatic-private-custom-network.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/aks/automatic/quick-automatic-private-custom-network -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/automatic/quick-automatic-private-custom-network -->
 
 # Quickstart: Create a private Azure Kubernetes Service (AKS) Automatic cluster in a custom virtual network
 
