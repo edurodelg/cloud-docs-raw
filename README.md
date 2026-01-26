@@ -4,9 +4,9 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-26%2023:04%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-167-green)]()
-[![Fuentes](https://img.shields.io/badge/Fuentes-4-orange)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-26%2023:05%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-206-green)]()
+[![Fuentes](https://img.shields.io/badge/Fuentes-5-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
 
@@ -32,12 +32,13 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 
 | Fuente | Archivos | Documentación Original |
 |--------|:--------:|------------------------|
+| [aws-dynamodb-guide](./aws-dynamodb-guide/) | 39 | [Docs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html) |
 | [aws-ec2-guide](./aws-ec2-guide/) | 39 | [Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html) |
 | [aws-lambda-guide](./aws-lambda-guide/) | 39 | [Docs](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) |
 | [aws-s3-guide](./aws-s3-guide/) | 39 | [Docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
 | [azure-aks](./azure-aks/) | 50 | [Docs](https://learn.microsoft.com/en-us/azure/aks/) |
 
-> **Total:** 167 archivos Markdown
+> **Total:** 206 archivos Markdown
 
 ---
 
