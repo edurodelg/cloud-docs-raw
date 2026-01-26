@@ -1,31 +1,14 @@
 ---
-merged_at: 2026-01-25T15:41:09.572063
+merged_at: 2026-01-26T21:02:36.099887
 merged_files: 2
 ---
 
-# Documentos Fusionados
-
-Este archivo contiene 2 documentos fusionados para reducir el número total de archivos.
-Cada documento está marcado con su fuente original.
-
-
 
 ---
-
-<!-- DOCUMENTO FUSIONADO: _durable-task-scheduler_merged.md -->
-<!-- URL ORIGINAL: N/A -->
-
-# Documentos Fusionados
-
-Este archivo contiene 14 documentos fusionados para reducir el número total de archivos.
-Cada documento está marcado con su fuente original.
-
-
+<!-- Source: N/A -->
 
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-task-scheduler-work-item-throughput.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-work-item-throughput -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-work-item-throughput -->
 
 # Azure Functions Durable Task Scheduler action throughput
 
@@ -71,11 +54,8 @@ Note
 
 These results are meant to provide a rough comparison of the relative performance of the storage provider backends at the time the test was run. These results shouldn't be taken as definitive.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-task-scheduler-dedicated-sku.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-dedicated-sku -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-dedicated-sku -->
 
 # Azure Functions Durable Task Scheduler Pricing and SKU Options
 
@@ -221,11 +201,8 @@ An e-commerce application experiences dynamic workload scaling during promotiona
 | Monthly actions | 20,000 × 7 | 140,000 actions |
 | Cost | 140,000 × $0.003 | $420/month |
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-task-scheduler-dashboard.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-dashboard -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-dashboard -->
 
 # Debug and manage orchestrations using the Azure Functions Durable Task Scheduler dashboard
 
@@ -354,11 +331,8 @@ For Durable Task Scheduler for Durable Functions:
 
 For Durable Task Scheduler for the Durable Task SDKs:
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: troubleshoot-durable-task-scheduler.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/troubleshoot-durable-task-scheduler -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/troubleshoot-durable-task-scheduler -->
 
 # Troubleshoot the Azure Functions durable task scheduler
 
@@ -509,11 +483,8 @@ NuGet package.Add a custom after-build target that ensures the correct ARM64 ver
 
 `<Project> <ItemGroup> <PackageReference Include="Contrib.Grpc.Core.M1" Version="2.41.0" /> </ItemGroup> <Target Name="CopyGrpcNativeAssetsToOutDir" AfterTargets="Build"> <ItemGroup> <NativeAssetToCopy Condition="$([MSBuild]::IsOSPlatform('OSX'))" Include="$(OutDir)runtimes/osx-arm64/native/*"/> </ItemGroup> <Copy SourceFiles="@(NativeAssetToCopy)" DestinationFolder="$(OutDir).azurefunctions/runtimes/osx-arm64/native"/> </Target> </Project>`
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: develop-with-durable-task-scheduler.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/develop-with-durable-task-scheduler -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/develop-with-durable-task-scheduler -->
 
 # Develop with Durable Task Scheduler
 
@@ -677,11 +648,8 @@ For using Durable Task Scheduler with Durable Functions:
 
 For using Durable Task Scheduler with the Durable Task SDKs:
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-task-scheduler-identity.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-identity -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-identity -->
 
 # Configure managed identity for Durable Task Scheduler
 
@@ -839,11 +807,8 @@ If you use system-assigned identity, your connection string would *not* need the
 
 .
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-task-scheduler-auto-purge.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-auto-purge -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-auto-purge -->
 
 # Set autopurge retention policies for Azure Functions Durable Task Scheduler
 
@@ -1035,11 +1000,8 @@ az durabletask retention-policy delete --scheduler-name SCHEDULER_NAME --resourc
 
 Monitor and manage your orchestration status and history using [the Durable Task Scheduler dashboard](durable-task-scheduler-dashboard).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-task-scheduler-auto-scaling.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-auto-scaling -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-auto-scaling -->
 
 # Configure autoscaling for Durable Task SDK app hosted in Azure Container Apps
 
@@ -1202,11 +1164,8 @@ From the left side menu, click
 
 Currently, autoscaling container apps using Durable Functions for Durable Task Scheduler isn't available. In the meantime, [try autoscaling container apps using the Microsoft SQL (MSSQL) backend](../durable-functions-mssql-container-apps-hosting).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: choose-orchestration-framework.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/choose-orchestration-framework -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/choose-orchestration-framework -->
 
 # Choosing an orchestration framework
 
@@ -1363,11 +1322,8 @@ Local development quickstart |
 
 The Durable Task Framework (DTFx) is an open-source .NET orchestration framework similar to the .NET Durable Task SDK. While it *can* be used to build apps that run on platforms like Azure Kubernetes Services, **DTFx doesn't receive official Microsoft support**.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-task-scheduler.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler -->
 
 # Azure Functions Durable Task Scheduler
 
@@ -1538,11 +1494,8 @@ For more quota,
 
 [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quickstart-durable-task-scheduler.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/quickstart-durable-task-scheduler -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/quickstart-durable-task-scheduler -->
 
 # Quickstart: Configure a Durable Functions app to use Azure Functions Durable Task Scheduler
 
@@ -1808,11 +1761,8 @@ If you no longer need the resources that you created to complete the quickstart,
 - Learn more about the
 [Durable Task Scheduler dashboard](durable-task-scheduler-dashboard). [Troubleshoot any errors you may encounter](troubleshoot-durable-task-scheduler)while using Durable Task Scheduler.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-task-scheduler-versioning.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-versioning -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-versioning -->
 
 # Orchestration Versioning (preview)
 
@@ -2121,11 +2071,8 @@ failure strategy when no other versions are expected. In this case, the new vers
 
 Use worker versioning in scenarios where unknown or unsupported orchestration versions shouldn't be executed at all. Instead of placing version handling code in the worker, worker versioning stops the orchestration from ever executing. This method allows for simpler orchestration code. Without any code changes, various deployment scenarios can be handled, like blue-green deployments.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quickstart-container-apps-durable-task-sdk.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/quickstart-container-apps-durable-task-sdk -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/quickstart-container-apps-durable-task-sdk -->
 
 # Quickstart: Host a Durable Task SDK app on Azure Container Apps
 
@@ -2561,11 +2508,8 @@ return input.trim().replaceAll("\\s", "-");
 worker.start();
 ```
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quickstart-portable-durable-task-sdks.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/quickstart-portable-durable-task-sdks -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/quickstart-portable-durable-task-sdks -->
 
 # Quickstart: Create an app with Durable Task SDKs and Durable Task Scheduler
 
@@ -3172,23 +3116,11 @@ logger.info("Output: {}", completedInstance.readOutputAs(int.class));
 
 Now that you've run the sample locally using the Durable Task Scheduler emulator, try creating a scheduler and task hub resource and deploying to Azure Container Apps.
 
+---
+<!-- Source: N/A -->
 
 ---
-
-<!-- DOCUMENTO FUSIONADO: _durable_merged.md -->
-<!-- URL ORIGINAL: N/A -->
-
-# Documentos Fusionados
-
-Este archivo contiene 51 documentos fusionados para reducir el número total de archivos.
-Cada documento está marcado con su fuente original.
-
-
-
----
-
-<!-- DOCUMENTO FUSIONADO: function-app-diagnostics.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/function-app-diagnostics -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/function-app-diagnostics -->
 
 # Azure Functions app diagnostics
 
@@ -3227,11 +3159,8 @@ Maximizing *Memory Analysis* shows the following warning and graph. (Note that t
 
 The following is suggested when clicking "View Solutions". You can easily scale up by clicking a button.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-roslyn-analyzer.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-roslyn-analyzer -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-roslyn-analyzer -->
 
 # Durable Functions Rosyln Analyzer (C# only)
 
@@ -3275,11 +3204,8 @@ Open **Settings** by clicking the wheel icon on the lower left corner, then sear
 
 ::: zone-end
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-singletons.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-singletons -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-singletons -->
 
 # Singleton orchestrators in Durable Functions (Azure Functions)
 
@@ -3349,11 +3275,8 @@ There is a potential race condition in this sample. If two instances of **HttpSt
 
 The implementation details of the orchestrator function don't actually matter. It could be a regular orchestrator function that starts and completes, or it could be one that runs forever (that is, an [Eternal Orchestration](durable-functions-eternal-orchestrations)). The important point is that there is only ever one instance running at a time.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-extension-upgrade.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-extension-upgrade -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-extension-upgrade -->
 
 # Upgrade Durable Functions extension version
 
@@ -3416,11 +3339,8 @@ For example:
 func extensions install -p Microsoft.Azure.WebJobs.Extensions.DurableTask -v 2.9.1
 ```
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-billing.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-billing -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-billing -->
 
 # Durable Functions billing
 
@@ -3467,11 +3387,8 @@ Several factors contribute to the actual Azure Storage costs incurred by your Du
 
 You can find more information on Azure Storage pricing in the [Azure Storage pricing](https://azure.microsoft.com/pricing/details/storage/) documentation.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-eternal-orchestrations.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-eternal-orchestrations -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-eternal-orchestrations -->
 
 # Eternal orchestrations in Durable Functions (Azure Functions)
 
@@ -3592,11 +3509,8 @@ and let the function exit.
 
 If an orchestrator function is in an infinite loop and needs to be stopped, use the *terminate* API of the [orchestration client binding](durable-functions-bindings#orchestration-client) to stop it. For more information, see [Instance Management](durable-functions-instance-management).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-timers.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-timers -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-timers -->
 
 # Timers in Durable Functions (Azure Functions)
 
@@ -3715,11 +3629,8 @@ This cancellation mechanism using the *when-any* pattern doesn't terminate in-pr
 
 For a more in-depth example of how to implement timeouts in orchestrator functions, see the [Human Interaction & Timeouts - Phone Verification](durable-functions-phone-verification) article.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-types-features-overview.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-types-features-overview -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-types-features-overview -->
 
 # Durable Functions types and features
 
@@ -3787,11 +3698,8 @@ In addition to triggering orchestrator or entity functions, the *durable client*
 
 To get started, create your first durable function in [C#](durable-functions-isolated-create-first-csharp), [JavaScript](quickstart-js-vscode), [Python](quickstart-python-vscode), [PowerShell](quickstart-powershell-vscode), or [Java](quickstart-java).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-unit-testing-python.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-unit-testing-python -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-unit-testing-python -->
 
 # Unit testing Durable Functions in Python
 
@@ -3979,11 +3887,8 @@ self.assertEqual(result, None)
 
 Activity functions require no Durable-specific modifications to be tested. The guidance found in the [Azure Functions Python unit testing overview](../functions-reference-python#unit-testing) is sufficient for testing these functions.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-serialization-and-persistence.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-serialization-and-persistence -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-serialization-and-persistence -->
 
 # Data persistence and serialization in Durable Functions (Azure Functions)
 
@@ -4118,11 +4023,8 @@ public JsonSerializerSettings CreateJsonSerializerSettings()
 }
 ```
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-configure-managed-identity.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-configure-managed-identity -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-configure-managed-identity -->
 
 # Quickstart: Configure Durable Functions with managed identity
 
@@ -4272,11 +4174,8 @@ when using user-assigned identity. Use`clientId`
 
 instead.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-external-events.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-external-events -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-external-events -->
 
 # Handling external events in Durable Functions (Azure Functions)
 
@@ -4455,11 +4354,8 @@ Content-Type: application/json
 
 In this case, the instance ID is hardcoded as *MyInstanceId*.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-create-portal.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-create-portal -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-create-portal -->
 
 # Create Durable Functions using the Azure portal
 
@@ -4596,11 +4492,8 @@ endpoint until the status changes to**Completed**, and you see a response like t
 
 Your first durable function is now up and running in Azure.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-dotnet-isolated-overview.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-dotnet-isolated-overview -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-dotnet-isolated-overview -->
 
 # Overview of Durable Functions in the .NET isolated worker
 
@@ -4811,11 +4704,8 @@ to`System.Text.Json`
 
 . For more information, see[here](durable-functions-serialization-and-persistence).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-powershell-v2-sdk-migration-guide.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-powershell-v2-sdk-migration-guide -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-powershell-v2-sdk-migration-guide -->
 
 # Guide to the standalone Durable Functions PowerShell SDK
 
@@ -5057,11 +4947,8 @@ flag should return an array of the same size as the number of tasks it scheduled
 
 Please report any feedback and suggestions to the SDK's [ GitHub repo](https://github.com/Azure/azure-functions-durable-powershell).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-versioning.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-versioning -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-versioning -->
 
 # Versioning challenges and approaches in Durable Functions (Azure Functions)
 
@@ -5221,11 +5108,8 @@ Note
 
 This strategy works best when you use HTTP and webhook triggers for orchestrator functions. For non-HTTP triggers, such as queues or Event Hubs, the trigger definition should [derive from an app setting](../functions-bindings-expressions-patterns#binding-expressions---app-settings) that gets updated as part of the swap operation.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-sub-orchestrations.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-sub-orchestrations -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-sub-orchestrations -->
 
 # Sub-orchestrations in Durable Functions (Azure Functions)
 
@@ -5507,11 +5391,8 @@ Sub-orchestrations must be defined in the same function app as the parent orches
 
 ## Next steps
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-code-constraints.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-code-constraints -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-code-constraints -->
 
 # Orchestrator function code constraints
 
@@ -5685,11 +5566,8 @@ in a nondurable task. There are two reasons: the dispatcher thread can't wait fo
 
 To learn more about how the Durable Task Framework executes orchestrator functions, consult the [Durable Task source code on GitHub](https://github.com/Azure/durabletask). In particular, see [TaskOrchestrationExecutor.cs](https://github.com/Azure/durabletask/blob/master/src/DurableTask.Core/TaskOrchestrationExecutor.cs) and [TaskOrchestrationContext.cs](https://github.com/Azure/durabletask/blob/master/src/DurableTask.Core/TaskOrchestrationContext.cs).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-disaster-recovery-geo-distribution.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-disaster-recovery-geo-distribution -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-disaster-recovery-geo-distribution -->
 
 # Disaster recovery and geo-distribution in Durable Functions
 
@@ -5788,11 +5666,8 @@ For more information, see [Azure storage disaster recovery planning and failover
 - GRS replication copies your data asynchronously. Some of the latest transactions might be lost because of the latency of the replication process.
 - As described for the first scenario, we recommend that function apps deployed in this strategy use version 2.3.0 or later of the Durable Functions extension.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-zero-downtime-deployment.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-zero-downtime-deployment -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-zero-downtime-deployment -->
 
 # Zero-downtime deployment for Durable Functions
 
@@ -5983,11 +5858,8 @@ settings in the [host.json settings](durable-functions-bindings#host-json) file 
 
 For more information, see [Manage instances in Durable Functions in Azure](durable-functions-instance-management).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-mssql-container-apps-hosting.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-mssql-container-apps-hosting -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-mssql-container-apps-hosting -->
 
 # Host a Durable Functions app in Azure Container Apps (.NET isolated)
 
@@ -6221,11 +6093,8 @@ Learn more about:
 [Azure Container Apps hosting of Azure Functions](../../container-apps/functions-overview).[MSSQL storage provider](https://microsoft.github.io/durabletask-mssql/)architecture, configuration, and workload behavior.- The Azure-managed storage backend,
 [Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-phone-verification.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-phone-verification -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-phone-verification -->
 
 # Human interaction in Durable Functions - Phone verification sample
 
@@ -6478,11 +6347,8 @@ APIs. You've seen how these can be combined with `Task.WaitAny`
 
 (Python) to implement a reliable timeout system, which is often useful for interacting with real people. You can learn more about how to use Durable Functions by reading a series of articles that offer in-depth coverage of specific topics.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-versions.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-versions -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-versions -->
 
 # Durable Functions versions overview
 
@@ -6692,11 +6558,8 @@ instead.
 
 In Durable Functions 1.x, calling the [raise event](durable-functions-external-events#send-events) API and specifying an instance that didn't exist resulted in a silent failure. Starting in 2.x, raising an event to a non-existent orchestration results in an exception.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-best-practice-reference.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-best-practice-reference -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-best-practice-reference -->
 
 # Durable Functions best practices and diagnostic tools
 
@@ -6831,11 +6694,8 @@ The Durable Functions Roslyn Analyzer is a live code analyzer that guides C# use
 
 For questions and support, you may open an issue in one of the GitHub repos below. When reporting a bug in Azure, including information such as affected instance IDs, time ranges in UTC showing the problem, the application name (if possible) and deployment region will greatly speed up investigations.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quickstart-java.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-java -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-java -->
 
 # Quickstart: Create a Java Durable Functions app
 
@@ -7172,11 +7032,8 @@ Copy the URL value for
 
 `{ "name": "Cities", "instanceId": "d1b33a60-333f-4d6e-9ade-17a7020562a9", "runtimeStatus": "Completed", "input": null, "customStatus": "", "output":"TOKYO, LONDON, SEATTLE, AUSTIN", "createdTime": "2022-12-12T05:00:02Z", "lastUpdatedTime": "2022-12-12T05:00:06Z" }`
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-troubleshooting-guide.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-troubleshooting-guide -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-troubleshooting-guide -->
 
 # Durable Functions Troubleshooting Guide
 
@@ -7387,11 +7244,8 @@ Below is a list of the columns projected by the queries above and their respecti
 
 is invoked.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-monitor.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-monitor -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-monitor -->
 
 # Monitor scenario in Durable Functions - Weather watcher sample
 
@@ -7687,11 +7541,8 @@ POST https://{host}/runtime/webhooks/durabletask/instances/f6893f25acf64df2ab53a
 
 This sample demonstrates how to use Durable Functions to monitor an external source's status using [durable timers](durable-functions-timers) and conditional logic. The next sample shows how to use external events and [durable timers](durable-functions-timers) to handle human interaction.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quickstart-python-vscode.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-python-vscode -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-python-vscode -->
 
 # Quickstart: Create a Python Durable Functions app
 
@@ -7960,11 +7811,8 @@ If you no longer need the resources that you created to complete the quickstart,
 [common Durable Functions app patterns](durable-functions-overview#application-patterns). - Learn about
 [Unit Testing Durable Functions in Python](durable-functions-unit-testing-python)
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-storage-providers.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-storage-providers -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-storage-providers -->
 
 # Durable Functions storage providers
 
@@ -8184,11 +8032,8 @@ Support for using the Netherite storage backend with Durable Functions will end 
 
 [Azurite v3.12+](../../storage/common/storage-use-azurite)(cross platform)[more information](https://microsoft.github.io/durabletask-netherite/#/emulation))[Windows](/en-us/sql/database-engine/install-windows/install-sql-server),[Linux](/en-us/sql/linux/sql-server-linux-setup), and[Docker containers](/en-us/sql/linux/sql-server-linux-docker-container-deployment))[Durable task scheduler emulator](durable-task-scheduler/durable-task-scheduler#emulator-for-local-development)[more information](https://microsoft.github.io/durabletask-mssql/#/taskhubs))[KEDA 2.0](https://keda.sh/)scaling support(
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-http-features.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-http-features -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-http-features -->
 
 # HTTP Features
 
@@ -8465,11 +8310,8 @@ HttpClientHandler.DangerousAcceptAnyServerCertificateValidator,
 }
 ```
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quickstart-powershell-vscode.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-powershell-vscode -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-powershell-vscode -->
 
 # Quickstart: Create a PowerShell Durable Functions app
 
@@ -8747,11 +8589,8 @@ If you no longer need the resources that you created to complete the quickstart,
 - Learn about
 [common Durable Functions app patterns](durable-functions-overview#application-patterns).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-perf-and-scale.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-perf-and-scale -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-perf-and-scale -->
 
 # Performance and scale in Durable Functions (Azure Functions)
 
@@ -9031,11 +8870,8 @@ Tip
 
 Unlike fan-out, fan-in operations are limited to a single VM. If your application uses the fan-out, fan-in pattern and you are concerned about fan-in performance, consider sub-dividing the activity function fan-out across multiple [sub-orchestrations](durable-functions-sub-orchestrations).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-custom-orchestration-status.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-custom-orchestration-status -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-custom-orchestration-status -->
 
 # Custom orchestration status in Durable Functions (Azure Functions)
 
@@ -9672,11 +9508,8 @@ The custom status payload is limited to 16 KB of UTF-16 JSON text. We recommend 
 
 ## Next steps
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-orchestrations.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-orchestrations -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-orchestrations -->
 
 # Durable orchestrations
 
@@ -9978,11 +9811,8 @@ recommendedCourses = new []
 }
 ```
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-task-hubs.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-task-hubs -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-task-hubs -->
 
 # Task hubs in Durable Functions (Azure Functions)
 
@@ -10409,11 +10239,8 @@ or `Running`
 
 state.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-sequence.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-sequence -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-sequence -->
 
 # Function chaining in Durable Functions - Hello sequence sample
 
@@ -11071,11 +10898,8 @@ since those function executions do not get replayed.
 
 This sample has demonstrated a simple function-chaining orchestration. The next sample shows how to implement the fan-out/fan-in pattern.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quickstart-mssql.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-mssql -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-mssql -->
 
 # Quickstart: Create a Durable Functions app that uses the MSSQL storage provider
 
@@ -11482,11 +11306,8 @@ After you run a simple orchestrator, you should see at least one result, as show
 [Azure Container Apps](durable-functions-mssql-container-apps-hosting). - See the
 [MSSQL storage provider documentation](https://microsoft.github.io/durabletask-mssql/)for more information about this backend's architecture, configuration, and workload behavior.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quickstart-js-vscode.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-js-vscode -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-js-vscode -->
 
 # Quickstart: Create a JavaScript Durable Functions app
 
@@ -11823,11 +11644,8 @@ If you no longer need the resources that you created to complete the quickstart,
 - Learn about
 [common Durable Functions app patterns](durable-functions-overview#application-patterns).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: quickstart-ts-vscode.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-ts-vscode -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-ts-vscode -->
 
 # Quickstart: Create a TypeScript Durable Functions app
 
@@ -12167,11 +11985,8 @@ If you no longer need the resources that you created to complete the quickstart,
 - Learn about
 [common Durable Functions app patterns](durable-functions-overview#application-patterns).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-orchestration-versioning.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-orchestration-versioning -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-orchestration-versioning -->
 
 # Orchestration versioning in Durable Functions (Azure Functions) - public preview
 
@@ -12663,11 +12478,8 @@ setting)**Solution**: Check the[Prerequisites](#prerequisites)section to ensure 
 
 are deployed and active to handle the newer orchestrations.**Orchestration routing interference from older workers**: Old workers can interfere with the orchestration routing mechanism, making it harder for new workers to pick up orchestrations for processing. This can be especially noticeable when using certain storage providers (Azure Storage or MSSQL). Normally, the Azure Functions platform ensures that old workers are disposed of soon after a deployment, so any delay is typically not significant. However, if you are using a configuration that allows you to control the lifecycle of older workers, make sure the older workers are eventually shut down. Alternatively, consider using the[Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler), as it provides an improved routing mechanism that is less susceptible to this issue.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-diagnostics.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-diagnostics -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-diagnostics -->
 
 # Diagnostics in Durable Functions in Azure
 
@@ -13121,11 +12933,8 @@ Other storage providers can be configured instead of the default Azure Storage p
 
 To troubleshoot common problem symptoms such as orchestrations being stuck, failing to start, running slowly, etc., refer to this [troubleshooting guide](durable-functions-troubleshooting-guide).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-entities.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-entities -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-entities -->
 
 # Entity functions
 
@@ -13628,11 +13437,8 @@ There are some important differences that are worth noting:
 - Durable entities don't deadlock. In Orleans, deadlocks can occur and don't resolve until messages time out.
 - Durable entities can be used with durable orchestrations and support distributed locking mechanisms.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-cloud-backup.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-cloud-backup -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-cloud-backup -->
 
 # Fan-out/fan-in scenario in Durable Functions - Cloud backup example
 
@@ -14342,11 +14148,8 @@ field, which indicates that around 450 KB of logs were uploaded.
 
 This sample has shown how to implement the fan-out/fan-in pattern. The next sample shows how to implement the monitor pattern using [durable timers](durable-functions-timers).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-isolated-create-first-csharp.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-isolated-create-first-csharp -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-isolated-create-first-csharp -->
 
 # Quickstart: Create a C# Durable Functions app
 
@@ -14700,11 +14503,8 @@ If you no longer need the resources that you created to complete the quickstart,
 - Learn about
 [common Durable Functions app patterns](durable-functions-overview#application-patterns).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-error-handling.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling -->
 
 # Handling errors in Durable Functions (Azure Functions)
 
@@ -15496,11 +15296,8 @@ When an exception occurs that matches your provider’s configuration, the orche
 
 ## Next steps
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-azure-storage-provider.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-azure-storage-provider -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-azure-storage-provider -->
 
 # Azure Storage provider (Azure Functions)
 
@@ -15858,11 +15655,8 @@ The Netherite storage backend was designed and developed by [Microsoft Research]
 
 For more information on the supported storage providers for Durable Functions and how they compare, see the [Durable Functions storage providers](durable-functions-storage-providers) documentation.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-dotnet-entities.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-dotnet-entities -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-dotnet-entities -->
 
 # Developer's guide to durable entities in .NET
 
@@ -16812,11 +16606,8 @@ return default;
 }
 ```
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-bindings.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-bindings -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-bindings -->
 
 # Bindings for Durable Functions (Azure Functions)
 
@@ -17622,11 +17413,8 @@ isn't recommendedIn v2.x: false
 
 uses the gRPC client to manage orchestration instances. This setting applies to Durable Functions .NET isolated worker and Java apps.*hh:mm:ss*format for the HTTP client used by the gRPC client in Durable Functions. The client is currently supported for .NET isolated worker apps (.NET 6 and later versions) and for Java apps.Many of these settings are for optimizing performance. For more information, see [Performance and scale](durable-functions-perf-and-scale).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-http-api.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-http-api -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-http-api -->
 
 # HTTP API reference
 
@@ -18652,11 +18440,8 @@ The response JSON may look like the following (formatted for readability):
 ]
 ```
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-instance-management.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-instance-management -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-instance-management -->
 
 # Manage instances in Durable Functions in Azure
 
@@ -19631,11 +19416,8 @@ task hub.
 func durable delete-task-hub --task-hub-name UserTest
 ```
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: durable-functions-overview.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview -->
 
 # What are Durable Functions?
 

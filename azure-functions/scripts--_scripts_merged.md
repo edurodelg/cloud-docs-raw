@@ -1,19 +1,11 @@
 ---
-merged_at: 2026-01-25T15:41:09.568900
+merged_at: 2026-01-26T21:02:36.096876
 merged_files: 8
 ---
 
-# Documentos Fusionados
-
-Este archivo contiene 8 documentos fusionados para reducir el número total de archivos.
-Cada documento está marcado con su fuente original.
-
-
 
 ---
-
-<!-- DOCUMENTO FUSIONADO: functions-cli-create-serverless.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-serverless -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-serverless -->
 
 # Create a function app for serverless code execution
 
@@ -114,11 +106,8 @@ For more information on the Azure CLI, see [Azure CLI documentation](/en-us/cli/
 
 Additional Azure Functions CLI script samples can be found in the [Azure Functions documentation](../functions-cli-samples).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: functions-cli-create-serverless-python.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-serverless-python -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-serverless-python -->
 
 # Create a serverless Python function app using Azure CLI
 
@@ -224,11 +213,8 @@ For more information on the Azure CLI, see [Azure CLI documentation](/en-us/cli/
 
 Additional Azure Functions CLI script samples can be found in the [Azure Functions documentation](../functions-cli-samples).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: functions-cli-create-app-service-plan.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-app-service-plan -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-app-service-plan -->
 
 # Create a Function App in an App Service plan
 
@@ -334,11 +320,8 @@ For more information on the Azure CLI, see [Azure CLI documentation](/en-us/cli/
 
 Additional Azure Functions CLI script samples can be found in the [Azure Functions documentation](../functions-cli-samples).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: functions-cli-create-premium-plan.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-premium-plan -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-premium-plan -->
 
 # Create a function app in a Premium plan - Azure CLI
 
@@ -444,11 +427,8 @@ For more information on the Azure CLI, see [Azure CLI documentation](/en-us/cli/
 
 Additional Azure Functions CLI script samples can be found in the [Azure Functions documentation](../functions-cli-samples).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: functions-cli-create-function-app-connect-to-storage-account.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-function-app-connect-to-storage-account -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-function-app-connect-to-storage-account -->
 
 # Create a function app with a named Storage account connection
 
@@ -553,11 +533,8 @@ For more information on the Azure CLI, see [Azure CLI documentation](/en-us/cli/
 
 Additional Azure Functions CLI script samples can be found in the [Azure Functions documentation](../functions-cli-samples).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: functions-cli-create-function-app-github-continuous.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-function-app-github-continuous -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-function-app-github-continuous -->
 
 # Create a function app in Azure that is deployed from GitHub
 
@@ -666,11 +643,8 @@ For more information on the Azure CLI, see [Azure CLI documentation](/en-us/cli/
 
 Additional Azure Functions CLI script samples can be found in the [Azure Functions documentation](../functions-cli-samples).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: functions-cli-create-function-app-connect-to-cosmos-db.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-function-app-connect-to-cosmos-db -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-function-app-connect-to-cosmos-db -->
 
 # Create an Azure Function that connects to an Azure Cosmos DB
 
@@ -779,11 +753,8 @@ For more information on the Azure CLI, see [Azure CLI documentation](/en-us/cli/
 
 More Azure Functions CLI script samples can be found in the [Azure Functions documentation](../functions-cli-samples).
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: functions-cli-mount-files-storage-linux.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-mount-files-storage-linux -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-mount-files-storage-linux -->
 
 # Mount a file share to a Python function app using Azure CLI
 

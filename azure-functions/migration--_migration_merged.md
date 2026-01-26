@@ -1,19 +1,11 @@
 ---
-merged_at: 2026-01-25T15:41:09.570231
+merged_at: 2026-01-26T21:02:36.098129
 merged_files: 2
 ---
 
-# Documentos Fusionados
-
-Este archivo contiene 2 documentos fusionados para reducir el número total de archivos.
-Cada documento está marcado con su fuente original.
-
-
 
 ---
-
-<!-- DOCUMENTO FUSIONADO: migrate-aws-lambda-to-azure-functions.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/migration/migrate-aws-lambda-to-azure-functions -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/migration/migrate-aws-lambda-to-azure-functions -->
 
 # Migrate AWS Lambda workloads to Azure Functions
 
@@ -685,11 +677,8 @@ Use
 
 [Microsoft Cost Management](/en-us/azure/cost-management-billing/cost-management-billing-overview)tools to monitor and analyze your Azure Functions costs.Set up budgeting and cost alerts to manage and predict expenses effectively.
 
-
 ---
-
-<!-- DOCUMENTO FUSIONADO: migrate-plan-consumption-to-flex.md -->
-<!-- URL ORIGINAL: https://learn.microsoft.com/en-us/azure/azure-functions/migration/migrate-plan-consumption-to-flex -->
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/migration/migrate-plan-consumption-to-flex -->
 
 # Migrate Consumption plan apps to the Flex Consumption plan
 
