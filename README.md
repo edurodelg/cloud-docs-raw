@@ -4,7 +4,7 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-25%2021:47%20UTC-blue)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-26%2020:44%20UTC-blue)]()
 [![Archivos](https://img.shields.io/badge/Archivos-579-green)]()
 [![Fuentes](https://img.shields.io/badge/Fuentes-13-orange)]()
 
@@ -57,7 +57,7 @@ Cada fuente se procesa automáticamente con:
 | Parámetro | Valor | Descripción |
 |-----------|:-----:|-------------|
 | `flatten` | ✅ | Todos los archivos al mismo nivel (sin subcarpetas) |
-| `max_files` | ~200 | Consolidación automática si hay más archivos |
+| `max_files` | ~50 | Consolidación automática si hay más archivos |
 | `format` | `.md` | HTML → Markdown limpio |
 | `incremental` | ✅ | Solo descarga páginas modificadas |
 
