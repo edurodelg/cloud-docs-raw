@@ -1,0 +1,12042 @@
+---
+merged_at: 2026-01-27T07:03:44.014346
+merged_files: 2
+---
+
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types -->
+
+# Package types (1.134.0)
+
+API documentation for `aiplatform_v1.types`
+
+package.
+
+## Classes
+
+[AcceleratorType](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AcceleratorType)
+
+Represents a hardware accelerator type.
+
+[ActiveLearningConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ActiveLearningConfig)
+
+Parameters that configure the active learning pipeline. Active learning will label the data incrementally by several iterations. For every iteration, it will select a batch of data based on the sampling strategy.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[AddContextArtifactsAndExecutionsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddContextArtifactsAndExecutionsRequest)
+
+Request message for MetadataService.AddContextArtifactsAndExecutions.
+
+[AddContextArtifactsAndExecutionsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddContextArtifactsAndExecutionsResponse)
+
+Response message for MetadataService.AddContextArtifactsAndExecutions.
+
+[AddContextChildrenRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddContextChildrenRequest)
+
+Request message for MetadataService.AddContextChildren.
+
+[AddContextChildrenResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddContextChildrenResponse)
+
+Response message for MetadataService.AddContextChildren.
+
+[AddExecutionEventsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddExecutionEventsRequest)
+
+Request message for MetadataService.AddExecutionEvents.
+
+[AddExecutionEventsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddExecutionEventsResponse)
+
+Response message for MetadataService.AddExecutionEvents.
+
+[AddTrialMeasurementRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddTrialMeasurementRequest)
+
+Request message for VizierService.AddTrialMeasurement.
+
+[Annotation](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Annotation)
+
+Used to assign specific AnnotationSpec to a particular area of a DataItem or the whole part of the DataItem.
+
+[AnnotationSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AnnotationSpec)
+
+Identifies a concept with which DataItems may be annotated with.
+
+[ApiAuth](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ApiAuth)
+
+The generic reusable api auth config.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[Artifact](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Artifact)
+
+Instance of a general artifact.
+
+[AssignNotebookRuntimeOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AssignNotebookRuntimeOperationMetadata)
+
+Metadata information for NotebookService.AssignNotebookRuntime.
+
+[AssignNotebookRuntimeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AssignNotebookRuntimeRequest)
+
+Request message for NotebookService.AssignNotebookRuntime.
+
+[Attribution](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Attribution)
+
+Attribution that explains a particular prediction output.
+
+[AugmentPromptRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AugmentPromptRequest)
+
+Request message for AugmentPrompt.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[AugmentPromptResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AugmentPromptResponse)
+
+Response message for AugmentPrompt.
+
+[AutomaticResources](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AutomaticResources)
+
+A description of resources that to large degree are decided by Vertex AI, and require only a modest additional configuration. Each Model supporting these resources documents its specific guidelines.
+
+[AutoscalingMetricSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AutoscalingMetricSpec)
+
+The metric specification that defines the target resource utilization (CPU utilization, accelerator's duty cycle, and so on) for calculating the desired replica count.
+
+[AvroSource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AvroSource)
+
+The storage details for Avro input content.
+
+[BatchCancelPipelineJobsOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCancelPipelineJobsOperationMetadata)
+
+Runtime operation information for PipelineService.BatchCancelPipelineJobs.
+
+[BatchCancelPipelineJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCancelPipelineJobsRequest)
+
+Request message for PipelineService.BatchCancelPipelineJobs.
+
+[BatchCancelPipelineJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCancelPipelineJobsResponse)
+
+Response message for PipelineService.BatchCancelPipelineJobs.
+
+[BatchCreateFeaturesOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCreateFeaturesOperationMetadata)
+
+Details of operations that perform batch create Features.
+
+[BatchCreateFeaturesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCreateFeaturesRequest)
+
+Request message for FeaturestoreService.BatchCreateFeatures. Request message for FeatureRegistryService.BatchCreateFeatures.
+
+[BatchCreateFeaturesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCreateFeaturesResponse)
+
+Response message for FeaturestoreService.BatchCreateFeatures.
+
+[BatchCreateTensorboardRunsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCreateTensorboardRunsRequest)
+
+Request message for TensorboardService.BatchCreateTensorboardRuns.
+
+[BatchCreateTensorboardRunsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCreateTensorboardRunsResponse)
+
+Response message for TensorboardService.BatchCreateTensorboardRuns.
+
+[BatchCreateTensorboardTimeSeriesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCreateTensorboardTimeSeriesRequest)
+
+Request message for TensorboardService.BatchCreateTensorboardTimeSeries.
+
+[BatchCreateTensorboardTimeSeriesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchCreateTensorboardTimeSeriesResponse)
+
+Response message for TensorboardService.BatchCreateTensorboardTimeSeries.
+
+[BatchDedicatedResources](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchDedicatedResources)
+
+A description of resources that are used for performing batch operations, are dedicated to a Model, and need manual configuration.
+
+[BatchDeletePipelineJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchDeletePipelineJobsRequest)
+
+Request message for PipelineService.BatchDeletePipelineJobs.
+
+[BatchDeletePipelineJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchDeletePipelineJobsResponse)
+
+Response message for PipelineService.BatchDeletePipelineJobs.
+
+[BatchImportEvaluatedAnnotationsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchImportEvaluatedAnnotationsRequest)
+
+Request message for ModelService.BatchImportEvaluatedAnnotations
+
+[BatchImportEvaluatedAnnotationsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchImportEvaluatedAnnotationsResponse)
+
+Response message for ModelService.BatchImportEvaluatedAnnotations
+
+[BatchImportModelEvaluationSlicesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchImportModelEvaluationSlicesRequest)
+
+Request message for ModelService.BatchImportModelEvaluationSlices
+
+[BatchImportModelEvaluationSlicesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchImportModelEvaluationSlicesResponse)
+
+Response message for ModelService.BatchImportModelEvaluationSlices
+
+[BatchMigrateResourcesOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchMigrateResourcesOperationMetadata)
+
+Runtime operation information for MigrationService.BatchMigrateResources.
+
+[BatchMigrateResourcesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchMigrateResourcesRequest)
+
+Request message for MigrationService.BatchMigrateResources.
+
+[BatchMigrateResourcesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchMigrateResourcesResponse)
+
+Response message for MigrationService.BatchMigrateResources.
+
+[BatchPredictionJob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchPredictionJob)
+
+A job that uses a Model to produce predictions on multiple [input instances][google.cloud.aiplatform.v1.BatchPredictionJob.input_config]. If predictions for significant portion of the instances fail, the job may finish without attempting predictions for all remaining instances.
+
+[BatchReadFeatureValuesOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchReadFeatureValuesOperationMetadata)
+
+Details of operations that batch reads Feature values.
+
+[BatchReadFeatureValuesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchReadFeatureValuesRequest)
+
+Request message for FeaturestoreService.BatchReadFeatureValues.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[BatchReadFeatureValuesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchReadFeatureValuesResponse)
+
+Response message for FeaturestoreService.BatchReadFeatureValues.
+
+[BatchReadTensorboardTimeSeriesDataRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchReadTensorboardTimeSeriesDataRequest)
+
+Request message for TensorboardService.BatchReadTensorboardTimeSeriesData.
+
+[BatchReadTensorboardTimeSeriesDataResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BatchReadTensorboardTimeSeriesDataResponse)
+
+Response message for TensorboardService.BatchReadTensorboardTimeSeriesData.
+
+[BigQueryDestination](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BigQueryDestination)
+
+The BigQuery location for the output content.
+
+[BigQuerySource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BigQuerySource)
+
+The BigQuery location for the input content.
+
+[BleuInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BleuInput)
+
+Input for bleu metric.
+
+[BleuInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BleuInstance)
+
+Spec for bleu instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[BleuMetricValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BleuMetricValue)
+
+Bleu metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[BleuResults](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BleuResults)
+
+Results for bleu metric.
+
+[BleuSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BleuSpec)
+
+Spec for bleu score metric - calculates the precision of n-grams in the prediction as compared to reference - returns a score ranging between 0 to 1.
+
+[Blob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Blob)
+
+Content blob.
+
+It's preferred to send as text directly rather than raw bytes.
+
+[BlurBaselineConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BlurBaselineConfig)
+
+Config for blur baseline.
+
+When enabled, a linear path from the maximally blurred image to the input image is created. Using a blurred baseline instead of zero (black image) is motivated by the BlurIG approach explained here:
+
+[BoolArray](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BoolArray)
+
+A list of boolean values.
+
+[CachedContent](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CachedContent)
+
+A resource used in LLM queries for users to explicitly specify what to cache and how to cache.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CancelBatchPredictionJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CancelBatchPredictionJobRequest)
+
+Request message for JobService.CancelBatchPredictionJob.
+
+[CancelCustomJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CancelCustomJobRequest)
+
+Request message for JobService.CancelCustomJob.
+
+[CancelDataLabelingJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CancelDataLabelingJobRequest)
+
+Request message for JobService.CancelDataLabelingJob.
+
+[CancelHyperparameterTuningJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CancelHyperparameterTuningJobRequest)
+
+Request message for JobService.CancelHyperparameterTuningJob.
+
+[CancelNasJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CancelNasJobRequest)
+
+Request message for JobService.CancelNasJob.
+
+[CancelPipelineJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CancelPipelineJobRequest)
+
+Request message for PipelineService.CancelPipelineJob.
+
+[CancelTrainingPipelineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CancelTrainingPipelineRequest)
+
+Request message for PipelineService.CancelTrainingPipeline.
+
+[CancelTuningJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CancelTuningJobRequest)
+
+Request message for GenAiTuningService.CancelTuningJob.
+
+[Candidate](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Candidate)
+
+A response candidate generated from the model.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CheckTrialEarlyStoppingStateMetatdata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CheckTrialEarlyStoppingStateMetatdata)
+
+This message will be placed in the metadata field of a google.longrunning.Operation associated with a CheckTrialEarlyStoppingState request.
+
+[CheckTrialEarlyStoppingStateRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CheckTrialEarlyStoppingStateRequest)
+
+Request message for VizierService.CheckTrialEarlyStoppingState.
+
+[CheckTrialEarlyStoppingStateResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CheckTrialEarlyStoppingStateResponse)
+
+Response message for VizierService.CheckTrialEarlyStoppingState.
+
+[Checkpoint](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Checkpoint)
+
+Describes the machine learning model version checkpoint.
+
+[Citation](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Citation)
+
+Source attributions for content.
+
+[CitationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CitationMetadata)
+
+A collection of source attributions for a piece of content.
+
+[Claim](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Claim)
+
+Claim that is extracted from the input text and facts that support it.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ClientConnectionConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ClientConnectionConfig)
+
+Configurations (e.g. inference timeout) that are applied on your endpoints.
+
+[CodeExecutionResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CodeExecutionResult)
+
+Result of executing the [ExecutableCode].
+
+Always follows a `part`
+
+containing the [ExecutableCode].
+
+[CoherenceInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CoherenceInput)
+
+Input for coherence metric.
+
+[CoherenceInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CoherenceInstance)
+
+Spec for coherence instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CoherenceResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CoherenceResult)
+
+Spec for coherence result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CoherenceSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CoherenceSpec)
+
+Spec for coherence score metric.
+
+[ColabImage](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ColabImage)
+
+Colab image of the runtime.
+
+[CometInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CometInput)
+
+Input for Comet metric.
+
+[CometInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CometInstance)
+
+Spec for Comet instance - The fields used for evaluation are dependent on the comet version.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CometResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CometResult)
+
+Spec for Comet result - calculates the comet score for the given instance using the version specified in the spec.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CometSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CometSpec)
+
+Spec for Comet metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CompleteTrialRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CompleteTrialRequest)
+
+Request message for VizierService.CompleteTrial.
+
+[CompletionStats](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CompletionStats)
+
+Success and error statistics of processing multiple entities (for example, DataItems or structured data rows) in batch.
+
+[ComputeTokensRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ComputeTokensRequest)
+
+Request message for ComputeTokens RPC call.
+
+[ComputeTokensResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ComputeTokensResponse)
+
+Response message for ComputeTokens RPC call.
+
+[ContainerRegistryDestination](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ContainerRegistryDestination)
+
+The Container Registry location for the container image.
+
+[ContainerSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ContainerSpec)
+
+The spec of a Container.
+
+[Content](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Content)
+
+The base structured datatype containing multi-part content of a message.
+
+A `Content`
+
+includes a `role`
+
+field designating the producer of
+the `Content`
+
+and a `parts`
+
+field containing multi-part data
+that contains the content of the message turn.
+
+[Context](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Context)
+
+Instance of a general context.
+
+[CopyModelOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CopyModelOperationMetadata)
+
+Details of ModelService.CopyModel operation.
+
+[CopyModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CopyModelRequest)
+
+Request message for ModelService.CopyModel.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CopyModelResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CopyModelResponse)
+
+Response message of ModelService.CopyModel operation.
+
+[CorpusStatus](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CorpusStatus)
+
+RagCorpus status.
+
+[CorroborateContentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CorroborateContentRequest)
+
+Request message for CorroborateContent.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CorroborateContentResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CorroborateContentResponse)
+
+Response message for CorroborateContent.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CountTokensRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CountTokensRequest)
+
+Request message for [PredictionService.CountTokens][].
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[CountTokensResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CountTokensResponse)
+
+Response message for [PredictionService.CountTokens][].
+
+[CreateArtifactRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateArtifactRequest)
+
+Request message for MetadataService.CreateArtifact.
+
+[CreateBatchPredictionJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateBatchPredictionJobRequest)
+
+Request message for JobService.CreateBatchPredictionJob.
+
+[CreateCachedContentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateCachedContentRequest)
+
+Request message for GenAiCacheService.CreateCachedContent.
+
+[CreateContextRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateContextRequest)
+
+Request message for MetadataService.CreateContext.
+
+[CreateCustomJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateCustomJobRequest)
+
+Request message for JobService.CreateCustomJob.
+
+[CreateDataLabelingJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateDataLabelingJobRequest)
+
+Request message for JobService.CreateDataLabelingJob.
+
+[CreateDatasetOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateDatasetOperationMetadata)
+
+Runtime operation information for DatasetService.CreateDataset.
+
+[CreateDatasetRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateDatasetRequest)
+
+Request message for DatasetService.CreateDataset.
+
+[CreateDatasetVersionOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateDatasetVersionOperationMetadata)
+
+Runtime operation information for DatasetService.CreateDatasetVersion.
+
+[CreateDatasetVersionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateDatasetVersionRequest)
+
+Request message for DatasetService.CreateDatasetVersion.
+
+[CreateDeploymentResourcePoolOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateDeploymentResourcePoolOperationMetadata)
+
+Runtime operation information for CreateDeploymentResourcePool method.
+
+[CreateDeploymentResourcePoolRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateDeploymentResourcePoolRequest)
+
+Request message for CreateDeploymentResourcePool method.
+
+[CreateEndpointOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateEndpointOperationMetadata)
+
+Runtime operation information for EndpointService.CreateEndpoint.
+
+[CreateEndpointRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateEndpointRequest)
+
+Request message for EndpointService.CreateEndpoint.
+
+[CreateEntityTypeOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateEntityTypeOperationMetadata)
+
+Details of operations that perform create EntityType.
+
+[CreateEntityTypeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateEntityTypeRequest)
+
+Request message for FeaturestoreService.CreateEntityType.
+
+[CreateExecutionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateExecutionRequest)
+
+Request message for MetadataService.CreateExecution.
+
+[CreateFeatureGroupOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeatureGroupOperationMetadata)
+
+Details of operations that perform create FeatureGroup.
+
+[CreateFeatureGroupRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeatureGroupRequest)
+
+Request message for FeatureRegistryService.CreateFeatureGroup.
+
+[CreateFeatureOnlineStoreOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeatureOnlineStoreOperationMetadata)
+
+Details of operations that perform create FeatureOnlineStore.
+
+[CreateFeatureOnlineStoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeatureOnlineStoreRequest)
+
+Request message for FeatureOnlineStoreAdminService.CreateFeatureOnlineStore.
+
+[CreateFeatureOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeatureOperationMetadata)
+
+Details of operations that perform create Feature.
+
+[CreateFeatureRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeatureRequest)
+
+Request message for FeaturestoreService.CreateFeature. Request message for FeatureRegistryService.CreateFeature.
+
+[CreateFeatureViewOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeatureViewOperationMetadata)
+
+Details of operations that perform create FeatureView.
+
+[CreateFeatureViewRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeatureViewRequest)
+
+Request message for FeatureOnlineStoreAdminService.CreateFeatureView.
+
+[CreateFeaturestoreOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeaturestoreOperationMetadata)
+
+Details of operations that perform create Featurestore.
+
+[CreateFeaturestoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateFeaturestoreRequest)
+
+Request message for FeaturestoreService.CreateFeaturestore.
+
+[CreateHyperparameterTuningJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateHyperparameterTuningJobRequest)
+
+Request message for JobService.CreateHyperparameterTuningJob.
+
+[CreateIndexEndpointOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateIndexEndpointOperationMetadata)
+
+Runtime operation information for IndexEndpointService.CreateIndexEndpoint.
+
+[CreateIndexEndpointRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateIndexEndpointRequest)
+
+Request message for IndexEndpointService.CreateIndexEndpoint.
+
+[CreateIndexOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateIndexOperationMetadata)
+
+Runtime operation information for IndexService.CreateIndex.
+
+[CreateIndexRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateIndexRequest)
+
+Request message for IndexService.CreateIndex.
+
+[CreateMetadataSchemaRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateMetadataSchemaRequest)
+
+Request message for MetadataService.CreateMetadataSchema.
+
+[CreateMetadataStoreOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateMetadataStoreOperationMetadata)
+
+Details of operations that perform MetadataService.CreateMetadataStore.
+
+[CreateMetadataStoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateMetadataStoreRequest)
+
+Request message for MetadataService.CreateMetadataStore.
+
+[CreateModelDeploymentMonitoringJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateModelDeploymentMonitoringJobRequest)
+
+Request message for JobService.CreateModelDeploymentMonitoringJob.
+
+[CreateNasJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateNasJobRequest)
+
+Request message for JobService.CreateNasJob.
+
+[CreateNotebookExecutionJobOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateNotebookExecutionJobOperationMetadata)
+
+Metadata information for NotebookService.CreateNotebookExecutionJob.
+
+[CreateNotebookExecutionJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateNotebookExecutionJobRequest)
+
+Request message for [NotebookService.CreateNotebookExecutionJob]
+
+[CreateNotebookRuntimeTemplateOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateNotebookRuntimeTemplateOperationMetadata)
+
+Metadata information for NotebookService.CreateNotebookRuntimeTemplate.
+
+[CreateNotebookRuntimeTemplateRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateNotebookRuntimeTemplateRequest)
+
+Request message for NotebookService.CreateNotebookRuntimeTemplate.
+
+[CreatePersistentResourceOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreatePersistentResourceOperationMetadata)
+
+Details of operations that perform create PersistentResource.
+
+[CreatePersistentResourceRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreatePersistentResourceRequest)
+
+Request message for PersistentResourceService.CreatePersistentResource.
+
+[CreatePipelineJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreatePipelineJobRequest)
+
+Request message for PipelineService.CreatePipelineJob.
+
+[CreateRagCorpusOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateRagCorpusOperationMetadata)
+
+Runtime operation information for VertexRagDataService.CreateRagCorpus.
+
+[CreateRagCorpusRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateRagCorpusRequest)
+
+Request message for VertexRagDataService.CreateRagCorpus.
+
+[CreateReasoningEngineOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateReasoningEngineOperationMetadata)
+
+Details of ReasoningEngineService.CreateReasoningEngine operation.
+
+[CreateReasoningEngineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateReasoningEngineRequest)
+
+Request message for ReasoningEngineService.CreateReasoningEngine.
+
+[CreateRegistryFeatureOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateRegistryFeatureOperationMetadata)
+
+Details of operations that perform create FeatureGroup.
+
+[CreateScheduleRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateScheduleRequest)
+
+Request message for ScheduleService.CreateSchedule.
+
+[CreateSpecialistPoolOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateSpecialistPoolOperationMetadata)
+
+Runtime operation information for SpecialistPoolService.CreateSpecialistPool.
+
+[CreateSpecialistPoolRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateSpecialistPoolRequest)
+
+Request message for SpecialistPoolService.CreateSpecialistPool.
+
+[CreateStudyRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateStudyRequest)
+
+Request message for VizierService.CreateStudy.
+
+[CreateTensorboardExperimentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateTensorboardExperimentRequest)
+
+Request message for TensorboardService.CreateTensorboardExperiment.
+
+[CreateTensorboardOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateTensorboardOperationMetadata)
+
+Details of operations that perform create Tensorboard.
+
+[CreateTensorboardRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateTensorboardRequest)
+
+Request message for TensorboardService.CreateTensorboard.
+
+[CreateTensorboardRunRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateTensorboardRunRequest)
+
+Request message for TensorboardService.CreateTensorboardRun.
+
+[CreateTensorboardTimeSeriesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateTensorboardTimeSeriesRequest)
+
+Request message for TensorboardService.CreateTensorboardTimeSeries.
+
+[CreateTrainingPipelineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateTrainingPipelineRequest)
+
+Request message for PipelineService.CreateTrainingPipeline.
+
+[CreateTrialRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateTrialRequest)
+
+Request message for VizierService.CreateTrial.
+
+[CreateTuningJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateTuningJobRequest)
+
+Request message for GenAiTuningService.CreateTuningJob.
+
+[CsvDestination](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CsvDestination)
+
+The storage details for CSV output content.
+
+[CsvSource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CsvSource)
+
+The storage details for CSV input content.
+
+[CustomJob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CustomJob)
+
+Represents a job that runs custom workloads such as a Docker container or a Python package. A CustomJob can have multiple worker pools and each worker pool can have its own machine and input spec. A CustomJob will be cleaned up once the job enters terminal state (failed or succeeded).
+
+[CustomJobSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CustomJobSpec)
+
+Represents the spec of a CustomJob.
+
+[DataItem](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DataItem)
+
+A piece of data in a Dataset. Could be an image, a video, a document or plain text.
+
+[DataItemView](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DataItemView)
+
+A container for a single DataItem and Annotations on it.
+
+[DataLabelingJob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DataLabelingJob)
+
+DataLabelingJob is used to trigger a human labeling job on unlabeled data from the following Dataset:
+
+[Dataset](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Dataset)
+
+A collection of DataItems and Annotations on them.
+
+[DatasetVersion](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DatasetVersion)
+
+Describes the dataset version.
+
+[DedicatedResources](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DedicatedResources)
+
+A description of resources that are dedicated to a DeployedModel, and that need a higher degree of manual configuration.
+
+[DeleteArtifactRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteArtifactRequest)
+
+Request message for MetadataService.DeleteArtifact.
+
+[DeleteBatchPredictionJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteBatchPredictionJobRequest)
+
+Request message for JobService.DeleteBatchPredictionJob.
+
+[DeleteCachedContentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteCachedContentRequest)
+
+Request message for GenAiCacheService.DeleteCachedContent.
+
+[DeleteContextRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteContextRequest)
+
+Request message for MetadataService.DeleteContext.
+
+[DeleteCustomJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteCustomJobRequest)
+
+Request message for JobService.DeleteCustomJob.
+
+[DeleteDataLabelingJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteDataLabelingJobRequest)
+
+Request message for JobService.DeleteDataLabelingJob.
+
+[DeleteDatasetRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteDatasetRequest)
+
+Request message for DatasetService.DeleteDataset.
+
+[DeleteDatasetVersionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteDatasetVersionRequest)
+
+Request message for DatasetService.DeleteDatasetVersion.
+
+[DeleteDeploymentResourcePoolRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteDeploymentResourcePoolRequest)
+
+Request message for DeleteDeploymentResourcePool method.
+
+[DeleteEndpointRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteEndpointRequest)
+
+Request message for EndpointService.DeleteEndpoint.
+
+[DeleteEntityTypeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteEntityTypeRequest)
+
+Request message for FeaturestoreService.DeleteEntityType.
+
+[DeleteExecutionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteExecutionRequest)
+
+Request message for MetadataService.DeleteExecution.
+
+[DeleteFeatureGroupRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteFeatureGroupRequest)
+
+Request message for FeatureRegistryService.DeleteFeatureGroup.
+
+[DeleteFeatureOnlineStoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteFeatureOnlineStoreRequest)
+
+Request message for FeatureOnlineStoreAdminService.DeleteFeatureOnlineStore.
+
+[DeleteFeatureRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteFeatureRequest)
+
+Request message for FeaturestoreService.DeleteFeature. Request message for FeatureRegistryService.DeleteFeature.
+
+[DeleteFeatureValuesOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteFeatureValuesOperationMetadata)
+
+Details of operations that delete Feature values.
+
+[DeleteFeatureValuesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteFeatureValuesRequest)
+
+Request message for FeaturestoreService.DeleteFeatureValues.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[DeleteFeatureValuesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteFeatureValuesResponse)
+
+Response message for FeaturestoreService.DeleteFeatureValues.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[DeleteFeatureViewRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteFeatureViewRequest)
+
+Request message for FeatureOnlineStoreAdminService.DeleteFeatureView.
+
+[DeleteFeaturestoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteFeaturestoreRequest)
+
+Request message for FeaturestoreService.DeleteFeaturestore.
+
+[DeleteHyperparameterTuningJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteHyperparameterTuningJobRequest)
+
+Request message for JobService.DeleteHyperparameterTuningJob.
+
+[DeleteIndexEndpointRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteIndexEndpointRequest)
+
+Request message for IndexEndpointService.DeleteIndexEndpoint.
+
+[DeleteIndexRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteIndexRequest)
+
+Request message for IndexService.DeleteIndex.
+
+[DeleteMetadataStoreOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteMetadataStoreOperationMetadata)
+
+Details of operations that perform MetadataService.DeleteMetadataStore.
+
+[DeleteMetadataStoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteMetadataStoreRequest)
+
+Request message for MetadataService.DeleteMetadataStore.
+
+[DeleteModelDeploymentMonitoringJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteModelDeploymentMonitoringJobRequest)
+
+Request message for JobService.DeleteModelDeploymentMonitoringJob.
+
+[DeleteModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteModelRequest)
+
+Request message for ModelService.DeleteModel.
+
+[DeleteModelVersionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteModelVersionRequest)
+
+Request message for ModelService.DeleteModelVersion.
+
+[DeleteNasJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteNasJobRequest)
+
+Request message for JobService.DeleteNasJob.
+
+[DeleteNotebookExecutionJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteNotebookExecutionJobRequest)
+
+Request message for [NotebookService.DeleteNotebookExecutionJob]
+
+[DeleteNotebookRuntimeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteNotebookRuntimeRequest)
+
+Request message for NotebookService.DeleteNotebookRuntime.
+
+[DeleteNotebookRuntimeTemplateRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteNotebookRuntimeTemplateRequest)
+
+Request message for NotebookService.DeleteNotebookRuntimeTemplate.
+
+[DeleteOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteOperationMetadata)
+
+Details of operations that perform deletes of any entities.
+
+[DeletePersistentResourceRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeletePersistentResourceRequest)
+
+Request message for PersistentResourceService.DeletePersistentResource.
+
+[DeletePipelineJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeletePipelineJobRequest)
+
+Request message for PipelineService.DeletePipelineJob.
+
+[DeleteRagCorpusRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteRagCorpusRequest)
+
+Request message for VertexRagDataService.DeleteRagCorpus.
+
+[DeleteRagFileRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteRagFileRequest)
+
+Request message for VertexRagDataService.DeleteRagFile.
+
+[DeleteReasoningEngineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteReasoningEngineRequest)
+
+Request message for ReasoningEngineService.DeleteReasoningEngine.
+
+[DeleteSavedQueryRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteSavedQueryRequest)
+
+Request message for DatasetService.DeleteSavedQuery.
+
+[DeleteScheduleRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteScheduleRequest)
+
+Request message for ScheduleService.DeleteSchedule.
+
+[DeleteSpecialistPoolRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteSpecialistPoolRequest)
+
+Request message for SpecialistPoolService.DeleteSpecialistPool.
+
+[DeleteStudyRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteStudyRequest)
+
+Request message for VizierService.DeleteStudy.
+
+[DeleteTensorboardExperimentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteTensorboardExperimentRequest)
+
+Request message for TensorboardService.DeleteTensorboardExperiment.
+
+[DeleteTensorboardRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteTensorboardRequest)
+
+Request message for TensorboardService.DeleteTensorboard.
+
+[DeleteTensorboardRunRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteTensorboardRunRequest)
+
+Request message for TensorboardService.DeleteTensorboardRun.
+
+[DeleteTensorboardTimeSeriesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteTensorboardTimeSeriesRequest)
+
+Request message for TensorboardService.DeleteTensorboardTimeSeries.
+
+[DeleteTrainingPipelineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteTrainingPipelineRequest)
+
+Request message for PipelineService.DeleteTrainingPipeline.
+
+[DeleteTrialRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteTrialRequest)
+
+Request message for VizierService.DeleteTrial.
+
+[DeployIndexOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployIndexOperationMetadata)
+
+Runtime operation information for IndexEndpointService.DeployIndex.
+
+[DeployIndexRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployIndexRequest)
+
+Request message for IndexEndpointService.DeployIndex.
+
+[DeployIndexResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployIndexResponse)
+
+Response message for IndexEndpointService.DeployIndex.
+
+[DeployModelOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployModelOperationMetadata)
+
+Runtime operation information for EndpointService.DeployModel.
+
+[DeployModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployModelRequest)
+
+Request message for EndpointService.DeployModel.
+
+[DeployModelResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployModelResponse)
+
+Response message for EndpointService.DeployModel.
+
+[DeployOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployOperationMetadata)
+
+Runtime operation information for ModelGardenService.Deploy.
+
+[DeployRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployRequest)
+
+Request message for ModelGardenService.Deploy.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[DeployResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployResponse)
+
+Response message for ModelGardenService.Deploy.
+
+[DeployedIndex](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployedIndex)
+
+A deployment of an Index. IndexEndpoints contain one or more DeployedIndexes.
+
+[DeployedIndexAuthConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployedIndexAuthConfig)
+
+Used to set up the auth on the DeployedIndex's private endpoint.
+
+[DeployedIndexRef](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployedIndexRef)
+
+Points to a DeployedIndex.
+
+[DeployedModel](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployedModel)
+
+A deployment of a Model. Endpoints contain one or more DeployedModels.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[DeployedModelRef](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeployedModelRef)
+
+Points to a DeployedModel.
+
+[DeploymentResourcePool](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeploymentResourcePool)
+
+A description of resources that can be shared by multiple DeployedModels, whose underlying specification consists of a DedicatedResources.
+
+[DeploymentStage](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeploymentStage)
+
+Stage field indicating the current progress of a deployment.
+
+[DestinationFeatureSetting](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DestinationFeatureSetting)
+
+[DirectPredictRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DirectPredictRequest)
+
+Request message for PredictionService.DirectPredict.
+
+[DirectPredictResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DirectPredictResponse)
+
+Response message for PredictionService.DirectPredict.
+
+[DirectRawPredictRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DirectRawPredictRequest)
+
+Request message for PredictionService.DirectRawPredict.
+
+[DirectRawPredictResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DirectRawPredictResponse)
+
+Response message for PredictionService.DirectRawPredict.
+
+[DirectUploadSource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DirectUploadSource)
+
+The input content is encapsulated and uploaded in the request.
+
+[DiskSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DiskSpec)
+
+Represents the spec of disk options.
+
+[DnsPeeringConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DnsPeeringConfig)
+
+DNS peering configuration. These configurations are used to create DNS peering zones in the Vertex tenant project VPC, enabling resolution of records within the specified domain hosted in the target network's Cloud DNS.
+
+[DoubleArray](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DoubleArray)
+
+A list of double values.
+
+[DynamicRetrievalConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DynamicRetrievalConfig)
+
+Describes the options to customize dynamic retrieval.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[EmbedContentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EmbedContentRequest)
+
+Request message for PredictionService.EmbedContent.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[EmbedContentResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EmbedContentResponse)
+
+Response message for PredictionService.EmbedContent.
+
+[EncryptionSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EncryptionSpec)
+
+Represents a customer-managed encryption key spec that can be applied to a top-level resource.
+
+[Endpoint](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Endpoint)
+
+Models are deployed into it, and afterwards Endpoint is called to obtain predictions and explanations.
+
+[EnterpriseWebSearch](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EnterpriseWebSearch)
+
+Tool to search public web data, powered by Vertex AI Search and Sec4 compliance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[EntityIdSelector](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EntityIdSelector)
+
+Selector for entityId. Getting ids from the given source.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[EntityType](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EntityType)
+
+An entity type is a type of object in a system that needs to be modeled and have stored information about. For example, driver is an entity type, and driver0 is an instance of an entity type driver.
+
+[EnvVar](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EnvVar)
+
+Represents an environment variable present in a Container or Python Module.
+
+[ErrorAnalysisAnnotation](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ErrorAnalysisAnnotation)
+
+Model error analysis for each annotation.
+
+[EvaluateInstancesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EvaluateInstancesRequest)
+
+Request message for EvaluationService.EvaluateInstances.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[EvaluateInstancesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EvaluateInstancesResponse)
+
+Response message for EvaluationService.EvaluateInstances.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[EvaluatedAnnotation](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EvaluatedAnnotation)
+
+True positive, false positive, or false negative.
+
+EvaluatedAnnotation is only available under ModelEvaluationSlice
+with slice of `annotationSpec`
+
+dimension.
+
+[EvaluatedAnnotationExplanation](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EvaluatedAnnotationExplanation)
+
+Explanation result of the prediction produced by the Model.
+
+[Event](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Event)
+
+An edge describing the relationship between an Artifact and an Execution in a lineage graph.
+
+[ExactMatchInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExactMatchInput)
+
+Input for exact match metric.
+
+[ExactMatchInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExactMatchInstance)
+
+Spec for exact match instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ExactMatchMetricValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExactMatchMetricValue)
+
+Exact match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ExactMatchResults](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExactMatchResults)
+
+Results for exact match metric.
+
+[ExactMatchSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExactMatchSpec)
+
+Spec for exact match metric - returns 1 if prediction and reference exactly matches, otherwise 0.
+
+[Examples](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Examples)
+
+Example-based explainability that returns the nearest neighbors from the provided dataset.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ExamplesOverride](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExamplesOverride)
+
+Overrides for example-based explanations.
+
+[ExamplesRestrictionsNamespace](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExamplesRestrictionsNamespace)
+
+Restrictions namespace for example-based explanations overrides.
+
+[ExecutableCode](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExecutableCode)
+
+Code generated by the model that is meant to be executed, and the result returned to the model.
+
+Generated when using the [FunctionDeclaration] tool and [FunctionCallingConfig] mode is set to [Mode.CODE].
+
+[Execution](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Execution)
+
+Instance of a general execution.
+
+[ExplainRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExplainRequest)
+
+Request message for PredictionService.Explain.
+
+[ExplainResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExplainResponse)
+
+Response message for PredictionService.Explain.
+
+[Explanation](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Explanation)
+
+Explanation of a prediction (provided in PredictResponse.predictions) produced by the Model on a given instance.
+
+[ExplanationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExplanationMetadata)
+
+Metadata describing the Model's input and output for explanation.
+
+[ExplanationMetadataOverride](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExplanationMetadataOverride)
+
+The ExplanationMetadata entries that can be overridden at [online explanation][google.cloud.aiplatform.v1.PredictionService.Explain] time.
+
+[ExplanationParameters](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExplanationParameters)
+
+Parameters to configure explaining for Model's predictions.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ExplanationSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExplanationSpec)
+
+Specification of Model explanation.
+
+[ExplanationSpecOverride](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExplanationSpecOverride)
+
+The ExplanationSpec entries that can be overridden at [online explanation][google.cloud.aiplatform.v1.PredictionService.Explain] time.
+
+[ExportDataConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportDataConfig)
+
+Describes what part of the Dataset is to be exported, the destination of the export and how to export.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ExportDataOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportDataOperationMetadata)
+
+Runtime operation information for DatasetService.ExportData.
+
+[ExportDataRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportDataRequest)
+
+Request message for DatasetService.ExportData.
+
+[ExportDataResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportDataResponse)
+
+Response message for DatasetService.ExportData.
+
+[ExportFeatureValuesOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportFeatureValuesOperationMetadata)
+
+Details of operations that exports Features values.
+
+[ExportFeatureValuesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportFeatureValuesRequest)
+
+Request message for FeaturestoreService.ExportFeatureValues.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ExportFeatureValuesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportFeatureValuesResponse)
+
+Response message for FeaturestoreService.ExportFeatureValues.
+
+[ExportFilterSplit](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportFilterSplit)
+
+Assigns input data to training, validation, and test sets based on the given filters, data pieces not matched by any filter are ignored. Currently only supported for Datasets containing DataItems. If any of the filters in this message are to match nothing, then they can be set as '-' (the minus sign).
+
+Supported only for unstructured Datasets.
+
+[ExportFractionSplit](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportFractionSplit)
+
+Assigns the input data to training, validation, and test sets as per
+the given fractions. Any of `training_fraction`
+
+,
+`validation_fraction`
+
+and `test_fraction`
+
+may optionally be
+provided, they must sum to up to 1. If the provided ones sum to less
+than 1, the remainder is assigned to sets as decided by Vertex AI.
+If none of the fractions are set, by default roughly 80% of data is
+used for training, 10% for validation, and 10% for test.
+
+[ExportModelOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportModelOperationMetadata)
+
+Details of ModelService.ExportModel operation.
+
+[ExportModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportModelRequest)
+
+Request message for ModelService.ExportModel.
+
+[ExportModelResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportModelResponse)
+
+Response message of ModelService.ExportModel operation.
+
+[ExportTensorboardTimeSeriesDataRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportTensorboardTimeSeriesDataRequest)
+
+Request message for TensorboardService.ExportTensorboardTimeSeriesData.
+
+[ExportTensorboardTimeSeriesDataResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExportTensorboardTimeSeriesDataResponse)
+
+Response message for TensorboardService.ExportTensorboardTimeSeriesData.
+
+[Fact](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Fact)
+
+The fact used in grounding.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FasterDeploymentConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FasterDeploymentConfig)
+
+Configuration for faster model deployment.
+
+[Feature](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Feature)
+
+Feature Metadata information. For example, color is a feature that describes an apple.
+
+[FeatureGroup](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureGroup)
+
+Vertex AI Feature Group.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FeatureNoiseSigma](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureNoiseSigma)
+
+Noise sigma by features. Noise sigma represents the standard deviation of the gaussian kernel that will be used to add noise to interpolated inputs prior to computing gradients.
+
+[FeatureOnlineStore](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureOnlineStore)
+
+Vertex AI Feature Online Store provides a centralized repository for serving ML features and embedding indexes at low latency. The Feature Online Store is a top-level container.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FeatureSelector](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureSelector)
+
+Selector for Features of an EntityType.
+
+[FeatureStatsAnomaly](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureStatsAnomaly)
+
+Stats and Anomaly generated at specific timestamp for specific Feature. The start_time and end_time are used to define the time range of the dataset that current stats belongs to, e.g. prediction traffic is bucketed into prediction datasets by time window. If the Dataset is not defined by time window, start_time = end_time. Timestamp of the stats and anomalies always refers to end_time. Raw stats and anomalies are stored in stats_uri or anomaly_uri in the tensorflow defined protos. Field data_stats contains almost identical information with the raw stats in Vertex AI defined proto, for UI to display.
+
+[FeatureValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureValue)
+
+Value for a feature.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FeatureValueDestination](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureValueDestination)
+
+A destination location for Feature values and format.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FeatureValueList](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureValueList)
+
+Container for list of values.
+
+[FeatureView](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureView)
+
+FeatureView is representation of values that the FeatureOnlineStore will serve based on its syncConfig.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FeatureViewDataFormat](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureViewDataFormat)
+
+Format of the data in the Feature View.
+
+[FeatureViewDataKey](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureViewDataKey)
+
+Lookup key for a feature view.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FeatureViewDirectWriteRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureViewDirectWriteRequest)
+
+Request message for FeatureOnlineStoreService.FeatureViewDirectWrite.
+
+[FeatureViewDirectWriteResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureViewDirectWriteResponse)
+
+Response message for FeatureOnlineStoreService.FeatureViewDirectWrite.
+
+[FeatureViewSync](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureViewSync)
+
+FeatureViewSync is a representation of sync operation which copies data from data source to Feature View in Online Store.
+
+[Featurestore](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Featurestore)
+
+Vertex AI Feature Store provides a centralized repository for organizing, storing, and serving ML features. The Featurestore is a top-level container for your features and their values.
+
+[FeaturestoreMonitoringConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeaturestoreMonitoringConfig)
+
+Configuration of how features in Featurestore are monitored.
+
+[FetchFeatureValuesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FetchFeatureValuesRequest)
+
+Request message for FeatureOnlineStoreService.FetchFeatureValues. All the features under the requested feature view will be returned.
+
+[FetchFeatureValuesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FetchFeatureValuesResponse)
+
+Response message for FeatureOnlineStoreService.FetchFeatureValues
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FileData](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FileData)
+
+URI based data.
+
+[FileStatus](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FileStatus)
+
+RagFile status.
+
+[FilterSplit](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FilterSplit)
+
+Assigns input data to training, validation, and test sets based on the given filters, data pieces not matched by any filter are ignored. Currently only supported for Datasets containing DataItems. If any of the filters in this message are to match nothing, then they can be set as '-' (the minus sign).
+
+Supported only for unstructured Datasets.
+
+[FindNeighborsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FindNeighborsRequest)
+
+The request message for MatchService.FindNeighbors.
+
+[FindNeighborsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FindNeighborsResponse)
+
+The response message for MatchService.FindNeighbors.
+
+[FluencyInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FluencyInput)
+
+Input for fluency metric.
+
+[FluencyInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FluencyInstance)
+
+Spec for fluency instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FluencyResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FluencyResult)
+
+Spec for fluency result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FluencySpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FluencySpec)
+
+Spec for fluency score metric.
+
+[FractionSplit](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FractionSplit)
+
+Assigns the input data to training, validation, and test sets as per
+the given fractions. Any of `training_fraction`
+
+,
+`validation_fraction`
+
+and `test_fraction`
+
+may optionally be
+provided, they must sum to up to 1. If the provided ones sum to less
+than 1, the remainder is assigned to sets as decided by Vertex AI.
+If none of the fractions are set, by default roughly 80% of data is
+used for training, 10% for validation, and 10% for test.
+
+[FulfillmentInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FulfillmentInput)
+
+Input for fulfillment metric.
+
+[FulfillmentInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FulfillmentInstance)
+
+Spec for fulfillment instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FulfillmentResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FulfillmentResult)
+
+Spec for fulfillment result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[FulfillmentSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FulfillmentSpec)
+
+Spec for fulfillment metric.
+
+[FunctionCall](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FunctionCall)
+
+A predicted [FunctionCall] returned from the model that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing the parameters and their values.
+
+[FunctionCallingConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FunctionCallingConfig)
+
+Function calling config.
+
+[FunctionDeclaration](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FunctionDeclaration)
+
+Structured representation of a function declaration as defined by
+the ```
+OpenAPI 3.0
+specification <https://spec.openapis.org/oas/v3.0.3>
+```
+
+__. Included in
+this declaration are the function name, description, parameters and
+response type. This FunctionDeclaration is a representation of a
+block of code that can be used as a `Tool`
+
+by the model and
+executed by the client.
+
+[FunctionResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FunctionResponse)
+
+The result output from a [FunctionCall] that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing any output from the function is used as context to the model. This should contain the result of a [FunctionCall] made based on model prediction.
+
+[FunctionResponseBlob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FunctionResponseBlob)
+
+Raw media bytes for function response.
+
+Text should not be sent as raw bytes, use the 'text' field.
+
+[FunctionResponseFileData](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FunctionResponseFileData)
+
+URI based data for function response.
+
+[FunctionResponsePart](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FunctionResponsePart)
+
+A datatype containing media that is part of a `FunctionResponse`
+
+message.
+
+A `FunctionResponsePart`
+
+consists of data which has an associated
+datatype. A `FunctionResponsePart`
+
+can only contain one of the
+accepted types in `FunctionResponsePart.data`
+
+.
+
+A `FunctionResponsePart`
+
+must have a fixed IANA MIME type
+identifying the type and subtype of the media if the `inline_data`
+
+field is filled with raw bytes.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[GcsDestination](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GcsDestination)
+
+The Google Cloud Storage location where the output is to be written to.
+
+[GcsSource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GcsSource)
+
+The Google Cloud Storage location for the input content.
+
+[GenAiAdvancedFeaturesConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenAiAdvancedFeaturesConfig)
+
+Configuration for GenAiAdvancedFeatures.
+
+[GenerateContentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenerateContentRequest)
+
+Request message for [PredictionService.GenerateContent].
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[GenerateContentResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenerateContentResponse)
+
+Response message for [PredictionService.GenerateContent].
+
+[GenerateFetchAccessTokenRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenerateFetchAccessTokenRequest)
+
+Request message for FeatureOnlineStoreService.GenerateFetchAccessToken.
+
+[GenerateFetchAccessTokenResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenerateFetchAccessTokenResponse)
+
+Response message for FeatureOnlineStoreService.GenerateFetchAccessToken.
+
+[GenerateSyntheticDataRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenerateSyntheticDataRequest)
+
+Request message for DataFoundryService.GenerateSyntheticData.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[GenerateSyntheticDataResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenerateSyntheticDataResponse)
+
+The response containing the generated data.
+
+[GenerationConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenerationConfig)
+
+Generation config.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[GenericOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenericOperationMetadata)
+
+Generic Metadata shared by all operations.
+
+[GenieSource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GenieSource)
+
+Contains information about the source of the models generated from Generative AI Studio.
+
+[GetAnnotationSpecRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetAnnotationSpecRequest)
+
+Request message for DatasetService.GetAnnotationSpec.
+
+[GetArtifactRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetArtifactRequest)
+
+Request message for MetadataService.GetArtifact.
+
+[GetBatchPredictionJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetBatchPredictionJobRequest)
+
+Request message for JobService.GetBatchPredictionJob.
+
+[GetCachedContentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetCachedContentRequest)
+
+Request message for GenAiCacheService.GetCachedContent.
+
+[GetContextRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetContextRequest)
+
+Request message for MetadataService.GetContext.
+
+[GetCustomJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetCustomJobRequest)
+
+Request message for JobService.GetCustomJob.
+
+[GetDataLabelingJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetDataLabelingJobRequest)
+
+Request message for JobService.GetDataLabelingJob.
+
+[GetDatasetRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetDatasetRequest)
+
+Request message for DatasetService.GetDataset. Next ID: 4
+
+[GetDatasetVersionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetDatasetVersionRequest)
+
+Request message for DatasetService.GetDatasetVersion. Next ID: 4
+
+[GetDeploymentResourcePoolRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetDeploymentResourcePoolRequest)
+
+Request message for GetDeploymentResourcePool method.
+
+[GetEndpointRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetEndpointRequest)
+
+Request message for EndpointService.GetEndpoint
+
+[GetEntityTypeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetEntityTypeRequest)
+
+Request message for FeaturestoreService.GetEntityType.
+
+[GetExecutionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetExecutionRequest)
+
+Request message for MetadataService.GetExecution.
+
+[GetFeatureGroupRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetFeatureGroupRequest)
+
+Request message for FeatureRegistryService.GetFeatureGroup.
+
+[GetFeatureOnlineStoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetFeatureOnlineStoreRequest)
+
+Request message for FeatureOnlineStoreAdminService.GetFeatureOnlineStore.
+
+[GetFeatureRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetFeatureRequest)
+
+Request message for FeaturestoreService.GetFeature. Request message for FeatureRegistryService.GetFeature.
+
+[GetFeatureViewRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetFeatureViewRequest)
+
+Request message for FeatureOnlineStoreAdminService.GetFeatureView.
+
+[GetFeatureViewSyncRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetFeatureViewSyncRequest)
+
+Request message for FeatureOnlineStoreAdminService.GetFeatureViewSync.
+
+[GetFeaturestoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetFeaturestoreRequest)
+
+Request message for FeaturestoreService.GetFeaturestore.
+
+[GetHyperparameterTuningJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetHyperparameterTuningJobRequest)
+
+Request message for JobService.GetHyperparameterTuningJob.
+
+[GetIndexEndpointRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetIndexEndpointRequest)
+
+Request message for IndexEndpointService.GetIndexEndpoint
+
+[GetIndexRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetIndexRequest)
+
+Request message for IndexService.GetIndex
+
+[GetMetadataSchemaRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetMetadataSchemaRequest)
+
+Request message for MetadataService.GetMetadataSchema.
+
+[GetMetadataStoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetMetadataStoreRequest)
+
+Request message for MetadataService.GetMetadataStore.
+
+[GetModelDeploymentMonitoringJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetModelDeploymentMonitoringJobRequest)
+
+Request message for JobService.GetModelDeploymentMonitoringJob.
+
+[GetModelEvaluationRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetModelEvaluationRequest)
+
+Request message for ModelService.GetModelEvaluation.
+
+[GetModelEvaluationSliceRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetModelEvaluationSliceRequest)
+
+Request message for ModelService.GetModelEvaluationSlice.
+
+[GetModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetModelRequest)
+
+Request message for ModelService.GetModel.
+
+[GetNasJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetNasJobRequest)
+
+Request message for JobService.GetNasJob.
+
+[GetNasTrialDetailRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetNasTrialDetailRequest)
+
+Request message for JobService.GetNasTrialDetail.
+
+[GetNotebookExecutionJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetNotebookExecutionJobRequest)
+
+Request message for [NotebookService.GetNotebookExecutionJob]
+
+[GetNotebookRuntimeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetNotebookRuntimeRequest)
+
+Request message for NotebookService.GetNotebookRuntime
+
+[GetNotebookRuntimeTemplateRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetNotebookRuntimeTemplateRequest)
+
+Request message for NotebookService.GetNotebookRuntimeTemplate
+
+[GetPersistentResourceRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetPersistentResourceRequest)
+
+Request message for PersistentResourceService.GetPersistentResource.
+
+[GetPipelineJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetPipelineJobRequest)
+
+Request message for PipelineService.GetPipelineJob.
+
+[GetPublisherModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetPublisherModelRequest)
+
+Request message for ModelGardenService.GetPublisherModel
+
+[GetRagCorpusRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetRagCorpusRequest)
+
+Request message for VertexRagDataService.GetRagCorpus
+
+[GetRagEngineConfigRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetRagEngineConfigRequest)
+
+Request message for VertexRagDataService.GetRagEngineConfig
+
+[GetRagFileRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetRagFileRequest)
+
+Request message for VertexRagDataService.GetRagFile
+
+[GetReasoningEngineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetReasoningEngineRequest)
+
+Request message for ReasoningEngineService.GetReasoningEngine.
+
+[GetScheduleRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetScheduleRequest)
+
+Request message for ScheduleService.GetSchedule.
+
+[GetSpecialistPoolRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetSpecialistPoolRequest)
+
+Request message for SpecialistPoolService.GetSpecialistPool.
+
+[GetStudyRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetStudyRequest)
+
+Request message for VizierService.GetStudy.
+
+[GetTensorboardExperimentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetTensorboardExperimentRequest)
+
+Request message for TensorboardService.GetTensorboardExperiment.
+
+[GetTensorboardRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetTensorboardRequest)
+
+Request message for TensorboardService.GetTensorboard.
+
+[GetTensorboardRunRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetTensorboardRunRequest)
+
+Request message for TensorboardService.GetTensorboardRun.
+
+[GetTensorboardTimeSeriesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetTensorboardTimeSeriesRequest)
+
+Request message for TensorboardService.GetTensorboardTimeSeries.
+
+[GetTrainingPipelineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetTrainingPipelineRequest)
+
+Request message for PipelineService.GetTrainingPipeline.
+
+[GetTrialRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetTrialRequest)
+
+Request message for VizierService.GetTrial.
+
+[GetTuningJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetTuningJobRequest)
+
+Request message for GenAiTuningService.GetTuningJob.
+
+[GoogleDriveSource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GoogleDriveSource)
+
+The Google Drive location for the input content.
+
+[GoogleMaps](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GoogleMaps)
+
+Tool to retrieve public maps data for grounding, powered by Google.
+
+[GoogleSearchRetrieval](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GoogleSearchRetrieval)
+
+Tool to retrieve public web data for grounding, powered by Google.
+
+[GroundednessInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GroundednessInput)
+
+Input for groundedness metric.
+
+[GroundednessInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GroundednessInstance)
+
+Spec for groundedness instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[GroundednessResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GroundednessResult)
+
+Spec for groundedness result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[GroundednessSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GroundednessSpec)
+
+Spec for groundedness metric.
+
+[GroundingChunk](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GroundingChunk)
+
+Grounding chunk.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[GroundingMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GroundingMetadata)
+
+Metadata returned to client when grounding is enabled.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[GroundingSupport](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GroundingSupport)
+
+Grounding support.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[HarmCategory](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.HarmCategory)
+
+Harm categories that will block the content.
+
+[HyperparameterTuningJob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.HyperparameterTuningJob)
+
+Represents a HyperparameterTuningJob. A HyperparameterTuningJob has a Study specification and multiple CustomJobs with identical CustomJob specification.
+
+[IdMatcher](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.IdMatcher)
+
+Matcher for Features of an EntityType by Feature ID.
+
+[ImageConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImageConfig)
+
+Config for image generation features.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ImportDataConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportDataConfig)
+
+Describes the location from where we import data into a Dataset, together with the labels that will be applied to the DataItems and the Annotations.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ImportDataOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportDataOperationMetadata)
+
+Runtime operation information for DatasetService.ImportData.
+
+[ImportDataRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportDataRequest)
+
+Request message for DatasetService.ImportData.
+
+[ImportDataResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportDataResponse)
+
+Response message for DatasetService.ImportData.
+
+[ImportFeatureValuesOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportFeatureValuesOperationMetadata)
+
+Details of operations that perform import Feature values.
+
+[ImportFeatureValuesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportFeatureValuesRequest)
+
+Request message for FeaturestoreService.ImportFeatureValues.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ImportFeatureValuesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportFeatureValuesResponse)
+
+Response message for FeaturestoreService.ImportFeatureValues.
+
+[ImportModelEvaluationRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportModelEvaluationRequest)
+
+Request message for ModelService.ImportModelEvaluation
+
+[ImportRagFilesConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportRagFilesConfig)
+
+Config for importing RagFiles.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ImportRagFilesOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportRagFilesOperationMetadata)
+
+Runtime operation information for VertexRagDataService.ImportRagFiles.
+
+[ImportRagFilesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportRagFilesRequest)
+
+Request message for VertexRagDataService.ImportRagFiles.
+
+[ImportRagFilesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ImportRagFilesResponse)
+
+Response message for VertexRagDataService.ImportRagFiles.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[Index](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Index)
+
+A representation of a collection of database items organized in a way that allows for approximate nearest neighbor (a.k.a ANN) algorithms search.
+
+[IndexDatapoint](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.IndexDatapoint)
+
+A datapoint of Index.
+
+[IndexEndpoint](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.IndexEndpoint)
+
+Indexes are deployed into it. An IndexEndpoint can have multiple DeployedIndexes.
+
+[IndexPrivateEndpoints](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.IndexPrivateEndpoints)
+
+IndexPrivateEndpoints proto is used to provide paths for users to send requests via private endpoints (e.g. private service access, private service connect). To send request via private service access, use match_grpc_address. To send request via private service connect, use service_attachment.
+
+[IndexStats](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.IndexStats)
+
+Stats of the Index.
+
+[InputDataConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.InputDataConfig)
+
+Specifies Vertex AI owned input data to be used for training, and possibly evaluating, the Model.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[Int64Array](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Int64Array)
+
+A list of int64 values.
+
+[IntegratedGradientsAttribution](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.IntegratedGradientsAttribution)
+
+An attribution method that computes the Aumann-Shapley value
+taking advantage of the model's fully differentiable structure.
+Refer to this paper for more details:
+[https://arxiv.org/abs/1703.01365](https://arxiv.org/abs/1703.01365)
+
+[JiraSource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.JiraSource)
+
+The Jira source for the ImportRagFilesRequest.
+
+[JobState](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.JobState)
+
+Describes the state of a job.
+
+[LargeModelReference](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.LargeModelReference)
+
+Contains information about the Large Model.
+
+[LineageSubgraph](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.LineageSubgraph)
+
+A subgraph of the overall lineage graph. Event edges connect Artifact and Execution nodes.
+
+[ListAnnotationsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListAnnotationsRequest)
+
+Request message for DatasetService.ListAnnotations.
+
+[ListAnnotationsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListAnnotationsResponse)
+
+Response message for DatasetService.ListAnnotations.
+
+[ListArtifactsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListArtifactsRequest)
+
+Request message for MetadataService.ListArtifacts.
+
+[ListArtifactsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListArtifactsResponse)
+
+Response message for MetadataService.ListArtifacts.
+
+[ListBatchPredictionJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListBatchPredictionJobsRequest)
+
+Request message for JobService.ListBatchPredictionJobs.
+
+[ListBatchPredictionJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListBatchPredictionJobsResponse)
+
+Response message for JobService.ListBatchPredictionJobs
+
+[ListCachedContentsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListCachedContentsRequest)
+
+Request to list CachedContents.
+
+[ListCachedContentsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListCachedContentsResponse)
+
+Response with a list of CachedContents.
+
+[ListContextsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListContextsRequest)
+
+Request message for MetadataService.ListContexts
+
+[ListContextsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListContextsResponse)
+
+Response message for MetadataService.ListContexts.
+
+[ListCustomJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListCustomJobsRequest)
+
+Request message for JobService.ListCustomJobs.
+
+[ListCustomJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListCustomJobsResponse)
+
+Response message for JobService.ListCustomJobs
+
+[ListDataItemsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDataItemsRequest)
+
+Request message for DatasetService.ListDataItems.
+
+[ListDataItemsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDataItemsResponse)
+
+Response message for DatasetService.ListDataItems.
+
+[ListDataLabelingJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDataLabelingJobsRequest)
+
+Request message for JobService.ListDataLabelingJobs.
+
+[ListDataLabelingJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDataLabelingJobsResponse)
+
+Response message for JobService.ListDataLabelingJobs.
+
+[ListDatasetVersionsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDatasetVersionsRequest)
+
+Request message for DatasetService.ListDatasetVersions.
+
+[ListDatasetVersionsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDatasetVersionsResponse)
+
+Response message for DatasetService.ListDatasetVersions.
+
+[ListDatasetsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDatasetsRequest)
+
+Request message for DatasetService.ListDatasets.
+
+[ListDatasetsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDatasetsResponse)
+
+Response message for DatasetService.ListDatasets.
+
+[ListDeploymentResourcePoolsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDeploymentResourcePoolsRequest)
+
+Request message for ListDeploymentResourcePools method.
+
+[ListDeploymentResourcePoolsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListDeploymentResourcePoolsResponse)
+
+Response message for ListDeploymentResourcePools method.
+
+[ListEndpointsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListEndpointsRequest)
+
+Request message for EndpointService.ListEndpoints.
+
+[ListEndpointsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListEndpointsResponse)
+
+Response message for EndpointService.ListEndpoints.
+
+[ListEntityTypesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListEntityTypesRequest)
+
+Request message for FeaturestoreService.ListEntityTypes.
+
+[ListEntityTypesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListEntityTypesResponse)
+
+Response message for FeaturestoreService.ListEntityTypes.
+
+[ListExecutionsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListExecutionsRequest)
+
+Request message for MetadataService.ListExecutions.
+
+[ListExecutionsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListExecutionsResponse)
+
+Response message for MetadataService.ListExecutions.
+
+[ListFeatureGroupsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeatureGroupsRequest)
+
+Request message for FeatureRegistryService.ListFeatureGroups.
+
+[ListFeatureGroupsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeatureGroupsResponse)
+
+Response message for FeatureRegistryService.ListFeatureGroups.
+
+[ListFeatureOnlineStoresRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeatureOnlineStoresRequest)
+
+Request message for FeatureOnlineStoreAdminService.ListFeatureOnlineStores.
+
+[ListFeatureOnlineStoresResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeatureOnlineStoresResponse)
+
+Response message for FeatureOnlineStoreAdminService.ListFeatureOnlineStores.
+
+[ListFeatureViewSyncsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeatureViewSyncsRequest)
+
+Request message for FeatureOnlineStoreAdminService.ListFeatureViewSyncs.
+
+[ListFeatureViewSyncsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeatureViewSyncsResponse)
+
+Response message for FeatureOnlineStoreAdminService.ListFeatureViewSyncs.
+
+[ListFeatureViewsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeatureViewsRequest)
+
+Request message for FeatureOnlineStoreAdminService.ListFeatureViews.
+
+[ListFeatureViewsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeatureViewsResponse)
+
+Response message for FeatureOnlineStoreAdminService.ListFeatureViews.
+
+[ListFeaturesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeaturesRequest)
+
+Request message for FeaturestoreService.ListFeatures. Request message for FeatureRegistryService.ListFeatures.
+
+[ListFeaturesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeaturesResponse)
+
+Response message for FeaturestoreService.ListFeatures. Response message for FeatureRegistryService.ListFeatures.
+
+[ListFeaturestoresRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeaturestoresRequest)
+
+Request message for FeaturestoreService.ListFeaturestores.
+
+[ListFeaturestoresResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListFeaturestoresResponse)
+
+Response message for FeaturestoreService.ListFeaturestores.
+
+[ListHyperparameterTuningJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListHyperparameterTuningJobsRequest)
+
+Request message for JobService.ListHyperparameterTuningJobs.
+
+[ListHyperparameterTuningJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListHyperparameterTuningJobsResponse)
+
+Response message for JobService.ListHyperparameterTuningJobs
+
+[ListIndexEndpointsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListIndexEndpointsRequest)
+
+Request message for IndexEndpointService.ListIndexEndpoints.
+
+[ListIndexEndpointsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListIndexEndpointsResponse)
+
+Response message for IndexEndpointService.ListIndexEndpoints.
+
+[ListIndexesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListIndexesRequest)
+
+Request message for IndexService.ListIndexes.
+
+[ListIndexesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListIndexesResponse)
+
+Response message for IndexService.ListIndexes.
+
+[ListMetadataSchemasRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListMetadataSchemasRequest)
+
+Request message for MetadataService.ListMetadataSchemas.
+
+[ListMetadataSchemasResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListMetadataSchemasResponse)
+
+Response message for MetadataService.ListMetadataSchemas.
+
+[ListMetadataStoresRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListMetadataStoresRequest)
+
+Request message for MetadataService.ListMetadataStores.
+
+[ListMetadataStoresResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListMetadataStoresResponse)
+
+Response message for MetadataService.ListMetadataStores.
+
+[ListModelDeploymentMonitoringJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelDeploymentMonitoringJobsRequest)
+
+Request message for JobService.ListModelDeploymentMonitoringJobs.
+
+[ListModelDeploymentMonitoringJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelDeploymentMonitoringJobsResponse)
+
+Response message for JobService.ListModelDeploymentMonitoringJobs.
+
+[ListModelEvaluationSlicesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelEvaluationSlicesRequest)
+
+Request message for ModelService.ListModelEvaluationSlices.
+
+[ListModelEvaluationSlicesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelEvaluationSlicesResponse)
+
+Response message for ModelService.ListModelEvaluationSlices.
+
+[ListModelEvaluationsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelEvaluationsRequest)
+
+Request message for ModelService.ListModelEvaluations.
+
+[ListModelEvaluationsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelEvaluationsResponse)
+
+Response message for ModelService.ListModelEvaluations.
+
+[ListModelVersionCheckpointsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelVersionCheckpointsRequest)
+
+Request message for ModelService.ListModelVersionCheckpoints.
+
+[ListModelVersionCheckpointsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelVersionCheckpointsResponse)
+
+Response message for ModelService.ListModelVersionCheckpoints
+
+[ListModelVersionsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelVersionsRequest)
+
+Request message for ModelService.ListModelVersions.
+
+[ListModelVersionsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelVersionsResponse)
+
+Response message for ModelService.ListModelVersions
+
+[ListModelsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelsRequest)
+
+Request message for ModelService.ListModels.
+
+[ListModelsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListModelsResponse)
+
+Response message for ModelService.ListModels
+
+[ListNasJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNasJobsRequest)
+
+Request message for JobService.ListNasJobs.
+
+[ListNasJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNasJobsResponse)
+
+Response message for JobService.ListNasJobs
+
+[ListNasTrialDetailsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNasTrialDetailsRequest)
+
+Request message for JobService.ListNasTrialDetails.
+
+[ListNasTrialDetailsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNasTrialDetailsResponse)
+
+Response message for JobService.ListNasTrialDetails
+
+[ListNotebookExecutionJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNotebookExecutionJobsRequest)
+
+Request message for [NotebookService.ListNotebookExecutionJobs]
+
+[ListNotebookExecutionJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNotebookExecutionJobsResponse)
+
+Response message for [NotebookService.CreateNotebookExecutionJob]
+
+[ListNotebookRuntimeTemplatesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNotebookRuntimeTemplatesRequest)
+
+Request message for NotebookService.ListNotebookRuntimeTemplates.
+
+[ListNotebookRuntimeTemplatesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNotebookRuntimeTemplatesResponse)
+
+Response message for NotebookService.ListNotebookRuntimeTemplates.
+
+[ListNotebookRuntimesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNotebookRuntimesRequest)
+
+Request message for NotebookService.ListNotebookRuntimes.
+
+[ListNotebookRuntimesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListNotebookRuntimesResponse)
+
+Response message for NotebookService.ListNotebookRuntimes.
+
+[ListOptimalTrialsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListOptimalTrialsRequest)
+
+Request message for VizierService.ListOptimalTrials.
+
+[ListOptimalTrialsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListOptimalTrialsResponse)
+
+Response message for VizierService.ListOptimalTrials.
+
+[ListPersistentResourcesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListPersistentResourcesRequest)
+
+Request message for PersistentResourceService.ListPersistentResources.
+
+[ListPersistentResourcesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListPersistentResourcesResponse)
+
+Response message for PersistentResourceService.ListPersistentResources
+
+[ListPipelineJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListPipelineJobsRequest)
+
+Request message for PipelineService.ListPipelineJobs.
+
+[ListPipelineJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListPipelineJobsResponse)
+
+Response message for PipelineService.ListPipelineJobs
+
+[ListRagCorporaRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListRagCorporaRequest)
+
+Request message for VertexRagDataService.ListRagCorpora.
+
+[ListRagCorporaResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListRagCorporaResponse)
+
+Response message for VertexRagDataService.ListRagCorpora.
+
+[ListRagFilesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListRagFilesRequest)
+
+Request message for VertexRagDataService.ListRagFiles.
+
+[ListRagFilesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListRagFilesResponse)
+
+Response message for VertexRagDataService.ListRagFiles.
+
+[ListReasoningEnginesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListReasoningEnginesRequest)
+
+Request message for ReasoningEngineService.ListReasoningEngines.
+
+[ListReasoningEnginesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListReasoningEnginesResponse)
+
+Response message for ReasoningEngineService.ListReasoningEngines
+
+[ListSavedQueriesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSavedQueriesRequest)
+
+Request message for DatasetService.ListSavedQueries.
+
+[ListSavedQueriesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSavedQueriesResponse)
+
+Response message for DatasetService.ListSavedQueries.
+
+[ListSchedulesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSchedulesRequest)
+
+Request message for ScheduleService.ListSchedules.
+
+[ListSchedulesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSchedulesResponse)
+
+Response message for ScheduleService.ListSchedules
+
+[ListSpecialistPoolsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSpecialistPoolsRequest)
+
+Request message for SpecialistPoolService.ListSpecialistPools.
+
+[ListSpecialistPoolsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSpecialistPoolsResponse)
+
+Response message for SpecialistPoolService.ListSpecialistPools.
+
+[ListStudiesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListStudiesRequest)
+
+Request message for VizierService.ListStudies.
+
+[ListStudiesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListStudiesResponse)
+
+Response message for VizierService.ListStudies.
+
+[ListTensorboardExperimentsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTensorboardExperimentsRequest)
+
+Request message for TensorboardService.ListTensorboardExperiments.
+
+[ListTensorboardExperimentsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTensorboardExperimentsResponse)
+
+Response message for TensorboardService.ListTensorboardExperiments.
+
+[ListTensorboardRunsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTensorboardRunsRequest)
+
+Request message for TensorboardService.ListTensorboardRuns.
+
+[ListTensorboardRunsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTensorboardRunsResponse)
+
+Response message for TensorboardService.ListTensorboardRuns.
+
+[ListTensorboardTimeSeriesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTensorboardTimeSeriesRequest)
+
+Request message for TensorboardService.ListTensorboardTimeSeries.
+
+[ListTensorboardTimeSeriesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTensorboardTimeSeriesResponse)
+
+Response message for TensorboardService.ListTensorboardTimeSeries.
+
+[ListTensorboardsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTensorboardsRequest)
+
+Request message for TensorboardService.ListTensorboards.
+
+[ListTensorboardsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTensorboardsResponse)
+
+Response message for TensorboardService.ListTensorboards.
+
+[ListTrainingPipelinesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTrainingPipelinesRequest)
+
+Request message for PipelineService.ListTrainingPipelines.
+
+[ListTrainingPipelinesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTrainingPipelinesResponse)
+
+Response message for PipelineService.ListTrainingPipelines
+
+[ListTrialsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTrialsRequest)
+
+Request message for VizierService.ListTrials.
+
+[ListTrialsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTrialsResponse)
+
+Response message for VizierService.ListTrials.
+
+[ListTuningJobsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTuningJobsRequest)
+
+Request message for GenAiTuningService.ListTuningJobs.
+
+[ListTuningJobsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListTuningJobsResponse)
+
+Response message for GenAiTuningService.ListTuningJobs
+
+[LogprobsResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.LogprobsResult)
+
+Logprobs Result
+
+[LookupStudyRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.LookupStudyRequest)
+
+Request message for VizierService.LookupStudy.
+
+[MachineSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MachineSpec)
+
+Specification of a single machine.
+
+[ManualBatchTuningParameters](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ManualBatchTuningParameters)
+
+Manual batch tuning parameters.
+
+[Measurement](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Measurement)
+
+A message representing a Measurement of a Trial. A Measurement contains the Metrics got by executing a Trial using suggested hyperparameter values.
+
+[MergeVersionAliasesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MergeVersionAliasesRequest)
+
+Request message for ModelService.MergeVersionAliases.
+
+[MetadataSchema](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MetadataSchema)
+
+Instance of a general MetadataSchema.
+
+[MetadataStore](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MetadataStore)
+
+Instance of a metadata store. Contains a set of metadata that can be queried.
+
+[MetricxInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MetricxInput)
+
+Input for MetricX metric.
+
+[MetricxInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MetricxInstance)
+
+Spec for MetricX instance - The fields used for evaluation are dependent on the MetricX version.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[MetricxResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MetricxResult)
+
+Spec for MetricX result - calculates the MetricX score for the given instance using the version specified in the spec.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[MetricxSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MetricxSpec)
+
+Spec for MetricX metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[MigratableResource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MigratableResource)
+
+Represents one resource that exists in automl.googleapis.com, datalabeling.googleapis.com or ml.googleapis.com.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[MigrateResourceRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MigrateResourceRequest)
+
+Config of migrating one resource from automl.googleapis.com, datalabeling.googleapis.com and ml.googleapis.com to Vertex AI.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[MigrateResourceResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MigrateResourceResponse)
+
+Describes a successfully migrated resource.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[Modality](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Modality)
+
+Content Part modality
+
+[ModalityTokenCount](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModalityTokenCount)
+
+Represents token counting info for a single modality.
+
+[Model](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Model)
+
+A trained machine learning Model.
+
+[ModelArmorConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelArmorConfig)
+
+Configuration for Model Armor integrations of prompt and responses.
+
+[ModelContainerSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelContainerSpec)
+
+Specification of a container for serving predictions. Some fields in
+this message correspond to fields in the ```
+Kubernetes Container v1
+core
+specification <https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core>
+```
+
+__.
+
+[ModelDeploymentMonitoringBigQueryTable](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelDeploymentMonitoringBigQueryTable)
+
+ModelDeploymentMonitoringBigQueryTable specifies the BigQuery table name as well as some information of the logs stored in this table.
+
+[ModelDeploymentMonitoringJob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelDeploymentMonitoringJob)
+
+Represents a job that runs periodically to monitor the deployed models in an endpoint. It will analyze the logged training & prediction data to detect any abnormal behaviors.
+
+[ModelDeploymentMonitoringObjectiveConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelDeploymentMonitoringObjectiveConfig)
+
+ModelDeploymentMonitoringObjectiveConfig contains the pair of deployed_model_id to ModelMonitoringObjectiveConfig.
+
+[ModelDeploymentMonitoringObjectiveType](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelDeploymentMonitoringObjectiveType)
+
+The Model Monitoring Objective types.
+
+[ModelDeploymentMonitoringScheduleConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelDeploymentMonitoringScheduleConfig)
+
+The config for scheduling monitoring job.
+
+[ModelEvaluation](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelEvaluation)
+
+A collection of metrics calculated by comparing Model's predictions on all of the test data against annotations from the test data.
+
+[ModelEvaluationSlice](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelEvaluationSlice)
+
+A collection of metrics calculated by comparing Model's predictions on a slice of the test data against ground truth annotations.
+
+[ModelExplanation](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelExplanation)
+
+Aggregated explanation metrics for a Model over a set of instances.
+
+[ModelGardenSource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelGardenSource)
+
+Contains information about the source of the models generated from Model Garden.
+
+[ModelMonitoringAlertConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelMonitoringAlertConfig)
+
+The alert config for model monitoring.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ModelMonitoringObjectiveConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelMonitoringObjectiveConfig)
+
+The objective configuration for model monitoring, including the information needed to detect anomalies for one particular model.
+
+[ModelMonitoringStatsAnomalies](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelMonitoringStatsAnomalies)
+
+Statistics and anomalies generated by Model Monitoring.
+
+[ModelSourceInfo](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelSourceInfo)
+
+Detail description of the source information of the model.
+
+[ModelVersionCheckpoint](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelVersionCheckpoint)
+
+A proto representation of a Spanner-stored ModelVersionCheckpoint. The meaning of the fields is equivalent to their in-Spanner counterparts.
+
+[MultiSpeakerVoiceConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MultiSpeakerVoiceConfig)
+
+Configuration for a multi-speaker text-to-speech request.
+
+[MutateDeployedIndexOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MutateDeployedIndexOperationMetadata)
+
+Runtime operation information for IndexEndpointService.MutateDeployedIndex.
+
+[MutateDeployedIndexRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MutateDeployedIndexRequest)
+
+Request message for IndexEndpointService.MutateDeployedIndex.
+
+[MutateDeployedIndexResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MutateDeployedIndexResponse)
+
+Response message for IndexEndpointService.MutateDeployedIndex.
+
+[MutateDeployedModelOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MutateDeployedModelOperationMetadata)
+
+Runtime operation information for EndpointService.MutateDeployedModel.
+
+[MutateDeployedModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MutateDeployedModelRequest)
+
+Request message for EndpointService.MutateDeployedModel.
+
+[MutateDeployedModelResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MutateDeployedModelResponse)
+
+Response message for EndpointService.MutateDeployedModel.
+
+[NasJob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NasJob)
+
+Represents a Neural Architecture Search (NAS) job.
+
+[NasJobOutput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NasJobOutput)
+
+Represents a uCAIP NasJob output.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[NasJobSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NasJobSpec)
+
+Represents the spec of a NasJob.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[NasTrial](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NasTrial)
+
+Represents a uCAIP NasJob trial.
+
+[NasTrialDetail](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NasTrialDetail)
+
+Represents a NasTrial details along with its parameters. If there is a corresponding train NasTrial, the train NasTrial is also returned.
+
+[NearestNeighborQuery](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NearestNeighborQuery)
+
+A query to find a number of similar entities.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[NearestNeighborSearchOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NearestNeighborSearchOperationMetadata)
+
+Runtime operation metadata with regard to Matching Engine Index.
+
+[NearestNeighbors](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NearestNeighbors)
+
+Nearest neighbors for one query.
+
+[Neighbor](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Neighbor)
+
+Neighbors for example-based explanations.
+
+[NetworkSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NetworkSpec)
+
+Network spec.
+
+[NfsMount](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NfsMount)
+
+Represents a mount configuration for Network File System (NFS) to mount.
+
+[NotebookEucConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NotebookEucConfig)
+
+The euc configuration of NotebookRuntimeTemplate.
+
+[NotebookExecutionJob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NotebookExecutionJob)
+
+NotebookExecutionJob represents an instance of a notebook execution.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[NotebookExecutionJobView](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NotebookExecutionJobView)
+
+Views for Get/List NotebookExecutionJob
+
+[NotebookIdleShutdownConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NotebookIdleShutdownConfig)
+
+The idle shutdown configuration of NotebookRuntimeTemplate, which contains the idle_timeout as required field.
+
+[NotebookRuntime](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NotebookRuntime)
+
+A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime. Default runtimes have a lifetime of 18 hours, while custom runtimes last for 6 months from their creation or last upgrade.
+
+[NotebookRuntimeTemplate](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NotebookRuntimeTemplate)
+
+A template that specifies runtime configurations such as machine type, runtime version, network configurations, etc. Multiple runtimes can be created from a runtime template.
+
+[NotebookRuntimeTemplateRef](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NotebookRuntimeTemplateRef)
+
+Points to a NotebookRuntimeTemplateRef.
+
+[NotebookRuntimeType](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NotebookRuntimeType)
+
+Represents a notebook runtime type.
+
+[NotebookSoftwareConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NotebookSoftwareConfig)
+
+Notebook Software Config. This is passed to the backend when user makes software configurations in UI.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[OutputFieldSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.OutputFieldSpec)
+
+Defines a specification for a single output field.
+
+[PSCAutomationConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PSCAutomationConfig)
+
+PSC config that is used to automatically create PSC endpoints in the user projects.
+
+[PSCAutomationState](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PSCAutomationState)
+
+The state of the PSC service automation.
+
+[PairwiseChoice](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseChoice)
+
+Pairwise prediction autorater preference.
+
+[PairwiseMetricInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseMetricInput)
+
+Input for pairwise metric.
+
+[PairwiseMetricInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseMetricInstance)
+
+Pairwise metric instance. Usually one instance corresponds to one row in an evaluation dataset.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PairwiseMetricResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseMetricResult)
+
+Spec for pairwise metric result.
+
+[PairwiseMetricSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseMetricSpec)
+
+Spec for pairwise metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PairwiseQuestionAnsweringQualityInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseQuestionAnsweringQualityInput)
+
+Input for pairwise question answering quality metric.
+
+[PairwiseQuestionAnsweringQualityInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseQuestionAnsweringQualityInstance)
+
+Spec for pairwise question answering quality instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PairwiseQuestionAnsweringQualityResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseQuestionAnsweringQualityResult)
+
+Spec for pairwise question answering quality result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PairwiseQuestionAnsweringQualitySpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseQuestionAnsweringQualitySpec)
+
+Spec for pairwise question answering quality score metric.
+
+[PairwiseSummarizationQualityInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseSummarizationQualityInput)
+
+Input for pairwise summarization quality metric.
+
+[PairwiseSummarizationQualityInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseSummarizationQualityInstance)
+
+Spec for pairwise summarization quality instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PairwiseSummarizationQualityResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseSummarizationQualityResult)
+
+Spec for pairwise summarization quality result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PairwiseSummarizationQualitySpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseSummarizationQualitySpec)
+
+Spec for pairwise summarization quality score metric.
+
+[Part](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Part)
+
+A datatype containing media that is part of a multi-part `Content`
+
+message.
+
+A `Part`
+
+consists of data which has an associated datatype. A
+`Part`
+
+can only contain one of the accepted types in
+`Part.data`
+
+.
+
+A `Part`
+
+must have a fixed IANA MIME type identifying the type and
+subtype of the media if `inline_data`
+
+or `file_data`
+
+field is
+filled with raw bytes.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PartialArg](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PartialArg)
+
+Partial argument value of the function call.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PauseModelDeploymentMonitoringJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PauseModelDeploymentMonitoringJobRequest)
+
+Request message for JobService.PauseModelDeploymentMonitoringJob.
+
+[PauseScheduleRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PauseScheduleRequest)
+
+Request message for ScheduleService.PauseSchedule.
+
+[PersistentDiskSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PersistentDiskSpec)
+
+Represents the spec of [persistent
+disk][[https://cloud.google.com/compute/docs/disks/persistent-disks](https://cloud.google.com/compute/docs/disks/persistent-disks)]
+options.
+
+[PersistentResource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PersistentResource)
+
+Represents long-lasting resources that are dedicated to users to runs custom workloads. A PersistentResource can have multiple node pools and each node pool can have its own machine spec.
+
+[PipelineFailurePolicy](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PipelineFailurePolicy)
+
+Represents the failure policy of a pipeline. Currently, the default of a pipeline is that the pipeline will continue to run until no more tasks can be executed, also known as PIPELINE_FAILURE_POLICY_FAIL_SLOW. However, if a pipeline is set to PIPELINE_FAILURE_POLICY_FAIL_FAST, it will stop scheduling any new tasks when a task has failed. Any scheduled tasks will continue to completion.
+
+[PipelineJob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PipelineJob)
+
+An instance of a machine learning PipelineJob.
+
+[PipelineJobDetail](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PipelineJobDetail)
+
+The runtime detail of PipelineJob.
+
+[PipelineState](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PipelineState)
+
+Describes the state of a pipeline.
+
+[PipelineTaskDetail](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PipelineTaskDetail)
+
+The runtime detail of a task execution.
+
+[PipelineTaskExecutorDetail](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PipelineTaskExecutorDetail)
+
+The runtime detail of a pipeline executor.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PipelineTemplateMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PipelineTemplateMetadata)
+
+Pipeline template metadata if PipelineJob.template_uri is from supported template registry. Currently, the only supported registry is Artifact Registry.
+
+[PointwiseMetricInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PointwiseMetricInput)
+
+Input for pointwise metric.
+
+[PointwiseMetricInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PointwiseMetricInstance)
+
+Pointwise metric instance. Usually one instance corresponds to one row in an evaluation dataset.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PointwiseMetricResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PointwiseMetricResult)
+
+Spec for pointwise metric result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PointwiseMetricSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PointwiseMetricSpec)
+
+Spec for pointwise metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[Port](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Port)
+
+Represents a network port in a container.
+
+[PostStartupScriptConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PostStartupScriptConfig)
+
+Post startup script config.
+
+[PreTunedModel](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PreTunedModel)
+
+A pre-tuned model for continuous tuning.
+
+[PrebuiltVoiceConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PrebuiltVoiceConfig)
+
+Configuration for a prebuilt voice.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PredefinedSplit](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PredefinedSplit)
+
+Assigns input data to training, validation, and test sets based on the value of a provided key.
+
+Supported only for tabular Datasets.
+
+[PredictRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PredictRequest)
+
+Request message for PredictionService.Predict.
+
+[PredictRequestResponseLoggingConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PredictRequestResponseLoggingConfig)
+
+Configuration for logging request-response to a BigQuery table.
+
+[PredictResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PredictResponse)
+
+Response message for PredictionService.Predict.
+
+[PredictSchemata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PredictSchemata)
+
+Contains the schemata used in Model's predictions and explanations via PredictionService.Predict, PredictionService.Explain and BatchPredictionJob.
+
+[Presets](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Presets)
+
+Preset configuration for example-based explanations
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PrivateEndpoints](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PrivateEndpoints)
+
+PrivateEndpoints proto is used to provide paths for users to send requests privately. To send request via private service access, use predict_http_uri, explain_http_uri or health_http_uri. To send request via private service connect, use service_attachment.
+
+[PrivateServiceConnectConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PrivateServiceConnectConfig)
+
+Represents configuration for private service connect.
+
+[Probe](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Probe)
+
+Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[PscAutomatedEndpoints](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PscAutomatedEndpoints)
+
+PscAutomatedEndpoints defines the output of the forwarding rule automatically created by each PscAutomationConfig.
+
+[PscInterfaceConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PscInterfaceConfig)
+
+Configuration for PSC-I.
+
+[PublisherModel](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PublisherModel)
+
+A Model Garden Publisher Model.
+
+[PublisherModelView](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PublisherModelView)
+
+View enumeration of PublisherModel.
+
+[PurgeArtifactsMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeArtifactsMetadata)
+
+Details of operations that perform MetadataService.PurgeArtifacts.
+
+[PurgeArtifactsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeArtifactsRequest)
+
+Request message for MetadataService.PurgeArtifacts.
+
+[PurgeArtifactsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeArtifactsResponse)
+
+Response message for MetadataService.PurgeArtifacts.
+
+[PurgeContextsMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeContextsMetadata)
+
+Details of operations that perform MetadataService.PurgeContexts.
+
+[PurgeContextsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeContextsRequest)
+
+Request message for MetadataService.PurgeContexts.
+
+[PurgeContextsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeContextsResponse)
+
+Response message for MetadataService.PurgeContexts.
+
+[PurgeExecutionsMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeExecutionsMetadata)
+
+Details of operations that perform MetadataService.PurgeExecutions.
+
+[PurgeExecutionsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeExecutionsRequest)
+
+Request message for MetadataService.PurgeExecutions.
+
+[PurgeExecutionsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeExecutionsResponse)
+
+Response message for MetadataService.PurgeExecutions.
+
+[PythonPackageSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PythonPackageSpec)
+
+The spec of a Python packaged code.
+
+[QueryArtifactLineageSubgraphRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryArtifactLineageSubgraphRequest)
+
+Request message for MetadataService.QueryArtifactLineageSubgraph.
+
+[QueryContextLineageSubgraphRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryContextLineageSubgraphRequest)
+
+Request message for MetadataService.QueryContextLineageSubgraph.
+
+[QueryDeployedModelsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryDeployedModelsRequest)
+
+Request message for QueryDeployedModels method.
+
+[QueryDeployedModelsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryDeployedModelsResponse)
+
+Response message for QueryDeployedModels method.
+
+[QueryExecutionInputsAndOutputsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryExecutionInputsAndOutputsRequest)
+
+Request message for MetadataService.QueryExecutionInputsAndOutputs.
+
+[QueryReasoningEngineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryReasoningEngineRequest)
+
+Request message for [ReasoningEngineExecutionService.Query][].
+
+[QueryReasoningEngineResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryReasoningEngineResponse)
+
+Response message for [ReasoningEngineExecutionService.Query][]
+
+[QuestionAnsweringCorrectnessInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringCorrectnessInput)
+
+Input for question answering correctness metric.
+
+[QuestionAnsweringCorrectnessInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringCorrectnessInstance)
+
+Spec for question answering correctness instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[QuestionAnsweringCorrectnessResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringCorrectnessResult)
+
+Spec for question answering correctness result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[QuestionAnsweringCorrectnessSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringCorrectnessSpec)
+
+Spec for question answering correctness metric.
+
+[QuestionAnsweringHelpfulnessInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringHelpfulnessInput)
+
+Input for question answering helpfulness metric.
+
+[QuestionAnsweringHelpfulnessInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringHelpfulnessInstance)
+
+Spec for question answering helpfulness instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[QuestionAnsweringHelpfulnessResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringHelpfulnessResult)
+
+Spec for question answering helpfulness result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[QuestionAnsweringHelpfulnessSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringHelpfulnessSpec)
+
+Spec for question answering helpfulness metric.
+
+[QuestionAnsweringQualityInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringQualityInput)
+
+Input for question answering quality metric.
+
+[QuestionAnsweringQualityInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringQualityInstance)
+
+Spec for question answering quality instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[QuestionAnsweringQualityResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringQualityResult)
+
+Spec for question answering quality result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[QuestionAnsweringQualitySpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringQualitySpec)
+
+Spec for question answering quality score metric.
+
+[QuestionAnsweringRelevanceInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringRelevanceInput)
+
+Input for question answering relevance metric.
+
+[QuestionAnsweringRelevanceInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringRelevanceInstance)
+
+Spec for question answering relevance instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[QuestionAnsweringRelevanceResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringRelevanceResult)
+
+Spec for question answering relevance result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[QuestionAnsweringRelevanceSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QuestionAnsweringRelevanceSpec)
+
+Spec for question answering relevance metric.
+
+[RagChunk](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagChunk)
+
+A RagChunk includes the content of a chunk of a RagFile, and associated metadata.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RagContexts](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagContexts)
+
+Relevant contexts for one query.
+
+[RagCorpus](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagCorpus)
+
+A RagCorpus is a RagFile container and a project can have multiple RagCorpora.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RagEmbeddingModelConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagEmbeddingModelConfig)
+
+Config for the embedding model to use for RAG.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RagEngineConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagEngineConfig)
+
+Config for RagEngine.
+
+[RagFile](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagFile)
+
+A RagFile contains user data for chunking, embedding and indexing.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RagFileChunkingConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagFileChunkingConfig)
+
+Specifies the size and overlap of chunks for RagFiles.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RagFileParsingConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagFileParsingConfig)
+
+Specifies the parsing config for RagFiles.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RagFileTransformationConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagFileTransformationConfig)
+
+Specifies the transformation config for RagFiles.
+
+[RagManagedDbConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagManagedDbConfig)
+
+Configuration message for RagManagedDb used by RagEngine.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RagQuery](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagQuery)
+
+A query to retrieve relevant contexts.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RagRetrievalConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagRetrievalConfig)
+
+Specifies the context retrieval config.
+
+[RagVectorDbConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagVectorDbConfig)
+
+Config for the Vector DB to use for RAG.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RawPredictRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RawPredictRequest)
+
+Request message for PredictionService.RawPredict.
+
+[RayLogsSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RayLogsSpec)
+
+Configuration for the Ray OSS Logs.
+
+[RayMetricSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RayMetricSpec)
+
+Configuration for the Ray metrics.
+
+[RaySpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RaySpec)
+
+Configuration information for the Ray cluster. For experimental launch, Ray cluster creation and Persistent cluster creation are 1:1 mapping: We will provision all the nodes within the Persistent cluster as Ray nodes.
+
+[ReadFeatureValuesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadFeatureValuesRequest)
+
+Request message for FeaturestoreOnlineServingService.ReadFeatureValues.
+
+[ReadFeatureValuesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadFeatureValuesResponse)
+
+Response message for FeaturestoreOnlineServingService.ReadFeatureValues.
+
+[ReadIndexDatapointsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadIndexDatapointsRequest)
+
+The request message for MatchService.ReadIndexDatapoints.
+
+[ReadIndexDatapointsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadIndexDatapointsResponse)
+
+The response message for MatchService.ReadIndexDatapoints.
+
+[ReadTensorboardBlobDataRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadTensorboardBlobDataRequest)
+
+Request message for TensorboardService.ReadTensorboardBlobData.
+
+[ReadTensorboardBlobDataResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadTensorboardBlobDataResponse)
+
+Response message for TensorboardService.ReadTensorboardBlobData.
+
+[ReadTensorboardSizeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadTensorboardSizeRequest)
+
+Request message for TensorboardService.ReadTensorboardSize.
+
+[ReadTensorboardSizeResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadTensorboardSizeResponse)
+
+Response message for TensorboardService.ReadTensorboardSize.
+
+[ReadTensorboardTimeSeriesDataRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadTensorboardTimeSeriesDataRequest)
+
+Request message for TensorboardService.ReadTensorboardTimeSeriesData.
+
+[ReadTensorboardTimeSeriesDataResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadTensorboardTimeSeriesDataResponse)
+
+Response message for TensorboardService.ReadTensorboardTimeSeriesData.
+
+[ReadTensorboardUsageRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadTensorboardUsageRequest)
+
+Request message for TensorboardService.ReadTensorboardUsage.
+
+[ReadTensorboardUsageResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadTensorboardUsageResponse)
+
+Response message for TensorboardService.ReadTensorboardUsage.
+
+[ReasoningEngine](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReasoningEngine)
+
+ReasoningEngine provides a customizable runtime for models to determine which actions to take and in which order.
+
+[ReasoningEngineSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReasoningEngineSpec)
+
+ReasoningEngine configurations
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RebaseTunedModelOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RebaseTunedModelOperationMetadata)
+
+Runtime operation information for GenAiTuningService.RebaseTunedModel.
+
+[RebaseTunedModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RebaseTunedModelRequest)
+
+Request message for GenAiTuningService.RebaseTunedModel.
+
+[RebootPersistentResourceOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RebootPersistentResourceOperationMetadata)
+
+Details of operations that perform reboot PersistentResource.
+
+[RebootPersistentResourceRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RebootPersistentResourceRequest)
+
+Request message for PersistentResourceService.RebootPersistentResource.
+
+[RemoveContextChildrenRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RemoveContextChildrenRequest)
+
+Request message for [MetadataService.DeleteContextChildrenRequest][].
+
+[RemoveContextChildrenResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RemoveContextChildrenResponse)
+
+Response message for MetadataService.RemoveContextChildren.
+
+[RemoveDatapointsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RemoveDatapointsRequest)
+
+Request message for IndexService.RemoveDatapoints
+
+[RemoveDatapointsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RemoveDatapointsResponse)
+
+Response message for IndexService.RemoveDatapoints
+
+[ReplicatedVoiceConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReplicatedVoiceConfig)
+
+The configuration for the replicated voice to use.
+
+[ReservationAffinity](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReservationAffinity)
+
+A ReservationAffinity can be used to configure a Vertex AI resource (e.g., a DeployedModel) to draw its Compute Engine resources from a Shared Reservation, or exclusively from on-demand capacity.
+
+[ResourcePool](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ResourcePool)
+
+Represents the spec of a group of resources of the same type, for example machine type, disk, and accelerators, in a PersistentResource.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ResourceRuntime](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ResourceRuntime)
+
+Persistent Cluster runtime information as output
+
+[ResourceRuntimeSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ResourceRuntimeSpec)
+
+Configuration for the runtime on a PersistentResource instance, including but not limited to:
+
+- Service accounts used to run the workloads.
+- Whether to make it a dedicated Ray Cluster.
+
+[ResourcesConsumed](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ResourcesConsumed)
+
+Statistics information about resource consumption.
+
+[RestoreDatasetVersionOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RestoreDatasetVersionOperationMetadata)
+
+Runtime operation information for DatasetService.RestoreDatasetVersion.
+
+[RestoreDatasetVersionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RestoreDatasetVersionRequest)
+
+Request message for DatasetService.RestoreDatasetVersion.
+
+[ResumeModelDeploymentMonitoringJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ResumeModelDeploymentMonitoringJobRequest)
+
+Request message for JobService.ResumeModelDeploymentMonitoringJob.
+
+[ResumeScheduleRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ResumeScheduleRequest)
+
+Request message for ScheduleService.ResumeSchedule.
+
+[Retrieval](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Retrieval)
+
+Defines a retrieval tool that model can call to access external knowledge.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RetrievalConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RetrievalConfig)
+
+Retrieval config.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RetrievalMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RetrievalMetadata)
+
+Metadata related to retrieval in the grounding flow.
+
+[RetrieveContextsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RetrieveContextsRequest)
+
+Request message for VertexRagService.RetrieveContexts.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RetrieveContextsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RetrieveContextsResponse)
+
+Response message for VertexRagService.RetrieveContexts.
+
+[RougeInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RougeInput)
+
+Input for rouge metric.
+
+[RougeInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RougeInstance)
+
+Spec for rouge instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RougeMetricValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RougeMetricValue)
+
+Rouge metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[RougeResults](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RougeResults)
+
+Results for rouge metric.
+
+[RougeSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RougeSpec)
+
+Spec for rouge score metric - calculates the recall of n-grams in prediction as compared to reference - returns a score ranging between 0 and 1.
+
+[SafetyInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SafetyInput)
+
+Input for safety metric.
+
+[SafetyInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SafetyInstance)
+
+Spec for safety instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SafetyRating](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SafetyRating)
+
+Safety rating corresponding to the generated content.
+
+[SafetyResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SafetyResult)
+
+Spec for safety result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SafetySetting](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SafetySetting)
+
+Safety settings.
+
+[SafetySpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SafetySpec)
+
+Spec for safety metric.
+
+[SampleConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SampleConfig)
+
+Active learning data sampling config. For every active learning labeling iteration, it will select a batch of data based on the sampling strategy.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SampledShapleyAttribution](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SampledShapleyAttribution)
+
+An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features.
+
+[SamplingStrategy](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SamplingStrategy)
+
+Sampling Strategy for logging, can be for both training and prediction dataset.
+
+[SavedQuery](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SavedQuery)
+
+A SavedQuery is a view of the dataset. It references a subset of annotations by problem type and filters.
+
+[Scalar](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Scalar)
+
+One point viewable on a scalar metric plot.
+
+[Schedule](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Schedule)
+
+An instance of a Schedule periodically schedules runs to make API calls based on user specified time specification and API request type.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[Scheduling](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Scheduling)
+
+All parameters related to queuing and scheduling of custom jobs.
+
+[Schema](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Schema)
+
+Schema is used to define the format of input/output data. Represents
+a select subset of an ```
+OpenAPI 3.0 schema
+object <https://spec.openapis.org/oas/v3.0.3#schema-object>
+```
+
+__. More
+fields may be added in the future as needed.
+
+[SearchDataItemsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchDataItemsRequest)
+
+Request message for DatasetService.SearchDataItems.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SearchDataItemsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchDataItemsResponse)
+
+Response message for DatasetService.SearchDataItems.
+
+[SearchEntryPoint](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchEntryPoint)
+
+Google search entry point.
+
+[SearchFeaturesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchFeaturesRequest)
+
+Request message for FeaturestoreService.SearchFeatures.
+
+[SearchFeaturesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchFeaturesResponse)
+
+Response message for FeaturestoreService.SearchFeatures.
+
+[SearchMigratableResourcesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchMigratableResourcesRequest)
+
+Request message for MigrationService.SearchMigratableResources.
+
+[SearchMigratableResourcesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchMigratableResourcesResponse)
+
+Response message for MigrationService.SearchMigratableResources.
+
+[SearchModelDeploymentMonitoringStatsAnomaliesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchModelDeploymentMonitoringStatsAnomaliesRequest)
+
+Request message for JobService.SearchModelDeploymentMonitoringStatsAnomalies.
+
+[SearchModelDeploymentMonitoringStatsAnomaliesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchModelDeploymentMonitoringStatsAnomaliesResponse)
+
+Response message for JobService.SearchModelDeploymentMonitoringStatsAnomalies.
+
+[SearchNearestEntitiesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchNearestEntitiesRequest)
+
+The request message for FeatureOnlineStoreService.SearchNearestEntities.
+
+[SearchNearestEntitiesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchNearestEntitiesResponse)
+
+Response message for FeatureOnlineStoreService.SearchNearestEntities
+
+[SecretEnvVar](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SecretEnvVar)
+
+Represents an environment variable where the value is a secret in Cloud Secret Manager.
+
+[SecretRef](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SecretRef)
+
+Reference to a secret stored in the Cloud Secret Manager that will provide the value for this environment variable.
+
+[Segment](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Segment)
+
+Segment of the content.
+
+[ServiceAccountSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ServiceAccountSpec)
+
+Configuration for the use of custom service account to run the workloads.
+
+[SharePointSources](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SharePointSources)
+
+The SharePointSources to pass to ImportRagFiles.
+
+[ShieldedVmConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ShieldedVmConfig)
+
+A set of Shielded Instance options. See ```
+Images using supported
+Shielded VM
+features <https://cloud.google.com/compute/docs/instances/modifying-shielded-vm>
+```
+
+__.
+
+[SlackSource](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SlackSource)
+
+The Slack source for the ImportRagFilesRequest.
+
+[SmoothGradConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SmoothGradConfig)
+
+Config for SmoothGrad approximation of gradients.
+
+When enabled, the gradients are approximated by averaging the gradients from noisy samples in the vicinity of the inputs. Adding noise can help improve the computed gradients. Refer to this paper for more details:
+
+[https://arxiv.org/pdf/1706.03825.pdf](https://arxiv.org/pdf/1706.03825.pdf)
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SpeakerVoiceConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SpeakerVoiceConfig)
+
+Configuration for a single speaker in a multi-speaker setup.
+
+[SpecialistPool](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SpecialistPool)
+
+SpecialistPool represents customers' own workforce to work on their data labeling jobs. It includes a group of specialist managers and workers. Managers are responsible for managing the workers in this pool as well as customers' data labeling jobs associated with this pool. Customers create specialist pool as well as start data labeling jobs on Cloud, managers and workers handle the jobs using CrowdCompute console.
+
+[SpeculativeDecodingSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SpeculativeDecodingSpec)
+
+Configuration for Speculative Decoding.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SpeechConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SpeechConfig)
+
+Configuration for speech generation.
+
+[StartNotebookRuntimeOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StartNotebookRuntimeOperationMetadata)
+
+Metadata information for NotebookService.StartNotebookRuntime.
+
+[StartNotebookRuntimeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StartNotebookRuntimeRequest)
+
+Request message for NotebookService.StartNotebookRuntime.
+
+[StartNotebookRuntimeResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StartNotebookRuntimeResponse)
+
+Response message for NotebookService.StartNotebookRuntime.
+
+[StopNotebookRuntimeOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StopNotebookRuntimeOperationMetadata)
+
+Metadata information for NotebookService.StopNotebookRuntime.
+
+[StopNotebookRuntimeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StopNotebookRuntimeRequest)
+
+Request message for NotebookService.StopNotebookRuntime.
+
+[StopNotebookRuntimeResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StopNotebookRuntimeResponse)
+
+Response message for NotebookService.StopNotebookRuntime.
+
+[StopTrialRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StopTrialRequest)
+
+Request message for VizierService.StopTrial.
+
+[StratifiedSplit](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StratifiedSplit)
+
+Assigns input data to the training, validation, and test sets so
+that the distribution of values found in the categorical column (as
+specified by the `key`
+
+field) is mirrored within each split. The
+fraction values determine the relative sizes of the splits.
+
+For example, if the specified column has three values, with 50% of the rows having value "A", 25% value "B", and 25% value "C", and the split fractions are specified as 80/10/10, then the training set will constitute 80% of the training data, with about 50% of the training set rows having the value "A" for the specified column, about 25% having the value "B", and about 25% having the value "C".
+
+Only the top 500 occurring values are used; any values not in the top 500 values are randomly assigned to a split. If less than three rows contain a specific value, those rows are randomly assigned.
+
+Supported only for tabular Datasets.
+
+[StreamDirectPredictRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamDirectPredictRequest)
+
+Request message for PredictionService.StreamDirectPredict.
+
+The first message must contain endpoint field and optionally [input][]. The subsequent messages must contain [input][].
+
+[StreamDirectPredictResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamDirectPredictResponse)
+
+Response message for PredictionService.StreamDirectPredict.
+
+[StreamDirectRawPredictRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamDirectRawPredictRequest)
+
+Request message for PredictionService.StreamDirectRawPredict.
+
+The first message must contain endpoint and method_name fields and optionally input. The subsequent messages must contain input. method_name in the subsequent messages have no effect.
+
+[StreamDirectRawPredictResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamDirectRawPredictResponse)
+
+Response message for PredictionService.StreamDirectRawPredict.
+
+[StreamQueryReasoningEngineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamQueryReasoningEngineRequest)
+
+Request message for [ReasoningEngineExecutionService.StreamQuery][].
+
+[StreamRawPredictRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamRawPredictRequest)
+
+Request message for PredictionService.StreamRawPredict.
+
+[StreamingPredictRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamingPredictRequest)
+
+Request message for PredictionService.StreamingPredict.
+
+The first message must contain endpoint field and optionally [input][]. The subsequent messages must contain [input][].
+
+[StreamingPredictResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamingPredictResponse)
+
+Response message for PredictionService.StreamingPredict.
+
+[StreamingRawPredictRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamingRawPredictRequest)
+
+Request message for PredictionService.StreamingRawPredict.
+
+The first message must contain endpoint and method_name fields and optionally input. The subsequent messages must contain input. method_name in the subsequent messages have no effect.
+
+[StreamingRawPredictResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamingRawPredictResponse)
+
+Response message for PredictionService.StreamingRawPredict.
+
+[StreamingReadFeatureValuesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamingReadFeatureValuesRequest)
+
+Request message for FeaturestoreOnlineServingService.StreamingReadFeatureValues.
+
+[StringArray](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StringArray)
+
+A list of string values.
+
+[StructFieldValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StructFieldValue)
+
+One field of a Struct (or object) type feature value.
+
+[StructValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StructValue)
+
+Struct (or object) type feature value.
+
+[Study](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Study)
+
+A message representing a Study.
+
+[StudySpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StudySpec)
+
+Represents specification of a Study.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[StudyTimeConstraint](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StudyTimeConstraint)
+
+Time-based Constraint for Study
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SuggestTrialsMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SuggestTrialsMetadata)
+
+Details of operations that perform Trials suggestion.
+
+[SuggestTrialsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SuggestTrialsRequest)
+
+Request message for VizierService.SuggestTrials.
+
+[SuggestTrialsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SuggestTrialsResponse)
+
+Response message for VizierService.SuggestTrials.
+
+[SummarizationHelpfulnessInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationHelpfulnessInput)
+
+Input for summarization helpfulness metric.
+
+[SummarizationHelpfulnessInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationHelpfulnessInstance)
+
+Spec for summarization helpfulness instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SummarizationHelpfulnessResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationHelpfulnessResult)
+
+Spec for summarization helpfulness result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SummarizationHelpfulnessSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationHelpfulnessSpec)
+
+Spec for summarization helpfulness score metric.
+
+[SummarizationQualityInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationQualityInput)
+
+Input for summarization quality metric.
+
+[SummarizationQualityInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationQualityInstance)
+
+Spec for summarization quality instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SummarizationQualityResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationQualityResult)
+
+Spec for summarization quality result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SummarizationQualitySpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationQualitySpec)
+
+Spec for summarization quality score metric.
+
+[SummarizationVerbosityInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationVerbosityInput)
+
+Input for summarization verbosity metric.
+
+[SummarizationVerbosityInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationVerbosityInstance)
+
+Spec for summarization verbosity instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SummarizationVerbosityResult](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationVerbosityResult)
+
+Spec for summarization verbosity result.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[SummarizationVerbositySpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SummarizationVerbositySpec)
+
+Spec for summarization verbosity score metric.
+
+[SupervisedHyperParameters](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SupervisedHyperParameters)
+
+Hyperparameters for SFT.
+
+[SupervisedTuningDataStats](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SupervisedTuningDataStats)
+
+Tuning data statistics for Supervised Tuning.
+
+[SupervisedTuningDatasetDistribution](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SupervisedTuningDatasetDistribution)
+
+Dataset distribution for Supervised Tuning.
+
+[SupervisedTuningSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SupervisedTuningSpec)
+
+Tuning Spec for Supervised Tuning for first party models.
+
+[SyncFeatureViewRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SyncFeatureViewRequest)
+
+Request message for FeatureOnlineStoreAdminService.SyncFeatureView.
+
+[SyncFeatureViewResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SyncFeatureViewResponse)
+
+Response message for FeatureOnlineStoreAdminService.SyncFeatureView.
+
+[SyntheticExample](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SyntheticExample)
+
+Represents a single synthetic example, composed of multiple fields. Used for providing few-shot examples in the request and for returning generated examples in the response.
+
+[SyntheticField](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SyntheticField)
+
+Represents a single named field within a SyntheticExample.
+
+[TFRecordDestination](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TFRecordDestination)
+
+The storage details for TFRecord output content.
+
+[TaskDescriptionStrategy](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TaskDescriptionStrategy)
+
+Defines a generation strategy based on a high-level task description.
+
+[Tensor](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Tensor)
+
+A tensor value type.
+
+[Tensorboard](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Tensorboard)
+
+Tensorboard is a physical database that stores users' training metrics. A default Tensorboard is provided in each region of a Google Cloud project. If needed users can also create extra Tensorboards in their projects.
+
+[TensorboardBlob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TensorboardBlob)
+
+One blob (e.g, image, graph) viewable on a blob metric plot.
+
+[TensorboardBlobSequence](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TensorboardBlobSequence)
+
+One point viewable on a blob metric plot, but mostly just a wrapper
+message to work around repeated fields can't be used directly within
+`oneof`
+
+fields.
+
+[TensorboardExperiment](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TensorboardExperiment)
+
+A TensorboardExperiment is a group of TensorboardRuns, that are typically the results of a training job run, in a Tensorboard.
+
+[TensorboardRun](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TensorboardRun)
+
+TensorboardRun maps to a specific execution of a training job with a given set of hyperparameter values, model definition, dataset, etc
+
+[TensorboardTensor](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TensorboardTensor)
+
+One point viewable on a tensor metric plot.
+
+[TensorboardTimeSeries](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TensorboardTimeSeries)
+
+TensorboardTimeSeries maps to times series produced in training runs
+
+[ThresholdConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ThresholdConfig)
+
+The config for feature monitoring threshold.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[TimeSeriesData](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TimeSeriesData)
+
+All the data stored in a TensorboardTimeSeries.
+
+[TimeSeriesDataPoint](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TimeSeriesDataPoint)
+
+A TensorboardTimeSeries data point.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[TimestampSplit](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TimestampSplit)
+
+Assigns input data to training, validation, and test sets based on a provided timestamps. The youngest data pieces are assigned to training set, next to validation set, and the oldest to the test set.
+
+Supported only for tabular Datasets.
+
+[TokensInfo](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TokensInfo)
+
+Tokens info with a list of tokens and the corresponding list of token ids.
+
+[Tool](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Tool)
+
+Tool details that the model may use to generate response.
+
+A `Tool`
+
+is a piece of code that enables the system to interact
+with external systems to perform an action, or set of actions,
+outside of knowledge and scope of the model. A Tool object should
+contain exactly one type of Tool (e.g FunctionDeclaration, Retrieval
+or GoogleSearchRetrieval).
+
+[ToolCallValidInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolCallValidInput)
+
+Input for tool call valid metric.
+
+[ToolCallValidInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolCallValidInstance)
+
+Spec for tool call valid instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ToolCallValidMetricValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolCallValidMetricValue)
+
+Tool call valid metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ToolCallValidResults](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolCallValidResults)
+
+Results for tool call valid metric.
+
+[ToolCallValidSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolCallValidSpec)
+
+Spec for tool call valid metric.
+
+[ToolConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolConfig)
+
+Tool config. This config is shared for all tools provided in the request.
+
+[ToolNameMatchInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolNameMatchInput)
+
+Input for tool name match metric.
+
+[ToolNameMatchInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolNameMatchInstance)
+
+Spec for tool name match instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ToolNameMatchMetricValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolNameMatchMetricValue)
+
+Tool name match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ToolNameMatchResults](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolNameMatchResults)
+
+Results for tool name match metric.
+
+[ToolNameMatchSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolNameMatchSpec)
+
+Spec for tool name match metric.
+
+[ToolParameterKVMatchInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKVMatchInput)
+
+Input for tool parameter key value match metric.
+
+[ToolParameterKVMatchInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKVMatchInstance)
+
+Spec for tool parameter key value match instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ToolParameterKVMatchMetricValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKVMatchMetricValue)
+
+Tool parameter key value match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ToolParameterKVMatchResults](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKVMatchResults)
+
+Results for tool parameter key value match metric.
+
+[ToolParameterKVMatchSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKVMatchSpec)
+
+Spec for tool parameter key value match metric.
+
+[ToolParameterKeyMatchInput](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKeyMatchInput)
+
+Input for tool parameter key match metric.
+
+[ToolParameterKeyMatchInstance](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKeyMatchInstance)
+
+Spec for tool parameter key match instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ToolParameterKeyMatchMetricValue](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKeyMatchMetricValue)
+
+Tool parameter key match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[ToolParameterKeyMatchResults](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKeyMatchResults)
+
+Results for tool parameter key match metric.
+
+[ToolParameterKeyMatchSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolParameterKeyMatchSpec)
+
+Spec for tool parameter key match metric.
+
+[TrainingConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TrainingConfig)
+
+CMLE training config. For every active learning labeling iteration, system will train a machine learning model on CMLE. The trained model will be used by data sampling algorithm to select DataItems.
+
+[TrainingPipeline](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TrainingPipeline)
+
+The TrainingPipeline orchestrates tasks associated with training a Model. It always executes the training task, and optionally may also export data from Vertex AI's Dataset which becomes the training input, upload the Model to Vertex AI, and evaluate the Model.
+
+[Trial](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Trial)
+
+A message representing a Trial. A Trial contains a unique set of Parameters that has been or will be evaluated, along with the objective metrics got by running the Trial.
+
+[TrialContext](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TrialContext)
+
+[TunedModel](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TunedModel)
+
+The Model Registry Model and Online Prediction Endpoint associated with this TuningJob.
+
+[TunedModelCheckpoint](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TunedModelCheckpoint)
+
+TunedModelCheckpoint for the Tuned Model of a Tuning Job.
+
+[TunedModelRef](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TunedModelRef)
+
+TunedModel Reference for legacy model migration.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[TuningDataStats](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TuningDataStats)
+
+The tuning data statistic values for TuningJob.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[TuningJob](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TuningJob)
+
+Represents a TuningJob that runs with Google owned models.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[Type](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Type)
+
+Type contains the list of OpenAPI data types as defined by
+[https://swagger.io/docs/specification/data-models/data-types/](https://swagger.io/docs/specification/data-models/data-types/)
+
+[UndeployIndexOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UndeployIndexOperationMetadata)
+
+Runtime operation information for IndexEndpointService.UndeployIndex.
+
+[UndeployIndexRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UndeployIndexRequest)
+
+Request message for IndexEndpointService.UndeployIndex.
+
+[UndeployIndexResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UndeployIndexResponse)
+
+Response message for IndexEndpointService.UndeployIndex.
+
+[UndeployModelOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UndeployModelOperationMetadata)
+
+Runtime operation information for EndpointService.UndeployModel.
+
+[UndeployModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UndeployModelRequest)
+
+Request message for EndpointService.UndeployModel.
+
+[UndeployModelResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UndeployModelResponse)
+
+Response message for EndpointService.UndeployModel.
+
+[UnmanagedContainerModel](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UnmanagedContainerModel)
+
+Contains model information necessary to perform batch prediction without requiring a full model import.
+
+[UpdateArtifactRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateArtifactRequest)
+
+Request message for MetadataService.UpdateArtifact.
+
+[UpdateCachedContentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateCachedContentRequest)
+
+Request message for GenAiCacheService.UpdateCachedContent. Only expire_time or ttl can be updated.
+
+[UpdateContextRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateContextRequest)
+
+Request message for MetadataService.UpdateContext.
+
+[UpdateDatasetRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateDatasetRequest)
+
+Request message for DatasetService.UpdateDataset.
+
+[UpdateDatasetVersionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateDatasetVersionRequest)
+
+Request message for DatasetService.UpdateDatasetVersion.
+
+[UpdateDeploymentResourcePoolOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateDeploymentResourcePoolOperationMetadata)
+
+Runtime operation information for UpdateDeploymentResourcePool method.
+
+[UpdateDeploymentResourcePoolRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateDeploymentResourcePoolRequest)
+
+Request message for UpdateDeploymentResourcePool method.
+
+[UpdateEndpointLongRunningRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateEndpointLongRunningRequest)
+
+Request message for EndpointService.UpdateEndpointLongRunning.
+
+[UpdateEndpointOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateEndpointOperationMetadata)
+
+Runtime operation information for EndpointService.UpdateEndpointLongRunning.
+
+[UpdateEndpointRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateEndpointRequest)
+
+Request message for EndpointService.UpdateEndpoint.
+
+[UpdateEntityTypeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateEntityTypeRequest)
+
+Request message for FeaturestoreService.UpdateEntityType.
+
+[UpdateExecutionRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateExecutionRequest)
+
+Request message for MetadataService.UpdateExecution.
+
+[UpdateExplanationDatasetOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateExplanationDatasetOperationMetadata)
+
+Runtime operation information for ModelService.UpdateExplanationDataset.
+
+[UpdateExplanationDatasetRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateExplanationDatasetRequest)
+
+Request message for ModelService.UpdateExplanationDataset.
+
+[UpdateExplanationDatasetResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateExplanationDatasetResponse)
+
+Response message of ModelService.UpdateExplanationDataset operation.
+
+[UpdateFeatureGroupOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeatureGroupOperationMetadata)
+
+Details of operations that perform update FeatureGroup.
+
+[UpdateFeatureGroupRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeatureGroupRequest)
+
+Request message for FeatureRegistryService.UpdateFeatureGroup.
+
+[UpdateFeatureOnlineStoreOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeatureOnlineStoreOperationMetadata)
+
+Details of operations that perform update FeatureOnlineStore.
+
+[UpdateFeatureOnlineStoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeatureOnlineStoreRequest)
+
+Request message for FeatureOnlineStoreAdminService.UpdateFeatureOnlineStore.
+
+[UpdateFeatureOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeatureOperationMetadata)
+
+Details of operations that perform update Feature.
+
+[UpdateFeatureRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeatureRequest)
+
+Request message for FeaturestoreService.UpdateFeature. Request message for FeatureRegistryService.UpdateFeature.
+
+[UpdateFeatureViewOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeatureViewOperationMetadata)
+
+Details of operations that perform update FeatureView.
+
+[UpdateFeatureViewRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeatureViewRequest)
+
+Request message for FeatureOnlineStoreAdminService.UpdateFeatureView.
+
+[UpdateFeaturestoreOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeaturestoreOperationMetadata)
+
+Details of operations that perform update Featurestore.
+
+[UpdateFeaturestoreRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateFeaturestoreRequest)
+
+Request message for FeaturestoreService.UpdateFeaturestore.
+
+[UpdateIndexEndpointRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateIndexEndpointRequest)
+
+Request message for IndexEndpointService.UpdateIndexEndpoint.
+
+[UpdateIndexOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateIndexOperationMetadata)
+
+Runtime operation information for IndexService.UpdateIndex.
+
+[UpdateIndexRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateIndexRequest)
+
+Request message for IndexService.UpdateIndex.
+
+[UpdateModelDeploymentMonitoringJobOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateModelDeploymentMonitoringJobOperationMetadata)
+
+Runtime operation information for JobService.UpdateModelDeploymentMonitoringJob.
+
+[UpdateModelDeploymentMonitoringJobRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateModelDeploymentMonitoringJobRequest)
+
+Request message for JobService.UpdateModelDeploymentMonitoringJob.
+
+[UpdateModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateModelRequest)
+
+Request message for ModelService.UpdateModel.
+
+[UpdateNotebookRuntimeTemplateRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateNotebookRuntimeTemplateRequest)
+
+Request message for NotebookService.UpdateNotebookRuntimeTemplate.
+
+[UpdatePersistentResourceOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdatePersistentResourceOperationMetadata)
+
+Details of operations that perform update PersistentResource.
+
+[UpdatePersistentResourceRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdatePersistentResourceRequest)
+
+Request message for UpdatePersistentResource method.
+
+[UpdateRagCorpusOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateRagCorpusOperationMetadata)
+
+Runtime operation information for VertexRagDataService.UpdateRagCorpus.
+
+[UpdateRagCorpusRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateRagCorpusRequest)
+
+Request message for VertexRagDataService.UpdateRagCorpus.
+
+[UpdateRagEngineConfigOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateRagEngineConfigOperationMetadata)
+
+Runtime operation information for VertexRagDataService.UpdateRagEngineConfig.
+
+[UpdateRagEngineConfigRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateRagEngineConfigRequest)
+
+Request message for VertexRagDataService.UpdateRagEngineConfig.
+
+[UpdateReasoningEngineOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateReasoningEngineOperationMetadata)
+
+Details of ReasoningEngineService.UpdateReasoningEngine operation.
+
+[UpdateReasoningEngineRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateReasoningEngineRequest)
+
+Request message for ReasoningEngineService.UpdateReasoningEngine.
+
+[UpdateScheduleRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateScheduleRequest)
+
+Request message for ScheduleService.UpdateSchedule.
+
+[UpdateSpecialistPoolOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateSpecialistPoolOperationMetadata)
+
+Runtime operation metadata for SpecialistPoolService.UpdateSpecialistPool.
+
+[UpdateSpecialistPoolRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateSpecialistPoolRequest)
+
+Request message for SpecialistPoolService.UpdateSpecialistPool.
+
+[UpdateTensorboardExperimentRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateTensorboardExperimentRequest)
+
+Request message for TensorboardService.UpdateTensorboardExperiment.
+
+[UpdateTensorboardOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateTensorboardOperationMetadata)
+
+Details of operations that perform update Tensorboard.
+
+[UpdateTensorboardRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateTensorboardRequest)
+
+Request message for TensorboardService.UpdateTensorboard.
+
+[UpdateTensorboardRunRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateTensorboardRunRequest)
+
+Request message for TensorboardService.UpdateTensorboardRun.
+
+[UpdateTensorboardTimeSeriesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateTensorboardTimeSeriesRequest)
+
+Request message for TensorboardService.UpdateTensorboardTimeSeries.
+
+[UpgradeNotebookRuntimeOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpgradeNotebookRuntimeOperationMetadata)
+
+Metadata information for NotebookService.UpgradeNotebookRuntime.
+
+[UpgradeNotebookRuntimeRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpgradeNotebookRuntimeRequest)
+
+Request message for NotebookService.UpgradeNotebookRuntime.
+
+[UpgradeNotebookRuntimeResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpgradeNotebookRuntimeResponse)
+
+Response message for NotebookService.UpgradeNotebookRuntime.
+
+[UploadModelOperationMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UploadModelOperationMetadata)
+
+Details of ModelService.UploadModel operation.
+
+[UploadModelRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UploadModelRequest)
+
+Request message for ModelService.UploadModel.
+
+[UploadModelResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UploadModelResponse)
+
+Response message of ModelService.UploadModel operation.
+
+[UploadRagFileConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UploadRagFileConfig)
+
+Config for uploading RagFile.
+
+[UploadRagFileRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UploadRagFileRequest)
+
+Request message for VertexRagDataService.UploadRagFile.
+
+[UploadRagFileResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UploadRagFileResponse)
+
+Response message for VertexRagDataService.UploadRagFile.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[UpsertDatapointsRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpsertDatapointsRequest)
+
+Request message for IndexService.UpsertDatapoints
+
+[UpsertDatapointsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpsertDatapointsResponse)
+
+Response message for IndexService.UpsertDatapoints
+
+[UrlContext](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UrlContext)
+
+Tool to support URL context.
+
+[UrlContextMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UrlContextMetadata)
+
+Metadata related to url context retrieval tool.
+
+[UrlMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UrlMetadata)
+
+Context of the a single url retrieval.
+
+[UsageMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UsageMetadata)
+
+Usage metadata about the content generation request and response. This message provides a detailed breakdown of token usage and other relevant metrics.
+
+[UserActionReference](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UserActionReference)
+
+References an API call. It contains more information about long running operation and Jobs that are triggered by the API call.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[Value](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Value)
+
+Value is the value of the field.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[VertexAISearch](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.VertexAISearch)
+
+Retrieve from Vertex AI Search datastore or engine for
+grounding. datastore and engine are mutually exclusive. See
+[https://cloud.google.com/products/agent-builder](https://cloud.google.com/products/agent-builder)
+
+[VertexAiSearchConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.VertexAiSearchConfig)
+
+Config for the Vertex AI Search.
+
+[VertexRagStore](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.VertexRagStore)
+
+Retrieve from Vertex RAG Store for grounding.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[VideoMetadata](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.VideoMetadata)
+
+Metadata describes the input video content.
+
+[VoiceConfig](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.VoiceConfig)
+
+Configuration for a voice.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[WorkerPoolSpec](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WorkerPoolSpec)
+
+Represents the spec of a worker pool in a job.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[WriteFeatureValuesPayload](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WriteFeatureValuesPayload)
+
+Contains Feature values to be written for a specific entity.
+
+[WriteFeatureValuesRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WriteFeatureValuesRequest)
+
+Request message for FeaturestoreOnlineServingService.WriteFeatureValues.
+
+[WriteFeatureValuesResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WriteFeatureValuesResponse)
+
+Response message for FeaturestoreOnlineServingService.WriteFeatureValues.
+
+[WriteTensorboardExperimentDataRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WriteTensorboardExperimentDataRequest)
+
+Request message for TensorboardService.WriteTensorboardExperimentData.
+
+[WriteTensorboardExperimentDataResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WriteTensorboardExperimentDataResponse)
+
+Response message for TensorboardService.WriteTensorboardExperimentData.
+
+[WriteTensorboardRunDataRequest](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WriteTensorboardRunDataRequest)
+
+Request message for TensorboardService.WriteTensorboardRunData.
+
+[WriteTensorboardRunDataResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WriteTensorboardRunDataResponse)
+
+Response message for TensorboardService.WriteTensorboardRunData.
+
+[XraiAttribution](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.XraiAttribution)
+
+An explanation method that redistributes Integrated Gradients attributions to segmented regions, taking advantage of the model's fully differentiable structure. Refer to this paper for more details:
+
+[https://arxiv.org/abs/1906.02825](https://arxiv.org/abs/1906.02825)
+
+Supported only by image Models.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient -->
+
+# Class ModelMonitoringServiceClient (1.134.0)
+
+```
+ModelMonitoringServiceClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1beta1.services.model_monitoring_service.transports.base.ModelMonitoringServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1beta1.services.model_monitoring_service.transports.base.ModelMonitoringServiceTransport,
+],
+]
+] = None,
+client_options: typing.Optional[
+typing.Union[google.api_core.client_options.ClientOptions, dict]
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+A service for creating and managing Vertex AI Model moitoring. This
+includes `ModelMonitor`
+
+resources, `ModelMonitoringJob`
+
+resources.
+
+## Properties
+
+### api_endpoint
+
+Return the API endpoint used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The API endpoint used by the client instance. |
+
+### transport
+
+Returns the transport used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`ModelMonitoringServiceTransport` |
+The transport used by the client instance. |
+
+### universe_domain
+
+Return the universe domain used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The universe domain used by the client instance. |
+
+## Methods
+
+### ModelMonitoringServiceClient
+
+```
+ModelMonitoringServiceClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1beta1.services.model_monitoring_service.transports.base.ModelMonitoringServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1beta1.services.model_monitoring_service.transports.base.ModelMonitoringServiceTransport,
+],
+]
+] = None,
+client_options: typing.Optional[
+typing.Union[google.api_core.client_options.ClientOptions, dict]
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+Instantiates the model monitoring service client.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`credentials` |
+`Optional[google.auth.credentials.Credentials]`
+The authorization credentials to attach to requests. These credentials identify the application to the service; if none are specified, the client will attempt to ascertain the credentials from the environment. |
+`transport` |
+`Optional[Union[str,ModelMonitoringServiceTransport,Callable[..., ModelMonitoringServiceTransport]]]`
+The transport to use, or a Callable that constructs and returns a new transport. If a Callable is given, it will be called with the same set of initialization arguments as used in the ModelMonitoringServiceTransport constructor. If set to None, a transport is chosen automatically. |
+`client_options` |
+`Optional[Union[google.api_core.client_options.ClientOptions, dict]]`
+Custom options for the client. 1. The |
+`client_info` |
+`google.api_core.gapic_v1.client_info.ClientInfo`
+The client info used to send a user-agent string along with API requests. If |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTLSChannelError` |
+If mutual TLS transport creation failed for any reason. |
+
+### __exit__
+
+`__exit__(type, value, traceback)`
+
+
+Releases underlying transport's resources.
+
+### batch_prediction_job_path
+
+```
+batch_prediction_job_path(
+project: str, location: str, batch_prediction_job: str
+) -> str
+```
+
+
+Returns a fully-qualified batch_prediction_job string.
+
+### cancel_operation
+
+```
+cancel_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.CancelOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Starts asynchronous cancellation on a long-running operation.
+
+The server makes a best effort to cancel the operation, but success
+is not guaranteed. If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### common_billing_account_path
+
+`common_billing_account_path(billing_account: str) -> str`
+
+
+Returns a fully-qualified billing_account string.
+
+### common_folder_path
+
+`common_folder_path(folder: str) -> str`
+
+
+Returns a fully-qualified folder string.
+
+### common_location_path
+
+`common_location_path(project: str, location: str) -> str`
+
+
+Returns a fully-qualified location string.
+
+### common_organization_path
+
+`common_organization_path(organization: str) -> str`
+
+
+Returns a fully-qualified organization string.
+
+### common_project_path
+
+`common_project_path(project: str) -> str`
+
+
+Returns a fully-qualified project string.
+
+### create_model_monitor
+
+```
+create_model_monitor(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.CreateModelMonitorRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+model_monitor: typing.Optional[
+google.cloud.aiplatform_v1beta1.types.model_monitor.ModelMonitor
+] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation.Operation
+```
+
+
+Creates a ModelMonitor.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_create_model_monitor():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[CreateModelMonitorRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.CreateModelMonitorRequest.html)(
+parent="parent_value",
+)
+# Make the request
+operation = client.[create_model_monitor](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_create_model_monitor)(request=request)
+print("Waiting for operation to complete...")
+response = operation.result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.CreateModelMonitor. |
+`parent` |
+`str`
+Required. The resource name of the Location to create the ModelMonitor in. Format: |
+`model_monitor` |
+Required. The ModelMonitor to create. This corresponds to the |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation.Operation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### create_model_monitoring_job
+
+```
+create_model_monitoring_job(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.CreateModelMonitoringJobRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+model_monitoring_job: typing.Optional[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_job.ModelMonitoringJob
+] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1beta1.types.model_monitoring_job.ModelMonitoringJob
+```
+
+
+Creates a ModelMonitoringJob.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_create_model_monitoring_job():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[CreateModelMonitoringJobRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.CreateModelMonitoringJobRequest.html)(
+parent="parent_value",
+)
+# Make the request
+response = client.[create_model_monitoring_job](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_create_model_monitoring_job)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.CreateModelMonitoringJob. |
+`parent` |
+`str`
+Required. The parent of the ModelMonitoringJob. Format: |
+`model_monitoring_job` |
+Required. The ModelMonitoringJob to create This corresponds to the |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Represents a model monitoring job that analyze dataset using different monitoring algorithm. |
+
+### dataset_path
+
+`dataset_path(project: str, location: str, dataset: str) -> str`
+
+
+Returns a fully-qualified dataset string.
+
+### delete_model_monitor
+
+```
+delete_model_monitor(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.DeleteModelMonitorRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation.Operation
+```
+
+
+Deletes a ModelMonitor.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_delete_model_monitor():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[DeleteModelMonitorRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DeleteModelMonitorRequest.html)(
+name="name_value",
+)
+# Make the request
+operation = client.[delete_model_monitor](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_delete_model_monitor)(request=request)
+print("Waiting for operation to complete...")
+response = operation.result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.DeleteModelMonitor. |
+`name` |
+`str`
+Required. The name of the ModelMonitor resource to be deleted. Format: |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation.Operation` |
+An object representing a long-running operation. The result type for the operation will be `google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } |
+
+### delete_model_monitoring_job
+
+```
+delete_model_monitoring_job(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.DeleteModelMonitoringJobRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation.Operation
+```
+
+
+Deletes a ModelMonitoringJob.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_delete_model_monitoring_job():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[DeleteModelMonitoringJobRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DeleteModelMonitoringJobRequest.html)(
+name="name_value",
+)
+# Make the request
+operation = client.[delete_model_monitoring_job](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_delete_model_monitoring_job)(request=request)
+print("Waiting for operation to complete...")
+response = operation.result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.DeleteModelMonitoringJob. |
+`name` |
+`str`
+Required. The resource name of the model monitoring job to delete. Format: |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation.Operation` |
+An object representing a long-running operation. The result type for the operation will be `google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } |
+
+### delete_operation
+
+```
+delete_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.DeleteOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Deletes a long-running operation.
+
+This method indicates that the client is no longer interested
+in the operation result. It does not cancel the operation.
+If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### endpoint_path
+
+`endpoint_path(project: str, location: str, endpoint: str) -> str`
+
+
+Returns a fully-qualified endpoint string.
+
+### from_service_account_file
+
+`from_service_account_file(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`ModelMonitoringServiceClient` |
+The constructed client. |
+
+### from_service_account_info
+
+`from_service_account_info(info: dict, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials info.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`info` |
+`dict`
+The service account private key info. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`ModelMonitoringServiceClient` |
+The constructed client. |
+
+### from_service_account_json
+
+`from_service_account_json(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`ModelMonitoringServiceClient` |
+The constructed client. |
+
+### get_iam_policy
+
+```
+get_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.GetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Gets the IAM access control policy for a function.
+
+Returns an empty policy if the function exists and does not have a policy set.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### get_location
+
+```
+get_location(
+request: typing.Optional[
+google.cloud.location.locations_pb2.GetLocationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.Location
+```
+
+
+Gets information about a location.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Location object. |
+
+### get_model_monitor
+
+```
+get_model_monitor(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.GetModelMonitorRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1beta1.types.model_monitor.ModelMonitor
+```
+
+
+Gets a ModelMonitor.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_get_model_monitor():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[GetModelMonitorRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.GetModelMonitorRequest.html)(
+name="name_value",
+)
+# Make the request
+response = client.[get_model_monitor](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_get_model_monitor)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.GetModelMonitor. |
+`name` |
+`str`
+Required. The name of the ModelMonitor resource. Format: |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Vertex AI Model Monitoring Service serves as a central hub for the analysis and visualization of data quality and performance related to models. ModelMonitor stands as a top level resource for overseeing your model monitoring tasks. |
+
+### get_model_monitoring_job
+
+```
+get_model_monitoring_job(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.GetModelMonitoringJobRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1beta1.types.model_monitoring_job.ModelMonitoringJob
+```
+
+
+Gets a ModelMonitoringJob.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_get_model_monitoring_job():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[GetModelMonitoringJobRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.GetModelMonitoringJobRequest.html)(
+name="name_value",
+)
+# Make the request
+response = client.[get_model_monitoring_job](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_get_model_monitoring_job)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.GetModelMonitoringJob. |
+`name` |
+`str`
+Required. The resource name of the ModelMonitoringJob. Format: |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Represents a model monitoring job that analyze dataset using different monitoring algorithm. |
+
+### get_mtls_endpoint_and_cert_source
+
+```
+get_mtls_endpoint_and_cert_source(
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+)
+```
+
+
+Deprecated. Return the API endpoint and client cert source for mutual TLS.
+
+The client cert source is determined in the following order:
+(1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is not "true", the
+client cert source is None.
+(2) if `client_options.client_cert_source`
+
+is provided, use the provided one; if the
+default client cert source exists, use the default one; otherwise the client cert
+source is None.
+
+The API endpoint is determined in the following order:
+(1) if `client_options.api_endpoint`
+
+if provided, use the provided one.
+(2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is "always", use the
+default mTLS endpoint; if the environment variable is "never", use the default API
+endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+use the default API endpoint.
+
+More details can be found at [https://google.aip.dev/auth/4114](https://google.aip.dev/auth/4114).
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`client_options` |
+`google.api_core.client_options.ClientOptions`
+Custom options for the client. Only the |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTLSChannelError` |
+If any errors happen. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`Tuple[str, Callable[[], Tuple[bytes, bytes]]]` |
+returns the API endpoint and the client cert source to use. |
+
+### get_operation
+
+```
+get_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.GetOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Gets the latest state of a long-running operation.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |
+
+### list_locations
+
+```
+list_locations(
+request: typing.Optional[
+google.cloud.location.locations_pb2.ListLocationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.ListLocationsResponse
+```
+
+
+Lists information about the supported locations for this service.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListLocations` method. |
+
+### list_model_monitoring_jobs
+
+```
+list_model_monitoring_jobs(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.ListModelMonitoringJobsRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.services.model_monitoring_service.pagers.ListModelMonitoringJobsPager
+)
+```
+
+
+Lists ModelMonitoringJobs. Callers may choose to read across
+multiple Monitors as per
+`AIP-159 <https://google.aip.dev/159>`
+
+__ by using '-' (the
+hyphen or dash character) as a wildcard character instead of
+modelMonitor id in the parent. Format
+`projects/{project_id}/locations/{location}/moodelMonitors/-/modelMonitoringJobs`
+
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_list_model_monitoring_jobs():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[ListModelMonitoringJobsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ListModelMonitoringJobsRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_model_monitoring_jobs](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_list_model_monitoring_jobs)(request=request)
+# Handle the response
+for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.ListModelMonitoringJobs. |
+`parent` |
+`str`
+Required. The parent of the ModelMonitoringJob. Format: |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for ModelMonitoringService.ListModelMonitoringJobs. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_model_monitors
+
+```
+list_model_monitors(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.ListModelMonitorsRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.services.model_monitoring_service.pagers.ListModelMonitorsPager
+)
+```
+
+
+Lists ModelMonitors in a Location.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_list_model_monitors():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[ListModelMonitorsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ListModelMonitorsRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_model_monitors](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_list_model_monitors)(request=request)
+# Handle the response
+for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.ListModelMonitors. |
+`parent` |
+`str`
+Required. The resource name of the Location to list the ModelMonitors from. Format: |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for ModelMonitoringService.ListModelMonitors Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_operations
+
+```
+list_operations(
+request: typing.Optional[
+google.longrunning.operations_pb2.ListOperationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.ListOperationsResponse
+```
+
+
+Lists operations that match the specified filter in the request.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListOperations` method. |
+
+### model_monitor_path
+
+`model_monitor_path(project: str, location: str, model_monitor: str) -> str`
+
+
+Returns a fully-qualified model_monitor string.
+
+### model_monitoring_job_path
+
+```
+model_monitoring_job_path(
+project: str, location: str, model_monitor: str, model_monitoring_job: str
+) -> str
+```
+
+
+Returns a fully-qualified model_monitoring_job string.
+
+### model_path
+
+`model_path(project: str, location: str, model: str) -> str`
+
+
+Returns a fully-qualified model string.
+
+### parse_batch_prediction_job_path
+
+`parse_batch_prediction_job_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a batch_prediction_job path into its component segments.
+
+### parse_common_billing_account_path
+
+`parse_common_billing_account_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a billing_account path into its component segments.
+
+### parse_common_folder_path
+
+`parse_common_folder_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a folder path into its component segments.
+
+### parse_common_location_path
+
+`parse_common_location_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a location path into its component segments.
+
+### parse_common_organization_path
+
+`parse_common_organization_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a organization path into its component segments.
+
+### parse_common_project_path
+
+`parse_common_project_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a project path into its component segments.
+
+### parse_dataset_path
+
+`parse_dataset_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a dataset path into its component segments.
+
+### parse_endpoint_path
+
+`parse_endpoint_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a endpoint path into its component segments.
+
+### parse_model_monitor_path
+
+`parse_model_monitor_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a model_monitor path into its component segments.
+
+### parse_model_monitoring_job_path
+
+`parse_model_monitoring_job_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a model_monitoring_job path into its component segments.
+
+### parse_model_path
+
+`parse_model_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a model path into its component segments.
+
+### parse_reservation_path
+
+`parse_reservation_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a reservation path into its component segments.
+
+### parse_schedule_path
+
+`parse_schedule_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a schedule path into its component segments.
+
+### reservation_path
+
+```
+reservation_path(
+project_id_or_number: str, zone: str, reservation_name: str
+) -> str
+```
+
+
+Returns a fully-qualified reservation string.
+
+### schedule_path
+
+`schedule_path(project: str, location: str, schedule: str) -> str`
+
+
+Returns a fully-qualified schedule string.
+
+### search_model_monitoring_alerts
+
+```
+search_model_monitoring_alerts(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.SearchModelMonitoringAlertsRequest,
+dict,
+]
+] = None,
+*,
+model_monitor: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.services.model_monitoring_service.pagers.SearchModelMonitoringAlertsPager
+)
+```
+
+
+Returns the Model Monitoring alerts.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_search_model_monitoring_alerts():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[SearchModelMonitoringAlertsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.SearchModelMonitoringAlertsRequest.html)(
+model_monitor="model_monitor_value",
+)
+# Make the request
+page_result = client.[search_model_monitoring_alerts](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_search_model_monitoring_alerts)(request=request)
+# Handle the response
+for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.SearchModelMonitoringAlerts. |
+`model_monitor` |
+`str`
+Required. ModelMonitor resource name. Format: |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for ModelMonitoringService.SearchModelMonitoringAlerts. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### search_model_monitoring_stats
+
+```
+search_model_monitoring_stats(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.SearchModelMonitoringStatsRequest,
+dict,
+]
+] = None,
+*,
+model_monitor: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.services.model_monitoring_service.pagers.SearchModelMonitoringStatsPager
+)
+```
+
+
+Searches Model Monitoring Stats generated within a given time window.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_search_model_monitoring_stats():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[SearchModelMonitoringStatsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.SearchModelMonitoringStatsRequest.html)(
+model_monitor="model_monitor_value",
+)
+# Make the request
+page_result = client.[search_model_monitoring_stats](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_search_model_monitoring_stats)(request=request)
+# Handle the response
+for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.SearchModelMonitoringStats. |
+`model_monitor` |
+`str`
+Required. ModelMonitor resource name. Format: |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for ModelMonitoringService.SearchModelMonitoringStats. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### set_iam_policy
+
+```
+set_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.SetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Sets the IAM access control policy on the specified function.
+
+Replaces any existing policy.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### test_iam_permissions
+
+```
+test_iam_permissions(
+request: typing.Optional[
+google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse
+```
+
+
+Tests the specified IAM permissions against the IAM access control policy for a function.
+
+If the function does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `TestIamPermissions` method. |
+
+### update_model_monitor
+
+```
+update_model_monitor(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.model_monitoring_service.UpdateModelMonitorRequest,
+dict,
+]
+] = None,
+*,
+model_monitor: typing.Optional[
+google.cloud.aiplatform_v1beta1.types.model_monitor.ModelMonitor
+] = None,
+update_mask: typing.Optional[google.protobuf.field_mask_pb2.FieldMask] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation.Operation
+```
+
+
+Updates a ModelMonitor.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+def sample_update_model_monitor():
+# Create a client
+client = aiplatform_v1beta1.
+```[ModelMonitoringServiceClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[UpdateModelMonitorRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.UpdateModelMonitorRequest.html)(
+)
+# Make the request
+operation = client.[update_model_monitor](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_monitoring_service.ModelMonitoringServiceClient.html#google_cloud_aiplatform_v1beta1_services_model_monitoring_service_ModelMonitoringServiceClient_update_model_monitor)(request=request)
+print("Waiting for operation to complete...")
+response = operation.result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for ModelMonitoringService.UpdateModelMonitor. |
+`model_monitor` |
+Required. The model monitoring configuration which replaces the resource on the server. This corresponds to the |
+`update_mask` |
+`google.protobuf.field_mask_pb2.FieldMask`
+Required. Mask specifying which fields to update. This corresponds to the |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation.Operation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### wait_operation
+
+```
+wait_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.WaitOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state.
+
+If the operation is already done, the latest state is immediately returned.
+If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC
+timeout is used. If the server does not support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.EntityType -->
+
+# Class EntityType (1.134.0)
+
+`EntityType(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+An entity type is a type of object in a system that needs to be modeled and have stored information about. For example, driver is an entity type, and driver0 is an instance of an entity type driver.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Immutable. Name of the EntityType. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+The last part entity_type is assigned by the client. The
+entity_type can be up to 64 characters long and can consist
+only of ASCII Latin letters A-Z and a-z and underscore(\_),
+and ASCII digits 0-9 starting with a letter. The value will
+be unique given a featurestore.
+|
+`description` |
+`str`
+Optional. Description of the EntityType. |
+`create_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+Output only. Timestamp when this EntityType was created. |
+`update_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+Output only. Timestamp when this EntityType was most recently updated. |
+`labels` |
+`MutableMapping[str, str]`
+Optional. The labels with user-defined metadata to organize your EntityTypes. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information on and examples of labels. No more than 64 user labels can be associated with one EntityType (System labels are excluded)." System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable. |
+`etag` |
+`str`
+Optional. Used to perform a consistent read-modify-write updates. If not set, a blind "overwrite" update happens. |
+`monitoring_config` |
+Optional. The default monitoring configuration for all Features with value type (Feature.ValueType) BOOL, STRING, DOUBLE or INT64 under this EntityType. If this is populated with [FeaturestoreMonitoringConfig.monitoring_interval] specified, snapshot analysis monitoring is enabled. Otherwise, snapshot analysis monitoring is disabled. |
+`offline_storage_ttl_days` |
+`int`
+Optional. Config for data retention policy in offline storage. TTL in days for feature values that will be stored in offline storage. The Feature Store offline storage periodically removes obsolete feature values older than `offline_storage_ttl_days` since the feature generation
+time. If unset (or explicitly set to 0), default to 4000
+days TTL.
+|
+`satisfies_pzs` |
+`bool`
+Output only. Reserved for future use. |
+`satisfies_pzi` |
+`bool`
+Output only. Reserved for future use. |
+
+## Classes
+
+### LabelsEntry
+
+`LabelsEntry(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The abstract base class for a message.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`kwargs` |
+`dict`
+Keys and values corresponding to the fields of the message. |
+`mapping` |
+`Union[dict, `
+A dictionary or message to be used to determine the values for this message. |
+`ignore_unknown_fields` |
+`Optional(bool)`
+If True, do not raise errors for unknown fields. Only applied if |
+
+## Methods
+
+### EntityType
+
+`EntityType(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+An entity type is a type of object in a system that needs to be modeled and have stored information about. For example, driver is an entity type, and driver0 is an instance of an entity type driver.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DatasetStats -->
+
+# Class DatasetStats (1.134.0)
+
+`DatasetStats(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Statistics computed over a tuning dataset.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`tuning_dataset_example_count` |
+`int`
+Output only. Number of examples in the tuning dataset. |
+`total_tuning_character_count` |
+`int`
+Output only. Number of tuning characters in the tuning dataset. |
+`total_billable_character_count` |
+`int`
+Output only. Number of billable characters in the tuning dataset. |
+`tuning_step_count` |
+`int`
+Output only. Number of tuning steps for this Tuning Job. |
+`user_input_token_distribution` |
+Output only. Dataset distributions for the user input tokens. |
+`user_output_token_distribution` |
+Output only. Dataset distributions for the user output tokens. This field is a member of `oneof` _ `_user_output_token_distribution` .
+|
+`user_message_per_example_distribution` |
+Output only. Dataset distributions for the messages per example. |
+`user_dataset_examples` |
+`MutableSequence[`
+Output only. Sample user messages in the training dataset uri. |
+
+## Methods
+
+### DatasetStats
+
+`DatasetStats(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Statistics computed over a tuning dataset.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WorkerPoolSpec -->
+
+# Class WorkerPoolSpec (1.134.0)
+
+`WorkerPoolSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents the spec of a worker pool in a job.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`container_spec` |
+The custom container task. This field is a member of `oneof` _ `task` .
+|
+`python_package_spec` |
+The Python packaged task. This field is a member of `oneof` _ `task` .
+|
+`machine_spec` |
+Optional. Immutable. The specification of a single machine. |
+`replica_count` |
+`int`
+Optional. The number of worker replicas to use for this worker pool. |
+`nfs_mounts` |
+`MutableSequence[`
+Optional. List of NFS mount spec. |
+`disk_spec` |
+Disk spec. |
+
+## Methods
+
+### WorkerPoolSpec
+
+`WorkerPoolSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents the spec of a worker pool in a job.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ExplainResponse -->
+
+# Class ExplainResponse (1.134.0)
+
+`ExplainResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for PredictionService.Explain.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`explanations` |
+`MutableSequence[`
+The explanations of the Model's PredictResponse.predictions. It has the same number of elements as instances to be explained. |
+`concurrent_explanations` |
+`MutableMapping[str, `
+This field stores the results of the explanations run in parallel with The default explanation strategy/method. |
+`deployed_model_id` |
+`str`
+ID of the Endpoint's DeployedModel that served this explanation. |
+`predictions` |
+`MutableSequence[google.protobuf.struct_pb2.Value]`
+The predictions that are the output of the predictions call. Same as PredictResponse.predictions. |
+
+## Classes
+
+### ConcurrentExplanation
+
+`ConcurrentExplanation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+This message is a wrapper grouping Concurrent Explanations.
+
+### ConcurrentExplanationsEntry
+
+`ConcurrentExplanationsEntry(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The abstract base class for a message.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`kwargs` |
+`dict`
+Keys and values corresponding to the fields of the message. |
+`mapping` |
+`Union[dict, `
+A dictionary or message to be used to determine the values for this message. |
+`ignore_unknown_fields` |
+`Optional(bool)`
+If True, do not raise errors for unknown fields. Only applied if |
+
+## Methods
+
+### ExplainResponse
+
+`ExplainResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for PredictionService.Explain.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.SearchModelMonitoringStatsResponse -->
+
+# Class SearchModelMonitoringStatsResponse (1.134.0)
+
+```
+SearchModelMonitoringStatsResponse(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Response message for ModelMonitoringService.SearchModelMonitoringStats.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`monitoring_stats` |
+`MutableSequence[`
+Stats retrieved for requested objectives. |
+`next_page_token` |
+`str`
+The page token that can be used by the next ModelMonitoringService.SearchModelMonitoringStats call. |
+
+## Methods
+
+### SearchModelMonitoringStatsResponse
+
+```
+SearchModelMonitoringStatsResponse(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Response message for ModelMonitoringService.SearchModelMonitoringStats.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.NfsMount -->
+
+# Class NfsMount (1.134.0)
+
+`NfsMount(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents a mount configuration for Network File System (NFS) to mount.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`server` |
+`str`
+Required. IP address of the NFS server. |
+`path` |
+`str`
+Required. Source path exported from NFS server. Has to start with '/', and combined with the ip address, it indicates the source mount path in the form of `server:path`
+|
+`mount_point` |
+`str`
+Required. Destination mount path. The NFS will be mounted for the user under /mnt/nfs/ |
+
+## Methods
+
+### NfsMount
+
+`NfsMount(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents a mount configuration for Network File System (NFS) to mount.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSchedulesRequest -->
+
+# Class ListSchedulesRequest (1.134.0)
+
+`ListSchedulesRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for ScheduleService.ListSchedules.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`parent` |
+`str`
+Required. The resource name of the Location to list the Schedules from. Format: `projects/{project}/locations/{location}`
+|
+`filter` |
+`str`
+Lists the Schedules that match the filter expression. The following fields are supported: - `display_name` : Supports `=` , `!=` comparisons, and
+`:` wildcard.
+- `state` : Supports `=` and `!=` comparisons.
+- `request` : Supports existence of the |
+`page_size` |
+`int`
+The standard list page size. Default to 100 if not specified. |
+`page_token` |
+`str`
+The standard list page token. Typically obtained via ListSchedulesResponse.next_page_token of the previous ScheduleService.ListSchedules call. |
+`order_by` |
+`str`
+A comma-separated list of fields to order by. The default sort order is in ascending order. Use "desc" after a field name for descending. You can have multiple order_by fields provided. For example, using "create_time desc, end_time" will order results by create time in descending order, and if there are multiple schedules having the same create time, order them by the end time in ascending order. If order_by is not specified, it will order by default with create_time in descending order. Supported fields: - `create_time`
+- `start_time`
+- `end_time`
+- `next_run_time`
+|
+
+## Methods
+
+### ListSchedulesRequest
+
+`ListSchedulesRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for ScheduleService.ListSchedules.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.TensorboardTimeSeries.ValueType -->
+
+# Class ValueType (1.134.0)
+
+`ValueType(value)`
+
+
+An enum representing the value type of a TensorboardTimeSeries.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`VALUE_TYPE_UNSPECIFIED` |
+The value type is unspecified. |
+`SCALAR` |
+Used for TensorboardTimeSeries that is a list of scalars. E.g. accuracy of a model over epochs/time. |
+`TENSOR` |
+Used for TensorboardTimeSeries that is a list of tensors. E.g. histograms of weights of layer in a model over epoch/time. |
+`BLOB_SEQUENCE` |
+Used for TensorboardTimeSeries that is a list of blob sequences. E.g. set of sample images with labels over epochs/time. |
+
+## Methods
+
+### ValueType
+
+`ValueType(value)`
+
+
+An enum representing the value type of a TensorboardTimeSeries.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExplanationMetadata.InputMetadata.Visualization.ColorMap -->
+
+# Class ColorMap (1.134.0)
+
+`ColorMap(value)`
+
+
+The color scheme used for highlighting areas.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`COLOR_MAP_UNSPECIFIED` |
+Should not be used. |
+`PINK_GREEN` |
+Positive: green. Negative: pink. |
+`VIRIDIS` |
+Viridis color map: A perceptually uniform color mapping which is easier to see by those with colorblindness and progresses from yellow to green to blue. Positive: yellow. Negative: blue. |
+`RED` |
+Positive: red. Negative: red. |
+`GREEN` |
+Positive: green. Negative: green. |
+`RED_GREEN` |
+Positive: green. Negative: red. |
+`PINK_WHITE_GREEN` |
+PiYG palette. |
+
+## Methods
+
+### ColorMap
+
+`ColorMap(value)`
+
+
+The color scheme used for highlighting areas.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateDatasetRequest -->
+
+# Class UpdateDatasetRequest (1.134.0)
+
+`UpdateDatasetRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for DatasetService.UpdateDataset.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`dataset` |
+Required. The Dataset which replaces the resource on the server. |
+`update_mask` |
+`google.protobuf.field_mask_pb2.FieldMask`
+Required. The update mask applies to the resource. For the `FieldMask` definition, see
+`google.protobuf.FieldMask][google.protobuf.FieldMask]` .
+Updatable fields:
+- `display_name`
+- `description`
+- `labels`
+|
+
+## Methods
+
+### UpdateDatasetRequest
+
+`UpdateDatasetRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for DatasetService.UpdateDataset.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Type -->
+
+# Class Type (1.134.0)
+
+`Type(value)`
+
+
+Type contains the list of OpenAPI data types as defined by
+[https://swagger.io/docs/specification/data-models/data-types/](https://swagger.io/docs/specification/data-models/data-types/)
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`TYPE_UNSPECIFIED` |
+Not specified, should not be used. |
+`STRING` |
+OpenAPI string type |
+`NUMBER` |
+OpenAPI number type |
+`INTEGER` |
+OpenAPI integer type |
+`BOOLEAN` |
+OpenAPI boolean type |
+`ARRAY` |
+OpenAPI array type |
+`OBJECT` |
+OpenAPI object type |
+
+## Methods
+
+### Type
+
+`Type(value)`
+
+
+Type contains the list of OpenAPI data types as defined by
+[https://swagger.io/docs/specification/data-models/data-types/](https://swagger.io/docs/specification/data-models/data-types/)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteRagCorpusRequest -->
+
+# Class DeleteRagCorpusRequest (1.134.0)
+
+`DeleteRagCorpusRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for VertexRagDataService.DeleteRagCorpus.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Required. The name of the RagCorpus resource to be deleted. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
+|
+`force` |
+`bool`
+Optional. If set to true, any RagFiles in this RagCorpus will also be deleted. Otherwise, the request will only work if the RagCorpus has no RagFiles. |
+
+## Methods
+
+### DeleteRagCorpusRequest
+
+`DeleteRagCorpusRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for VertexRagDataService.DeleteRagCorpus.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TensorboardBlobSequence -->
+
+# Class TensorboardBlobSequence (1.134.0)
+
+`TensorboardBlobSequence(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+One point viewable on a blob metric plot, but mostly just a wrapper
+message to work around repeated fields can't be used directly within
+`oneof`
+
+fields.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`values` |
+`MutableSequence[google.cloud.aiplatform_v1.types.TensorboardBlob]`
+List of blobs contained within the sequence. |
+
+## Methods
+
+### TensorboardBlobSequence
+
+`TensorboardBlobSequence(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+One point viewable on a blob metric plot, but mostly just a wrapper
+message to work around repeated fields can't be used directly within
+`oneof`
+
+fields.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagCorpus -->
+
+# Class RagCorpus (1.134.0)
+
+`RagCorpus(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A RagCorpus is a RagFile container and a project can have multiple RagCorpora.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`vector_db_config` |
+Optional. Immutable. The config for the Vector DBs. This field is a member of `oneof` _ `backend_config` .
+|
+`vertex_ai_search_config` |
+Optional. Immutable. The config for the Vertex AI Search. This field is a member of `oneof` _ `backend_config` .
+|
+`name` |
+`str`
+Output only. The resource name of the RagCorpus. |
+`display_name` |
+`str`
+Required. The display name of the RagCorpus. The name can be up to 128 characters long and can consist of any UTF-8 characters. |
+`description` |
+`str`
+Optional. The description of the RagCorpus. |
+`rag_embedding_model_config` |
+Optional. Immutable. The embedding model config of the RagCorpus. |
+`rag_vector_db_config` |
+Optional. Immutable. The Vector DB config of the RagCorpus. |
+`create_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+Output only. Timestamp when this RagCorpus was created. |
+`update_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+Output only. Timestamp when this RagCorpus was last updated. |
+`corpus_status` |
+Output only. RagCorpus state. |
+`rag_files_count` |
+`int`
+Output only. Number of RagFiles in the RagCorpus. NOTE: This field is not populated in the response of VertexRagDataService.ListRagCorpora. |
+`encryption_spec` |
+Optional. Immutable. The CMEK key name used to encrypt at-rest data related to this Corpus. Only applicable to RagManagedDb option for Vector DB. This field can only be set at corpus creation time, and cannot be updated or deleted. |
+`corpus_type_config` |
+Optional. The corpus type config of the RagCorpus. |
+`satisfies_pzs` |
+`bool`
+Output only. Reserved for future use. |
+`satisfies_pzi` |
+`bool`
+Output only. Reserved for future use. |
+
+## Classes
+
+### CorpusTypeConfig
+
+`CorpusTypeConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The config for the corpus type of the RagCorpus.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Methods
+
+### RagCorpus
+
+`RagCorpus(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A RagCorpus is a RagFile container and a project can have multiple RagCorpora.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ListModelEvaluationSlicesResponse -->
+
+# Class ListModelEvaluationSlicesResponse (1.134.0)
+
+```
+ListModelEvaluationSlicesResponse(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Response message for ModelService.ListModelEvaluationSlices.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`model_evaluation_slices` |
+`MutableSequence[`
+List of ModelEvaluations in the requested page. |
+`next_page_token` |
+`str`
+A token to retrieve next page of results. Pass to ListModelEvaluationSlicesRequest.page_token to obtain that page. |
+
+## Methods
+
+### ListModelEvaluationSlicesResponse
+
+```
+ListModelEvaluationSlicesResponse(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Response message for ModelService.ListModelEvaluationSlices.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.v1.schema.trainingjob.definition_v1.types.AutoMlTextClassification -->
+
+# Class AutoMlTextClassification (1.134.0)
+
+`AutoMlTextClassification(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A TrainingJob that trains and uploads an AutoML Text Classification Model.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`inputs` |
+The input parameters of this TrainingJob. |
+
+## Methods
+
+### AutoMlTextClassification
+
+`AutoMlTextClassification(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A TrainingJob that trains and uploads an AutoML Text Classification Model.
+
+### AutoMlTextClassification
+
+`AutoMlTextClassification(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A TrainingJob that trains and uploads an AutoML Text Classification Model.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.CountTokensResponse -->
+
+# Class CountTokensResponse (1.134.0)
+
+`CountTokensResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for PredictionService.CountTokens.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`total_tokens` |
+`int`
+The total number of tokens counted across all instances from the request. |
+`total_billable_characters` |
+`int`
+The total number of billable characters counted across all instances from the request. |
+`prompt_tokens_details` |
+`MutableSequence[`
+Output only. List of modalities that were processed in the request input. |
+
+## Methods
+
+### CountTokensResponse
+
+`CountTokensResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for PredictionService.CountTokens.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_service -->
+
+# Package model_service (1.134.0)
+
+API documentation for `aiplatform_v1beta1.services.model_service`
+
+package.
+
+## Classes
+
+[ModelServiceAsyncClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_service.ModelServiceAsyncClient)
+
+A service for managing Vertex AI's machine learning Models.
+
+[ModelServiceClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_service.ModelServiceClient)
+
+A service for managing Vertex AI's machine learning Models.
+
+## Modules
+
+[pagers](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.model_service.pagers)
+
+API documentation for `aiplatform_v1beta1.services.model_service.pagers`
+
+module.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ListSchedulesRequest -->
+
+# Class ListSchedulesRequest (1.134.0)
+
+`ListSchedulesRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for ScheduleService.ListSchedules.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`parent` |
+`str`
+Required. The resource name of the Location to list the Schedules from. Format: `projects/{project}/locations/{location}`
+|
+`filter` |
+`str`
+Lists the Schedules that match the filter expression. The following fields are supported: - `display_name` : Supports `=` , `!=` comparisons, and
+`:` wildcard.
+- `state` : Supports `=` and `!=` comparisons.
+- `request` : Supports existence of the |
+`page_size` |
+`int`
+The standard list page size. Default to 100 if not specified. |
+`page_token` |
+`str`
+The standard list page token. Typically obtained via ListSchedulesResponse.next_page_token of the previous ScheduleService.ListSchedules call. |
+`order_by` |
+`str`
+A comma-separated list of fields to order by. The default sort order is in ascending order. Use "desc" after a field name for descending. You can have multiple order_by fields provided. For example, using "create_time desc, end_time" will order results by create time in descending order, and if there are multiple schedules having the same create time, order them by the end time in ascending order. If order_by is not specified, it will order by default with create_time in descending order. Supported fields: - `create_time`
+- `start_time`
+- `end_time`
+- `next_run_time`
+|
+
+## Methods
+
+### ListSchedulesRequest
+
+`ListSchedulesRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for ScheduleService.ListSchedules.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FindNeighborsRequest -->
+
+# Class FindNeighborsRequest (1.134.0)
+
+`FindNeighborsRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The request message for MatchService.FindNeighbors.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`index_endpoint` |
+`str`
+Required. The name of the index endpoint. Format: `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+|
+`deployed_index_id` |
+`str`
+The ID of the DeployedIndex that will serve the request. This request is sent to a specific IndexEndpoint, as per the IndexEndpoint.network. That IndexEndpoint also has IndexEndpoint.deployed_indexes, and each such index has a DeployedIndex.id field. The value of the field below must equal one of the DeployedIndex.id fields of the IndexEndpoint that is being called for this request. |
+`queries` |
+`MutableSequence[`
+The list of queries. |
+`return_full_datapoint` |
+`bool`
+If set to true, the full datapoints (including all vector values and restricts) of the nearest neighbors are returned. Note that returning full datapoint will significantly increase the latency and cost of the query. |
+
+## Classes
+
+### Query
+
+`Query(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A query to find a number of the nearest neighbors (most similar vectors) of a vector.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Methods
+
+### FindNeighborsRequest
+
+`FindNeighborsRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The request message for MatchService.FindNeighbors.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.AutoMLVideoTrainingJob -->
+
+# Class AutoMLVideoTrainingJob (1.134.0)
+
+```
+AutoMLVideoTrainingJob(
+display_name: typing.Optional[str] = None,
+prediction_type: str = "classification",
+model_type: str = "CLOUD",
+project: typing.Optional[str] = None,
+location: typing.Optional[str] = None,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+labels: typing.Optional[typing.Dict[str, str]] = None,
+training_encryption_spec_key_name: typing.Optional[str] = None,
+model_encryption_spec_key_name: typing.Optional[str] = None,
+)
+```
+
+
+Constructs a AutoML Video Training Job.
+
+## Parameters |
+|
+|---|---|
+Name |
+Description |
+`display_name` |
+`str`
+Required. The user-defined name of this TrainingPipeline. |
+`prediction_type` |
+`str`
+The type of prediction the Model is to produce, one of: "classification" - A video classification model classifies shots and segments in your videos according to your own defined labels. "object_tracking" - A video object tracking model detects and tracks multiple objects in shots and segments. You can use these models to track objects in your videos according to your own pre-defined, custom labels. "action_recognition" - A video action recognition model pinpoints the location of actions with short temporal durations ( |
+`model_type` |
+`str`
+str = "CLOUD" Required. One of the following: "CLOUD" - available for "classification", "object_tracking" and "action_recognition" A Model best tailored to be used within Google Cloud, and which cannot be exported. "MOBILE_VERSATILE_1" - available for "classification", "object_tracking" and "action_recognition" A model that, in addition to being available within Google Cloud, can also be exported (see ModelService.ExportModel) as a TensorFlow or TensorFlow Lite model and used on a mobile or edge device with afterwards. "MOBILE_CORAL_VERSATILE_1" - available only for "object_tracking" A versatile model that is meant to be exported (see ModelService.ExportModel) and used on a Google Coral device. "MOBILE_CORAL_LOW_LATENCY_1" - available only for "object_tracking" A model that trades off quality for low latency, to be exported (see ModelService.ExportModel) and used on a Google Coral device. "MOBILE_JETSON_VERSATILE_1" - available only for "object_tracking" A versatile model that is meant to be exported (see ModelService.ExportModel) and used on an NVIDIA Jetson device. "MOBILE_JETSON_LOW_LATENCY_1" - available only for "object_tracking" A model that trades off quality for low latency, to be exported (see ModelService.ExportModel) and used on an NVIDIA Jetson device. |
+`project` |
+`str`
+Optional. Project to run training in. Overrides project set in aiplatform.init. |
+`location` |
+`str`
+Optional. Location to run training in. Overrides location set in aiplatform.init. |
+`credentials` |
+`auth_credentials.Credentials`
+Optional. Custom credentials to use to run call training service. Overrides credentials set in aiplatform.init. |
+`labels` |
+`Dict[str, str]`
+Optional. The labels with user-defined metadata to organize TrainingPipelines. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See |
+`training_encryption_spec_key_name` |
+`Optional[str]`
+Optional. The Cloud KMS resource identifier of the customer managed encryption key used to protect the training pipeline. Has the form: |
+`model_encryption_spec_key_name` |
+`Optional[str]`
+Optional. The Cloud KMS resource identifier of the customer managed encryption key used to protect the model. Has the form: |
+
+## Properties
+
+### create_time
+
+Time this resource was created.
+
+### display_name
+
+Display name of this resource.
+
+### encryption_spec
+
+Customer-managed encryption key options for this Vertex AI resource.
+
+If this is set, then all resources created by this Vertex AI resource will be encrypted with the provided encryption key.
+
+### end_time
+
+Optional. The time when the training job entered the
+`PIPELINE_STATE_SUCCEEDED`
+
+, `PIPELINE_STATE_FAILED`
+
+, or
+`PIPELINE_STATE_CANCELLED`
+
+state.
+
+### error
+
+Optional. Detailed error information for this training job resource.
+Error information is created only when the state of the training job is
+`PIPELINE_STATE_FAILED`
+
+or `PIPELINE_STATE_CANCELLED`
+
+.
+
+### gca_resource
+
+The underlying resource proto representation.
+
+### has_failed
+
+Returns `true`
+
+if the training job failed, otherwise `false`
+
+.
+
+### labels
+
+User-defined labels containing metadata about this resource.
+
+Read more about labels at [https://goo.gl/xmQnxf](https://goo.gl/xmQnxf)
+
+### name
+
+Name of this resource.
+
+### resource_name
+
+Full qualified resource name.
+
+### start_time
+
+Optional. The time when the training job first entered the
+`PIPELINE_STATE_RUNNING`
+
+state.
+
+### state
+
+Current training state.
+
+### update_time
+
+Time this resource was last updated.
+
+## Methods
+
+### cancel
+
+`cancel() -> None`
+
+
+Asynchronously attempts to cancel a training job.
+
+The server makes a best effort to cancel the job, but the training job
+can't always be cancelled. If the training job is canceled, its state
+transitions to `CANCELLED`
+
+and it's not deleted.
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`RuntimeError` |
+If this training job isn't running, then a runtime error is raised. |
+
+### delete
+
+`delete(sync: bool = True) -> None`
+
+
+Deletes this Vertex AI resource. WARNING: This deletion is permanent.
+
+### done
+
+`done() -> bool`
+
+
+Method indicating whether a job has completed.
+
+### get
+
+```
+get(
+resource_name: str,
+project: typing.Optional[str] = None,
+location: typing.Optional[str] = None,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+) -> google.cloud.aiplatform.training_jobs._TrainingJob
+```
+
+
+Gets a training job using the `resource_name`
+
+that's passed in.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`resource_name` |
+`str`
+Required. A fully-qualified resource name or ID. |
+`project` |
+`str`
+Optional. The name of the Google Cloud project to retrieve the training job from. This overrides the project that was set by |
+`location` |
+`str`
+Optional. The Google Cloud region from where the training job is retrieved. This region overrides the region that was set by |
+`credentials` |
+`auth_credentials.Credentials`
+Optional. The credentials that are used to upload this model. These credentials override the credentials set by |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`ValueError` |
+A `ValueError` is raised if the task definition of the retrieved training job doesn't match the custom training task definition. |
+
+### get_model
+
+`get_model(sync=True) -> google.cloud.aiplatform.models.Model`
+
+
+Returns the Vertex AI model produced by this training job.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`sync` |
+`bool`
+If set to |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`RuntimeError` |
+A runtime error is raised if the training job failed or if a model wasn't produced by the training job. |
+
+### list
+
+```
+list(
+filter: typing.Optional[str] = None,
+order_by: typing.Optional[str] = None,
+project: typing.Optional[str] = None,
+location: typing.Optional[str] = None,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+) -> typing.List[google.cloud.aiplatform.base.VertexAiResourceNoun]
+```
+
+
+Lists all instances of this training job resource.
+
+The following shows an example of how to call `CustomTrainingJob.list`
+
+:
+
+```
+aiplatform.CustomTrainingJob.list(
+filter='display_name="experiment_a27"',
+order_by='create_time desc'
+)
+```
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`filter` |
+`str`
+Optional. An expression for filtering the results of the request. For field names, snake_case and camelCase are supported. |
+`order_by` |
+`str`
+Optional. A comma-separated list of fields used to sort the returned traing job resources. The defauilt sorting order is ascending. To sort by a field name in descending order, use |
+`project` |
+`str`
+Optional. The name of the Google Cloud project to which to retrieve the list of training job resources. This overrides the project that was set by |
+`location` |
+`str`
+Optional. The Google Cloud region from where the training job resources are retrieved. This region overrides the region that was set by |
+`credentials` |
+`auth_credentials.Credentials`
+Optional. The credentials that are used to retrieve list. These credentials override the credentials set by |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`List[VertexAiResourceNoun]` |
+A list of training job resources. |
+
+### run
+
+```
+run(
+dataset: google.cloud.aiplatform.datasets.video_dataset.VideoDataset,
+training_fraction_split: typing.Optional[float] = None,
+test_fraction_split: typing.Optional[float] = None,
+training_filter_split: typing.Optional[str] = None,
+test_filter_split: typing.Optional[str] = None,
+model_display_name: typing.Optional[str] = None,
+model_labels: typing.Optional[typing.Dict[str, str]] = None,
+model_id: typing.Optional[str] = None,
+parent_model: typing.Optional[str] = None,
+is_default_version: typing.Optional[bool] = True,
+model_version_aliases: typing.Optional[typing.Sequence[str]] = None,
+model_version_description: typing.Optional[str] = None,
+sync: bool = True,
+create_request_timeout: typing.Optional[float] = None,
+) -> google.cloud.aiplatform.models.Model
+```
+
+
+Runs the AutoML Video training job and returns a model.
+
+If training on a Vertex AI dataset, you can use one of the following split configurations:
+Data fraction splits:
+`training_fraction_split`
+
+, and `test_fraction_split`
+
+may optionally
+be provided, they must sum to up to 1. If none of the fractions are set,
+by default roughly 80% of data will be used for training, and 20% for test.
+
+```
+Data filter splits:
+Assigns input data to training, validation, and test sets
+based on the given filters, data pieces not matched by any
+filter are ignored. Currently only supported for Datasets
+containing DataItems.
+If any of the filters in this message are to match nothing, then
+they can be set as '-' (the minus sign).
+If using filter splits, all of `training_filter_split`, `validation_filter_split` and
+`test_filter_split` must be provided.
+Supported only for unstructured Datasets.
+```
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`dataset` |
+`datasets.VideoDataset`
+Required. The dataset within the same Project from which data will be used to train the Model. The Dataset must use schema compatible with Model being trained, and what is compatible should be described in the used TrainingPipeline's [training_task_definition] [google.cloud.aiplatform.v1beta1.TrainingPipeline.training_task_definition]. For tabular Datasets, all their data is exported to training, to pick and choose from. |
+`training_fraction_split` |
+`float`
+Optional. The fraction of the input data that is to be used to train the Model. This is ignored if Dataset is not provided. |
+`test_fraction_split` |
+`float`
+Optional. The fraction of the input data that is to be used to evaluate the Model. This is ignored if Dataset is not provided. |
+`training_filter_split` |
+`str`
+Optional. A filter on DataItems of the Dataset. DataItems that match this filter are used to train the Model. A filter with same syntax as the one used in DatasetService.ListDataItems may be used. If a single DataItem is matched by more than one of the FilterSplit filters, then it is assigned to the first set that applies to it in the training, validation, test order. This is ignored if Dataset is not provided. |
+`test_filter_split` |
+`str`
+Optional. A filter on DataItems of the Dataset. DataItems that match this filter are used to test the Model. A filter with same syntax as the one used in DatasetService.ListDataItems may be used. If a single DataItem is matched by more than one of the FilterSplit filters, then it is assigned to the first set that applies to it in the training, validation, test order. This is ignored if Dataset is not provided. |
+`model_display_name` |
+`str`
+Optional. The display name of the managed Vertex AI Model. The name can be up to 128 characters long and can be consist of any UTF-8 characters. If not provided upon creation, the job's display_name is used. |
+`model_labels` |
+`Dict[str, str]`
+Optional. The labels with user-defined metadata to organize your Models. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See |
+`model_id` |
+`str`
+Optional. The ID to use for the Model produced by this job, which will become the final component of the model resource name. This value may be up to 63 characters, and valid characters are |
+`parent_model` |
+`str`
+Optional. The resource name or model ID of an existing model. The new model uploaded by this job will be a version of |
+`is_default_version` |
+`bool`
+Optional. When set to True, the newly uploaded model version will automatically have alias "default" included. Subsequent uses of the model produced by this job without a version specified will use this "default" version. When set to False, the "default" alias will not be moved. Actions targeting the model version produced by this job will need to specifically reference this version by ID or alias. New model uploads, i.e. version 1, will always be "default" aliased. |
+`model_version_aliases` |
+`Sequence[str]`
+Optional. User provided version aliases so that the model version uploaded by this job can be referenced via alias instead of auto-generated version ID. A default version alias will be created for the first version of the model. The format is |
+`model_version_description` |
+`str`
+Optional. The description of the model version being uploaded by this job. |
+`create_request_timeout` |
+`float`
+Optional. The timeout for the create request in seconds. |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`RuntimeError` |
+If Training job has already been run or is waiting to run. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`model` |
+The trained Vertex AI Model resource or None if training did not produce a Vertex AI Model. |
+
+### to_dict
+
+`to_dict() -> typing.Dict[str, typing.Any]`
+
+
+Returns the resource proto as a dictionary.
+
+### wait
+
+`wait()`
+
+
+Helper method that blocks until all futures are complete.
+
+### wait_for_resource_creation
+
+`wait_for_resource_creation() -> None`
+
+
+Waits until the resource has been created.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ImportIndexRequest.ConnectorConfig.DatapointFieldMapping.NumericRestrict -->
+
+# Class NumericRestrict (1.134.0)
+
+`NumericRestrict(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Restrictions on numeric values.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`namespace` |
+`str`
+Required. The namespace of the restrict. |
+`value_column` |
+`str`
+Optional. The column containing the numeric value. |
+`value_type` |
+Required. Numeric type of the restrict. Must be consistent for all datapoints within the namespace. |
+
+## Classes
+
+### ValueType
+
+`ValueType(value)`
+
+
+The type of numeric value for the restrict.
+
+## Methods
+
+### NumericRestrict
+
+`NumericRestrict(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Restrictions on numeric values.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TimeSeriesData -->
+
+# Class TimeSeriesData (1.134.0)
+
+`TimeSeriesData(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+All the data stored in a TensorboardTimeSeries.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`tensorboard_time_series_id` |
+`str`
+Required. The ID of the TensorboardTimeSeries, which will become the final component of the TensorboardTimeSeries' resource name |
+`value_type` |
+Required. Immutable. The value type of this time series. All the values in this time series data must match this value type. |
+`values` |
+`MutableSequence[`
+Required. Data points in this time series. |
+
+## Methods
+
+### TimeSeriesData
+
+`TimeSeriesData(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+All the data stored in a TensorboardTimeSeries.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.CreateNotebookExecutionJobOperationMetadata -->
+
+# Class CreateNotebookExecutionJobOperationMetadata (1.134.0)
+
+```
+CreateNotebookExecutionJobOperationMetadata(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Metadata information for NotebookService.CreateNotebookExecutionJob.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`generic_metadata` |
+The operation generic information. |
+`progress_message` |
+`str`
+A human-readable message that shows the intermediate progress details of NotebookRuntime. |
+
+## Methods
+
+### CreateNotebookExecutionJobOperationMetadata
+
+```
+CreateNotebookExecutionJobOperationMetadata(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Metadata information for NotebookService.CreateNotebookExecutionJob.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MigrateResourceRequest.MigrateAutomlModelConfig -->
+
+# Class MigrateAutomlModelConfig (1.134.0)
+
+`MigrateAutomlModelConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for migrating Model in automl.googleapis.com to Vertex AI's Model.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`model` |
+`str`
+Required. Full resource name of automl Model. Format: `projects/{project}/locations/{location}/models/{model}` .
+|
+`model_display_name` |
+`str`
+Optional. Display name of the model in Vertex AI. System will pick a display name if unspecified. |
+
+## Methods
+
+### MigrateAutomlModelConfig
+
+`MigrateAutomlModelConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for migrating Model in automl.googleapis.com to Vertex AI's Model.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ExplanationMetadata.InputMetadata.Visualization.ColorMap -->
+
+# Class ColorMap (1.134.0)
+
+`ColorMap(value)`
+
+
+The color scheme used for highlighting areas.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`COLOR_MAP_UNSPECIFIED` |
+Should not be used. |
+`PINK_GREEN` |
+Positive: green. Negative: pink. |
+`VIRIDIS` |
+Viridis color map: A perceptually uniform color mapping which is easier to see by those with colorblindness and progresses from yellow to green to blue. Positive: yellow. Negative: blue. |
+`RED` |
+Positive: red. Negative: red. |
+`GREEN` |
+Positive: green. Negative: green. |
+`RED_GREEN` |
+Positive: green. Negative: red. |
+`PINK_WHITE_GREEN` |
+PiYG palette. |
+
+## Methods
+
+### ColorMap
+
+`ColorMap(value)`
+
+
+The color scheme used for highlighting areas.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.UpdateDatasetRequest -->
+
+# Class UpdateDatasetRequest (1.134.0)
+
+`UpdateDatasetRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for DatasetService.UpdateDataset.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`dataset` |
+Required. The Dataset which replaces the resource on the server. |
+`update_mask` |
+`google.protobuf.field_mask_pb2.FieldMask`
+Required. The update mask applies to the resource. For the `FieldMask` definition, see
+`google.protobuf.FieldMask][google.protobuf.FieldMask]` .
+Updatable fields:
+- `display_name`
+- `description`
+- `labels`
+|
+
+## Methods
+
+### UpdateDatasetRequest
+
+`UpdateDatasetRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for DatasetService.UpdateDataset.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PauseModelDeploymentMonitoringJobRequest -->
+
+# Class PauseModelDeploymentMonitoringJobRequest (1.134.0)
+
+```
+PauseModelDeploymentMonitoringJobRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.PauseModelDeploymentMonitoringJob.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Required. The resource name of the ModelDeploymentMonitoringJob to pause. Format: `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
+|
+
+## Methods
+
+### PauseModelDeploymentMonitoringJobRequest
+
+```
+PauseModelDeploymentMonitoringJobRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.PauseModelDeploymentMonitoringJob.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DeleteRagCorpusRequest -->
+
+# Class DeleteRagCorpusRequest (1.134.0)
+
+`DeleteRagCorpusRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for VertexRagDataService.DeleteRagCorpus.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Required. The name of the RagCorpus resource to be deleted. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
+|
+`force` |
+`bool`
+Optional. If set to true, any RagFiles in this RagCorpus will also be deleted. Otherwise, the request will only work if the RagCorpus has no RagFiles. |
+
+## Methods
+
+### DeleteRagCorpusRequest
+
+`DeleteRagCorpusRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for VertexRagDataService.DeleteRagCorpus.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.NasTrial.State -->
+
+# Class State (1.134.0)
+
+`State(value)`
+
+
+Describes a NasTrial state.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`STATE_UNSPECIFIED` |
+The NasTrial state is unspecified. |
+`REQUESTED` |
+Indicates that a specific NasTrial has been requested, but it has not yet been suggested by the service. |
+`ACTIVE` |
+Indicates that the NasTrial has been suggested. |
+`STOPPING` |
+Indicates that the NasTrial should stop according to the service. |
+`SUCCEEDED` |
+Indicates that the NasTrial is completed successfully. |
+`INFEASIBLE` |
+Indicates that the NasTrial should not be attempted again. The service will set a NasTrial to INFEASIBLE when it's done but missing the final_measurement. |
+
+## Methods
+
+### State
+
+`State(value)`
+
+
+Describes a NasTrial state.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.Type -->
+
+# Class Type (1.134.0)
+
+`Type(value)`
+
+
+Type contains the list of OpenAPI data types as defined by
+[https://swagger.io/docs/specification/data-models/data-types/](https://swagger.io/docs/specification/data-models/data-types/)
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`TYPE_UNSPECIFIED` |
+Not specified, should not be used. |
+`STRING` |
+OpenAPI string type |
+`NUMBER` |
+OpenAPI number type |
+`INTEGER` |
+OpenAPI integer type |
+`BOOLEAN` |
+OpenAPI boolean type |
+`ARRAY` |
+OpenAPI array type |
+`OBJECT` |
+OpenAPI object type |
+
+## Methods
+
+### Type
+
+`Type(value)`
+
+
+Type contains the list of OpenAPI data types as defined by
+[https://swagger.io/docs/specification/data-models/data-types/](https://swagger.io/docs/specification/data-models/data-types/)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteModelDeploymentMonitoringJobRequest -->
+
+# Class DeleteModelDeploymentMonitoringJobRequest (1.134.0)
+
+```
+DeleteModelDeploymentMonitoringJobRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.DeleteModelDeploymentMonitoringJob.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Required. The resource name of the model monitoring job to delete. Format: `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
+|
+
+## Methods
+
+### DeleteModelDeploymentMonitoringJobRequest
+
+```
+DeleteModelDeploymentMonitoringJobRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.DeleteModelDeploymentMonitoringJob.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DeleteRagFileRequest -->
+
+# Class DeleteRagFileRequest (1.134.0)
+
+`DeleteRagFileRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for VertexRagDataService.DeleteRagFile.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Required. The name of the RagFile resource to be deleted. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}/ragFiles/{rag_file}`
+|
+`force_delete` |
+`bool`
+Optional. If set to true, any errors generated by external vector database during the deletion will be ignored. The default value is false. |
+
+## Methods
+
+### DeleteRagFileRequest
+
+`DeleteRagFileRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for VertexRagDataService.DeleteRagFile.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.specialist_pool_service.pagers -->
+
+# Module pagers (1.134.0)
+
+API documentation for `aiplatform_v1.services.specialist_pool_service.pagers`
+
+module.
+
+## Classes
+
+[ListSpecialistPoolsAsyncPager](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.specialist_pool_service.pagers.ListSpecialistPoolsAsyncPager)
+
+```
+ListSpecialistPoolsAsyncPager(
+method: typing.Callable[
+[...],
+typing.Awaitable[
+google.cloud.aiplatform_v1.types.specialist_pool_service.ListSpecialistPoolsResponse
+],
+],
+request: google.cloud.aiplatform_v1.types.specialist_pool_service.ListSpecialistPoolsRequest,
+response: google.cloud.aiplatform_v1.types.specialist_pool_service.ListSpecialistPoolsResponse,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+)
+```
+
+
+A pager for iterating through `list_specialist_pools`
+
+requests.
+
+This class thinly wraps an initial
+[ListSpecialistPoolsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSpecialistPoolsResponse) object, and
+provides an `__aiter__`
+
+method to iterate through its
+`specialist_pools`
+
+field.
+
+If there are more pages, the `__aiter__`
+
+method will make additional
+`ListSpecialistPools`
+
+requests and continue to iterate
+through the `specialist_pools`
+
+field on the
+corresponding responses.
+
+All the usual [ListSpecialistPoolsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSpecialistPoolsResponse)
+attributes are available on the pager. If multiple requests are made, only
+the most recent response is retained, and thus used for attribute lookup.
+
+[ListSpecialistPoolsPager](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.specialist_pool_service.pagers.ListSpecialistPoolsPager)
+
+```
+ListSpecialistPoolsPager(
+method: typing.Callable[
+[...],
+google.cloud.aiplatform_v1.types.specialist_pool_service.ListSpecialistPoolsResponse,
+],
+request: google.cloud.aiplatform_v1.types.specialist_pool_service.ListSpecialistPoolsRequest,
+response: google.cloud.aiplatform_v1.types.specialist_pool_service.ListSpecialistPoolsResponse,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+)
+```
+
+
+A pager for iterating through `list_specialist_pools`
+
+requests.
+
+This class thinly wraps an initial
+[ListSpecialistPoolsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSpecialistPoolsResponse) object, and
+provides an `__iter__`
+
+method to iterate through its
+`specialist_pools`
+
+field.
+
+If there are more pages, the `__iter__`
+
+method will make additional
+`ListSpecialistPools`
+
+requests and continue to iterate
+through the `specialist_pools`
+
+field on the
+corresponding responses.
+
+All the usual [ListSpecialistPoolsResponse](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListSpecialistPoolsResponse)
+attributes are available on the pager. If multiple requests are made, only
+the most recent response is retained, and thus used for attribute lookup.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient -->
+
+# Class MetadataServiceAsyncClient (1.134.0)
+
+```
+MetadataServiceAsyncClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1.services.metadata_service.transports.base.MetadataServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1.services.metadata_service.transports.base.MetadataServiceTransport,
+],
+]
+] = "grpc_asyncio",
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+Service for reading and writing metadata entries.
+
+## Properties
+
+### api_endpoint
+
+Return the API endpoint used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The API endpoint used by the client instance. |
+
+### transport
+
+Returns the transport used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`MetadataServiceTransport` |
+The transport used by the client instance. |
+
+### universe_domain
+
+Return the universe domain used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The universe domain used by the client instance. |
+
+## Methods
+
+### MetadataServiceAsyncClient
+
+```
+MetadataServiceAsyncClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1.services.metadata_service.transports.base.MetadataServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1.services.metadata_service.transports.base.MetadataServiceTransport,
+],
+]
+] = "grpc_asyncio",
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+Instantiates the metadata service async client.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`credentials` |
+`Optional[google.auth.credentials.Credentials]`
+The authorization credentials to attach to requests. These credentials identify the application to the service; if none are specified, the client will attempt to ascertain the credentials from the environment. |
+`transport` |
+`Optional[Union[str,MetadataServiceTransport,Callable[..., MetadataServiceTransport]]]`
+The transport to use, or a Callable that constructs and returns a new transport to use. If a Callable is given, it will be called with the same set of initialization arguments as used in the MetadataServiceTransport constructor. If set to None, a transport is chosen automatically. |
+`client_options` |
+`Optional[Union[google.api_core.client_options.ClientOptions, dict]]`
+Custom options for the client. 1. The |
+`client_info` |
+`google.api_core.gapic_v1.client_info.ClientInfo`
+The client info used to send a user-agent string along with API requests. If |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTlsChannelError` |
+If mutual TLS transport creation failed for any reason. |
+
+### add_context_artifacts_and_executions
+
+```
+add_context_artifacts_and_executions(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.AddContextArtifactsAndExecutionsRequest,
+dict,
+]
+] = None,
+*,
+context: typing.Optional[str] = None,
+artifacts: typing.Optional[typing.MutableSequence[str]] = None,
+executions: typing.Optional[typing.MutableSequence[str]] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1.types.metadata_service.AddContextArtifactsAndExecutionsResponse
+)
+```
+
+
+Adds a set of Artifacts and Executions to a Context. If any of the Artifacts or Executions have already been added to a Context, they are simply skipped.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_add_context_artifacts_and_executions():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[AddContextArtifactsAndExecutionsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddContextArtifactsAndExecutionsRequest.html)(
+context="context_value",
+)
+# Make the request
+response = await client.[add_context_artifacts_and_executions](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_add_context_artifacts_and_executions)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.AddContextArtifactsAndExecutions. |
+`context` |
+Required. The resource name of the Context that the Artifacts and Executions belong to. Format: |
+`artifacts` |
+`:class:`
+The resource names of the Artifacts to attribute to the Context. Format: |
+`executions` |
+`:class:`
+The resource names of the Executions to associate with the Context. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for MetadataService.AddContextArtifactsAndExecutions. |
+
+### add_context_children
+
+```
+add_context_children(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.AddContextChildrenRequest,
+dict,
+]
+] = None,
+*,
+context: typing.Optional[str] = None,
+child_contexts: typing.Optional[typing.MutableSequence[str]] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.metadata_service.AddContextChildrenResponse
+```
+
+
+Adds a set of Contexts as children to a parent Context. If any of the child Contexts have already been added to the parent Context, they are simply skipped. If this call would create a cycle or cause any Context to have more than 10 parents, the request will fail with an INVALID_ARGUMENT error.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_add_context_children():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[AddContextChildrenRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddContextChildrenRequest.html)(
+context="context_value",
+)
+# Make the request
+response = await client.[add_context_children](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_add_context_children)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.AddContextChildren. |
+`context` |
+Required. The resource name of the parent Context. Format: |
+`child_contexts` |
+`:class:`
+The resource names of the child Contexts. This corresponds to the |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for MetadataService.AddContextChildren. |
+
+### add_execution_events
+
+```
+add_execution_events(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.AddExecutionEventsRequest,
+dict,
+]
+] = None,
+*,
+execution: typing.Optional[str] = None,
+events: typing.Optional[
+typing.MutableSequence[google.cloud.aiplatform_v1.types.event.Event]
+] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.metadata_service.AddExecutionEventsResponse
+```
+
+
+Adds Events to the specified Execution. An Event indicates whether an Artifact was used as an input or output for an Execution. If an Event already exists between the Execution and the Artifact, the Event is skipped.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_add_execution_events():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[AddExecutionEventsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.AddExecutionEventsRequest.html)(
+execution="execution_value",
+)
+# Make the request
+response = await client.[add_execution_events](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_add_execution_events)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.AddExecutionEvents. |
+`execution` |
+Required. The resource name of the Execution that the Events connect Artifacts with. Format: |
+`events` |
+`:class:`
+The Events to create and add. This corresponds to the |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for MetadataService.AddExecutionEvents. |
+
+### artifact_path
+
+```
+artifact_path(
+project: str, location: str, metadata_store: str, artifact: str
+) -> str
+```
+
+
+Returns a fully-qualified artifact string.
+
+### cancel_operation
+
+```
+cancel_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.CancelOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Starts asynchronous cancellation on a long-running operation.
+
+The server makes a best effort to cancel the operation, but success
+is not guaranteed. If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### common_billing_account_path
+
+`common_billing_account_path(billing_account: str) -> str`
+
+
+Returns a fully-qualified billing_account string.
+
+### common_folder_path
+
+`common_folder_path(folder: str) -> str`
+
+
+Returns a fully-qualified folder string.
+
+### common_location_path
+
+`common_location_path(project: str, location: str) -> str`
+
+
+Returns a fully-qualified location string.
+
+### common_organization_path
+
+`common_organization_path(organization: str) -> str`
+
+
+Returns a fully-qualified organization string.
+
+### common_project_path
+
+`common_project_path(project: str) -> str`
+
+
+Returns a fully-qualified project string.
+
+### context_path
+
+`context_path(project: str, location: str, metadata_store: str, context: str) -> str`
+
+
+Returns a fully-qualified context string.
+
+### create_artifact
+
+```
+create_artifact(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.CreateArtifactRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+artifact: typing.Optional[
+google.cloud.aiplatform_v1.types.artifact.Artifact
+] = None,
+artifact_id: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.artifact.Artifact
+```
+
+
+Creates an Artifact associated with a MetadataStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_create_artifact():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[CreateArtifactRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateArtifactRequest.html)(
+parent="parent_value",
+)
+# Make the request
+response = await client.[create_artifact](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_create_artifact)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.CreateArtifact. |
+`parent` |
+Required. The resource name of the MetadataStore where the Artifact should be created. Format: |
+`artifact` |
+Required. The Artifact to create. This corresponds to the |
+`artifact_id` |
+The {artifact} portion of the resource name with the format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general artifact. |
+
+### create_context
+
+```
+create_context(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.CreateContextRequest, dict
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+context: typing.Optional[google.cloud.aiplatform_v1.types.context.Context] = None,
+context_id: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.context.Context
+```
+
+
+Creates a Context associated with a MetadataStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_create_context():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[CreateContextRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateContextRequest.html)(
+parent="parent_value",
+)
+# Make the request
+response = await client.[create_context](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_create_context)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.CreateContext. |
+`parent` |
+Required. The resource name of the MetadataStore where the Context should be created. Format: |
+`context` |
+Required. The Context to create. This corresponds to the |
+`context_id` |
+The {context} portion of the resource name with the format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general context. |
+
+### create_execution
+
+```
+create_execution(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.CreateExecutionRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+execution: typing.Optional[
+google.cloud.aiplatform_v1.types.execution.Execution
+] = None,
+execution_id: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.execution.Execution
+```
+
+
+Creates an Execution associated with a MetadataStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_create_execution():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[CreateExecutionRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateExecutionRequest.html)(
+parent="parent_value",
+)
+# Make the request
+response = await client.[create_execution](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_create_execution)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.CreateExecution. |
+`parent` |
+Required. The resource name of the MetadataStore where the Execution should be created. Format: |
+`execution` |
+Required. The Execution to create. This corresponds to the |
+`execution_id` |
+The {execution} portion of the resource name with the format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general execution. |
+
+### create_metadata_schema
+
+```
+create_metadata_schema(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.CreateMetadataSchemaRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+metadata_schema: typing.Optional[
+google.cloud.aiplatform_v1.types.metadata_schema.MetadataSchema
+] = None,
+metadata_schema_id: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.metadata_schema.MetadataSchema
+```
+
+
+Creates a MetadataSchema.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_create_metadata_schema():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+metadata_schema = aiplatform_v1.[MetadataSchema](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.MetadataSchema.html)()
+metadata_schema.schema = "schema_value"
+request = aiplatform_v1.[CreateMetadataSchemaRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateMetadataSchemaRequest.html)(
+parent="parent_value",
+metadata_schema=metadata_schema,
+)
+# Make the request
+response = await client.[create_metadata_schema](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_create_metadata_schema)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.CreateMetadataSchema. |
+`parent` |
+Required. The resource name of the MetadataStore where the MetadataSchema should be created. Format: |
+`metadata_schema` |
+Required. The MetadataSchema to create. This corresponds to the |
+`metadata_schema_id` |
+The {metadata_schema} portion of the resource name with the format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general MetadataSchema. |
+
+### create_metadata_store
+
+```
+create_metadata_store(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.CreateMetadataStoreRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+metadata_store: typing.Optional[
+google.cloud.aiplatform_v1.types.metadata_store.MetadataStore
+] = None,
+metadata_store_id: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Initializes a MetadataStore, including allocation of resources.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_create_metadata_store():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[CreateMetadataStoreRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreateMetadataStoreRequest.html)(
+parent="parent_value",
+)
+# Make the request
+operation = client.[create_metadata_store](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_create_metadata_store)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.CreateMetadataStore. |
+`parent` |
+Required. The resource name of the Location where the MetadataStore should be created. Format: |
+`metadata_store` |
+Required. The MetadataStore to create. This corresponds to the |
+`metadata_store_id` |
+The {metadatastore} portion of the resource name with the format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### delete_artifact
+
+```
+delete_artifact(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.DeleteArtifactRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Deletes an Artifact.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_delete_artifact():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[DeleteArtifactRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteArtifactRequest.html)(
+name="name_value",
+)
+# Make the request
+operation = client.[delete_artifact](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_delete_artifact)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.DeleteArtifact. |
+`name` |
+Required. The resource name of the Artifact to delete. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be `google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } |
+
+### delete_context
+
+```
+delete_context(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.DeleteContextRequest, dict
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Deletes a stored Context.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_delete_context():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[DeleteContextRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteContextRequest.html)(
+name="name_value",
+)
+# Make the request
+operation = client.[delete_context](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_delete_context)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.DeleteContext. |
+`name` |
+Required. The resource name of the Context to delete. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be `google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } |
+
+### delete_execution
+
+```
+delete_execution(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.DeleteExecutionRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Deletes an Execution.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_delete_execution():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[DeleteExecutionRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteExecutionRequest.html)(
+name="name_value",
+)
+# Make the request
+operation = client.[delete_execution](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_delete_execution)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.DeleteExecution. |
+`name` |
+Required. The resource name of the Execution to delete. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be `google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } |
+
+### delete_metadata_store
+
+```
+delete_metadata_store(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.DeleteMetadataStoreRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Deletes a single MetadataStore and all its child resources (Artifacts, Executions, and Contexts).
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_delete_metadata_store():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[DeleteMetadataStoreRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DeleteMetadataStoreRequest.html)(
+name="name_value",
+)
+# Make the request
+operation = client.[delete_metadata_store](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_delete_metadata_store)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.DeleteMetadataStore. |
+`name` |
+Required. The resource name of the MetadataStore to delete. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be `google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } |
+
+### delete_operation
+
+```
+delete_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.DeleteOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Deletes a long-running operation.
+
+This method indicates that the client is no longer interested
+in the operation result. It does not cancel the operation.
+If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### execution_path
+
+```
+execution_path(
+project: str, location: str, metadata_store: str, execution: str
+) -> str
+```
+
+
+Returns a fully-qualified execution string.
+
+### from_service_account_file
+
+`from_service_account_file(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`MetadataServiceAsyncClient` |
+The constructed client. |
+
+### from_service_account_info
+
+`from_service_account_info(info: dict, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials info.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`info` |
+`dict`
+The service account private key info. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`MetadataServiceAsyncClient` |
+The constructed client. |
+
+### from_service_account_json
+
+`from_service_account_json(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`MetadataServiceAsyncClient` |
+The constructed client. |
+
+### get_artifact
+
+```
+get_artifact(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.GetArtifactRequest, dict
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.artifact.Artifact
+```
+
+
+Retrieves a specific Artifact.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_get_artifact():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[GetArtifactRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetArtifactRequest.html)(
+name="name_value",
+)
+# Make the request
+response = await client.[get_artifact](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_get_artifact)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.GetArtifact. |
+`name` |
+Required. The resource name of the Artifact to retrieve. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general artifact. |
+
+### get_context
+
+```
+get_context(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.GetContextRequest, dict
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.context.Context
+```
+
+
+Retrieves a specific Context.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_get_context():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[GetContextRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetContextRequest.html)(
+name="name_value",
+)
+# Make the request
+response = await client.[get_context](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_get_context)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.GetContext. |
+`name` |
+Required. The resource name of the Context to retrieve. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general context. |
+
+### get_execution
+
+```
+get_execution(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.GetExecutionRequest, dict
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.execution.Execution
+```
+
+
+Retrieves a specific Execution.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_get_execution():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[GetExecutionRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetExecutionRequest.html)(
+name="name_value",
+)
+# Make the request
+response = await client.[get_execution](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_get_execution)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.GetExecution. |
+`name` |
+Required. The resource name of the Execution to retrieve. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general execution. |
+
+### get_iam_policy
+
+```
+get_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.GetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Gets the IAM access control policy for a function.
+
+Returns an empty policy if the function exists and does not have a policy set.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### get_location
+
+```
+get_location(
+request: typing.Optional[
+google.cloud.location.locations_pb2.GetLocationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.Location
+```
+
+
+Gets information about a location.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Location object. |
+
+### get_metadata_schema
+
+```
+get_metadata_schema(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.GetMetadataSchemaRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.metadata_schema.MetadataSchema
+```
+
+
+Retrieves a specific MetadataSchema.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_get_metadata_schema():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[GetMetadataSchemaRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetMetadataSchemaRequest.html)(
+name="name_value",
+)
+# Make the request
+response = await client.[get_metadata_schema](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_get_metadata_schema)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.GetMetadataSchema. |
+`name` |
+Required. The resource name of the MetadataSchema to retrieve. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general MetadataSchema. |
+
+### get_metadata_store
+
+```
+get_metadata_store(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.GetMetadataStoreRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.metadata_store.MetadataStore
+```
+
+
+Retrieves a specific MetadataStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_get_metadata_store():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[GetMetadataStoreRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.GetMetadataStoreRequest.html)(
+name="name_value",
+)
+# Make the request
+response = await client.[get_metadata_store](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_get_metadata_store)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.GetMetadataStore. |
+`name` |
+Required. The resource name of the MetadataStore to retrieve. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a metadata store. Contains a set of metadata that can be queried. |
+
+### get_mtls_endpoint_and_cert_source
+
+```
+get_mtls_endpoint_and_cert_source(
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+)
+```
+
+
+Return the API endpoint and client cert source for mutual TLS.
+
+The client cert source is determined in the following order:
+(1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is not "true", the
+client cert source is None.
+(2) if `client_options.client_cert_source`
+
+is provided, use the provided one; if the
+default client cert source exists, use the default one; otherwise the client cert
+source is None.
+
+The API endpoint is determined in the following order:
+(1) if `client_options.api_endpoint`
+
+if provided, use the provided one.
+(2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is "always", use the
+default mTLS endpoint; if the environment variable is "never", use the default API
+endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+use the default API endpoint.
+
+More details can be found at [https://google.aip.dev/auth/4114](https://google.aip.dev/auth/4114).
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`client_options` |
+`google.api_core.client_options.ClientOptions`
+Custom options for the client. Only the |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTLSChannelError` |
+If any errors happen. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`Tuple[str, Callable[[], Tuple[bytes, bytes]]]` |
+returns the API endpoint and the client cert source to use. |
+
+### get_operation
+
+```
+get_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.GetOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Gets the latest state of a long-running operation.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |
+
+### get_transport_class
+
+```
+get_transport_class(
+label: typing.Optional[str] = None,
+) -> typing.Type[
+google.cloud.aiplatform_v1.services.metadata_service.transports.base.MetadataServiceTransport
+]
+```
+
+
+Returns an appropriate transport class.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`label` |
+`typing.Optional[str]`
+The name of the desired transport. If none is provided, then the first transport in the registry is used. |
+
+### list_artifacts
+
+```
+list_artifacts(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.ListArtifactsRequest, dict
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1.services.metadata_service.pagers.ListArtifactsAsyncPager
+)
+```
+
+
+Lists Artifacts in the MetadataStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_list_artifacts():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[ListArtifactsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListArtifactsRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_artifacts](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_list_artifacts)(request=request)
+# Handle the response
+async for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.ListArtifacts. |
+`parent` |
+Required. The MetadataStore whose Artifacts should be listed. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for MetadataService.ListArtifacts. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_contexts
+
+```
+list_contexts(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.ListContextsRequest, dict
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.services.metadata_service.pagers.ListContextsAsyncPager
+```
+
+
+Lists Contexts on the MetadataStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_list_contexts():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[ListContextsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListContextsRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_contexts](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_list_contexts)(request=request)
+# Handle the response
+async for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.ListContexts |
+`parent` |
+Required. The MetadataStore whose Contexts should be listed. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for MetadataService.ListContexts. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_executions
+
+```
+list_executions(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.ListExecutionsRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1.services.metadata_service.pagers.ListExecutionsAsyncPager
+)
+```
+
+
+Lists Executions in the MetadataStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_list_executions():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[ListExecutionsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListExecutionsRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_executions](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_list_executions)(request=request)
+# Handle the response
+async for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.ListExecutions. |
+`parent` |
+Required. The MetadataStore whose Executions should be listed. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for MetadataService.ListExecutions. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_locations
+
+```
+list_locations(
+request: typing.Optional[
+google.cloud.location.locations_pb2.ListLocationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.ListLocationsResponse
+```
+
+
+Lists information about the supported locations for this service.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListLocations` method. |
+
+### list_metadata_schemas
+
+```
+list_metadata_schemas(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.ListMetadataSchemasRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1.services.metadata_service.pagers.ListMetadataSchemasAsyncPager
+)
+```
+
+
+Lists MetadataSchemas.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_list_metadata_schemas():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[ListMetadataSchemasRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListMetadataSchemasRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_metadata_schemas](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_list_metadata_schemas)(request=request)
+# Handle the response
+async for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.ListMetadataSchemas. |
+`parent` |
+Required. The MetadataStore whose MetadataSchemas should be listed. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for MetadataService.ListMetadataSchemas. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_metadata_stores
+
+```
+list_metadata_stores(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.ListMetadataStoresRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1.services.metadata_service.pagers.ListMetadataStoresAsyncPager
+)
+```
+
+
+Lists MetadataStores for a Location.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_list_metadata_stores():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[ListMetadataStoresRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ListMetadataStoresRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_metadata_stores](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_list_metadata_stores)(request=request)
+# Handle the response
+async for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.ListMetadataStores. |
+`parent` |
+Required. The Location whose MetadataStores should be listed. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for MetadataService.ListMetadataStores. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_operations
+
+```
+list_operations(
+request: typing.Optional[
+google.longrunning.operations_pb2.ListOperationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.ListOperationsResponse
+```
+
+
+Lists operations that match the specified filter in the request.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListOperations` method. |
+
+### metadata_schema_path
+
+```
+metadata_schema_path(
+project: str, location: str, metadata_store: str, metadata_schema: str
+) -> str
+```
+
+
+Returns a fully-qualified metadata_schema string.
+
+### metadata_store_path
+
+`metadata_store_path(project: str, location: str, metadata_store: str) -> str`
+
+
+Returns a fully-qualified metadata_store string.
+
+### parse_artifact_path
+
+`parse_artifact_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a artifact path into its component segments.
+
+### parse_common_billing_account_path
+
+`parse_common_billing_account_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a billing_account path into its component segments.
+
+### parse_common_folder_path
+
+`parse_common_folder_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a folder path into its component segments.
+
+### parse_common_location_path
+
+`parse_common_location_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a location path into its component segments.
+
+### parse_common_organization_path
+
+`parse_common_organization_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a organization path into its component segments.
+
+### parse_common_project_path
+
+`parse_common_project_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a project path into its component segments.
+
+### parse_context_path
+
+`parse_context_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a context path into its component segments.
+
+### parse_execution_path
+
+`parse_execution_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a execution path into its component segments.
+
+### parse_metadata_schema_path
+
+`parse_metadata_schema_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a metadata_schema path into its component segments.
+
+### parse_metadata_store_path
+
+`parse_metadata_store_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a metadata_store path into its component segments.
+
+### purge_artifacts
+
+```
+purge_artifacts(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.PurgeArtifactsRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Purges Artifacts.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_purge_artifacts():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[PurgeArtifactsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeArtifactsRequest.html)(
+parent="parent_value",
+filter="filter_value",
+)
+# Make the request
+operation = client.[purge_artifacts](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_purge_artifacts)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.PurgeArtifacts. |
+`parent` |
+Required. The metadata store to purge Artifacts from. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### purge_contexts
+
+```
+purge_contexts(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.PurgeContextsRequest, dict
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Purges Contexts.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_purge_contexts():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[PurgeContextsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeContextsRequest.html)(
+parent="parent_value",
+filter="filter_value",
+)
+# Make the request
+operation = client.[purge_contexts](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_purge_contexts)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.PurgeContexts. |
+`parent` |
+Required. The metadata store to purge Contexts from. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### purge_executions
+
+```
+purge_executions(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.PurgeExecutionsRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Purges Executions.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_purge_executions():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[PurgeExecutionsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PurgeExecutionsRequest.html)(
+parent="parent_value",
+filter="filter_value",
+)
+# Make the request
+operation = client.[purge_executions](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_purge_executions)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.PurgeExecutions. |
+`parent` |
+Required. The metadata store to purge Executions from. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### query_artifact_lineage_subgraph
+
+```
+query_artifact_lineage_subgraph(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.QueryArtifactLineageSubgraphRequest,
+dict,
+]
+] = None,
+*,
+artifact: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.lineage_subgraph.LineageSubgraph
+```
+
+
+Retrieves lineage of an Artifact represented through Artifacts and Executions connected by Event edges and returned as a LineageSubgraph.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_query_artifact_lineage_subgraph():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[QueryArtifactLineageSubgraphRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryArtifactLineageSubgraphRequest.html)(
+artifact="artifact_value",
+)
+# Make the request
+response = await client.[query_artifact_lineage_subgraph](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_query_artifact_lineage_subgraph)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.QueryArtifactLineageSubgraph. |
+`artifact` |
+Required. The resource name of the Artifact whose Lineage needs to be retrieved as a LineageSubgraph. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+A subgraph of the overall lineage graph. Event edges connect Artifact and Execution nodes. |
+
+### query_context_lineage_subgraph
+
+```
+query_context_lineage_subgraph(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.QueryContextLineageSubgraphRequest,
+dict,
+]
+] = None,
+*,
+context: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.lineage_subgraph.LineageSubgraph
+```
+
+
+Retrieves Artifacts and Executions within the specified Context, connected by Event edges and returned as a LineageSubgraph.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_query_context_lineage_subgraph():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[QueryContextLineageSubgraphRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryContextLineageSubgraphRequest.html)(
+context="context_value",
+)
+# Make the request
+response = await client.[query_context_lineage_subgraph](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_query_context_lineage_subgraph)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.QueryContextLineageSubgraph. |
+`context` |
+Required. The resource name of the Context whose Artifacts and Executions should be retrieved as a LineageSubgraph. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+A subgraph of the overall lineage graph. Event edges connect Artifact and Execution nodes. |
+
+### query_execution_inputs_and_outputs
+
+```
+query_execution_inputs_and_outputs(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.QueryExecutionInputsAndOutputsRequest,
+dict,
+]
+] = None,
+*,
+execution: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.lineage_subgraph.LineageSubgraph
+```
+
+
+Obtains the set of input and output Artifacts for this Execution, in the form of LineageSubgraph that also contains the Execution and connecting Events.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_query_execution_inputs_and_outputs():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[QueryExecutionInputsAndOutputsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.QueryExecutionInputsAndOutputsRequest.html)(
+execution="execution_value",
+)
+# Make the request
+response = await client.[query_execution_inputs_and_outputs](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_query_execution_inputs_and_outputs)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.QueryExecutionInputsAndOutputs. |
+`execution` |
+Required. The resource name of the Execution whose input and output Artifacts should be retrieved as a LineageSubgraph. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+A subgraph of the overall lineage graph. Event edges connect Artifact and Execution nodes. |
+
+### remove_context_children
+
+```
+remove_context_children(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.RemoveContextChildrenRequest,
+dict,
+]
+] = None,
+*,
+context: typing.Optional[str] = None,
+child_contexts: typing.Optional[typing.MutableSequence[str]] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.metadata_service.RemoveContextChildrenResponse
+```
+
+
+Remove a set of children contexts from a parent Context. If any of the child Contexts were NOT added to the parent Context, they are simply skipped.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_remove_context_children():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[RemoveContextChildrenRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RemoveContextChildrenRequest.html)(
+context="context_value",
+)
+# Make the request
+response = await client.[remove_context_children](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_remove_context_children)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for [MetadataService.DeleteContextChildrenRequest][]. |
+`context` |
+Required. The resource name of the parent Context. Format: |
+`child_contexts` |
+`:class:`
+The resource names of the child Contexts. This corresponds to the |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for MetadataService.RemoveContextChildren. |
+
+### set_iam_policy
+
+```
+set_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.SetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Sets the IAM access control policy on the specified function.
+
+Replaces any existing policy.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### test_iam_permissions
+
+```
+test_iam_permissions(
+request: typing.Optional[
+google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse
+```
+
+
+Tests the specified IAM permissions against the IAM access control policy for a function.
+
+If the function does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `TestIamPermissions` method. |
+
+### update_artifact
+
+```
+update_artifact(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.UpdateArtifactRequest,
+dict,
+]
+] = None,
+*,
+artifact: typing.Optional[
+google.cloud.aiplatform_v1.types.artifact.Artifact
+] = None,
+update_mask: typing.Optional[google.protobuf.field_mask_pb2.FieldMask] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.artifact.Artifact
+```
+
+
+Updates a stored Artifact.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_update_artifact():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[UpdateArtifactRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateArtifactRequest.html)(
+)
+# Make the request
+response = await client.[update_artifact](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_update_artifact)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.UpdateArtifact. |
+`artifact` |
+Required. The Artifact containing updates. The Artifact's Artifact.name field is used to identify the Artifact to be updated. Format: |
+`update_mask` |
+Optional. A FieldMask indicating which fields should be updated. This corresponds to the |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general artifact. |
+
+### update_context
+
+```
+update_context(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.UpdateContextRequest, dict
+]
+] = None,
+*,
+context: typing.Optional[google.cloud.aiplatform_v1.types.context.Context] = None,
+update_mask: typing.Optional[google.protobuf.field_mask_pb2.FieldMask] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.context.Context
+```
+
+
+Updates a stored Context.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_update_context():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[UpdateContextRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateContextRequest.html)(
+)
+# Make the request
+response = await client.[update_context](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_update_context)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.UpdateContext. |
+`context` |
+Required. The Context containing updates. The Context's Context.name field is used to identify the Context to be updated. Format: |
+`update_mask` |
+Optional. A FieldMask indicating which fields should be updated. This corresponds to the |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general context. |
+
+### update_execution
+
+```
+update_execution(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.metadata_service.UpdateExecutionRequest,
+dict,
+]
+] = None,
+*,
+execution: typing.Optional[
+google.cloud.aiplatform_v1.types.execution.Execution
+] = None,
+update_mask: typing.Optional[google.protobuf.field_mask_pb2.FieldMask] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1.types.execution.Execution
+```
+
+
+Updates a stored Execution.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_update_execution():
+# Create a client
+client = aiplatform_v1.
+```[MetadataServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1.[UpdateExecutionRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateExecutionRequest.html)(
+)
+# Make the request
+response = await client.[update_execution](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.metadata_service.MetadataServiceAsyncClient.html#google_cloud_aiplatform_v1_services_metadata_service_MetadataServiceAsyncClient_update_execution)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for MetadataService.UpdateExecution. |
+`execution` |
+Required. The Execution containing updates. The Execution's Execution.name field is used to identify the Execution to be updated. Format: |
+`update_mask` |
+Optional. A FieldMask indicating which fields should be updated. This corresponds to the |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Instance of a general execution. |
+
+### wait_operation
+
+```
+wait_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.WaitOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state.
+
+If the operation is already done, the latest state is immediately returned.
+If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC
+timeout is used. If the server does not support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |

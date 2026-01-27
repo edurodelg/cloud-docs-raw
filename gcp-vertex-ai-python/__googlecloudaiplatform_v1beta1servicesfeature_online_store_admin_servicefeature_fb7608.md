@@ -1,0 +1,8897 @@
+---
+merged_at: 2026-01-27T07:03:43.970020
+merged_files: 2
+---
+
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient -->
+
+# Class FeatureOnlineStoreAdminServiceAsyncClient (1.134.0)
+
+```
+FeatureOnlineStoreAdminServiceAsyncClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.transports.base.FeatureOnlineStoreAdminServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.transports.base.FeatureOnlineStoreAdminServiceTransport,
+],
+]
+] = "grpc_asyncio",
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+The service that handles CRUD and List for resources for FeatureOnlineStore.
+
+## Properties
+
+### api_endpoint
+
+Return the API endpoint used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The API endpoint used by the client instance. |
+
+### transport
+
+Returns the transport used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeatureOnlineStoreAdminServiceTransport` |
+The transport used by the client instance. |
+
+### universe_domain
+
+Return the universe domain used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The universe domain used by the client instance. |
+
+## Methods
+
+### FeatureOnlineStoreAdminServiceAsyncClient
+
+```
+FeatureOnlineStoreAdminServiceAsyncClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.transports.base.FeatureOnlineStoreAdminServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.transports.base.FeatureOnlineStoreAdminServiceTransport,
+],
+]
+] = "grpc_asyncio",
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+Instantiates the feature online store admin service async client.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`credentials` |
+`Optional[google.auth.credentials.Credentials]`
+The authorization credentials to attach to requests. These credentials identify the application to the service; if none are specified, the client will attempt to ascertain the credentials from the environment. |
+`transport` |
+`Optional[Union[str,FeatureOnlineStoreAdminServiceTransport,Callable[..., FeatureOnlineStoreAdminServiceTransport]]]`
+The transport to use, or a Callable that constructs and returns a new transport to use. If a Callable is given, it will be called with the same set of initialization arguments as used in the FeatureOnlineStoreAdminServiceTransport constructor. If set to None, a transport is chosen automatically. |
+`client_options` |
+`Optional[Union[google.api_core.client_options.ClientOptions, dict]]`
+Custom options for the client. 1. The |
+`client_info` |
+`google.api_core.gapic_v1.client_info.ClientInfo`
+The client info used to send a user-agent string along with API requests. If |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTlsChannelError` |
+If mutual TLS transport creation failed for any reason. |
+
+### cancel_operation
+
+```
+cancel_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.CancelOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Starts asynchronous cancellation on a long-running operation.
+
+The server makes a best effort to cancel the operation, but success
+is not guaranteed. If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### common_billing_account_path
+
+`common_billing_account_path(billing_account: str) -> str`
+
+
+Returns a fully-qualified billing_account string.
+
+### common_folder_path
+
+`common_folder_path(folder: str) -> str`
+
+
+Returns a fully-qualified folder string.
+
+### common_location_path
+
+`common_location_path(project: str, location: str) -> str`
+
+
+Returns a fully-qualified location string.
+
+### common_organization_path
+
+`common_organization_path(organization: str) -> str`
+
+
+Returns a fully-qualified organization string.
+
+### common_project_path
+
+`common_project_path(project: str) -> str`
+
+
+Returns a fully-qualified project string.
+
+### create_feature_online_store
+
+```
+create_feature_online_store(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.CreateFeatureOnlineStoreRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+feature_online_store: typing.Optional[
+google.cloud.aiplatform_v1beta1.types.feature_online_store.FeatureOnlineStore
+] = None,
+feature_online_store_id: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Creates a new FeatureOnlineStore in a given project and location.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_create_feature_online_store():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+feature_online_store = aiplatform_v1beta1.[FeatureOnlineStore](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.FeatureOnlineStore.html)()
+feature_online_store.bigtable.auto_scaling.min_node_count = 1489
+feature_online_store.bigtable.auto_scaling.max_node_count = 1491
+request = aiplatform_v1beta1.[CreateFeatureOnlineStoreRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.CreateFeatureOnlineStoreRequest.html)(
+parent="parent_value",
+feature_online_store=feature_online_store,
+feature_online_store_id="feature_online_store_id_value",
+)
+# Make the request
+operation = client.[create_feature_online_store](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_create_feature_online_store)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.CreateFeatureOnlineStore. |
+`parent` |
+Required. The resource name of the Location to create FeatureOnlineStores. Format: |
+`feature_online_store` |
+Required. The FeatureOnlineStore to create. This corresponds to the |
+`feature_online_store_id` |
+Required. The ID to use for this FeatureOnlineStore, which will become the final component of the FeatureOnlineStore's resource name. This value may be up to 60 characters, and valid characters are |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### create_feature_view
+
+```
+create_feature_view(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.CreateFeatureViewRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+feature_view: typing.Optional[
+google.cloud.aiplatform_v1beta1.types.feature_view.FeatureView
+] = None,
+feature_view_id: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Creates a new FeatureView in a given FeatureOnlineStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_create_feature_view():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+feature_view = aiplatform_v1beta1.[FeatureView](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.FeatureView.html)()
+feature_view.big_query_source.uri = "uri_value"
+feature_view.big_query_source.entity_id_columns = ['entity_id_columns_value1', 'entity_id_columns_value2']
+request = aiplatform_v1beta1.[CreateFeatureViewRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.CreateFeatureViewRequest.html)(
+parent="parent_value",
+feature_view=feature_view,
+feature_view_id="feature_view_id_value",
+)
+# Make the request
+operation = client.[create_feature_view](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_create_feature_view)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.CreateFeatureView. |
+`parent` |
+Required. The resource name of the FeatureOnlineStore to create FeatureViews. Format: |
+`feature_view` |
+Required. The FeatureView to create. This corresponds to the |
+`feature_view_id` |
+Required. The ID to use for the FeatureView, which will become the final component of the FeatureView's resource name. This value may be up to 60 characters, and valid characters are |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### delete_feature_online_store
+
+```
+delete_feature_online_store(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.DeleteFeatureOnlineStoreRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+force: typing.Optional[bool] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Deletes a single FeatureOnlineStore. The FeatureOnlineStore must not contain any FeatureViews.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_delete_feature_online_store():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[DeleteFeatureOnlineStoreRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DeleteFeatureOnlineStoreRequest.html)(
+name="name_value",
+)
+# Make the request
+operation = client.[delete_feature_online_store](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_delete_feature_online_store)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.DeleteFeatureOnlineStore. |
+`name` |
+Required. The name of the FeatureOnlineStore to be deleted. Format: |
+`force` |
+If set to true, any FeatureViews and Features for this FeatureOnlineStore will also be deleted. (Otherwise, the request will only work if the FeatureOnlineStore has no FeatureViews.) This corresponds to the |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be `google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } |
+
+### delete_feature_view
+
+```
+delete_feature_view(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.DeleteFeatureViewRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Deletes a single FeatureView.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_delete_feature_view():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[DeleteFeatureViewRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DeleteFeatureViewRequest.html)(
+name="name_value",
+)
+# Make the request
+operation = client.[delete_feature_view](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_delete_feature_view)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for [FeatureOnlineStoreAdminService.DeleteFeatureViews][]. |
+`name` |
+Required. The name of the FeatureView to be deleted. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be `google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } |
+
+### delete_operation
+
+```
+delete_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.DeleteOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Deletes a long-running operation.
+
+This method indicates that the client is no longer interested
+in the operation result. It does not cancel the operation.
+If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### feature_online_store_path
+
+```
+feature_online_store_path(
+project: str, location: str, feature_online_store: str
+) -> str
+```
+
+
+Returns a fully-qualified feature_online_store string.
+
+### feature_view_path
+
+```
+feature_view_path(
+project: str, location: str, feature_online_store: str, feature_view: str
+) -> str
+```
+
+
+Returns a fully-qualified feature_view string.
+
+### feature_view_sync_path
+
+```
+feature_view_sync_path(
+project: str, location: str, feature_online_store: str, feature_view: str
+) -> str
+```
+
+
+Returns a fully-qualified feature_view_sync string.
+
+### from_service_account_file
+
+`from_service_account_file(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeatureOnlineStoreAdminServiceAsyncClient` |
+The constructed client. |
+
+### from_service_account_info
+
+`from_service_account_info(info: dict, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials info.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`info` |
+`dict`
+The service account private key info. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeatureOnlineStoreAdminServiceAsyncClient` |
+The constructed client. |
+
+### from_service_account_json
+
+`from_service_account_json(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeatureOnlineStoreAdminServiceAsyncClient` |
+The constructed client. |
+
+### get_feature_online_store
+
+```
+get_feature_online_store(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.GetFeatureOnlineStoreRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1beta1.types.feature_online_store.FeatureOnlineStore
+```
+
+
+Gets details of a single FeatureOnlineStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_get_feature_online_store():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[GetFeatureOnlineStoreRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.GetFeatureOnlineStoreRequest.html)(
+name="name_value",
+)
+# Make the request
+response = await client.[get_feature_online_store](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_get_feature_online_store)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.GetFeatureOnlineStore. |
+`name` |
+Required. The name of the FeatureOnlineStore resource. This corresponds to the |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Vertex AI Feature Online Store provides a centralized repository for serving ML features and embedding indexes at low latency. The Feature Online Store is a top-level container. |
+
+### get_feature_view
+
+```
+get_feature_view(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.GetFeatureViewRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1beta1.types.feature_view.FeatureView
+```
+
+
+Gets details of a single FeatureView.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_get_feature_view():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[GetFeatureViewRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.GetFeatureViewRequest.html)(
+name="name_value",
+)
+# Make the request
+response = await client.[get_feature_view](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_get_feature_view)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.GetFeatureView. |
+`name` |
+Required. The name of the FeatureView resource. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+FeatureView is representation of values that the FeatureOnlineStore will serve based on its syncConfig. |
+
+### get_feature_view_sync
+
+```
+get_feature_view_sync(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.GetFeatureViewSyncRequest,
+dict,
+]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.aiplatform_v1beta1.types.feature_view_sync.FeatureViewSync
+```
+
+
+Gets details of a single FeatureViewSync.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_get_feature_view_sync():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[GetFeatureViewSyncRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.GetFeatureViewSyncRequest.html)(
+name="name_value",
+)
+# Make the request
+response = await client.[get_feature_view_sync](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_get_feature_view_sync)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.GetFeatureViewSync. |
+`name` |
+Required. The name of the FeatureViewSync resource. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+FeatureViewSync is a representation of sync operation which copies data from data source to Feature View in Online Store. |
+
+### get_iam_policy
+
+```
+get_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.GetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Gets the IAM access control policy for a function.
+
+Returns an empty policy if the function exists and does not have a policy set.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### get_location
+
+```
+get_location(
+request: typing.Optional[
+google.cloud.location.locations_pb2.GetLocationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.Location
+```
+
+
+Gets information about a location.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Location object. |
+
+### get_mtls_endpoint_and_cert_source
+
+```
+get_mtls_endpoint_and_cert_source(
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+)
+```
+
+
+Return the API endpoint and client cert source for mutual TLS.
+
+The client cert source is determined in the following order:
+(1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is not "true", the
+client cert source is None.
+(2) if `client_options.client_cert_source`
+
+is provided, use the provided one; if the
+default client cert source exists, use the default one; otherwise the client cert
+source is None.
+
+The API endpoint is determined in the following order:
+(1) if `client_options.api_endpoint`
+
+if provided, use the provided one.
+(2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is "always", use the
+default mTLS endpoint; if the environment variable is "never", use the default API
+endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+use the default API endpoint.
+
+More details can be found at [https://google.aip.dev/auth/4114](https://google.aip.dev/auth/4114).
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`client_options` |
+`google.api_core.client_options.ClientOptions`
+Custom options for the client. Only the |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTLSChannelError` |
+If any errors happen. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`Tuple[str, Callable[[], Tuple[bytes, bytes]]]` |
+returns the API endpoint and the client cert source to use. |
+
+### get_operation
+
+```
+get_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.GetOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Gets the latest state of a long-running operation.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |
+
+### get_transport_class
+
+```
+get_transport_class(
+label: typing.Optional[str] = None,
+) -> typing.Type[
+google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.transports.base.FeatureOnlineStoreAdminServiceTransport
+]
+```
+
+
+Returns an appropriate transport class.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`label` |
+`typing.Optional[str]`
+The name of the desired transport. If none is provided, then the first transport in the registry is used. |
+
+### list_feature_online_stores
+
+```
+list_feature_online_stores(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.ListFeatureOnlineStoresRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.pagers.ListFeatureOnlineStoresAsyncPager
+)
+```
+
+
+Lists FeatureOnlineStores in a given project and location.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_list_feature_online_stores():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[ListFeatureOnlineStoresRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ListFeatureOnlineStoresRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_feature_online_stores](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_list_feature_online_stores)(request=request)
+# Handle the response
+async for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.ListFeatureOnlineStores. |
+`parent` |
+Required. The resource name of the Location to list FeatureOnlineStores. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for FeatureOnlineStoreAdminService.ListFeatureOnlineStores. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_feature_view_syncs
+
+```
+list_feature_view_syncs(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.ListFeatureViewSyncsRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.pagers.ListFeatureViewSyncsAsyncPager
+)
+```
+
+
+Lists FeatureViewSyncs in a given FeatureView.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_list_feature_view_syncs():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[ListFeatureViewSyncsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ListFeatureViewSyncsRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_feature_view_syncs](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_list_feature_view_syncs)(request=request)
+# Handle the response
+async for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.ListFeatureViewSyncs. |
+`parent` |
+Required. The resource name of the FeatureView to list FeatureViewSyncs. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for FeatureOnlineStoreAdminService.ListFeatureViewSyncs. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_feature_views
+
+```
+list_feature_views(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.ListFeatureViewsRequest,
+dict,
+]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.pagers.ListFeatureViewsAsyncPager
+)
+```
+
+
+Lists FeatureViews in a given FeatureOnlineStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_list_feature_views():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[ListFeatureViewsRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ListFeatureViewsRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_feature_views](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_list_feature_views)(request=request)
+# Handle the response
+async for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.ListFeatureViews. |
+`parent` |
+Required. The resource name of the FeatureOnlineStore to list FeatureViews. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for FeatureOnlineStoreAdminService.ListFeatureViews. Iterating over this object will yield results and resolve additional pages automatically. |
+
+### list_locations
+
+```
+list_locations(
+request: typing.Optional[
+google.cloud.location.locations_pb2.ListLocationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.ListLocationsResponse
+```
+
+
+Lists information about the supported locations for this service.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListLocations` method. |
+
+### list_operations
+
+```
+list_operations(
+request: typing.Optional[
+google.longrunning.operations_pb2.ListOperationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.ListOperationsResponse
+```
+
+
+Lists operations that match the specified filter in the request.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListOperations` method. |
+
+### parse_common_billing_account_path
+
+`parse_common_billing_account_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a billing_account path into its component segments.
+
+### parse_common_folder_path
+
+`parse_common_folder_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a folder path into its component segments.
+
+### parse_common_location_path
+
+`parse_common_location_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a location path into its component segments.
+
+### parse_common_organization_path
+
+`parse_common_organization_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a organization path into its component segments.
+
+### parse_common_project_path
+
+`parse_common_project_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a project path into its component segments.
+
+### parse_feature_online_store_path
+
+`parse_feature_online_store_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a feature_online_store path into its component segments.
+
+### parse_feature_view_path
+
+`parse_feature_view_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a feature_view path into its component segments.
+
+### parse_feature_view_sync_path
+
+`parse_feature_view_sync_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a feature_view_sync path into its component segments.
+
+### set_iam_policy
+
+```
+set_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.SetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Sets the IAM access control policy on the specified function.
+
+Replaces any existing policy.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### sync_feature_view
+
+```
+sync_feature_view(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.SyncFeatureViewRequest,
+dict,
+]
+] = None,
+*,
+feature_view: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.SyncFeatureViewResponse
+)
+```
+
+
+Triggers on-demand sync for the FeatureView.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_sync_feature_view():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+request = aiplatform_v1beta1.[SyncFeatureViewRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.SyncFeatureViewRequest.html)(
+feature_view="feature_view_value",
+)
+# Make the request
+response = await client.[sync_feature_view](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_sync_feature_view)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.SyncFeatureView. |
+`feature_view` |
+Required. Format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for FeatureOnlineStoreAdminService.SyncFeatureView. |
+
+### test_iam_permissions
+
+```
+test_iam_permissions(
+request: typing.Optional[
+google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse
+```
+
+
+Tests the specified IAM permissions against the IAM access control policy for a function.
+
+If the function does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `TestIamPermissions` method. |
+
+### update_feature_online_store
+
+```
+update_feature_online_store(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.UpdateFeatureOnlineStoreRequest,
+dict,
+]
+] = None,
+*,
+feature_online_store: typing.Optional[
+google.cloud.aiplatform_v1beta1.types.feature_online_store.FeatureOnlineStore
+] = None,
+update_mask: typing.Optional[google.protobuf.field_mask_pb2.FieldMask] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Updates the parameters of a single FeatureOnlineStore.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_update_feature_online_store():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+feature_online_store = aiplatform_v1beta1.[FeatureOnlineStore](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.FeatureOnlineStore.html)()
+feature_online_store.bigtable.auto_scaling.min_node_count = 1489
+feature_online_store.bigtable.auto_scaling.max_node_count = 1491
+request = aiplatform_v1beta1.[UpdateFeatureOnlineStoreRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.UpdateFeatureOnlineStoreRequest.html)(
+feature_online_store=feature_online_store,
+)
+# Make the request
+operation = client.[update_feature_online_store](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_update_feature_online_store)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.UpdateFeatureOnlineStore. |
+`feature_online_store` |
+Required. The FeatureOnlineStore's |
+`update_mask` |
+Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### update_feature_view
+
+```
+update_feature_view(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.feature_online_store_admin_service.UpdateFeatureViewRequest,
+dict,
+]
+] = None,
+*,
+feature_view: typing.Optional[
+google.cloud.aiplatform_v1beta1.types.feature_view.FeatureView
+] = None,
+update_mask: typing.Optional[google.protobuf.field_mask_pb2.FieldMask] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation_async.AsyncOperation
+```
+
+
+Updates the parameters of a single FeatureView.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_update_feature_view():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeatureOnlineStoreAdminServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html)()
+# Initialize request argument(s)
+feature_view = aiplatform_v1beta1.[FeatureView](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.FeatureView.html)()
+feature_view.big_query_source.uri = "uri_value"
+feature_view.big_query_source.entity_id_columns = ['entity_id_columns_value1', 'entity_id_columns_value2']
+request = aiplatform_v1beta1.[UpdateFeatureViewRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.UpdateFeatureViewRequest.html)(
+feature_view=feature_view,
+)
+# Make the request
+operation = client.[update_feature_view](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.feature_online_store_admin_service.FeatureOnlineStoreAdminServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_feature_online_store_admin_service_FeatureOnlineStoreAdminServiceAsyncClient_update_feature_view)(request=request)
+print("Waiting for operation to complete...")
+response = (await operation).result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeatureOnlineStoreAdminService.UpdateFeatureView. |
+`feature_view` |
+Required. The FeatureView's |
+`update_mask` |
+Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation_async.AsyncOperation` |
+An object representing a long-running operation. The result type for the operation will be
+|
+
+### wait_operation
+
+```
+wait_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.WaitOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state.
+
+If the operation is already done, the latest state is immediately returned.
+If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC
+timeout is used. If the server does not support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient -->
+
+# Class FeaturestoreOnlineServingServiceAsyncClient (1.134.0)
+
+```
+FeaturestoreOnlineServingServiceAsyncClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport,
+],
+]
+] = "grpc_asyncio",
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+A service for serving online feature values.
+
+## Properties
+
+### api_endpoint
+
+Return the API endpoint used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The API endpoint used by the client instance. |
+
+### transport
+
+Returns the transport used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeaturestoreOnlineServingServiceTransport` |
+The transport used by the client instance. |
+
+### universe_domain
+
+Return the universe domain used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The universe domain used by the client instance. |
+
+## Methods
+
+### FeaturestoreOnlineServingServiceAsyncClient
+
+```
+FeaturestoreOnlineServingServiceAsyncClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport,
+],
+]
+] = "grpc_asyncio",
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+Instantiates the featurestore online serving service async client.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`credentials` |
+`Optional[google.auth.credentials.Credentials]`
+The authorization credentials to attach to requests. These credentials identify the application to the service; if none are specified, the client will attempt to ascertain the credentials from the environment. |
+`transport` |
+`Optional[Union[str,FeaturestoreOnlineServingServiceTransport,Callable[..., FeaturestoreOnlineServingServiceTransport]]]`
+The transport to use, or a Callable that constructs and returns a new transport to use. If a Callable is given, it will be called with the same set of initialization arguments as used in the FeaturestoreOnlineServingServiceTransport constructor. If set to None, a transport is chosen automatically. |
+`client_options` |
+`Optional[Union[google.api_core.client_options.ClientOptions, dict]]`
+Custom options for the client. 1. The |
+`client_info` |
+`google.api_core.gapic_v1.client_info.ClientInfo`
+The client info used to send a user-agent string along with API requests. If |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTlsChannelError` |
+If mutual TLS transport creation failed for any reason. |
+
+### cancel_operation
+
+```
+cancel_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.CancelOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Starts asynchronous cancellation on a long-running operation.
+
+The server makes a best effort to cancel the operation, but success
+is not guaranteed. If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### common_billing_account_path
+
+`common_billing_account_path(billing_account: str) -> str`
+
+
+Returns a fully-qualified billing_account string.
+
+### common_folder_path
+
+`common_folder_path(folder: str) -> str`
+
+
+Returns a fully-qualified folder string.
+
+### common_location_path
+
+`common_location_path(project: str, location: str) -> str`
+
+
+Returns a fully-qualified location string.
+
+### common_organization_path
+
+`common_organization_path(organization: str) -> str`
+
+
+Returns a fully-qualified organization string.
+
+### common_project_path
+
+`common_project_path(project: str) -> str`
+
+
+Returns a fully-qualified project string.
+
+### delete_operation
+
+```
+delete_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.DeleteOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Deletes a long-running operation.
+
+This method indicates that the client is no longer interested
+in the operation result. It does not cancel the operation.
+If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### entity_type_path
+
+```
+entity_type_path(
+project: str, location: str, featurestore: str, entity_type: str
+) -> str
+```
+
+
+Returns a fully-qualified entity_type string.
+
+### from_service_account_file
+
+`from_service_account_file(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeaturestoreOnlineServingServiceAsyncClient` |
+The constructed client. |
+
+### from_service_account_info
+
+`from_service_account_info(info: dict, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials info.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`info` |
+`dict`
+The service account private key info. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeaturestoreOnlineServingServiceAsyncClient` |
+The constructed client. |
+
+### from_service_account_json
+
+`from_service_account_json(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeaturestoreOnlineServingServiceAsyncClient` |
+The constructed client. |
+
+### get_iam_policy
+
+```
+get_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.GetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Gets the IAM access control policy for a function.
+
+Returns an empty policy if the function exists and does not have a policy set.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### get_location
+
+```
+get_location(
+request: typing.Optional[
+google.cloud.location.locations_pb2.GetLocationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.Location
+```
+
+
+Gets information about a location.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Location object. |
+
+### get_mtls_endpoint_and_cert_source
+
+```
+get_mtls_endpoint_and_cert_source(
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+)
+```
+
+
+Return the API endpoint and client cert source for mutual TLS.
+
+The client cert source is determined in the following order:
+(1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is not "true", the
+client cert source is None.
+(2) if `client_options.client_cert_source`
+
+is provided, use the provided one; if the
+default client cert source exists, use the default one; otherwise the client cert
+source is None.
+
+The API endpoint is determined in the following order:
+(1) if `client_options.api_endpoint`
+
+if provided, use the provided one.
+(2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is "always", use the
+default mTLS endpoint; if the environment variable is "never", use the default API
+endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+use the default API endpoint.
+
+More details can be found at [https://google.aip.dev/auth/4114](https://google.aip.dev/auth/4114).
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`client_options` |
+`google.api_core.client_options.ClientOptions`
+Custom options for the client. Only the |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTLSChannelError` |
+If any errors happen. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`Tuple[str, Callable[[], Tuple[bytes, bytes]]]` |
+returns the API endpoint and the client cert source to use. |
+
+### get_operation
+
+```
+get_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.GetOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Gets the latest state of a long-running operation.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |
+
+### get_transport_class
+
+```
+get_transport_class(
+label: typing.Optional[str] = None,
+) -> typing.Type[
+google.cloud.aiplatform_v1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport
+]
+```
+
+
+Returns an appropriate transport class.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`label` |
+`typing.Optional[str]`
+The name of the desired transport. If none is provided, then the first transport in the registry is used. |
+
+### list_locations
+
+```
+list_locations(
+request: typing.Optional[
+google.cloud.location.locations_pb2.ListLocationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.ListLocationsResponse
+```
+
+
+Lists information about the supported locations for this service.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListLocations` method. |
+
+### list_operations
+
+```
+list_operations(
+request: typing.Optional[
+google.longrunning.operations_pb2.ListOperationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.ListOperationsResponse
+```
+
+
+Lists operations that match the specified filter in the request.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListOperations` method. |
+
+### parse_common_billing_account_path
+
+`parse_common_billing_account_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a billing_account path into its component segments.
+
+### parse_common_folder_path
+
+`parse_common_folder_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a folder path into its component segments.
+
+### parse_common_location_path
+
+`parse_common_location_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a location path into its component segments.
+
+### parse_common_organization_path
+
+`parse_common_organization_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a organization path into its component segments.
+
+### parse_common_project_path
+
+`parse_common_project_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a project path into its component segments.
+
+### parse_entity_type_path
+
+`parse_entity_type_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a entity_type path into its component segments.
+
+### read_feature_values
+
+```
+read_feature_values(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.featurestore_online_service.ReadFeatureValuesRequest,
+dict,
+]
+] = None,
+*,
+entity_type: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1.types.featurestore_online_service.ReadFeatureValuesResponse
+)
+```
+
+
+Reads Feature values of a specific entity of an EntityType. For reading feature values of multiple entities of an EntityType, please use StreamingReadFeatureValues.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_read_feature_values():
+# Create a client
+client = aiplatform_v1.
+```[FeaturestoreOnlineServingServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html)()
+# Initialize request argument(s)
+feature_selector = aiplatform_v1.[FeatureSelector](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureSelector.html)()
+feature_selector.id_matcher.ids = ['ids_value1', 'ids_value2']
+request = aiplatform_v1.[ReadFeatureValuesRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReadFeatureValuesRequest.html)(
+entity_type="entity_type_value",
+entity_id="entity_id_value",
+feature_selector=feature_selector,
+)
+# Make the request
+response = await client.[read_feature_values](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html#google_cloud_aiplatform_v1_services_featurestore_online_serving_service_FeaturestoreOnlineServingServiceAsyncClient_read_feature_values)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeaturestoreOnlineServingService.ReadFeatureValues. |
+`entity_type` |
+Required. The resource name of the EntityType for the entity being read. Value format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for FeaturestoreOnlineServingService.ReadFeatureValues. |
+
+### set_iam_policy
+
+```
+set_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.SetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Sets the IAM access control policy on the specified function.
+
+Replaces any existing policy.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### streaming_read_feature_values
+
+```
+streaming_read_feature_values(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.featurestore_online_service.StreamingReadFeatureValuesRequest,
+dict,
+]
+] = None,
+*,
+entity_type: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> typing.Awaitable[
+typing.AsyncIterable[
+google.cloud.aiplatform_v1.types.featurestore_online_service.ReadFeatureValuesResponse
+]
+]
+```
+
+
+Reads Feature values for multiple entities. Depending on their size, data for different entities may be broken up across multiple responses.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_streaming_read_feature_values():
+# Create a client
+client = aiplatform_v1.
+```[FeaturestoreOnlineServingServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html)()
+# Initialize request argument(s)
+feature_selector = aiplatform_v1.[FeatureSelector](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureSelector.html)()
+feature_selector.id_matcher.ids = ['ids_value1', 'ids_value2']
+request = aiplatform_v1.[StreamingReadFeatureValuesRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.StreamingReadFeatureValuesRequest.html)(
+entity_type="entity_type_value",
+entity_ids=['entity_ids_value1', 'entity_ids_value2'],
+feature_selector=feature_selector,
+)
+# Make the request
+stream = await client.[streaming_read_feature_values](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html#google_cloud_aiplatform_v1_services_featurestore_online_serving_service_FeaturestoreOnlineServingServiceAsyncClient_streaming_read_feature_values)(request=request)
+# Handle the response
+async for response in stream:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeaturestoreOnlineServingService.StreamingReadFeatureValues. |
+`entity_type` |
+Required. The resource name of the entities' type. Value format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`AsyncIterable[` |
+Response message for FeaturestoreOnlineServingService.ReadFeatureValues. |
+
+### test_iam_permissions
+
+```
+test_iam_permissions(
+request: typing.Optional[
+google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse
+```
+
+
+Tests the specified IAM permissions against the IAM access control policy for a function.
+
+If the function does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `TestIamPermissions` method. |
+
+### wait_operation
+
+```
+wait_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.WaitOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state.
+
+If the operation is already done, the latest state is immediately returned.
+If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC
+timeout is used. If the server does not support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |
+
+### write_feature_values
+
+```
+write_feature_values(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1.types.featurestore_online_service.WriteFeatureValuesRequest,
+dict,
+]
+] = None,
+*,
+entity_type: typing.Optional[str] = None,
+payloads: typing.Optional[
+typing.MutableSequence[
+google.cloud.aiplatform_v1.types.featurestore_online_service.WriteFeatureValuesPayload
+]
+] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1.types.featurestore_online_service.WriteFeatureValuesResponse
+)
+```
+
+
+Writes Feature values of one or more entities of an EntityType. The Feature values are merged into existing entities if any. The Feature values to be written must have timestamp within the online storage retention.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1
+async def sample_write_feature_values():
+# Create a client
+client = aiplatform_v1.
+```[FeaturestoreOnlineServingServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html)()
+# Initialize request argument(s)
+payloads = aiplatform_v1.[WriteFeatureValuesPayload](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WriteFeatureValuesPayload.html)()
+payloads.entity_id = "entity_id_value"
+request = aiplatform_v1.[WriteFeatureValuesRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.WriteFeatureValuesRequest.html)(
+entity_type="entity_type_value",
+payloads=payloads,
+)
+# Make the request
+response = await client.[write_feature_values](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html#google_cloud_aiplatform_v1_services_featurestore_online_serving_service_FeaturestoreOnlineServingServiceAsyncClient_write_feature_values)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeaturestoreOnlineServingService.WriteFeatureValues. |
+`entity_type` |
+Required. The resource name of the EntityType for the entities being written. Value format: |
+`payloads` |
+`:class:`
+Required. The entities to be written. Up to 100,000 feature values can be written across all |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for FeaturestoreOnlineServingService.WriteFeatureValues. |
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RetrieveMemoriesRequest.SimilaritySearchParams -->
+
+# Class SimilaritySearchParams (1.134.0)
+
+`SimilaritySearchParams(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Parameters for semantic similarity search based retrieval.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`search_query` |
+`str`
+Required. Query to use for similarity search retrieval. If provided, then the parent ReasoningEngine must have ReasoningEngineContextSpec.MemoryBankConfig.SimilaritySearchConfig set. |
+`top_k` |
+`int`
+Optional. The maximum number of memories to return. The service may return fewer than this value. If unspecified, at most 3 memories will be returned. The maximum value is 100; values above 100 will be coerced to 100. |
+
+## Methods
+
+### SimilaritySearchParams
+
+`SimilaritySearchParams(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Parameters for semantic similarity search based retrieval.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ResourceRuntimeSpec -->
+
+# Class ResourceRuntimeSpec (1.134.0)
+
+`ResourceRuntimeSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Configuration for the runtime on a PersistentResource instance, including but not limited to:
+
+- Service accounts used to run the workloads.
+- Whether to make it a dedicated Ray Cluster.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`service_account_spec` |
+Optional. Configure the use of workload identity on the PersistentResource |
+`ray_spec` |
+Optional. Ray cluster configuration. Required when creating a dedicated RayCluster on the PersistentResource. |
+
+## Methods
+
+### ResourceRuntimeSpec
+
+`ResourceRuntimeSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Configuration for the runtime on a PersistentResource instance, including but not limited to:
+
+- Service accounts used to run the workloads.
+- Whether to make it a dedicated Ray Cluster.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExactMatchMetricValue -->
+
+# Class ExactMatchMetricValue (1.134.0)
+
+`ExactMatchMetricValue(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Exact match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`score` |
+`float`
+Output only. Exact match score. This field is a member of `oneof` _ `_score` .
+|
+
+## Methods
+
+### ExactMatchMetricValue
+
+`ExactMatchMetricValue(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Exact match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DeleteFeatureOnlineStoreRequest -->
+
+# Class DeleteFeatureOnlineStoreRequest (1.134.0)
+
+```
+DeleteFeatureOnlineStoreRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for FeatureOnlineStoreAdminService.DeleteFeatureOnlineStore.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Required. The name of the FeatureOnlineStore to be deleted. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
+|
+`force` |
+`bool`
+If set to true, any FeatureViews and Features for this FeatureOnlineStore will also be deleted. (Otherwise, the request will only work if the FeatureOnlineStore has no FeatureViews.) |
+
+## Methods
+
+### DeleteFeatureOnlineStoreRequest
+
+```
+DeleteFeatureOnlineStoreRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for FeatureOnlineStoreAdminService.DeleteFeatureOnlineStore.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DirectUploadSource -->
+
+# Class DirectUploadSource (1.134.0)
+
+`DirectUploadSource(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The input content is encapsulated and uploaded in the request.
+
+## Methods
+
+### DirectUploadSource
+
+`DirectUploadSource(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The input content is encapsulated and uploaded in the request.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DoubleArray -->
+
+# Class DoubleArray (1.134.0)
+
+`DoubleArray(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A list of double values.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`values` |
+`MutableSequence[float]`
+A list of double values. |
+
+## Methods
+
+### DoubleArray
+
+`DoubleArray(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A list of double values.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.CreatePipelineJobRequest -->
+
+# Class CreatePipelineJobRequest (1.134.0)
+
+`CreatePipelineJobRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for PipelineService.CreatePipelineJob.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`parent` |
+`str`
+Required. The resource name of the Location to create the PipelineJob in. Format: `projects/{project}/locations/{location}`
+|
+`pipeline_job` |
+Required. The PipelineJob to create. |
+`pipeline_job_id` |
+`str`
+The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/` a-z][0-9]`-/` .
+|
+
+## Methods
+
+### CreatePipelineJobRequest
+
+`CreatePipelineJobRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for PipelineService.CreatePipelineJob.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ExecutableCode -->
+
+# Class ExecutableCode (1.134.0)
+
+`ExecutableCode(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Code generated by the model that is meant to be executed, and the result returned to the model.
+
+Generated when using the [FunctionDeclaration] tool and [FunctionCallingConfig] mode is set to [Mode.CODE].
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`language` |
+Required. Programming language of the `code` .
+|
+`code` |
+`str`
+Required. The code to be executed. |
+
+## Classes
+
+### Language
+
+`Language(value)`
+
+
+Supported programming languages for the generated code.
+
+## Methods
+
+### ExecutableCode
+
+`ExecutableCode(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Code generated by the model that is meant to be executed, and the result returned to the model.
+
+Generated when using the [FunctionDeclaration] tool and [FunctionCallingConfig] mode is set to [Mode.CODE].
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagRetrievalConfig.Ranking.RankService -->
+
+# Class RankService (1.134.0)
+
+`RankService(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for Rank Service.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`model_name` |
+`str`
+Optional. The model name of the rank service. Format: `semantic-ranker-512@latest`
+This field is a member of `oneof` _ `_model_name` .
+|
+
+## Methods
+
+### RankService
+
+`RankService(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for Rank Service.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RemoveDatapointsResponse -->
+
+# Class RemoveDatapointsResponse (1.134.0)
+
+`RemoveDatapointsResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexService.RemoveDatapoints
+
+## Methods
+
+### RemoveDatapointsResponse
+
+`RemoveDatapointsResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexService.RemoveDatapoints
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpsertDatapointsResponse -->
+
+# Class UpsertDatapointsResponse (1.134.0)
+
+`UpsertDatapointsResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexService.UpsertDatapoints
+
+## Methods
+
+### UpsertDatapointsResponse
+
+`UpsertDatapointsResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexService.UpsertDatapoints
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureViewSync.SyncSummary -->
+
+# Class SyncSummary (1.134.0)
+
+`SyncSummary(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Summary from the Sync job. For continuous syncs, the summary is updated periodically. For batch syncs, it gets updated on completion of the sync.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`row_synced` |
+`int`
+Output only. Total number of rows synced. |
+`total_slot` |
+`int`
+Output only. BigQuery slot milliseconds consumed for the sync job. |
+`system_watermark_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+Lower bound of the system time watermark for the sync job. This is only set for continuously syncing feature views. |
+
+## Methods
+
+### SyncSummary
+
+`SyncSummary(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Summary from the Sync job. For continuous syncs, the summary is updated periodically. For batch syncs, it gets updated on completion of the sync.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureNoiseSigma -->
+
+# Class FeatureNoiseSigma (1.134.0)
+
+`FeatureNoiseSigma(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Noise sigma by features. Noise sigma represents the standard deviation of the gaussian kernel that will be used to add noise to interpolated inputs prior to computing gradients.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`noise_sigma` |
+`MutableSequence[`
+Noise sigma per feature. No noise is added to features that are not set. |
+
+## Classes
+
+### NoiseSigmaForFeature
+
+`NoiseSigmaForFeature(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Noise sigma for a single feature.
+
+## Methods
+
+### FeatureNoiseSigma
+
+`FeatureNoiseSigma(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Noise sigma by features. Noise sigma represents the standard deviation of the gaussian kernel that will be used to add noise to interpolated inputs prior to computing gradients.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.TuningDataStats -->
+
+# Class TuningDataStats (1.134.0)
+
+`TuningDataStats(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The tuning data statistic values for TuningJob.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`supervised_tuning_data_stats` |
+The SFT Tuning data stats. This field is a member of `oneof` _ `tuning_data_stats` .
+|
+
+## Methods
+
+### TuningDataStats
+
+`TuningDataStats(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The tuning data statistic values for TuningJob.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.NearestNeighborQuery -->
+
+# Class NearestNeighborQuery (1.134.0)
+
+`NearestNeighborQuery(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A query to find a number of similar entities.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`entity_id` |
+`str`
+Optional. The entity id whose similar entities should be searched for. If embedding is set, search will use embedding instead of entity_id. This field is a member of `oneof` _ `instance` .
+|
+`embedding` |
+Optional. The embedding vector that be used for similar search. This field is a member of `oneof` _ `instance` .
+|
+`neighbor_count` |
+`int`
+Optional. The number of similar entities to be retrieved from feature view for each query. |
+`string_filters` |
+`MutableSequence[`
+Optional. The list of string filters. |
+`numeric_filters` |
+`MutableSequence[`
+Optional. The list of numeric filters. |
+`per_crowding_attribute_neighbor_count` |
+`int`
+Optional. Crowding is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than sper_crowding_attribute_neighbor_count of the k neighbors returned have the same value of crowding_attribute. It's used for improving result diversity. |
+`parameters` |
+Optional. Parameters that can be set to tune query on the fly. |
+
+## Classes
+
+### Embedding
+
+`Embedding(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The embedding vector.
+
+### NumericFilter
+
+`NumericFilter(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Numeric filter is used to search a subset of the entities by using boolean rules on numeric columns. For example: Database Point 0: {name: “a” value_int: 42} {name: “b” value_float: 1.0} Database Point 1: {name: “a” value_int: 10} {name: “b” value_float: 2.0} Database Point 2: {name: “a” value_int: -1} {name: “b” value_float: 3.0} Query: {name: “a” value_int: 12 operator: LESS} // Matches Point 1, 2 {name: “b” value_float: 2.0 operator: EQUAL} // Matches Point 1
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+### Parameters
+
+`Parameters(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Parameters that can be overrided in each query to tune query latency and recall.
+
+### StringFilter
+
+`StringFilter(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+String filter is used to search a subset of the entities by using boolean rules on string columns. For example: if a query specifies string filter with 'name = color, allow_tokens = {red, blue}, deny_tokens = {purple}',' then that query will match entities that are red or blue, but if those points are also purple, then they will be excluded even if they are red/blue. Only string filter is supported for now, numeric filter will be supported in the near future.
+
+## Methods
+
+### NearestNeighborQuery
+
+`NearestNeighborQuery(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A query to find a number of similar entities.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.PersistentResource.State -->
+
+# Class State (1.134.0)
+
+`State(value)`
+
+
+Describes the PersistentResource state.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`STATE_UNSPECIFIED` |
+Not set. |
+`PROVISIONING` |
+The PROVISIONING state indicates the persistent resources is being created. |
+`RUNNING` |
+The RUNNING state indicates the persistent resource is healthy and fully usable. |
+`STOPPING` |
+The STOPPING state indicates the persistent resource is being deleted. |
+`ERROR` |
+The ERROR state indicates the persistent resource may be unusable. Details can be found in the `error` field. |
+`REBOOTING` |
+The REBOOTING state indicates the persistent resource is being rebooted (PR is not available right now but is expected to be ready again later). |
+`UPDATING` |
+The UPDATING state indicates the persistent resource is being updated. |
+
+## Methods
+
+### State
+
+`State(value)`
+
+
+Describes the PersistentResource state.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeatureViewDirectWriteRequest.DataKeyAndFeatureValues -->
+
+# Class DataKeyAndFeatureValues (1.134.0)
+
+`DataKeyAndFeatureValues(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A data key and associated feature values to write to the feature view.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`data_key` |
+The data key. |
+`features` |
+`MutableSequence[`
+List of features to write. |
+
+## Classes
+
+### Feature
+
+`Feature(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Feature name & value pair.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Methods
+
+### DataKeyAndFeatureValues
+
+`DataKeyAndFeatureValues(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A data key and associated feature values to write to the feature view.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PartialArg -->
+
+# Class PartialArg (1.134.0)
+
+`PartialArg(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Partial argument value of the function call.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`null_value` |
+`google.protobuf.struct_pb2.NullValue`
+Optional. Represents a null value. This field is a member of `oneof` _ `delta` .
+|
+`number_value` |
+`float`
+Optional. Represents a double value. This field is a member of `oneof` _ `delta` .
+|
+`string_value` |
+`str`
+Optional. Represents a string value. This field is a member of `oneof` _ `delta` .
+|
+`bool_value` |
+`bool`
+Optional. Represents a boolean value. This field is a member of `oneof` _ `delta` .
+|
+`json_path` |
+`str`
+Required. A JSON Path (RFC 9535) to the argument being streamed. https://datatracker.ietf.org/doc/html/rfc9535. e.g. "$.foo.bar[0].data". |
+`will_continue` |
+`bool`
+Optional. Whether this is not the last part of the same json_path. If true, another PartialArg message for the current json_path is expected to follow. |
+
+## Methods
+
+### PartialArg
+
+`PartialArg(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Partial argument value of the function call.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.OutputFieldSpec -->
+
+# Class OutputFieldSpec (1.134.0)
+
+`OutputFieldSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Defines a specification for a single output field.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`field_name` |
+`str`
+Required. The name of the output field. |
+`guidance` |
+`str`
+Optional. Optional, but recommended. Additional guidance specific to this field to provide targeted instructions for the LLM to generate the content of a single output field. While the LLM can sometimes infer content from the field name, providing explicit guidance is preferred. |
+`field_type` |
+Optional. The data type of the field. Defaults to CONTENT if not set. |
+
+## Classes
+
+### FieldType
+
+`FieldType(value)`
+
+
+The data type of the field.
+
+## Methods
+
+### OutputFieldSpec
+
+`OutputFieldSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Defines a specification for a single output field.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.Baseline -->
+
+# Class Baseline (1.134.0)
+
+`Baseline(value)`
+
+
+Defines the baseline to do anomaly detection for feature values imported by each ImportFeatureValues operation.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`BASELINE_UNSPECIFIED` |
+Should not be used. |
+`LATEST_STATS` |
+Choose the later one statistics generated by either most recent snapshot analysis or previous import features analysis. If non of them exists, skip anomaly detection and only generate a statistics. |
+`MOST_RECENT_SNAPSHOT_STATS` |
+Use the statistics generated by the most recent snapshot analysis if exists. |
+`PREVIOUS_IMPORT_FEATURES_STATS` |
+Use the statistics generated by the previous import features analysis if exists. |
+
+## Methods
+
+### Baseline
+
+`Baseline(value)`
+
+
+Defines the baseline to do anomaly detection for feature values imported by each ImportFeatureValues operation.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.v1beta1.schema.predict.instance_v1beta1.types.TextClassificationPredictionInstance -->
+
+# Class TextClassificationPredictionInstance (1.134.0)
+
+```
+TextClassificationPredictionInstance(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Prediction input format for Text Classification.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`content` |
+`str`
+The text snippet to make the predictions on. |
+`mime_type` |
+`str`
+The MIME type of the text snippet. The supported MIME types are listed below. - text/plain |
+
+## Methods
+
+### TextClassificationPredictionInstance
+
+```
+TextClassificationPredictionInstance(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Prediction input format for Text Classification.
+
+### TextClassificationPredictionInstance
+
+```
+TextClassificationPredictionInstance(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Prediction input format for Text Classification.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.Trajectory -->
+
+# Class Trajectory (1.134.0)
+
+`Trajectory(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for trajectory.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`tool_calls` |
+`MutableSequence[`
+Required. Tool calls in the trajectory. |
+
+## Methods
+
+### Trajectory
+
+`Trajectory(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for trajectory.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.NotebookExecutionJob.WorkbenchRuntime -->
+
+# Class WorkbenchRuntime (1.134.0)
+
+`WorkbenchRuntime(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Configuration for a Workbench Instances-based environment.
+
+## Methods
+
+### WorkbenchRuntime
+
+`WorkbenchRuntime(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Configuration for a Workbench Instances-based environment.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.AuthConfig.GoogleServiceAccountConfig -->
+
+# Class GoogleServiceAccountConfig (1.134.0)
+
+`GoogleServiceAccountConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for Google Service Account Authentication.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`service_account` |
+`str`
+Optional. The service account that the extension execution service runs as. - If the service account is specified, the `iam.serviceAccounts.getAccessToken` permission should
+be granted to Vertex AI Extension Service Agent
+(https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+on the specified service account.
+- If not specified, the Vertex AI Extension Service Agent
+will be used to execute the Extension.
+|
+
+## Methods
+
+### GoogleServiceAccountConfig
+
+`GoogleServiceAccountConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for Google Service Account Authentication.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ExactMatchMetricValue -->
+
+# Class ExactMatchMetricValue (1.134.0)
+
+`ExactMatchMetricValue(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Exact match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`score` |
+`float`
+Output only. Exact match score. This field is a member of `oneof` _ `_score` .
+|
+
+## Methods
+
+### ExactMatchMetricValue
+
+`ExactMatchMetricValue(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Exact match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ToolCall -->
+
+# Class ToolCall (1.134.0)
+
+`ToolCall(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for tool call.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`tool_name` |
+`str`
+Required. Spec for tool name This field is a member of `oneof` _ `_tool_name` .
+|
+`tool_input` |
+`str`
+Optional. Spec for tool input This field is a member of `oneof` _ `_tool_input` .
+|
+
+## Methods
+
+### ToolCall
+
+`ToolCall(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for tool call.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PairwiseMetricSpec -->
+
+# Class PairwiseMetricSpec (1.134.0)
+
+`PairwiseMetricSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for pairwise metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`metric_prompt_template` |
+`str`
+Required. Metric prompt template for pairwise metric. This field is a member of `oneof` _ `_metric_prompt_template` .
+|
+
+## Methods
+
+### PairwiseMetricSpec
+
+`PairwiseMetricSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for pairwise metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.UndeployIndexResponse -->
+
+# Class UndeployIndexResponse (1.134.0)
+
+`UndeployIndexResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexEndpointService.UndeployIndex.
+
+## Methods
+
+### UndeployIndexResponse
+
+`UndeployIndexResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexEndpointService.UndeployIndex.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Examples.ExampleGcsSource.DataFormat -->
+
+# Class DataFormat (1.134.0)
+
+`DataFormat(value)`
+
+
+The format of the input example instances.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`DATA_FORMAT_UNSPECIFIED` |
+Format unspecified, used when unset. |
+`JSONL` |
+Examples are stored in JSONL files. |
+
+## Methods
+
+### DataFormat
+
+`DataFormat(value)`
+
+
+The format of the input example instances.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReasoningEngineSpec.PackageSpec -->
+
+# Class PackageSpec (1.134.0)
+
+`PackageSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+User-provided package specification, containing pickled object and package requirements.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`pickle_object_gcs_uri` |
+`str`
+Optional. The Cloud Storage URI of the pickled python object. |
+`dependency_files_gcs_uri` |
+`str`
+Optional. The Cloud Storage URI of the dependency files in tar.gz format. |
+`requirements_gcs_uri` |
+`str`
+Optional. The Cloud Storage URI of the `requirements.txt`
+file
+|
+`python_version` |
+`str`
+Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value is 3.10. |
+
+## Methods
+
+### PackageSpec
+
+`PackageSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+User-provided package specification, containing pickled object and package requirements.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagRetrievalConfig.Ranking.RankService -->
+
+# Class RankService (1.134.0)
+
+`RankService(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for Rank Service.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`model_name` |
+`str`
+Optional. The model name of the rank service. Format: `semantic-ranker-512@latest`
+This field is a member of `oneof` _ `_model_name` .
+|
+
+## Methods
+
+### RankService
+
+`RankService(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for Rank Service.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.CreatePipelineJobRequest -->
+
+# Class CreatePipelineJobRequest (1.134.0)
+
+`CreatePipelineJobRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for PipelineService.CreatePipelineJob.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`parent` |
+`str`
+Required. The resource name of the Location to create the PipelineJob in. Format: `projects/{project}/locations/{location}`
+|
+`pipeline_job` |
+Required. The PipelineJob to create. |
+`pipeline_job_id` |
+`str`
+The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/` a-z][0-9]`-/` .
+|
+
+## Methods
+
+### CreatePipelineJobRequest
+
+`CreatePipelineJobRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for PipelineService.CreatePipelineJob.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient -->
+
+# Class FeaturestoreOnlineServingServiceAsyncClient (1.134.0)
+
+```
+FeaturestoreOnlineServingServiceAsyncClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport,
+],
+]
+] = "grpc_asyncio",
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+A service for serving online feature values.
+
+## Properties
+
+### api_endpoint
+
+Return the API endpoint used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The API endpoint used by the client instance. |
+
+### transport
+
+Returns the transport used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeaturestoreOnlineServingServiceTransport` |
+The transport used by the client instance. |
+
+### universe_domain
+
+Return the universe domain used by the client instance.
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`str` |
+The universe domain used by the client instance. |
+
+## Methods
+
+### FeaturestoreOnlineServingServiceAsyncClient
+
+```
+FeaturestoreOnlineServingServiceAsyncClient(
+*,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+transport: typing.Optional[
+typing.Union[
+str,
+google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport,
+typing.Callable[
+[...],
+google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport,
+],
+]
+] = "grpc_asyncio",
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
+)
+```
+
+
+Instantiates the featurestore online serving service async client.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`credentials` |
+`Optional[google.auth.credentials.Credentials]`
+The authorization credentials to attach to requests. These credentials identify the application to the service; if none are specified, the client will attempt to ascertain the credentials from the environment. |
+`transport` |
+`Optional[Union[str,FeaturestoreOnlineServingServiceTransport,Callable[..., FeaturestoreOnlineServingServiceTransport]]]`
+The transport to use, or a Callable that constructs and returns a new transport to use. If a Callable is given, it will be called with the same set of initialization arguments as used in the FeaturestoreOnlineServingServiceTransport constructor. If set to None, a transport is chosen automatically. |
+`client_options` |
+`Optional[Union[google.api_core.client_options.ClientOptions, dict]]`
+Custom options for the client. 1. The |
+`client_info` |
+`google.api_core.gapic_v1.client_info.ClientInfo`
+The client info used to send a user-agent string along with API requests. If |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTlsChannelError` |
+If mutual TLS transport creation failed for any reason. |
+
+### cancel_operation
+
+```
+cancel_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.CancelOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Starts asynchronous cancellation on a long-running operation.
+
+The server makes a best effort to cancel the operation, but success
+is not guaranteed. If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### common_billing_account_path
+
+`common_billing_account_path(billing_account: str) -> str`
+
+
+Returns a fully-qualified billing_account string.
+
+### common_folder_path
+
+`common_folder_path(folder: str) -> str`
+
+
+Returns a fully-qualified folder string.
+
+### common_location_path
+
+`common_location_path(project: str, location: str) -> str`
+
+
+Returns a fully-qualified location string.
+
+### common_organization_path
+
+`common_organization_path(organization: str) -> str`
+
+
+Returns a fully-qualified organization string.
+
+### common_project_path
+
+`common_project_path(project: str) -> str`
+
+
+Returns a fully-qualified project string.
+
+### delete_operation
+
+```
+delete_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.DeleteOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> None
+```
+
+
+Deletes a long-running operation.
+
+This method indicates that the client is no longer interested
+in the operation result. It does not cancel the operation.
+If the server doesn't support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### entity_type_path
+
+```
+entity_type_path(
+project: str, location: str, featurestore: str, entity_type: str
+) -> str
+```
+
+
+Returns a fully-qualified entity_type string.
+
+### from_service_account_file
+
+`from_service_account_file(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeaturestoreOnlineServingServiceAsyncClient` |
+The constructed client. |
+
+### from_service_account_info
+
+`from_service_account_info(info: dict, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials info.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`info` |
+`dict`
+The service account private key info. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeaturestoreOnlineServingServiceAsyncClient` |
+The constructed client. |
+
+### from_service_account_json
+
+`from_service_account_json(filename: str, *args, **kwargs)`
+
+
+Creates an instance of this client using the provided credentials file.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`filename` |
+`str`
+The path to the service account private key json file. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`FeaturestoreOnlineServingServiceAsyncClient` |
+The constructed client. |
+
+### get_iam_policy
+
+```
+get_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.GetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Gets the IAM access control policy for a function.
+
+Returns an empty policy if the function exists and does not have a policy set.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### get_location
+
+```
+get_location(
+request: typing.Optional[
+google.cloud.location.locations_pb2.GetLocationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.Location
+```
+
+
+Gets information about a location.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Location object. |
+
+### get_mtls_endpoint_and_cert_source
+
+```
+get_mtls_endpoint_and_cert_source(
+client_options: typing.Optional[
+google.api_core.client_options.ClientOptions
+] = None,
+)
+```
+
+
+Return the API endpoint and client cert source for mutual TLS.
+
+The client cert source is determined in the following order:
+(1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is not "true", the
+client cert source is None.
+(2) if `client_options.client_cert_source`
+
+is provided, use the provided one; if the
+default client cert source exists, use the default one; otherwise the client cert
+source is None.
+
+The API endpoint is determined in the following order:
+(1) if `client_options.api_endpoint`
+
+if provided, use the provided one.
+(2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
+
+environment variable is "always", use the
+default mTLS endpoint; if the environment variable is "never", use the default API
+endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+use the default API endpoint.
+
+More details can be found at [https://google.aip.dev/auth/4114](https://google.aip.dev/auth/4114).
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`client_options` |
+`google.api_core.client_options.ClientOptions`
+Custom options for the client. Only the |
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`google.auth.exceptions.MutualTLSChannelError` |
+If any errors happen. |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`Tuple[str, Callable[[], Tuple[bytes, bytes]]]` |
+returns the API endpoint and the client cert source to use. |
+
+### get_operation
+
+```
+get_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.GetOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Gets the latest state of a long-running operation.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |
+
+### get_transport_class
+
+```
+get_transport_class(
+label: typing.Optional[str] = None,
+) -> typing.Type[
+google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.transports.base.FeaturestoreOnlineServingServiceTransport
+]
+```
+
+
+Returns an appropriate transport class.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`label` |
+`typing.Optional[str]`
+The name of the desired transport. If none is provided, then the first transport in the registry is used. |
+
+### list_locations
+
+```
+list_locations(
+request: typing.Optional[
+google.cloud.location.locations_pb2.ListLocationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.location.locations_pb2.ListLocationsResponse
+```
+
+
+Lists information about the supported locations for this service.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListLocations` method. |
+
+### list_operations
+
+```
+list_operations(
+request: typing.Optional[
+google.longrunning.operations_pb2.ListOperationsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.ListOperationsResponse
+```
+
+
+Lists operations that match the specified filter in the request.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `ListOperations` method. |
+
+### parse_common_billing_account_path
+
+`parse_common_billing_account_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a billing_account path into its component segments.
+
+### parse_common_folder_path
+
+`parse_common_folder_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a folder path into its component segments.
+
+### parse_common_location_path
+
+`parse_common_location_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a location path into its component segments.
+
+### parse_common_organization_path
+
+`parse_common_organization_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a organization path into its component segments.
+
+### parse_common_project_path
+
+`parse_common_project_path(path: str) -> typing.Dict[str, str]`
+
+
+Parse a project path into its component segments.
+
+### parse_entity_type_path
+
+`parse_entity_type_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a entity_type path into its component segments.
+
+### read_feature_values
+
+```
+read_feature_values(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.featurestore_online_service.ReadFeatureValuesRequest,
+dict,
+]
+] = None,
+*,
+entity_type: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.types.featurestore_online_service.ReadFeatureValuesResponse
+)
+```
+
+
+Reads Feature values of a specific entity of an EntityType. For reading feature values of multiple entities of an EntityType, please use StreamingReadFeatureValues.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_read_feature_values():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeaturestoreOnlineServingServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html)()
+# Initialize request argument(s)
+feature_selector = aiplatform_v1beta1.[FeatureSelector](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.FeatureSelector.html)()
+feature_selector.id_matcher.ids = ['ids_value1', 'ids_value2']
+request = aiplatform_v1beta1.[ReadFeatureValuesRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ReadFeatureValuesRequest.html)(
+entity_type="entity_type_value",
+entity_id="entity_id_value",
+feature_selector=feature_selector,
+)
+# Make the request
+response = await client.[read_feature_values](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_featurestore_online_serving_service_FeaturestoreOnlineServingServiceAsyncClient_read_feature_values)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeaturestoreOnlineServingService.ReadFeatureValues. |
+`entity_type` |
+Required. The resource name of the EntityType for the entity being read. Value format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for FeaturestoreOnlineServingService.ReadFeatureValues. |
+
+### set_iam_policy
+
+```
+set_iam_policy(
+request: typing.Optional[google.iam.v1.iam_policy_pb2.SetIamPolicyRequest] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.policy_pb2.Policy
+```
+
+
+Sets the IAM access control policy on the specified function.
+
+Replaces any existing policy.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources. A `Policy` is a collection of `bindings` . A `binding` binds one or more `members` to a single `role` . Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition` , which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource. **JSON Example** :: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": ["user:eve@example.com"], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ]="" }="" **yaml="" example**="" ::="" bindings:="" -="" members:="" -="" user:mike@example.com="" -="" group:admins@example.com="" -="" domain:google.com="" -="" serviceaccount:my-project-id@appspot.gserviceaccount.com="" role:="" roles/resourcemanager.organizationadmin="" -="" members:="" -="" user:eve@example.com="" role:="" roles/resourcemanager.organizationviewer="" condition:="" title:="" expirable="" access="" description:="" does="" not="" grant="" access="" after="" sep="" 2020="" expression:="" request.time="">< timestamp('2020-10-01t00:00:00.000z')="" for="" a="" description="" of="" iam="" and="" its="" features,="" see="" the="">`IAM developer's guide ` __. |
+
+### streaming_read_feature_values
+
+```
+streaming_read_feature_values(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.featurestore_online_service.StreamingReadFeatureValuesRequest,
+dict,
+]
+] = None,
+*,
+entity_type: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> typing.Awaitable[
+typing.AsyncIterable[
+google.cloud.aiplatform_v1beta1.types.featurestore_online_service.ReadFeatureValuesResponse
+]
+]
+```
+
+
+Reads Feature values for multiple entities. Depending on their size, data for different entities may be broken up across multiple responses.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_streaming_read_feature_values():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeaturestoreOnlineServingServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html)()
+# Initialize request argument(s)
+feature_selector = aiplatform_v1beta1.[FeatureSelector](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.FeatureSelector.html)()
+feature_selector.id_matcher.ids = ['ids_value1', 'ids_value2']
+request = aiplatform_v1beta1.[StreamingReadFeatureValuesRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.StreamingReadFeatureValuesRequest.html)(
+entity_type="entity_type_value",
+entity_ids=['entity_ids_value1', 'entity_ids_value2'],
+feature_selector=feature_selector,
+)
+# Make the request
+stream = await client.[streaming_read_feature_values](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_featurestore_online_serving_service_FeaturestoreOnlineServingServiceAsyncClient_streaming_read_feature_values)(request=request)
+# Handle the response
+async for response in stream:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeaturestoreOnlineServingService.StreamingReadFeatureValues. |
+`entity_type` |
+Required. The resource name of the entities' type. Value format: |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`AsyncIterable[` |
+Response message for FeaturestoreOnlineServingService.ReadFeatureValues. |
+
+### test_iam_permissions
+
+```
+test_iam_permissions(
+request: typing.Optional[
+google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse
+```
+
+
+Tests the specified IAM permissions against the IAM access control policy for a function.
+
+If the function does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for `TestIamPermissions` method. |
+
+### wait_operation
+
+```
+wait_operation(
+request: typing.Optional[
+google.longrunning.operations_pb2.WaitOperationRequest
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.longrunning.operations_pb2.Operation
+```
+
+
+Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state.
+
+If the operation is already done, the latest state is immediately returned.
+If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC
+timeout is used. If the server does not support this method, it returns
+`google.rpc.Code.UNIMPLEMENTED`
+
+.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+The request object. Request message for |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+An `Operation` object. |
+
+### write_feature_values
+
+```
+write_feature_values(
+request: typing.Optional[
+typing.Union[
+google.cloud.aiplatform_v1beta1.types.featurestore_online_service.WriteFeatureValuesRequest,
+dict,
+]
+] = None,
+*,
+entity_type: typing.Optional[str] = None,
+payloads: typing.Optional[
+typing.MutableSequence[
+google.cloud.aiplatform_v1beta1.types.featurestore_online_service.WriteFeatureValuesPayload
+]
+] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> (
+google.cloud.aiplatform_v1beta1.types.featurestore_online_service.WriteFeatureValuesResponse
+)
+```
+
+
+Writes Feature values of one or more entities of an EntityType. The Feature values are merged into existing entities if any. The Feature values to be written must have timestamp within the online storage retention.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import aiplatform_v1beta1
+async def sample_write_feature_values():
+# Create a client
+client = aiplatform_v1beta1.
+```[FeaturestoreOnlineServingServiceAsyncClient](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html)()
+# Initialize request argument(s)
+payloads = aiplatform_v1beta1.[WriteFeatureValuesPayload](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.WriteFeatureValuesPayload.html)()
+payloads.entity_id = "entity_id_value"
+request = aiplatform_v1beta1.[WriteFeatureValuesRequest](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.WriteFeatureValuesRequest.html)(
+entity_type="entity_type_value",
+payloads=payloads,
+)
+# Make the request
+response = await client.[write_feature_values](https://docs.cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.featurestore_online_serving_service.FeaturestoreOnlineServingServiceAsyncClient.html#google_cloud_aiplatform_v1beta1_services_featurestore_online_serving_service_FeaturestoreOnlineServingServiceAsyncClient_write_feature_values)(request=request)
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Optional[Union[`
+The request object. Request message for FeaturestoreOnlineServingService.WriteFeatureValues. |
+`entity_type` |
+Required. The resource name of the EntityType for the entities being written. Value format: |
+`payloads` |
+`:class:`
+Required. The entities to be written. Up to 100,000 feature values can be written across all |
+`retry` |
+`google.api_core.retry_async.AsyncRetry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for FeaturestoreOnlineServingService.WriteFeatureValues. |
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagRetrievalConfig -->
+
+# Class RagRetrievalConfig (1.134.0)
+
+`RagRetrievalConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Specifies the context retrieval config.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`top_k` |
+`int`
+Optional. The number of contexts to retrieve. |
+`hybrid_search` |
+Optional. Config for Hybrid Search. |
+`filter` |
+Optional. Config for filters. |
+`ranking` |
+Optional. Config for ranking and reranking. |
+
+## Classes
+
+### Filter
+
+`Filter(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for filters.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+### HybridSearch
+
+`HybridSearch(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for Hybrid Search.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+### Ranking
+
+`Ranking(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for ranking and reranking.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Methods
+
+### RagRetrievalConfig
+
+`RagRetrievalConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Specifies the context retrieval config.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.FeatureViewSync.SyncSummary -->
+
+# Class SyncSummary (1.134.0)
+
+`SyncSummary(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Summary from the Sync job. For continuous syncs, the summary is updated periodically. For batch syncs, it gets updated on completion of the sync.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`row_synced` |
+`int`
+Output only. Total number of rows synced. |
+`total_slot` |
+`int`
+Output only. BigQuery slot milliseconds consumed for the sync job. |
+`system_watermark_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+Lower bound of the system time watermark for the sync job. This is only set for continuously syncing feature views. |
+
+## Methods
+
+### SyncSummary
+
+`SyncSummary(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Summary from the Sync job. For continuous syncs, the summary is updated periodically. For batch syncs, it gets updated on completion of the sync.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.FeatureNoiseSigma -->
+
+# Class FeatureNoiseSigma (1.134.0)
+
+`FeatureNoiseSigma(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Noise sigma by features. Noise sigma represents the standard deviation of the gaussian kernel that will be used to add noise to interpolated inputs prior to computing gradients.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`noise_sigma` |
+`MutableSequence[`
+Noise sigma per feature. No noise is added to features that are not set. |
+
+## Classes
+
+### NoiseSigmaForFeature
+
+`NoiseSigmaForFeature(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Noise sigma for a single feature.
+
+## Methods
+
+### FeatureNoiseSigma
+
+`FeatureNoiseSigma(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Noise sigma by features. Noise sigma represents the standard deviation of the gaussian kernel that will be used to add noise to interpolated inputs prior to computing gradients.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RecommendSpecResponse.Recommendation -->
+
+# Class Recommendation (1.134.0)
+
+`Recommendation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Recommendation of one deployment option for the given custom weights model in one region. Contains the machine and container spec, and user accelerator quota state.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`region` |
+`str`
+The region for the deployment spec (machine). |
+`spec` |
+Output only. The machine and model container specs. |
+`user_quota_state` |
+Output only. The user accelerator quota state. |
+
+## Classes
+
+### QuotaState
+
+`QuotaState(value)`
+
+
+The user accelerator quota state.
+
+## Methods
+
+### Recommendation
+
+`Recommendation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Recommendation of one deployment option for the given custom weights model in one region. Contains the machine and container spec, and user accelerator quota state.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.CreateModelMonitorRequest -->
+
+# Class CreateModelMonitorRequest (1.134.0)
+
+`CreateModelMonitorRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for ModelMonitoringService.CreateModelMonitor.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`parent` |
+`str`
+Required. The resource name of the Location to create the ModelMonitor in. Format: `projects/{project}/locations/{location}`
+|
+`model_monitor` |
+Required. The ModelMonitor to create. |
+`model_monitor_id` |
+`str`
+Optional. The ID to use for the Model Monitor, which will become the final component of the model monitor resource name. The maximum length is 63 characters, and valid characters are `/^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$/` .
+|
+
+## Methods
+
+### CreateModelMonitorRequest
+
+`CreateModelMonitorRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for ModelMonitoringService.CreateModelMonitor.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EvaluatedAnnotation.EvaluatedAnnotationType -->
+
+# Class EvaluatedAnnotationType (1.134.0)
+
+`EvaluatedAnnotationType(value)`
+
+
+Describes the type of the EvaluatedAnnotation. The type is determined
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`EVALUATED_ANNOTATION_TYPE_UNSPECIFIED` |
+Invalid value. |
+`TRUE_POSITIVE` |
+The EvaluatedAnnotation is a true positive. It has a prediction created by the Model and a ground truth Annotation which the prediction matches. |
+`FALSE_POSITIVE` |
+The EvaluatedAnnotation is false positive. It has a prediction created by the Model which does not match any ground truth annotation. |
+`FALSE_NEGATIVE` |
+The EvaluatedAnnotation is false negative. It has a ground truth annotation which is not matched by any of the model created predictions. |
+
+## Methods
+
+### EvaluatedAnnotationType
+
+`EvaluatedAnnotationType(value)`
+
+
+Describes the type of the EvaluatedAnnotation. The type is determined
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.Baseline -->
+
+# Class Baseline (1.134.0)
+
+`Baseline(value)`
+
+
+Defines the baseline to do anomaly detection for feature values imported by each ImportFeatureValues operation.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`BASELINE_UNSPECIFIED` |
+Should not be used. |
+`LATEST_STATS` |
+Choose the later one statistics generated by either most recent snapshot analysis or previous import features analysis. If non of them exists, skip anomaly detection and only generate a statistics. |
+`MOST_RECENT_SNAPSHOT_STATS` |
+Use the statistics generated by the most recent snapshot analysis if exists. |
+`PREVIOUS_IMPORT_FEATURES_STATS` |
+Use the statistics generated by the previous import features analysis if exists. |
+
+## Methods
+
+### Baseline
+
+`Baseline(value)`
+
+
+Defines the baseline to do anomaly detection for feature values imported by each ImportFeatureValues operation.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.CometSpec.CometVersion -->
+
+# Class CometVersion (1.134.0)
+
+`CometVersion(value)`
+
+
+Comet version options.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`COMET_VERSION_UNSPECIFIED` |
+Comet version unspecified. |
+`COMET_22_SRC_REF` |
+Comet 22 for translation + source + reference (source-reference-combined). |
+
+## Methods
+
+### CometVersion
+
+`CometVersion(value)`
+
+
+Comet version options.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.UpsertDatapointsResponse -->
+
+# Class UpsertDatapointsResponse (1.134.0)
+
+`UpsertDatapointsResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexService.UpsertDatapoints
+
+## Methods
+
+### UpsertDatapointsResponse
+
+`UpsertDatapointsResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexService.UpsertDatapoints
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateNotebookRuntimeTemplateRequest -->
+
+# Class UpdateNotebookRuntimeTemplateRequest (1.134.0)
+
+```
+UpdateNotebookRuntimeTemplateRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for NotebookService.UpdateNotebookRuntimeTemplate.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`notebook_runtime_template` |
+Required. The NotebookRuntimeTemplate to update. |
+`update_mask` |
+`google.protobuf.field_mask_pb2.FieldMask`
+Required. The update mask applies to the resource. For the `FieldMask` definition, see
+`google.protobuf.FieldMask][google.protobuf.FieldMask]` .
+Input format: `{paths: "${updated_filed}"}` Updatable
+fields:
+- `encryption_spec.kms_key_name`
+|
+
+## Methods
+
+### UpdateNotebookRuntimeTemplateRequest
+
+```
+UpdateNotebookRuntimeTemplateRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for NotebookService.UpdateNotebookRuntimeTemplate.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.schedule_service -->
+
+# Package schedule_service (1.134.0)
+
+API documentation for `aiplatform_v1beta1.services.schedule_service`
+
+package.
+
+## Classes
+
+[ScheduleServiceAsyncClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.schedule_service.ScheduleServiceAsyncClient)
+
+A service for creating and managing Vertex AI's Schedule resources to periodically launch shceudled runs to make API calls.
+
+[ScheduleServiceClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.schedule_service.ScheduleServiceClient)
+
+A service for creating and managing Vertex AI's Schedule resources to periodically launch shceudled runs to make API calls.
+
+## Modules
+
+[pagers](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.schedule_service.pagers)
+
+API documentation for `aiplatform_v1beta1.services.schedule_service.pagers`
+
+module.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.EnvVar -->
+
+# Class EnvVar (1.134.0)
+
+`EnvVar(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents an environment variable present in a Container or Python Module.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Required. Name of the environment variable. Must be a valid C identifier. |
+`value` |
+`str`
+Required. Variables that reference a $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. |
+
+## Methods
+
+### EnvVar
+
+`EnvVar(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents an environment variable present in a Container or Python Module.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagVectorDbConfig.RagManagedDb -->
+
+# Class RagManagedDb (1.134.0)
+
+`RagManagedDb(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The config for the default RAG-managed Vector DB.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`knn` |
+Performs a KNN search on RagCorpus. Default choice if not specified. This field is a member of `oneof` _ `retrieval_strategy` .
+|
+`ann` |
+Performs an ANN search on RagCorpus. Use this if you have a lot of files (> 10K) in your RagCorpus and want to reduce the search latency. This field is a member of `oneof` _ `retrieval_strategy` .
+|
+
+## Classes
+
+### ANN
+
+`ANN(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for ANN search.
+
+RagManagedDb uses a tree-based structure to partition data and facilitate faster searches. As a tradeoff, it requires longer indexing time and manual triggering of index rebuild via the ImportRagFiles and UpdateRagCorpus API.
+
+### KNN
+
+`KNN(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for KNN search.
+
+## Methods
+
+### RagManagedDb
+
+`RagManagedDb(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The config for the default RAG-managed Vector DB.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SearchModelDeploymentMonitoringStatsAnomaliesRequest -->
+
+# Class SearchModelDeploymentMonitoringStatsAnomaliesRequest (1.134.0)
+
+```
+SearchModelDeploymentMonitoringStatsAnomaliesRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.SearchModelDeploymentMonitoringStatsAnomalies.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`model_deployment_monitoring_job` |
+`str`
+Required. ModelDeploymentMonitoring Job resource name. Format: `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
+|
+`deployed_model_id` |
+`str`
+Required. The DeployedModel ID of the [ModelDeploymentMonitoringObjectiveConfig.deployed_model_id]. |
+`feature_display_name` |
+`str`
+The feature display name. If specified, only return the stats belonging to this feature. Format: ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.feature_display_name, example: "user_destination". |
+`objectives` |
+`MutableSequence[`
+Required. Objectives of the stats to retrieve. |
+`page_size` |
+`int`
+The standard list page size. |
+`page_token` |
+`str`
+A page token received from a previous JobService.SearchModelDeploymentMonitoringStatsAnomalies call. |
+`start_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+The earliest timestamp of stats being generated. If not set, indicates fetching stats till the earliest possible one. |
+`end_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+The latest timestamp of stats being generated. If not set, indicates feching stats till the latest possible one. |
+
+## Classes
+
+### StatsAnomaliesObjective
+
+`StatsAnomaliesObjective(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Stats requested for specific objective.
+
+## Methods
+
+### SearchModelDeploymentMonitoringStatsAnomaliesRequest
+
+```
+SearchModelDeploymentMonitoringStatsAnomaliesRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.SearchModelDeploymentMonitoringStatsAnomalies.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ReasoningEngineSpec.PackageSpec -->
+
+# Class PackageSpec (1.134.0)
+
+`PackageSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+User-provided package specification, containing pickled object and package requirements.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`pickle_object_gcs_uri` |
+`str`
+Optional. The Cloud Storage URI of the pickled python object. |
+`dependency_files_gcs_uri` |
+`str`
+Optional. The Cloud Storage URI of the dependency files in tar.gz format. |
+`requirements_gcs_uri` |
+`str`
+Optional. The Cloud Storage URI of the `requirements.txt`
+file
+|
+`python_version` |
+`str`
+Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value is 3.10. |
+
+## Methods
+
+### PackageSpec
+
+`PackageSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+User-provided package specification, containing pickled object and package requirements.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.EvaluatedAnnotation.EvaluatedAnnotationType -->
+
+# Class EvaluatedAnnotationType (1.134.0)
+
+`EvaluatedAnnotationType(value)`
+
+
+Describes the type of the EvaluatedAnnotation. The type is determined
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`EVALUATED_ANNOTATION_TYPE_UNSPECIFIED` |
+Invalid value. |
+`TRUE_POSITIVE` |
+The EvaluatedAnnotation is a true positive. It has a prediction created by the Model and a ground truth Annotation which the prediction matches. |
+`FALSE_POSITIVE` |
+The EvaluatedAnnotation is false positive. It has a prediction created by the Model which does not match any ground truth annotation. |
+`FALSE_NEGATIVE` |
+The EvaluatedAnnotation is false negative. It has a ground truth annotation which is not matched by any of the model created predictions. |
+
+## Methods
+
+### EvaluatedAnnotationType
+
+`EvaluatedAnnotationType(value)`
+
+
+Describes the type of the EvaluatedAnnotation. The type is determined
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagVectorDbConfig.RagManagedDb -->
+
+# Class RagManagedDb (1.134.0)
+
+`RagManagedDb(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The config for the default RAG-managed Vector DB.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`knn` |
+Performs a KNN search on RagCorpus. Default choice if not specified. This field is a member of `oneof` _ `retrieval_strategy` .
+|
+`ann` |
+Performs an ANN search on RagCorpus. Use this if you have a lot of files (> 10K) in your RagCorpus and want to reduce the search latency. This field is a member of `oneof` _ `retrieval_strategy` .
+|
+
+## Classes
+
+### ANN
+
+`ANN(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for ANN search.
+
+RagManagedDb uses a tree-based structure to partition data and facilitate faster searches. As a tradeoff, it requires longer indexing time and manual triggering of index rebuild via the ImportRagFiles and UpdateRagCorpus API.
+
+### KNN
+
+`KNN(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for KNN search.
+
+## Methods
+
+### RagManagedDb
+
+`RagManagedDb(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The config for the default RAG-managed Vector DB.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.v1.schema.trainingjob.definition_v1.types.AutoMlTablesInputs.Transformation.TextTransformation -->
+
+# Class TextTransformation (1.134.0)
+
+`TextTransformation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Training pipeline will perform following transformation functions.
+
+- The text as is--no change to case, punctuation, spelling, tense, and so on.
+- Tokenize text to words. Convert each words to a dictionary lookup index and generate an embedding for each index. Combine the embedding of all elements into a single embedding using the mean.
+- Tokenization is based on unicode script boundaries.
+- Missing values get their own lookup index and resulting embedding.
+- Stop-words receive no special treatment and are not removed.
+
+## Methods
+
+### TextTransformation
+
+`TextTransformation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Training pipeline will perform following transformation functions.
+
+- The text as is--no change to case, punctuation, spelling, tense, and so on.
+- Tokenize text to words. Convert each words to a dictionary lookup index and generate an embedding for each index. Combine the embedding of all elements into a single embedding using the mean.
+- Tokenization is based on unicode script boundaries.
+- Missing values get their own lookup index and resulting embedding.
+- Stop-words receive no special treatment and are not removed.
+
+### TextTransformation
+
+`TextTransformation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Training pipeline will perform following transformation functions.
+
+- The text as is--no change to case, punctuation, spelling, tense, and so on.
+- Tokenize text to words. Convert each words to a dictionary lookup index and generate an embedding for each index. Combine the embedding of all elements into a single embedding using the mean.
+- Tokenization is based on unicode script boundaries.
+- Missing values get their own lookup index and resulting embedding.
+- Stop-words receive no special treatment and are not removed.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ExplanationSpecOverride -->
+
+# Class ExplanationSpecOverride (1.134.0)
+
+`ExplanationSpecOverride(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The ExplanationSpec entries that can be overridden at [online explanation][google.cloud.aiplatform.v1beta1.PredictionService.Explain] time.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`parameters` |
+The parameters to be overridden. Note that the attribution method cannot be changed. If not specified, no parameter is overridden. |
+`metadata` |
+The metadata to be overridden. If not specified, no metadata is overridden. |
+`examples_override` |
+The example-based explanations parameter overrides. |
+
+## Methods
+
+### ExplanationSpecOverride
+
+`ExplanationSpecOverride(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The ExplanationSpec entries that can be overridden at [online explanation][google.cloud.aiplatform.v1beta1.PredictionService.Explain] time.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RemoveDatapointsResponse -->
+
+# Class RemoveDatapointsResponse (1.134.0)
+
+`RemoveDatapointsResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexService.RemoveDatapoints
+
+## Methods
+
+### RemoveDatapointsResponse
+
+`RemoveDatapointsResponse(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Response message for IndexService.RemoveDatapoints
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ExamplesOverride.DataFormat -->
+
+# Class DataFormat (1.134.0)
+
+`DataFormat(value)`
+
+
+Data format enum.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`DATA_FORMAT_UNSPECIFIED` |
+Unspecified format. Must not be used. |
+`INSTANCES` |
+Provided data is a set of model inputs. |
+`EMBEDDINGS` |
+Provided data is a set of embeddings. |
+
+## Methods
+
+### DataFormat
+
+`DataFormat(value)`
+
+
+Data format enum.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.SearchModelDeploymentMonitoringStatsAnomaliesRequest -->
+
+# Class SearchModelDeploymentMonitoringStatsAnomaliesRequest (1.134.0)
+
+```
+SearchModelDeploymentMonitoringStatsAnomaliesRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.SearchModelDeploymentMonitoringStatsAnomalies.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`model_deployment_monitoring_job` |
+`str`
+Required. ModelDeploymentMonitoring Job resource name. Format: `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
+|
+`deployed_model_id` |
+`str`
+Required. The DeployedModel ID of the [ModelDeploymentMonitoringObjectiveConfig.deployed_model_id]. |
+`feature_display_name` |
+`str`
+The feature display name. If specified, only return the stats belonging to this feature. Format: ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.feature_display_name, example: "user_destination". |
+`objectives` |
+`MutableSequence[`
+Required. Objectives of the stats to retrieve. |
+`page_size` |
+`int`
+The standard list page size. |
+`page_token` |
+`str`
+A page token received from a previous JobService.SearchModelDeploymentMonitoringStatsAnomalies call. |
+`start_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+The earliest timestamp of stats being generated. If not set, indicates fetching stats till the earliest possible one. |
+`end_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+The latest timestamp of stats being generated. If not set, indicates feching stats till the latest possible one. |
+
+## Classes
+
+### StatsAnomaliesObjective
+
+`StatsAnomaliesObjective(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Stats requested for specific objective.
+
+## Methods
+
+### SearchModelDeploymentMonitoringStatsAnomaliesRequest
+
+```
+SearchModelDeploymentMonitoringStatsAnomaliesRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.SearchModelDeploymentMonitoringStatsAnomalies.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UpdateModelDeploymentMonitoringJobRequest -->
+
+# Class UpdateModelDeploymentMonitoringJobRequest (1.134.0)
+
+```
+UpdateModelDeploymentMonitoringJobRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.UpdateModelDeploymentMonitoringJob.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`model_deployment_monitoring_job` |
+Required. The model monitoring configuration which replaces the resource on the server. |
+`update_mask` |
+`google.protobuf.field_mask_pb2.FieldMask`
+Required. The update mask is used to specify the fields to be overwritten in the ModelDeploymentMonitoringJob resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to
+override all fields. For the objective config, the user can
+either provide the update mask for
+model_deployment_monitoring_objective_configs or any
+combination of its nested fields, such as:
+model_deployment_monitoring_objective_configs.objective_config.training_dataset.
+Updatable fields:
+- `display_name`
+- `model_deployment_monitoring_schedule_config`
+- `model_monitoring_alert_config`
+- `logging_sampling_strategy`
+- `labels`
+- `log_ttl`
+- `enable_monitoring_pipeline_logs` . and
+- `model_deployment_monitoring_objective_configs` . or
+- `model_deployment_monitoring_objective_configs.objective_config.training_dataset`
+- `model_deployment_monitoring_objective_configs.objective_config.training_prediction_skew_detection_config`
+- `model_deployment_monitoring_objective_configs.objective_config.prediction_drift_detection_config`
+|
+
+## Methods
+
+### UpdateModelDeploymentMonitoringJobRequest
+
+```
+UpdateModelDeploymentMonitoringJobRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.UpdateModelDeploymentMonitoringJob.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PointwiseMetricSpec -->
+
+# Class PointwiseMetricSpec (1.134.0)
+
+`PointwiseMetricSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for pointwise metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`metric_prompt_template` |
+`str`
+Required. Metric prompt template for pointwise metric. This field is a member of `oneof` _ `_metric_prompt_template` .
+|
+
+## Methods
+
+### PointwiseMetricSpec
+
+`PointwiseMetricSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for pointwise metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.EnvVar -->
+
+# Class EnvVar (1.134.0)
+
+`EnvVar(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents an environment variable present in a Container or Python Module.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Required. Name of the environment variable. Must be a valid C identifier. |
+`value` |
+`str`
+Required. Variables that reference a $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. |
+
+## Methods
+
+### EnvVar
+
+`EnvVar(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents an environment variable present in a Container or Python Module.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelDeploymentMonitoringObjectiveType -->
+
+# Class ModelDeploymentMonitoringObjectiveType (1.134.0)
+
+`ModelDeploymentMonitoringObjectiveType(value)`
+
+
+The Model Monitoring Objective types.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`MODEL_DEPLOYMENT_MONITORING_OBJECTIVE_TYPE_UNSPECIFIED` |
+Default value, should not be set. |
+`RAW_FEATURE_SKEW` |
+Raw feature values' stats to detect skew between Training-Prediction datasets. |
+`RAW_FEATURE_DRIFT` |
+Raw feature values' stats to detect drift between Serving-Prediction datasets. |
+`FEATURE_ATTRIBUTION_SKEW` |
+Feature attribution scores to detect skew between Training-Prediction datasets. |
+`FEATURE_ATTRIBUTION_DRIFT` |
+Feature attribution scores to detect skew between Prediction datasets collected within different time windows. |
+
+## Methods
+
+### ModelDeploymentMonitoringObjectiveType
+
+`ModelDeploymentMonitoringObjectiveType(value)`
+
+
+The Model Monitoring Objective types.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.UpdateNotebookRuntimeTemplateRequest -->
+
+# Class UpdateNotebookRuntimeTemplateRequest (1.134.0)
+
+```
+UpdateNotebookRuntimeTemplateRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for NotebookService.UpdateNotebookRuntimeTemplate.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`notebook_runtime_template` |
+Required. The NotebookRuntimeTemplate to update. |
+`update_mask` |
+`google.protobuf.field_mask_pb2.FieldMask`
+Required. The update mask applies to the resource. For the `FieldMask` definition, see
+`google.protobuf.FieldMask][google.protobuf.FieldMask]` .
+Input format: `{paths: "${updated_filed}"}` Updatable
+fields:
+- `encryption_spec.kms_key_name`
+|
+
+## Methods
+
+### UpdateNotebookRuntimeTemplateRequest
+
+```
+UpdateNotebookRuntimeTemplateRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for NotebookService.UpdateNotebookRuntimeTemplate.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.DedicatedResources -->
+
+# Class DedicatedResources (1.134.0)
+
+`DedicatedResources(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A description of resources that are dedicated to a DeployedModel or DeployedIndex, and that need a higher degree of manual configuration.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`machine_spec` |
+Required. Immutable. The specification of a single machine being used. |
+`min_replica_count` |
+`int`
+Required. Immutable. The minimum number of machine replicas that will be always deployed on. This value must be greater than or equal to 1. If traffic increases, it may dynamically be deployed onto more replicas, and as traffic decreases, some of these extra replicas may be freed. |
+`max_replica_count` |
+`int`
+Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, will use min_replica_count as the default value. The value of this field impacts the charge against Vertex CPU and GPU quotas. Specifically, you will be charged for (max_replica_count \* number of cores in the selected machine type) and (max_replica_count \* number of GPUs per replica in the selected machine type). |
+`required_replica_count` |
+`int`
+Optional. Number of required available replicas for the deployment to succeed. This field is only needed when partial deployment/mutation is desired. If set, the deploy/mutate operation will succeed once available_replica_count reaches required_replica_count, and the rest of the replicas will be retried. If not set, the default required_replica_count will be min_replica_count. |
+`initial_replica_count` |
+`int`
+Immutable. Number of initial replicas being deployed on when scaling the workload up from zero or when creating the workload in case min_replica_count = 0. When min_replica_count 0 (meaning that the scale-to-zero feature is not enabled), initial_replica_count should not be set. When min_replica_count = 0 (meaning that the scale-to-zero feature is enabled), initial_replica_count should be larger than zero, but no greater than max_replica_count. |
+`autoscaling_metric_specs` |
+`MutableSequence[`
+Immutable. The metric specifications that overrides a resource utilization metric (CPU utilization, accelerator's duty cycle, and so on) target value (default to 60 if not set). At most one entry is allowed per metric. If machine_spec.accelerator_count is above 0, the autoscaling will be based on both CPU utilization and accelerator's duty cycle metrics and scale up when either metrics exceeds its target value while scale down if both metrics are under their target value. The default target value is 60 for both metrics. If machine_spec.accelerator_count is 0, the autoscaling will be based on CPU utilization metric only with default target value 60 if not explicitly set. For example, in the case of Online Prediction, if you want to override target CPU utilization to 80, you should set autoscaling_metric_specs.metric_name to `aiplatform.googleapis.com/prediction/online/cpu/utilization`
+and
+autoscaling_metric_specs.target
+to `80` .
+|
+`spot` |
+`bool`
+Optional. If true, schedule the deployment workload on `spot VMs |
+`flex_start` |
+Optional. Immutable. If set, use DWS resource to schedule the deployment workload. reference: (https://cloud.google.com/blog/products/compute/introducing-dynamic-workload-scheduler) |
+`scale_to_zero_spec` |
+Optional. Specification for scale-to-zero feature. |
+
+## Classes
+
+### ScaleToZeroSpec
+
+`ScaleToZeroSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Specification for scale-to-zero feature.
+
+## Methods
+
+### DedicatedResources
+
+`DedicatedResources(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A description of resources that are dedicated to a DeployedModel or DeployedIndex, and that need a higher degree of manual configuration.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.StoredContentsExampleParameters -->
+
+# Class StoredContentsExampleParameters (1.134.0)
+
+```
+StoredContentsExampleParameters(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+The metadata filters that will be used to search StoredContentsExamples. If a field is unspecified, then no filtering for that field will be applied
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`search_key` |
+`str`
+The exact search key to use for retrieval. This field is a member of `oneof` _ `query` .
+|
+`content_search_key` |
+The chat history to use to generate the search key for retrieval. This field is a member of `oneof` _ `query` .
+|
+`function_names` |
+Optional. The function names for filtering. |
+
+## Classes
+
+### ContentSearchKey
+
+`ContentSearchKey(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The chat history to use to generate the search key for retrieval.
+
+## Methods
+
+### StoredContentsExampleParameters
+
+```
+StoredContentsExampleParameters(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+The metadata filters that will be used to search StoredContentsExamples. If a field is unspecified, then no filtering for that field will be applied
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.UpdateModelDeploymentMonitoringJobRequest -->
+
+# Class UpdateModelDeploymentMonitoringJobRequest (1.134.0)
+
+```
+UpdateModelDeploymentMonitoringJobRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.UpdateModelDeploymentMonitoringJob.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`model_deployment_monitoring_job` |
+Required. The model monitoring configuration which replaces the resource on the server. |
+`update_mask` |
+`google.protobuf.field_mask_pb2.FieldMask`
+Required. The update mask is used to specify the fields to be overwritten in the ModelDeploymentMonitoringJob resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to
+override all fields. For the objective config, the user can
+either provide the update mask for
+model_deployment_monitoring_objective_configs or any
+combination of its nested fields, such as:
+model_deployment_monitoring_objective_configs.objective_config.training_dataset.
+Updatable fields:
+- `display_name`
+- `model_deployment_monitoring_schedule_config`
+- `model_monitoring_alert_config`
+- `logging_sampling_strategy`
+- `labels`
+- `log_ttl`
+- `enable_monitoring_pipeline_logs` . and
+- `model_deployment_monitoring_objective_configs` . or
+- `model_deployment_monitoring_objective_configs.objective_config.training_dataset`
+- `model_deployment_monitoring_objective_configs.objective_config.training_prediction_skew_detection_config`
+- `model_deployment_monitoring_objective_configs.objective_config.prediction_drift_detection_config`
+|
+
+## Methods
+
+### UpdateModelDeploymentMonitoringJobRequest
+
+```
+UpdateModelDeploymentMonitoringJobRequest(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Request message for JobService.UpdateModelDeploymentMonitoringJob.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.AutoscalingMetricSpec -->
+
+# Class AutoscalingMetricSpec (1.134.0)
+
+`AutoscalingMetricSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The metric specification that defines the target resource utilization (CPU utilization, accelerator's duty cycle, and so on) for calculating the desired replica count.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`metric_name` |
+`str`
+Required. The resource metric name. Supported metrics: - For Online Prediction: - `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle`
+- `aiplatform.googleapis.com/prediction/online/cpu/utilization`
+- `aiplatform.googleapis.com/prediction/online/request_count`
+|
+`target` |
+`int`
+The target resource utilization in percentage (1% - 100%) for the given metric; once the real usage deviates from the target by a certain percentage, the machine replicas change. The default value is 60 (representing 60%) if not provided. |
+`monitored_resource_labels` |
+`MutableMapping[str, str]`
+Optional. The Cloud Monitoring monitored resource labels as key value pairs used for metrics filtering. See Cloud Monitoring Labels https://cloud.google.com/monitoring/api/v3/metric-model#generic-label-info |
+
+## Classes
+
+### MonitoredResourceLabelsEntry
+
+```
+MonitoredResourceLabelsEntry(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+The abstract base class for a message.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`kwargs` |
+`dict`
+Keys and values corresponding to the fields of the message. |
+`mapping` |
+`Union[dict, `
+A dictionary or message to be used to determine the values for this message. |
+`ignore_unknown_fields` |
+`Optional(bool)`
+If True, do not raise errors for unknown fields. Only applied if |
+
+## Methods
+
+### AutoscalingMetricSpec
+
+`AutoscalingMetricSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The metric specification that defines the target resource utilization (CPU utilization, accelerator's duty cycle, and so on) for calculating the desired replica count.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.Examples.ExampleGcsSource.DataFormat -->
+
+# Class DataFormat (1.134.0)
+
+`DataFormat(value)`
+
+
+The format of the input example instances.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`DATA_FORMAT_UNSPECIFIED` |
+Format unspecified, used when unset. |
+`JSONL` |
+Examples are stored in JSONL files. |
+
+## Methods
+
+### DataFormat
+
+`DataFormat(value)`
+
+
+The format of the input example instances.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/summary_method -->
+
+# aiplatform (1.134.0)
+
+Documentation is too large to display. See the GitHub repository: https://github.com/googleapis/python-aiplatform
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/summary_method.html -->
+
+# aiplatform (1.134.0)
+
+Documentation is too large to display. See the GitHub repository: https://github.com/googleapis/python-aiplatform
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.v1.schema.predict.instance_v1.types.ImageSegmentationPredictionInstance -->
+
+# Class ImageSegmentationPredictionInstance (1.134.0)
+
+```
+ImageSegmentationPredictionInstance(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Prediction input format for Image Segmentation.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`content` |
+`str`
+The image bytes to make the predictions on. |
+`mime_type` |
+`str`
+The MIME type of the content of the image. Only the images in below listed MIME types are supported. - image/jpeg - image/png |
+
+## Methods
+
+### ImageSegmentationPredictionInstance
+
+```
+ImageSegmentationPredictionInstance(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Prediction input format for Image Segmentation.
+
+### ImageSegmentationPredictionInstance
+
+```
+ImageSegmentationPredictionInstance(
+mapping=None, *, ignore_unknown_fields=False, **kwargs
+)
+```
+
+
+Prediction input format for Image Segmentation.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.ModelEvaluation -->
+
+# Class ModelEvaluation (1.134.0)
+
+```
+ModelEvaluation(
+evaluation_name: str,
+model_id: typing.Optional[str] = None,
+project: typing.Optional[str] = None,
+location: typing.Optional[str] = None,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+)
+```
+
+
+Retrieves the ModelEvaluation resource and instantiates its representation.
+
+## Parameters |
+|
+|---|---|
+Name |
+Description |
+`evaluation_name` |
+`str`
+Required. A fully-qualified model evaluation resource name or evaluation ID. Example: "projects/123/locations/us-central1/models/456/evaluations/789" or "789". If passing only the evaluation ID, model_id must be provided. |
+`model_id` |
+`str`
+Optional. The ID of the model to retrieve this evaluation from. If passing only the evaluation ID as evaluation_name, model_id must be provided. |
+`project` |
+`str`
+Optional project to retrieve model evaluation from. If not set, project set in aiplatform.init will be used. |
+`location` |
+`str`
+Optional location to retrieve model evaluation from. If not set, location set in aiplatform.init will be used. |
+
+## Properties
+
+### create_time
+
+Time this resource was created.
+
+### display_name
+
+Display name of this resource.
+
+### encryption_spec
+
+Customer-managed encryption key options for this Vertex AI resource.
+
+If this is set, then all resources created by this Vertex AI resource will be encrypted with the provided encryption key.
+
+### gca_resource
+
+The underlying resource proto representation.
+
+### labels
+
+User-defined labels containing metadata about this resource.
+
+Read more about labels at [https://goo.gl/xmQnxf](https://goo.gl/xmQnxf)
+
+### metrics
+
+Gets the evaluation metrics from the Model Evaluation.
+
+Exceptions |
+|
+|---|---|
+Type |
+Description |
+`ValueError` |
+If the Model Evaluation doesn't have metrics. |
+
+### name
+
+Name of this resource.
+
+### resource_name
+
+Full qualified resource name.
+
+### update_time
+
+Time this resource was last updated.
+
+## Methods
+
+### delete
+
+`delete()`
+
+
+Deletes this Vertex AI resource. WARNING: This deletion is permanent.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`sync` |
+`bool`
+Whether to execute this deletion synchronously. If False, this method will be executed in concurrent Future and any downstream object will be immediately returned and synced when the Future has completed. |
+
+### list
+
+```
+list(
+model: str,
+filter: typing.Optional[str] = None,
+order_by: typing.Optional[str] = None,
+enable_simple_view: bool = False,
+project: typing.Optional[str] = None,
+location: typing.Optional[str] = None,
+credentials: typing.Optional[google.auth.credentials.Credentials] = None,
+) -> typing.List[
+google.cloud.aiplatform.model_evaluation.model_evaluation.ModelEvaluation
+]
+```
+
+
+List all ModelEvaluation resources on the provided model.
+
+Example Usage:
+
+aiplatform.ModelEvaluation.list( model="projects/123/locations/us-central1/models/456", )
+
+aiplatform.Model.list( model="projects/123/locations/us-central1/models/456", order_by="create_time desc, display_name" )
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`model` |
+`str`
+Required. The resource name of the model to list evaluations for. For example: "projects/123/locations/us-central1/models/456". |
+`filter` |
+`str`
+Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. |
+`order_by` |
+`str`
+Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: |
+`project` |
+`str`
+Optional. Project to retrieve list from. If not set, project set in aiplatform.init will be used. |
+`location` |
+`str`
+Optional. Location to retrieve list from. If not set, location set in aiplatform.init will be used. |
+`credentials` |
+`auth_credentials.Credentials`
+Optional. Custom credentials to use to retrieve list. Overrides credentials set in aiplatform.init. |
+`parent` |
+`str`
+Optional. The parent resource name if any to retrieve list from. |
+
+### to_dict
+
+`to_dict() -> typing.Dict[str, typing.Any]`
+
+
+Returns the resource proto as a dictionary.
+
+### wait
+
+`wait()`
+
+
+Helper method that blocks until all futures are complete.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ReasoningEngine -->
+
+# Class ReasoningEngine (1.134.0)
+
+`ReasoningEngine(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+ReasoningEngine provides a customizable runtime for models to determine which actions to take and in which order.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`name` |
+`str`
+Identifier. The resource name of the ReasoningEngine. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
+|
+`display_name` |
+`str`
+Required. The display name of the ReasoningEngine. |
+`description` |
+`str`
+Optional. The description of the ReasoningEngine. |
+`spec` |
+Optional. Configurations of the ReasoningEngine |
+`create_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+Output only. Timestamp when this ReasoningEngine was created. |
+`update_time` |
+`google.protobuf.timestamp_pb2.Timestamp`
+Output only. Timestamp when this ReasoningEngine was most recently updated. |
+`etag` |
+`str`
+Optional. Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens. |
+`encryption_spec` |
+Customer-managed encryption key spec for a ReasoningEngine. If set, this ReasoningEngine and all sub-resources of this ReasoningEngine will be secured by this key. |
+`labels` |
+`MutableMapping[str, str]`
+Labels for the ReasoningEngine. |
+
+## Classes
+
+### LabelsEntry
+
+`LabelsEntry(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The abstract base class for a message.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`kwargs` |
+`dict`
+Keys and values corresponding to the fields of the message. |
+`mapping` |
+`Union[dict, `
+A dictionary or message to be used to determine the values for this message. |
+`ignore_unknown_fields` |
+`Optional(bool)`
+If True, do not raise errors for unknown fields. Only applied if |
+
+## Methods
+
+### ReasoningEngine
+
+`ReasoningEngine(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+ReasoningEngine provides a customizable runtime for models to determine which actions to take and in which order.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.v1beta1.schema.trainingjob.definition_v1beta1.types.AutoMlTablesInputs.Transformation.TextTransformation -->
+
+# Class TextTransformation (1.134.0)
+
+`TextTransformation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Training pipeline will perform following transformation functions.
+
+- The text as is--no change to case, punctuation, spelling, tense, and so on.
+- Tokenize text to words. Convert each words to a dictionary lookup index and generate an embedding for each index. Combine the embedding of all elements into a single embedding using the mean.
+- Tokenization is based on unicode script boundaries.
+- Missing values get their own lookup index and resulting embedding.
+- Stop-words receive no special treatment and are not removed.
+
+## Methods
+
+### TextTransformation
+
+`TextTransformation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Training pipeline will perform following transformation functions.
+
+- The text as is--no change to case, punctuation, spelling, tense, and so on.
+- Tokenize text to words. Convert each words to a dictionary lookup index and generate an embedding for each index. Combine the embedding of all elements into a single embedding using the mean.
+- Tokenization is based on unicode script boundaries.
+- Missing values get their own lookup index and resulting embedding.
+- Stop-words receive no special treatment and are not removed.
+
+### TextTransformation
+
+`TextTransformation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Training pipeline will perform following transformation functions.
+
+- The text as is--no change to case, punctuation, spelling, tense, and so on.
+- Tokenize text to words. Convert each words to a dictionary lookup index and generate an embedding for each index. Combine the embedding of all elements into a single embedding using the mean.
+- Tokenization is based on unicode script boundaries.
+- Missing values get their own lookup index and resulting embedding.
+- Stop-words receive no special treatment and are not removed.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.UserActionReference -->
+
+# Class UserActionReference (1.134.0)
+
+`UserActionReference(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+References an API call. It contains more information about long running operation and Jobs that are triggered by the API call.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`operation` |
+`str`
+For API calls that return a long running operation. Resource name of the long running operation. Format: `projects/{project}/locations/{location}/operations/{operation}`
+This field is a member of `oneof` _ `reference` .
+|
+`data_labeling_job` |
+`str`
+For API calls that start a LabelingJob. Resource name of the LabelingJob. Format: `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
+This field is a member of `oneof` _ `reference` .
+|
+`method` |
+`str`
+The method name of the API RPC call. For example, "/google.cloud.aiplatform.{apiVersion}.DatasetService.CreateDataset". |
+
+## Methods
+
+### UserActionReference
+
+`UserActionReference(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+References an API call. It contains more information about long running operation and Jobs that are triggered by the API call.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.deployment_resource_pool_service -->
+
+# Package deployment_resource_pool_service (1.134.0)
+
+API documentation for `aiplatform_v1.services.deployment_resource_pool_service`
+
+package.
+
+## Classes
+
+[DeploymentResourcePoolServiceAsyncClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.deployment_resource_pool_service.DeploymentResourcePoolServiceAsyncClient)
+
+A service that manages the DeploymentResourcePool resource.
+
+[DeploymentResourcePoolServiceClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.deployment_resource_pool_service.DeploymentResourcePoolServiceClient)
+
+A service that manages the DeploymentResourcePool resource.
+
+## Modules
+
+[pagers](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.services.deployment_resource_pool_service.pagers)
+
+API documentation for `aiplatform_v1.services.deployment_resource_pool_service.pagers`
+
+module.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Probe.HttpGetAction -->
+
+# Class HttpGetAction (1.134.0)
+
+`HttpGetAction(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+HttpGetAction describes an action based on HTTP Get requests.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`path` |
+`str`
+Path to access on the HTTP server. |
+`port` |
+`int`
+Number of the port to access on the container. Number must be in the range 1 to 65535. |
+`host` |
+`str`
+Host name to connect to, defaults to the model serving container's IP. You probably want to set "Host" in httpHeaders instead. |
+`scheme` |
+`str`
+Scheme to use for connecting to the host. Defaults to HTTP. Acceptable values are "HTTP" or "HTTPS". |
+`http_headers` |
+`MutableSequence[`
+Custom headers to set in the request. HTTP allows repeated headers. |
+
+## Methods
+
+### HttpGetAction
+
+`HttpGetAction(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+HttpGetAction describes an action based on HTTP Get requests.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.v1.schema.trainingjob.definition_v1.types.AutoMlTextSentimentInputs -->
+
+# Class AutoMlTextSentimentInputs (1.134.0)
+
+`AutoMlTextSentimentInputs(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`sentiment_max` |
+`int`
+A sentiment is expressed as an integer ordinal, where higher value means a more positive sentiment. The range of sentiments that will be used is between 0 and sentimentMax (inclusive on both ends), and all the values in the range must be represented in the dataset before a model can be created. Only the Annotations with this sentimentMax will be used for training. sentimentMax value must be between 1 and 10 (inclusive). |
+
+## Methods
+
+### AutoMlTextSentimentInputs
+
+`AutoMlTextSentimentInputs(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+### AutoMlTextSentimentInputs
+
+`AutoMlTextSentimentInputs(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.StoredContentsExampleFilter -->
+
+# Class StoredContentsExampleFilter (1.134.0)
+
+`StoredContentsExampleFilter(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The metadata filters that will be used to remove or fetch StoredContentsExamples. If a field is unspecified, then no filtering for that field will be applied.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`search_keys` |
+`MutableSequence[str]`
+Optional. The search keys for filtering. Only examples with one of the specified search keys (StoredContentsExample.search_key) are eligible to be returned. |
+`function_names` |
+Optional. The function names for filtering. |
+
+## Methods
+
+### StoredContentsExampleFilter
+
+`StoredContentsExampleFilter(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The metadata filters that will be used to remove or fetch StoredContentsExamples. If a field is unspecified, then no filtering for that field will be applied.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SpeculativeDecodingSpec -->
+
+# Class SpeculativeDecodingSpec (1.134.0)
+
+`SpeculativeDecodingSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Configuration for Speculative Decoding.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`draft_model_speculation` |
+draft model speculation. This field is a member of `oneof` _ `speculation` .
+|
+`ngram_speculation` |
+N-Gram speculation. This field is a member of `oneof` _ `speculation` .
+|
+`speculative_token_count` |
+`int`
+The number of speculative tokens to generate at each step. |
+
+## Classes
+
+### DraftModelSpeculation
+
+`DraftModelSpeculation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Draft model speculation works by using the smaller model to generate candidate tokens for speculative decoding.
+
+### NgramSpeculation
+
+`NgramSpeculation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+N-Gram speculation works by trying to find matching tokens in the previous prompt sequence and use those as speculation for generating new tokens.
+
+## Methods
+
+### SpeculativeDecodingSpec
+
+`SpeculativeDecodingSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Configuration for Speculative Decoding.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ModelMonitoringStats -->
+
+# Class ModelMonitoringStats (1.134.0)
+
+`ModelMonitoringStats(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents the collection of statistics for a metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`tabular_stats` |
+Generated tabular statistics. This field is a member of `oneof` _ `stats` .
+|
+
+## Methods
+
+### ModelMonitoringStats
+
+`ModelMonitoringStats(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Represents the collection of statistics for a metric.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.GenerationConfig.Modality -->
+
+# Class Modality (1.134.0)
+
+`Modality(value)`
+
+
+The modalities of the response.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`MODALITY_UNSPECIFIED` |
+Unspecified modality. Will be processed as text. |
+`TEXT` |
+Text modality. |
+`IMAGE` |
+Image modality. |
+`AUDIO` |
+Audio modality. |
+
+## Methods
+
+### Modality
+
+`Modality(value)`
+
+
+The modalities of the response.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.BleuResults -->
+
+# Class BleuResults (1.134.0)
+
+`BleuResults(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Results for bleu metric.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`bleu_metric_values` |
+`MutableSequence[`
+Output only. Bleu metric values. |
+
+## Methods
+
+### BleuResults
+
+`BleuResults(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Results for bleu metric.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.Candidate -->
+
+# Class Candidate (1.134.0)
+
+`Candidate(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A response candidate generated from the model.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`index` |
+`int`
+Output only. Index of the candidate. |
+`content` |
+Output only. Content parts of the candidate. |
+`avg_logprobs` |
+`float`
+Output only. Average log probability score of the candidate. |
+`logprobs_result` |
+Output only. Log-likelihood scores for the response tokens and top tokens |
+`finish_reason` |
+Output only. The reason why the model stopped generating tokens. If empty, the model has not stopped generating the tokens. |
+`safety_ratings` |
+`MutableSequence[`
+Output only. List of ratings for the safety of a response candidate. There is at most one rating per category. |
+`finish_message` |
+`str`
+Output only. Describes the reason the mode stopped generating tokens in more detail. This is only filled when `finish_reason` is set.
+This field is a member of `oneof` _ `_finish_message` .
+|
+`citation_metadata` |
+Output only. Source attribution of the generated content. |
+`grounding_metadata` |
+Output only. Metadata specifies sources used to ground generated content. |
+`url_context_metadata` |
+Output only. Metadata related to url context retrieval tool. |
+
+## Classes
+
+### FinishReason
+
+`FinishReason(value)`
+
+
+The reason why the model stopped generating tokens. If empty, the model has not stopped generating the tokens.
+
+## Methods
+
+### Candidate
+
+`Candidate(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A response candidate generated from the model.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.UserActionReference -->
+
+# Class UserActionReference (1.134.0)
+
+`UserActionReference(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+References an API call. It contains more information about long running operation and Jobs that are triggered by the API call.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`operation` |
+`str`
+For API calls that return a long running operation. Resource name of the long running operation. Format: `projects/{project}/locations/{location}/operations/{operation}`
+This field is a member of `oneof` _ `reference` .
+|
+`data_labeling_job` |
+`str`
+For API calls that start a LabelingJob. Resource name of the LabelingJob. Format: `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
+This field is a member of `oneof` _ `reference` .
+|
+`method` |
+`str`
+The method name of the API RPC call. For example, "/google.cloud.aiplatform.{apiVersion}.DatasetService.CreateDataset". |
+
+## Methods
+
+### UserActionReference
+
+`UserActionReference(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+References an API call. It contains more information about long running operation and Jobs that are triggered by the API call.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ModelDeploymentMonitoringObjectiveType -->
+
+# Class ModelDeploymentMonitoringObjectiveType (1.134.0)
+
+`ModelDeploymentMonitoringObjectiveType(value)`
+
+
+The Model Monitoring Objective types.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`MODEL_DEPLOYMENT_MONITORING_OBJECTIVE_TYPE_UNSPECIFIED` |
+Default value, should not be set. |
+`RAW_FEATURE_SKEW` |
+Raw feature values' stats to detect skew between Training-Prediction datasets. |
+`RAW_FEATURE_DRIFT` |
+Raw feature values' stats to detect drift between Serving-Prediction datasets. |
+`FEATURE_ATTRIBUTION_SKEW` |
+Feature attribution scores to detect skew between Training-Prediction datasets. |
+`FEATURE_ATTRIBUTION_DRIFT` |
+Feature attribution scores to detect skew between Prediction datasets collected within different time windows. |
+
+## Methods
+
+### ModelDeploymentMonitoringObjectiveType
+
+`ModelDeploymentMonitoringObjectiveType(value)`
+
+
+The Model Monitoring Objective types.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ContentsExample -->
+
+# Class ContentsExample (1.134.0)
+
+`ContentsExample(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A single example of a conversation with the model.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`contents` |
+`MutableSequence[google.cloud.aiplatform_v1beta1.types.Content]`
+Required. The content of the conversation with the model that resulted in the expected output. |
+`expected_contents` |
+`MutableSequence[`
+Required. The expected output for the given `contents` . To
+represent multi-step reasoning, this is a repeated field
+that contains the iterative steps of the expected output.
+|
+
+## Classes
+
+### ExpectedContent
+
+`ExpectedContent(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A single step of the expected output.
+
+## Methods
+
+### ContentsExample
+
+`ContentsExample(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+A single example of a conversation with the model.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ModelDeploymentMonitoringBigQueryTable.LogType -->
+
+# Class LogType (1.134.0)
+
+`LogType(value)`
+
+
+Indicates what type of traffic does the log belong to.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`LOG_TYPE_UNSPECIFIED` |
+Unspecified type. |
+`PREDICT` |
+Predict logs. |
+`EXPLAIN` |
+Explain logs. |
+
+## Methods
+
+### LogType
+
+`LogType(value)`
+
+
+Indicates what type of traffic does the log belong to.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.DynamicRetrievalConfig.Mode -->
+
+# Class Mode (1.134.0)
+
+`Mode(value)`
+
+
+The mode of the predictor to be used in dynamic retrieval.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`MODE_UNSPECIFIED` |
+Always trigger retrieval. |
+`MODE_DYNAMIC` |
+Run retrieval only when system decides it is necessary. |
+
+## Methods
+
+### Mode
+
+`Mode(value)`
+
+
+The mode of the predictor to be used in dynamic retrieval.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Scalar -->
+
+# Class Scalar (1.134.0)
+
+`Scalar(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+One point viewable on a scalar metric plot.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`value` |
+`float`
+Value of the point at this step / timestamp. |
+
+## Methods
+
+### Scalar
+
+`Scalar(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+One point viewable on a scalar metric plot.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.SupervisedTuningSpec.TuningMode -->
+
+# Class TuningMode (1.134.0)
+
+`TuningMode(value)`
+
+
+Supported tuning modes.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`TUNING_MODE_UNSPECIFIED` |
+Tuning mode is unspecified. |
+`TUNING_MODE_FULL` |
+Full fine-tuning mode. |
+`TUNING_MODE_PEFT_ADAPTER` |
+PEFT adapter tuning mode. |
+
+## Methods
+
+### TuningMode
+
+`TuningMode(value)`
+
+
+Supported tuning modes.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.SpeculativeDecodingSpec -->
+
+# Class SpeculativeDecodingSpec (1.134.0)
+
+`SpeculativeDecodingSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Configuration for Speculative Decoding.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`draft_model_speculation` |
+draft model speculation. This field is a member of `oneof` _ `speculation` .
+|
+`ngram_speculation` |
+N-Gram speculation. This field is a member of `oneof` _ `speculation` .
+|
+`speculative_token_count` |
+`int`
+The number of speculative tokens to generate at each step. |
+
+## Classes
+
+### DraftModelSpeculation
+
+`DraftModelSpeculation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Draft model speculation works by using the smaller model to generate candidate tokens for speculative decoding.
+
+### NgramSpeculation
+
+`NgramSpeculation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+N-Gram speculation works by trying to find matching tokens in the previous prompt sequence and use those as speculation for generating new tokens.
+
+## Methods
+
+### SpeculativeDecodingSpec
+
+`SpeculativeDecodingSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Configuration for Speculative Decoding.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.VertexAISearch -->
+
+# Class VertexAISearch (1.134.0)
+
+`VertexAISearch(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Retrieve from Vertex AI Search datastore or engine for
+grounding. datastore and engine are mutually exclusive. See
+[https://cloud.google.com/products/agent-builder](https://cloud.google.com/products/agent-builder)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`datastore` |
+`str`
+Optional. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
+|
+`engine` |
+`str`
+Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
+|
+`max_results` |
+`int`
+Optional. Number of search results to return per query. The default value is 10. The maximumm allowed value is 10. |
+`filter` |
+`str`
+Optional. Filter strings to be passed to the search API. |
+`data_store_specs` |
+`MutableSequence[`
+Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. It should only be set if engine is used. |
+
+## Classes
+
+### DataStoreSpec
+
+`DataStoreSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Define data stores within engine to filter on in a search
+call and configurations for those data stores. For more
+information, see
+[https://cloud.google.com/generative-ai-app-builder/docs/reference/rpc/google.cloud.discoveryengine.v1#datastorespec](https://cloud.google.com/generative-ai-app-builder/docs/reference/rpc/google.cloud.discoveryengine.v1#datastorespec)
+
+## Methods
+
+### VertexAISearch
+
+`VertexAISearch(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Retrieve from Vertex AI Search datastore or engine for
+grounding. datastore and engine are mutually exclusive. See
+[https://cloud.google.com/products/agent-builder](https://cloud.google.com/products/agent-builder)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.persistent_resource_service -->
+
+# Package persistent_resource_service (1.134.0)
+
+API documentation for `aiplatform_v1beta1.services.persistent_resource_service`
+
+package.
+
+## Classes
+
+[PersistentResourceServiceAsyncClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.persistent_resource_service.PersistentResourceServiceAsyncClient)
+
+A service for managing Vertex AI's machine learning PersistentResource.
+
+[PersistentResourceServiceClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.persistent_resource_service.PersistentResourceServiceClient)
+
+A service for managing Vertex AI's machine learning PersistentResource.
+
+## Modules
+
+[pagers](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.persistent_resource_service.pagers)
+
+API documentation for `aiplatform_v1beta1.services.persistent_resource_service.pagers`
+
+module.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.PredefinedSplit -->
+
+# Class PredefinedSplit (1.134.0)
+
+`PredefinedSplit(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Assigns input data to training, validation, and test sets based on the value of a provided key.
+
+Supported only for tabular Datasets.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`key` |
+`str`
+Required. The key is a name of one of the Dataset's data columns. The value of the key (either the label's value or value in the column) must be one of { `training` ,
+`validation` , `test` }, and it defines to which set the
+given piece of data is assigned. If for a piece of data the
+key is not present or has an invalid value, that piece is
+ignored by the pipeline.
+|
+
+## Methods
+
+### PredefinedSplit
+
+`PredefinedSplit(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Assigns input data to training, validation, and test sets based on the value of a provided key.
+
+Supported only for tabular Datasets.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ArtifactTypeSchema -->
+
+# Class ArtifactTypeSchema (1.134.0)
+
+`ArtifactTypeSchema(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The definition of a artifact type in MLMD.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`schema_title` |
+`str`
+The name of the type. The format of the title must be: . Examples:
+- `aiplatform.Model`
+- `acme.CustomModel` When this field is set, the type must
+be pre-registered in the MLMD store.
+This field is a member of `oneof` _ `kind` .
+|
+`schema_uri` |
+`str`
+Points to a YAML file stored on Cloud Storage describing the format. Deprecated. Use [PipelineArtifactTypeSchema.schema_title][] or [PipelineArtifactTypeSchema.instance_schema][] instead. This field is a member of `oneof` _ `kind` .
+|
+`instance_schema` |
+`str`
+Contains a raw YAML string, describing the format of the properties of the type. This field is a member of `oneof` _ `kind` .
+|
+`schema_version` |
+`str`
+The schema version of the artifact. If the value is not set, it defaults to the latest version in the system. |
+
+## Methods
+
+### ArtifactTypeSchema
+
+`ArtifactTypeSchema(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The definition of a artifact type in MLMD.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ListFeatureMonitorsRequest -->
+
+# Class ListFeatureMonitorsRequest (1.134.0)
+
+`ListFeatureMonitorsRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for FeatureRegistryService.ListFeatureMonitors.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`parent` |
+`str`
+Required. The resource name of the FeatureGroup to list FeatureMonitors. Format: `projects/{project}/locations/{location}/featureGroups/{featureGroup}`
+|
+`filter` |
+`str`
+Optional. Lists the FeatureMonitors that match the filter expression. The following fields are supported: - `create_time` : Supports `=` , `!=` , , `>` ,
+`<>` , and `>=` comparisons. Values must be in RFC 3339
+format.
+- `update_time` : Supports `=` , `!=` , , `>` ,
+`<>` , and `>=` comparisons. Values must be in RFC 3339
+format.
+- `labels` : Supports key-value equality and key presence.
+Examples:
+- `create_time > "2020-01-01" OR update_time > "2020-01-01"`
+FeatureMonitors created or updated after 2020-01-01.
+- `labels.env = "prod"` FeatureGroups with label "env" set
+to "prod".
+|
+`page_size` |
+`int`
+Optional. The maximum number of FeatureGroups to return. The service may return fewer than this value. If unspecified, at most 100 FeatureMonitors will be returned. The maximum value is 100; any value greater than 100 will be coerced to 100. |
+`page_token` |
+`str`
+Optional. A page token, received from a previous FeatureRegistryService.ListFeatureMonitors call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeatureRegistryService.ListFeatureMonitors must match the call that provided the page token. |
+`order_by` |
+`str`
+Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported Fields: - `create_time`
+- `update_time`
+|
+
+## Methods
+
+### ListFeatureMonitorsRequest
+
+`ListFeatureMonitorsRequest(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Request message for FeatureRegistryService.ListFeatureMonitors.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.SampledShapleyAttribution -->
+
+# Class SampledShapleyAttribution (1.134.0)
+
+`SampledShapleyAttribution(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`path_count` |
+`int`
+Required. The number of feature permutations to consider when approximating the Shapley values. Valid range of its value is [1, 50], inclusively. |
+
+## Methods
+
+### SampledShapleyAttribution
+
+`SampledShapleyAttribution(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.Probe.HttpGetAction -->
+
+# Class HttpGetAction (1.134.0)
+
+`HttpGetAction(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+HttpGetAction describes an action based on HTTP Get requests.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`path` |
+`str`
+Path to access on the HTTP server. |
+`port` |
+`int`
+Number of the port to access on the container. Number must be in the range 1 to 65535. |
+`host` |
+`str`
+Host name to connect to, defaults to the model serving container's IP. You probably want to set "Host" in httpHeaders instead. |
+`scheme` |
+`str`
+Scheme to use for connecting to the host. Defaults to HTTP. Acceptable values are "HTTP" or "HTTPS". |
+`http_headers` |
+`MutableSequence[`
+Custom headers to set in the request. HTTP allows repeated headers. |
+
+## Methods
+
+### HttpGetAction
+
+`HttpGetAction(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+HttpGetAction describes an action based on HTTP Get requests.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.Explanation -->
+
+# Class Explanation (1.134.0)
+
+`Explanation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Explanation of a prediction (provided in PredictResponse.predictions) produced by the Model on a given instance.
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`attributions` |
+`MutableSequence[`
+Output only. Feature attributions grouped by predicted outputs. For Models that predict only one output, such as regression Models that predict only one score, there is only one attibution that explains the predicted output. For Models that predict multiple outputs, such as multiclass Models that predict multiple classes, each element explains one specific item. Attribution.output_index can be used to identify which output this attribution is explaining. By default, we provide Shapley values for the predicted class. However, you can configure the explanation request to generate Shapley values for any other classes too. For example, if a model predicts a probability of `0.4` for
+approving a loan application, the model's decision is to
+reject the application since
+`p(reject) = 0.6 > p(approve) = 0.4` , and the default
+Shapley values would be computed for rejection decision and
+not approval, even though the latter might be the positive
+class.
+If users set
+ExplanationParameters.top_k,
+the attributions are sorted by
+instance_output_value
+in descending order. If
+ExplanationParameters.output_indices
+is specified, the attributions are stored by
+Attribution.output_index
+in the same order as they appear in the output_indices.
+|
+`neighbors` |
+`MutableSequence[`
+Output only. List of the nearest neighbors for example-based explanations. For models deployed with the examples explanations feature enabled, the attributions field is empty and instead the neighbors field is populated. |
+
+## Methods
+
+### Explanation
+
+`Explanation(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Explanation of a prediction (provided in PredictResponse.predictions) produced by the Model on a given instance.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.prediction.Handler -->
+
+# Class Handler (1.134.0)
+
+```
+Handler(
+artifacts_uri: str,
+predictor: typing.Optional[
+typing.Type[google.cloud.aiplatform.prediction.predictor.Predictor]
+] = None,
+)
+```
+
+
+Interface for Handler class to handle prediction requests.
+
+## Methods
+
+### Handler
+
+```
+Handler(
+artifacts_uri: str,
+predictor: typing.Optional[
+typing.Type[google.cloud.aiplatform.prediction.predictor.Predictor]
+] = None,
+)
+```
+
+
+Initializes a Handler instance.
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`artifacts_uri` |
+`str`
+Required. The value of the environment variable AIP_STORAGE_URI. |
+`predictor` |
+`Type[Predictor]`
+Optional. The Predictor class this handler uses to initiate predictor instance if given. |
+
+### handle
+
+`handle(request: starlette.requests.Request) -> starlette.responses.Response`
+
+
+Handles a prediction request.
+
+Parameter |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Request`
+The request sent to the application. |
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.FluencySpec -->
+
+# Class FluencySpec (1.134.0)
+
+`FluencySpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for fluency score metric.
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`version` |
+`int`
+Optional. Which version to use for evaluation. |
+
+## Methods
+
+### FluencySpec
+
+`FluencySpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Spec for fluency score metric.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.ExamplesOverride.DataFormat -->
+
+# Class DataFormat (1.134.0)
+
+`DataFormat(value)`
+
+
+Data format enum.
+
+## Enums |
+|
+|---|---|
+Name |
+Description |
+`DATA_FORMAT_UNSPECIFIED` |
+Unspecified format. Must not be used. |
+`INSTANCES` |
+Provided data is a set of model inputs. |
+`EMBEDDINGS` |
+Provided data is a set of embeddings. |
+
+## Methods
+
+### DataFormat
+
+`DataFormat(value)`
+
+
+Data format enum.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.migration_service -->
+
+# Package migration_service (1.134.0)
+
+API documentation for `aiplatform_v1beta1.services.migration_service`
+
+package.
+
+## Classes
+
+[MigrationServiceAsyncClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.migration_service.MigrationServiceAsyncClient)
+
+A service that migrates resources from automl.googleapis.com, datalabeling.googleapis.com and ml.googleapis.com to Vertex AI.
+
+[MigrationServiceClient](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.migration_service.MigrationServiceClient)
+
+A service that migrates resources from automl.googleapis.com, datalabeling.googleapis.com and ml.googleapis.com to Vertex AI.
+
+## Modules
+
+[pagers](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.services.migration_service.pagers)
+
+API documentation for `aiplatform_v1beta1.services.migration_service.pagers`
+
+module.
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.PrebuiltVoiceConfig -->
+
+# Class PrebuiltVoiceConfig (1.134.0)
+
+`PrebuiltVoiceConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The configuration for the prebuilt speaker to use.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`voice_name` |
+`str`
+The name of the preset voice to use. This field is a member of `oneof` _ `_voice_name` .
+|
+
+## Methods
+
+### PrebuiltVoiceConfig
+
+`PrebuiltVoiceConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+The configuration for the prebuilt speaker to use.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.RagRetrievalConfig.Ranking -->
+
+# Class Ranking (1.134.0)
+
+`Ranking(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for ranking and reranking.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`rank_service` |
+Optional. Config for Rank Service. This field is a member of `oneof` _ `ranking_config` .
+|
+`llm_ranker` |
+Optional. Config for LlmRanker. This field is a member of `oneof` _ `ranking_config` .
+|
+
+## Classes
+
+### LlmRanker
+
+`LlmRanker(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for LlmRanker.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+### RankService
+
+`RankService(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for Rank Service.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Methods
+
+### Ranking
+
+`Ranking(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Config for ranking and reranking.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.VertexAISearch -->
+
+# Class VertexAISearch (1.134.0)
+
+`VertexAISearch(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Retrieve from Vertex AI Search datastore or engine for
+grounding. datastore and engine are mutually exclusive. See
+[https://cloud.google.com/products/agent-builder](https://cloud.google.com/products/agent-builder)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`datastore` |
+`str`
+Optional. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
+|
+`engine` |
+`str`
+Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
+|
+`max_results` |
+`int`
+Optional. Number of search results to return per query. The default value is 10. The maximumm allowed value is 10. |
+`filter` |
+`str`
+Optional. Filter strings to be passed to the search API. |
+`data_store_specs` |
+`MutableSequence[`
+Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. It should only be set if engine is used. |
+
+## Classes
+
+### DataStoreSpec
+
+`DataStoreSpec(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Define data stores within engine to filter on in a search
+call and configurations for those data stores. For more
+information, see
+[https://cloud.google.com/generative-ai-app-builder/docs/reference/rpc/google.cloud.discoveryengine.v1#datastorespec](https://cloud.google.com/generative-ai-app-builder/docs/reference/rpc/google.cloud.discoveryengine.v1#datastorespec)
+
+## Methods
+
+### VertexAISearch
+
+`VertexAISearch(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Retrieve from Vertex AI Search datastore or engine for
+grounding. datastore and engine are mutually exclusive. See
+[https://cloud.google.com/products/agent-builder](https://cloud.google.com/products/agent-builder)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagFileParsingConfig -->
+
+# Class RagFileParsingConfig (1.134.0)
+
+`RagFileParsingConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Specifies the parsing config for RagFiles.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attributes |
+|
+|---|---|
+Name |
+Description |
+`advanced_parser` |
+The Advanced Parser to use for RagFiles. This field is a member of `oneof` _ `parser` .
+|
+`layout_parser` |
+The Layout Parser to use for RagFiles. This field is a member of `oneof` _ `parser` .
+|
+`llm_parser` |
+The LLM Parser to use for RagFiles. This field is a member of `oneof` _ `parser` .
+|
+`use_advanced_pdf_parsing` |
+`bool`
+Whether to use advanced PDF parsing. |
+
+## Classes
+
+### AdvancedParser
+
+`AdvancedParser(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Specifies the advanced parsing for RagFiles.
+
+### LayoutParser
+
+`LayoutParser(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Document AI Layout Parser config.
+
+### LlmParser
+
+`LlmParser(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Specifies the LLM parsing for RagFiles.
+
+## Methods
+
+### RagFileParsingConfig
+
+`RagFileParsingConfig(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Specifies the parsing config for RagFiles.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolCallValidMetricValue -->
+
+# Class ToolCallValidMetricValue (1.134.0)
+
+`ToolCallValidMetricValue(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Tool call valid metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`score` |
+`float`
+Output only. Tool call valid score. This field is a member of `oneof` _ `_score` .
+|
+
+## Methods
+
+### ToolCallValidMetricValue
+
+`ToolCallValidMetricValue(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Tool call valid metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+---
+<!-- Source: https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1.types.ToolNameMatchMetricValue -->
+
+# Class ToolNameMatchMetricValue (1.134.0)
+
+`ToolNameMatchMetricValue(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Tool name match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+## Attribute |
+|
+|---|---|
+Name |
+Description |
+`score` |
+`float`
+Output only. Tool name match score. This field is a member of `oneof` _ `_score` .
+|
+
+## Methods
+
+### ToolNameMatchMetricValue
+
+`ToolNameMatchMetricValue(mapping=None, *, ignore_unknown_fields=False, **kwargs)`
+
+
+Tool name match metric value for an instance.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
