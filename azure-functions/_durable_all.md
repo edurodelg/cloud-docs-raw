@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-26T23:29:57.550369
+merged_at: 2026-01-28T07:43:37.235383
 merged_files: 2
 ---
 
@@ -19216,7 +19216,7 @@ parameter type instead of `IDurableOrchestrationClient`
 
 . For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions) article.
 
-## Rewind instances (preview)
+## Rewind instances
 
 If you have an orchestration failure for an unexpected reason, you can *rewind* the instance to a previously healthy state by using an API built for that purpose.
 
@@ -19238,7 +19238,9 @@ Use the `RewindAsync`
 
 (.NET) or `rewind`
 
-(JavaScript) method of the [orchestration client binding](durable-functions-bindings#orchestration-client) to put the orchestration back into the *Running* state. This method will also rerun the activity or sub-orchestration execution failures that caused the orchestration failure.
+(JavaScript) method of the orchestration client binding to put the orchestration back into the `Running`
+
+state. This method reruns the activity or sub-orchestration execution failures that caused the orchestration failure. The method only attempts to rerun failed activities, either within the parent or failed sub-orchestrations. It doesn't remedy orchestrations that failed for other reasons.
 
 For example, let's say you have a workflow involving a series of [human approvals](durable-functions-overview#human). Suppose there are a series of activity functions that notify someone that their approval is needed, and wait out the real-time response. After all of the approval activities have received responses or timed out, suppose that another activity fails due to an application misconfiguration, such as an invalid database connection string. The result is an orchestration failure deep into the workflow. With the `RewindAsync`
 
