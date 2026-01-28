@@ -1,0 +1,5428 @@
+---
+merged_at: 2026-01-28T07:16:09.865279
+merged_files: 2
+---
+
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/openfaas -->
+
+# Use OpenFaaS on Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+[OpenFaaS](https://www.openfaas.com/) is a framework that uses containers to build serverless functions. As an open source project, it has gained large-scale adoption within the community. This document details installing and using OpenFaas on an Azure Kubernetes Service (AKS) cluster.
+
+## Before you begin
+
+- This article assumes a basic understanding of Kubernetes concepts. For more information, see
+[Kubernetes core concepts for Azure Kubernetes Service (AKS)](concepts-clusters-workloads). - You need an active Azure subscription. If you don't have one, create a
+[free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)before you begin. - You need an AKS cluster. If you don't have an existing cluster, you can create one using the
+[Azure CLI](learn/quick-kubernetes-deploy-cli),[Azure PowerShell](learn/quick-kubernetes-deploy-powershell), or[Azure portal](learn/quick-kubernetes-deploy-portal). - You need to install the OpenFaaS CLI. For installation options, see the
+[OpenFaaS CLI documentation](https://github.com/openfaas/faas-cli).
+
+## Add the OpenFaaS helm chart repo
+
+Navigate to
+
+[Azure Cloud Shell](https://shell.azure.com).Add the OpenFaaS helm chart repo and update to the latest version using the following
+
+`helm`
+
+commands.`helm repo add openfaas https://openfaas.github.io/faas-netes/ helm repo update`
+
+
+## Deploy OpenFaaS
+
+As a good practice, OpenFaaS and OpenFaaS functions should be stored in their own Kubernetes namespace.
+
+Create a namespace for the OpenFaaS system and functions using the
+
+`kubectl apply`
+
+command.`kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml`
+
+Generate a password for the OpenFaaS UI Portal and REST API using the following commands. The helm chart uses this password to enable basic authentication on the OpenFaaS Gateway, which is exposed to the Internet through a cloud LoadBalancer.
+
+`# generate a random password PASSWORD=$(head -c 12 /dev/urandom | shasum| cut -d' ' -f1) kubectl -n openfaas create secret generic basic-auth \ --from-literal=basic-auth-user=admin \ --from-literal=basic-auth-password="$PASSWORD"`
+
+Important
+
+Using a username and password for authentication is an insecure pattern. If you have an OpenFaaS enterprise license, we recommend using
+
+[Identity and Access Management (IAM) for OpenFaaS](https://www.openfaas.com/blog/walkthrough-iam-for-openfaas/)instead.Get the value for your password using the following
+
+`echo`
+
+command.`echo $PASSWORD`
+
+Deploy OpenFaaS into your AKS cluster using the
+
+`helm upgrade`
+
+command.`helm upgrade openfaas --install openfaas/openfaas \ --namespace openfaas \ --set basic_auth=true \ --set functionNamespace=openfaas-fn \ --set serviceType=LoadBalancer`
+
+Your output should look similar to the following condensed example output:
+
+`NAME: openfaas LAST DEPLOYED: Tue Aug 29 08:26:11 2023 NAMESPACE: openfaas STATUS: deployed ... NOTES: To verify that openfaas has started, run: kubectl --namespace=openfaas get deployments -l "release=openfaas, app=openfaas" ...`
+
+A public IP address is created for accessing the OpenFaaS gateway. Get the IP address using the
+
+command.`kubectl get service`
+
+`kubectl get service -l component=gateway --namespace openfaas`
+
+Your output should look similar to the following example output:
+
+`NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE gateway ClusterIP 10.0.156.194 <none> 8080/TCP 7m gateway-external LoadBalancer 10.0.28.18 52.186.64.52 8080:30800/TCP 7m`
+
+Test the OpenFaaS system by browsing to the external IP address on port 8080,
+
+`http://52.186.64.52:8080`
+
+in this example, where you're prompted to log in. The default user is`admin`
+
+and your password can be retrieved using`echo $PASSWORD`
+
+.Set
+
+`$OPENFAAS_URL`
+
+to the URL of the external IP address on port 8080 and log in with the Azure CLI using the following commands.`export OPENFAAS_URL=http://52.186.64.52:8080 echo -n $PASSWORD | ./faas-cli login -g $OPENFAAS_URL -u admin --password-stdin`
+
+
+## Create first function
+
+Navigate to the OpenFaaS system using your OpenFaaS URL.
+
+Create a function using the OpenFaas portal by selecting
+
+**Deploy A New Function**and search for**Figlet**.Select the
+
+**Figlet**function, and then select**Deploy**.Invoke the function using the following
+
+`curl`
+
+command. Make sure you replace the IP address in the following example with your OpenFaaS gateway address.`curl -X POST http://52.186.64.52:8080/function/figlet -d "Hello Azure"`
+
+Your output should look similar to the following example output:
+
+`_ _ _ _ _ | | | | ___| | | ___ / \ _____ _ _ __ ___ | |_| |/ _ \ | |/ _ \ / _ \ |_ / | | | '__/ _ \ | _ | __/ | | (_) | / ___ \ / /| |_| | | | __/ |_| |_|\___|_|_|\___/ /_/ \_\/___|\__,_|_| \___|`
+
+
+## Create second function
+
+### Configure your Azure Cosmos DB instance
+
+Navigate to
+
+[Azure Cloud Shell](https://shell.azure.com).Create a new resource group for the Azure Cosmos DB instance using the
+
+command.`az group create`
+
+`az group create --name serverless-backing --location eastus`
+
+Deploy an Azure Cosmos DB instance of kind
+
+`MongoDB`
+
+using thecommand. Replace`az cosmosdb create`
+
+`openfaas-cosmos`
+
+with your own unique instance name.`az cosmosdb create --resource-group serverless-backing --name openfaas-cosmos --kind MongoDB`
+
+Get the Azure Cosmos DB database connection string and store it in a variable using the
+
+command. Make sure you replace the value for the`az cosmosdb keys list`
+
+`--resource-group`
+
+argument with the name of your resource group, and the`--name`
+
+argument with the name of your Azure Cosmos DB instance.`COSMOS=$(az cosmosdb keys list \ --type connection-strings \ --resource-group serverless-backing \ --name openfaas-cosmos \ --output tsv)`
+
+Populate the Azure Cosmos DB with test data by creating a file named
+
+`plans.json`
+
+and copying in the following json.`{ "name" : "two_person", "friendlyName" : "Two Person Plan", "portionSize" : "1-2 Person", "mealsPerWeek" : "3 Unique meals per week", "price" : 72, "description" : "Our basic plan, delivering 3 meals per week, which will feed 1-2 people.", "__v" : 0 }`
+
+
+### Create the function
+
+Install the MongoDB tools. The following example command installs these tools using brew. For more installation options, see the
+
+[MongoDB documentation](https://docs.mongodb.com/manual/installation/).`brew install mongodb`
+
+Load the Azure Cosmos DB instance with data using the
+
+*mongoimport*tool.`mongoimport --uri=$COSMOS -c plans < plans.json`
+
+Your output should look similar to the following example output:
+
+`2018-02-19T14:42:14.313+0000 connected to: localhost 2018-02-19T14:42:14.918+0000 imported 1 document`
+
+Create the function using the
+
+`faas-cli deploy`
+
+command. Make sure you update the value of the`-g`
+
+argument with your OpenFaaS gateway address.`faas-cli deploy -g http://52.186.64.52:8080 --image=shanepeckham/openfaascosmos --name=cosmos-query --env=NODE_ENV=$COSMOS`
+
+Once deployed, your output should look similar to the following example output:
+
+`Deployed. 202 Accepted. URL: http://52.186.64.52:8080/function/cosmos-query`
+
+Test the function using the following
+
+`curl`
+
+command. Make sure you update the IP address with the OpenFaaS gateway address.`curl -s http://52.186.64.52:8080/function/cosmos-query`
+
+Your output should look similar to the following example output:
+
+`[{"ID":"","Name":"two_person","FriendlyName":"","PortionSize":"","MealsPerWeek":"","Price":72,"Description":"Our basic plan, delivering 3 meals per week, which will feed 1-2 people."}]`
+
+Note
+
+You can also test the function within the OpenFaaS UI:
+
+
+## Next steps
+
+Continue to learn with the [OpenFaaS workshop](https://github.com/openfaas/workshop), which includes a set of hands-on labs that cover topics such as how to create your own GitHub bot, consuming secrets, viewing metrics, and autoscaling.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/use-azure-linux-os-guard -->
+
+# Azure Linux with OS Guard (preview) for Azure Kubernetes Service (AKS) overview
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This article provides an overview of Azure Linux with OS Guard (preview) on Azure Kubernetes Service (AKS), including key features, region availability, and resources to get started.
+
+## What is Azure Linux with OS Guard?
+
+Azure Linux with OS Guard is a hardened, immutable variant of Azure Linux. It provides strong runtime integrity, tamper resistance, and enterprise-grade security for container hosts on AKS. OS Guard is built on Azure Linux and adds kernel and runtime features that enforce code integrity, protect the root file system from unauthorized changes, and apply mandatory access controls.
+
+You can deploy Azure Linux with OS Guard node pools in a new cluster, add Azure Linux with OS Guard node pools to your existing Azure Linux or Ubuntu clusters, or migrate your Azure Linux or Ubuntu nodes to Azure Linux with OS Guard nodes.
+
+To learn more about Azure Linux with OS Guard, see the [Azure Linux with OS Guard documentation](/en-us/azure/azure-linux/intro-azure-linux-os-guard).
+
+## Why use Azure Linux with OS Guard on AKS?
+
+Azure Linux with OS Guard on AKS builds on the benefits of [Azure Linux](/en-us/azure/azure-linux/intro-azure-linux#azure-linux-container-host-key-benefits) by adding enhanced security features that help protect your container workloads from advanced threats. OS Guard provides:
+
+**Immutability**: The`/usr`
+
+directory is mounted as a read-only volume protected by dm-verity, preventing execution of tampered or untrusted code.**Code integrity**: OS Guard integrates the[Integrity Policy Enforcement (IPE) Linux Security Module](https://docs.kernel.org/next/admin-guide/LSM/ipe.html)to ensure that only binaries from trusted, signed volumes are allowed to execute. (**IPE is running in audit mode during Public Preview**.)**Mandatory access controls**: OS Guard integrates SELinux to limit which processes can access sensitive resources in the system. (**SELinux is operating in permissive mode during Public Preview**.)**Integration with Azure security features**: Native support for[Trusted Launch](/en-us/azure/aks/use-trusted-launch)and Secure Boot provides measured boot protections and attestation.**Verified container layers**: Container images and layers are validated using signed dm-verity hashes. This ensures that only verified layers are used at runtime, reducing the risk of container escape or tampering.**Sovereign Supply Chain Security**: OS Guard inherits Azure Linux’s secure build pipelines, signed Unified Kernel Images (UKIs) and Software Bill of Materials (SBOMs).
+
+Learn more about the [key features of Azure Linux with OS Guard](/en-us/azure/azure-linux/intro-azure-linux-os-guard).
+
+## Regional availability
+
+Azure Linux with OS Guard is available for use in the same [regions](/en-us/azure/aks/quotas-skus-regions) as AKS.
+
+## Get started with Azure Linux with OS Guard on AKS
+
+Get started with Azure Linux with OS Guard on AKS using the following resources:
+
+[Creating a cluster with Azure Linux with OS Guard](/en-us/azure/azure-linux/quickstart-os-guard-azure-cli)[How to upgrade Azure Linux with OS Guard clusters](/en-us/azure/azure-linux/tutorial-azure-linux-os-guard-upgrade)[Add an Azure Linux with OS Guard node pool to your existing cluster](/en-us/azure/azure-linux/tutorial-azure-linux-os-guard-add-node-pool)[Migrate to Azure Linux with OS Guard](/en-us/azure/azure-linux/tutorial-azure-linux-os-guard-migration)[Enable telemetry and monitoring on an Azure Linux with OS Guard cluster](/en-us/azure/azure-linux/tutorial-azure-linux-os-guard-telemetry-monitor)
+
+## Next steps
+
+To learn more about Azure Linux with OS Guard, see the [Azure Linux with OS Guard documentation](/en-us/azure/azure-linux/intro-azure-linux-os-guard).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/use-windows-hpc -->
+
+# Use Windows HostProcess containers
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+HostProcess / Privileged containers extend the Windows container model to enable a wider range of Kubernetes cluster management scenarios. HostProcess containers run directly on the host and maintain behavior and access similar to that of a regular process. HostProcess containers allow users to package and distribute management operations and functionalities that require host access while retaining versioning and deployment methods provided by containers.
+
+A privileged DaemonSet can carry out changes or monitor a Linux host on Kubernetes but not Windows hosts. HostProcess containers are the Windows equivalent of host elevation.
+
+## Limitations
+
+- HostProcess containers require Kubernetes 1.23 or greater.
+- HostProcess containers require
+`containerd`
+
+1.6 or higher container runtime. - HostProcess pods can only contain HostProcess containers due to a limitation on the Windows operating system. Non-privileged Windows containers can't share a vNIC with the host IP namespace.
+- HostProcess containers run as a process on the host. The only isolation those containers have from the host is the resource constraints imposed on the HostProcess user account.
+- Filesystem isolation and Hyper-V isolation aren't supported for HostProcess containers.
+- Volume mounts are supported and are mounted under the container volume. See Volume Mounts.
+- A limited set of host user accounts are available for Host Process containers by default. See Choosing a User Account.
+- Resource limits such as disk, memory, and cpu count, work the same way as fashion as processes on the host.
+- Named pipe mounts and Unix domain sockets aren't directly supported, but can be accessed on their host path, for example
+`\\.\pipe\*`
+
+.
+
+## Run a HostProcess workload
+
+To use HostProcess features with your deployment, set *hostProcess: true* and *hostNetwork: true*:
+
+```
+spec:
+...
+securityContext:
+windowsOptions:
+hostProcess: true
+...
+hostNetwork: true
+containers:
+...
+```
+
+
+To run an example workload that uses HostProcess features on an existing AKS cluster with Windows nodes, create `hostprocess.yaml`
+
+with the following contents:
+
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+name: privileged-daemonset
+namespace: kube-system
+labels:
+app: privileged-daemonset
+spec:
+selector:
+matchLabels:
+app: privileged-daemonset
+template:
+metadata:
+labels:
+app: privileged-daemonset
+spec:
+nodeSelector:
+kubernetes.io/os: windows
+securityContext:
+windowsOptions:
+hostProcess: true
+runAsUserName: "NT AUTHORITY\\SYSTEM"
+hostNetwork: true
+containers:
+- name: powershell
+image: mcr.microsoft.com/windows/nanoserver:ltsc2019 # or nanoserver:ltsc2022
+command:
+- powershell.exe
+- -Command
+- Start-Sleep -Seconds 2147483
+terminationGracePeriodSeconds: 0
+```
+
+
+Use `kubectl`
+
+to run the example workload:
+
+```
+kubectl apply -f hostprocess.yaml
+```
+
+
+You should see the following output:
+
+```
+$ kubectl apply -f hostprocess.yaml
+daemonset.apps/privileged-daemonset created
+```
+
+
+Verify that your workload uses the features of HostProcess containers by viewing the pod's logs.
+
+Use `kubectl`
+
+to find the name of the pod in the `kube-system`
+
+namespace.
+
+```
+$ kubectl get pods --namespace kube-system
+NAME READY STATUS RESTARTS AGE
+...
+privileged-daemonset-12345 1/1 Running 0 2m13s
+```
+
+
+Use `kubectl log`
+
+to view the logs of the pod and verify the pod has administrator rights:
+
+```
+$ kubectl logs privileged-daemonset-12345 --namespace kube-system
+InvalidOperation: Unable to find type [Security.Principal.WindowsPrincipal].
+Process has admin rights:
+```
+
+
+## Next steps
+
+For more information on HostProcess containers and Microsoft's contribution to Kubernetes upstream, see the [Alpha in v1.22: Windows HostProcess Containers](https://kubernetes.io/blog/2021/08/16/windows-hostprocess-containers/).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/azure-ad-integration-cli -->
+
+# Integrate Microsoft Entra ID with Azure Kubernetes Service (AKS) using the Azure CLI (legacy)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Warning
+
+The feature described in this document, Microsoft Entra Integration (legacy) was **deprecated on June 1st, 2023**. At this time, no new clusters can be created with Microsoft Entra Integration (legacy).
+
+AKS has a new improved [AKS-managed Microsoft Entra ID](managed-azure-ad) experience that doesn't require you to manage server or client applications. If you want to migrate follow the instructions [here](managed-azure-ad#migrate-a-legacy-azure-ad-cluster-to-integration).
+
+Azure Kubernetes Service (AKS) can be configured to use Microsoft Entra ID for user authentication. In this configuration, you can log into an AKS cluster using a Microsoft Entra authentication token. Cluster operators can also configure Kubernetes role-based access control (Kubernetes RBAC) based on a user's identity or directory group membership.
+
+This article shows you how to create the required Microsoft Entra components, then deploy a Microsoft Entra ID-enabled cluster and create a basic Kubernetes role in the AKS cluster.
+
+## Limitations
+
+- Microsoft Entra ID can only be enabled on Kubernetes RBAC-enabled cluster.
+- Microsoft Entra legacy integration can only be enabled during cluster creation.
+
+## Before you begin
+
+You need the Azure CLI version 2.0.61 or later installed and configured. Run `az --version`
+
+to find the version. If you need to install or upgrade, see [Install Azure CLI](/en-us/cli/azure/install-azure-cli).
+
+Go to [https://shell.azure.com](https://shell.azure.com) to open Cloud Shell in your browser.
+
+For consistency and to help run the commands in this article, create a variable for your desired AKS cluster name. The following example uses the name *myakscluster*:
+
+```
+aksname="myakscluster"
+```
+
+
+## Microsoft Entra authentication overview
+
+Microsoft Entra authentication is provided to AKS clusters with OpenID Connect. OpenID Connect is an identity layer built on top of the OAuth 2.0 protocol. For more information on OpenID Connect, see the [OpenID Connect documentation](/en-us/azure/active-directory/develop/v2-protocols-oidc).
+
+From inside of the Kubernetes cluster, Webhook Token Authentication is used to verify authentication tokens. Webhook token authentication is configured and managed as part of the AKS cluster. For more information on Webhook token authentication, see the [webhook authentication documentation](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#webhook-token-authentication).
+
+Note
+
+When configuring Microsoft Entra ID for AKS authentication, two Microsoft Entra applications are configured. This operation must be completed by an Azure tenant administrator.
+
+## Create Microsoft Entra server component
+
+To integrate with AKS, you create and use a Microsoft Entra application that acts as an endpoint for the identity requests. The first Microsoft Entra application you need gets Microsoft Entra group membership for a user.
+
+Create the server application component using the [az ad app create](/en-us/cli/azure/ad/app#az-ad-app-create) command, then update the group membership claims using the [az ad app update](/en-us/cli/azure/ad/app#az-ad-app-update) command. The following example uses the *aksname* variable defined in the [Before you begin](#before-you-begin) section, and creates a variable
+
+```
+# Create the Azure AD application
+serverApplicationId=$(az ad app create \
+--display-name "${aksname}Server" \
+--identifier-uris "https://${aksname}Server" \
+--query appId -o tsv)
+# Update the application group membership claims
+az ad app update --id $serverApplicationId --set groupMembershipClaims=All
+```
+
+
+Now create a service principal for the server app using the [az ad sp create](/en-us/cli/azure/ad/sp#az-ad-sp-create) command. This service principal is used to authenticate itself within the Azure platform. Then, get the service principal secret using the [az ad sp credential reset](/en-us/cli/azure/ad/sp/credential#az-ad-sp-credential-reset) command and assign to the variable named *serverApplicationSecret* for use in one of the following steps:
+
+```
+# Create a service principal for the Azure AD application
+az ad sp create --id $serverApplicationId
+# Get the service principal secret
+serverApplicationSecret=$(az ad sp credential reset \
+--name $serverApplicationId \
+--credential-description "AKSPassword" \
+--query password -o tsv)
+```
+
+
+The Microsoft Entra service principal needs permissions to perform the following actions:
+
+- Read directory data
+- Sign in and read user profile
+
+Assign these permissions using the [az ad app permission add](/en-us/cli/azure/ad/app/permission#az-ad-app-permission-add) command:
+
+```
+az ad app permission add \
+--id $serverApplicationId \
+--api 00000003-0000-0000-c000-000000000000 \
+--api-permissions e1fe6dd8-ba31-4d61-89e7-88639da4683d=Scope 06da0dbc-49e2-44d2-8312-53f166ab848a=Scope 7ab1d382-f21e-4acd-a863-ba3e13f7da61=Role
+```
+
+
+Finally, grant the permissions assigned in the previous step for the server application using the [az ad app permission grant](/en-us/cli/azure/ad/app/permission#az-ad-app-permission-grant) command. This step fails if the current account is not a tenant admin. You also need to add permissions for Microsoft Entra application to request information that may otherwise require administrative consent using the [az ad app permission admin-consent](/en-us/cli/azure/ad/app/permission#az-ad-app-permission-admin-consent):
+
+```
+az ad app permission grant --id $serverApplicationId --api 00000003-0000-0000-c000-000000000000
+az ad app permission admin-consent --id $serverApplicationId
+```
+
+
+## Create Microsoft Entra client component
+
+The second Microsoft Entra application is used when a user logs to the AKS cluster with the Kubernetes CLI (`kubectl`
+
+). This client application takes the authentication request from the user and verifies their credentials and permissions. Create the Microsoft Entra app for the client component using the [az ad app create](/en-us/cli/azure/ad/app#az-ad-app-create) command:
+
+```
+clientApplicationId=$(az ad app create \
+--display-name "${aksname}Client" \
+--native-app \
+--reply-urls "https://${aksname}Client" \
+--query appId -o tsv)
+```
+
+
+Create a service principal for the client application using the [az ad sp create](/en-us/cli/azure/ad/sp#az-ad-sp-create) command:
+
+```
+az ad sp create --id $clientApplicationId
+```
+
+
+Get the oAuth2 ID for the server app to allow the authentication flow between the two app components using the [az ad app show](/en-us/cli/azure/ad/app#az-ad-app-show) command. This oAuth2 ID is used in the next step.
+
+```
+oAuthPermissionId=$(az ad app show --id $serverApplicationId --query "oauth2Permissions[0].id" -o tsv)
+```
+
+
+Add the permissions for the client application and server application components to use the oAuth2 communication flow using the [az ad app permission add](/en-us/cli/azure/ad/app/permission#az-ad-app-permission-add) command. Then, grant permissions for the client application to communication with the server application using the [az ad app permission grant](/en-us/cli/azure/ad/app/permission#az-ad-app-permission-grant) command:
+
+```
+az ad app permission add --id $clientApplicationId --api $serverApplicationId --api-permissions ${oAuthPermissionId}=Scope
+az ad app permission grant --id $clientApplicationId --api $serverApplicationId
+```
+
+
+## Deploy the cluster
+
+With the two Microsoft Entra applications created, now create the AKS cluster itself. First, create a resource group using the [az group create](/en-us/cli/azure/group#az-group-create) command. The following example creates the resource group in the *EastUS* region:
+
+Create a resource group for the cluster:
+
+```
+az group create --name myResourceGroup --location EastUS
+```
+
+
+Get the tenant ID of your Azure subscription using the [az account show](/en-us/cli/azure/account#az-account-show) command. Then, create the AKS cluster using the [az aks create](/en-us/cli/azure/aks#az-aks-create) command. The command to create the AKS cluster provides the server and client application IDs, the server application service principal secret, and your tenant ID:
+
+```
+tenantId=$(az account show --query tenantId -o tsv)
+az aks create \
+--resource-group myResourceGroup \
+--name $aksname \
+--node-count 1 \
+--generate-ssh-keys \
+--aad-server-app-id $serverApplicationId \
+--aad-server-app-secret $serverApplicationSecret \
+--aad-client-app-id $clientApplicationId \
+--aad-tenant-id $tenantId
+```
+
+
+Finally, get the cluster admin credentials using the [az aks get-credentials](/en-us/cli/azure/aks#az-aks-get-credentials) command. In one of the following steps, you get the regular *user* cluster credentials to see the Microsoft Entra authentication flow in action.
+
+```
+az aks get-credentials --resource-group myResourceGroup --name $aksname --admin
+```
+
+
+## Create Kubernetes RBAC binding
+
+Before a Microsoft Entra account can be used with the AKS cluster, a role binding or cluster role binding needs to be created. *Roles* define the permissions to grant, and *bindings* apply them to desired users. These assignments can be applied to a given namespace, or across the entire cluster. For more information, see [Using Kubernetes RBAC authorization](concepts-identity#kubernetes-rbac).
+
+Get the user principal name (UPN) for the user currently logged in using the [az ad signed-in-user show](/en-us/cli/azure/ad/signed-in-user#az-ad-signed-in-user-show) command. This user account is enabled for Microsoft Entra integration in the next step.
+
+```
+az ad signed-in-user show --query userPrincipalName -o tsv
+```
+
+
+Important
+
+If the user you grant the Kubernetes RBAC binding for is in the same Microsoft Entra tenant, assign permissions based on the *userPrincipalName*. If the user is in a different Microsoft Entra tenant, query for and use the *objectId* property instead.
+
+Create a YAML manifest named `basic-azure-ad-binding.yaml`
+
+and paste the following contents. On the last line, replace *userPrincipalName_or_objectId* with the UPN or object ID output from the previous command:
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: contoso-cluster-admins
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+kind: User
+name: userPrincipalName_or_objectId
+```
+
+
+Create the ClusterRoleBinding using the [kubectl apply](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) command and specify the filename of your YAML manifest:
+
+```
+kubectl apply -f basic-azure-ad-binding.yaml
+```
+
+
+## Access cluster with Microsoft Entra ID
+
+Now let's test the integration of Microsoft Entra authentication for the AKS cluster. Set the `kubectl`
+
+config context to use regular user credentials. This context passes all authentication requests back through Microsoft Entra ID.
+
+```
+az aks get-credentials --resource-group myResourceGroup --name $aksname --overwrite-existing
+```
+
+
+Now use the [kubectl get pods](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command to view pods across all namespaces:
+
+```
+kubectl get pods --all-namespaces
+```
+
+
+You receive a sign in prompt to authenticate using Microsoft Entra credentials using a web browser. After you've successfully authenticated, the `kubectl`
+
+command displays the pods in the AKS cluster, as shown in the following example output:
+
+```
+kubectl get pods --all-namespaces
+```
+
+
+```
+To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code BYMK7UXVD to authenticate.
+NAMESPACE NAME READY STATUS RESTARTS AGE
+kube-system coredns-754f947b4-2v75r 1/1 Running 0 23h
+kube-system coredns-754f947b4-tghwh 1/1 Running 0 23h
+kube-system coredns-autoscaler-6fcdb7d64-4wkvp 1/1 Running 0 23h
+kube-system heapster-5fb7488d97-t5wzk 2/2 Running 0 23h
+kube-system kube-proxy-2nd5m 1/1 Running 0 23h
+kube-system kube-svc-redirect-swp9r 2/2 Running 0 23h
+kube-system kubernetes-dashboard-847bb4ddc6-trt7m 1/1 Running 0 23h
+kube-system metrics-server-7b97f9cd9-btxzz 1/1 Running 0 23h
+kube-system tunnelfront-6ff887cffb-xkfmq 1/1 Running 0 23h
+```
+
+
+The authentication token received for `kubectl`
+
+is cached. You are only reprompted to sign in when the token has expired or the Kubernetes config file is re-created.
+
+If you see an authorization error message after you've successfully signed in using a web browser as in the following example output, check the following possible issues:
+
+```
+error: You must be logged in to the server (Unauthorized)
+```
+
+
+- You defined the appropriate object ID or UPN, depending on if the user account is in the same Microsoft Entra tenant or not.
+- The user is not a member of more than 200 groups.
+- Secret defined in the application registration for server matches the value configured using
+`--aad-server-app-secret`
+
+- Be sure that only one version of kubectl is installed on your machine at a time. Conflicting versions can cause issues during authorization. To install the latest version, use
+[az aks install-cli](/en-us/cli/azure/aks#az-aks-install-cli).
+
+## Frequently asked questions about migration from Microsoft Entra Integration to AKS-managed Microsoft Entra ID
+
+**1. What is the plan for migration?**
+
+Microsoft Entra Integration (legacy) will be deprecated on 1st June 2023. After this date, you won't be able to create new clusters with Microsoft Entra ID (legacy). We'll migrate all Microsoft Entra Integration (legacy) AKS clusters to AKS-managed Microsoft Entra ID automatically starting from 1st August 2023. We send notification emails to impacted subscription admins biweekly to remind them of migration.
+
+**2. What will happen if I don't take any action?**
+
+Your Microsoft Entra Integration (legacy) AKS clusters will continue working after 1st June 2023. We'll automatically migrate your clusters to AKS-managed Microsoft Entra ID starting from 1st August 2023. You may experience API server downtime during the migration.
+
+The kubeconfig content changes after the migration. You need to merge the new credentials into the kubeconfig file using the `az aks get-credentials --resource-group <AKS resource group name> --name <AKS cluster name>`
+
+.
+
+We recommend updating your AKS cluster to [AKS-managed Microsoft Entra ID](managed-azure-ad#migrate-a-legacy-azure-ad-cluster-to-integration) manually before 1st August. This way you can manage the downtime during non-business hours when it's more convenient.
+
+**3. Why do I still receive the notification email after manual migration?**
+
+It takes several days for the email to send. If your cluster wasn't migrated before we initiate the email-sending process, you may still receive a notification.
+
+**4. How can I check whether my cluster my cluster is migrated to AKS-managed Microsoft Entra ID?**
+
+Confirm your AKS cluster is migrated to the AKS-managed Microsoft Entra ID using the [ az aks show](/en-us/cli/azure/aks#az-aks-show) command.
+
+```
+az aks show -g <RGName> -n <ClusterName> --query "aadProfile"
+```
+
+
+If your cluster is using the AKS-managed Microsoft Entra ID, the output shows `managed`
+
+is `true`
+
+. For example:
+
+```
+{
+"adminGroupObjectIDs": [
+"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+],
+"adminUsers": null,
+"clientAppId": null,
+"enableAzureRbac": null,
+"managed": true,
+"serverAppId": null,
+"serverAppSecret": null,
+"tenantId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+```
+
+
+## Next steps
+
+For the complete script that contains the commands shown in this article, see the [Microsoft Entra integration script in the AKS samples repo][complete-script].
+
+To use Microsoft Entra users and groups to control access to cluster resources, see [Control access to cluster resources using Kubernetes role-based access control and Microsoft Entra identities in AKS](azure-ad-rbac).
+
+For more information about how to secure Kubernetes clusters, see [Access and identity options for AKS)](concepts-identity#kubernetes-rbac).
+
+For best practices on identity and resource control, see [Best practices for authentication and authorization in AKS](operator-best-practices-identity).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/best-practices-app-cluster-reliability -->
+
+# Deployment and cluster reliability best practices for Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This article provides best practices for cluster reliability implemented both at a deployment and cluster level for your Azure Kubernetes Service (AKS) workloads. The article is intended for cluster operators and developers who are responsible for deploying and managing applications in AKS.
+
+The best practices in this article are organized into the following categories:
+
+## Deployment level best practices
+
+The following deployment level best practices help ensure high availability and reliability for your AKS workloads. These best practices are local configurations that you can implement in the YAML files for your pods and deployments.
+
+Note
+
+Make sure you implement these best practices every time you deploy an update to your application. If not, you might experience issues with your application's availability and reliability, such as unintentional application downtime.
+
+### Pod CPU and memory limits
+
+
+Best practice guidanceSet pod CPU and memory limits for all pods to ensure that pods don't consume all resources on a node and to provide protection during service threats, such as DDoS attacks.
+
+
+Pod CPU and memory limits define the maximum amount of CPU and memory a pod can use. When a pod exceeds its defined limits, it gets marked for removal. For more information, see [CPU resource units in Kubernetes](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) and [Memory resource units in Kubernetes](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory).
+
+Setting CPU and memory limits helps you maintain node health and minimizes impact to other pods on the node. Avoid setting a pod limit higher than your nodes can support. Each AKS node reserves a set amount of CPU and memory for the core Kubernetes components. If you set a pod limit higher than the node can support, your application might try to consume too many resources and negatively impact other pods on the node. Cluster administrators need to set resource quotas on a namespace that requires setting resource requests and limits. For more information, see [Enforce resource quotas in AKS](operator-best-practices-scheduler#enforce-resource-quotas).
+
+In the following example pod definition file, the `resources`
+
+section sets the CPU and memory limits for the pod:
+
+```
+kind: Pod
+apiVersion: v1
+metadata:
+name: mypod
+spec:
+containers:
+- name: mypod
+image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine
+resources:
+requests:
+cpu: 100m
+memory: 128Mi
+limits:
+cpu: 250m
+memory: 256Mi
+```
+
+
+Tip
+
+You can use the `kubectl describe node`
+
+command to view the CPU and memory capacity of your nodes, as shown in the following example:
+
+```
+kubectl describe node <node-name>
+# Example output
+Capacity:
+cpu: 8
+ephemeral-storage: 129886128Ki
+hugepages-1Gi: 0
+hugepages-2Mi: 0
+memory: 32863116Ki
+pods: 110
+Allocatable:
+cpu: 7820m
+ephemeral-storage: 119703055367
+hugepages-1Gi: 0
+hugepages-2Mi: 0
+memory: 28362636Ki
+pods: 110
+```
+
+
+For more information, see [Assign CPU Resources to Containers and Pods](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/) and [Assign Memory Resources to Containers and Pods](https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/).
+
+### Vertical Pod Autoscaler (VPA)
+
+
+Best practice guidanceUse Vertical Pod Autoscaler (VPA) to automatically adjust CPU and memory requests for your pods based on their actual usage.
+
+
+While not directly implemented through the pod YAML, the Vertical Pod Autoscaler (VPA) helps optimize resource allocation by automatically adjusting the CPU and memory requests for your pods. This ensures that your applications have the resources they need to run efficiently without overprovisioning or underprovisioning.
+
+VPA operates in three modes:
+
+**Off**: Only provides recommendations without applying changes.**Auto**: Automatically updates pod resource requests during pod restarts.**Initial**: Sets resource requests only during pod creation.
+
+The following example shows how to configure a VPA resource in Kubernetes:
+
+```
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+name: my-vpa
+spec:
+targetRef:
+apiVersion: "apps/v1"
+kind: Deployment
+name: my-deployment
+updatePolicy:
+updateMode: "Auto" # Options: Off, Auto, Initial
+```
+
+
+For more information, see [Vertical Pod Autoscaler documentation](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler).
+
+### Pod Disruption Budgets (PDBs)
+
+
+Best practice guidanceUse Pod Disruption Budgets (PDBs) to ensure that a minimum number of pods remain available during
+
+voluntary disruptions, such as upgrade operations or accidental pod deletions.
+
+[Pod Disruption Budgets (PDBs)](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#pod-disruption-budgets) allow you to define how deployments or replica sets respond during voluntary disruptions, such as upgrade operations or accidental pod deletions. Using PDBs, you can define a minimum or maximum unavailable resource count. PDBs only affect the Eviction API for voluntary disruptions.
+
+For example, let's say you need to perform a cluster upgrade and already have a PDB defined. Before performing the cluster upgrade, the Kubernetes scheduler ensures that the minimum number of pods defined in the PDB are available. If the upgrade would cause the number of available pods to fall below the minimum defined in the PDBs, the scheduler schedules extra pods on other nodes before allowing the upgrade to proceed. If you don't set a PDB, the scheduler doesn't have any constraints on the number of pods that can be unavailable during the upgrade, which can lead to a lack of resources and potential cluster outages.
+
+In the following example PDB definition file, the `minAvailable`
+
+field sets the minimum number of pods that must remain available during voluntary disruptions. The value can be an absolute number (for example, *3*) or a percentage of the desired number of pods (for example, *10%*).
+
+```
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+name: mypdb
+spec:
+minAvailable: 3 # Minimum number of pods that must remain available during voluntary disruptions
+selector:
+matchLabels:
+app: myapp
+```
+
+
+For more information, see [Plan for availability using PDBs](operator-best-practices-scheduler#plan-for-availability-using-pod-disruption-budgets) and [Specifying a Disruption Budget for your Application](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
+
+### Graceful termination for pods
+
+
+Best practice guidanceUtilize
+
+`PreStop`
+
+hooks and configure an appropriate`terminationGracePeriodSeconds`
+
+value to ensure pods are terminated gracefully.
+
+Graceful termination ensures that pods are given enough time to clean up resources, complete ongoing tasks, or notify dependent services before being terminated. This is particularly important for stateful applications or services that require proper shutdown procedures.
+
+#### Using `PreStop`
+
+hooks
+
+A `PreStop`
+
+hook is called immediately before a container is terminated due to an API request or management event, such as preemption, resource contention, or a liveness/startup probe failure. The `PreStop`
+
+hook allows you to define custom commands or scripts to execute before the container is stopped. For example, you can use it to flush logs, close database connections, or notify other services of the shutdown.
+
+The following example pod definition file shows how to use a `PreStop`
+
+hook to ensure graceful termination of a container:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+name: lifecycle-demo
+spec:
+containers:
+- name: lifecycle-demo-container
+image: nginx
+lifecycle:
+preStop:
+exec:
+command: ["/bin/sh", "-c", "nginx -s quit; while killall -0 nginx; do sleep 1; done"]
+```
+
+
+#### Configuring `terminationGracePeriodSeconds`
+
+
+The `terminationGracePeriodSeconds`
+
+field specifies the amount of time Kubernetes waits before forcefully terminating a pod. This period includes the time taken to execute the `PreStop`
+
+hook. If the `PreStop`
+
+hook doesn't complete within the grace period, the pod is forcefully terminated.
+
+For example, the following pod definition sets a termination grace period of 30 seconds:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+name: example-pod
+spec:
+terminationGracePeriodSeconds: 30
+containers:
+- name: example-container
+image: nginx
+```
+
+
+For more information, see [Container lifecycle hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks) and [Termination of Pods](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination).
+
+### High availability during upgrades
+
+#### Using `maxSurge`
+
+for faster updates
+
+
+Best practice guidanceConfigure the
+
+`maxSurge`
+
+field to allow additional pods to be created during rolling updates, enabling faster updates with minimal downtime.
+
+The `maxSurge`
+
+field specifies the maximum number of additional pods that can be created beyond the desired number of pods during a rolling update. This allows new pods to be created and become ready before old pods are terminated, ensuring faster updates and reducing the risk of downtime.
+
+The following example deployment manifest demonstrates how to configure `maxSurge`
+
+:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: nginx-deployment
+labels:
+app: nginx
+spec:
+replicas: 3
+selector:
+matchLabels:
+app: nginx
+template:
+metadata:
+labels:
+app: nginx
+spec:
+containers:
+- name: nginx
+image: nginx:1.14.2
+ports:
+- containerPort: 80
+strategy:
+type: RollingUpdate
+rollingUpdate:
+maxSurge: 33% # Maximum number of additional pods created during the update
+```
+
+
+By setting `maxSurge`
+
+to 3, this configuration ensures that up to three additional pods can be created during the rolling update, speeding up the deployment process while maintaining availability of your application.
+For more information, see [Rolling Updates in Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment).
+
+#### Using `maxUnavailable`
+
+for controlled updates
+
+
+Best practice guidanceConfigure the
+
+`maxUnavailable`
+
+field to limit the number of pods that can be unavailable during rolling updates, ensuring your application remains operational with minimal disruption.
+
+The `maxUnavailable`
+
+field is particularly useful for applications that require are compute intensive or have specific infrastructure needs. It specifies the maximum number of pods that can be unavailable at any given time during a rolling update. This ensures that a portion of your application remains functional while new pods are being deployed and old ones are terminated.
+
+You can set `maxUnavailable`
+
+as an absolute number (e.g., `1`
+
+) or a percentage of the desired number of pods (e.g., `25%`
+
+). For example, if your application has four replicas and you set `maxUnavailable`
+
+to `1`
+
+, Kubernetes ensures that at least three pods remain available during the update process.
+
+The following example deployment manifest demonstrates how to configure `maxUnavailable`
+
+:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: nginx-deployment
+labels:
+app: nginx
+spec:
+replicas: 4
+selector:
+matchLabels:
+app: nginx
+template:
+metadata:
+labels:
+app: nginx
+spec:
+containers:
+- name: nginx
+image: nginx:1.14.2
+ports:
+- containerPort: 80
+strategy:
+type: RollingUpdate
+rollingUpdate:
+maxUnavailable: 1 # Maximum number of pods that can be unavailable during the update
+```
+
+
+In this example, setting `maxUnavailable`
+
+to `1`
+
+ensures that no more than one pod is unavailable at any given time during the rolling update. This configuration is ideal for applications which require specialized compute, where maintaining a minimum level of service availability is critical.
+
+For more information, see [Rolling Updates in Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment).
+
+### Pod topology spread constraints
+
+
+Best practice guidanceUse pod topology spread constraints to ensure that pods are spread across different nodes or zones to improve availability and reliability.
+
+
+You can use pod topology spread constraints to control how pods are spread across your cluster based on the topology of the nodes and spread pods across different nodes or zones to improve availability and reliability.
+
+The following example pod definition file shows how to use the `topologySpreadConstraints`
+
+field to spread pods across different nodes:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+name: example-pod
+spec:
+# Configure a topology spread constraint
+topologySpreadConstraints:
+- maxSkew: <integer>
+minDomains: <integer> # optional
+topologyKey: <string>
+whenUnsatisfiable: <string>
+labelSelector: <object>
+matchLabelKeys: <list> # optional
+nodeAffinityPolicy: [Honor|Ignore] # optional
+nodeTaintsPolicy: [Honor|Ignore] # optional
+```
+
+
+For more information, see [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/).
+
+### Readiness, liveness, and startup probes
+
+
+Best practice guidanceConfigure readiness, liveness, and startup probes when applicable to improve resiliency for high loads and lower container restarts.
+
+
+#### Readiness probes
+
+In Kubernetes, the kubelet uses readiness probes to know when a container is ready to start accepting traffic. A pod is considered *ready* when all of its containers are ready. When a pod is *not ready*, it's removed from service load balancers. For more information, see [Readiness Probes in Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes).
+
+The following example pod definition file shows a readiness probe configuration:
+
+```
+readinessProbe:
+exec:
+command:
+- cat
+- /tmp/healthy
+initialDelaySeconds: 5
+periodSeconds: 5
+```
+
+
+For more information, see [Configure readiness probes](/en-us/azure/container-instances/container-instances-readiness-probe).
+
+#### Liveness probes
+
+In Kubernetes, the kubelet uses liveness probes to know when to restart a container. If a container fails its liveness probe, the container is restarted. For more information, see [Liveness Probes in Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
+
+The following example pod definition file shows a liveness probe configuration:
+
+```
+livenessProbe:
+exec:
+command:
+- cat
+- /tmp/healthy
+```
+
+
+Another kind of liveness probe uses an HTTP GET request. The following example pod definition file shows an HTTP GET request liveness probe configuration:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+labels:
+test: liveness
+name: liveness-http
+spec:
+containers:
+- name: liveness
+image: registry.k8s.io/liveness
+args:
+- /server
+livenessProbe:
+httpGet:
+path: /healthz
+port: 8080
+httpHeaders:
+- name: Custom-Header
+value: Awesome
+initialDelaySeconds: 3
+periodSeconds: 3
+```
+
+
+For more information, see [Configure liveness probes](/en-us/azure/container-instances/container-instances-liveness-probe) and [Define a liveness HTTP request](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-liveness-http-request).
+
+#### Startup probes
+
+In Kubernetes, the kubelet uses startup probes to know when a container application has started. When you configure a startup probe, readiness and liveness probes don't start until the startup probe succeeds, ensuring the readiness and liveness probes don't interfere with application startup. For more information, see [Startup Probes in Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-startup-probes).
+
+The following example pod definition file shows a startup probe configuration:
+
+```
+startupProbe:
+httpGet:
+path: /healthz
+port: 8080
+failureThreshold: 30
+periodSeconds: 10
+```
+
+
+### Multi-replica applications
+
+
+Best practice guidanceDeploy at least two replicas of your application to ensure high availability and resiliency in node-down scenarios.
+
+
+In Kubernetes, you can use the `replicas`
+
+field in your deployment to specify the number of pods you want to run. Running multiple instances of your application helps ensure high availability and resiliency in node-down scenarios. If you have [availability zones](#availability-zones) enabled, you can use the `replicas`
+
+field to specify the number of pods you want to run across multiple availability zones.
+
+The following example pod definition file shows how to use the `replicas`
+
+field to specify the number of pods you want to run:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: nginx-deployment
+labels:
+app: nginx
+spec:
+replicas: 3
+selector:
+matchLabels:
+app: nginx
+template:
+metadata:
+labels:
+app: nginx
+spec:
+containers:
+- name: nginx
+image: nginx:1.14.2
+ports:
+- containerPort: 80
+```
+
+
+For more information, see [Recommended active-active high availability solution overview for AKS](active-active-solution) and [Replicas in Deployment Specs](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#replicas).
+
+## Cluster and node pool level best practices
+
+The following cluster and node pool level best practices help ensure high availability and reliability for your AKS clusters. You can implement these best practices when creating or updating your AKS clusters.
+
+### Availability zones
+
+
+Best practice guidanceUse multiple availability zones when creating an AKS cluster to ensure high availability in zone-down scenarios. Keep in mind that you can't change the availability zone configuration after creating the cluster.
+
+
+[Availability zones](/en-us/azure/reliability/availability-zones-overview) are separated groups of datacenters within a region. These zones are close enough to have low-latency connections to each other, but far enough apart to reduce the likelihood that more than one zone is affected by local outages or weather. Using availability zones helps your data stay synchronized and accessible in zone-down scenarios. For more information, see [Running in multiple zones](https://kubernetes.io/docs/setup/best-practices/multiple-zones/).
+
+### Cluster autoscaling
+
+
+Best practice guidanceUse cluster autoscaling to ensure that your cluster can handle increased load and to reduce costs during low load.
+
+
+To keep up with application demands in AKS, you might need to adjust the number of nodes that run your workloads. The cluster autoscaler component watches for pods in your cluster that can't be scheduled because of resource constraints. When the cluster autoscaler detects issues, it scales up the number of nodes in the node pool to meet the application demand. It also regularly checks nodes for a lack of running pods and scales down the number of nodes as needed. For more information, see [Cluster autoscaling in AKS](cluster-autoscaler-overview).
+
+You can use the `--enable-cluster-autoscaler`
+
+parameter when creating an AKS cluster to enable the cluster autoscaler, as shown in the following example:
+
+```
+az aks create \
+--resource-group myResourceGroup \
+--name myAKSCluster \
+--node-count 2 \
+--vm-set-type VirtualMachineScaleSets \
+--load-balancer-sku standard \
+--enable-cluster-autoscaler \
+--min-count 1 \
+--max-count 3 \
+--generate-ssh-keys
+```
+
+
+You can also enable the cluster autoscaler on an existing node pool and configure more granular details of the cluster autoscaler by changing the default values in the cluster-wide autoscaler profile.
+
+For more information, see [Use the cluster autoscaler in AKS](cluster-autoscaler).
+
+### Standard Load Balancer
+
+
+Best practice guidanceUse the Standard Load Balancer to provide greater reliability and resources, support for multiple availability zones, HTTP probes, and functionality across multiple data centers.
+
+
+In Azure, the [Standard Load Balancer](/en-us/azure/load-balancer/skus) SKU is designed to be equipped for load balancing network layer traffic when high performance and low latency are needed. The Standard Load Balancer routes traffic within and across regions and to availability zones for high resiliency. The Standard SKU is the recommended and default SKU to use when creating an AKS cluster.
+
+Important
+
+On September 30, 2025, Basic Load Balancer will be retired. For more information, see the [official announcement](https://azure.microsoft.com/updates/azure-basic-load-balancer-will-be-retired-on-30-september-2025-upgrade-to-standard-load-balancer/). We recommend that you use the Standard Load Balancer for new deployments and upgrade existing deployments to the Standard Load Balancer. For more information, see [Upgrading from Basic Load Balancer](/en-us/azure/load-balancer/load-balancer-basic-upgrade-guidance).
+
+The following example shows a `LoadBalancer`
+
+service manifest that uses the Standard Load Balancer:
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+annotations:
+service.beta.kubernetes.io/azure-load-balancer-ipv4 # Service annotation for an IPv4 address
+name: azure-load-balancer
+spec:
+type: LoadBalancer
+ports:
+- port: 80
+selector:
+app: azure-load-balancer
+```
+
+
+For more information, see [Use a standard load balancer in AKS](load-balancer-standard).
+
+Tip
+
+You can also use an [ingress controller](app-routing) or a [service mesh](istio-deploy-ingress) to manage network traffic, with each option providing different features and capabilities.
+
+### System node pools
+
+#### Use dedicated system node pools
+
+
+Best practice guidanceUse system node pools to ensure no other user applications run on the same nodes, which can cause resource scarcity and impact system pods.
+
+
+Use dedicated system node pools to ensure no other user application runs on the same nodes, which can cause scarcity of resources and potential cluster outages because of race conditions. To use a dedicated system node pool, you can use the `CriticalAddonsOnly`
+
+taint on the system node pool. For more information, see [Use system node pools in AKS](use-system-pools#system-and-user-node-pools).
+
+#### Autoscaling for system node pools
+
+
+Best practice guidanceConfigure the autoscaler for system node pools to set minimum and maximum scale limits for the node pool.
+
+
+Use the autoscaler on node pools to configure the minimum and maximum scale limits for the node pool. The system node pool should always be able to scale to meet the demands of system pods. If the system node pool is unable to scale, the cluster runs out of resources to help manage scheduling, scaling, and load balancing, which can lead to an unresponsive cluster.
+
+For more information, see [Use the cluster autoscaler on node pools](cluster-autoscaler#use-the-cluster-autoscaler-on-node-pools).
+
+#### At least two nodes per system node pool
+
+
+Best practice guidanceEnsure that system node pools have at least two nodes to ensure resiliency against freeze/upgrade scenarios, which can lead to nodes being restarted or shut down.
+
+
+System node pools are used to run system pods, such as the kube-proxy, coredns, and the Azure CNI plugin. We recommend that you * ensure that system node pools have at least two nodes* to ensure resiliency against freeze/upgrade scenarios, which can lead to nodes being restarted or shut down. For more information, see
+
+[Manage system node pools in AKS](use-system-pools).
+
+### Upgrade configurations for node pools
+
+#### Using `maxSurge`
+
+for node pool upgrades
+
+
+Best practice guidanceConfigure the
+
+`maxSurge`
+
+setting for node pool upgrades to improve reliability and minimize downtime during upgrade operations.
+
+The `maxSurge`
+
+setting specifies the maximum number of additional nodes that can be created during an upgrade. This ensures that new nodes are provisioned and ready before old nodes are drained and removed, reducing the risk of application downtime.
+
+For example, the following Azure CLI command sets `maxSurge`
+
+to 1 for a node pool:
+
+```
+az aks nodepool update \
+--resource-group myResourceGroup \
+--cluster-name myAKSCluster \
+--name myNodePool \
+--max-surge 1
+```
+
+
+By configuring `maxSurge`
+
+, you can ensure that upgrades are performed faster while maintaining application availability.
+
+For more information, see [Upgrade node pools in AKS](upgrade-cluster).
+
+#### Using `maxUnavailable`
+
+for node pool upgrades
+
+
+Best practice guidanceConfigure the
+
+`maxUnavailable`
+
+setting for node pool upgrades to ensure application availability during upgrade operations.
+
+The `maxUnavailable`
+
+setting specifies the maximum number of nodes that can be unavailable during an upgrade. This ensures that a portion of your node pool remains operational while nodes are being upgraded.
+
+For example, the following Azure CLI command sets `maxUnavailable`
+
+to 1 for a node pool:
+
+```
+az aks nodepool update \
+--resource-group myResourceGroup \
+--cluster-name myAKSCluster \
+--name myNodePool \
+--max-unavailable 1
+```
+
+
+By configuring `maxUnavailable`
+
+, you can control the impact of upgrades on your workloads, ensuring that sufficient resources remain available during the process.
+
+For more information, see [Upgrade node pools in AKS](upgrade-cluster).
+
+
+Best practice guidanceUse Accelerated Networking to provide lower latency, reduced jitter, and decreased CPU utilization on your VMs.
+
+
+Accelerated Networking enables [single root I/O virtualization (SR-IOV)](/en-us/windows-hardware/drivers/network/overview-of-single-root-i-o-virtualization--sr-iov-) on [supported VM types](/en-us/azure/virtual-network/accelerated-networking-overview#supported-vm-instances), greatly improving networking performance.
+
+The following diagram illustrates how two VMs communicate with and without Accelerated Networking:
+
+
+For more information, see [Accelerated Networking overview](/en-us/azure/virtual-network/accelerated-networking-overview).
+
+### Image versions
+
+
+Best practice guidanceImages shouldn't use the
+
+`latest`
+
+tag.
+
+#### Container image tags
+
+Using the `latest`
+
+tag for [container images](https://kubernetes.io/docs/concepts/containers/images/) can lead to unpredictable behavior and makes it difficult to track which version of the image is running in your cluster. You can minimize these risks by integrating and running scan and remediation tools in your containers at build and runtime. For more information, see [Best practices for container image management in AKS](operator-best-practices-container-image-management).
+
+#### Node image upgrades
+
+AKS provides multiple auto-upgrade channels for node OS image upgrades. You can use these channels to control the timing of upgrades. We recommend joining these auto-upgrade channels to ensure that your nodes are running the latest security patches and updates. For more information, see [Auto-upgrade node OS images in AKS](auto-upgrade-node-os-image).
+
+### Standard tier for production workloads
+
+
+Best practice guidanceUse the Standard tier for product workloads for greater cluster reliability and resources, support for up to 5,000 nodes in a cluster, and Uptime SLA enabled by default. If you need LTS, consider using the Premium tier.
+
+
+The Standard tier for Azure Kubernetes Service (AKS) provides a financially backed 99.9% uptime [service-level agreement (SLA)](https://www.azure.cn/en-us/support/sla/kubernetes-service/) for your production workloads. The standard tier also provides greater cluster reliability and resources, support for up to 5,000 nodes in a cluster, and Uptime SLA enabled by default. For more information, see [Pricing tiers for AKS cluster management](free-standard-pricing-tiers).
+
+### Azure CNI for dynamic IP allocation
+
+
+Best practice guidanceConfigure Azure CNI for dynamic IP allocation for better IP utilization and to prevent IP exhaustion for AKS clusters.
+
+
+The dynamic IP allocation capability in Azure CNI allocates pod IPs from a subnet separate from the subnet hosting the AKS cluster and offers the following benefits:
+
+**Better IP utilization**: IPs are dynamically allocated to cluster Pods from the Pod subnet. This leads to better utilization of IPs in the cluster compared to the traditional CNI solution, which does static allocation of IPs for every node.**Scalable and flexible**: Node and pod subnets can be scaled independently. A single pod subnet can be shared across multiple node pools of a cluster or across multiple AKS clusters deployed in the same VNet. You can also configure a separate pod subnet for a node pool.**High performance**: Since pod are assigned virtual network IPs, they have direct connectivity to other cluster pod and resources in the VNet. The solution supports very large clusters without any degradation in performance.**Separate VNet policies for pods**: Since pods have a separate subnet, you can configure separate VNet policies for them that are different from node policies. This enables many useful scenarios such as allowing internet connectivity only for pods and not for nodes, fixing the source IP for pod in a node pool using an Azure NAT Gateway, and using NSGs to filter traffic between node pools.**Kubernetes network policies**: Both the Azure Network Policies and Calico work with this solution.
+
+For more information, see [Configure Azure CNI networking for dynamic allocation of IPs and enhanced subnet support](configure-azure-cni-dynamic-ip-allocation).
+
+### v5 SKU VMs
+
+
+Best practice guidanceUse v5 VM SKUs for improved performance during and after updates, less overall impact, and a more reliable connection for your applications.
+
+
+For node pools in AKS, use v5 SKU VMs with ephemeral OS disks to provide sufficient compute resources for kube-system pods. For more information, see [Best practices for performance and scaling large workloads in AKS](best-practices-performance-scale-large).
+
+### Do *not* use B series VMs
+
+
+Best practice guidanceDon't use B series VMs for AKS clusters because they're low performance and don't work well with AKS.
+
+
+B series VMs are low performance and don't work well with AKS. Instead, we recommend using [v5 SKU VMs](#v5-sku-vms).
+
+### Premium Disks
+
+
+Best practice guidanceUse Premium Disks to achieve 99.9% availability in one virtual machine (VM).
+
+
+[Azure Premium Disks](/en-us/azure/virtual-machines/disks-types#premium-ssd-v2) offer a consistent submillisecond disk latency and high IOPS and throughout. Premium Disks are designed to provide low-latency, high-performance, and consistent disk performance for VMs.
+
+The following example YAML manifest shows a [storage class definition](https://kubernetes.io/docs/concepts/storage/storage-classes/) for a premium disk:
+
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+name: premium2-disk-sc
+parameters:
+cachingMode: None
+skuName: PremiumV2_LRS
+DiskIOPSReadWrite: "4000"
+DiskMBpsReadWrite: "1000"
+provisioner: disk.csi.azure.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+```
+
+
+For more information, see [Use Azure Premium SSD v2 disks on AKS](use-premium-v2-disks).
+
+### Container Insights
+
+
+Best practice guidanceEnable Container Insights to monitor and diagnose the performance of your containerized applications.
+
+
+[Container Insights](/en-us/azure/azure-monitor/containers/container-insights-overview) is a feature of Azure Monitor that collects and analyzes container logs from AKS. You can analyze the collected data with a collection of [views](/en-us/azure/azure-monitor/containers/container-insights-analyze) and prebuilt [workbooks](/en-us/azure/azure-monitor/containers/container-insights-reports).
+
+You can enable Container Insights monitoring on your AKS cluster using various methods. The following example shows how to enable Container Insights monitoring on an existing cluster using the Azure CLI:
+
+```
+az aks enable-addons -a monitoring --name myAKSCluster --resource-group myResourceGroup
+```
+
+
+For more information, see [Enable monitoring for Kubernetes clusters](/en-us/azure/azure-monitor/containers/kubernetes-monitoring-enable).
+
+### Azure Policy
+
+
+Best practice guidanceApply and enforce security and compliance requirements for your AKS clusters using Azure Policy.
+
+
+You can apply and enforce built-in security policies on your AKS clusters using [Azure Policy](/en-us/azure/governance/policy/overview). Azure Policy helps enforce organizational standards and assess compliance at-scale. After you install the [Azure Policy add-on for AKS](/en-us/azure/governance/policy/concepts/policy-for-kubernetes), you can apply individual policy definitions or groups of policy definitions called initiatives to your clusters.
+
+For more information, see [Secure your AKS clusters with Azure Policy](use-azure-policy).
+
+## Next steps
+
+This article focused on best practices for deployment and cluster reliability for Azure Kubernetes Service (AKS) clusters. For more best practices, see the following articles:
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/kms-data-encryption -->
+
+# Enable KMS data encryption in Azure Kubernetes Service (AKS) clusters (Preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This article shows you how to enable Key Management Service (KMS) data encryption for Kubernetes secrets in Azure Kubernetes Service (AKS). KMS encryption encrypts Kubernetes secrets stored in etcd using Azure Key Vault keys.
+
+AKS supports two key management options:
+
+**Platform-managed keys (PMK)**: AKS automatically creates and manages the encryption keys. This option provides the simplest setup with automatic key rotation.**Customer-managed keys (CMK)**: You create and manage your own Azure Key Vault and encryption keys. This option provides full control over key lifecycle and meets compliance requirements that mandate customer-managed keys.
+
+For more information about encryption concepts and key options, see [Data encryption at rest concepts for AKS](kms-data-encryption-concepts).
+
+Important
+
+AKS preview features are available on a self-service, opt-in basis. Previews are provided "as is" and "as available," and they're excluded from the service-level agreements and limited warranty. AKS previews are partially covered by customer support on a best-effort basis. As such, these features aren't meant for production use. For more information, see the following support articles:
+
+## Prerequisites
+
+Use the Bash environment in
+
+[Azure Cloud Shell](/en-us/azure/cloud-shell/overview). For more information, see[Get started with Azure Cloud Shell](/en-us/azure/cloud-shell/quickstart).If you prefer to run CLI reference commands locally,
+
+[install](/en-us/cli/azure/install-azure-cli)the Azure CLI. If you're running on Windows or macOS, consider running Azure CLI in a Docker container. For more information, see[How to run the Azure CLI in a Docker container](/en-us/cli/azure/run-azure-cli-docker).If you're using a local installation, sign in to the Azure CLI by using the
+
+[az login](/en-us/cli/azure/reference-index#az-login)command. To finish the authentication process, follow the steps displayed in your terminal. For other sign-in options, see[Authenticate to Azure using Azure CLI](/en-us/cli/azure/authenticate-azure-cli).When you're prompted, install the Azure CLI extension on first use. For more information about extensions, see
+
+[Use and manage extensions with the Azure CLI](/en-us/cli/azure/azure-cli-extensions-overview).Run
+
+[az version](/en-us/cli/azure/reference-index?#az-version)to find the version and dependent libraries that are installed. To upgrade to the latest version, run[az upgrade](/en-us/cli/azure/reference-index?#az-upgrade).
+
+
+- This article requires version 2.73.0 or later of the Azure CLI. If you're using Azure Cloud Shell, the latest version is already installed there.
+- You need the
+`aks-preview`
+
+Azure CLI extension version*19.0.0b13*or later.- If you don't already have the
+`aks-preview`
+
+extension, install it using thecommand.`az extension add`
+
+`az extension add --name aks-preview`
+
+- If you already have the
+`aks-preview`
+
+extension, update it to make sure you have the latest version using thecommand.`az extension update`
+
+`az extension update --name aks-preview`
+
+
+- If you don't already have the
+`kubectl`
+
+CLI tool installed.
+
+### Register the feature flag
+
+To use KMS data encryption with platform-managed keys, register the `KMSPMKPreview`
+
+feature flag in your subscription.
+
+Register the feature flag using the
+
+command.`az feature register`
+
+`az feature register --namespace Microsoft.ContainerService --name KMSPMKPreview`
+
+Verify the registration status using the
+
+command. It takes a few minutes for the status to show`az feature show`
+
+*Registered*.`az feature show --namespace Microsoft.ContainerService --name KMSPMKPreview`
+
+When the status shows
+
+*Registered*, refresh the registration of the*Microsoft.ContainerService*resource provider using thecommand.`az provider register`
+
+`az provider register --namespace Microsoft.ContainerService`
+
+
+## Set up environment variables
+
+Set up environment variables for your deployment. Replace the placeholder values with your own.
+
+```
+# Set environment variables
+export SUBSCRIPTION_ID="<your-subscription-id>"
+export RESOURCE_GROUP="<your-resource-group>"
+export LOCATION="<your-location>"
+export CLUSTER_NAME="<your-cluster-name>"
+# Set subscription
+az account set --subscription $SUBSCRIPTION_ID
+# Create resource group if it doesn't exist
+az group create --name $RESOURCE_GROUP --location $LOCATION
+```
+
+
+## Enable platform-managed key encryption
+
+With platform-managed keys, AKS automatically creates and manages the Azure Key Vault and encryption keys. Key rotation is handled automatically by the platform.
+
+### Create a new AKS cluster with platform-managed keys
+
+Create a new AKS cluster with KMS encryption using platform-managed keys.
+
+```
+az aks create \
+--name $CLUSTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--kubernetes-version 1.33.0 \
+--kms-infrastructure-encryption Enabled \
+--generate-ssh-keys
+```
+
+
+### Enable platform-managed keys on an existing cluster
+
+Enable KMS encryption with platform-managed keys on an existing AKS cluster.
+
+Note
+
+The cluster must be running Kubernetes version 1.33 or later.
+
+```
+az aks update \
+--name $CLUSTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--kms-infrastructure-encryption Enabled
+```
+
+
+### Verify KMS configuration
+
+After enabling KMS encryption, verify the configuration.
+
+```
+az aks show --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'securityProfile'
+```
+
+
+The output includes the KMS configuration:
+
+```
+{
+"kubernetesResourceObjectEncryptionProfile": {
+"infrastructureEncryption": "Enabled"
+}
+}
+```
+
+
+## Enable customer-managed key encryption with a private key vault
+
+For enhanced security, you can use a private key vault that has public network access disabled. AKS accesses the private key vault through the [trusted services firewall exception](/en-us/azure/key-vault/general/network-security#key-vault-firewall-enabled-trusted-services-only). This section shows how to configure customer-managed keys with a private key vault.
+
+### Create a key vault and key with trusted services access
+
+Note
+
+This section illustrates creating a key vault with public network access initially, then enabling the firewall with trusted services bypass. This approach is for illustrative purposes only. In production environments, you should create and manage your key vault as private from the start. For guidance on managing private key vaults, see [Azure Key Vault network security](/en-us/azure/key-vault/general/network-security).
+
+Create a key vault with Azure RBAC enabled.
+
+`export KEY_VAULT_NAME="<your-key-vault-name>" az keyvault create \ --name $KEY_VAULT_NAME \ --resource-group $RESOURCE_GROUP \ --enable-rbac-authorization true \ --public-network-access Enabled # Get the key vault resource ID export KEY_VAULT_RESOURCE_ID=$(az keyvault show --name $KEY_VAULT_NAME --resource-group $RESOURCE_GROUP --query id -o tsv)`
+
+Assign yourself the Key Vault Crypto Officer role to create a key.
+
+`az role assignment create \ --role "Key Vault Crypto Officer" \ --assignee-object-id $(az ad signed-in-user show --query id -o tsv) \ --assignee-principal-type "User" \ --scope $KEY_VAULT_RESOURCE_ID`
+
+Create a key in the key vault.
+
+`export KEY_NAME="<your-key-name>" az keyvault key create --name $KEY_NAME --vault-name $KEY_VAULT_NAME # Get the key ID (without version for automatic rotation) export KEY_ID=$(az keyvault key show --name $KEY_NAME --vault-name $KEY_VAULT_NAME --query 'key.kid' -o tsv) export KEY_ID_NO_VERSION=$(echo $KEY_ID | sed 's|/[^/]*$||')`
+
+Enable the key vault firewall with trusted services bypass.
+
+`az keyvault update \ --name $KEY_VAULT_NAME \ --resource-group $RESOURCE_GROUP \ --default-action Deny \ --bypass AzureServices`
+
+The
+
+`--default-action Deny`
+
+parameter blocks public network access, and the`--bypass AzureServices`
+
+parameter allows trusted Azure services (including AKS) to access the key vault.
+
+### Create a user-assigned managed identity
+
+Create a user-assigned managed identity for the cluster.
+
+`export IDENTITY_NAME="<your-identity-name>" az identity create --name $IDENTITY_NAME --resource-group $RESOURCE_GROUP # Get the identity details export IDENTITY_OBJECT_ID=$(az identity show --name $IDENTITY_NAME --resource-group $RESOURCE_GROUP --query 'principalId' -o tsv) export IDENTITY_RESOURCE_ID=$(az identity show --name $IDENTITY_NAME --resource-group $RESOURCE_GROUP --query 'id' -o tsv)`
+
+Assign the required roles to the managed identity.
+
+`# Assign Key Vault Crypto User role for encrypt/decrypt operations az role assignment create \ --role "Key Vault Crypto User" \ --assignee-object-id $IDENTITY_OBJECT_ID \ --assignee-principal-type "ServicePrincipal" \ --scope $KEY_VAULT_RESOURCE_ID # Assign Key Vault Contributor role for key management az role assignment create \ --role "Key Vault Contributor" \ --assignee-object-id $IDENTITY_OBJECT_ID \ --assignee-principal-type "ServicePrincipal" \ --scope $KEY_VAULT_RESOURCE_ID`
+
+
+### Create a new AKS cluster with customer-managed keys (private)
+
+Create a new AKS cluster with KMS encryption using customer-managed keys with a private key vault.
+
+```
+az aks create \
+--name $CLUSTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--kubernetes-version 1.33.0 \
+--kms-infrastructure-encryption Enabled \
+--enable-azure-keyvault-kms \
+--azure-keyvault-kms-key-id $KEY_ID_NO_VERSION \
+--azure-keyvault-kms-key-vault-resource-id $KEY_VAULT_RESOURCE_ID \
+--azure-keyvault-kms-key-vault-network-access Private \
+--assign-identity $IDENTITY_RESOURCE_ID \
+--generate-ssh-keys
+```
+
+
+### Enable customer-managed keys on an existing cluster (private)
+
+Enable KMS encryption with customer-managed keys using a private key vault on an existing AKS cluster.
+
+Note
+
+The cluster must be running Kubernetes version 1.33 or later.
+
+```
+az aks update \
+--name $CLUSTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--kms-infrastructure-encryption Enabled \
+--enable-azure-keyvault-kms \
+--azure-keyvault-kms-key-id $KEY_ID_NO_VERSION \
+--azure-keyvault-kms-key-vault-resource-id $KEY_VAULT_RESOURCE_ID \
+--azure-keyvault-kms-key-vault-network-access Private \
+--assign-identity $IDENTITY_RESOURCE_ID
+```
+
+
+### Verify KMS configuration
+
+After enabling KMS encryption, verify the configuration.
+
+```
+az aks show --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'securityProfile'
+```
+
+
+The output includes the KMS configuration:
+
+```
+{
+"azureKeyVaultKms": {
+"enabled": true,
+"keyId": "https://<key-vault-name>.vault.azure.net/keys/<key-name>",
+"keyVaultNetworkAccess": "Private",
+"keyVaultResourceId": "<key-vault-resource-id>"
+},
+"kubernetesResourceObjectEncryptionProfile": {
+"infrastructureEncryption": "Enabled"
+}
+}
+```
+
+
+## Enable customer-managed key encryption with a public key vault
+
+With customer-managed keys, you create and manage your own Azure Key Vault and encryption keys. This section shows how to configure customer-managed keys with a public key vault.
+
+### Create a key vault and key
+
+Create a key vault with Azure RBAC enabled.
+
+`export KEY_VAULT_NAME="<your-key-vault-name>" az keyvault create \ --name $KEY_VAULT_NAME \ --resource-group $RESOURCE_GROUP \ --enable-rbac-authorization true \ --public-network-access Enabled # Get the key vault resource ID export KEY_VAULT_RESOURCE_ID=$(az keyvault show --name $KEY_VAULT_NAME --resource-group $RESOURCE_GROUP --query id -o tsv)`
+
+Assign yourself the Key Vault Crypto Officer role to create a key.
+
+`az role assignment create \ --role "Key Vault Crypto Officer" \ --assignee-object-id $(az ad signed-in-user show --query id -o tsv) \ --assignee-principal-type "User" \ --scope $KEY_VAULT_RESOURCE_ID`
+
+Create a key in the key vault.
+
+`export KEY_NAME="<your-key-name>" az keyvault key create --name $KEY_NAME --vault-name $KEY_VAULT_NAME # Get the key ID (without version for automatic rotation) export KEY_ID=$(az keyvault key show --name $KEY_NAME --vault-name $KEY_VAULT_NAME --query 'key.kid' -o tsv) export KEY_ID_NO_VERSION=$(echo $KEY_ID | sed 's|/[^/]*$||')`
+
+
+### Create a user-assigned managed identity
+
+Create a user-assigned managed identity for the cluster.
+
+`export IDENTITY_NAME="<your-identity-name>" az identity create --name $IDENTITY_NAME --resource-group $RESOURCE_GROUP # Get the identity details export IDENTITY_OBJECT_ID=$(az identity show --name $IDENTITY_NAME --resource-group $RESOURCE_GROUP --query 'principalId' -o tsv) export IDENTITY_RESOURCE_ID=$(az identity show --name $IDENTITY_NAME --resource-group $RESOURCE_GROUP --query 'id' -o tsv)`
+
+Assign the required roles to the managed identity.
+
+`# Assign Key Vault Crypto User role for encrypt/decrypt operations az role assignment create \ --role "Key Vault Crypto User" \ --assignee-object-id $IDENTITY_OBJECT_ID \ --assignee-principal-type "ServicePrincipal" \ --scope $KEY_VAULT_RESOURCE_ID # Assign Key Vault Contributor role for key management az role assignment create \ --role "Key Vault Contributor" \ --assignee-object-id $IDENTITY_OBJECT_ID \ --assignee-principal-type "ServicePrincipal" \ --scope $KEY_VAULT_RESOURCE_ID`
+
+
+### Create a new AKS cluster with customer-managed keys
+
+Create a new AKS cluster with KMS encryption using customer-managed keys.
+
+```
+az aks create \
+--name $CLUSTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--kubernetes-version 1.33.0 \
+--kms-infrastructure-encryption Enabled \
+--enable-azure-keyvault-kms \
+--azure-keyvault-kms-key-id $KEY_ID_NO_VERSION \
+--azure-keyvault-kms-key-vault-resource-id $KEY_VAULT_RESOURCE_ID \
+--azure-keyvault-kms-key-vault-network-access Public \
+--assign-identity $IDENTITY_RESOURCE_ID \
+--generate-ssh-keys
+```
+
+
+### Enable customer-managed keys on an existing cluster
+
+Enable KMS encryption with customer-managed keys on an existing AKS cluster.
+
+Note
+
+The cluster must be running Kubernetes version 1.33 or later.
+
+```
+az aks update \
+--name $CLUSTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--kms-infrastructure-encryption Enabled \
+--enable-azure-keyvault-kms \
+--azure-keyvault-kms-key-id $KEY_ID_NO_VERSION \
+--azure-keyvault-kms-key-vault-resource-id $KEY_VAULT_RESOURCE_ID \
+--azure-keyvault-kms-key-vault-network-access Public \
+--assign-identity $IDENTITY_RESOURCE_ID
+```
+
+
+### Verify KMS configuration
+
+After enabling KMS encryption, verify the configuration.
+
+```
+az aks show --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'securityProfile'
+```
+
+
+The output includes the KMS configuration:
+
+```
+{
+"azureKeyVaultKms": {
+"enabled": true,
+"keyId": "https://<key-vault-name>.vault.azure.net/keys/<key-name>",
+"keyVaultNetworkAccess": "Public",
+"keyVaultResourceId": "<key-vault-resource-id>"
+},
+"kubernetesResourceObjectEncryptionProfile": {
+"infrastructureEncryption": "Enabled"
+}
+}
+```
+
+
+## Migrate between key management options
+
+You can migrate between platform-managed keys and customer-managed keys.
+
+### Migrate from platform-managed keys to customer-managed keys
+
+To migrate from platform-managed keys to customer-managed keys, first set up the key vault, key, and managed identity as described in the customer-managed keys section, then run the update command:
+
+```
+az aks update \
+--name $CLUSTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--kms-infrastructure-encryption Enabled \
+--enable-azure-keyvault-kms \
+--azure-keyvault-kms-key-id $KEY_ID_NO_VERSION \
+--azure-keyvault-kms-key-vault-resource-id $KEY_VAULT_RESOURCE_ID \
+--azure-keyvault-kms-key-vault-network-access Public \
+--assign-identity $IDENTITY_RESOURCE_ID
+```
+
+
+### Migrate from customer-managed keys to platform-managed keys
+
+To migrate from customer-managed keys to platform-managed keys:
+
+```
+az aks update \
+--name $CLUSTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--kms-infrastructure-encryption Enabled \
+--disable-azure-keyvault-kms
+```
+
+
+## Key rotation
+
+With KMS data encryption, key rotation is handled differently depending on your key management option:
+
+**Platform-managed keys**: Key rotation is automatic. No action is required.**Customer-managed keys**: When you rotate the key version in Azure Key Vault, the KMS controller detects the rotation periodically (every 6 hours) and uses the new key version.
+
+Note
+
+Unlike the legacy KMS experience, with this new implementation you don't need to manually re-encrypt secrets after key rotation. The platform handles this automatically.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/developer-best-practices-pod-security -->
+
+# Best practices for pod security in Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+As you develop and run applications in Azure Kubernetes Service (AKS), the security of your pods is a key consideration. Your applications should be designed for the principle of least number of privileges required. Keeping private data secure is top of mind for customers. You don't want credentials like database connection strings, keys, or secrets and certificates exposed to the outside world where an attacker could take advantage of those secrets for malicious purposes. Don't add them to your code or embed them in your container images. This approach would create a risk for exposure and limit the ability to rotate those credentials as the container images will need to be rebuilt.
+
+This best practices article focuses on how to secure pods in AKS. You learn how to:
+
+- Use pod security context to limit access to processes and services or privilege escalation
+- Authenticate with other Azure resources using Microsoft Entra Workload ID
+- Request and retrieve credentials from a digital vault such as Azure Key Vault
+
+You can also read the best practices for [cluster security](operator-best-practices-cluster-security) and for [container image management](operator-best-practices-container-image-management).
+
+## Secure pod access to resources
+
+**Best practice guidance** - To run as a different user or group and limit access to the underlying node processes and services, define pod security context settings. Assign the least number of privileges required.
+
+For your applications to run correctly, pods should run as a defined user or group and not as *root*. The `securityContext`
+
+for a pod or container lets you define settings such as *runAsUser* or *fsGroup* to assume the appropriate permissions. Only assign the required user or group permissions, and don't use the security context as a means to assume additional permissions. The *runAsUser*, privilege escalation, and other Linux capabilities settings are only available on Linux nodes and pods.
+
+When you run as a non-root user, containers cannot bind to the privileged ports under 1024. In this scenario, Kubernetes Services can be used to disguise the fact that an app is running on a particular port.
+
+A pod security context can also define additional capabilities or permissions for accessing processes and services. The following common security context definitions can be set:
+
+**allowPrivilegeEscalation**defines if the pod can assume*root*privileges. Design your applications so this setting is always set to*false*.**Linux capabilities**let the pod access underlying node processes. Take care with assigning these capabilities. Assign the least number of privileges needed. For more information, see[Linux capabilities](http://man7.org/linux/man-pages/man7/capabilities.7.html).**SELinux labels**is a Linux kernel security module that lets you define access policies for services, processes, and filesystem access. Again, assign the least number of privileges needed. For more information, see[SELinux options in Kubernetes](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#selinuxoptions-v1-core)**hostUsers: false**the pod runs using a user-namespace, a Linux kernel feature. This significatly improves the host isolation and limits the lateral movement in case of container breakouts. These improvements are significant whether the container is running as root or not. For more information, see[user-namespaces](secure-container-access#user-namespaces).
+
+The following example pod YAML manifest sets security context settings to define:
+
+- Pod runs as user ID
+*1000*and part of group ID*2000* - Can't escalate privileges to use
+`root`
+
+- Allows Linux capabilities to access network interfaces and the host's real-time (hardware) clock
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+name: security-context-demo
+spec:
+securityContext:
+fsGroup: 2000
+containers:
+- name: security-context-demo
+image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine
+securityContext:
+runAsUser: 1000
+allowPrivilegeEscalation: false
+capabilities:
+add: ["NET_ADMIN", "SYS_TIME"]
+```
+
+
+Work with your cluster operator to determine which security context settings you need. Design your applications to minimize other permissions and access the pod requires. There are other security features to limit access using AppArmor, seccomp (secure computing), and user-namespaces that can be implemented by cluster operators.
+
+For more information, see [Secure container access to resources](operator-best-practices-cluster-security#secure-container-access-to-resources).
+
+## Limit credential exposure
+
+**Best practice guidance** - Don't define credentials in your application code. Use managed identities for Azure resources to let your pod request access to other resources. A digital vault, such as Azure Key Vault, should also be used to store and retrieve digital keys and credentials. Pod-managed identities are intended for use with Linux pods and container images only.
+
+To limit the risk of credentials being exposed in your application code, avoid the use of fixed or shared credentials. Credentials or keys shouldn't be included directly in your code. If these credentials are exposed, the application needs to be updated and redeployed. A better approach is to give pods their own identity and way to authenticate themselves, or automatically retrieve credentials from a digital vault.
+
+#### Use a Microsoft Entra Workload ID
+
+A workload identity is an identity used by an application running on a pod that can authenticate itself against other Azure services that support it, such as Storage or SQL. It integrates with the capabilities native to Kubernetes to federate with external identity providers. In this security model, the AKS cluster acts as token issuer, Microsoft Entra ID uses OpenID Connect to discover public signing keys and verify the authenticity of the service account token before exchanging it for a Microsoft Entra token. Your workload can exchange a service account token projected to its volume for a Microsoft Entra token using the Azure Identity client library using the [Azure SDK](https://azure.microsoft.com/downloads/) or the [Microsoft Authentication Library](/en-us/azure/active-directory/develop/msal-overview) (MSAL).
+
+For more information about workload identities, see [Configure an AKS cluster to use Microsoft Entra Workload ID with your applications](workload-identity-overview)
+
+#### Use Azure Key Vault with Secrets Store CSI Driver
+
+Using the [Microsoft Entra Workload ID](workload-identity-overview) enables authentication against supporting Azure services. For your own services or applications without managed identities for Azure resources, you can still authenticate using credentials or keys. A digital vault can be used to store these secret contents.
+
+When applications need a credential, they communicate with the digital vault, retrieve the latest secret contents, and then connect to the required service. Azure Key Vault can be this digital vault. The simplified workflow for retrieving a credential from Azure Key Vault using pod managed identities is shown in the following diagram:
+
+
+With Key Vault, you store and regularly rotate secrets such as credentials, storage account keys, or certificates. You can integrate Azure Key Vault with an AKS cluster using the [Azure Key Vault provider for the Secrets Store CSI Driver](csi-secrets-store-driver). The Secrets Store CSI driver enables the AKS cluster to natively retrieve secret contents from Key Vault and securely provide them only to the requesting pod. Work with your cluster operator to deploy the Secrets Store CSI Driver onto AKS worker nodes. You can use a Microsoft Entra Workload ID to request access to Key Vault and retrieve the secret contents needed through the Secrets Store CSI Driver.
+
+## Next steps
+
+This article focused on how to secure your pods. To implement some of these areas, see the following articles:
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/azure-cni-overview -->
+
+# Azure Kubernetes Service (AKS) CNI networking overview
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Kubernetes uses Container Networking Interface (CNI) plugins to manage networking in Kubernetes clusters. CNI plug-ins are responsible for assigning IP addresses to pods, network routing between pods, Kubernetes service routing, and more.
+
+Azure Kubernetes Service (AKS) provides multiple CNI plugins that you can use in your clusters, depending on your networking requirements.
+
+## Networking models in AKS
+
+Choosing a CNI plugin for your AKS cluster largely depends on which networking model fits your needs best. Each model has its own advantages and disadvantages that you should consider when planning your AKS cluster.
+
+AKS uses two main networking models:
+
+**Overlay network**:- Conserves IP address space for virtual networks by using logically separate Classless Inter-Domain Routing (CIDR) ranges for pods.
+- Provides maximum cluster scale support.
+- Provides simple management of IP addresses.
+
+**Flat network**:- Provides full virtual network connectivity for pods. Pods can be directly reached via their private IP address from connected networks.
+- Requires large, non-fragmented IP address space for virtual networks.
+
+
+Both networking models have multiple supported options for CNI plugins. The main differences between the models are how pod IP addresses are assigned and how traffic leaves the cluster.
+
+### Overlay networks
+
+Overlay networking is the most common networking model used in Kubernetes. In overlay networks, pods receive an IP address from a private, logically separate CIDR from the Azure virtual network subnet where AKS nodes are deployed. This configuration allows for simpler and often better scalability than the flat network model.
+
+In overlay networks, pods can communicate with each other directly. Traffic that leaves the cluster is Source Network Address Translated (SNAT'd) to the node's IP address. Inbound pod IP traffic is routed through a service, such as a load balancer. The pod IP address is then "hidden" behind the node's IP address. This approach reduces the number of IP addresses required for virtual networks in your clusters.
+
+
+For overlay networking, AKS provides the [Azure CNI Overlay](concepts-network-azure-cni-overlay) plugin. We recommend this CNI plugin for most scenarios.
+
+### Flat networks
+
+Unlike an overlay network, a flat network model in AKS assigns IP addresses to pods from a subnet from the same Azure virtual network as the AKS nodes. Traffic that leaves your clusters is not SNAT'd, and the pod IP address is directly exposed to the destination. This approach can be useful for some scenarios, such as when you need to expose pod IP addresses to external services.
+
+
+AKS provides two CNI plugins for flat networking:
+
+[Azure CNI Pod Subnet](concepts-network-azure-cni-pod-subnet), the recommended CNI plugin for flat networking scenarios.[Azure CNI Node Subnet](concepts-network-legacy-cni#azure-cni-node-subnet), a legacy CNI model for flat networks. In general, we recommend that you use it only if you*need*a managed virtual network for your cluster.
+
+## Choosing a CNI plugin
+
+When you're choosing a CNI plugin, there are several factors to consider. Each networking model has its own advantages and disadvantages. The best choice for your cluster depends on your specific requirements.
+
+### Use case comparison
+
+| CNI plugin | Networking model | Use case highlights |
+|---|---|---|
+| Azure CNI Overlay | Overlay | - Best for conserving IPs for virtual networks - Maximum node count supported by API server plus 250 pods per node - Simpler configuration - No direct external pod IP access |
+| Azure CNI Pod Subnet | Flat | - Direct external pod access - Modes for efficient IP usage for virtual networks or large cluster scale support (preview) |
+| Kubenet (legacy) | Overlay | - Prioritization of IP conservation - Limited scale - Manual route management |
+| Azure CNI Node Subnet (legacy) | Flat | - Direct external pod access - Simpler configuration - Limited scale - Inefficient use of IPs for virtual networks |
+
+### Feature comparison
+
+| Feature | Azure CNI Overlay | Azure CNI Pod Subnet | Azure CNI Node Subnet (legacy) | Kubenet (legacy) |
+|---|---|---|---|---|
+| Deployment of a cluster in an existing or new virtual network | Supported | Supported | Supported | Supported with manual user-defined routes (UDRs) |
+| Connectivity between pod and virtual machine (VM), with the VM in the same virtual network or a peered virtual network | Pod initiated | Both ways | Both ways | Pod initiated |
+| On-premises access via virtual private network (VPN) and Azure ExpressRoute | Pod initiated | Both ways | Both ways | Pod initiated |
+| Access to service endpoints | Supported | Supported | Supported | Supported |
+| Exposure of services via load balancer | Supported | Supported | Supported | Supported |
+| Exposure of services via Azure Application Gateway ingress controller | Supported | Supported | Supported | Supported |
+| Exposure of services via Application Gateway for Containers | Supported | Supported | Supported | Not Supported |
+| Windows node pools | Supported | Supported | Supported | Not supported |
+| Default Azure DNS and private zones | Supported | Supported | Supported | Supported |
+| Sharing of virtual network subnets across multiple clusters | Supported | Supported | Supported | Not supported |
+
+### Support scope between network models
+
+Depending on the CNI plugin that you use, you can deploy the virtual network resources for your cluster in one of the following ways:
+
+- The Azure platform can automatically create and configure the virtual network resources when you create an AKS cluster, like in Azure CNI Overlay, Azure CNI Node Subnet, and Kubenet.
+- You can manually create and configure the virtual network resources and attach to those resources when you create your AKS cluster.
+
+Although capabilities like service endpoints or UDRs are supported, the [support policies for AKS](support-policies) define what changes you can make. For example:
+
+- If you manually create the virtual network resources for an AKS cluster, you're supported when configuring your own UDRs or service endpoints.
+- If the Azure platform automatically creates the virtual network resources for your AKS cluster, you can't manually change those AKS-managed resources to configure your own UDRs or service endpoints.
+
+## Prerequisites
+
+When you're planning your network configuration for AKS, keep these requirements and considerations in mind:
+
+- The virtual network for the AKS cluster must allow outbound internet connectivity.
+- AKS clusters can't use
+`169.254.0.0/16`
+
+,`172.30.0.0/16`
+
+,`172.31.0.0/16`
+
+, or`192.0.2.0/24`
+
+for address ranges for the Kubernetes service, pods, or cluster virtual networks. - In scenarios where you bring your own virtual network, the cluster identity that the AKS cluster uses must have at least
+[Network Contributor](/en-us/azure/role-based-access-control/built-in-roles#network-contributor)permissions on the subnet within your virtual network. If you want to define a[custom role](/en-us/azure/role-based-access-control/custom-roles)instead of using the built-in Network Contributor role, the following permissions are required:`Microsoft.Network/virtualNetworks/subnets/join/action`
+
+`Microsoft.Authorization/roleAssignments/write`
+
+`Microsoft.Network/virtualNetworks/subnets/read`
+
+(needed only if you're defining your own subnets and CIDRs)
+
+- The subnet assigned to the AKS node pool can't be a
+[delegated subnet](/en-us/azure/virtual-network/subnet-delegation-overview). - AKS doesn't apply network security groups (NSGs) to its subnet and doesn't modify any of the NSGs associated with that subnet. If you provide your own subnet and add NSGs associated with that subnet, you must ensure that the security rules in the NSGs allow traffic within the node CIDR range. For more information, see
+[Azure network security groups overview](/en-us/azure/virtual-network/network-security-groups-overview).
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/api-server-service-tags -->
+
+# Use service tags for API server authorized IP ranges in Azure Kubernetes Service (AKS) (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Service tags for API server authorized IP ranges is a preview feature that allows you to use service tags to specify authorized IP ranges for the API server in Azure Kubernetes Service (AKS). This feature simplifies the management of authorized IP ranges by allowing you to use predefined service tags instead of manually specifying individual IP addresses or CIDR ranges.
+
+Important
+
+AKS preview features are available on a self-service, opt-in basis. Previews are provided "as is" and "as available," and they're excluded from the service-level agreements and limited warranty. AKS previews are partially covered by customer support on a best-effort basis. As such, these features aren't meant for production use. For more information, see the following support articles:
+
+## Prerequisites
+
+- The Azure CLI version 2.0.76 or later installed and configured. Check your version using the
+`az --version`
+
+command. If you need to install or upgrade, see[Install Azure CLI](/en-us/cli/azure/install-azure-cli). - The
+installed.`aks-preview`
+
+Azure CLI extension - The
+registered in your Azure subscription.`EnableServiceTagAuthorizedIPPreview`
+
+feature flag
+
+## Limitations
+
+- This feature isn't compatible with
+[API Server VNet Integration](api-server-vnet-integration). - Only one service tag is allowed in the
+`--api-server-authorized-ip-ranges`
+
+parameter. You can't specify multiple service tags.
+
+## Install the `aks-preview`
+
+Azure CLI extension
+
+Install the Azure CLI preview extension using the
+
+command.`az extension add`
+
+`az extension add --name aks-preview`
+
+Update the extension to make sure you have the latest version using the
+
+command.`az extension update`
+
+`az extension update --name aks-preview`
+
+
+## Register the service tag authorized IP feature flag
+
+Register the
+
+`EnableServiceTagAuthorizedIPPreview`
+
+feature flag using thecommand. It takes a few minutes for the registration to complete.`az feature register`
+
+`az feature register --namespace "Microsoft.ContainerService" --name "EnableServiceTagAuthorizedIPPreview"`
+
+Example output:
+
+`{ "id": "/subscriptions/<subscription-id>/providers/Microsoft.ContainerService/features/EnableServiceTagAuthorizedIPPreview", "name": "EnableServiceTagAuthorizedIPPreview", "properties": { "state": "Registering" }, "type": "Microsoft.ContainerService/features" }`
+
+Once the feature flag state changes from
+
+`Registering`
+
+to`Registered`
+
+, refresh the registration of the`Microsoft.ContainerService`
+
+resource provider using thecommand.`az provider register`
+
+`az provider register --namespace "Microsoft.ContainerService"`
+
+Verify the registration using the
+
+command.`az feature show`
+
+`az feature show --namespace "Microsoft.ContainerService" --name "EnableServiceTagAuthorizedIPPreview"`
+
+Example output:
+
+`{ "id": "/subscriptions/<subscription-id>/providers/Microsoft.ContainerService/features/EnableServiceTagAuthorizedIPPreview", "name": "EnableServiceTagAuthorizedIPPreview", "properties": { "state": "Registered" }, "type": "Microsoft.ContainerService/features" }`
+
+
+## Create an AKS cluster with service tag authorized IP ranges
+
+Create a cluster with service tag authorized IP ranges using the
+
+command with the`az aks create`
+
+`--api-server-authorized-ip-ranges`
+
+parameter. The following example creates a cluster named*myAKSCluster*in the*myResourceGroup*resource group and authorizes the`AzureCloud`
+
+service tag to allow all Azure services to access the API server and specify an extra IP address:`az aks create --resource-group myResourceGroup --name myAKSCluster --api-server-authorized-ip-ranges AzureCloud,20.20.20.20`
+
+Note
+
+You should be able to curl the API server from an Azure virtual machine (VM) or Azure service that's part of the
+
+`AzureCloud`
+
+service tag.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/egress-udr -->
+
+# Customize cluster egress with a user-defined routing table in Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+You can customize the egress for your Azure Kubernetes Service (AKS) clusters to fit specific scenarios. AKS provisions a `Standard`
+
+SKU load balancer for egress by default. However, the default setup may not meet the requirements of all scenarios if public IPs are disallowed or the scenario requires extra hops for egress.
+
+This article walks through how to customize a cluster's egress route to support custom network scenarios. These scenarios include ones which disallow public IPs and require the cluster to sit behind a network virtual appliance (NVA).
+
+## Prerequisites
+
+- Azure CLI version 2.0.81 or greater. Run
+`az --version`
+
+to find the version. If you need to install or upgrade, see[Install Azure CLI](/en-us/cli/azure/install-azure-cli). - API version
+`2020-01-01`
+
+or greater.
+
+## Requirements and limitations
+
+Using outbound type is an advanced networking scenario and requires proper network configuration. The following requirements and limitations apply to using outbound type:
+
+- Setting
+`outboundType`
+
+requires AKS clusters with a`vm-set-type`
+
+of`VirtualMachineScaleSets`
+
+and a`load-balancer-sku`
+
+of`Standard`
+
+. - Setting
+`outboundType`
+
+to a value of`UDR`
+
+requires a user-defined route with valid outbound connectivity for the cluster. - Setting
+`outboundType`
+
+to a value of`UDR`
+
+implies the ingress source IP routed to the load-balancer may**not match**the cluster's outgoing egress destination address.
+
+## Overview of customizing egress with a user-defined routing table
+
+AKS doesn't automatically configure egress paths if `userDefinedRouting`
+
+is set, which means you must configure the egress.
+
+When you don't use standard load balancer (SLB) architecture, you must establish explicit egress. You must deploy your AKS cluster into an existing virtual network with a subnet that has been previously configured. This architecture requires explicitly sending egress traffic to an appliance like a firewall, gateway, or proxy, so a public IP assigned to the standard load balancer or appliance can handle the Network Address Translation (NAT).
+
+### Load balancer creation with `userDefinedRouting`
+
+
+AKS clusters with an outbound type of UDR get a standard load balancer only when the first Kubernetes service of type `loadBalancer`
+
+is deployed. The load balancer is configured with a public IP address for *inbound* requests and a backend pool for *inbound* requests. The Azure cloud provider configures inbound rules, but it **doesn't configure outbound public IP address or outbound rules**. Your UDR is the only source for egress traffic.
+
+Note
+
+Azure load balancers [don't incur a charge until a rule is placed](https://azure.microsoft.com/pricing/details/load-balancer/).
+
+## Deploy a cluster with outbound type of UDR and Azure Firewall
+
+To see an application of a cluster with outbound type using a user-defined route, see this [restrict egress traffic with Azure firewall example](limit-egress-traffic).
+
+Important
+
+Outbound type of UDR requires a route for 0.0.0.0/0 and a next hop destination of NVA in the route table.
+The route table already has a default 0.0.0.0/0 to the Internet. Without a public IP address for Azure to use for Source Network Address Translation (SNAT), simply adding this route won't provide you outbound Internet connectivity. AKS validates that you don't create a 0.0.0.0/0 route pointing to the Internet but instead to a gateway, NVA, etc.
+When using an outbound type of UDR, a load balancer public IP address for **inbound requests** isn't created unless you configure a service of type *loadbalancer*. AKS never creates a public IP address for **outbound requests** if you set an outbound type of UDR.
+
+## Next steps
+
+For more information on user-defined routes and Azure networking, see:
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/azure-netapp-files -->
+
+# Configure Azure NetApp Files for Azure Kubernetes Service
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+A persistent volume represents a piece of storage that has been provisioned for use with Kubernetes pods. A persistent volume can be used by one or many pods, and it can be statically or dynamically provisioned. This article shows you how to configure [Azure NetApp Files](/en-us/azure/azure-netapp-files/azure-netapp-files-introduction) to be used by pods on an Azure Kubernetes Service (AKS) cluster.
+
+[Azure NetApp Files](/en-us/azure/azure-netapp-files/azure-netapp-files-introduction) is an enterprise-class, high-performance, metered file storage service running on Azure and supports volumes using [NFS](azure-netapp-files-nfs) (NFSv3 or NFSv4.1), [SMB](azure-netapp-files-smb), and [dual-protocol](azure-netapp-files-dual-protocol) (NFSv3 and SMB, or NFSv4.1 and SMB). Kubernetes users have two options for using Azure NetApp Files volumes for Kubernetes workloads:
+
+- Create Azure NetApp Files volumes
+**statically**. In this scenario, the creation of volumes is external to AKS. Volumes are created using the Azure CLI or from the Azure portal, and are then exposed to Kubernetes by the creation of a`PersistentVolume`
+
+. Statically created Azure NetApp Files volumes have many limitations (for example, inability to be expanded, needing to be over-provisioned, and so on). Statically created volumes aren't recommended for most use cases. - Create Azure NetApp Files volumes
+**dynamically**, orchestrating through Kubernetes. This method is the**preferred**way to create multiple volumes directly through Kubernetes, and is achieved using[Trident](https://docs.netapp.com/us-en/trident/index.html). Trident is a CSI-compliant dynamic storage orchestrator that helps provision volumes natively through Kubernetes.
+
+Note
+
+Dual-protocol volumes can only be created **statically**. For more information on using dual-protocol volumes with Azure Kubernetes Service, see [Provision Azure NetApp Files dual-protocol volumes for Azure Kubernetes Service](azure-netapp-files-dual-protocol).
+
+Using a CSI driver to directly consume Azure NetApp Files volumes from AKS workloads is the recommended configuration for most use cases. This requirement is accomplished using Trident, an open-source dynamic storage orchestrator for Kubernetes. Trident is an enterprise-grade storage orchestrator purpose-built for Kubernetes, and fully supported by NetApp. It simplifies access to storage from Kubernetes clusters by automating storage provisioning.
+
+You can take advantage of Trident's Container Storage Interface (CSI) driver for Azure NetApp Files to abstract underlying details and create, expand, and snapshot volumes on-demand.
+
+Important
+
+Open-source software is mentioned throughout AKS documentation and samples. Software that you deploy is excluded from AKS service-level agreements, limited warranty, and Azure support. As you use open-source technology alongside AKS, consult the support options available from the respective communities and project maintainers to develop a plan.
+
+Microsoft takes responsibility for building the open-source packages that we deploy on AKS. That responsibility includes having complete ownership of the build, scan, sign, validate, and hotfix process, along with control over the binaries in container images. For more information, see [Vulnerability management for AKS](concepts-vulnerability-management#aks-container-images) and [AKS support coverage](support-policies#aks-support-coverage).
+
+## Before you begin
+
+The following considerations apply when you use Azure NetApp Files:
+
+- Your AKS cluster must be
+[in a region that supports Azure NetApp Files](https://azure.microsoft.com/global-infrastructure/services/?products=netapp®ions=all). - The Azure CLI version 2.0.59 or higher installed and configured. Run
+`az --version`
+
+to find the version. If you need to install or upgrade, see[Install Azure CLI](/en-us/cli/azure/install-azure-cli). - After the initial deployment of an AKS cluster, you can choose to provision Azure NetApp Files volumes statically or dynamically.
+- To use dynamic provisioning with Azure NetApp Files with Network File System (NFS), install and configure
+[Trident](https://docs.netapp.com/us-en/trident/index.html)version 19.07 or higher. To use dynamic provisioning with Azure NetApp Files with Secure Message Block (SMB), install and configure Trident version 22.10 or higher. Dynamic provisioning for SMB shares is only supported on windows worker nodes. - Before you deploy Azure NetApp Files SMB volumes, you must identify the AD DS integration requirements for Azure NetApp Files to ensure that Azure NetApp Files is well connected to AD DS. For more information, see
+[Understand guidelines for Active Directory Domain Services site design and planning](/en-us/azure/azure-netapp-files/understand-guidelines-active-directory-domain-service-site). Both the AKS cluster and Azure NetApp Files must have connectivity to the same AD.
+
+## Configure Azure NetApp Files for AKS workloads
+
+This section describes how to set up Azure NetApp Files for AKS workloads. It's applicable for all scenarios within this article.
+
+Define variables for later usage. Replace
+
+*myresourcegroup*,*mylocation*,*myaccountname*,*mypool1*,*poolsize*,*premium*,*myvnet*,*myANFSubnet*, and*myprefix*with appropriate values for your environment.`RESOURCE_GROUP="myresourcegroup" LOCATION="mylocation" ANF_ACCOUNT_NAME="myaccountname" POOL_NAME="mypool1" SIZE="poolsize" # size in TiB SERVICE_LEVEL="Premium" # valid values are Standard, Premium and Ultra VNET_NAME="myvnet" SUBNET_NAME="myANFSubnet" ADDRESS_PREFIX="myprefix"`
+
+Register the
+
+*Microsoft.NetApp*resource provider by running the following command:`az provider register --namespace Microsoft.NetApp --wait`
+
+Note
+
+This operation can take several minutes to complete.
+
+Create a new account by using the command
+
+. When you create an Azure NetApp account for use with AKS, you can create the account in an existing resource group or create a new one in the same region as the AKS cluster.`az netappfiles account create`
+
+`az netappfiles account create \ --resource-group $RESOURCE_GROUP \ --location $LOCATION \ --account-name $ANF_ACCOUNT_NAME`
+
+Create a new capacity pool by using the command
+
+. Replace the variables shown in the command with your Azure NetApp Files information. The`az netappfiles pool create`
+
+`account_name`
+
+should be the same as created in Step 3.`az netappfiles pool create \ --resource-group $RESOURCE_GROUP \ --location $LOCATION \ --account-name $ANF_ACCOUNT_NAME \ --pool-name $POOL_NAME \ --size $SIZE \ --service-level $SERVICE_LEVEL`
+
+Create a subnet to
+
+[delegate to Azure NetApp Files](/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet)using the command. Specify the resource group hosting the existing virtual network for your AKS cluster. Replace the variables shown in the command with your Azure NetApp Files information.`az network vnet subnet create`
+
+Note
+
+This subnet must be in the same virtual network as your AKS cluster.
+
+`az network vnet subnet create \ --resource-group $RESOURCE_GROUP \ --vnet-name $VNET_NAME \ --name $SUBNET_NAME \ --delegations "Microsoft.Netapp/volumes" \ --address-prefixes $ADDRESS_PREFIX`
+
+
+## Statically or dynamically provision Azure NetApp Files volumes for NFS or SMB
+
+After you [configure Azure NetApp Files for AKS workloads](#configure-azure-netapp-files-for-aks-workloads), you can statically or dynamically provision Azure NetApp Files using NFS, SMB, or dual-protocol volumes within the capacity pool. Follow instructions in:
+
+[Provision Azure NetApp Files NFS volumes for Azure Kubernetes Service](azure-netapp-files-nfs)[Provision Azure NetApp Files SMB volumes for Azure Kubernetes Service](azure-netapp-files-smb)[Provision Azure NetApp Files dual-protocol volumes for Azure Kubernetes Service](azure-netapp-files-dual-protocol)
+
+## Next steps
+
+Trident supports many features with Azure NetApp Files. For more information, see:
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview -->
+
+# Azure Kubernetes Service (AKS) CNI networking overview
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Kubernetes uses Container Networking Interface (CNI) plugins to manage networking in Kubernetes clusters. CNI plug-ins are responsible for assigning IP addresses to pods, network routing between pods, Kubernetes service routing, and more.
+
+Azure Kubernetes Service (AKS) provides multiple CNI plugins that you can use in your clusters, depending on your networking requirements.
+
+## Networking models in AKS
+
+Choosing a CNI plugin for your AKS cluster largely depends on which networking model fits your needs best. Each model has its own advantages and disadvantages that you should consider when planning your AKS cluster.
+
+AKS uses two main networking models:
+
+**Overlay network**:- Conserves IP address space for virtual networks by using logically separate Classless Inter-Domain Routing (CIDR) ranges for pods.
+- Provides maximum cluster scale support.
+- Provides simple management of IP addresses.
+
+**Flat network**:- Provides full virtual network connectivity for pods. Pods can be directly reached via their private IP address from connected networks.
+- Requires large, non-fragmented IP address space for virtual networks.
+
+
+Both networking models have multiple supported options for CNI plugins. The main differences between the models are how pod IP addresses are assigned and how traffic leaves the cluster.
+
+### Overlay networks
+
+Overlay networking is the most common networking model used in Kubernetes. In overlay networks, pods receive an IP address from a private, logically separate CIDR from the Azure virtual network subnet where AKS nodes are deployed. This configuration allows for simpler and often better scalability than the flat network model.
+
+In overlay networks, pods can communicate with each other directly. Traffic that leaves the cluster is Source Network Address Translated (SNAT'd) to the node's IP address. Inbound pod IP traffic is routed through a service, such as a load balancer. The pod IP address is then "hidden" behind the node's IP address. This approach reduces the number of IP addresses required for virtual networks in your clusters.
+
+
+For overlay networking, AKS provides the [Azure CNI Overlay](concepts-network-azure-cni-overlay) plugin. We recommend this CNI plugin for most scenarios.
+
+### Flat networks
+
+Unlike an overlay network, a flat network model in AKS assigns IP addresses to pods from a subnet from the same Azure virtual network as the AKS nodes. Traffic that leaves your clusters is not SNAT'd, and the pod IP address is directly exposed to the destination. This approach can be useful for some scenarios, such as when you need to expose pod IP addresses to external services.
+
+
+AKS provides two CNI plugins for flat networking:
+
+[Azure CNI Pod Subnet](concepts-network-azure-cni-pod-subnet), the recommended CNI plugin for flat networking scenarios.[Azure CNI Node Subnet](concepts-network-legacy-cni#azure-cni-node-subnet), a legacy CNI model for flat networks. In general, we recommend that you use it only if you*need*a managed virtual network for your cluster.
+
+## Choosing a CNI plugin
+
+When you're choosing a CNI plugin, there are several factors to consider. Each networking model has its own advantages and disadvantages. The best choice for your cluster depends on your specific requirements.
+
+### Use case comparison
+
+| CNI plugin | Networking model | Use case highlights |
+|---|---|---|
+| Azure CNI Overlay | Overlay | - Best for conserving IPs for virtual networks - Maximum node count supported by API server plus 250 pods per node - Simpler configuration - No direct external pod IP access |
+| Azure CNI Pod Subnet | Flat | - Direct external pod access - Modes for efficient IP usage for virtual networks or large cluster scale support (preview) |
+| Kubenet (legacy) | Overlay | - Prioritization of IP conservation - Limited scale - Manual route management |
+| Azure CNI Node Subnet (legacy) | Flat | - Direct external pod access - Simpler configuration - Limited scale - Inefficient use of IPs for virtual networks |
+
+### Feature comparison
+
+| Feature | Azure CNI Overlay | Azure CNI Pod Subnet | Azure CNI Node Subnet (legacy) | Kubenet (legacy) |
+|---|---|---|---|---|
+| Deployment of a cluster in an existing or new virtual network | Supported | Supported | Supported | Supported with manual user-defined routes (UDRs) |
+| Connectivity between pod and virtual machine (VM), with the VM in the same virtual network or a peered virtual network | Pod initiated | Both ways | Both ways | Pod initiated |
+| On-premises access via virtual private network (VPN) and Azure ExpressRoute | Pod initiated | Both ways | Both ways | Pod initiated |
+| Access to service endpoints | Supported | Supported | Supported | Supported |
+| Exposure of services via load balancer | Supported | Supported | Supported | Supported |
+| Exposure of services via Azure Application Gateway ingress controller | Supported | Supported | Supported | Supported |
+| Exposure of services via Application Gateway for Containers | Supported | Supported | Supported | Not Supported |
+| Windows node pools | Supported | Supported | Supported | Not supported |
+| Default Azure DNS and private zones | Supported | Supported | Supported | Supported |
+| Sharing of virtual network subnets across multiple clusters | Supported | Supported | Supported | Not supported |
+
+### Support scope between network models
+
+Depending on the CNI plugin that you use, you can deploy the virtual network resources for your cluster in one of the following ways:
+
+- The Azure platform can automatically create and configure the virtual network resources when you create an AKS cluster, like in Azure CNI Overlay, Azure CNI Node Subnet, and Kubenet.
+- You can manually create and configure the virtual network resources and attach to those resources when you create your AKS cluster.
+
+Although capabilities like service endpoints or UDRs are supported, the [support policies for AKS](support-policies) define what changes you can make. For example:
+
+- If you manually create the virtual network resources for an AKS cluster, you're supported when configuring your own UDRs or service endpoints.
+- If the Azure platform automatically creates the virtual network resources for your AKS cluster, you can't manually change those AKS-managed resources to configure your own UDRs or service endpoints.
+
+## Prerequisites
+
+When you're planning your network configuration for AKS, keep these requirements and considerations in mind:
+
+- The virtual network for the AKS cluster must allow outbound internet connectivity.
+- AKS clusters can't use
+`169.254.0.0/16`
+
+,`172.30.0.0/16`
+
+,`172.31.0.0/16`
+
+, or`192.0.2.0/24`
+
+for address ranges for the Kubernetes service, pods, or cluster virtual networks. - In scenarios where you bring your own virtual network, the cluster identity that the AKS cluster uses must have at least
+[Network Contributor](/en-us/azure/role-based-access-control/built-in-roles#network-contributor)permissions on the subnet within your virtual network. If you want to define a[custom role](/en-us/azure/role-based-access-control/custom-roles)instead of using the built-in Network Contributor role, the following permissions are required:`Microsoft.Network/virtualNetworks/subnets/join/action`
+
+`Microsoft.Authorization/roleAssignments/write`
+
+`Microsoft.Network/virtualNetworks/subnets/read`
+
+(needed only if you're defining your own subnets and CIDRs)
+
+- The subnet assigned to the AKS node pool can't be a
+[delegated subnet](/en-us/azure/virtual-network/subnet-delegation-overview). - AKS doesn't apply network security groups (NSGs) to its subnet and doesn't modify any of the NSGs associated with that subnet. If you provide your own subnet and add NSGs associated with that subnet, you must ensure that the security rules in the NSGs allow traffic within the node CIDR range. For more information, see
+[Azure network security groups overview](/en-us/azure/virtual-network/network-security-groups-overview).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/cost-analysis -->
+
+# Azure Kubernetes Service (AKS) cost analysis
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+In this article, you learn how to enable cost analysis on Azure Kubernetes Service (AKS) to view detailed cost data for cluster resources.
+
+## About cost analysis
+
+AKS clusters rely on Azure resources, such as virtual machines (VMs), virtual disks, load balancers, and public IP addresses. Multiple applications can use these resources. The resource consumption patterns often differ for each application, so their contribution toward the total cluster resource cost might also vary. Some applications might have footprints across multiple clusters, which can pose a challenge when performing cost attribution and cost management.
+
+When you enable cost analysis on your AKS cluster, you can view detailed cost allocation scoped to Kubernetes constructs, such as clusters and namespaces, and Azure Compute, Network, and Storage resources. The add-on is built on top of [OpenCost](https://www.opencost.io/), an open-source Cloud Native Computing Foundation Incubating project for usage data collection. Usage data is reconciled with your Azure invoice data to provide a comprehensive view of your AKS cluster costs directly in the Azure portal Cost Management views.
+
+For more information on Microsoft Cost Management, see [Start analyzing costs in Azure](/en-us/azure/cost-management-billing/costs/quick-acm-cost-analysis).
+
+After enabling the cost analysis add-on and allowing time for data to be collected, you can use the information in [Understand AKS usage and costs](understand-aks-costs) to help you understand your data.
+
+## Prerequisites
+
+- Your cluster must use the
+`Standard`
+
+or`Premium`
+
+tier, not the`Free`
+
+tier. - To view cost analysis information, you must have one of the following roles on the subscription hosting the cluster:
+`Owner`
+
+,`Contributor`
+
+,`Reader`
+
+,`Cost Management Contributor`
+
+, or`Cost Management Reader`
+
+. [Managed identity](use-managed-identity)configured on your cluster.- If using the Azure CLI, you need version
+`2.61.0`
+
+or later installed. - Once you have enabled cost analysis, you can't downgrade your cluster to the
+`Free`
+
+tier without first disabling cost analysis. - Access to the Azure API including Azure Resource Manager (ARM) API. For a list of fully qualified domain names (FQDNs) required, see
+[AKS Cost Analysis required FQDN](outbound-rules-control-egress#aks-cost-analysis-add-on).
+
+## Limitations
+
+- Kubernetes cost views are only available for the
+*Enterprise Agreement*and*Microsoft Customer Agreement*Microsoft Azure offer types. For more information, see[Supported Microsoft Azure offers](/en-us/azure/cost-management-billing/costs/understand-cost-mgt-data#supported-microsoft-azure-offers). - Currently, virtual nodes aren't supported.
+
+## Enable cost analysis on your AKS cluster
+
+You can enable the cost analysis with the `--enable-cost-analysis`
+
+flag during one of the following operations:
+
+- Creating a
+`Standard`
+
+or`Premium`
+
+tier AKS cluster. - Updating an existing
+`Standard`
+
+or`Premium`
+
+tier AKS cluster. - Upgrading a
+`Free`
+
+cluster to`Standard`
+
+or`Premium`
+
+. - Upgrading a
+`Standard`
+
+cluster to`Premium`
+
+. - Downgrading a
+`Premium`
+
+cluster to`Standard`
+
+tier.
+
+### Enable cost analysis on a new cluster
+
+Enable cost analysis on a new cluster using the [ az aks create](/en-us/cli/azure/aks#az-aks-create) command with the
+
+`--enable-cost-analysis`
+
+flag. The following example creates a new AKS cluster in the `Standard`
+
+tier with cost analysis enabled:```
+export RANDOM_SUFFIX=$(openssl rand -hex 3)
+export RESOURCE_GROUP="AKSCostRG$RANDOM_SUFFIX"
+export CLUSTER_NAME="AKSCostCluster$RANDOM_SUFFIX"
+export LOCATION="WestUS2"
+az group create --resource-group $RESOURCE_GROUP --location $LOCATION
+az aks create --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --location $LOCATION --enable-managed-identity --generate-ssh-keys --tier standard --enable-cost-analysis
+```
+
+
+Results:
+
+```
+{
+"id": "/subscriptions/xxxxx/resourceGroups/AKSCostRGxxxx",
+"location": "WestUS2",
+"name": "AKSCostClusterxxxx",
+"properties": {
+"provisioningState": "Succeeded"
+},
+"tags": null,
+"type": "Microsoft.ContainerService/managedClusters"
+}
+```
+
+
+### Enable cost analysis on an existing cluster
+
+Enable cost analysis on an existing cluster using the [ az aks update](/en-us/cli/azure/aks#az-aks-update) command with the
+
+`--enable-cost-analysis`
+
+flag. The following example updates an existing AKS cluster in the `Standard`
+
+tier to enable cost analysis:```
+az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --enable-cost-analysis
+```
+
+
+Results:
+
+```
+{
+"id": "/subscriptions/xxxxx/resourceGroups/AKSCostRGxxxx",
+"name": "AKSCostClusterxxxx",
+"properties": {
+"provisioningState": "Succeeded"
+}
+}
+```
+
+
+Note
+
+An agent is deployed to the cluster when you enable the add-on. The agent consumes a small amount of CPU and Memory resources.
+
+Warning
+
+The AKS cost analysis add-on Memory usage is dependent on the number of containers deployed. You can roughly approximate Memory consumption using *200 MB + 0.5 MB per container*. The current Memory limit is set to *4 GB*, which supports approximately *7000 containers per cluster*. These estimates are subject to change.
+
+Note
+
+Enabling the cost analysis also creates a [managed identity](/en-us/entra/identity/managed-identities-azure-resources/overview) named `cost-analysis-identity`
+
+with read access to the cluster's node resource group, and assigns it to the node pools in the cluster.
+This is used to collect the ARM identifiers of cluster assets for reporting.
+
+Since there is already a managed identity for the node pool itself, any commands on the node that use managed identities will need to [specify the identity to use](/en-us/entra/identity/managed-identities-azure-resources/managed-identities-faq#what-identity-will-imds-default-to-if-i-dont-specify-the-identity-in-the-request) rather than relying on the default.
+
+For example, `az login --identity --resource-id <resource ID of identity>`
+
+.
+
+## Disable cost analysis on your AKS cluster
+
+Disable cost analysis using the [ az aks update](/en-us/cli/azure/aks#az-aks-update) command with the
+
+`--disable-cost-analysis`
+
+flag.```
+az aks update --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --disable-cost-analysis
+```
+
+
+Results:
+
+```
+{
+"id": "/subscriptions/xxxxx/resourceGroups/AKSCostRGxxxx",
+"name": "AKSCostClusterxxxx",
+"properties": {
+"provisioningState": "Succeeded"
+}
+}
+```
+
+
+Note
+
+If you want to downgrade your cluster from the `Standard`
+
+or `Premium`
+
+tier to the `Free`
+
+tier while cost analysis is enabled, you must first disable cost analysis.
+
+## View the cost data
+
+You can view cost allocation data in the Azure portal. For more information, see [View AKS costs in Microsoft Cost Management](/en-us/azure/cost-management-billing/costs/view-kubernetes-costs).
+
+### Cost definitions
+
+In the Kubernetes namespaces and assets views, you might see any of the following charges:
+
+**Idle charges**represent the cost of available resource capacity that isn't used by any workloads.**Service charges**represent the charges associated with the service, like Uptime SLA, Microsoft Defender for Containers, etc.**System charges**represent the cost of capacity reserved by AKS on each node to run system processes required by the cluster, including the kubelet and container runtime.[Learn more](concepts-clusters-workloads#resource-reservations).**Unallocated charges**represent the cost of resources that couldn't be allocated to namespaces.
+
+Note
+
+It might take *up to one day* for data to finalize. After 24 hours, any fluctuations in costs for the previous day will have stabilized.
+
+## Troubleshooting
+
+If you're experiencing issues, such as the `cost-agent`
+
+pod getting `OOMKilled`
+
+or stuck in a `Pending`
+
+state, see [Troubleshoot AKS cost analysis add-on issues](/en-us/troubleshoot/azure/azure-kubernetes/aks-cost-analysis-add-on-issues).
+
+## Next steps
+
+For more information on cost in AKS, see [Understand Azure Kubernetes Service (AKS) usage and costs](understand-aks-costs).
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity -->
+
+# Use Microsoft Entra pod-managed identities in AKS (Preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Microsoft Entra pod-managed identities use Azure Kubernetes Service (AKS) primitives to associate [managed identities for Azure resources](/en-us/azure/active-directory/managed-identities-azure-resources/overview) and identities in Microsoft Entra ID with pods. Administrators create identities and bindings as Kubernetes primitives that allow pods to access Azure resources that rely on Microsoft Entra ID as an identity provider.
+
+Microsoft Entra pod-managed identities in AKS have the following limitations:
+
+- Each cluster supports up to 200 pod-managed identities.
+- Each cluster supports up to 200 pod-managed identity exceptions.
+- Pod-managed identities are supported only on Linux node pools.
+- This feature is supported only on clusters backed by Virtual Machine Scale Sets.
+
+Important
+
+We recommend you review [Microsoft Entra Workload ID](workload-identity-overview). This authentication method replaces pod-managed identity (preview), which integrates with the Kubernetes native capabilities to federate with any external identity providers on behalf of the application.
+
+The open source Microsoft Entra pod-managed identity (preview) in Azure Kubernetes Service was deprecated on October 24, 2022, and the project archived in September 2023. For more information, see the [deprecation notice](https://github.com/Azure/aad-pod-identity#-announcement). The AKS Pod Identity Managed add-on is patched and supported through September 2025 to allow time for customers to move over to [Microsoft Entra Workload ID](workload-identity-overview).
+
+## Operation mode options
+
+Microsoft Entra pod-managed identity supports two modes of operation:
+
+**Standard Mode**: In this mode, the following two components are deployed to the AKS cluster:[Managed Identity Controller (MIC)](https://azure.github.io/aad-pod-identity/docs/concepts/mic/): An MIC is a Kubernetes controller that watches for changes to pods,[AzureIdentity](https://azure.github.io/aad-pod-identity/docs/concepts/azureidentity/), and[AzureIdentityBinding](https://azure.github.io/aad-pod-identity/docs/concepts/azureidentitybinding/)through the Kubernetes API Server. When it detects a relevant change, the MIC adds or deletes[AzureAssignedIdentity](https://azure.github.io/aad-pod-identity/docs/concepts/azureassignedidentity/)as needed. Specifically, when a pod is scheduled, the MIC assigns the managed identity on Azure to the underlying Virtual Machine Scale Set used by the node pool during the creation phase. When all pods using the identity are deleted, it removes the identity from the Virtual Machine Scale Set of the node pool, unless the same managed identity is used by other pods. The MIC takes similar actions when AzureIdentity or AzureIdentityBinding are created or deleted.[Node Managed Identity (NMI)](https://azure.github.io/aad-pod-identity/docs/concepts/nmi/): NMI is a pod that runs as a DaemonSet on each node in the AKS cluster. NMI intercepts security token requests to the[Azure Instance Metadata Service](/en-us/azure/virtual-machines/linux/instance-metadata-service?tabs=linux)on each node. NMI intercepts token requests and redirects them to itself. It then checks if the pod is authorized to access the requested identity and, if so, retrieves the token from the Microsoft Entra tenant on behalf of the application.
+
+**Managed Mode**: This mode offers only NMI. When installed via the AKS cluster add-on, Azure manages creation of Kubernetes primitives (AzureIdentity and AzureIdentityBinding) and identity assignment in response to CLI commands by the user. Otherwise, if installed via Helm chart, the identity needs to be manually assigned and managed per the user. For more information, see[Pod identity in managed mode](https://azure.github.io/aad-pod-identity/docs/configure/pod_identity_in_managed_mode/).
+
+When you install the Microsoft Entra pod-managed identity via Helm chart or YAML manifest as shown in the [Installation Guide](https://azure.github.io/aad-pod-identity/docs/getting-started/installation/), you can choose between the `standard`
+
+and `managed`
+
+mode. If you instead decide to install the
+Microsoft Entra pod-managed identity using the AKS cluster add-on as shown in this article, the setup uses the `managed`
+
+mode.
+
+## Prerequisites
+
+Your Microsoft Entra pod-managed identities in AKS must meet the following requirements:
+
+The Azure CLI version 2.20.0 or later is installed.
+
+Your AKS cluster is at version 1.26 or later.
+
+You must have the appropriate permissions such as the
+
+**Owner**or**Contributor**role.
+
+## Install the aks-preview Azure CLI extension
+
+Important
+
+AKS preview features are available on a self-service, opt-in basis. Previews are provided "as is" and "as available," and they're excluded from the service-level agreements and limited warranty. AKS previews are partially covered by customer support on a best-effort basis. As such, these features aren't meant for production use. For more information, see the following support articles:
+
+To install the aks-preview extension, run the following command:
+
+```
+az extension add --name aks-preview
+```
+
+
+Run the following command to update to the latest version of the extension released:
+
+```
+az extension update --name aks-preview
+```
+
+
+## Register the EnablePodIdentityPreview feature flag
+
+Register the `EnablePodIdentityPreview`
+
+feature flag by using the [az feature register](/en-us/cli/azure/feature#az-feature-register) command as shown in the following example:
+
+```
+az feature register --namespace "Microsoft.ContainerService" --name "EnablePodIdentityPreview"
+```
+
+
+Tip
+
+To disable the AKS Managed add-on, run the following command:
+
+```
+az feature unregister --namespace "Microsoft.ContainerService" --name "EnablePodIdentityPreview"
+```
+
+
+It takes a few minutes for the status to show as *Registered*. Verify the registration status by using the [az feature show](/en-us/cli/azure/feature#az-feature-show) command:
+
+```
+az feature show --namespace "Microsoft.ContainerService" --name "EnablePodIdentityPreview"
+```
+
+
+When the status reflects *Registered*, refresh the registration of the *Microsoft.ContainerService* resource provider by using the [az provider register](/en-us/cli/azure/provider#az-provider-register) command:
+
+```
+az provider register --namespace Microsoft.ContainerService
+```
+
+
+## Manage an AKS cluster with pod-managed identities
+
+You can manage your AKS cluster with either the Azure Container Networking Interface (CNI) or Kubenet network plugin when enabling Microsoft Entra pod-managed identities.
+
+Create an AKS cluster with Azure CNI and pod-managed identity enabled with the default recommended configuration. The following commands use
+
+[az group create](/en-us/cli/azure/group#az-group-create)to create a resource group named*myResourceGroup*and thecommand to create an AKS cluster named`az aks create`
+
+*myAKSCluster*in the*myResourceGroup*resource group.`az group create --name myResourceGroup --location eastus az aks create \ --resource-group myResourceGroup \ --name myAKSCluster \ --enable-pod-identity \ --network-plugin azure \ --generate-ssh-keys`
+
+Use
+
+to sign in to your AKS cluster. This command also downloads and configures the`az aks get-credentials`
+
+`kubectl`
+
+client certificate on your development computer.`az aks get-credentials --resource-group myResourceGroup --name myAKSCluster`
+
+
+When you enable pod-managed identity on your AKS cluster, the system adds an `AzurePodIdentityException`
+
+named *aks-addon-exception* to the *kube-system* namespace. An `AzurePodIdentityException`
+
+lets pods with certain labels access the Azure Instance Metadata Service (IMDS) endpoint without interception by the NMI server. The *aks-addon-exception* allows AKS first-party addons, such as Microsoft Entra pod-managed identity, to operate without requiring you to manually configure an `AzurePodIdentityException`
+
+. Optionally, you can add, remove, and update an `AzurePodIdentityException`
+
+using:
+
+`az aks pod-identity exception add`
+
+`az aks pod-identity exception delete`
+
+`az aks pod-identity exception update`
+
+Or
+
+`kubectl`
+
+
+## Update an existing AKS cluster with Azure CNI
+
+To update an existing AKS cluster with Azure CNI to include pod-managed identity, run the following command:
+
+```
+az aks update --resource-group $MY_RESOURCE_GROUP --name $MY_CLUSTER --enable-pod-identity
+```
+
+
+## Create a managed identity
+
+You must have the relevant permissions (for example, **Owner**) on your subscription to create the identity.
+
+To create an identity to be used by the demo pod with [az identity create](/en-us/cli/azure/identity#az-identity-create), set the *IDENTITY_CLIENT_ID* and *IDENTITY_RESOURCE_ID* variables, run the following command:
+
+```
+az group create --name myIdentityResourceGroup --location eastus
+export IDENTITY_RESOURCE_GROUP="myIdentityResourceGroup"
+export IDENTITY_NAME="application-identity"
+az identity create --resource-group ${IDENTITY_RESOURCE_GROUP} --name ${IDENTITY_NAME}
+export IDENTITY_CLIENT_ID="$(az identity show --resource-group ${IDENTITY_RESOURCE_GROUP} --name ${IDENTITY_NAME} --query clientId -o tsv)"
+export IDENTITY_RESOURCE_ID="$(az identity show --resource-group ${IDENTITY_RESOURCE_GROUP} --name ${IDENTITY_NAME} --query id -o tsv)"
+```
+
+
+## Assign permissions for the managed identity
+
+The managed identity assigned to the pod must be granted appropriate permissions based on the operations the pod performs. Ensure that you assign only the minimum required roles to follow security best practices.
+
+To run the demo, the *IDENTITY_CLIENT_ID* managed identity must have **Virtual Machine Contributor** permissions in the resource group that contains the Virtual Machine Scale Set of your AKS cluster.
+
+```
+# Obtain the name of the resource group containing the Virtual Machine Scale set of your AKS cluster, commonly called the node resource group
+NODE_GROUP=$(az aks show --resource-group myResourceGroup --name myAKSCluster --query nodeResourceGroup -o tsv)
+# Obtain the id of the node resource group
+NODES_RESOURCE_ID=$(az group show --name $NODE_GROUP -o tsv --query "id")
+# Create a role assignment granting your managed identity permissions on the node resource group
+az role assignment create --role "Virtual Machine Contributor" --assignee "$IDENTITY_CLIENT_ID" --scope $NODES_RESOURCE_ID
+```
+
+
+## Create a pod-managed identity
+
+To create a pod-managed identity for the cluster using `az aks pod-identity add`
+
+, run the following command:
+
+```
+export POD_IDENTITY_NAME="my-pod-identity"
+export POD_IDENTITY_NAMESPACE="my-app"
+az aks pod-identity add --resource-group myResourceGroup --cluster-name myAKSCluster --namespace ${POD_IDENTITY_NAMESPACE} --name ${POD_IDENTITY_NAME} --identity-resource-id ${IDENTITY_RESOURCE_ID}
+```
+
+
+Note
+
+The "POD_IDENTITY_NAME" has to be a valid Domain Name System [(DNS) subdomain name](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names) as defined in [RFC 1123](https://tools.ietf.org/html/rfc1123).
+
+When you assign the pod-managed identity by using `pod-identity add`
+
+, the Azure CLI attempts to grant the Managed Identity Operator role over the pod-managed identity (*IDENTITY_RESOURCE_ID*) to the cluster identity.
+
+Azure creates an AzureIdentity resource in your cluster representing the identity in Azure, and an AzureIdentityBinding resource that connects the AzureIdentity to a selector. You can view these resources by running the following command:
+
+```
+kubectl get azureidentity -n $POD_IDENTITY_NAMESPACE
+kubectl get azureidentitybinding -n $POD_IDENTITY_NAMESPACE
+```
+
+
+## Run a sample application
+
+For a pod to use Microsoft Entra pod-managed identity, the pod needs an *aadpodidbinding* label with a value that matches a selector from a *AzureIdentityBinding*. By default, the selector matches the name of the pod-managed identity, but it can also be set using the `--binding-selector`
+
+option when calling `az aks pod-identity add`
+
+.
+
+To run a sample application using Microsoft Entra pod-managed identity, create a `demo.yaml`
+
+file with the following contents. Replace *POD_IDENTITY_NAME*, *IDENTITY_CLIENT_ID*, and *IDENTITY_RESOURCE_GROUP* with the values from the previous steps. Replace *SUBSCRIPTION_ID* with your subscription ID.
+
+Note
+
+In the previous steps, you created the *POD_IDENTITY_NAME*, *IDENTITY_CLIENT_ID*, and *IDENTITY_RESOURCE_GROUP* variables. You can use a command such as `echo`
+
+to display the value you set for variables, for example `echo $POD_IDENTITY_NAME`
+
+.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+name: demo
+labels:
+aadpodidbinding: $POD_IDENTITY_NAME
+spec:
+containers:
+- name: demo
+image: mcr.microsoft.com/oss/azure/aad-pod-identity/demo:v1.6.3
+args:
+- --subscriptionid=$SUBSCRIPTION_ID
+- --clientid=$IDENTITY_CLIENT_ID
+- --resourcegroup=$IDENTITY_RESOURCE_GROUP
+env:
+- name: MY_POD_NAME
+valueFrom:
+fieldRef:
+fieldPath: metadata.name
+- name: MY_POD_NAMESPACE
+valueFrom:
+fieldRef:
+fieldPath: metadata.namespace
+- name: MY_POD_IP
+valueFrom:
+fieldRef:
+fieldPath: status.podIP
+nodeSelector:
+kubernetes.io/os: linux
+```
+
+
+Notice the pod definition has an `aadpodidbinding`
+
+label with a value that matches the name of the pod-managed identity you ran `az aks pod-identity add`
+
+in the previous step.
+
+Deploy the
+
+`demo.yaml`
+
+to the same namespace as your pod-managed identity using`kubectl apply`
+
+:`kubectl apply -f demo.yaml --namespace $POD_IDENTITY_NAMESPACE`
+
+Verify the sample application successfully runs using
+
+`kubectl logs`
+
+:`kubectl logs demo --follow --namespace $POD_IDENTITY_NAMESPACE`
+
+Verify that the logs show a token is successfully acquired and that the HTTP
+
+*GET*request operation is successful.`... successfully doARMOperations vm count 0 successfully acquired a token using the MSI, msiEndpoint(http://169.254.169.254/metadata/identity/oauth2/token) successfully acquired a token, userAssignedID MSI, msiEndpoint(http://169.254.169.254/metadata/identity/oauth2/token) clientID(xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) successfully made GET on instance metadata ...`
+
+
+## Run an application with multiple identities
+
+To enable an application to use multiple identities, set the `--binding-selector`
+
+to the same selector when creating pod identities:
+
+```
+az aks pod-identity add --resource-group myResourceGroup --cluster-name myAKSCluster --namespace ${POD_IDENTITY_NAMESPACE} --name ${POD_IDENTITY_NAME_1} --identity-resource-id ${IDENTITY_RESOURCE_ID_1} --binding-selector myMultiIdentitySelector
+az aks pod-identity add --resource-group myResourceGroup --cluster-name myAKSCluster --namespace ${POD_IDENTITY_NAMESPACE} --name ${POD_IDENTITY_NAME_2} --identity-resource-id ${IDENTITY_RESOURCE_ID_2} --binding-selector myMultiIdentitySelector
+```
+
+
+Then set the `aadpodidbinding`
+
+field in your pod YAML to the binding selector you specified.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+name: demo
+labels:
+aadpodidbinding: myMultiIdentitySelector
+...
+```
+
+
+## Disable pod-managed identity on an existing cluster
+
+To disable pod-managed identity on an existing cluster, remove the pod-managed identities from the cluster by running the following command:
+
+`az aks pod-identity delete --name ${POD_IDENTITY_NAME} --namespace ${POD_IDENTITY_NAMESPACE} --resource-group myResourceGroup --cluster-name myAKSCluster`
+
+Then disable the feature on the cluster by running the following command:
+
+`az aks update --resource-group myResourceGroup --name myAKSCluster --disable-pod-identity`
+
+
+## Clean up resources
+
+To remove a Microsoft Entra pod-managed identity from your cluster, remove the sample application and the pod-managed identity from the cluster.
+
+```
+kubectl delete pod demo --namespace $POD_IDENTITY_NAMESPACE
+```
+
+
+Then remove the identity and the role assignment of cluster identity.
+
+```
+az aks pod-identity delete \
+--name ${POD_IDENTITY_NAME} \
+--namespace ${POD_IDENTITY_NAMESPACE} \
+--resource-group myResourceGroup \
+--cluster-name myAKSCluster
+az identity delete \
+--resource-group ${IDENTITY_RESOURCE_GROUP} \
+--name ${IDENTITY_NAME}
+az role assignment delete \
+--role "Managed Identity Operator" \
+--assignee "$IDENTITY_CLIENT_ID" \
+--scope "$IDENTITY_RESOURCE_ID"
+```
+
+
+## Next steps
+
+For more information on managed identities, see [Managed identities for Azure resources](/en-us/azure/active-directory/managed-identities-azure-resources/overview).
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/cost-analysis -->
+
+# Azure Kubernetes Service (AKS) cost analysis
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+In this article, you learn how to enable cost analysis on Azure Kubernetes Service (AKS) to view detailed cost data for cluster resources.
+
+## About cost analysis
+
+AKS clusters rely on Azure resources, such as virtual machines (VMs), virtual disks, load balancers, and public IP addresses. Multiple applications can use these resources. The resource consumption patterns often differ for each application, so their contribution toward the total cluster resource cost might also vary. Some applications might have footprints across multiple clusters, which can pose a challenge when performing cost attribution and cost management.
+
+When you enable cost analysis on your AKS cluster, you can view detailed cost allocation scoped to Kubernetes constructs, such as clusters and namespaces, and Azure Compute, Network, and Storage resources. The add-on is built on top of [OpenCost](https://www.opencost.io/), an open-source Cloud Native Computing Foundation Incubating project for usage data collection. Usage data is reconciled with your Azure invoice data to provide a comprehensive view of your AKS cluster costs directly in the Azure portal Cost Management views.
+
+For more information on Microsoft Cost Management, see [Start analyzing costs in Azure](/en-us/azure/cost-management-billing/costs/quick-acm-cost-analysis).
+
+After enabling the cost analysis add-on and allowing time for data to be collected, you can use the information in [Understand AKS usage and costs](understand-aks-costs) to help you understand your data.
+
+## Prerequisites
+
+- Your cluster must use the
+`Standard`
+
+or`Premium`
+
+tier, not the`Free`
+
+tier. - To view cost analysis information, you must have one of the following roles on the subscription hosting the cluster:
+`Owner`
+
+,`Contributor`
+
+,`Reader`
+
+,`Cost Management Contributor`
+
+, or`Cost Management Reader`
+
+. [Managed identity](use-managed-identity)configured on your cluster.- If using the Azure CLI, you need version
+`2.61.0`
+
+or later installed. - Once you have enabled cost analysis, you can't downgrade your cluster to the
+`Free`
+
+tier without first disabling cost analysis. - Access to the Azure API including Azure Resource Manager (ARM) API. For a list of fully qualified domain names (FQDNs) required, see
+[AKS Cost Analysis required FQDN](outbound-rules-control-egress#aks-cost-analysis-add-on).
+
+## Limitations
+
+- Kubernetes cost views are only available for the
+*Enterprise Agreement*and*Microsoft Customer Agreement*Microsoft Azure offer types. For more information, see[Supported Microsoft Azure offers](/en-us/azure/cost-management-billing/costs/understand-cost-mgt-data#supported-microsoft-azure-offers). - Currently, virtual nodes aren't supported.
+
+## Enable cost analysis on your AKS cluster
+
+You can enable the cost analysis with the `--enable-cost-analysis`
+
+flag during one of the following operations:
+
+- Creating a
+`Standard`
+
+or`Premium`
+
+tier AKS cluster. - Updating an existing
+`Standard`
+
+or`Premium`
+
+tier AKS cluster. - Upgrading a
+`Free`
+
+cluster to`Standard`
+
+or`Premium`
+
+. - Upgrading a
+`Standard`
+
+cluster to`Premium`
+
+. - Downgrading a
+`Premium`
+
+cluster to`Standard`
+
+tier.
+
+### Enable cost analysis on a new cluster
+
+Enable cost analysis on a new cluster using the [ az aks create](/en-us/cli/azure/aks#az-aks-create) command with the
+
+`--enable-cost-analysis`
+
+flag. The following example creates a new AKS cluster in the `Standard`
+
+tier with cost analysis enabled:```
+export RANDOM_SUFFIX=$(openssl rand -hex 3)
+export RESOURCE_GROUP="AKSCostRG$RANDOM_SUFFIX"
+export CLUSTER_NAME="AKSCostCluster$RANDOM_SUFFIX"
+export LOCATION="WestUS2"
+az group create --resource-group $RESOURCE_GROUP --location $LOCATION
+az aks create --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --location $LOCATION --enable-managed-identity --generate-ssh-keys --tier standard --enable-cost-analysis
+```
+
+
+Results:
+
+```
+{
+"id": "/subscriptions/xxxxx/resourceGroups/AKSCostRGxxxx",
+"location": "WestUS2",
+"name": "AKSCostClusterxxxx",
+"properties": {
+"provisioningState": "Succeeded"
+},
+"tags": null,
+"type": "Microsoft.ContainerService/managedClusters"
+}
+```
+
+
+### Enable cost analysis on an existing cluster
+
+Enable cost analysis on an existing cluster using the [ az aks update](/en-us/cli/azure/aks#az-aks-update) command with the
+
+`--enable-cost-analysis`
+
+flag. The following example updates an existing AKS cluster in the `Standard`
+
+tier to enable cost analysis:```
+az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --enable-cost-analysis
+```
+
+
+Results:
+
+```
+{
+"id": "/subscriptions/xxxxx/resourceGroups/AKSCostRGxxxx",
+"name": "AKSCostClusterxxxx",
+"properties": {
+"provisioningState": "Succeeded"
+}
+}
+```
+
+
+Note
+
+An agent is deployed to the cluster when you enable the add-on. The agent consumes a small amount of CPU and Memory resources.
+
+Warning
+
+The AKS cost analysis add-on Memory usage is dependent on the number of containers deployed. You can roughly approximate Memory consumption using *200 MB + 0.5 MB per container*. The current Memory limit is set to *4 GB*, which supports approximately *7000 containers per cluster*. These estimates are subject to change.
+
+Note
+
+Enabling the cost analysis also creates a [managed identity](/en-us/entra/identity/managed-identities-azure-resources/overview) named `cost-analysis-identity`
+
+with read access to the cluster's node resource group, and assigns it to the node pools in the cluster.
+This is used to collect the ARM identifiers of cluster assets for reporting.
+
+Since there is already a managed identity for the node pool itself, any commands on the node that use managed identities will need to [specify the identity to use](/en-us/entra/identity/managed-identities-azure-resources/managed-identities-faq#what-identity-will-imds-default-to-if-i-dont-specify-the-identity-in-the-request) rather than relying on the default.
+
+For example, `az login --identity --resource-id <resource ID of identity>`
+
+.
+
+## Disable cost analysis on your AKS cluster
+
+Disable cost analysis using the [ az aks update](/en-us/cli/azure/aks#az-aks-update) command with the
+
+`--disable-cost-analysis`
+
+flag.```
+az aks update --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --disable-cost-analysis
+```
+
+
+Results:
+
+```
+{
+"id": "/subscriptions/xxxxx/resourceGroups/AKSCostRGxxxx",
+"name": "AKSCostClusterxxxx",
+"properties": {
+"provisioningState": "Succeeded"
+}
+}
+```
+
+
+Note
+
+If you want to downgrade your cluster from the `Standard`
+
+or `Premium`
+
+tier to the `Free`
+
+tier while cost analysis is enabled, you must first disable cost analysis.
+
+## View the cost data
+
+You can view cost allocation data in the Azure portal. For more information, see [View AKS costs in Microsoft Cost Management](/en-us/azure/cost-management-billing/costs/view-kubernetes-costs).
+
+### Cost definitions
+
+In the Kubernetes namespaces and assets views, you might see any of the following charges:
+
+**Idle charges**represent the cost of available resource capacity that isn't used by any workloads.**Service charges**represent the charges associated with the service, like Uptime SLA, Microsoft Defender for Containers, etc.**System charges**represent the cost of capacity reserved by AKS on each node to run system processes required by the cluster, including the kubelet and container runtime.[Learn more](concepts-clusters-workloads#resource-reservations).**Unallocated charges**represent the cost of resources that couldn't be allocated to namespaces.
+
+Note
+
+It might take *up to one day* for data to finalize. After 24 hours, any fluctuations in costs for the previous day will have stabilized.
+
+## Troubleshooting
+
+If you're experiencing issues, such as the `cost-agent`
+
+pod getting `OOMKilled`
+
+or stuck in a `Pending`
+
+state, see [Troubleshoot AKS cost analysis add-on issues](/en-us/troubleshoot/azure/azure-kubernetes/aks-cost-analysis-add-on-issues).
+
+## Next steps
+
+For more information on cost in AKS, see [Understand Azure Kubernetes Service (AKS) usage and costs](understand-aks-costs).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/use-premium-v2-disks -->
+
+# Use Azure Premium SSD v2 disks on Azure Kubernetes Service
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+[Azure Premium SSD v2 disks](/en-us/azure/virtual-machines/disks-types#premium-ssd-v2) offer IO-intense enterprise workloads, a consistent submillisecond disk latency, and high IOPS and throughput. The performance (capacity, throughput, and IOPS) of Premium SSD v2 disks can be independently configured at any time, making it easier for more scenarios to be cost efficient while meeting performance needs.
+
+This article describes how to configure a new or existing AKS cluster to use Azure Premium SSD v2 disks.
+
+## Before you begin
+
+Before creating or upgrading an AKS cluster that is able to use Azure Premium SSD v2 disks, you need to create an AKS cluster in the same region and availability zone that supports Premium Storage and attach the disks following the steps below.
+
+For an existing AKS cluster, you can enable Premium SSD v2 disks by adding a new node pool to your cluster, and then attach the disks following the steps below.
+
+Important
+
+Azure Premium SSD v2 disks require node pools deployed in regions that support these disks. For a list of supported regions, see [Premium SSD v2 disk supported regions](/en-us/azure/virtual-machines/disks-types#regional-availability).
+
+### Limitations
+
+- Azure Premium SSD v2 disks have certain limitations that you need to be aware of. For a complete list, see
+[Premium SSD v2 limitations](/en-us/azure/virtual-machines/disks-types#premium-ssd-v2-limitations).
+
+## Use Premium SSD v2 disks dynamically with a storage class
+
+To use Premium SSD v2 disks in a deployment or stateful set, you can use a [storage class for dynamic provisioning](azure-disk-csi).
+
+### Create the storage class
+
+A storage class is used to define how a unit of storage is dynamically created with a persistent volume. For more information on Kubernetes storage classes, see [Kubernetes Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/).
+
+In this example, you create a storage class that references Premium SSD v2 disks. Create a file named `azure-pv2-disk-sc.yaml`
+
+, and copy in the following manifest.
+
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+name: premium2-disk-sc
+parameters:
+cachingMode: None
+skuName: PremiumV2_LRS
+DiskIOPSReadWrite: "4000"
+DiskMBpsReadWrite: "1000"
+provisioner: disk.csi.azure.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+```
+
+
+Create the storage class with the [kubectl apply](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) command and specify your *azure-pv2-disk-sc.yaml* file:
+
+```
+kubectl apply -f azure-pv2-disk-sc.yaml
+```
+
+
+The output from the command resembles the following example:
+
+```
+storageclass.storage.k8s.io/premium2-disk-sc created
+```
+
+
+## Create a persistent volume claim
+
+A persistent volume claim (PVC) is used to automatically provision storage based on a storage class. In this case, a PVC can use the previously created storage class to create an ultra disk.
+
+Create a file named `azure-pv2-disk-pvc.yaml`
+
+, and copy in the following manifest. The claim requests a disk named `premium2-disk`
+
+that is *1000 GB* in size with *ReadWriteOnce* access. The *premium2-disk-sc* storage class is specified as the storage class.
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+name: premium2-disk
+spec:
+accessModes:
+- ReadWriteOnce
+storageClassName: premium2-disk-sc
+resources:
+requests:
+storage: 1000Gi
+```
+
+
+Create the persistent volume claim with the [kubectl apply](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) command and specify your *azure-pv2-disk-pvc.yaml* file:
+
+```
+kubectl apply -f azure-pv2-disk-pvc.yaml
+```
+
+
+The output from the command resembles the following example:
+
+```
+persistentvolumeclaim/premium2-disk created
+```
+
+
+## Use the persistent volume
+
+Once the persistent volume claim has been created and the disk successfully provisioned, a pod can be created with access to the disk. The following manifest creates a basic NGINX pod that uses the persistent volume claim named *premium2-disk* to mount the Azure disk at the path `/mnt/azure`
+
+.
+
+Create a file named `nginx-premium2.yaml`
+
+, and copy in the following manifest.
+
+```
+kind: Pod
+apiVersion: v1
+metadata:
+name: nginx-premium2
+spec:
+containers:
+- name: nginx-premium2
+image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine
+resources:
+requests:
+cpu: 100m
+memory: 128Mi
+limits:
+cpu: 250m
+memory: 256Mi
+volumeMounts:
+- mountPath: "/mnt/azure"
+name: volume
+volumes:
+- name: volume
+persistentVolumeClaim:
+claimName: premium2-disk
+```
+
+
+Create the pod with the [kubectl apply](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) command, as shown in the following example:
+
+```
+kubectl apply -f nginx-premium2.yaml
+```
+
+
+The output from the command resembles the following example:
+
+```
+pod/nginx-premium2 created
+```
+
+
+You now have a running pod with your Azure disk mounted in the `/mnt/azure`
+
+directory. This configuration can be seen when inspecting your pod via `kubectl describe pod nginx-premium2`
+
+, as shown in the following condensed example:
+
+```
+kubectl describe pod nginx-premium2
+[...]
+Volumes:
+volume:
+Type: PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+ClaimName: premium2-disk
+ReadOnly: false
+kube-api-access-sh59b:
+Type: Projected (a volume that contains injected data from multiple sources)
+TokenExpirationSeconds: 3607
+ConfigMapName: kube-root-ca.crt
+ConfigMapOptional: <nil>
+DownwardAPI: true
+QoS Class: Burstable
+Node-Selectors: <none>
+Tolerations: node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+Type Reason Age From Message
+---- ------ ---- ---- -------
+Normal Scheduled 7m58s default-scheduler Successfully assigned default/nginx-premium2 to aks-agentpool-12254644-vmss000006
+Normal SuccessfulAttachVolume 7m46s attachdetach-controller AttachVolume.Attach succeeded for volume "pvc-ff39fb64-1189-4c52-9a24-e065b855b886"
+Normal Pulling 7m39s kubelet Pulling image "mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine"
+Normal Pulled 7m38s kubelet Successfully pulled image "mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine" in 1.192915667s
+Normal Created 7m38s kubelet Created container nginx-premium2
+Normal Started 7m38s kubelet Started container nginx-premium2
+[...]
+```
+
+
+## Set IOPS and throughput limits
+
+Input/Output Operations Per Second (IOPS) and throughput limits for Azure Premium v2 SSD disk is currently not supported through AKS. To adjust performance, you can use the Azure CLI command [az disk update](/en-us/cli/azure/disk#az-disk-update) and including the `--disk-iops-read-write`
+
+and `--disk-mbps-read-write`
+
+parameters.
+
+The following example updates the disk IOPS read/write to **5000** and Mbps to **200**. For `--resource-group`
+
+, the value must be the second resource group automatically created to store the AKS worker nodes with the naming convention *MC_resourcegroupname_clustername_location*. For more information, see [Why are two resource groups created with AKS?](faq).
+
+The value for the `--name`
+
+parameter is the name of the volume created using the StorageClass, and it starts with `pvc-`
+
+. To identify the disk name, you can run `kubectl get pvc`
+
+or navigate to the secondary resource group in the portal to find it. See [manage resources from the Azure portal](/en-us/azure/azure-resource-manager/management/manage-resources-portal#open-resources) to learn more.
+
+```
+az disk update --subscription subscriptionName --resource-group myResourceGroup --name diskName --disk-iops-read-write=5000 --disk-mbps-read-write=200
+```
+
+
+## Next steps
+
+- For more about Premium SSD v2 disks, see
+[Using Azure Premium SSD v2 disks](/en-us/azure/virtual-machines/disks-deploy-premium-v2). - For more about storage best practices, see
+[Best practices for storage and backups in Azure Kubernetes Service (AKS)](operator-best-practices-storage).
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/azure-netapp-files-nfs -->
+
+# Provision Azure NetApp Files NFS volumes for Azure Kubernetes Service
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+After you [configure Azure NetApp Files for Azure Kubernetes Service](azure-netapp-files), you can provision Azure NetApp Files volumes for Azure Kubernetes Service.
+
+Azure NetApp Files supports volumes using NFS (NFSv3 or NFSv4.1), [SMB](azure-netapp-files-smb), or [dual-protocol](azure-netapp-files-dual-protocol) (NFSv3 and SMB, or NFSv4.1 and SMB).
+
+- This article describes details for provisioning NFS volumes statically or dynamically.
+- For information about provisioning SMB volumes statically or dynamically, see
+[Provision Azure NetApp Files SMB volumes for Azure Kubernetes Service](azure-netapp-files-smb). - For information about provisioning dual-protocol volumes statically, see
+[Provision Azure NetApp Files dual-protocol volumes for Azure Kubernetes Service](azure-netapp-files-dual-protocol)
+
+## Statically configure for applications that use NFS volumes
+
+This section describes how to create an NFS volume on Azure NetApp Files and expose the volume statically to Kubernetes. It also describes how to use the volume with a containerized application.
+
+### Create an NFS volume
+
+Define variables for later usage. Replace
+
+*myresourcegroup*,*mylocation*,*myaccountname*,*mypool1*,*premium*,*myfilepath*,*myvolsize*,*myvolname*,*vnetid*, and*anfSubnetID*with an appropriate value from your account and environment. The*filepath*must be unique within all ANF accounts.`RESOURCE_GROUP="myresourcegroup" LOCATION="mylocation" ANF_ACCOUNT_NAME="myaccountname" POOL_NAME="mypool1" SERVICE_LEVEL="premium" # Valid values are Standard, Premium, and Ultra UNIQUE_FILE_PATH="myfilepath" VOLUME_SIZE_GIB="myvolsize" VOLUME_NAME="myvolname" VNET_ID="vnetId" SUBNET_ID="anfSubnetId"`
+
+Create a volume using the
+
+command. For more information, see`az netappfiles volume create`
+
+[Create an NFS volume for Azure NetApp Files](/en-us/azure/azure-netapp-files/azure-netapp-files-create-volumes).`az netappfiles volume create \ --resource-group $RESOURCE_GROUP \ --location $LOCATION \ --account-name $ANF_ACCOUNT_NAME \ --pool-name $POOL_NAME \ --name "$VOLUME_NAME" \ --service-level $SERVICE_LEVEL \ --vnet $VNET_ID \ --subnet $SUBNET_ID \ --usage-threshold $VOLUME_SIZE_GIB \ --file-path $UNIQUE_FILE_PATH \ --protocol-types NFSv3`
+
+
+### Create the persistent volume
+
+List the details of your volume using
+
+command. Replace the variables with appropriate values from your Azure NetApp Files account and environment if not defined in a previous step.`az netappfiles volume show`
+
+`az netappfiles volume show \ --resource-group $RESOURCE_GROUP \ --account-name $ANF_ACCOUNT_NAME \ --pool-name $POOL_NAME \ --volume-name "$VOLUME_NAME -o JSON`
+
+The following output is an example of the above command executed with real values.
+
+`{ ... "creationToken": "myfilepath2", ... "mountTargets": [ { ... "ipAddress": "10.0.0.4", ... } ], ... }`
+
+Create a file named
+
+`pv-nfs.yaml`
+
+and copy in the following YAML. Make sure the server matches the output IP address from Step 1, and the path matches the output from`creationToken`
+
+above. The capacity must also match the volume size from the step above.`apiVersion: v1 kind: PersistentVolume metadata: name: pv-nfs spec: capacity: storage: 100Gi accessModes: - ReadWriteMany mountOptions: - vers=3 nfs: server: 10.0.0.4 path: /myfilepath2`
+
+Create the persistent volume using the
+
+command:`kubectl apply`
+
+`kubectl apply -f pv-nfs.yaml`
+
+Verify the status of the persistent volume is
+
+*Available*by using thecommand:`kubectl describe`
+
+`kubectl describe pv pv-nfs`
+
+
+### Create a persistent volume claim
+
+Create a file named
+
+`pvc-nfs.yaml`
+
+and copy in the following YAML. This manifest creates a PVC named`pvc-nfs`
+
+for 100Gi storage and`ReadWriteMany`
+
+access mode, matching the PV you created.`apiVersion: v1 kind: PersistentVolumeClaim metadata: name: pvc-nfs spec: accessModes: - ReadWriteMany storageClassName: "" resources: requests: storage: 100Gi`
+
+Create the persistent volume claim using the
+
+command:`kubectl apply`
+
+`kubectl apply -f pvc-nfs.yaml`
+
+Verify the
+
+*Status*of the persistent volume claim is*Bound*by using thecommand:`kubectl describe`
+
+`kubectl describe pvc pvc-nfs`
+
+
+### Mount with a pod
+
+Create a file named
+
+`nginx-nfs.yaml`
+
+and copy in the following YAML. This manifest defines a`nginx`
+
+pod that uses the persistent volume claim.`kind: Pod apiVersion: v1 metadata: name: nginx-nfs spec: containers: - image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine name: nginx-nfs command: - "/bin/sh" - "-c" - while true; do echo $(date) >> /mnt/azure/outfile; sleep 1; done volumeMounts: - name: disk01 mountPath: /mnt/azure volumes: - name: disk01 persistentVolumeClaim: claimName: pvc-nfs`
+
+Create the pod using the
+
+command:`kubectl apply`
+
+`kubectl apply -f nginx-nfs.yaml`
+
+Verify the pod is
+
+*Running*by using thecommand:`kubectl describe`
+
+`kubectl describe pod nginx-nfs`
+
+Verify your volume has been mounted on the pod by using
+
+to connect to the pod, and then use`kubectl exec`
+
+`df -h`
+
+to check if the volume is mounted.`kubectl exec -it nginx-nfs -- sh`
+
+`/ # df -h Filesystem Size Used Avail Use% Mounted on ... 10.0.0.4:/myfilepath2 100T 384K 100T 1% /mnt/azure ...`
+
+
+## Dynamically configure for applications that use NFS volumes
+
+Trident may be used to dynamically provision NFS or SMB files on Azure NetApp Files. Dynamically provisioned SMB volumes are only supported with windows worker nodes.
+
+This section describes how to use Trident to dynamically create an NFS volume on Azure NetApp Files and automatically mount it to a containerized application.
+
+### Install Trident
+
+To dynamically provision NFS volumes, you need to install Trident. Trident is NetApp's dynamic storage provisioner that is purpose-built for Kubernetes. Simplify the consumption of storage for Kubernetes applications using Trident's industry-standard [Container Storage Interface (CSI)](https://kubernetes-csi.github.io/docs/) driver. Trident deploys on Kubernetes clusters as pods and provides dynamic storage orchestration services for your Kubernetes workloads.
+
+Trident can be installed using the Trident operator (manually or using [Helm](https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-operator.html)) or [ tridentctl](https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-tridentctl.html). To learn more about these installation methods and how they work, see the
+
+[Trident Install Guide](https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy.html).
+
+#### Install Trident using Helm
+
+[Helm](https://helm.sh/) must be installed on your workstation to install Trident using this method. For other methods of installing Trident, see the [Trident Install Guide](https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy.html).
+
+To install Trident using Helm for a cluster with only Linux worker nodes, run the following commands:
+
+`helm repo add netapp-trident https://netapp.github.io/trident-helm-chart helm install trident netapp-trident/trident-operator --version 23.04.0 --create-namespace --namespace trident`
+
+The output of the command resembles the following example:
+
+`NAME: trident LAST DEPLOYED: Fri May 5 13:55:36 2023 NAMESPACE: trident STATUS: deployed REVISION: 1 TEST SUITE: None NOTES: Thank you for installing trident-operator, which will deploy and manage NetApp's Trident CSI storage provisioner for Kubernetes. Your release is named 'trident' and is installed into the 'trident' namespace. Please note that there must be only one instance of Trident (and trident-operator) in a Kubernetes cluster. To configure Trident to manage storage resources, you will need a copy of tridentctl, which is available in pre-packaged Trident releases. You may find all Trident releases and source code online at https://github.com/NetApp/trident. To learn more about the release, try: $ helm status trident $ helm get all trident`
+
+To confirm Trident was installed successfully, run the following
+
+command:`kubectl describe`
+
+`kubectl describe torc trident`
+
+The output of the command resembles the following example:
+
+`Name: trident Namespace: Labels: app.kubernetes.io/managed-by=Helm Annotations: meta.helm.sh/release-name: trident meta.helm.sh/release-namespace: trident API Version: trident.netapp.io/v1 Kind: TridentOrchestrator Metadata: ... Spec: IPv6: false Autosupport Image: docker.io/netapp/trident-autosupport:23.04 Autosupport Proxy: <nil> Disable Audit Log: true Enable Force Detach: false Http Request Timeout: 90s Image Pull Policy: IfNotPresent k8sTimeout: 0 Kubelet Dir: <nil> Log Format: text Log Layers: <nil> Log Workflows: <nil> Namespace: trident Probe Port: 17546 Silence Autosupport: false Trident Image: docker.io/netapp/trident:23.04.0 Windows: false Status: Current Installation Params: IPv6: false Autosupport Hostname: Autosupport Image: docker.io/netapp/trident-autosupport:23.04 Autosupport Proxy: Autosupport Serial Number: Debug: false Disable Audit Log: true Enable Force Detach: false Http Request Timeout: 90s Image Pull Policy: IfNotPresent Image Pull Secrets: Image Registry: k8sTimeout: 30 Kubelet Dir: /var/lib/kubelet Log Format: text Log Layers: Log Level: info Log Workflows: Probe Port: 17546 Silence Autosupport: false Trident Image: docker.io/netapp/trident:23.04.0 Message: Trident installed Namespace: trident Status: Installed Version: v23.04.0 Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Installing 2m59s trident-operator.netapp.io Installing Trident Normal Installed 2m31s trident-operator.netapp.io Trident installed`
+
+
+### Create a backend
+
+To instruct Trident about the Azure NetApp Files subscription and where it needs to create volumes, a backend is created. This step requires details about the account that was created in a previous step.
+
+Create a file named
+
+`backend-secret.yaml`
+
+and copy in the following YAML. Change the`Client ID`
+
+and`clientSecret`
+
+to the correct values for your environment.`apiVersion: v1 kind: Secret metadata: name: backend-tbc-anf-secret type: Opaque stringData: clientID: 00001111-aaaa-2222-bbbb-3333cccc4444 clientSecret: rR0rUmWXfNioN1KhtHisiSAnoTherboGuskey6pU`
+
+Create a file named
+
+`backend-anf.yaml`
+
+and copy in the following YAML. Change the`subscriptionID`
+
+,`tenantID`
+
+,`location`
+
+, and`serviceLevel`
+
+to the correct values for your environment. Use the`subscriptionID`
+
+for the Azure subscription where Azure NetApp Files is enabled. Obtain the`tenantID`
+
+,`clientID`
+
+, and`clientSecret`
+
+from an[application registration](/en-us/azure/active-directory/develop/howto-create-service-principal-portal)in Microsoft Entra ID with sufficient permissions for the Azure NetApp Files service. The application registration includes the Owner or Contributor role predefined by Azure. The location must be an Azure location that contains at least one delegated subnet created in a previous step. The`serviceLevel`
+
+must match the`serviceLevel`
+
+configured for the capacity pool in[Configure Azure NetApp Files for AKS workloads](azure-netapp-files#configure-azure-netapp-files-for-aks-workloads).`apiVersion: trident.netapp.io/v1 kind: TridentBackendConfig metadata: name: backend-tbc-anf spec: version: 1 storageDriverName: azure-netapp-files subscriptionID: aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e tenantID: aaaabbbb-0000-cccc-1111-dddd2222eeee location: eastus serviceLevel: Premium credentials: name: backend-tbc-anf-secret`
+
+For more information about backends, see
+
+[Azure NetApp Files backend configuration options and examples](https://docs.netapp.com/us-en/trident/trident-use/anf-examples.html).Apply the secret and backend using the
+
+command. First apply the secret:`kubectl apply`
+
+`kubectl apply -f backend-secret.yaml -n trident`
+
+The output of the command resembles the following example:
+
+`secret/backend-tbc-anf-secret created`
+
+Apply the backend:
+
+`kubectl apply -f backend-anf.yaml -n trident`
+
+The output of the command resembles the following example:
+
+`tridentbackendconfig.trident.netapp.io/backend-tbc-anf created`
+
+Confirm the backend was created by using the
+
+command:`kubectl get`
+
+`kubectl get tridentbackends -n trident`
+
+The output of the command resembles the following example:
+
+`NAME BACKEND BACKEND UUID tbe-kfrdh backend-tbc-anf 8da4e926-9dd4-4a40-8d6a-375aab28c566`
+
+
+### Create a storage class
+
+A storage class is used to define how a unit of storage is dynamically created with a persistent volume. To consume Azure NetApp Files volumes, a storage class must be created.
+
+Create a file named
+
+`anf-storageclass.yaml`
+
+and copy in the following YAML:`apiVersion: storage.k8s.io/v1 kind: StorageClass metadata: name: azure-netapp-files provisioner: csi.trident.netapp.io parameters: backendType: "azure-netapp-files" fsType: "nfs"`
+
+Create the storage class using the
+
+command:`kubectl apply`
+
+`kubectl apply -f anf-storageclass.yaml`
+
+The output of the command resembles the following example:
+
+`storageclass/azure-netapp-files created`
+
+Run the
+
+command to view the status of the storage class:`kubectl get`
+
+`kubectl get sc NAME PROVISIONER RECLAIMPOLICY VOLUMEBINDINGMODE ALLOWVOLUMEEXPANSION AGE azure-netapp-files csi.trident.netapp.io Delete Immediate false`
+
+
+### Create a PVC
+
+A persistent volume claim (PVC) is a request for storage by a user. Upon the creation of a persistent volume claim, Trident automatically creates an Azure NetApp Files volume and makes it available for Kubernetes workloads to consume.
+
+Create a file named
+
+`anf-pvc.yaml`
+
+and copy in the following YAML. In this example, a 1-TiB volume is needed with ReadWriteMany access.`kind: PersistentVolumeClaim apiVersion: v1 metadata: name: anf-pvc spec: accessModes: - ReadWriteMany resources: requests: storage: 1Ti storageClassName: azure-netapp-files`
+
+Create the persistent volume claim with the
+
+command:`kubectl apply`
+
+`kubectl apply -f anf-pvc.yaml`
+
+The output of the command resembles the following example:
+
+`persistentvolumeclaim/anf-pvc created`
+
+To view information about the persistent volume claim, run the
+
+command:`kubectl get`
+
+`kubectl get pvc`
+
+The output of the command resembles the following example:
+
+`kubectl get pvc -n trident NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE anf-pvc Bound pvc-bffa315d-3f44-4770-86eb-c922f567a075 1Ti RWO azure-netapp-files 62s`
+
+
+### Use the persistent volume
+
+After the PVC is created, Trident creates the persistent volume. A pod can be spun up to mount and access the Azure NetApp Files volume.
+
+The following manifest can be used to define an NGINX pod that mounts the Azure NetApp Files volume created in the previous step. In this example, the volume is mounted at `/mnt/data`
+
+.
+
+Create a file named
+
+`anf-nginx-pod.yaml`
+
+and copy in the following YAML:`kind: Pod apiVersion: v1 metadata: name: nginx-pod spec: containers: - name: nginx image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine resources: requests: cpu: 100m memory: 128Mi limits: cpu: 250m memory: 256Mi volumeMounts: - mountPath: "/mnt/data" name: volume volumes: - name: volume persistentVolumeClaim: claimName: anf-pvc`
+
+Create the pod using the
+
+command:`kubectl apply`
+
+`kubectl apply -f anf-nginx-pod.yaml`
+
+The output of the command resembles the following example:
+
+`pod/nginx-pod created`
+
+Kubernetes has created a pod with the volume mounted and accessible within the
+
+`nginx`
+
+container at`/mnt/data`
+
+. You can confirm by checking the event logs for the pod usingcommand:`kubectl describe`
+
+`kubectl describe pod nginx-pod`
+
+The output of the command resembles the following example:
+
+`[...] Volumes: volume: Type: PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace) ClaimName: anf-pvc ReadOnly: false default-token-k7952: Type: Secret (a volume populated by a Secret) SecretName: default-token-k7952 Optional: false [...] Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Scheduled 15s default-scheduler Successfully assigned trident/nginx-pod to brameshb-non-root-test Normal SuccessfulAttachVolume 15s attachdetach-controller AttachVolume.Attach succeeded for volume "pvc-bffa315d-3f44-4770-86eb-c922f567a075" Normal Pulled 12s kubelet Container image "mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine" already present on machine Normal Created 11s kubelet Created container nginx Normal Started 10s kubelet Started container nginx`
+
+
+## Next steps
+
+Trident supports many features with Azure NetApp Files. For more information, see:
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/use-vertical-pod-autoscaler -->
+
+# Use the Vertical Pod Autoscaler in Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This article shows you how to use the Vertical Pod Autoscaler (VPA) on your Azure Kubernetes Service (AKS) cluster. The VPA automatically adjusts the CPU and memory requests for your pods to match the usage patterns of your workloads. This feature helps to optimize the performance of your applications and reduce the cost of running your workloads in AKS.
+
+For more information, see the [Vertical Pod Autoscaler overview](vertical-pod-autoscaler).
+
+## Before you begin
+
+If you have an existing AKS cluster, make sure it's running Kubernetes version 1.24 or higher.
+
+You need the Azure CLI version 2.52.0 or later installed and configured. Run
+
+`az --version`
+
+to find the version. If you need to install or upgrade, see[Install Azure CLI](/en-us/cli/azure/install-azure-cli).If enabling VPA on an existing cluster, make sure
+
+`kubectl`
+
+is installed and configured to connect to your AKS cluster using thecommand.`az aks get-credentials`
+
+`az aks get-credentials --name <cluster-name> --resource-group <resource-group-name>`
+
+
+## Deploy the Vertical Pod Autoscaler on a new cluster
+
+Create a new AKS cluster with the VPA enabled using the
+
+command with the`az aks create`
+
+`--enable-vpa`
+
+flag.`az aks create --name <cluster-name> --resource-group <resource-group-name> --enable-vpa --generate-ssh-keys`
+
+After a few minutes, the command completes and returns JSON-formatted information about the cluster.
+
+
+## Update an existing cluster to use the Vertical Pod Autoscaler
+
+Update an existing cluster to use the VPA using the
+
+command with the`az aks update`
+
+`--enable-vpa`
+
+flag.`az aks update --name <cluster-name> --resource-group <resource-group-name> --enable-vpa`
+
+After a few minutes, the command completes and returns JSON-formatted information about the cluster.
+
+
+## Disable the Vertical Pod Autoscaler on an existing cluster
+
+Disable the VPA on an existing cluster using the
+
+command with the`az aks update`
+
+`--disable-vpa`
+
+flag.`az aks update --name <cluster-name> --resource-group <resource-group-name> --disable-vpa`
+
+After a few minutes, the command completes and returns JSON-formatted information about the cluster.
+
+
+## Test Vertical Pod Autoscaler installation
+
+In the following example, we create a deployment with two pods, each running a single container that requests 100 millicore and tries to utilize slightly above 500 millicores. We also create a VPA config pointing at the deployment. The VPA observes the behavior of the pods, and after about five minutes, updates the pods to request 500 millicores.
+
+Create a file named
+
+`hamster.yaml`
+
+and copy in the following manifest of the Vertical Pod Autoscaler example from the[kubernetes/autoscaler](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/examples/hamster.yaml)GitHub repository:`apiVersion: "autoscaling.k8s.io/v1" kind: VerticalPodAutoscaler metadata: name: hamster-vpa spec: targetRef: apiVersion: "apps/v1" kind: Deployment name: hamster resourcePolicy: containerPolicies: - containerName: '*' minAllowed: cpu: 100m memory: 50Mi maxAllowed: cpu: 1 memory: 500Mi controlledResources: ["cpu", "memory"] --- apiVersion: apps/v1 kind: Deployment metadata: name: hamster spec: selector: matchLabels: app: hamster replicas: 2 template: metadata: labels: app: hamster spec: securityContext: runAsNonRoot: true runAsUser: 65534 containers: - name: hamster image: registry.k8s.io/ubuntu-slim:0.1 resources: requests: cpu: 100m memory: 50Mi command: ["/bin/sh"] args: - "-c" - "while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done"`
+
+Deploy the
+
+`hamster.yaml`
+
+Vertical Pod Autoscaler example using thecommand.`kubectl apply`
+
+`kubectl apply -f hamster.yaml`
+
+After a few minutes, the command completes and returns JSON-formatted information about the cluster.
+
+View the running pods using the
+
+command.`kubectl get`
+
+`kubectl get pods -l app=hamster`
+
+Your output should look similar to the following example output:
+
+`hamster-78f9dcdd4c-hf7gk 1/1 Running 0 24s hamster-78f9dcdd4c-j9mc7 1/1 Running 0 24s`
+
+View the CPU and Memory reservations on one of the pods using the
+
+command. Make sure you replace`kubectl describe`
+
+`<example-pod>`
+
+with one of the pod IDs returned in your output from the previous step.`kubectl describe pod hamster-<example-pod>`
+
+Your output should look similar to the following example output:
+
+`hamster: Container ID: containerd:// Image: k8s.gcr.io/ubuntu-slim:0.1 Image ID: sha256: Port: <none> Host Port: <none> Command: /bin/sh Args: -c while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done State: Running Started: Wed, 28 Sep 2022 15:06:14 -0400 Ready: True Restart Count: 0 Requests: cpu: 100m memory: 50Mi Environment: <none>`
+
+The pod has 100 millicpu and 50 Mibibytes of Memory reserved in this example. For this sample application, the pod needs less than 100 millicpu to run, so there's no CPU capacity available. The pods also reserves less memory than needed. The Vertical Pod Autoscaler
+
+*vpa-recommender*deployment analyzes the pods hosting the hamster application to see if the CPU and Memory requirements are appropriate. If adjustments are needed, the vpa-updater relaunches the pods with updated values.Monitor the pods using the
+
+command.`kubectl get`
+
+`kubectl get --watch pods -l app=hamster`
+
+When the new hamster pod starts, you can view the updated CPU and Memory reservations using the
+
+command. Make sure you replace`kubectl describe`
+
+`<example-pod>`
+
+with one of the pod IDs returned in your output from the previous step.`kubectl describe pod hamster-<example-pod>`
+
+Your output should look similar to the following example output:
+
+`State: Running Started: Wed, 28 Sep 2022 15:09:51 -0400 Ready: True Restart Count: 0 Requests: cpu: 587m memory: 262144k Environment: <none>`
+
+In the previous output, you can see that the CPU reservation increased to 587 millicpu, which is over five times the original value. The Memory increased to 262,144 Kilobytes, which is around 250 Mibibytes, or five times the original value. This pod was under-resourced, and the Vertical Pod Autoscaler corrected the estimate with a much more appropriate value.
+
+View updated recommendations from VPA using the
+
+command to describe the hamster-vpa resource information.`kubectl describe`
+
+`kubectl describe vpa/hamster-vpa`
+
+Your output should look similar to the following example output:
+
+`State: Running Started: Wed, 28 Sep 2022 15:09:51 -0400 Ready: True Restart Count: 0 Requests: cpu: 587m memory: 262144k Environment: <none>`
+
+
+## Set Vertical Pod Autoscaler requests
+
+The `VerticalPodAutoscaler`
+
+object automatically sets resource requests on pods with an `updateMode`
+
+of `Auto`
+
+. You can set a different value depending on your requirements and testing. In this example, we create and test a deployment manifest with two pods, each running a container that requests 100 milliCPU and 50 MiB of Memory, and sets the `updateMode`
+
+to `Recreate`
+
+.
+
+Create a file named
+
+`azure-autodeploy.yaml`
+
+and copy in the following manifest:`apiVersion: apps/v1 kind: Deployment metadata: name: vpa-auto-deployment spec: replicas: 2 selector: matchLabels: app: vpa-auto-deployment template: metadata: labels: app: vpa-auto-deployment spec: containers: - name: mycontainer image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine resources: requests: cpu: 100m memory: 50Mi command: ["/bin/sh"] args: ["-c", "while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done"]`
+
+Create the pod using the
+
+command.`kubectl create`
+
+`kubectl create -f azure-autodeploy.yaml`
+
+After a few minutes, the command completes and returns JSON-formatted information about the cluster.
+
+View the running pods using the
+
+command.`kubectl get`
+
+`kubectl get pods`
+
+Your output should look similar to the following example output:
+
+`NAME READY STATUS RESTARTS AGE vpa-auto-deployment-54465fb978-kchc5 1/1 Running 0 52s vpa-auto-deployment-54465fb978-nhtmj 1/1 Running 0 52s`
+
+Create a file named
+
+`azure-vpa-auto.yaml`
+
+and copy in the following manifest:`apiVersion: autoscaling.k8s.io/v1 kind: VerticalPodAutoscaler metadata: name: vpa-auto spec: targetRef: apiVersion: "apps/v1" kind: Deployment name: vpa-auto-deployment updatePolicy: updateMode: "Recreate"`
+
+The
+
+`targetRef.name`
+
+value specifies that any pod controlled by a deployment named`vpa-auto-deployment`
+
+belongs to`VerticalPodAutoscaler`
+
+. The`updateMode`
+
+value of`Recreate`
+
+means that the Vertical Pod Autoscaler controller can delete a pod, adjust the CPU and Memory requests, and then create a new pod.Apply the manifest to the cluster using the
+
+command.`kubectl apply`
+
+`kubectl create -f azure-vpa-auto.yaml`
+
+Wait a few minutes and then view the running pods using the
+
+command.`kubectl get`
+
+`kubectl get pods`
+
+Your output should look similar to the following example output:
+
+`NAME READY STATUS RESTARTS AGE vpa-auto-deployment-54465fb978-qbhc4 1/1 Running 0 2m49s vpa-auto-deployment-54465fb978-vbj68 1/1 Running 0 109s`
+
+Get detailed information about one of your running pods using the
+
+command. Make sure you replace`kubectl get`
+
+`<pod-name>`
+
+with the name of one of your pods from your previous output.`kubectl get pod <pod-name> --output yaml`
+
+Your output should look similar to the following example output, which shows that VPA controller increased the Memory request to 262144k and the CPU request to 25 milliCPU:
+
+`apiVersion: v1 kind: Pod metadata: annotations: vpaObservedContainers: mycontainer vpaUpdates: 'Pod resources updated by vpa-auto: container 0: cpu request, memory request' creationTimestamp: "2022-09-29T16:44:37Z" generateName: vpa-auto-deployment-54465fb978- labels: app: vpa-auto-deployment spec: containers: - args: - -c - while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done command: - /bin/sh image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine imagePullPolicy: IfNotPresent name: mycontainer resources: requests: cpu: 25m memory: 262144k`
+
+Get detailed information about the Vertical Pod Autoscaler and its recommendations for CPU and Memory using the
+
+command.`kubectl get`
+
+`kubectl get vpa vpa-auto --output yaml`
+
+Your output should look similar to the following example output:
+
+`recommendation: containerRecommendations: - containerName: mycontainer lowerBound: cpu: 25m memory: 262144k target: cpu: 25m memory: 262144k uncappedTarget: cpu: 25m memory: 262144k upperBound: cpu: 230m memory: 262144k`
+
+In this example, the results in the
+
+`target`
+
+attribute specify that it doesn't need to change the CPU or the Memory target for the container to run optimally. However, results can vary depending on the application and its resource utilization.The Vertical Pod Autoscaler uses the
+
+`lowerBound`
+
+and`upperBound`
+
+attributes to decide whether to delete a pod and replace it with a new pod. If a pod has requests less than the lower bound or greater than the upper bound, the Vertical Pod Autoscaler deletes the pod and replaces it with a pod that meets the target attribute.
+
+## Extra Recommender for Vertical Pod Autoscaler
+
+The Recommender provides recommendations for resource usage based on real-time resource consumption. AKS deploys a Recommender when a cluster enables VPA. You can deploy a customized Recommender or an extra Recommender with the same image as the default one. The benefit of having a customized Recommender is that you can customize your recommendation logic. With an extra Recommender, you can partition VPAs to use different Recommenders.
+
+In the following example, we create an extra Recommender, apply to an existing AKS cluster, and configure the VPA object to use the extra Recommender.
+
+Create a file named
+
+`extra_recommender.yaml`
+
+and copy in the following manifest:`apiVersion: apps/v1 kind: Deployment metadata: name: extra-recommender namespace: kube-system spec: replicas: 1 selector: matchLabels: app: extra-recommender template: metadata: labels: app: extra-recommender spec: serviceAccountName: vpa-recommender securityContext: runAsNonRoot: true runAsUser: 65534 containers: - name: recommender image: registry.k8s.io/autoscaling/vpa-recommender:0.13.0 imagePullPolicy: Always args: - --recommender-name=extra-recommender resources: limits: cpu: 200m memory: 1000Mi requests: cpu: 50m memory: 500Mi ports: - name: prometheus containerPort: 8942`
+
+Deploy the
+
+`extra-recomender.yaml`
+
+Vertical Pod Autoscaler example using thecommand.`kubectl apply`
+
+`kubectl apply -f extra-recommender.yaml`
+
+After a few minutes, the command completes and returns JSON-formatted information about the cluster.
+
+Create a file named
+
+`hamster-extra-recommender.yaml`
+
+and copy in the following manifest:`apiVersion: "autoscaling.k8s.io/v1" kind: VerticalPodAutoscaler metadata: name: hamster-vpa spec: recommenders: - name: 'extra-recommender' targetRef: apiVersion: "apps/v1" kind: Deployment name: hamster updatePolicy: updateMode: "Auto" resourcePolicy: containerPolicies: - containerName: '*' minAllowed: cpu: 100m memory: 50Mi maxAllowed: cpu: 1 memory: 500Mi controlledResources: ["cpu", "memory"] --- apiVersion: apps/v1 kind: Deployment metadata: name: hamster spec: selector: matchLabels: app: hamster replicas: 2 template: metadata: labels: app: hamster spec: securityContext: runAsNonRoot: true runAsUser: 65534 # nobody containers: - name: hamster image: k8s.gcr.io/ubuntu-slim:0.1 resources: requests: cpu: 100m memory: 50Mi command: ["/bin/sh"] args: - "-c" - "while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done"`
+
+If
+
+`memory`
+
+isn't specified in`controlledResources`
+
+, the Recommender doesn't respond to OOM events. In this example, we only set CPU in`controlledValues`
+
+.`controlledValues`
+
+allows you to choose whether to update the container's resource requests using the`RequestsOnly`
+
+option, or by both resource requests and limits using the`RequestsAndLimits`
+
+option. The default value is`RequestsAndLimits`
+
+. If you use the`RequestsAndLimits`
+
+option, requests are computed based on actual usage, and limits are calculated based on the current pod's request and limit ratio.For example, if you start with a pod that requests 2 CPUs and limits to 4 CPUs, VPA always sets the limit to be twice as much as requests. The same principle applies to Memory. When you use the
+
+`RequestsAndLimits`
+
+mode, it can serve as a blueprint for your initial application resource requests and limits.You can simplify the VPA object using
+
+`Auto`
+
+mode and computing recommendations for both CPU and Memory.Deploy the
+
+`hamster-extra-recomender.yaml`
+
+example using thecommand.`kubectl apply`
+
+`kubectl apply -f hamster-extra-recommender.yaml`
+
+Monitor your pods using the
+
+`[kubectl get`
+
+][kubectl-get](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get)command.`kubectl get --watch pods -l app=hamster`
+
+When the new hamster pod starts, view the updated CPU and Memory reservations using the
+
+command. Make sure you replace`kubectl describe`
+
+`<example-pod>`
+
+with one of your pod IDs.`kubectl describe pod hamster-<example-pod>`
+
+Your output should look similar to the following example output:
+
+`State: Running Started: Wed, 28 Sep 2022 15:09:51 -0400 Ready: True Restart Count: 0 Requests: cpu: 587m memory: 262144k Environment: <none>`
+
+View updated recommendations from VPA using the
+
+command.`kubectl describe`
+
+`kubectl describe vpa/hamster-vpa`
+
+Your output should look similar to the following example output:
+
+`State: Running Started: Wed, 28 Sep 2022 15:09:51 -0400 Ready: True Restart Count: 0 Requests: cpu: 587m memory: 262144k Environment: <none> Spec: recommenders: Name: customized-recommender`
+
+
+## Troubleshoot the Vertical Pod Autoscaler
+
+If you encounter issues with the Vertical Pod Autoscaler, you can troubleshoot the system components and custom resource definition to identify the problem.
+
+Verify that all system components are running using the following command:
+
+`kubectl get pods|grep vpa`
+
+Your output should list
+
+*three pods*: recommender, updater, and admission-controller, all with a status of`Running`
+
+.For each of the pods returned in your previous output, verify that the system components are logging any errors using the following command:
+
+`kubectl logs [pod name] | grep -e '^E[0-9]\{4\}'`
+
+Verify that the custom resource definition was created using the following command:
+
+`kubectl get customresourcedefinition | grep verticalpodautoscalers`
+
+
+## Next steps
+
+To learn more about the VPA object, see the [Vertical Pod Autoscaler API reference](vertical-pod-autoscaler-api-reference).
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/concepts-network -->
+
+# Networking concepts for applications in Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+In a container-based, microservices approach to application development, application components work together to process their tasks. Kubernetes provides various resources enabling this cooperation:
+
+- You can connect to and expose applications internally or externally.
+- You can build highly available applications by load balancing your applications.
+- You can restrict the flow of network traffic into or between pods and nodes to improve security.
+- You can configure Ingress traffic for SSL/TLS termination or routing of multiple components for your more complex applications.
+
+This article introduces the core concepts that provide networking to your applications in AKS:
+
+## Kubernetes networking basics
+
+Kubernetes employs a virtual networking layer to manage access within and between your applications or their components:
+
+**Kubernetes nodes and virtual network**: Kubernetes nodes are connected to a virtual network. This setup enables pods (basic units of deployment in Kubernetes) to have both inbound and outbound connectivity.**Kube-proxy component**: kube-proxy runs on each node and is responsible for providing the necessary network features.
+
+Regarding specific Kubernetes functionalities:
+
+**Load balancer**: You can use a load balancer to distribute network traffic evenly across various resources.**Ingress controllers**: These facilitate Layer 7 routing, which is essential for directing application traffic.**Egress traffic control**: Kubernetes allows you to manage and control outbound traffic from cluster nodes.**Network policies**: These policies enable security measures and filtering for network traffic in pods.
+
+In the context of the Azure platform:
+
+- Azure streamlines virtual networking for AKS (Azure Kubernetes Service) clusters.
+- Creating a Kubernetes load balancer on Azure simultaneously sets up the corresponding Azure load balancer resource.
+- As you open network ports to pods, Azure automatically configures the necessary network security group rules.
+- Azure can also manage external DNS configurations for HTTP application routing as new Ingress routes are established.
+
+## Azure virtual networks
+
+In AKS, you can deploy a cluster that uses one of the following network models:
+
+**Overlay network model**: Overlay networking is the most common networking model used in Kubernetes. Pods are given an IP address from a private, logically separate CIDR from the Azure virtual network subnet where AKS nodes are deployed. This model enables simpler, improved scalability when compared to the flat network model.**Flat network model**: A flat network model in AKS assigns IP addresses to pods from a subnet from the same Azure virtual network as the AKS nodes. Any traffic leaving your clusters isn't SNAT'd, and the pod IP address is directly exposed to the destination. This model can be useful for scenarios like exposing pod IP addresses to external services.
+
+For more information on networking models in AKS, see [CNI Networking in AKS](concepts-network-cni-overview).
+
+## Control outbound (egress) traffic
+
+AKS clusters are deployed on a virtual network and have outbound dependencies on services outside of that virtual network, which are almost entirely defined with fully qualified domain names (FQDNs). AKS provides several outbound configuration options which allow you to customize the way in which these external resources are accessed.
+
+Note
+
+After [31 March 2026](https://azure.microsoft.com/updates?id=default-outbound-access-for-vms-in-azure-will-be-retired-transition-to-a-new-method-of-internet-access), new AKS clusters that use the **AKS-managed virtual network** option will place cluster subnets into [private subnets](/en-us/azure/virtual-network/ip-services/default-outbound-access#why-is-disabling-default-outbound-access-recommended) by default (`defaultOutboundAccess = false`
+
+).
+
+This setting **does not impact AKS-managed cluster traffic**, which uses explicitly configured outbound paths. It may affect **unsupported scenarios**, such as deploying other resources (e.g., VMs) into the same subnet.
+
+**Clusters using BYO VNets are unaffected** by this change. In supported configurations, no action is required.
+
+### Outbound configuration options
+
+For more information on the supported AKS cluster outbound configuration types, see [Customize cluster egress with outbound types in Azure Kubernetes Service (AKS)](egress-outboundtype).
+
+By default, AKS clusters have unrestricted outbound (egress) Internet access, which allows the nodes and services you run to access external resources as needed. If desired, you can restrict outbound traffic.
+
+For more information on how to restrict outbound traffic from your cluster see [Control egress traffic for cluster nodes in AKS](limit-egress-traffic).
+
+## Network security groups
+
+A network security group filters traffic for VMs like the AKS nodes. As you create Services, such as a *LoadBalancer*, the Azure platform automatically configures any necessary network security group rules.
+
+You don't need to manually configure network security group rules to filter traffic for pods in an AKS cluster. You can define any required ports and forwarding as part of your Kubernetes Service manifests and let the Azure platform create or update the appropriate rules.
+
+You can also use network policies to automatically apply traffic filter rules to pods.
+
+For more information, see [How network security groups filter network traffic](/en-us/azure/virtual-network/network-security-group-how-it-works).
+
+### Custom virtual network requirements
+
+When using a custom virtual network with AKS clusters, if you have added Network Security Group (NSG) rules to restrict traffic between different subnets, ensure that the NSG security rules permit the following types of communication:
+
+| Destination | Source | Protocol | Port | Use |
+|---|---|---|---|---|
+| APIServer Subnet CIDR | Cluster Subnet | TCP | 443 and 4443 | Required to enable communication between Nodes and the API server. |
+| APIServer Subnet CIDR | Azure Load Balancer | TCP | 9988 | Required to enable communication between Azure Load Balancer and the API server. You can also enable all communication between the Azure Load Balancer and the API Server Subnet CIDR. |
+| Node CIDR | Node CIDR | All Protocols | All Ports | Required to enable communication between Nodes. |
+| Node CIDR | Pod CIDR | All Protocols | All Ports | Required for Service traffic routing. |
+| Pod CIDR | Pod CIDR | All Protocols | All Ports | Required for Pod to Pod and Pod to Service traffic, including DNS. |
+
+These requirements apply to both AKS Standard and AKS Automatic clusters when using custom virtual networks.
+
+## Network policies
+
+By default, all pods in an AKS cluster can send and receive traffic without limitations. For improved security, define rules that control the flow of traffic, like:
+
+- Back-end applications are only exposed to required frontend services.
+- Database components are only accessible to the application tiers that connect to them.
+
+Network policy is a Kubernetes feature available in AKS that lets you control the traffic flow between pods. You can allow or deny traffic to the pod based on settings such as assigned labels, namespace, or traffic port. While network security groups are better for AKS nodes, network policies are a more suited, cloud-native way to control the flow of traffic for pods. As pods are dynamically created in an AKS cluster, required network policies can be automatically applied.
+
+For more information, see [Secure traffic between pods using network policies in Azure Kubernetes Service (AKS)](use-network-policies).
+
+## Next steps
+
+To get started with AKS networking, create and configure an AKS cluster with your own IP address ranges using [Azure CNI Overlay](azure-cni-overlay) or [Azure CNI](configure-azure-cni).
+
+For associated best practices, see [Best practices for network connectivity and security in AKS](operator-best-practices-network).
+
+For more information on core Kubernetes and AKS concepts, see the following articles:
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/postgresql-ha-overview -->
+
+# Overview of deploying a highly available PostgreSQL database on Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+In this guide, you deploy a highly available PostgreSQL cluster that spans multiple Azure availability zones on AKS with Azure CLI.
+
+This article walks through the prerequisites for setting up a PostgreSQL cluster on [Azure Kubernetes Service (AKS)](what-is-aks) and provides an overview of the full deployment process and architecture.
+
+Important
+
+Open-source software is mentioned throughout AKS documentation and samples. Software that you deploy is excluded from AKS service-level agreements, limited warranty, and Azure support. As you use open-source technology alongside AKS, consult the support options available from the respective communities and project maintainers to develop a plan.
+
+Microsoft takes responsibility for building the open-source packages that we deploy on AKS. That responsibility includes having complete ownership of the build, scan, sign, validate, and hotfix process, along with control over the binaries in container images. For more information, see [Vulnerability management for AKS](concepts-vulnerability-management#aks-container-images) and [AKS support coverage](support-policies#aks-support-coverage).
+
+## Prerequisites
+
+- This guide assumes a basic understanding of
+[core Kubernetes concepts](concepts-clusters-workloads)and[PostgreSQL](https://www.postgresql.org/). - You need the
+**Owner**or**User Access Administrator**and the**Contributor**[Azure built-in roles](/en-us/azure/role-based-access-control/built-in-roles)on a subscription in your Azure account.
+
+Use the Bash environment in
+
+[Azure Cloud Shell](/en-us/azure/cloud-shell/overview). For more information, see[Get started with Azure Cloud Shell](/en-us/azure/cloud-shell/quickstart).If you prefer to run CLI reference commands locally,
+
+[install](/en-us/cli/azure/install-azure-cli)the Azure CLI. If you're running on Windows or macOS, consider running Azure CLI in a Docker container. For more information, see[How to run the Azure CLI in a Docker container](/en-us/cli/azure/run-azure-cli-docker).If you're using a local installation, sign in to the Azure CLI by using the
+
+[az login](/en-us/cli/azure/reference-index#az-login)command. To finish the authentication process, follow the steps displayed in your terminal. For other sign-in options, see[Authenticate to Azure using Azure CLI](/en-us/cli/azure/authenticate-azure-cli).When you're prompted, install the Azure CLI extension on first use. For more information about extensions, see
+
+[Use and manage extensions with the Azure CLI](/en-us/cli/azure/azure-cli-extensions-overview).Run
+
+[az version](/en-us/cli/azure/reference-index?#az-version)to find the version and dependent libraries that are installed. To upgrade to the latest version, run[az upgrade](/en-us/cli/azure/reference-index?#az-upgrade).
+
+
+You also need the following resources installed:
+
+[Azure CLI](/en-us/cli/azure/install-azure-cli)version 2.56 or later.[jq](https://jqlang.github.io/jq/), version 1.5 or later.[kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)version 1.21.0 or later.[Helm](https://helm.sh/docs/intro/install/)version 3.0.0 or later.[openssl](https://www.openssl.org/)version 3.3.0 or later.[Visual Studio Code](https://code.visualstudio.com/Download)or equivalent.[Krew](https://krew.sigs.k8s.io/)version 0.4.4 or later.[kubectl CloudNativePG (CNPG) Plugin](https://cloudnative-pg.io/documentation/current/kubectl-plugin/#using-krew).
+
+
+## Deployment process
+
+In this guide, you learn how to:
+
+- Use Azure CLI to create a multi-zone AKS cluster.
+- Deploy a highly available PostgreSQL cluster and database using the
+[CNPG operator](https://cloudnative-pg.io/documentation/current/kubectl-plugin/#using-krew). - Set up monitoring for PostgreSQL using Prometheus and Grafana.
+- Deploy a sample dataset to a PostgreSQL database.
+- Perform PostgreSQL and AKS cluster upgrades.
+- Simulate a cluster interruption and PostgreSQL replica failover.
+- Perform backup and restore of a PostgreSQL database.
+
+## Deployment architecture
+
+This diagram illustrates a PostgreSQL cluster setup with one primary replica and two read replicas managed by the [CloudNativePG (CNPG)](https://cloudnative-pg.io/) operator. The architecture provides a highly available PostgreSQL running on an AKS cluster that can withstand a zone outage by failing over across replicas.
+
+Backups are stored on [Azure Blob Storage](/en-us/azure/storage/blobs/), providing another way to restore the database in the event of an issue with streaming replication from the primary replica.
+
+You might choose to host PostgreSQL on AKS when you need full control over database configuration, extensions, and deployment architecture. It’s ideal for integrating tightly with Kubernetes-native tooling, optimizing costs at scale, and fine-tuning performance through custom resource allocation, caching strategies, and storage configurations tailored to your workload.
+
+Note
+
+For applications that require data separation at the database level, you can add more databases with postInitSQL commands and similar. It's currently not possible to add more databases in a declarative way with the CNPG operator. [Learn more](https://github.com/cloudnative-pg/cloudnative-pg) about the CNPG operator.
+
+### Storage considerations
+
+The type of storage you use can have large effects on PostgreSQL performance. Later in this guide, you select the option best suited for your goals and performance needs.
+
+| Storage type | Compatible driver | Description |
+|---|---|---|
+|
+
+**Maximum data resiliency**. Azure Premium SSD delivers high-performance storage and seamlessly works with Azure Premium zone-redundant storage (ZRS). Premium SSD is provisioned based on specific sizes, which each offer certain IOPS and throughput levels.[Premium SSD v2](/en-us/azure/virtual-machines/disks-types#premium-ssd-v2)**Best price-performance**. Azure Premium SSD v2 offers higher performance than Azure Premium SSDs while also generally being less costly. Unlike Premium SSDs, Premium SSD v2 doesn't have dedicated sizes. You can set a Premium SSD v2 to any supported size you prefer, and make granular adjustments to the performance without downtime. Azure Premium SSD v2 disks have certain limitations that you should be aware of. For a complete list, see[Premium SSD v2 limitations](/en-us/azure/virtual-machines/disks-types#premium-ssd-v2-limitations).[Local NVMe or temp SSD (Ephemeral Disks)](/en-us/azure/storage/container-storage/use-container-storage-with-local-disk#what-is-ephemeral-disk)**Maximum performance**. Ephemeral Disks are local NVMe and temporary SSD storage available on select VM families. They offer the highest possible IOPS, throughput, and submillisecond latency for your AKS cluster. You can also take advantage of Ephemeral Disks' high performance using[Azure Container Storage](/en-us/azure/storage/container-storage/container-storage-introduction), a managed Kubernetes storage solution that dynamically provisions persistent volumes for stateful workloads like PostgreSQL. However, because these disks reside on the local VMs hosting the cluster, data isn't persisted to an Azure storage service. As a result, any data stored on these disks will be lost if the cluster is stopped or deallocated. To address this limitation, later sections in this guide show you how to set up periodic backups of your PostgreSQL data to[Azure Blob Storage](/en-us/azure/storage/blobs/).## Next steps
+
+## Contributors
+
+*Microsoft maintains this article. The following contributors originally wrote it:*
+
+- Ken Kilty | Principal TPM
+- Russell de Pina | Principal TPM
+- Adrian Joian | Senior Customer Engineer
+- Jenny Hayes | Senior Content Developer
+- Carol Smith | Senior Content Developer
+- Erin Schaffer | Content Developer 2
+- Adam Sharif | Customer Engineer 2
+
+## Acknowledgment
+
+This documentation was jointly developed with EnterpriseDB, the maintainers of the CloudNativePG operator. We thank [Gabriele Bartolini](https://cloudnative-pg.io/authors/gbartolini/) for reviewing earlier drafts of this document and offering technical improvements.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/best-practices-cost -->
+
+# Best practices for cost optimization in Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Cost optimization is about maximizing the value of resources while minimizing unnecessary expenses within your cloud environment. This process involves identifying cost effective configuration options and implementing best practices to improve operational efficiency. An AKS environment can be optimized to minimize cost while taking into account performance and reliability requirements.
+
+In this article, you learn about:
+
+- Holistic monitoring and FinOps practices.
+- Strategic infrastructure selection.
+- Dynamic rightsizing and autoscaling.
+- Leveraging Azure discounts for substantial savings.
+
+## Embrace FinOps to build a cost saving culture
+
+[Financial operations (FinOps)](https://www.finops.org/introduction/what-is-finops/) is a discipline that combines financial accountability with cloud management and optimization. It focuses on driving alignment between finance, operations, and engineering teams to understand and control cloud costs. The FinOps foundation has several notable projects, such as the [ FinOps Framework](https://finops.org/framework) and the
+
+[.](https://focus.finops.org/)
+
+**FOCUS Specification**For more information, see [What is FinOps?](/en-us/azure/cost-management-billing/finops/)
+
+## Prepare the application environment
+
+### Evaluate SKU family
+
+It's important to evaluate the resource requirements of your application before deployment. Small development workloads have different infrastructure needs than large production ready workloads. While a combination of CPU, memory, and networking capacity configurations heavily influences the cost effectiveness of a SKU, consider the following virtual machine (VM) types:
+
+| SKU family | Description | Use case |
+|---|---|---|
+Azure Spot Virtual Machines |
+
+[Spot node pools](spot-node-pool)and deployed to a single fault domain with no high availability or service-level agreement (SLA) guarantees. Spot VMs allow you to take advantage of unutilized Azure capacity with significant discounts (up to 90%, as compared to pay-as-you-go prices). If Azure needs capacity back, the Azure infrastructure evicts the Spot nodes.**Arm-based processors (Arm64)**[Arm64 node pool support in AKS](use-arm64-vms), you can create Arm64 Ubuntu agent nodes and even mix Intel and ARM architecture nodes within a cluster. These ARM VMs are engineered to efficiently run dynamic, scalable workloads and can deliver up to 50% better price-performance than comparable x86-based VMs for scale-out workloads.**GPU optimized SKUs**[GPU-enabled Linux node pools on AKS](gpu-cluster)are best for compute-intensive workloads like graphics rendering, large model training, and inferencing.Note
+
+The cost of compute varies across regions. When picking a less expensive region to run workloads, be conscious of the potential impact of latency as well as data transfer costs. To learn more about VM SKUs and their characteristics, see [Sizes for virtual machines in Azure](/en-us/azure/virtual-machines/sizes).
+
+### Review storage options
+
+For more information on storage options and related cost considerations, see the following articles:
+
+[Best practices for storage and backups in Azure Kubernetes Service (AKS)](operator-best-practices-storage)[Storage options for applications in Azure Kubernetes Service (AKS)](concepts-storage)
+
+### Use cluster preset configurations
+
+It can be difficult to pick the right VM SKU, regions, number of nodes, and other configuration options. [Cluster preset configurations](quotas-skus-regions#cluster-configuration-presets-in-the-azure-portal) in the Azure portal offloads this initial challenge by providing recommended configurations for different application environments that are cost-conscious and performant. The **Dev/Test** preset is best for developing new workloads or testing existing workloads. The **Production Economy** preset is best for serving production traffic in a cost-conscious way if your workloads can tolerate interruptions. Noncritical features are off by default, and the preset values can be modified at any time.
+
+### Consider multitenancy
+
+AKS offer flexibility in how you run multitenant clusters and isolate resources. For friendly multitenancy, you can share clusters and infrastructure across teams and business units through [ logical isolation](operator-best-practices-cluster-isolation#logically-isolated-clusters). Kubernetes
+
+[Namespaces](concepts-clusters-workloads#namespaces)form the logical isolation boundary for workloads and resources. Sharing infrastructure reduces cluster management overhead while also improving resource utilization and pod density within the cluster. To learn more about multitenancy on AKS and to determine if it's right for your organizational needs, see
+
+[AKS considerations for multitenancy](/en-us/azure/architecture/guide/multitenant/service/aks)and
+
+[Design clusters for multitenancy](operator-best-practices-cluster-isolation#design-clusters-for-multi-tenancy).
+
+Warning
+
+Kubernetes environments aren't entirely safe for hostile multitenancy. If any tenant on the shared infrastructure can't be trusted, more planning is needed to prevent tenants from impacting the security of other services.
+
+Consider [ physical isolation](operator-best-practices-cluster-isolation#physically-isolated-clusters) boundaries. In this model, teams or workloads are assigned to their own cluster. Added management and financial overhead will be a tradeoff.
+
+## Build cloud native applications
+
+### Make your container as lean as possible
+
+A lean container refers to optimizing the size and resource footprint of the containerized application. Check that your base image is minimal and only contains the necessary dependencies. Remove any unnecessary libraries and packages. A smaller container image accelerates deployment times and increases the efficiency of scaling operations. [Artifact Streaming on AKS](artifact-streaming) allows you to stream container images from Azure Container Registry (ACR). It pulls only the necessary layer for initial pod startup, reducing the pull time for larger images from minutes to seconds.
+
+### Enforce resource quotas
+
+[Resource quotas](operator-best-practices-scheduler#enforce-resource-quotas) provide a way to reserve and limit resources across a development team or project. Quotas are defined on a namespace and can set on compute resources, storage resources, and object counts. When you define resource quotas, it prevents individual namespaces from consuming more resources than allocated. Resource quotas are useful for multitenant clusters where teams are sharing infrastructure.
+
+### Use cluster start/stop
+
+When left unattended, small development/test clusters can accrue unnecessary costs. You can turn off clusters that don't need to run at all times using the [cluster start and stop](start-stop-cluster?tabs=azure-cli) feature. This feature shuts down all system and user node pools so you don't pay for extra compute. The state of your cluster and objects is maintained when you start the cluster again.
+
+### Use capacity reservations
+
+Capacity reservations allow you to reserve compute capacity in an Azure region or availability zone for any duration of time. Reserved capacity is available for immediate use until the reservation is deleted. [Associating an existing capacity reservation group to a node pool](manage-node-pools#associate-capacity-reservation-groups-to-node-pools) guarantees allocated capacity for your node pool and helps you avoid potential on-demand pricing spikes during periods of high compute demand.
+
+## Monitor your environment and spend
+
+### Increase visibility with Microsoft Cost Management
+
+[Microsoft Cost Management](/en-us/azure/cost-management-billing/cost-management-billing-overview) offers a broad set of capabilities to help with cloud budgeting, forecasting, and visibility for costs both inside and outside of the cluster. Proper visibility is essential for deciphering spending trends, identifying optimization opportunities, and increasing accountability among application developers and platform teams. Enable the [AKS Cost Analysis add-on](cost-analysis) for granular cluster cost breakdown by Kubernetes constructs along with Azure Compute, Network, and Storage categories.
+
+### Azure Monitor
+
+If you're ingesting metric data via Container insights, we recommend migrating to managed Prometheus, which offers a significant cost reduction. You can [disable Container insights metrics using the data collection rule (DCR)](/en-us/azure/azure-monitor/containers/container-insights-data-collection-dcr?tabs=portal) and deploy the [managed Prometheus add-on](/en-us/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-prometheus-and-grafana), which supports configuration via Azure Resource Manager, Azure CLI, Azure portal, and Terraform.
+
+For more information, see [Azure Monitor best practices](/en-us/azure/azure-monitor/best-practices-containers#cost-optimization) and [managing costs for Container insights](/en-us/azure/azure-monitor/containers/container-insights-cost).
+
+### Log Analytics
+
+For control plane logs, consider disabling the categories you don't need and/or using the Basic Logs API when applicable to reduce Log Analytics costs. For more information, see [Azure Kubernetes Service (AKS) control plane/resource logs](monitor-aks#aks-control-plane-resource-logs). For data plane logs, or *application logs*, consider adjusting the [cost optimization settings](monitor-aks#aks-data-plane-container-insights-logs).
+
+You can also use [Transformations in Azure Monitor](/en-us/azure/azure-monitor/data-collection/data-collection-transformations) to filter or modify control plane and data plane logs before they are sent to a Log Analytics workspace. For more information on how to create a transformation see [Create a transformation in Azure Monitor](/en-us/azure/azure-monitor/data-collection/data-collection-transformations-create?tabs=portal).
+
+### Azure Advisor cost recommendations
+
+AKS cost recommendations in Azure Advisor provide recommendations to help you achieve cost-efficiency without sacrificing reliability. Advisor analyzes your resource configurations and recommends optimization solutions. For more information, see [Get Azure Kubernetes Service (AKS) cost recommendations in Azure Advisor](cost-advisors).
+
+## Optimize workloads through autoscaling
+
+### Establish a baseline
+
+Before configuring your autoscaling settings, you can use [Azure Load Testing](/en-us/azure/load-testing/overview-what-is-azure-load-testing) to establish a baseline for your application. Load testing helps you understand how your application behaves under different traffic conditions and identify performance bottlenecks. Once you have a baseline, you can configure autoscaling settings to ensure your application can handle the expected load.
+
+### Enable application autoscaling
+
+#### Vertical pod autoscaling
+
+Requests and limits that are higher than actual usage can result in overprovisioned workloads and wasted resources. In contrast, requests and limits that are too low can result in throttling and workload issues due to lack of memory. The [Vertical Pod Autoscaler (VPA)](vertical-pod-autoscaler) allows you to fine-tune CPU and memory resources required by your pods. VPA provides recommended values for CPU and memory requests and limits based on historical container usage, which you can set manually or update automatically. * Best for applications with fluctuating resource demands*. VPA’s recommendation-only
+
+*off mode*allows teams to review resource suggestions without enforcing them automatically. This mode can be enabled during testing, and VPA recommendations can be used to set the CPU and memory request and limits for production environments.
+
+#### Horizontal pod autoscaling
+
+The [Horizontal Pod Autoscaler (HPA)](concepts-scale#horizontal-pod-autoscaler) dynamically scales the number of pod replicas based on observed metrics, such as CPU or memory utilization. During periods of high demand, HPA scales out, adding more pod replicas to distribute the workload. During periods of low demand, HPA scales in, reducing the number of replicas to conserve resources. * Best for applications with predictable resource demands*.
+
+Warning
+
+You shouldn't use the VPA with the HPA on the same CPU or memory metrics. This combination can lead to conflicts, as both autoscalers attempt to respond to changes in demand using the same metrics. However, you can use the VPA for CPU or memory with the HPA for custom metrics to prevent overlap and ensure that each autoscaler focuses on distinct aspects of workload scaling.
+
+#### Kubernetes event-driven autoscaling
+
+The [Kubernetes Event-driven Autoscaler (KEDA) add-on](keda-about) provides extra flexibility to scale based on various event-driven metrics that align with your application behavior. For example, for a web application, KEDA can monitor incoming HTTP request traffic and adjust the number of pod replicas to ensure the application remains responsive. For processing jobs, KEDA can scale the application based on message queue length. Managed support is provided for all [Azure Scalers](https://keda.sh/docs/2.13/scalers/). KEDA also allows you to scale down to 0 replicas, especially helpful for sporadic event-driven workloads, periodic machine learning (ML) or GPU workloads, and dev/test or low traffic environments.
+
+### Enable infrastructure autoscaling
+
+#### Cluster autoscaling
+
+To keep up with application demand, the [Cluster Autoscaler](cluster-autoscaler-overview) watches for pods that can't be scheduled due to resource constraints and scales the number of nodes in the node pool accordingly. When nodes don't have running pods, the Cluster Autoscaler scales down the number of nodes. The Cluster Autoscaler profile settings apply to all autoscaler-enabled node pools in a cluster. For more information, see [Cluster Autoscaler best practices and considerations](cluster-autoscaler-overview#best-practices-and-considerations).
+
+#### Node autoprovisioning
+
+Complicated workloads might require several node pools with different VM size configurations to accommodate CPU and memory requirements. Accurately selecting and managing several node pool configurations adds complexity and operational overhead. [Node Autoprovision (NAP)](node-autoprovision?tabs=azure-cli) simplifies the SKU selection process and decides the optimal VM configuration based on pending pod resource requirements to run workloads in the most efficient and cost effective manner.
+
+Note
+
+For more information on scaling best practices, see [Performance and scaling for small to medium workloads in Azure Kubernetes Service (AKS)](best-practices-performance-scale) and [Performance and scaling best practices for large workloads in Azure Kubernetes Service (AKS)](best-practices-performance-scale-large).
+
+## Save with Azure discounts
+
+### Azure Reservations
+
+If your workload is predictable and exists for an extended period of time, consider purchasing an [Azure Reservation](/en-us/azure/cost-management-billing/reservations/save-compute-costs-reservations) to further reduce your resource costs. Azure Reservations operate on a one-year or three-year term, offering up to 72% discount as compared to pay-as-you-go prices for compute. Reservations automatically apply to matching resources. * Best for workloads that are committed to running in the same SKUs and regions over an extended period of time*.
+
+### Azure Savings Plan
+
+If you have consistent spend, but your use of disparate resources across SKUs and regions makes Azure Reservations infeasible, consider purchasing an [Azure Savings Plan](/en-us/azure/cost-management-billing/savings-plan/savings-plan-compute-overview). Like Azure Reservations, Azure Savings Plans operate on a one-year or three-year term and automatically apply to any resources within benefit scope. You commit to spend a fixed hourly amount on compute resources irrespective of SKU or region. * Best for workloads that utilize different resources and/or different data center regions*.
+
+### Azure Hybrid Benefit
+
+[Azure Hybrid Benefit for Azure Kubernetes Service (AKS)](azure-hybrid-benefit) allows you to maximize your on-premises licenses at no extra cost. Use any qualifying on-premises licenses that also have an active Software Assurance (SA) or a qualifying subscription to get Windows VMs on Azure at a reduced cost.
+
+## Next steps
+
+Cost optimization is an ongoing and iterative effort. Learn more by reviewing the following recommendations and architecture guidance:
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-configuration-options -->
+
+# Azure Key Vault provider for Secrets Store CSI Driver for AKS configuration and troubleshooting options
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+The Azure Key Vault provider for Secrets Store Container Storage Interface (CSI) Driver enables secure and automated management of secrets in Azure Kubernetes Service (AKS). This article provides guidance on configuring the provider, troubleshooting common issues, and optimizing secret handling in your AKS environment.
+
+## Prerequisites
+
+Follow the steps in the following articles before proceeding with this guide. Once you complete these steps, you can apply extra configurations or perform troubleshooting on your AKS cluster.
+
+[Use the Azure Key Vault provider for Secrets Store CSI Driver in an AKS cluster](csi-secrets-store-driver)[Provide an identity to access the Azure Key Vault provider for Secrets Store CSI Driver in AKS](csi-secrets-store-identity-access)
+
+## Configuration options
+
+### Manage auto rotation
+
+Once you enable auto rotation for Azure Key Vault Secrets Provider, it updates the pod mount and the Kubernetes secret defined in the `secretObjects`
+
+field of `SecretProviderClass`
+
+. It does so by polling for changes periodically, based on the rotation poll interval you defined. The default rotation poll interval is *two minutes*. When a secret is updated in the external secrets store after the initial pod deployment, both the Kubernetes Secret and the pod mount are periodically refreshed. The update frequency and method depend on how your application accesses the secret data.
+
+**Mount the Kubernetes Secret as a volume**: Use the auto rotation and sync K8s secrets features of Secrets Store CSI Driver. The application needs to watch for changes from the mounted Kubernetes Secret volume. When the CSI Driver updates the Kubernetes Secret, the corresponding volume contents automatically update as well.**Application reads the data from the container filesystem**: Use the rotation feature of Secrets Store CSI Driver. The application needs to watch for the file change from the volume mounted by the CSI driver.**Use the Kubernetes Secret for an environment variable**: Restart the pod to get the latest secret as an environment variable. Use a tool such as[Reloader](https://github.com/stakater/Reloader)to watch for changes on the synced Kubernetes Secret and perform rolling upgrades on pods.
+
+To enable auto rotation of secrets on a new AKS cluster using the
+
+command and enable the`az aks create`
+
+`enable-secret-rotation`
+
+add-on, run the following command:`az aks create \ --name myAKSCluster2 \ --resource-group myResourceGroup \ --enable-addons azure-keyvault-secrets-provider \ --enable-secret-rotation \ --generate-ssh-keys`
+
+To update an existing AKS cluster to enable auto rotation of secrets using the
+
+command and the`az aks addon update`
+
+`enable-secret-rotation`
+
+parameter, run the following command:`az aks addon update --resource-group myResourceGroup --name myAKSCluster2 --addon azure-keyvault-secrets-provider --enable-secret-rotation`
+
+
+### Sync mounted content with a Kubernetes secret
+
+Note
+
+The YAML examples in this section are incomplete. You need to modify them to support your chosen method of access to your key vault identity. For details, see [Provide an identity to access the Azure Key Vault provider for Secrets Store CSI Driver](csi-secrets-store-identity-access).
+
+You might want to create a Kubernetes secret to mirror your mounted secrets content. Your secrets sync after you start a pod to mount them. When you delete the pods that consume the secrets, your Kubernetes secret is also deleted.
+
+Sync mounted content with a Kubernetes secret using the `secretObjects`
+
+field when creating a `SecretProviderClass`
+
+to define the desired state of the Kubernetes secret, as shown in the
+following example YAML. Make sure the `objectName`
+
+in the `secretObjects`
+
+field matches the file name of the mounted content. If you use `objectAlias`
+
+instead, it should match the object alias.
+
+```
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+name: azure-sync
+spec:
+provider: azure
+secretObjects: # [OPTIONAL] SecretObjects defines the desired state of synced Kubernetes secret objects
+- data:
+- key: username # data field to populate
+objectName: foo1 # name of the mounted content to sync; this could be the object name or the object alias
+secretName: foosecret # name of the Kubernetes secret object
+type: Opaque # type of Kubernetes secret object (for example, Opaque, kubernetes.io/tls)
+```
+
+
+### Set an environment variable to reference Kubernetes secrets
+
+Note
+
+The example YAML demonstrates how to access a secret using either environment variables or `volume/volumeMount`
+
+. Typically, an application uses one method or the other. However, to make a secret available through environment variables, at least one pod must mount the secret.
+
+Reference your newly created Kubernetes secret by setting an environment variable in your pod, as shown in the following example YAML.
+
+```
+kind: Pod
+apiVersion: v1
+metadata:
+name: busybox-secrets-store-inline
+spec:
+containers:
+- name: busybox
+image: registry.k8s.io/e2e-test-images/busybox:1.29-1
+command:
+- "/bin/sleep"
+- "10000"
+volumeMounts:
+- name: secrets-store01-inline
+mountPath: "/mnt/secrets-store"
+readOnly: true
+env:
+- name: SECRET_USERNAME
+valueFrom:
+secretKeyRef:
+name: foosecret
+key: username
+volumes:
+- name: secrets-store01-inline
+csi:
+driver: secrets-store.csi.k8s.io
+readOnly: true
+volumeAttributes:
+secretProviderClass: "azure-sync"
+```
+
+
+### Migrate from open-source to AKS-managed Secrets Store CSI Driver
+
+Uninstall the open-source Secrets Store CSI Driver using the following
+
+`helm delete`
+
+command:`helm delete <release name>`
+
+Tip
+
+If you installed the driver and provider using deployment YAMLs, you can delete the components using the following
+
+`kubectl delete`
+
+command:`# Delete AKV provider pods from Linux nodes kubectl delete -f https://raw.githubusercontent.com/Azure/secrets-store-csi-driver-provider-azure/master/deployment/provider-azure-installer.yaml # Delete AKV provider pods from Windows nodes kubectl delete -f https://raw.githubusercontent.com/Azure/secrets-store-csi-driver-provider-azure/master/deployment/provider-azure-installer-windows.yaml`
+
+Upgrade your existing AKS cluster with the feature using the
+
+command:`az aks enable-addons`
+
+`az aks enable-addons --addons azure-keyvault-secrets-provider --name myAKSCluster --resource-group myResourceGroup`
+
+
+## Access metrics
+
+You can monitor the health and performance of the Azure Key Vault provider for Secrets Store CSI Driver by collecting metrics it exposes. These metrics provide insights into request durations, error rates, and the overall operation of the provider and driver components, helping you troubleshoot issues and optimize your AKS cluster's secret management.
+
+Metrics are served via Prometheus from port 8898, but this port isn't exposed outside the pod by default. Access the metrics over localhost using the `kubectl port-forward`
+
+command:
+
+```
+kubectl port-forward -n kube-system ds/aks-secrets-store-provider-azure 8898:8898 & curl localhost:8898/metrics
+```
+
+
+These metrics help you monitor the performance and reliability of the Azure Key Vault provider including request latency and error tracking for both Key Vault and gRPC operations.
+
+| Metric | Description | Tags |
+|---|---|---|
+| keyvault_request | The distribution of how long it took to get from the key vault. | `os_type=<runtime os>` , `provider=azure` , `object_name=<keyvault object name>` , `object_type=<keyvault object type>` , `error=<error if failed>` |
+| grpc_request | The distribution of how long it took for the gRPC requests. | `os_type=<runtime os>` , `provider=azure` , `grpc_method=<rpc full method>` , `grpc_code=<grpc status code>` , `grpc_message=<grpc status message>` |
+
+## Troubleshooting
+
+For troubleshooting steps, see [Troubleshoot Azure Key Vault Provider for Secrets Store CSI Driver](/en-us/troubleshoot/azure/azure-kubernetes/troubleshoot-key-vault-csi-secrets-store-csi-driver).
+
+## Next steps
+
+To learn more about the Azure Key Vault provider for Secrets Store CSI Driver, see the following resources:
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-acr -->
+
+# Tutorial - Create an Azure Container Registry (ACR) and build images
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Azure Container Registry (ACR) is a private registry for container images. A private container registry allows you to securely build and deploy your applications and custom code.
+
+In this tutorial, you deploy an ACR instance and push a container image to it. You learn how to:
+
+- Create an ACR instance.
+- Use
+[ACR Tasks](/en-us/azure/container-registry/container-registry-tasks-overview)to build and push container images to ACR. - View images in your registry.
+
+## Before you begin
+
+In the [previous tutorial](tutorial-kubernetes-prepare-app), you used Docker to create a container image for a simple Azure Store Front application. If you haven't created the Azure Store Front app image, return to [Tutorial 1 - Prepare an application for AKS](tutorial-kubernetes-prepare-app).
+
+This tutorial requires Azure CLI version 2.0.53 or later. Run `az --version`
+
+to find the version. If you need to install or upgrade, see [Install Azure CLI](/en-us/cli/azure/install-azure-cli).
+
+## Create an Azure Container Registry
+
+Before creating an ACR instance, you need a resource group. An Azure resource group is a logical container into which you deploy and manage Azure resources.
+
+Important
+
+This tutorial uses *myResourceGroup* as a placeholder for the resource group name. If you want to use a different name, replace *myResourceGroup* with your own resource group name.
+
+Create a resource group using the
+
+command.`az group create`
+
+`az group create --name myResourceGroup --location westus2`
+
+Create an ACR instance using the
+
+command and provide your own unique registry name. The registry name must be unique within Azure and contain 5-50 lowercase alphanumeric characters. This tutorial series uses an environment variable,`az acr create`
+
+`$ACRNAME`
+
+, as a placeholder for the container registry name. You can set this environment variable to your unique ACR name to use in future commands. The*Basic*SKU is a cost-optimized entry point for development purposes that provides a balance of storage and throughput.`az acr create --resource-group myResourceGroup --name $ACRNAME --sku Basic`
+
+
+## Build and push container images to registry
+
+Build and push the images to your ACR using the Azure CLI
+
+command.`az acr build`
+
+Note
+
+For this step, there isn't an equivalent Azure PowerShell cmdlet that performs this task.
+
+In the following example, we don't build the
+
+`product-service`
+
+image. This image can take a long time to build, and there's a container image already available in the GitHub Container Registry (GHCR). You can use thecommand to import the image from the GHCR to your ACR instance. We also don't build the`az acr import`
+
+`rabbitmq`
+
+image. This image is available from the Docker Hub public repository and doesn't need to be built or pushed to your ACR instance.`az acr import --name $ACRNAME --source ghcr.io/azure-samples/aks-store-demo/product-service:latest --image aks-store-demo/product-service:latest az acr build --registry $ACRNAME --image aks-store-demo/order-service:latest ./src/order-service/ az acr build --registry $ACRNAME --image aks-store-demo/store-front:latest ./src/store-front/`
+
+
+## List images in registry
+
+View the images in your ACR instance using the
+
+command.`az acr repository list`
+
+`az acr repository list --name $ACRNAME --output table`
+
+The following example output lists the available images in your registry:
+
+`Result ---------------- aks-store-demo/product-service aks-store-demo/order-service aks-store-demo/store-front`
+
+
+## Next steps
+
+In this tutorial, you created an ACR and pushed images to it to use in an AKS cluster. You learned how to:
+
+- Create an ACR instance.
+- Use
+[ACR Tasks](/en-us/azure/container-registry/container-registry-tasks-overview)to build and push container images to ACR. - View images in your registry.
+
+In the next tutorial, you learn how to deploy a Kubernetes cluster in Azure.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/istio-metrics-managed-prometheus -->
+
+# Collect metrics for Istio service mesh add-on workloads for Azure Kubernetes Service in Azure Managed Prometheus
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This guide explains how to set up and use Azure Managed Prometheus to collect metrics from Istio service mesh add-on workloads on your Azure Kubernetes cluster.
+
+## Prerequisites
+
+Complete steps to enable the Istio add-on on the cluster as per
+
+[documentation](istio-deploy-addon)
+
+## Enable Azure Monitor managed service for Prometheus
+
+Azure Monitor managed service for Prometheus collects data from Azure Kubernetes cluster.
+To enable Azure Monitor managed service for Prometheus, you must create an [Azure Monitor workspace](/en-us/azure/azure-monitor/essentials/azure-monitor-workspace-manage?tabs=cli#create-an-azure-monitor-workspace) to store the metrics:
+
+```
+export AZURE_MONITOR_WORKSPACE=<azure-monitor-workspace-name>
+export AZURE_MONITOR_WORKSPACE_ID=$(az monitor account create \
+--name $AZURE_MONITOR_WORKSPACE \
+--resource-group $RESOURCE_GROUP \
+--location $LOCATION \
+--query id -o tsv)
+```
+
+
+### Enable Prometheus addon
+
+To collect Prometheus metrics from your Kubernetes cluster, [enable Prometheus addon](/en-us/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-with-cli):
+
+```
+az aks update --enable-azure-monitor-metrics --name $CLUSTER --resource-group $RESOURCE_GROUP --azure-monitor-workspace-resource-id $AZURE_MONITOR_WORKSPACE_ID
+```
+
+
+### Customize scraping of Prometheus metrics in Azure Monitor managed service
+
+Create a scrape config in a file named `prometheus-config`
+
+, similar to the sample provided below. This configuration enables pod annotation-based scraping, which allows Prometheus to automatically discover and scrape metrics from pods with specific annotations.
+
+Important
+
+The scrape config below is just an example. We **highly** recommend customizing it based on your needs. If not adjusted, it could lead to unexpected costs from frequent metric collection and increased data storage.
+
+```
+global:
+scrape_interval: 30s
+scrape_configs:
+- job_name: workload
+scheme: http
+kubernetes_sd_configs:
+- role: endpoints
+relabel_configs:
+- source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+action: keep
+regex: true
+- source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+action: replace
+target_label: __metrics_path__
+regex: (.+)
+- source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+action: replace
+regex: ([^:]+)(?::\d+)?;(\d+)
+replacement: $1:$2
+target_label: __address__
+```
+
+
+To [enable pod annotation-based scraping](/en-us/azure/azure-monitor/containers/prometheus-metrics-scrape-configuration), create configmap `ama-metrics-prometheus-config`
+
+that references `prometheus-config`
+
+file in `kube-system`
+
+namespace.
+
+```
+kubectl create configmap ama-metrics-prometheus-config --from-file=prometheus-config -n kube-system
+```
+
+
+### Verify Metric Collection
+
+Configure access permissions: navigate to your Azure Monitor workspace in Azure portal and create role assignment for yourself to grant 'Monitoring Data Reader' role on the workspace resource.
+
+Generate sample traffic: send a few requests to the product page created earlier, for example:
+
+`curl -s "http://${GATEWAY_URL_EXTERNAL}/productpage" | grep -o "<title>.*</title>"`
+
+View/Query metrics in Azure portal: navigate to Prometheus explorer under your Azure Monitor workspace and
+
+[query metrics](/en-us/azure/azure-monitor/essentials/prometheus-workbooks). The example below shows results for query`istio_requests_total`
+
+.
+
+## Delete resources
+
+If you want to clean up the Istio service mesh and the ingresses (leaving behind the cluster), run the following command:
+
+```
+az aks mesh disable --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}
+```
+
+
+If you want to clean up all the resources created from the Istio how-to guidance documents, run the following command:
+
+```
+az group delete --name ${RESOURCE_GROUP} --yes --no-wait
+```
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/container-network-security-wireguard-encryption-concepts -->
+
+# In transit encryption with WireGuard (public preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+As organizations increasingly rely on Azure Kubernetes Service (AKS) to run containerized workloads, ensuring the security of network traffic between applications and services becomes essential especially in regulated or security-sensitive environments. In-transit encryption with WireGuard protects data as it moves between pods and nodes, mitigating risks of interception or tampering. WireGuard is known for its simplicity, and robust cryptography, offers a powerful solution for securing communication within AKS clusters.
+
+WireGuard encryption for AKS is part of the [Advanced Container Networking Services (ACNS)](advanced-container-networking-services-overview) feature set, and its implementation is based on [Cilium](https://docs.cilium.io/en/stable/security/network/encryption-wireguard/).
+
+Important
+
+AKS preview features are available on a self-service, opt-in basis. Previews are provided "as is" and "as available," and they're excluded from the service-level agreements and limited warranty. AKS previews are partially covered by customer support on a best-effort basis. As such, these features aren't meant for production use. For more information, see the following support articles:
+
+## WireGuard encryption scope
+
+WireGuard in-transit encryption in AKS is designed to secure specific traffic flows within your Kubernetes cluster. This section outlines which traffic types are encrypted and which aren't currently supported via Advanced Container Networking Services(ACNS).
+
+Supported/Encrypted traffic flows:
+
+- Inter-node pod traffic: Traffic leaving a pod from one node destined to a pod on another node.
+
+Unsupported/Unencrypted traffic flows
+
+- Same-node pod traffic: Traffic between pods on the same node
+- Node-network traffic: traffic generated by the node itself destined to another node
+
+## Architecture overview
+
+WireGuard encryption relies on [Azure CNI powered by cilium](azure-cni-powered-by-cilium) to secure inter-node communications within a distributed system. The architecture uses a dedicated WireGuard agent that orchestrates key management, interface configuration, and dynamic peer updates. This section attempts to provide a detailed explanation
+
+### WireGuard agent
+
+Upon startup, the Cilium agent evaluates its configuration to determine if encryption is enabled. When WireGuard is selected as the encryption mode, the agent initializes a dedicated WireGuard subsystem. The wireguard agent is responsible for configuring and initializing components required for enforcing WireGuard encryption.
+
+### Key generation
+
+A fundamental requirement to secure communication is the generation of cryptographic key pairs. Each node in the Kubernetes cluster will automatically generate a unique WireGuard key pair during the initialization phase and distributes its public key via the “network.cilium.io/wg-pub-key” annotation in the Kubernetes CiliumNode custom resource object. The key pairs are stored in memory and rotated every 120 seconds. The private key serves as the node’s confidential identity. The public key is shared with the peer nodes in the cluster to decrypt and encrypt traffic from and to Cilium-managed endpoints running on that node. These keys are managed entirely by Azure, not by the customer, ensuring secure and automated handling without requiring manual intervention. This mechanism ensures that only nodes with validated credentials can participate in the encrypted network.
+
+### Interface creation
+
+Once the key generation process concludes, the WireGuard agent configures a dedicated network interface (cilium_wg0). This process involves interface creation and configuration with the previously generated private key.
+
+## Comparison with virtual network encryption
+
+Azure offers multiple options for securing in-transit traffic in AKS, including [virtual network level encryption](/en-us/azure/virtual-network/virtual-network-encryption-overview) and WireGuard-based encryption. While both approaches enhance the confidentiality and integrity of network traffic, they differ in scope, flexibility, and deployment requirements. This section helps you understand when to use each solution.
+
+**Use virtual network encryption when**
+
+**You require full network-layer encryption for all traffic within the virtual network:**Virtual network encryption ensures that all traffic regardless of workload or orchestration layer is automatically encrypted as it traverses the Azure Virtual Network.**You need minimal performance overhead:**Virtual network encryption uses hardware acceleration in supported VM SKUs, offloading encryption from the OS to the underlying hardware. This design delivers high throughput with low CPU usage.**All your virtual machines support virtual network encryption:**Virtual network encryption depends on VM SKUs that support the necessary hardware acceleration. If your infrastructure consists entirely of supported SKUs, virtual network encryption can be seamlessly enabled.**Your AKS Network configurations supports virtual network encryption:**Virtual network encryption has some limitations when it comes to aks pod networking. For more information, see[Virtual network encryption supported scenarios](/en-us/azure/virtual-network/virtual-network-encryption-overview#supported-scenarios)
+
+**Use WireGuard encryption When**
+
+**You want to make sure that your application traffic is encrypted across all node**virtual network encryption does not encrypt traffic between nodes on the same physical host.**You want to unify encryption across multi-cloud or hybrid environments:**WireGuard offers a cloud-agnostic solution, enabling consistent encryption across clusters running in different cloud providers or on-premises.**You don’t need or want to encrypt all traffic within the virtual network:**WireGuard enables a more targeted encryption strategy ideal for securing sensitive workloads without incurring the overhead of encrypting all traffic.**Some of your VM SKUs don’t support virtual network encryption:**WireGuard is implemented in software and works regardless of VM hardware support, making it a practical option for heterogeneous environments.
+
+## Considerations & limitations
+
+• WireGuard isn't [FIPS](https://csrc.nist.gov/pubs/fips/140-2/upd2/final) compliant.
+• WireGuard encryption doesn't apply to pods uses host networking (spec.hostNetwork: true) because these pods use the host identity instead of having individual identities.
+
+Important
+
+WireGuard encryption operates at the software level, which can introduce latency and impact throughput performance. The extent of this impact depends on various factors, including VM size (node SKU), network configuration, and application traffic patterns. Our benchmarking indicates that throughput is limited to 1.5 Gbps with an MTU of 1500; however, results may vary depending on workload characteristics and cluster configuration. Using a SKU that supports MTU 3900 resulted in approximately 2.5x higher throughput. While WireGuard encryption can be used alongside network policies, doing so may lead to further performance degradation, with reduced throughput and increased latency. For applications sensitive to latency or throughput, we strongly recommend evaluating WireGuard in a non-production environment first. As always, results may vary based on workload characteristics and cluster configuration.
+
+## Pricing
+
+Important
+
+Advanced Container Networking Services is a paid offering. For more information about pricing, see [Advanced Container Networking Services - Pricing](https://azure.microsoft.com/pricing/details/azure-container-networking-services/).
+
+## Next steps
+
+Learn how to apply
+
+[WireGuard encryption](how-to-apply-wireguard)on AKS.For more information about Advanced Container Networking Services for Azure Kubernetes Service (AKS), see
+
+[What is Advanced Container Networking Services for Azure Kubernetes Service (AKS)?](advanced-container-networking-services-overview).Explore Container Network Observability features in Advanced Container Networking Services in
+
+[What is Container Network Observability?](container-network-observability-metrics).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/intro-aks-automatic -->
+
+# What is Azure Kubernetes Service (AKS) Automatic?
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+**Applies to:** ✔️ AKS Automatic
+
+Azure Kubernetes Service (AKS) Automatic offers an experience that makes the most common tasks on Kubernetes fast and frictionless, while preserving the flexibility, extensibility, and consistency of Kubernetes. Azure takes care of your cluster setup, including node management, scaling, security, and preconfigured settings that follow AKS well-architected recommendations. Automatic clusters dynamically allocate compute resources based on your specific workload requirements and are tuned for running production applications.
+
+**Production ready by default**: Clusters are preconfigured for optimal production use, suitable for most applications. They offer fully managed node pools that automatically allocate and scale resources based on your workload needs. Pods are bin packed efficiently, to maximize resource utilization.**Built-in best practices and safeguards**: AKS Automatic clusters have a hardened default configuration, with many cluster, application, and networking security settings enabled by default. AKS automatically patches your nodes and cluster components while adhering to any planned maintenance schedules.**Code to Kubernetes in minutes**: Go from a container image to a deployed application that adheres to best practices patterns within minutes, with access to the comprehensive capabilities of the Kubernetes API and its rich ecosystem.
+
+Important
+
+As of **November 30, 2025**, Azure Kubernetes Service (AKS) no longer supports or provides security updates for Azure Linux 2.0. The Azure Linux 2.0 node image is frozen at the [202512.06.0 release](https://raw.githubusercontent.com/Azure/AgentBaker/main/vhdbuilder/release-notes/AKSCBLMarinerV2/gen2/202512.06.0.txt). Beginning **March 31, 2026**, node images will be removed, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by [upgrading your node pools](/en-us/azure/aks/upgrade-aks-cluster) to a supported Kubernetes version or migrating to [osSku AzureLinux3](/en-us/azure/aks/upgrade-os-version). For more information, see [[Retirement] Azure Linux 2.0 node pools on AKS](https://github.com/Azure/AKS/issues/4988).
+
+## AKS Automatic and Standard feature comparison
+
+The following table provides a comparison of options that are available, preconfigured, and default in both AKS Automatic and AKS Standard. For more information on whether specific features are available in Automatic, you can check the documentation for that feature.
+
+**Preconfigured** features are always enabled and you can't disable or change their settings. **Default** features are configured for you but can be changed. **Optional** features are available for you to configure and aren't enabled by default.
+
+When enabling optional features, you can follow the linked feature documentation. When you reach a step for cluster creation, follow steps to create an [AKS Automatic cluster](learn/quick-kubernetes-automatic-deploy) instead of creating an AKS Standard cluster.
+
+### Application deployment, monitoring, and observability
+
+Application deployment can be streamlined using [automated deployments](automated-deployments) from source control, which creates Kubernetes manifest and generates CI/CD workflows. Additionally, the cluster is configured with monitoring tools such as Managed Prometheus for metrics, Managed Grafana for visualization, and Container Insights for log collection.
+
+| Option | AKS Automatic | AKS Standard |
+|---|---|---|
+| Application deployment | Optional: * Use
+* Create deployment pipelines using
+* Bring your own CI/CD pipeline. |
+Optional: * Use
+* Create deployment pipelines using
+* Bring your own CI/CD pipeline. |
+| Monitoring, logging, and visualization | Default: *
+*
+*
+*
+Optional: *
+|
+Default:
+Optional: *
+*
+*
+*
+|
+
+### Node management, scaling, and cluster operations
+
+Node management is automatically handled without the need for manual node pool creation. Scaling is seamless, with nodes created based on workload requests. Additionally, features for workload scaling like Horizontal Pod Autoscaler (HPA), [Kubernetes Event Driven Autoscaling (KEDA)](keda-about), and [Vertical Pod Autoscaler (VPA)](vertical-pod-autoscaler) are enabled. Clusters are configured for automatic node repair, automatic cluster upgrades, and detection of deprecated Kubernetes standard API usage. You can also set a planned maintenance schedule for upgrades if needed.
+
+| Option | AKS Automatic | AKS Standard |
+|---|---|---|
+| Node management | Preconfigured: AKS Automatic manages the node pools using
+|
+Default: You create and manage system and user node pools Optional: AKS Standard manages user node pools using
+|
+| Scaling | Preconfigured: AKS Automatic creates nodes based on workload requests using
+|
+Default: Manual scaling of node pools. Optional: *
+*
+*
+*
+|
+| Cluster tier and Service Level Agreement (SLA) | Preconfigured: Standard tier cluster with up to 5,000 nodes, a
+|
+Default: Free tier cluster with 10 nodes but can support up to 1,000 nodes. Optional: * Standard tier cluster with up to 5,000 nodes and a
+* Premium tier cluster with up to 5,000 nodes,
+|
+| Node operating system | Preconfigured:
+|
+Default: Ubuntu Optional: *
+*
+|
+| Node resource group | Preconfigured: Fully managed node resource group to prevent accidental or intentional changes to cluster resources. |
+Default: Unrestricted Optional:
+|
+| Node auto-repair | Preconfigured: Continuously monitors the health state of worker nodes and performs
+|
+Preconfigured: Continuously monitors the health state of worker nodes and performs
+|
+| Cluster upgrades | Preconfigured: Clusters are
+|
+Default: Manual upgrade. Optional: Automatic upgrade using a selectable
+|
+| Kubernetes API breaking change detection | Preconfigured: Cluster upgrades are stopped on detection of
+|
+Preconfigured: Cluster upgrades are stopped on detection of
+|
+| Planned maintenance windows | Default: Set
+|
+Optional: Set
+|
+
+### Security and policies
+
+Cluster authentication and authorization use [Azure Role-based Access Control (RBAC) for Kubernetes authorization](manage-azure-rbac) and applications can use features like [workload identity with Microsoft Entra Workload ID](workload-identity-overview) and [OpenID Connect (OIDC) cluster issuer](use-oidc-issuer) to have secure communication with Azure services. [Deployment safeguards](deployment-safeguards) enforce Kubernetes best practices through Azure Policy controls and the built-in [image cleaner](image-cleaner) removes unused images with vulnerabilities, enhancing image security.
+
+| Option | AKS Automatic | AKS Standard |
+|---|---|---|
+| Cluster authentication and authorization | Preconfigured:
+|
+Default: Local accounts. Optional: *
+*
+|
+| Cluster security | Preconfigured:
+|
+Optional:
+|
+| Application security | Preconfigured: *
+*
+Optional:*
+|
+Optional: *
+*
+Optional:*
+|
+| Image security | Preconfigured:
+|
+Optional:
+|
+| Policy enforcement | Preconfigured:
+Optional:*
+|
+Optional:
+Optional:*
+|
+| Managed namespaces | Optional: Use
+|
+Optional: Use
+|
+
+### Networking
+
+AKS Automatic clusters use [managed Virtual Network powered by Azure CNI Overlay with Cilium](azure-cni-powered-by-cilium) for high-performance networking and robust security. Ingress is handled by [managed NGINX using the application routing add-on](app-routing), integrating seamlessly with Azure DNS and Azure Key Vault. Egress uses a [managed NAT gateway](nat-gateway#create-an-aks-cluster-with-a-managed-nat-gateway) for scalable outbound connections. Additionally, you have the flexibility to enable [Istio-based service mesh add-on for AKS](istio-about) or bring your own service mesh.
+
+| Option | AKS Automatic | AKS Standard |
+|---|---|---|
+| Virtual network | Default:
+Optional: *
+*
+|
+Default:
+Optional: *
+*
+*
+*
+|
+| Ingress | Preconfigured:
+Optional: *
+* Bring your own ingress or gateway. |
+Optional: *
+*
+* Bring your own ingress or gateway. |
+| Egress | Preconfigured:
+Optional (with custom virtual network): *
+*
+*
+|
+Default:
+Optional: *
+*
+*
+|
+| Service mesh | Optional: *
+* Bring your own service mesh. |
+Optional: *
+* Bring your own service mesh. |
+
+## Next steps
+
+To learn more about AKS Automatic, follow the quickstart to create a cluster.
