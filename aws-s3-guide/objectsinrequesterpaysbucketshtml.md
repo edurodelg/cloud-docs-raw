@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ObjectsinRequesterPaysBuckets.html
-fetched_at: 2026-01-26T23:01:53.161751
+fetched_at: 2026-01-28T07:13:02.623018
 ---
 
 # Downloading objects from Requester Pays

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/list-buckets.html
-fetched_at: 2026-01-26T23:00:13.004211
+fetched_at: 2026-01-28T07:11:22.686220
 ---
 
 # Listing Amazon S3 general purpose buckets

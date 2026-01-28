@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html
-fetched_at: 2026-01-26T23:01:18.279973
+fetched_at: 2026-01-28T07:12:27.586336
 ---
 
 # Configuring fast, secure file transfers using

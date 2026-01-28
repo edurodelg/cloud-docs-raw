@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysExamples.html
-fetched_at: 2026-01-26T23:01:42.970310
+fetched_at: 2026-01-28T07:12:52.665822
 ---
 
 # Configuring Requester Pays on a bucket

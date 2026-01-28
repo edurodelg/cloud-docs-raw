@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html
-fetched_at: 2026-01-26T22:59:07.880838
+fetched_at: 2026-01-28T07:10:17.854822
 ---
 
 # What is Amazon S3?
