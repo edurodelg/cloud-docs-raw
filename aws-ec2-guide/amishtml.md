@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html
-fetched_at: 2026-01-26T22:56:11.410892
+fetched_at: 2026-01-28T07:07:18.903060
 ---
 
 # Amazon Machine Images in Amazon EC2

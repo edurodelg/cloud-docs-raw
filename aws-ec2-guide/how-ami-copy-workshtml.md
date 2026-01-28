@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ami-copy-works.html
-fetched_at: 2026-01-26T22:58:10.471157
+fetched_at: 2026-01-28T07:09:25.217518
 ---
 
 # How Amazon EC2 AMI copy works

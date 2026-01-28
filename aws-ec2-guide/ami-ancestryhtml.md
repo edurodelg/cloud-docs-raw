@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-ancestry.html
-fetched_at: 2026-01-26T22:58:30.482036
+fetched_at: 2026-01-28T07:09:38.965988
 ---
 
 # Use AMI ancestry to trace the origin of an AMI

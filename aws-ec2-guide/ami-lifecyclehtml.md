@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-lifecycle.html
-fetched_at: 2026-01-26T22:57:11.231762
+fetched_at: 2026-01-28T07:08:19.025142
 ---
 
 # Amazon EC2 AMI lifecycle

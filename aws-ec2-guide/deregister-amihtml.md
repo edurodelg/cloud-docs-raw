@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/deregister-ami.html
-fetched_at: 2026-01-26T22:59:05.464655
+fetched_at: 2026-01-28T07:10:13.943737
 ---
 
 # Deregister an Amazon EC2 AMI
