@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-26T23:12:28.482268
+merged_at: 2026-01-28T07:23:42.111050
 merged_files: 9
 ---
 
@@ -346,6 +346,13 @@ Manage issues, search pages, and update team content
 ### Cartesia
 
 Generate speech, localize voices, and create audio content
+
+[
+](/adk-docs/tools/third-party/chroma/)
+
+### Chroma
+
+Store and retrieve information using semantic vector search
 
 [
 ](/adk-docs/tools/third-party/daytona/)
@@ -1028,6 +1035,68 @@ callAgent(runner, "what's the latest ai news?");
 <!-- Source: N/A -->
 
 ---
+<!-- Source: https://google.github.io/adk-docs/tools/third-party/daytona/ -->
+
+# Daytona¶
+
+# Daytona[¶](#daytona)
+
+The [Daytona ADK plugin](https://github.com/daytonaio/daytona-adk-plugin) connects your ADK
+agent to [Daytona](https://www.daytona.io/) sandboxes. This integration gives
+your agent the ability to execute code, run shell commands, and manage files in
+isolated environments, enabling secure execution of AI-generated code.
+
+## Use cases[¶](#use-cases)
+
+-
+**Secure Code Execution**: Run Python, JavaScript, and TypeScript code in isolated sandboxes without risking your local environment. -
+**Shell Command Automation**: Execute shell commands with configurable timeouts and working directories for build tasks, installations, or system operations. -
+**File Management**: Upload scripts and datasets to sandboxes, then retrieve generated outputs and results.
+
+## Prerequisites[¶](#prerequisites)
+
+- A
+[Daytona](https://www.daytona.io/)account - Daytona API key
+
+## Installation[¶](#installation)
+
+## Use with agent[¶](#use-with-agent)
+
+from daytona_adk import DaytonaPlugin
+from google.adk.agents import Agent
+plugin = DaytonaPlugin(
+api_key="your-daytona-api-key" # Or set DAYTONA_API_KEY environment variable
+)
+root_agent = Agent(
+model="gemini-2.5-pro",
+name="sandbox_agent",
+instruction="Help users execute code and commands in a secure sandbox",
+tools=plugin.get_tools(),
+)
+
+
+## Available tools[¶](#available-tools)
+
+| Tool | Description |
+|---|---|
+`execute_code_in_daytona` |
+Execute Python, JavaScript, or TypeScript code |
+`execute_command_in_daytona` |
+Run shell commands |
+`upload_file_to_daytona` |
+Upload scripts or data files to the sandbox |
+`read_file_from_daytona` |
+Read script outputs or generated files |
+`start_long_running_command_daytona` |
+Start background processes (servers, watchers) |
+
+## Learn more[¶](#learn-more)
+
+For a detailed guide on building a code generator agent that writes, tests, and
+verifies code in secure sandboxes, check out
+[this guide](https://www.daytona.io/docs/en/google-adk-code-generator).
+
+---
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/ -->
 
 # Third-Party Tools¶
@@ -1056,6 +1125,13 @@ Manage issues, search pages, and update team content
 ### Cartesia
 
 Generate speech, localize voices, and create audio content
+
+[
+](/adk-docs/tools/third-party/chroma/)
+
+### Chroma
+
+Store and retrieve information using semantic vector search
 
 [
 ](/adk-docs/tools/third-party/daytona/)
@@ -1140,68 +1216,6 @@ Store and retrieve information using semantic vector search
 ### Stripe
 
 Manage payments, customers, subscriptions, and invoices
-
----
-<!-- Source: https://google.github.io/adk-docs/tools/third-party/daytona/ -->
-
-# Daytona¶
-
-# Daytona[¶](#daytona)
-
-The [Daytona ADK plugin](https://github.com/daytonaio/daytona-adk-plugin) connects your ADK
-agent to [Daytona](https://www.daytona.io/) sandboxes. This integration gives
-your agent the ability to execute code, run shell commands, and manage files in
-isolated environments, enabling secure execution of AI-generated code.
-
-## Use cases[¶](#use-cases)
-
--
-**Secure Code Execution**: Run Python, JavaScript, and TypeScript code in isolated sandboxes without risking your local environment. -
-**Shell Command Automation**: Execute shell commands with configurable timeouts and working directories for build tasks, installations, or system operations. -
-**File Management**: Upload scripts and datasets to sandboxes, then retrieve generated outputs and results.
-
-## Prerequisites[¶](#prerequisites)
-
-- A
-[Daytona](https://www.daytona.io/)account - Daytona API key
-
-## Installation[¶](#installation)
-
-## Use with agent[¶](#use-with-agent)
-
-from daytona_adk import DaytonaPlugin
-from google.adk.agents import Agent
-plugin = DaytonaPlugin(
-api_key="your-daytona-api-key" # Or set DAYTONA_API_KEY environment variable
-)
-root_agent = Agent(
-model="gemini-2.5-pro",
-name="sandbox_agent",
-instruction="Help users execute code and commands in a secure sandbox",
-tools=plugin.get_tools(),
-)
-
-
-## Available tools[¶](#available-tools)
-
-| Tool | Description |
-|---|---|
-`execute_code_in_daytona` |
-Execute Python, JavaScript, or TypeScript code |
-`execute_command_in_daytona` |
-Run shell commands |
-`upload_file_to_daytona` |
-Upload scripts or data files to the sandbox |
-`read_file_from_daytona` |
-Read script outputs or generated files |
-`start_long_running_command_daytona` |
-Start background processes (servers, watchers) |
-
-## Learn more[¶](#learn-more)
-
-For a detailed guide on building a code generator agent that writes, tests, and
-verifies code in secure sandboxes, check out
-[this guide](https://www.daytona.io/docs/en/google-adk-code-generator).
 
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/asana/ -->
@@ -2586,6 +2600,154 @@ is not set. `HF_API_TIMEOUT`
 : whether to include an Authenticate tool to issue an OAuth challenge when called`SEARCH_ENABLES_FETCH`
 
 : When set to true, automatically enables the hf_doc_fetch tool whenever hf_doc_search is enabled
+
+---
+<!-- Source: https://google.github.io/adk-docs/tools/third-party/chroma/ -->
+
+# Chroma¶
+
+# Chroma[¶](#chroma)
+
+The [Chroma MCP Server](https://github.com/chroma-core/chroma-mcp) connects your
+ADK agent to [Chroma](https://www.trychroma.com/), an open-source embedding
+database. This integration gives your agent the ability to create collections,
+store documents, and retrieve information using semantic search, full text
+search, and metadata filtering.
+
+## Use cases[¶](#use-cases)
+
+-
+**Semantic Memory for Agents**: Store conversation context, facts, or learned information that agents can retrieve later using natural language queries. -
+**Knowledge Base Retrieval**: Build a retrieval-augmented generation (RAG) system by storing documents and retrieving relevant context for responses. -
+**Persistent Context Across Sessions**: Maintain long-term memory across conversations, allowing agents to reference past interactions and accumulated knowledge.
+
+## Prerequisites[¶](#prerequisites)
+
+**For local storage**: A directory path to persist data**For Chroma Cloud**: A[Chroma Cloud](https://www.trychroma.com/)account with tenant ID, database name, and API key
+
+## Use with agent[¶](#use-with-agent)
+
+from google.adk.agents import Agent
+from google.adk.tools.mcp_tool import McpToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
+from mcp import StdioServerParameters
+# For local storage, use:
+DATA_DIR = "/path/to/your/data/directory"
+# For Chroma Cloud, use:
+# CHROMA_TENANT = "your-tenant-id"
+# CHROMA_DATABASE = "your-database-name"
+# CHROMA_API_KEY = "your-api-key"
+root_agent = Agent(
+model="gemini-2.5-pro",
+name="chroma_agent",
+instruction="Help users store and retrieve information using semantic search",
+tools=[
+McpToolset(
+connection_params=StdioConnectionParams(
+server_params=StdioServerParameters(
+command="uvx",
+args=[
+"chroma-mcp",
+# For local storage, use:
+"--client-type",
+"persistent",
+"--data-dir",
+DATA_DIR,
+# For Chroma Cloud, use:
+# "--client-type",
+# "cloud",
+# "--tenant",
+# CHROMA_TENANT,
+# "--database",
+# CHROMA_DATABASE,
+# "--api-key",
+# CHROMA_API_KEY,
+],
+),
+timeout=30,
+),
+)
+],
+)
+
+
+## Available tools[¶](#available-tools)
+
+### Collection management[¶](#collection-management)
+
+| Tool | Description |
+|---|---|
+`chroma_list_collections` |
+List all collections with pagination support |
+`chroma_create_collection` |
+Create a new collection with optional HNSW configuration |
+`chroma_get_collection_info` |
+Get detailed information about a collection |
+`chroma_get_collection_count` |
+Get the number of documents in a collection |
+`chroma_modify_collection` |
+Update a collection's name or metadata |
+`chroma_delete_collection` |
+Delete a collection |
+`chroma_peek_collection` |
+View a sample of documents in a collection |
+
+### Document operations[¶](#document-operations)
+
+| Tool | Description |
+|---|---|
+`chroma_add_documents` |
+Add documents with optional metadata and custom IDs |
+`chroma_query_documents` |
+Query documents using semantic search with advanced filtering |
+`chroma_get_documents` |
+Retrieve documents by IDs or filters with pagination |
+`chroma_update_documents` |
+Update existing documents' content, metadata, or embeddings |
+`chroma_delete_documents` |
+Delete specific documents from a collection |
+
+## Configuration[¶](#configuration)
+
+The Chroma MCP server supports multiple client types to suit different needs:
+
+### Client types[¶](#client-types)
+
+| Client Type | Description | Key Arguments |
+|---|---|---|
+`ephemeral` |
+In-memory storage, cleared on restart. Useful for testing. | None (default) |
+`persistent` |
+File-based storage on your local machine | `--data-dir` |
+`http` |
+Connect to a self-hosted Chroma server | `--host` , `--port` , `--ssl` , `--custom-auth-credentials` |
+`cloud` |
+Connect to Chroma Cloud (api.trychroma.com) | `--tenant` , `--database` , `--api-key` |
+
+### Environment variables[¶](#environment-variables)
+
+You can also configure the client using environment variables. Command-line arguments take precedence over environment variables.
+
+| Variable | Description |
+|---|---|
+`CHROMA_CLIENT_TYPE` |
+Client type: `ephemeral` , `persistent` , `http` , or `cloud` |
+`CHROMA_DATA_DIR` |
+Path for persistent local storage |
+`CHROMA_TENANT` |
+Tenant ID for Chroma Cloud |
+`CHROMA_DATABASE` |
+Database name for Chroma Cloud |
+`CHROMA_API_KEY` |
+API key for Chroma Cloud |
+`CHROMA_HOST` |
+Host for self-hosted HTTP client |
+`CHROMA_PORT` |
+Port for self-hosted HTTP client |
+`CHROMA_SSL` |
+Enable SSL for HTTP client (`true` or `false` ) |
+`CHROMA_DOTENV_PATH` |
+Path to `.env` file (defaults to `.chroma_env` ) |
 
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/elevenlabs/ -->
