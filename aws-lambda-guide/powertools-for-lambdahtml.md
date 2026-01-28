@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/powertools-for-lambda.html
-fetched_at: 2026-01-26T22:54:12.157218
+fetched_at: 2026-01-28T07:05:19.798700
 ---
 
 # Powertools for AWS Lambda

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/workflow-event-management.html
-fetched_at: 2026-01-26T22:54:17.143372
+fetched_at: 2026-01-28T07:05:24.857997
 ---
 
 # Managing Lambda workflows and events

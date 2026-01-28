@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-getting-started-iac.html
-fetched_at: 2026-01-26T22:54:42.167473
+fetched_at: 2026-01-28T07:05:49.966658
 ---
 
 # Deploy Lambda durable functions with Infrastructure as Code

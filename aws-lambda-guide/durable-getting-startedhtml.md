@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-getting-started.html
-fetched_at: 2026-01-26T22:54:32.202537
+fetched_at: 2026-01-28T07:05:39.988569
 ---
 
 # Creating Lambda durable functions

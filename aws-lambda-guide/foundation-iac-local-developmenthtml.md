@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/foundation-iac-local-development.html
-fetched_at: 2026-01-26T22:53:47.173038
+fetched_at: 2026-01-28T07:04:54.855454
 ---
 
 # Developing Lambda functions locally with VS Code

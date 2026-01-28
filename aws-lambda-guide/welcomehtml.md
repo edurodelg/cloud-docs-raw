@@ -1,9 +1,14 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/welcome.html
-fetched_at: 2026-01-26T22:52:42.221247
+fetched_at: 2026-01-28T07:03:59.179944
 ---
 
 # What is AWS Lambda?
+
+###### Tip
+
+Join Serverless experts for free hands-on workshops to learn how to build Serverless
+applications with best practices. [Click here](https://aws-experience.com/amer/smb/events/series/Get-Hands-On-With-Serverless?trk=188abe3e-9f94-4e84-aefb-398d944ad567%26sc_channel%3Del) to sign up.
 
 AWS Lambda is a compute service that runs code without the need to manage servers. Your code runs, scaling up and down automatically, with pay-per-use pricing.
 To get started, see [Create your first function](./getting-started.html).
