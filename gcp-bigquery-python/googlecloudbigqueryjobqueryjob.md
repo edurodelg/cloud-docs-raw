@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.job.QueryJob
-fetched_at: 2026-01-26T23:20:52.864984
+fetched_at: 2026-01-28T07:31:56.166801
 ---
 
 # Class QueryJob (3.40.0)
