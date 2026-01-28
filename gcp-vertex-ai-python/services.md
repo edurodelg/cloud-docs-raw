@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/aiplatform/latest/services
-fetched_at: 2026-01-26T23:29:17.911030
+fetched_at: 2026-01-28T07:40:06.844577
 ---
 
 # Google Cloud Aiplatform SDK

@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/aiplatform/latest/summary_class.html
-fetched_at: 2026-01-27T07:02:11.144627
+fetched_at: 2026-01-28T15:09:58.620425
 ---
 
-# Package Classes (1.134.0)
+# Package Classes (1.135.0)
 
 Summary of entries of Classes for aiplatform.
 
@@ -22324,7 +22324,7 @@ Basic tier is a cost-effective and low compute tier suitable for the following c
 - Latency insensitive workload.
 - Only using RAG Engine with external vector DBs.
 
-NOTE: This is the default tier if not explicitly chosen.
+NOTE: This is the default tier under Spanner mode if not explicitly chosen.
 
 [Enterprise](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagManagedDbConfig.Enterprise)
 
@@ -22333,6 +22333,23 @@ Enterprise tier offers production grade performance along with autoscaling funct
 [Scaled](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagManagedDbConfig.Scaled)
 
 Scaled tier offers production grade performance along with autoscaling functionality. It is suitable for customers with large amounts of data or performance sensitive workloads.
+
+[Serverless](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagManagedDbConfig.Serverless)
+
+Message to configure the serverless mode offered by RAG Engine.
+
+[Spanner](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagManagedDbConfig.Spanner)
+
+Message to configure the Spanner database used by RagManagedDb.
+
+This message has `oneof`
+
+_ fields (mutually exclusive fields).
+For each oneof, at most one member field can be set at the same time.
+Setting any member of the oneof automatically clears all other
+members.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
 
 [Unprovisioned](/python/docs/reference/aiplatform/latest/google.cloud.aiplatform_v1beta1.types.RagManagedDbConfig.Unprovisioned)
 
