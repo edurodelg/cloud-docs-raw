@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/jsoncstyleguide.xml
-fetched_at: 2026-01-26T23:12:53.164134
+fetched_at: 2026-01-28T07:24:04.708248
 ---
 
 Revision 0.9

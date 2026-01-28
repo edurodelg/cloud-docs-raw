@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/vimscriptguide.xml
-fetched_at: 2026-01-26T23:13:04.323601
+fetched_at: 2026-01-28T07:24:14.921061
 ---
 
 Revision 1.1

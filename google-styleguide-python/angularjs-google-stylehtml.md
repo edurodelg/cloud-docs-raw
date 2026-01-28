@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/angularjs-google-style.html
-fetched_at: 2026-01-26T23:12:38.888892
+fetched_at: 2026-01-28T07:23:52.111881
 ---
 
 # An AngularJS Style Guide for Closure Users at Google
