@@ -1,8 +1,553 @@
 ---
-merged_at: 2026-01-26T23:20:36.877999
+merged_at: 2026-01-28T07:33:20.578663
 merged_files: 2
 ---
 
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/quotas-limits -->
+
+# Microsoft Foundry Models quotas and limits
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+This article provides a quick reference and detailed description of the quotas and limits for Microsoft Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits?view=foundry-classic).
+
+## Quotas and limits reference
+
+Azure uses quotas and limits to prevent budget overruns due to fraud and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide a quick guide to the default quotas and limits that apply to Azure AI model inference service in Foundry:
+
+### Resource limits (per Azure subscription, per region)
+
+| Limit name | Limit value |
+|---|---|
+| Foundry resources per region per Azure subscription | 100 |
+| Max projects per resource | 250 |
+| Max deployments per resource (model deployments within a Foundry resource) | 32 |
+
+### Rate limits
+
+The following table lists limits for Foundry Models for the following rates:
+
+- Tokens per minute
+- Requests per minute
+- Concurrent request
+
+| Models | Tokens per minute | Requests per minute | Concurrent requests |
+|---|---|---|---|
+| Azure OpenAI models | Varies per model and SKU. See
+|
+
+[limits for Azure OpenAI](../openai/quotas-limits?view=foundry-classic).- DeepSeek-V3-0324
+
+- Llama-4-Maverick-17B-128E-Instruct-FP8
+
+- Grok 3
+
+- Grok 3 mini
+
+- Medium: 30
+
+- High (Enterprise): 100
+
+- Flux.1-Kontext Pro
+
+To increase your quota:
+
+- For Azure OpenAI, use
+[Foundry Service: Request for Quota Increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu)to submit your request. - For other models, see
+[request increases to the default limits](#request-increases-to-the-default-limits).
+
+Due to high demand, we evaluate limit increase requests per request.
+
+### Other limits
+
+| Limit name | Limit value |
+|---|---|
+Max number of custom headers in API requests1 |
+10 |
+
+1 Our current APIs allow up to 10 custom headers, which the pipeline passes through and returns. If you exceed this header count, your request results in an HTTP 431 error. To resolve this error, reduce the header volume. **Future API versions won't pass through custom headers**. We recommend that you don't depend on custom headers in future system architectures.
+
+## Usage tiers
+
+Global Standard deployments use Azure's global infrastructure to dynamically route customer traffic to the data center with best availability for the customer's inference requests. This infrastructure enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variabilities in response latency.
+
+The Usage Limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
+
+## Request increases to the default limits
+
+Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are accepted and filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation. Your request might be denied if this condition isn't met.
+
+You can [submit a service request](../../ai-services/cognitive-services-support-options?view=foundry-classic&context=/azure/ai-foundry/openai/context/context) for other rate limits.
+
+## General best practices to stay within rate limits
+
+To minimize issues related to rate limits, use the following techniques:
+
+- Implement retry logic in your application.
+- Avoid sharp changes in the workload. Increase the workload gradually.
+- Test different load increase patterns.
+- Increase the quota assigned to your deployment. Move quota from another deployment, if necessary.
+
+## Setting client side timeout
+
+We recommend explicitly setting the client side timeout as follows.
+
+Note
+
+If not explicitly set, the client side timeout exists as per the library used, and may not be the same limits as above.
+
+- Reasoning models (models that generate intermediate reasoning tokens before producing a summarized response): up to 29 minutes.
+- Non-reasoning models:
+- For streaming, up to 60 seconds.
+- For non-streaming requests, up to 29 minutes.
+
+
+29 minutes here does not mean all requests will take 29 minutes but rather depending on context tokens, generated tokens, and cache hit rates, requests can take up to 29 minutes.
+
+You will need to set a timeout less than the above tuned to your traffic patterns.
+
+For reasoning models including streaming requests, all the reasoning tokens are first generated and then summarized before sending the first response token back to the user.
+
+You can modify the [reasoning effort](../openai/how-to/reasoning?view=foundry-classic) parameter to control the number of reasoning tokens generated in the process.
+
+## Next steps
+
+- Learn more about the
+[models available in Foundry Models](../model-inference/concepts/models?view=foundry-classic)
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/ai-services/content-safety-overview -->
+
+# Content Safety in the Microsoft Foundry portal
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Azure AI Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes APIs that help you detect and prevent the output of harmful content. The interactive Content Safety **try it out** page in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) lets you view, explore, and try out sample code for detecting harmful content across different modalities.
+
+## Features
+
+Use Azure AI Content Safety for the following scenarios:
+
+### Text content
+
+**Moderate text content**: Scans and moderates text content. It identifies and categorizes text based on different levels of severity to ensure appropriate responses.**Groundedness detection**: Determines if the AI's responses are based on trusted, user-provided sources. This feature ensures that the answers are "grounded" in the intended material. Groundedness detection helps improve the reliability and factual accuracy of responses.**Protected material detection for text**: Identifies protected text material, such as known song lyrics, articles, or other content. This feature ensures that the AI doesn't output this content without permission.**Protected material detection for code**: Detects code segments in the model's output that match known code from public repositories. This feature helps prevent uncredited or unauthorized reproduction of source code.**Prompt shields**: Provides a unified API to address "Jailbreak" and "Indirect Attacks":- Jailbreak Attacks: Attempts by users to manipulate the AI into bypassing its safety protocols or ethical guidelines. Examples include prompts designed to trick the AI into giving inappropriate responses or performing tasks it was programmed to avoid.
+- Indirect Attacks: Also known as Cross-Domain Prompt Injection Attacks. Indirect attacks involve embedding malicious prompts within documents that the AI might process. For example, if a document contains hidden instructions, the AI might inadvertently follow them, leading to unintended or unsafe outputs.
+
+
+### Image content
+
+**Moderate image content**: Similar to text moderation, this feature filters and assesses image content to detect inappropriate or harmful visuals.**Moderate multimodal content**: Designed to handle a combination of text and images. It assesses the overall context and any potential risks across multiple types of content.
+
+### Custom filtering
+
+**Custom categories**: Allows users to define specific categories for moderating and filtering content. Tailors safety protocols to unique needs.**Safety system message**: Provides a method for setting up a "System Message" to instruct the AI on desired behavior and limitations. It reinforces safety boundaries and helps prevent unwanted outputs.
+
+## Understand harm categories
+
+### Harm categories
+
+| Category | Description | API term |
+|---|---|---|
+| Hate and Fairness | Hate and fairness harms refer to any content that attacks or uses discriminatory language with reference to a person or identity group based on certain differentiating attributes of these groups. This includes, but isn't limited to:
+|
+`Hate` |
+| Sexual | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one's will. This includes but isn't limited to:
+|
+`Sexual` |
+| Violence | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns, and related entities. This includes, but isn't limited to:
+|
+`Violence` |
+| Self-Harm | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one's body or kill oneself. This includes, but isn't limited to:
+|
+`SelfHarm` |
+
+### Severity levels
+
+| Level | Description |
+|---|---|
+| Safe | Content might be related to violence, self-harm, sexual, or hate categories. However, the terms are used in general, journalistic, scientific, medical, and similar professional contexts, which are appropriate for most audiences. |
+| Low | Content that expresses prejudiced, judgmental, or opinionated views, includes offensive use of language, stereotyping, use-cases exploring a fictional world (for example, gaming, literature) and depictions at low intensity. |
+| Medium | Content that uses offensive, insulting, mocking, intimidating, or demeaning language towards specific identity groups, includes depictions of seeking and executing harmful instructions, fantasies, glorification, promotion of harm at medium intensity. |
+| High | Content that displays explicit and severe harmful instructions, actions, damage, or abuse; includes endorsement, glorification, or promotion of severe harmful acts, extreme or illegal forms of harm, radicalization, or nonconsensual power exchange or abuse. |
+
+## Limitations
+
+For supported regions, rate limits, and input requirements for all features, see the [Content Safety service overview](/en-us/azure/ai-services/content-safety/overview). For supported languages, see the [Language support](/en-us/azure/ai-services/content-safety/language-support) page.
+
+## Next step
+
+Get started using Azure AI Content Safety in Foundry portal by following the [How-to guide](/en-us/azure/ai-services/content-safety/how-to/foundry).
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/ -->
+
+# Foundry Local (preview) documentation
+
+Safely design, customize, and manage AI applications and agents on-device.
+
+This browser is no longer supported.
+
+Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+
+Safely design, customize, and manage AI applications and agents on-device.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/what-is-foundry-local -->
+
+# What is Foundry Local?
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+- Foundry Local is available in preview. Public preview releases provide early access to features that are in active deployment.
+- Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
+
+Foundry Local is an on-device AI inference solution that you use to run AI models locally through a CLI, SDK, or REST API.
+
+## Prerequisites
+
+- Install Foundry Local. Follow
+[Get started with Foundry Local](get-started?view=foundry-classic). - Use a terminal (for example, Windows Terminal or macOS Terminal).
+- Have an internet connection for first-time model downloads.
+- If you use Foundry Local only on your device, you don't need an Azure subscription and there are no Azure RBAC role requirements.
+
+## Try it (CLI)
+
+Run these commands to verify your installation and run a model locally.
+
+```
+foundry --help
+foundry model list
+foundry model run qwen2.5-0.5b
+```
+
+
+`foundry --help`
+
+prints the available CLI commands.`foundry model list`
+
+lists available models. The first run might download execution providers for your hardware.`foundry model run qwen2.5-0.5b`
+
+downloads the model (first run) and starts an interactive prompt in your terminal.
+
+Reference: [Foundry Local CLI reference](reference/reference-cli?view=foundry-classic)
+
+## Key features
+
+**On-device inference**: Run models locally to reduce costs and help keep data on your device.**Model customization**: Select a preset model or use your own to meet specific needs.**Cost efficiency**: Use existing hardware to eliminate recurring cloud costs and make AI more accessible.**Seamless integration**: Integrate with your apps through the SDK, API endpoints, or CLI. For multi-user or high-throughput workloads, move to[Microsoft Foundry](../?view=foundry-classic).
+
+## Use cases
+
+Foundry Local is ideal when you need to:
+
+- Keep sensitive data on your device
+- Operate in limited or offline environments
+- Reduce cloud inference costs
+- Get low latency AI responses for real-time applications
+- Experiment with AI models before you deploy to the cloud
+
+## Frequently asked questions
+
+### Does Foundry Local send my prompts or outputs to Microsoft?
+
+Foundry Local is designed to run inference on your device. When you send prompts to a local Foundry Local endpoint (for example, `http://localhost:PORT`
+
+), your prompts and model outputs are processed locally.
+
+Foundry Local can still use the network for operations like:
+
+**Model and component downloads**: The first time you run a model, Foundry Local downloads the model files. It might also download execution providers for your hardware.**Optional diagnostics you choose to share**: If you report a problem, you might choose to share logs (for example, by using`foundry zip-logs`
+
+).
+
+Your use of Foundry Local is governed by the product terms and licenses that apply to the software and the models you run. If the terms allow Microsoft to collect diagnostic information, the details are described in those terms and the [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement).
+
+### Do I need an Azure subscription?
+
+No. Foundry Local runs on your hardware, letting you run supported models locally without requiring an Azure subscription.
+
+### Do I need special drivers for NPU acceleration?
+
+Install the driver for your NPU hardware:
+
+Intel NPU: Install the
+
+[Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html)to enable NPU acceleration on Windows.Qualcomm NPU: Install the
+
+[Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND)to enable NPU acceleration. If you see the error`Qnn error code 5005: Failed to load from EpContext model. qnn_backend_manager.`
+
+, it likely indicates an outdated driver or an NPU resource conflict. Reboot to clear the conflict, especially after using Windows Copilot+ features.
+
+After you install the drivers, Foundry Local automatically detects and uses the NPU.
+
+## Get started
+
+Follow the [Get started with Foundry Local](get-started?view=foundry-classic) guide to set up Foundry Local, discover models, and run your first local AI model.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/get-started -->
+
+# Get started with Foundry Local
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+- Foundry Local is available in preview. Public preview releases provide early access to features that are in active deployment.
+- Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
+
+This guide shows you how to set up Foundry Local to run AI models on your device.
+
+## Prerequisites
+
+Your system must meet the following requirements to run Foundry Local:
+
+**Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), Windows Server 2025, macOS.**Hardware**: Minimum 8 GB RAM and 3 GB free disk space. Recommended 16 GB RAM and 15 GB free disk space.**Network**: Internet connection to download models and execution providers. After you download a model, you can run cached models offline.**Acceleration (optional)**: NVIDIA GPU (2000 series or newer), AMD GPU (6000 series or newer), AMD NPU, Intel iGPU, Intel NPU (32 GB or more of memory), Qualcomm Snapdragon X Elite (8 GB or more of memory), Qualcomm NPU, or Apple silicon.
+
+To install Foundry Local by using the commands in this quickstart:
+
+- On Windows, make sure
+`winget`
+
+is available. - On macOS, install Homebrew if you use the
+`brew`
+
+option.
+
+Note
+
+New NPUs are supported only on systems running Windows 24H2 or later. If you use an Intel NPU on Windows, install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration in Foundry Local.
+
+Make sure you have admin rights to install software.
+
+Tip
+
+If you see a service connection error after installation (for example, 'Request to local service failed'), run `foundry service restart`
+
+.
+
+## Quickstart
+
+Get started quickly with Foundry Local:
+
+### Option 1: Quick CLI setup
+
+**Install Foundry Local**.**Windows**: Open a terminal and run the following command.`winget install Microsoft.FoundryLocal`
+
+**macOS**: Open a terminal and run the following command.
+
+Alternatively, you can download the installer from the`brew tap microsoft/foundrylocal brew install foundrylocal`
+
+[Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
+
+Reference:
+
+[Foundry Local documentation](https://aka.ms/foundry-local-docs)**Verify the installation**. Run:`foundry --version`
+
+You should see the installed version number.
+
+Reference:
+
+[Foundry Local CLI reference](reference/reference-cli?view=foundry-classic)**Run your first model**. Open a terminal and run this command:`foundry model run qwen2.5-0.5b`
+
+Foundry Local downloads the model, which can take a few minutes depending on your internet speed, then runs it. After the model starts, interact with it by using the command-line interface (CLI). For example, you can ask:
+
+`Why is the sky blue?`
+
+
+Reference: [Foundry Local CLI reference](reference/reference-cli?view=foundry-classic)
+
+### Option 2: Download starter projects
+
+For practical, hands-on learning, download one of the starter projects that demonstrate real-world scenarios:
+
+[Chat Application Starter](https://github.com/microsoft/Foundry-Local/tree/main/samples/electron/foundry-chat): Build a local chat interface with multiple model support.[Summarize Sample](https://github.com/microsoft/Foundry-Local/tree/main/samples/python/summarize): A command-line utility that generates summaries of text files or direct text input.[Function Calling Example](https://github.com/microsoft/Foundry-Local/tree/main/samples/python/functioncalling): Enable and use function calling with Phi-4 mini.
+
+Each project includes:
+
+- Step-by-step setup instructions
+- Complete source code
+- Configuration examples
+- Best practices
+
+Tip
+
+These starter projects align with scenarios in the [how-to guides](how-to/how-to-chat-application-with-open-web-ui?view=foundry-classic) and provide immediate practical value.
+
+Tip
+
+Replace `qwen2.5-0.5b`
+
+with any model name from the catalog (run `foundry model list`
+
+to view available models). Foundry Local downloads the variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, Foundry Local downloads the CUDA version. If you have a Qualcomm NPU, Foundry Local downloads the NPU variant. If you have no GPU or NPU, Foundry Local downloads the CPU version.
+
+When you run `foundry model list`
+
+the first time, you see a download progress bar while Foundry Local downloads the execution providers for your hardware.
+
+Reference: [Foundry Local CLI reference](reference/reference-cli?view=foundry-classic)
+
+## Explore commands
+
+The Foundry CLI organizes commands into these main categories:
+
+**Model**: Commands for managing and running models.**Service**: Commands for managing the Foundry Local service.**Cache**: Commands for managing the local model cache (downloaded models on local disk).
+
+To view all commands, use:
+
+```
+foundry --help
+```
+
+
+```
+foundry model --help
+```
+
+
+foundry --help
+
+```
+foundry service --help
+```
+
+
+View **cache** commands:
+
+```
+foundry cache --help
+```
+
+
+Reference: [Foundry Local CLI reference](reference/reference-cli?view=foundry-classic)
+
+## Optional: Run the latest GPT OSS 20B model
+
+Run the `gpt-oss-20b`
+
+model:
+
+```
+foundry model run gpt-oss-20b
+```
+
+
+Important
+
+If the model isn't available for your device, run a smaller model (for example, `qwen2.5-0.5b`
+
+).
+
+For the CUDA variant, you typically need an NVIDIA GPU with 16 GB of VRAM or more.
+
+Foundry Local version **0.6.87** or later adds support for this model. Check your version with:
+
+```
+foundry --version
+```
+
+
+Reference: [Foundry Local CLI reference](reference/reference-cli?view=foundry-classic)
+
+Tip
+
+For details on all CLI commands, see [Foundry Local CLI reference](reference/reference-cli?view=foundry-classic).
+
+## Upgrade Foundry Local
+
+Run the command for your OS to upgrade Foundry Local.
+
+- Windows: In a terminal, run:
+`winget upgrade --id Microsoft.FoundryLocal`
+
+- macOS: In a terminal, run:
+`brew upgrade foundrylocal`
+
+
+## Uninstall Foundry Local
+
+To uninstall Foundry Local, run the command for your operating system:
+
+**Windows**: Open a terminal and run:`winget uninstall Microsoft.FoundryLocal`
+
+**macOS**: Open a terminal and run:`brew rm foundrylocal brew untap microsoft/foundrylocal brew cleanup --scrub`
+
+
+## Troubleshooting
+
+### Service connection problems
+
+If you see this error when you run `foundry model list`
+
+or a similar command:
+
+```
+foundry model list
+Exception: Request to local service failed.
+Uri: http://127.0.0.1:0/foundry/list
+The requested address is not valid in its context. (127.0.0.1:0)
+Please check service status with 'foundry service status'.
+```
+
+
+Run this command to restart the service:
+
+```
+foundry service restart
+```
+
+
+This command fixes cases where the service runs but isn't accessible because of a port binding problem.
+
+Reference: [Best practices and troubleshooting](reference/reference-best-practice?view=foundry-classic)
+
+---
+<!-- Source: N/A -->
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/content-safety/data-privacy -->
