@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.revisions.RevisionsClient
-fetched_at: 2026-01-26T23:06:54.536299
+fetched_at: 2026-01-28T07:18:03.867717
 ---
 
 # Class RevisionsClient (0.14.0)

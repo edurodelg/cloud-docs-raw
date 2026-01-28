@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types
-fetched_at: 2026-01-26T23:07:53.902785
+fetched_at: 2026-01-28T07:19:01.308736
 ---
 
 # Package types (0.14.0)

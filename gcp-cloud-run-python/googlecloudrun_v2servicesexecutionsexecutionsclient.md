@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient
-fetched_at: 2026-01-26T23:06:20.285204
+fetched_at: 2026-01-28T07:17:30.190554
 ---
 
 # Class ExecutionsClient (0.14.0)
