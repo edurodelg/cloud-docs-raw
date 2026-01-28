@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/acl_guide
-fetched_at: 2026-01-26T23:13:51.487698
+fetched_at: 2026-01-28T07:24:52.304481
 ---
 
 # Managing Access to Data

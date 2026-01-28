@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/summary_property
-fetched_at: 2026-01-26T23:13:49.520599
+fetched_at: 2026-01-28T07:24:49.940783
 ---
 
 # Package Properties and Attributes (3.7.0)
