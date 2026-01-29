@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html
-fetched_at: 2026-01-28T07:10:42.815448
+fetched_at: 2026-01-29T15:18:45.061087
 ---
 
 # General purpose buckets overview

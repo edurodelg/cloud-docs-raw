@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html
-fetched_at: 2026-01-28T07:12:47.601551
+fetched_at: 2026-01-29T15:20:49.996571
 ---
 
 # Using Requester Pays general purpose buckets for storage

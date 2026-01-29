@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/common-bucket-patterns.html
-fetched_at: 2026-01-28T07:10:47.502202
+fetched_at: 2026-01-29T15:18:49.997316
 ---
 
 # Common general purpose bucket patterns for building applications on

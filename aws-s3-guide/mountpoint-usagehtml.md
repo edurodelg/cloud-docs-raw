@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint-usage.html
-fetched_at: 2026-01-28T07:11:47.709464
+fetched_at: 2026-01-29T15:19:50.094276
 ---
 
 # Configuring and using Mountpoint
