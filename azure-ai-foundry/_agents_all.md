@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-28T07:33:20.516884
+merged_at: 2026-01-29T15:40:29.712762
 merged_files: 4
 ---
 
@@ -5027,7 +5027,33 @@ Billing for managed hosting runtime is enabled no earlier than February 1, 2026,
 
 ### Region availability
 
-Currently, North Central US is the only supported region for hosted agents.
+Hosted Agents are supported in the following regions:
+
+- Brazil South
+- Canada East
+- East US
+- France Central
+- Germany West Central
+- Italy North
+- North Central US
+- South Africa North
+- South Central US
+- South India
+- Spain Central
+- Sweden Central
+- Canada Central
+- Korea Central
+- Southeast Asia
+- Australia East
+- East US 2
+- Japan East
+- UAE North
+- UK South
+- West US
+- West US 3
+- Norway East
+- Poland Central
+- Switzerland North
 
 ### Private networking support
 
@@ -20318,9 +20344,12 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 
 We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
-- On the parent resource of your project, you need the
-**Azure AI User**role to access model deployments and create agents.**Owners**automatically get this role when they create the resource. Other users need a specific role assignment. For more information, see[Role-based access control in Foundry portal](/en-us/azure/ai-foundry/concepts/rbac-foundry). - On the parent resource of your project, you need the
-**Azure AI Project Manager**role to create a project connection for MCP authentication and either**Azure AI User**or**Azure AI Project Manager**to use the MCP tool in agents. - On your project, create a system-assigned managed identity for interactions with Azure AI Search.
+On the parent resource of your project, you need the
+
+**Azure AI User**role to access model deployments and create agents.**Owners**automatically get this role when they create the resource. Other users need a specific role assignment. For more information, see[Role-based access control in Foundry portal](/en-us/azure/ai-foundry/concepts/rbac-foundry).On the parent resource of your project, you need the
+
+**Azure AI Project Manager**role to create a project connection for MCP authentication and either**Azure AI User**or**Azure AI Project Manager**to use the MCP tool in agents.On your project, create a system-assigned managed identity for interactions with Azure AI Search.
+
 
 ### Required values
 
@@ -20477,6 +20506,12 @@ print(f"Agent '{agent_name}' created or updated successfully.")
 
 
 ### Connect to a remote SharePoint knowledge source
+
+Important
+
+In this preview, Foundry Agent Service doesn't support per-request headers for MCP tools. Headers set in agent definitions apply to all invocations and can't vary by user or request.
+
+For per-user authorization, use the [Azure OpenAI Responses API](/en-us/azure/ai-foundry/openai/how-to/responses) instead.
 
 Optionally, if your knowledge base includes a [remote SharePoint knowledge source](/en-us/azure/search/agentic-knowledge-source-how-to-sharepoint-remote), you must also include the `x-ms-query-source-authorization`
 

@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-28T07:33:20.456041
+merged_at: 2026-01-29T15:40:29.607640
 merged_files: 6
 ---
 
@@ -46,6 +46,8 @@ The following section provides you with a quick guide to the default quotas and 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
 | Maximum prompt tokens per request | Varies per model. For more information, see
 |
+
+Developer training: 5
 
 `(tokens in training file) x (# of epochs)`
 
@@ -36446,6 +36448,8 @@ The following section provides you with a quick guide to the default quotas and 
 | Maximum prompt tokens per request | Varies per model. For more information, see
 |
 
+Developer training: 5
+
 `(tokens in training file) x (# of epochs)`
 
 `/embeddings`
@@ -42491,7 +42495,7 @@ Azure OpenAI AvailabilityRateAvailability percentage with the following calculat
 `AzureOpenAIAvailabilityRate` |
 Percent | Minimum, Maximum, Average | `ApiName` , `OperationName` , `Region` , `StreamType` , `ModelDeploymentName` , `ModelName` , `ModelVersion` |
 PT1M | No |
-Azure OpenAI RequestsNumber of calls made to the Azure OpenAI API over a period of time. Applies to PTU, PTU-Managed and Pay-as-you-go deployments. To breakdown API requests, you can add a filter or apply splitting by the following dimensions: ModelDeploymentName, ModelName, ModelVersion, StatusCode (successful, clienterrors, server errors), IsSpillover for spillover information, ServiceTier, StreamType (Streaming vs non-streaming requests) and operation. |
+Azure OpenAI RequestsNumber of calls made to the Azure OpenAI API over a period of time. Applies to PTU, PTU-Managed and Pay-as-you-go deployments. To breakdown API requests, you can add a filter or apply splitting by the following dimensions: ModelDeploymentName, ModelName, ModelVersion, StatusCode (successful, client errors, server errors), IsSpillover for spillover information, ServiceTier, StreamType (Streaming vs non-streaming requests) and operation. |
 `AzureOpenAIRequests` |
 Count | Total (Sum) | `ApiName` , `OperationName` , `Region` , `StreamType` , `ModelDeploymentName` , `ModelName` , `ModelVersion` , `StatusCode` , `IsSpillover` , `ServiceTierRequest` , `ServiceTierResponse` |
 PT1M | Yes |
@@ -42560,6 +42564,10 @@ PT1M | Yes |
 Processed Prompt TokensNumber of prompt tokens processed (input) on an OpenAI model. Applies to PTU, PTU-managed and Pay-as-you-go deployments. To breakdown this metric, you can add a filter or apply splitting by the following dimensions: ModelDeploymentName and ModelName. |
 `ProcessedPromptTokens` |
 Count | Total (Sum) | `ApiName` , `ModelDeploymentName` , `FeatureName` , `UsageChannel` , `Region` , `ModelVersion` |
+PT1M | Yes |
+Realtime API Seconds UsedRealtimeAPI number of seconds used |
+`RealtimeUsageTime` |
+Count | Total (Sum) | `Region` , `ModelDeploymentName` |
 PT1M | Yes |
 Processed Inference TokensNumber of inference tokens processed on an OpenAI model. Calculated as prompt tokens (input) plus generated tokens (output). Applies to PTU, PTU-managed and Pay-as-you-go deployments. To breakdown this metric, you can add a filter or apply splitting by the following dimensions: ModelDeploymentName and ModelName. |
 `TokenTransaction` |
@@ -42805,6 +42813,18 @@ Audio Output TokensNumber of audio prompt tokens generated (output) on an OpenAI
 `AudioOutputTokens` |
 Count | Total (Sum) | `ModelDeploymentName` , `ModelName` , `ModelVersion` , `Region` |
 PT1M | Yes |
+Prompt tokens read from cacheTotal number of tokens read from the cache. Applies to Anthropic model deployments. Surfaced in response usage section as `cache_read_input_tokens` |
+`cacheReadInputTokens` |
+Count | Total (Sum) | `ApiName` , `Region` , `ModelDeploymentName` , `ModelName` , `ModelVersion` , `ContextLength` |
+PT1M | Yes |
+Prompt tokens written to cache (1 hour TTL)The number of prompt tokens used to create the 1 hour entry. Applies to Anthropic model deployments. Surfaced in response usage section as `cache_creation.ephemeral_1h_input_tokens` |
+`ephemeral1hInputTokens` |
+Count | Total (Sum) | `ApiName` , `Region` , `ModelDeploymentName` , `ModelName` , `ModelVersion` , `ContextLength` |
+PT1M | Yes |
+Prompt tokens written to cache (5 minute TTL)The number of prompt tokens used to create the 5 minute cache entry. Applies to Anthropic model deployments. Surfaced in response usage section as `cache_creation.ephemeral_5m_input_tokens` |
+`ephemeral5mInputTokens` |
+Count | Total (Sum) | `ApiName` , `Region` , `ModelDeploymentName` , `ModelName` , `ModelVersion` , `ContextLength` |
+PT1M | Yes |
 Generated ImagesTotal number of images generated. Applies to PTU, PTU-Managed and Pay-as-you-go deployments. |
 `GeneratedImages` |
 Count | Total (Sum) | `ApiName` , `Region` , `ModelDeploymentName` , `ModelName` , `ModelVersion` |
@@ -42951,6 +42971,30 @@ Count | Total (Sum) | `ApiName` , `FeatureName` , `UsageChannel` , `Region` |
 PT1M | Yes |
 Video Seconds SynthesizedNumber of seconds synthesized |
 `VideoSecondsSynthesized` |
+Count | Total (Sum) | `ApiName` , `FeatureName` , `UsageChannel` , `Region` |
+PT1M | Yes |
+Voice Live Audio Input TokensNumber of audio input tokens, excluding cached tokens. |
+`VoiceLiveAudioInputTokens` |
+Count | Total (Sum) | `ApiName` , `FeatureName` , `UsageChannel` , `Region` |
+PT1M | Yes |
+Voice Live Audio Output TokensNumber of audio output tokens. |
+`VoiceLiveAudioOutputTokens` |
+Count | Total (Sum) | `ApiName` , `FeatureName` , `UsageChannel` , `Region` |
+PT1M | Yes |
+Voice Live Cached Audio Input TokensNumber of cached audio input tokens. |
+`VoiceLiveCachedAudioInputTokens` |
+Count | Total (Sum) | `ApiName` , `FeatureName` , `UsageChannel` , `Region` |
+PT1M | Yes |
+Voice Live Cached Text Input TokensNumber of cached text input tokens. |
+`VoiceLiveCachedTextInputTokens` |
+Count | Total (Sum) | `ApiName` , `FeatureName` , `UsageChannel` , `Region` |
+PT1M | Yes |
+Voice Live Text Input TokensNumber of text input tokens, excluding cached tokens. |
+`VoiceLiveTextInputTokens` |
+Count | Total (Sum) | `ApiName` , `FeatureName` , `UsageChannel` , `Region` |
+PT1M | Yes |
+Voice Live Text Output TokensNumber of text output tokens. |
+`VoiceLiveTextOutputTokens` |
 Count | Total (Sum) | `ApiName` , `FeatureName` , `UsageChannel` , `Region` |
 PT1M | Yes |
 Voice Model Hosting HoursNumber of Hours. |

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/ai-foundry/fine-tuning/data-generation
-fetched_at: 2026-01-28T07:23:50.671100
+fetched_at: 2026-01-29T15:31:16.803386
 ---
 
 # Generate synthetic data for fine-tuning in Microsoft Foundry (Preview)
