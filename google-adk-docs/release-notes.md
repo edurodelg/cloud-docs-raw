@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/release-notes/
-fetched_at: 2026-01-28T07:08:23.913348
+fetched_at: 2026-01-29T15:16:39.178447
 ---
 
 # ADK release notes¶

@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/apps/
-fetched_at: 2026-01-28T07:07:48.043779
+fetched_at: 2026-01-29T15:15:59.999550
 ---
 
 # Apps: workflow management class¶
