@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/aiplatform/latest/summary_class.html
-fetched_at: 2026-01-28T15:09:58.620425
+fetched_at: 2026-01-29T23:28:59.566321
 ---
 
 # Package Classes (1.135.0)
