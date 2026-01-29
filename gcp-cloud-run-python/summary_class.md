@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/summary_class
-fetched_at: 2026-01-28T07:16:50.710344
+fetched_at: 2026-01-29T15:24:53.449381
 ---
 
-# Package Classes (0.14.0)
+# Package Classes (0.15.0)
 
 Summary of entries of Classes for run.
 
@@ -82,6 +82,74 @@ field on the
 corresponding responses.
 
 All the usual [ListExecutionsResponse](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListExecutionsResponse)
+attributes are available on the pager. If multiple requests are made, only
+the most recent response is retained, and thus used for attribute lookup.
+
+[InstancesAsyncClient](/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient)
+
+The Cloud Run Instances API allows you to manage Cloud Run Instances.
+
+[InstancesClient](/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient)
+
+The Cloud Run Instances API allows you to manage Cloud Run Instances.
+
+[ListInstancesAsyncPager](/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.pagers.ListInstancesAsyncPager)
+
+A pager for iterating through `list_instances`
+
+requests.
+
+This class thinly wraps an initial
+[ListInstancesResponse](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesResponse) object, and
+provides an `__aiter__`
+
+method to iterate through its
+`instances`
+
+field.
+
+If there are more pages, the `__aiter__`
+
+method will make additional
+`ListInstances`
+
+requests and continue to iterate
+through the `instances`
+
+field on the
+corresponding responses.
+
+All the usual [ListInstancesResponse](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesResponse)
+attributes are available on the pager. If multiple requests are made, only
+the most recent response is retained, and thus used for attribute lookup.
+
+[ListInstancesPager](/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.pagers.ListInstancesPager)
+
+A pager for iterating through `list_instances`
+
+requests.
+
+This class thinly wraps an initial
+[ListInstancesResponse](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesResponse) object, and
+provides an `__iter__`
+
+method to iterate through its
+`instances`
+
+field.
+
+If there are more pages, the `__iter__`
+
+method will make additional
+`ListInstances`
+
+requests and continue to iterate
+through the `instances`
+
+field on the
+corresponding responses.
+
+All the usual [ListInstancesResponse](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesResponse)
 attributes are available on the pager. If multiple requests are made, only
 the most recent response is retained, and thus used for attribute lookup.
 
@@ -502,6 +570,12 @@ A single application container. This specifies both the container to run, the co
 
 ContainerPort represents a network port in a single container.
 
+[ContainerStatus](/python/docs/reference/run/latest/google.cloud.run_v2.types.ContainerStatus)
+
+ContainerStatus holds the information of container name and image digest value.
+
+[CreateInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.CreateInstanceRequest)
+
 [CreateJobRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.CreateJobRequest)
 
 Request message for creating a Job.
@@ -517,6 +591,8 @@ Request message for creating a WorkerPool.
 [DeleteExecutionRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteExecutionRequest)
 
 Request message for deleting an Execution.
+
+[DeleteInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteInstanceRequest)
 
 [DeleteJobRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteJobRequest)
 
@@ -611,6 +687,8 @@ GRPCAction describes an action involving a GRPC port.
 
 Request message for obtaining a Execution by its full name.
 
+[GetInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.GetInstanceRequest)
+
 [GetJobRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.GetJobRequest)
 
 Request message for obtaining a Job by its full name.
@@ -642,6 +720,20 @@ HTTPHeader describes a custom header to be used in HTTP probes
 [IngressTraffic](/python/docs/reference/run/latest/google.cloud.run_v2.types.IngressTraffic)
 
 Allowed ingress traffic for the Container.
+
+[Instance](/python/docs/reference/run/latest/google.cloud.run_v2.types.Instance)
+
+A Cloud Run Instance represents a single group of containers running in a region.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[AnnotationsEntry](/python/docs/reference/run/latest/google.cloud.run_v2.types.Instance.AnnotationsEntry)
+
+The abstract base class for a message.
+
+[LabelsEntry](/python/docs/reference/run/latest/google.cloud.run_v2.types.Instance.LabelsEntry)
+
+The abstract base class for a message.
 
 [InstanceSplit](/python/docs/reference/run/latest/google.cloud.run_v2.types.InstanceSplit)
 
@@ -685,6 +777,14 @@ Request message for retrieving a list of Executions.
 [ListExecutionsResponse](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListExecutionsResponse)
 
 Response message containing a list of Executions.
+
+[ListInstancesRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesRequest)
+
+Request message for retrieving a list of Instances.
+
+[ListInstancesResponse](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesResponse)
+
+Response message containing a list of Instances.
 
 [ListJobsRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListJobsRequest)
 
@@ -852,6 +952,14 @@ Source type for the container.
 
 Cloud Storage source.
 
+[StartInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.StartInstanceRequest)
+
+Request message for starting an Instance.
+
+[StopInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.StopInstanceRequest)
+
+Request message for deleting an Instance.
+
 [StorageSource](/python/docs/reference/run/latest/google.cloud.run_v2.types.StorageSource)
 
 Location of the source in an archive file in Google Cloud Storage.
@@ -1011,6 +1119,12 @@ Worker pool scaling settings.
 [pagers](/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.pagers)
 
 API documentation for `run_v2.services.executions.pagers`
+
+module.
+
+[pagers](/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.pagers)
+
+API documentation for `run_v2.services.instances.pagers`
 
 module.
 

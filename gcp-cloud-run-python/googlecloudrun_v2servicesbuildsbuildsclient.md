@@ -1,21 +1,21 @@
 ---
-source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.revisions.RevisionsClient
-fetched_at: 2026-01-29T15:26:42.720362
+source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.builds.BuildsClient
+fetched_at: 2026-01-29T15:25:20.025327
 ---
 
-# Class RevisionsClient (0.15.0)
+# Class BuildsClient (0.15.0)
 
 ```
-RevisionsClient(
+BuildsClient(
 *,
 credentials: typing.Optional[google.auth.credentials.Credentials] = None,
 transport: typing.Optional[
 typing.Union[
 str,
-google.cloud.run_v2.services.revisions.transports.base.RevisionsTransport,
+google.cloud.run_v2.services.builds.transports.base.BuildsTransport,
 typing.Callable[
 [...],
-google.cloud.run_v2.services.revisions.transports.base.RevisionsTransport,
+google.cloud.run_v2.services.builds.transports.base.BuildsTransport,
 ],
 ]
 ] = None,
@@ -27,7 +27,7 @@ client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.g
 ```
 
 
-Cloud Run Revision Control Plane API.
+Cloud Run Build Control Plane API
 
 ## Properties
 
@@ -52,7 +52,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`RevisionsTransport` |
+`BuildsTransport` |
 The transport used by the client instance. |
 
 ### universe_domain
@@ -69,19 +69,19 @@ The universe domain used by the client instance. |
 
 ## Methods
 
-### RevisionsClient
+### BuildsClient
 
 ```
-RevisionsClient(
+BuildsClient(
 *,
 credentials: typing.Optional[google.auth.credentials.Credentials] = None,
 transport: typing.Optional[
 typing.Union[
 str,
-google.cloud.run_v2.services.revisions.transports.base.RevisionsTransport,
+google.cloud.run_v2.services.builds.transports.base.BuildsTransport,
 typing.Callable[
 [...],
-google.cloud.run_v2.services.revisions.transports.base.RevisionsTransport,
+google.cloud.run_v2.services.builds.transports.base.BuildsTransport,
 ],
 ]
 ] = None,
@@ -93,7 +93,7 @@ client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.g
 ```
 
 
-Instantiates the revisions client.
+Instantiates the builds client.
 
 Parameters |
 |
@@ -104,8 +104,8 @@ Description |
 `Optional[google.auth.credentials.Credentials]`
 The authorization credentials to attach to requests. These credentials identify the application to the service; if none are specified, the client will attempt to ascertain the credentials from the environment. |
 `transport` |
-`Optional[Union[str,RevisionsTransport,Callable[..., RevisionsTransport]]]`
-The transport to use, or a Callable that constructs and returns a new transport. If a Callable is given, it will be called with the same set of initialization arguments as used in the RevisionsTransport constructor. If set to None, a transport is chosen automatically. |
+`Optional[Union[str,BuildsTransport,Callable[..., BuildsTransport]]]`
+The transport to use, or a Callable that constructs and returns a new transport. If a Callable is given, it will be called with the same set of initialization arguments as used in the BuildsTransport constructor. If set to None, a transport is chosen automatically. |
 `client_options` |
 `Optional[Union[google.api_core.client_options.ClientOptions, dict]]`
 Custom options for the client. 1. The |
@@ -127,6 +127,13 @@ If mutual TLS transport creation failed for any reason. |
 
 
 Releases underlying transport's resources.
+
+### build_worker_pool_path
+
+`build_worker_pool_path(project: str, location: str, worker_pool: str) -> str`
+
+
+Returns a fully-qualified build_worker_pool string.
 
 ### common_billing_account_path
 
@@ -162,20 +169,6 @@ Returns a fully-qualified organization string.
 
 
 Returns a fully-qualified project string.
-
-### connector_path
-
-`connector_path(project: str, location: str, connector: str) -> str`
-
-
-Returns a fully-qualified connector string.
-
-### crypto_key_path
-
-`crypto_key_path(project: str, location: str, key_ring: str, crypto_key: str) -> str`
-
-
-Returns a fully-qualified crypto_key string.
 
 ### delete_operation
 
@@ -223,84 +216,6 @@ The timeout for this request. |
 `Sequence[Tuple[str, Union[str, bytes]]]`
 Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
 
-### delete_revision
-
-```
-delete_revision(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.revision.DeleteRevisionRequest, dict]
-] = None,
-*,
-name: typing.Optional[str] = None,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary.Retry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.api_core.operation.Operation
-```
-
-
-Deletes a Revision.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_delete_revision():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[RevisionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.revisions.RevisionsClient.html)()
-# Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[DeleteRevisionRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteRevisionRequest.html)(
-name="name_value",
-)
-# Make the request
-operation = client.[delete_revision](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.revisions.RevisionsClient.html#google_cloud_run_v2_services_revisions_RevisionsClient_delete_revision)(request=request)
-print("Waiting for operation to complete...")
-response = operation.result()
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Union[`
-The request object. Request message for deleting a retired Revision. Revision lifecycle is usually managed by making changes to the parent Service. Only retired revisions can be deleted with this API. |
-`name` |
-`str`
-Required. The name of the Revision to delete. Format: projects/{project}/locations/{location}/services/{service}/revisions/{revision} This corresponds to the |
-`retry` |
-`google.api_core.retry.Retry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-`google.api_core.operation.Operation` |
-An object representing a long-running operation. The result type for the operation will be
-|
-
 ### from_service_account_file
 
 `from_service_account_file(filename: str, *args, **kwargs)`
@@ -322,7 +237,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`RevisionsClient` |
+`BuildsClient` |
 The constructed client. |
 
 ### from_service_account_info
@@ -346,7 +261,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`RevisionsClient` |
+`BuildsClient` |
 The constructed client. |
 
 ### from_service_account_json
@@ -370,7 +285,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`RevisionsClient` |
+`BuildsClient` |
 The constructed client. |
 
 ### get_mtls_endpoint_and_cert_source
@@ -482,81 +397,6 @@ Description |
 |
 An `Operation` object. |
 
-### get_revision
-
-```
-get_revision(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.revision.GetRevisionRequest, dict]
-] = None,
-*,
-name: typing.Optional[str] = None,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary.Retry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.cloud.run_v2.types.revision.Revision
-```
-
-
-Gets information about a Revision.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_get_revision():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[RevisionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.revisions.RevisionsClient.html)()
-# Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[GetRevisionRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.GetRevisionRequest.html)(
-name="name_value",
-)
-# Make the request
-response = client.[get_revision](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.revisions.RevisionsClient.html#google_cloud_run_v2_services_revisions_RevisionsClient_get_revision)(request=request)
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Union[`
-The request object. Request message for obtaining a Revision by its full name. |
-`name` |
-`str`
-Required. The full name of the Revision. Format: projects/{project}/locations/{location}/services/{service}/revisions/{revision} This corresponds to the |
-`retry` |
-`google.api_core.retry.Retry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-|
-A Revision is an immutable snapshot of code and configuration. A Revision references a container image. Revisions are only created by updates to its parent Service. |
-
 ### list_operations
 
 ```
@@ -604,88 +444,12 @@ Description |
 |
 Response message for `ListOperations` method. |
 
-### list_revisions
+### parse_build_worker_pool_path
 
-```
-list_revisions(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.revision.ListRevisionsRequest, dict]
-] = None,
-*,
-parent: typing.Optional[str] = None,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary.Retry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.cloud.run_v2.services.revisions.pagers.ListRevisionsPager
-```
+`parse_build_worker_pool_path(path: str) -> typing.Dict[str, str]`
 
 
-Lists Revisions from a given Service, or from a given location. Results are sorted by creation time, descending.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_list_revisions():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[RevisionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.revisions.RevisionsClient.html)()
-# Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ListRevisionsRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.ListRevisionsRequest.html)(
-parent="parent_value",
-)
-# Make the request
-page_result = client.[list_revisions](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.revisions.RevisionsClient.html#google_cloud_run_v2_services_revisions_RevisionsClient_list_revisions)(request=request)
-# Handle the response
-for response in page_result:
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Union[`
-The request object. Request message for retrieving a list of Revisions. |
-`parent` |
-`str`
-Required. The Service from which the Revisions should be listed. To list all Revisions across Services, use "-" instead of Service name. Format: projects/{project}/locations/{location}/services/{service} This corresponds to the |
-`retry` |
-`google.api_core.retry.Retry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-|
-Response message containing a list of Revisions. Iterating over this object will yield results and resolve additional pages automatically. |
-
-### mesh_path
-
-`mesh_path(project: str, location: str, mesh: str) -> str`
-
-
-Returns a fully-qualified mesh string.
+Parses a build_worker_pool path into its component segments.
 
 ### parse_common_billing_account_path
 
@@ -722,82 +486,81 @@ Parse a organization path into its component segments.
 
 Parse a project path into its component segments.
 
-### parse_connector_path
+### submit_build
 
-`parse_connector_path(path: str) -> typing.Dict[str, str]`
-
-
-Parses a connector path into its component segments.
-
-### parse_crypto_key_path
-
-`parse_crypto_key_path(path: str) -> typing.Dict[str, str]`
-
-
-Parses a crypto_key path into its component segments.
-
-### parse_mesh_path
-
-`parse_mesh_path(path: str) -> typing.Dict[str, str]`
-
-
-Parses a mesh path into its component segments.
-
-### parse_revision_path
-
-`parse_revision_path(path: str) -> typing.Dict[str, str]`
+```
+submit_build(
+request: typing.Optional[
+typing.Union[google.cloud.run_v2.types.build.SubmitBuildRequest, dict]
+] = None,
+*,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.run_v2.types.build.SubmitBuildResponse
+```
 
 
-Parses a revision path into its component segments.
+Submits a build in a given project.
 
-### parse_secret_path
-
-`parse_secret_path(path: str) -> typing.Dict[str, str]`
-
-
-Parses a secret path into its component segments.
-
-### parse_secret_version_path
-
-`parse_secret_version_path(path: str) -> typing.Dict[str, str]`
-
-
-Parses a secret_version path into its component segments.
-
-### parse_service_path
-
-`parse_service_path(path: str) -> typing.Dict[str, str]`
-
-
-Parses a service path into its component segments.
-
-### revision_path
-
-`revision_path(project: str, location: str, service: str, revision: str) -> str`
-
-
-Returns a fully-qualified revision string.
-
-### secret_path
-
-`secret_path(project: str, secret: str) -> str`
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import
+```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
+def sample_submit_build():
+# Create a client
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[BuildsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.builds.BuildsClient.html)()
+# Initialize request argument(s)
+storage_source = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[StorageSource](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.StorageSource.html)()
+storage_source.bucket = "bucket_value"
+storage_source.object_ = "object__value"
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[SubmitBuildRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.SubmitBuildRequest.html)(
+storage_source=storage_source,
+parent="parent_value",
+image_uri="image_uri_value",
+)
+# Make the request
+response = client.[submit_build](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.builds.BuildsClient.html#google_cloud_run_v2_services_builds_BuildsClient_submit_build)(request=request)
+# Handle the response
+print(response)
 
 
-Returns a fully-qualified secret string.
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for submitting a Build. |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
 
-### secret_version_path
-
-`secret_version_path(project: str, secret: str, version: str) -> str`
-
-
-Returns a fully-qualified secret_version string.
-
-### service_path
-
-`service_path(project: str, location: str, service: str) -> str`
-
-
-Returns a fully-qualified service string.
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message for submitting a Build. |
 
 ### wait_operation
 

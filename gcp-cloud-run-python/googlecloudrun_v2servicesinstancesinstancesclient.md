@@ -1,20 +1,21 @@
 ---
-source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient
-fetched_at: 2026-01-29T15:26:23.460750
+source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient
+fetched_at: 2026-01-29T15:25:59.364289
 ---
 
-# Class JobsClient (0.15.0)
+# Class InstancesClient (0.15.0)
 
 ```
-JobsClient(
+InstancesClient(
 *,
 credentials: typing.Optional[google.auth.credentials.Credentials] = None,
 transport: typing.Optional[
 typing.Union[
 str,
-google.cloud.run_v2.services.jobs.transports.base.JobsTransport,
+google.cloud.run_v2.services.instances.transports.base.InstancesTransport,
 typing.Callable[
-[...], google.cloud.run_v2.services.jobs.transports.base.JobsTransport
+[...],
+google.cloud.run_v2.services.instances.transports.base.InstancesTransport,
 ],
 ]
 ] = None,
@@ -26,7 +27,7 @@ client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.g
 ```
 
 
-Cloud Run Job Control Plane API.
+The Cloud Run Instances API allows you to manage Cloud Run Instances.
 
 ## Properties
 
@@ -51,7 +52,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`JobsTransport` |
+`InstancesTransport` |
 The transport used by the client instance. |
 
 ### universe_domain
@@ -68,18 +69,19 @@ The universe domain used by the client instance. |
 
 ## Methods
 
-### JobsClient
+### InstancesClient
 
 ```
-JobsClient(
+InstancesClient(
 *,
 credentials: typing.Optional[google.auth.credentials.Credentials] = None,
 transport: typing.Optional[
 typing.Union[
 str,
-google.cloud.run_v2.services.jobs.transports.base.JobsTransport,
+google.cloud.run_v2.services.instances.transports.base.InstancesTransport,
 typing.Callable[
-[...], google.cloud.run_v2.services.jobs.transports.base.JobsTransport
+[...],
+google.cloud.run_v2.services.instances.transports.base.InstancesTransport,
 ],
 ]
 ] = None,
@@ -91,7 +93,7 @@ client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.g
 ```
 
 
-Instantiates the jobs client.
+Instantiates the instances client.
 
 Parameters |
 |
@@ -102,8 +104,8 @@ Description |
 `Optional[google.auth.credentials.Credentials]`
 The authorization credentials to attach to requests. These credentials identify the application to the service; if none are specified, the client will attempt to ascertain the credentials from the environment. |
 `transport` |
-`Optional[Union[str,JobsTransport,Callable[..., JobsTransport]]]`
-The transport to use, or a Callable that constructs and returns a new transport. If a Callable is given, it will be called with the same set of initialization arguments as used in the JobsTransport constructor. If set to None, a transport is chosen automatically. |
+`Optional[Union[str,InstancesTransport,Callable[..., InstancesTransport]]]`
+The transport to use, or a Callable that constructs and returns a new transport. If a Callable is given, it will be called with the same set of initialization arguments as used in the InstancesTransport constructor. If set to None, a transport is chosen automatically. |
 `client_options` |
 `Optional[Union[google.api_core.client_options.ClientOptions, dict]]`
 Custom options for the client. 1. The |
@@ -168,17 +170,16 @@ Returns a fully-qualified project string.
 
 Returns a fully-qualified connector string.
 
-### create_job
+### create_instance
 
 ```
-create_job(
+create_instance(
 request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.job.CreateJobRequest, dict]
+typing.Union[google.cloud.run_v2.types.instance.CreateInstanceRequest, dict]
 ] = None,
 *,
 parent: typing.Optional[str] = None,
-job: typing.Optional[google.cloud.run_v2.types.job.Job] = None,
-job_id: typing.Optional[str] = None,
+instance: typing.Optional[google.cloud.run_v2.types.instance.Instance] = None,
 retry: typing.Optional[
 typing.Union[
 google.api_core.retry.retry_unary.Retry,
@@ -191,7 +192,7 @@ metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
 ```
 
 
-Creates a Job.
+Creates an Instance.
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -203,20 +204,19 @@ Creates a Job.
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_create_job():
+def sample_create_instance():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[JobsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html)()
 # Initialize request argument(s)
-job = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[Job](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.Job.html)()
-job.start_execution_token = "start_execution_token_value"
-job.template.template.max_retries = 1187
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[CreateJobRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.CreateJobRequest.html)(
+instance = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[Instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.Instance.html)()
+instance.containers.image = "image_value"
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[CreateInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.CreateInstanceRequest.html)(
 parent="parent_value",
-job=job,
-job_id="job_id_value",
+instance=instance,
+instance_id="instance_id_value",
 )
 # Make the request
-operation = client.[create_job](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html#google_cloud_run_v2_services_jobs_JobsClient_create_job)(request=request)
+operation = client.[create_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html#google_cloud_run_v2_services_instances_InstancesClient_create_instance)(request=request)
 print("Waiting for operation to complete...")
 response = operation.result()
 # Handle the response
@@ -230,15 +230,12 @@ Name |
 Description |
 `request` |
 `Union[`
-The request object. Request message for creating a Job. |
+The request object. |
 `parent` |
 `str`
-Required. The location and project in which this Job should be created. Format: projects/{project}/locations/{location}, where {project} can be project id or number. This corresponds to the |
-`job` |
-Required. The Job instance to create. This corresponds to the |
-`job_id` |
-`str`
-Required. The unique identifier for the Job. The name of the job becomes {parent}/jobs/{job_id}. This corresponds to the |
+This corresponds to the |
+`instance` |
+This corresponds to the |
 `retry` |
 `google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
@@ -265,12 +262,12 @@ An object representing a long-running operation. The result type for the operati
 
 Returns a fully-qualified crypto_key string.
 
-### delete_job
+### delete_instance
 
 ```
-delete_job(
+delete_instance(
 request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.job.DeleteJobRequest, dict]
+typing.Union[google.cloud.run_v2.types.instance.DeleteInstanceRequest, dict]
 ] = None,
 *,
 name: typing.Optional[str] = None,
@@ -286,7 +283,7 @@ metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
 ```
 
 
-Deletes a Job.
+Deletes a Instance
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -298,15 +295,15 @@ Deletes a Job.
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_delete_job():
+def sample_delete_instance():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[JobsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html)()
 # Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[DeleteJobRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteJobRequest.html)(
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[DeleteInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteInstanceRequest.html)(
 name="name_value",
 )
 # Make the request
-operation = client.[delete_job](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html#google_cloud_run_v2_services_jobs_JobsClient_delete_job)(request=request)
+operation = client.[delete_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html#google_cloud_run_v2_services_instances_InstancesClient_delete_instance)(request=request)
 print("Waiting for operation to complete...")
 response = operation.result()
 # Handle the response
@@ -320,10 +317,10 @@ Name |
 Description |
 `request` |
 `Union[`
-The request object. Request message to delete a Job by its full name. |
+The request object. |
 `name` |
 `str`
-Required. The full name of the Job. Format: projects/{project}/locations/{location}/jobs/{job}, where {project} can be project id or number. This corresponds to the |
+This corresponds to the |
 `retry` |
 `google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
@@ -389,13 +386,6 @@ The timeout for this request. |
 `Sequence[Tuple[str, Union[str, bytes]]]`
 Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
 
-### execution_path
-
-`execution_path(project: str, location: str, job: str, execution: str) -> str`
-
-
-Returns a fully-qualified execution string.
-
 ### from_service_account_file
 
 `from_service_account_file(filename: str, *args, **kwargs)`
@@ -417,7 +407,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`JobsClient` |
+`InstancesClient` |
 The constructed client. |
 
 ### from_service_account_info
@@ -441,7 +431,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`JobsClient` |
+`InstancesClient` |
 The constructed client. |
 
 ### from_service_account_json
@@ -465,87 +455,15 @@ Returns |
 |---|---|
 Type |
 Description |
-`JobsClient` |
+`InstancesClient` |
 The constructed client. |
 
-### get_iam_policy
+### get_instance
 
 ```
-get_iam_policy(
+get_instance(
 request: typing.Optional[
-typing.Union[google.iam.v1.iam_policy_pb2.GetIamPolicyRequest, dict]
-] = None,
-*,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary.Retry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.iam.v1.policy_pb2.Policy
-```
-
-
-Gets the IAM Access Control policy currently in effect for the given Job. This result does not include any inherited policies.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-from google.iam.v1 import iam_policy_pb2 # type: ignore
-def sample_get_iam_policy():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[JobsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html)()
-# Initialize request argument(s)
-request = iam_policy_pb2.GetIamPolicyRequest(
-resource="resource_value",
-)
-# Make the request
-response = client.[get_iam_policy](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html#google_cloud_run_v2_services_jobs_JobsClient_get_iam_policy)(request=request)
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Union[`
-The request object. Request message for |
-`retry` |
-`google.api_core.retry.Retry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-`google.iam.v1.policy_pb2.Policy` |
-An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A Policy is a collection of bindings. A binding binds one or more members, or principals, to a single role. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** :literal:` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ],="" "etag":="" "bwwwja0yfja=", " version":="" 3="">` \ \` **YAML example:** :literal:` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01t00:00:00.000z')="" etag:="" bwwwja0yfja="version:">`\ \` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/). |
-
-### get_job
-
-```
-get_job(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.job.GetJobRequest, dict]
+typing.Union[google.cloud.run_v2.types.instance.GetInstanceRequest, dict]
 ] = None,
 *,
 name: typing.Optional[str] = None,
@@ -557,11 +475,11 @@ google.api_core.gapic_v1.method._MethodDefault,
 ] = _MethodDefault._DEFAULT_VALUE,
 timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
 metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.cloud.run_v2.types.job.Job
+) -> google.cloud.run_v2.types.instance.Instance
 ```
 
 
-Gets information about a Job.
+Gets a Instance
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -573,15 +491,15 @@ Gets information about a Job.
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_get_job():
+def sample_get_instance():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[JobsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html)()
 # Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[GetJobRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.GetJobRequest.html)(
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[GetInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.GetInstanceRequest.html)(
 name="name_value",
 )
 # Make the request
-response = client.[get_job](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html#google_cloud_run_v2_services_jobs_JobsClient_get_job)(request=request)
+response = client.[get_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html#google_cloud_run_v2_services_instances_InstancesClient_get_instance)(request=request)
 # Handle the response
 print(response)
 
@@ -593,10 +511,10 @@ Name |
 Description |
 `request` |
 `Union[`
-The request object. Request message for obtaining a Job by its full name. |
+The request object. |
 `name` |
 `str`
-Required. The full name of the Job. Format: projects/{project}/locations/{location}/jobs/{job}, where {project} can be project id or number. This corresponds to the |
+This corresponds to the |
 `retry` |
 `google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
@@ -613,7 +531,7 @@ Returns |
 Type |
 Description |
 |
-Job represents the configuration of a single job, which references a container image that is run to completion. |
+A Cloud Run Instance represents a single group of containers running in a region. |
 
 ### get_mtls_endpoint_and_cert_source
 
@@ -724,19 +642,19 @@ Description |
 |
 An `Operation` object. |
 
-### job_path
+### instance_path
 
-`job_path(project: str, location: str, job: str) -> str`
+`instance_path(project: str, location: str, instance: str) -> str`
 
 
-Returns a fully-qualified job string.
+Returns a fully-qualified instance string.
 
-### list_jobs
+### list_instances
 
 ```
-list_jobs(
+list_instances(
 request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.job.ListJobsRequest, dict]
+typing.Union[google.cloud.run_v2.types.instance.ListInstancesRequest, dict]
 ] = None,
 *,
 parent: typing.Optional[str] = None,
@@ -748,11 +666,11 @@ google.api_core.gapic_v1.method._MethodDefault,
 ] = _MethodDefault._DEFAULT_VALUE,
 timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
 metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.cloud.run_v2.services.jobs.pagers.ListJobsPager
+) -> google.cloud.run_v2.services.instances.pagers.ListInstancesPager
 ```
 
 
-Lists Jobs. Results are sorted by creation time, descending.
+Lists Instances. Results are sorted by creation time, descending.
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -764,15 +682,15 @@ Lists Jobs. Results are sorted by creation time, descending.
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_list_jobs():
+def sample_list_instances():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[JobsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html)()
 # Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ListJobsRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.ListJobsRequest.html)(
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ListInstancesRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesRequest.html)(
 parent="parent_value",
 )
 # Make the request
-page_result = client.[list_jobs](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html#google_cloud_run_v2_services_jobs_JobsClient_list_jobs)(request=request)
+page_result = client.[list_instances](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html#google_cloud_run_v2_services_instances_InstancesClient_list_instances)(request=request)
 # Handle the response
 for response in page_result:
 print(response)
@@ -785,7 +703,7 @@ Name |
 Description |
 `request` |
 `Union[`
-The request object. Request message for retrieving a list of Jobs. |
+The request object. Request message for retrieving a list of Instances. |
 `parent` |
 `str`
 Required. The location and project to list resources on. Format: projects/{project}/locations/{location}, where {project} can be project id or number. This corresponds to the |
@@ -805,7 +723,7 @@ Returns |
 Type |
 Description |
 |
-Response message containing a list of Jobs. Iterating over this object will yield results and resolve additional pages automatically. |
+Response message containing a list of Instances. Iterating over this object will yield results and resolve additional pages automatically. |
 
 ### list_operations
 
@@ -903,19 +821,12 @@ Parses a connector path into its component segments.
 
 Parses a crypto_key path into its component segments.
 
-### parse_execution_path
+### parse_instance_path
 
-`parse_execution_path(path: str) -> typing.Dict[str, str]`
-
-
-Parses a execution path into its component segments.
-
-### parse_job_path
-
-`parse_job_path(path: str) -> typing.Dict[str, str]`
+`parse_instance_path(path: str) -> typing.Dict[str, str]`
 
 
-Parses a job path into its component segments.
+Parses a instance path into its component segments.
 
 ### parse_policy_path
 
@@ -945,12 +856,26 @@ Parses a secret_version path into its component segments.
 
 Returns a fully-qualified policy string.
 
-### run_job
+### secret_path
+
+`secret_path(project: str, secret: str) -> str`
+
+
+Returns a fully-qualified secret string.
+
+### secret_version_path
+
+`secret_version_path(project: str, secret: str, version: str) -> str`
+
+
+Returns a fully-qualified secret_version string.
+
+### start_instance
 
 ```
-run_job(
+start_instance(
 request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.job.RunJobRequest, dict]
+typing.Union[google.cloud.run_v2.types.instance.StartInstanceRequest, dict]
 ] = None,
 *,
 name: typing.Optional[str] = None,
@@ -966,7 +891,7 @@ metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
 ```
 
 
-Triggers creation of a new Execution of this Job.
+Starts an Instance.
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -978,15 +903,15 @@ Triggers creation of a new Execution of this Job.
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_run_job():
+def sample_start_instance():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[JobsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html)()
 # Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[RunJobRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.RunJobRequest.html)(
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[StartInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.StartInstanceRequest.html)(
 name="name_value",
 )
 # Make the request
-operation = client.[run_job](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html#google_cloud_run_v2_services_jobs_JobsClient_run_job)(request=request)
+operation = client.[start_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html#google_cloud_run_v2_services_instances_InstancesClient_start_instance)(request=request)
 print("Waiting for operation to complete...")
 response = operation.result()
 # Handle the response
@@ -1000,10 +925,10 @@ Name |
 Description |
 `request` |
 `Union[`
-The request object. Request message to create a new Execution of a Job. |
+The request object. Request message for starting an Instance. |
 `name` |
 `str`
-Required. The full name of the Job. Format: projects/{project}/locations/{location}/jobs/{job}, where {project} can be project id or number. This corresponds to the |
+Required. The name of the Instance to stop. Format: |
 `retry` |
 `google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
@@ -1023,174 +948,15 @@ Description |
 An object representing a long-running operation. The result type for the operation will be
 |
 
-### secret_path
-
-`secret_path(project: str, secret: str) -> str`
-
-
-Returns a fully-qualified secret string.
-
-### secret_version_path
-
-`secret_version_path(project: str, secret: str, version: str) -> str`
-
-
-Returns a fully-qualified secret_version string.
-
-### set_iam_policy
+### stop_instance
 
 ```
-set_iam_policy(
+stop_instance(
 request: typing.Optional[
-typing.Union[google.iam.v1.iam_policy_pb2.SetIamPolicyRequest, dict]
+typing.Union[google.cloud.run_v2.types.instance.StopInstanceRequest, dict]
 ] = None,
 *,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary.Retry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.iam.v1.policy_pb2.Policy
-```
-
-
-Sets the IAM Access control policy for the specified Job. Overwrites any existing policy.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-from google.iam.v1 import iam_policy_pb2 # type: ignore
-def sample_set_iam_policy():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[JobsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html)()
-# Initialize request argument(s)
-request = iam_policy_pb2.SetIamPolicyRequest(
-resource="resource_value",
-)
-# Make the request
-response = client.[set_iam_policy](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html#google_cloud_run_v2_services_jobs_JobsClient_set_iam_policy)(request=request)
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Union[`
-The request object. Request message for |
-`retry` |
-`google.api_core.retry.Retry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-`google.iam.v1.policy_pb2.Policy` |
-An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A Policy is a collection of bindings. A binding binds one or more members, or principals, to a single role. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** :literal:` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01t00:00:00.000z')",="" }="" }="" ],="" "etag":="" "bwwwja0yfja=", " version":="" 3="">` \ \` **YAML example:** :literal:` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01t00:00:00.000z')="" etag:="" bwwwja0yfja="version:">`\ \` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/). |
-
-### test_iam_permissions
-
-```
-test_iam_permissions(
-request: typing.Optional[
-typing.Union[google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest, dict]
-] = None,
-*,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary.Retry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse
-```
-
-
-Returns permissions that a caller has on the specified Project. There are no permissions required for making this API call.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-from google.iam.v1 import iam_policy_pb2 # type: ignore
-def sample_test_iam_permissions():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[JobsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html)()
-# Initialize request argument(s)
-request = iam_policy_pb2.TestIamPermissionsRequest(
-resource="resource_value",
-permissions=['permissions_value1', 'permissions_value2'],
-)
-# Make the request
-response = client.[test_iam_permissions](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html#google_cloud_run_v2_services_jobs_JobsClient_test_iam_permissions)(request=request)
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Union[`
-The request object. Request message for |
-`retry` |
-`google.api_core.retry.Retry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-|
-Response message for TestIamPermissions method. |
-
-### update_job
-
-```
-update_job(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.job.UpdateJobRequest, dict]
-] = None,
-*,
-job: typing.Optional[google.cloud.run_v2.types.job.Job] = None,
+name: typing.Optional[str] = None,
 retry: typing.Optional[
 typing.Union[
 google.api_core.retry.retry_unary.Retry,
@@ -1203,7 +969,7 @@ metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
 ```
 
 
-Updates a Job.
+Stops an Instance.
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -1215,18 +981,15 @@ Updates a Job.
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_update_job():
+def sample_stop_instance():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[JobsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html)()
 # Initialize request argument(s)
-job = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[Job](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.Job.html)()
-job.start_execution_token = "start_execution_token_value"
-job.template.template.max_retries = 1187
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[UpdateJobRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.UpdateJobRequest.html)(
-job=job,
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[StopInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.StopInstanceRequest.html)(
+name="name_value",
 )
 # Make the request
-operation = client.[update_job](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient.html#google_cloud_run_v2_services_jobs_JobsClient_update_job)(request=request)
+operation = client.[stop_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient.html#google_cloud_run_v2_services_instances_InstancesClient_stop_instance)(request=request)
 print("Waiting for operation to complete...")
 response = operation.result()
 # Handle the response
@@ -1240,9 +1003,10 @@ Name |
 Description |
 `request` |
 `Union[`
-The request object. Request message for updating a Job. |
-`job` |
-Required. The Job to be updated. This corresponds to the |
+The request object. Request message for deleting an Instance. |
+`name` |
+`str`
+Required. The name of the Instance to stop. Format: |
 `retry` |
 `google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |

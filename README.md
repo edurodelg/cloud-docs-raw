@@ -5,7 +5,7 @@
 ### Documentación técnica de servicios cloud en formato Markdown
 
 [![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-29%2015:33%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-517-green)]()
+[![Archivos](https://img.shields.io/badge/Archivos-540-green)]()
 [![Fuentes](https://img.shields.io/badge/Fuentes-13-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
@@ -40,13 +40,13 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 | [azure-aks](./azure-aks/) | 49 | [Docs](https://learn.microsoft.com/en-us/azure/aks/) |
 | [azure-functions](./azure-functions/) | 42 | [Docs](https://learn.microsoft.com/en-us/azure/azure-functions/) |
 | [gcp-bigquery-python](./gcp-bigquery-python/) | 24 | [Docs](https://cloud.google.com/python/docs/reference/bigquery/latest) |
-| [gcp-cloud-run-python](./gcp-cloud-run-python/) | 27 | [Docs](https://cloud.google.com/python/docs/reference/run/latest) |
+| [gcp-cloud-run-python](./gcp-cloud-run-python/) | 50 | [Docs](https://cloud.google.com/python/docs/reference/run/latest) |
 | [gcp-storage-python](./gcp-storage-python/) | 48 | [Docs](https://cloud.google.com/python/docs/reference/storage/latest) |
 | [gcp-vertex-ai-python](./gcp-vertex-ai-python/) | 50 | [Docs](https://cloud.google.com/python/docs/reference/aiplatform/latest) |
 | [google-adk-docs](./google-adk-docs/) | 47 | [Docs](https://google.github.io/adk-docs/) |
 | [google-styleguide-python](./google-styleguide-python/) | 29 | [Docs](https://google.github.io/styleguide/pyguide.html) |
 
-> **Total:** 517 archivos Markdown
+> **Total:** 540 archivos Markdown
 
 ---
 

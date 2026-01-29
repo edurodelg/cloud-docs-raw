@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types
-fetched_at: 2026-01-28T07:19:01.308736
+fetched_at: 2026-01-29T15:27:44.883482
 ---
 
-# Package types (0.14.0)
+# Package types (0.15.0)
 
 API documentation for `run_v2.types`
 
@@ -64,6 +64,12 @@ A single application container. This specifies both the container to run, the co
 
 ContainerPort represents a network port in a single container.
 
+[ContainerStatus](/python/docs/reference/run/latest/google.cloud.run_v2.types.ContainerStatus)
+
+ContainerStatus holds the information of container name and image digest value.
+
+[CreateInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.CreateInstanceRequest)
+
 [CreateJobRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.CreateJobRequest)
 
 Request message for creating a Job.
@@ -79,6 +85,8 @@ Request message for creating a WorkerPool.
 [DeleteExecutionRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteExecutionRequest)
 
 Request message for deleting an Execution.
+
+[DeleteInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteInstanceRequest)
 
 [DeleteJobRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteJobRequest)
 
@@ -149,6 +157,8 @@ GRPCAction describes an action involving a GRPC port.
 
 Request message for obtaining a Execution by its full name.
 
+[GetInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.GetInstanceRequest)
+
 [GetJobRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.GetJobRequest)
 
 Request message for obtaining a Job by its full name.
@@ -180,6 +190,12 @@ HTTPHeader describes a custom header to be used in HTTP probes
 [IngressTraffic](/python/docs/reference/run/latest/google.cloud.run_v2.types.IngressTraffic)
 
 Allowed ingress traffic for the Container.
+
+[Instance](/python/docs/reference/run/latest/google.cloud.run_v2.types.Instance)
+
+A Cloud Run Instance represents a single group of containers running in a region.
+
+.. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
 
 [InstanceSplit](/python/docs/reference/run/latest/google.cloud.run_v2.types.InstanceSplit)
 
@@ -215,6 +231,14 @@ Request message for retrieving a list of Executions.
 [ListExecutionsResponse](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListExecutionsResponse)
 
 Response message containing a list of Executions.
+
+[ListInstancesRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesRequest)
+
+Request message for retrieving a list of Instances.
+
+[ListInstancesResponse](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesResponse)
+
+Response message containing a list of Instances.
 
 [ListJobsRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.ListJobsRequest)
 
@@ -333,6 +357,14 @@ Scaling settings applied at the service level rather than at the revision level.
 Source type for the container.
 
 .. _oneof: [https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields](https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields)
+
+[StartInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.StartInstanceRequest)
+
+Request message for starting an Instance.
+
+[StopInstanceRequest](/python/docs/reference/run/latest/google.cloud.run_v2.types.StopInstanceRequest)
+
+Request message for deleting an Instance.
 
 [StorageSource](/python/docs/reference/run/latest/google.cloud.run_v2.types.StorageSource)
 

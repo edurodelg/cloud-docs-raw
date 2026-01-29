@@ -1,21 +1,20 @@
 ---
-source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient
-fetched_at: 2026-01-29T15:25:38.681654
+source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.tasks.TasksClient
+fetched_at: 2026-01-29T15:27:26.494270
 ---
 
-# Class ExecutionsClient (0.15.0)
+# Class TasksClient (0.15.0)
 
 ```
-ExecutionsClient(
+TasksClient(
 *,
 credentials: typing.Optional[google.auth.credentials.Credentials] = None,
 transport: typing.Optional[
 typing.Union[
 str,
-google.cloud.run_v2.services.executions.transports.base.ExecutionsTransport,
+google.cloud.run_v2.services.tasks.transports.base.TasksTransport,
 typing.Callable[
-[...],
-google.cloud.run_v2.services.executions.transports.base.ExecutionsTransport,
+[...], google.cloud.run_v2.services.tasks.transports.base.TasksTransport
 ],
 ]
 ] = None,
@@ -27,7 +26,7 @@ client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.g
 ```
 
 
-Cloud Run Execution Control Plane API.
+Cloud Run Task Control Plane API.
 
 ## Properties
 
@@ -52,7 +51,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`ExecutionsTransport` |
+`TasksTransport` |
 The transport used by the client instance. |
 
 ### universe_domain
@@ -69,19 +68,18 @@ The universe domain used by the client instance. |
 
 ## Methods
 
-### ExecutionsClient
+### TasksClient
 
 ```
-ExecutionsClient(
+TasksClient(
 *,
 credentials: typing.Optional[google.auth.credentials.Credentials] = None,
 transport: typing.Optional[
 typing.Union[
 str,
-google.cloud.run_v2.services.executions.transports.base.ExecutionsTransport,
+google.cloud.run_v2.services.tasks.transports.base.TasksTransport,
 typing.Callable[
-[...],
-google.cloud.run_v2.services.executions.transports.base.ExecutionsTransport,
+[...], google.cloud.run_v2.services.tasks.transports.base.TasksTransport
 ],
 ]
 ] = None,
@@ -93,7 +91,7 @@ client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.g
 ```
 
 
-Instantiates the executions client.
+Instantiates the tasks client.
 
 Parameters |
 |
@@ -104,8 +102,8 @@ Description |
 `Optional[google.auth.credentials.Credentials]`
 The authorization credentials to attach to requests. These credentials identify the application to the service; if none are specified, the client will attempt to ascertain the credentials from the environment. |
 `transport` |
-`Optional[Union[str,ExecutionsTransport,Callable[..., ExecutionsTransport]]]`
-The transport to use, or a Callable that constructs and returns a new transport. If a Callable is given, it will be called with the same set of initialization arguments as used in the ExecutionsTransport constructor. If set to None, a transport is chosen automatically. |
+`Optional[Union[str,TasksTransport,Callable[..., TasksTransport]]]`
+The transport to use, or a Callable that constructs and returns a new transport. If a Callable is given, it will be called with the same set of initialization arguments as used in the TasksTransport constructor. If set to None, a transport is chosen automatically. |
 `client_options` |
 `Optional[Union[google.api_core.client_options.ClientOptions, dict]]`
 Custom options for the client. 1. The |
@@ -127,84 +125,6 @@ If mutual TLS transport creation failed for any reason. |
 
 
 Releases underlying transport's resources.
-
-### cancel_execution
-
-```
-cancel_execution(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.execution.CancelExecutionRequest, dict]
-] = None,
-*,
-name: typing.Optional[str] = None,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary.Retry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.api_core.operation.Operation
-```
-
-
-Cancels an Execution.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_cancel_execution():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ExecutionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html)()
-# Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[CancelExecutionRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.CancelExecutionRequest.html)(
-name="name_value",
-)
-# Make the request
-operation = client.[cancel_execution](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html#google_cloud_run_v2_services_executions_ExecutionsClient_cancel_execution)(request=request)
-print("Waiting for operation to complete...")
-response = operation.result()
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Union[`
-The request object. Request message for deleting an Execution. |
-`name` |
-`str`
-Required. The name of the Execution to cancel. Format: |
-`retry` |
-`google.api_core.retry.Retry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-`google.api_core.operation.Operation` |
-An object representing a long-running operation. The result type for the operation will be
-|
 
 ### common_billing_account_path
 
@@ -254,84 +174,6 @@ Returns a fully-qualified connector string.
 
 
 Returns a fully-qualified crypto_key string.
-
-### delete_execution
-
-```
-delete_execution(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.execution.DeleteExecutionRequest, dict]
-] = None,
-*,
-name: typing.Optional[str] = None,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary.Retry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.api_core.operation.Operation
-```
-
-
-Deletes an Execution.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_delete_execution():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ExecutionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html)()
-# Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[DeleteExecutionRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteExecutionRequest.html)(
-name="name_value",
-)
-# Make the request
-operation = client.[delete_execution](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html#google_cloud_run_v2_services_executions_ExecutionsClient_delete_execution)(request=request)
-print("Waiting for operation to complete...")
-response = operation.result()
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Union[`
-The request object. Request message for deleting an Execution. |
-`name` |
-`str`
-Required. The name of the Execution to delete. Format: |
-`retry` |
-`google.api_core.retry.Retry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-`google.api_core.operation.Operation` |
-An object representing a long-running operation. The result type for the operation will be
-|
 
 ### delete_operation
 
@@ -407,7 +249,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`ExecutionsClient` |
+`TasksClient` |
 The constructed client. |
 
 ### from_service_account_info
@@ -431,7 +273,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`ExecutionsClient` |
+`TasksClient` |
 The constructed client. |
 
 ### from_service_account_json
@@ -455,83 +297,8 @@ Returns |
 |---|---|
 Type |
 Description |
-`ExecutionsClient` |
+`TasksClient` |
 The constructed client. |
-
-### get_execution
-
-```
-get_execution(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.execution.GetExecutionRequest, dict]
-] = None,
-*,
-name: typing.Optional[str] = None,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary.Retry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.cloud.run_v2.types.execution.Execution
-```
-
-
-Gets information about an Execution.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_get_execution():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ExecutionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html)()
-# Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[GetExecutionRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.GetExecutionRequest.html)(
-name="name_value",
-)
-# Make the request
-response = client.[get_execution](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html#google_cloud_run_v2_services_executions_ExecutionsClient_get_execution)(request=request)
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Union[`
-The request object. Request message for obtaining a Execution by its full name. |
-`name` |
-`str`
-Required. The full name of the Execution. Format: |
-`retry` |
-`google.api_core.retry.Retry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-|
-Execution represents the configuration of a single execution. A execution an immutable resource that references a container image which is run to completion. |
 
 ### get_mtls_endpoint_and_cert_source
 
@@ -642,22 +409,15 @@ Description |
 |
 An `Operation` object. |
 
-### job_path
-
-`job_path(project: str, location: str, job: str) -> str`
-
-
-Returns a fully-qualified job string.
-
-### list_executions
+### get_task
 
 ```
-list_executions(
+get_task(
 request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.execution.ListExecutionsRequest, dict]
+typing.Union[google.cloud.run_v2.types.task.GetTaskRequest, dict]
 ] = None,
 *,
-parent: typing.Optional[str] = None,
+name: typing.Optional[str] = None,
 retry: typing.Optional[
 typing.Union[
 google.api_core.retry.retry_unary.Retry,
@@ -666,11 +426,11 @@ google.api_core.gapic_v1.method._MethodDefault,
 ] = _MethodDefault._DEFAULT_VALUE,
 timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
 metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.cloud.run_v2.services.executions.pagers.ListExecutionsPager
+) -> google.cloud.run_v2.types.task.Task
 ```
 
 
-Lists Executions from a Job. Results are sorted by creation time, descending.
+Gets information about a Task.
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -682,17 +442,16 @@ Lists Executions from a Job. Results are sorted by creation time, descending.
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-def sample_list_executions():
+def sample_get_task():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ExecutionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[TasksClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.tasks.TasksClient.html)()
 # Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ListExecutionsRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.ListExecutionsRequest.html)(
-parent="parent_value",
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[GetTaskRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.GetTaskRequest.html)(
+name="name_value",
 )
 # Make the request
-page_result = client.[list_executions](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html#google_cloud_run_v2_services_executions_ExecutionsClient_list_executions)(request=request)
+response = client.[get_task](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.tasks.TasksClient.html#google_cloud_run_v2_services_tasks_TasksClient_get_task)(request=request)
 # Handle the response
-for response in page_result:
 print(response)
 
 
@@ -703,10 +462,10 @@ Name |
 Description |
 `request` |
 `Union[`
-The request object. Request message for retrieving a list of Executions. |
-`parent` |
+The request object. Request message for obtaining a Task by its full name. |
+`name` |
 `str`
-Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use "-" instead of Job name. Format: |
+Required. The full name of the Task. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}/tasks/{task} This corresponds to the |
 `retry` |
 `google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
@@ -723,7 +482,14 @@ Returns |
 Type |
 Description |
 |
-Response message containing a list of Executions. Iterating over this object will yield results and resolve additional pages automatically. |
+Task represents a single run of a container to completion. |
+
+### job_path
+
+`job_path(project: str, location: str, job: str) -> str`
+
+
+Returns a fully-qualified job string.
 
 ### list_operations
 
@@ -771,6 +537,82 @@ Type |
 Description |
 |
 Response message for `ListOperations` method. |
+
+### list_tasks
+
+```
+list_tasks(
+request: typing.Optional[
+typing.Union[google.cloud.run_v2.types.task.ListTasksRequest, dict]
+] = None,
+*,
+parent: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.cloud.run_v2.services.tasks.pagers.ListTasksPager
+```
+
+
+Lists Tasks from an Execution of a Job.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import
+```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
+def sample_list_tasks():
+# Create a client
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[TasksClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.tasks.TasksClient.html)()
+# Initialize request argument(s)
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ListTasksRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.ListTasksRequest.html)(
+parent="parent_value",
+)
+# Make the request
+page_result = client.[list_tasks](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.tasks.TasksClient.html#google_cloud_run_v2_services_tasks_TasksClient_list_tasks)(request=request)
+# Handle the response
+for response in page_result:
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for retrieving a list of Tasks. |
+`parent` |
+`str`
+Required. The Execution from which the Tasks should be listed. To list all Tasks across Executions of a Job, use "-" instead of Execution name. To list all Tasks across Jobs, use "-" instead of Job name. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution} This corresponds to the |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+|
+Response message containing a list of Tasks. Iterating over this object will yield results and resolve additional pages automatically. |
 
 ### parse_common_billing_account_path
 
@@ -849,6 +691,13 @@ Parses a secret path into its component segments.
 
 Parses a secret_version path into its component segments.
 
+### parse_task_path
+
+`parse_task_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a task path into its component segments.
+
 ### secret_path
 
 `secret_path(project: str, secret: str) -> str`
@@ -862,6 +711,13 @@ Returns a fully-qualified secret string.
 
 
 Returns a fully-qualified secret_version string.
+
+### task_path
+
+`task_path(project: str, location: str, job: str, execution: str, task: str) -> str`
+
+
+Returns a fully-qualified task string.
 
 ### wait_operation
 
