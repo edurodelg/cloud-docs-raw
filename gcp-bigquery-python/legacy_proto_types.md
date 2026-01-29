@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/bigquery/latest/legacy_proto_types
-fetched_at: 2026-01-28T07:27:48.457246
+fetched_at: 2026-01-29T15:37:03.283386
 ---
 
 # Legacy proto-based Types for Google Cloud Bigquery v2 API
