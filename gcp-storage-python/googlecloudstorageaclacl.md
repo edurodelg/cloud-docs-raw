@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.acl.ACL
-fetched_at: 2026-01-28T07:25:01.767035
+fetched_at: 2026-01-29T15:34:17.128070
 ---
 
 # Class ACL (3.7.0)

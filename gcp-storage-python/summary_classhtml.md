@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/summary_class.html
-fetched_at: 2026-01-28T07:26:40.091073
+fetched_at: 2026-01-29T15:36:00.468866
 ---
 
 # Package Classes (3.7.0)

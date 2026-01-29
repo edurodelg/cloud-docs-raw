@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.hmac_key.HMACKeyMetadata
-fetched_at: 2026-01-28T07:26:19.350098
+fetched_at: 2026-01-29T15:35:44.338232
 ---
 
 # Class HMACKeyMetadata (3.7.0)
