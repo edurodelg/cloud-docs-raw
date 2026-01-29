@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocalTelemetry.html
-fetched_at: 2026-01-28T07:14:21.546168
+fetched_at: 2026-01-29T15:22:22.926152
 ---
 
 # Telemetry in DynamoDB local

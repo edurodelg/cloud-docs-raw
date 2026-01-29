@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html
-fetched_at: 2026-01-28T07:14:11.561451
+fetched_at: 2026-01-29T15:22:12.931060
 ---
 
 # DynamoDB local usage notes
@@ -237,5 +237,4 @@ Tagging is not supported in the downloadable version of DynamoDB.
 -
 The downloadable version of DynamoDB ignores the
 
-[Limit](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ExecuteStatement.html#DDB-ExecuteStatement-request-Limit)parameter in[ExecuteStatement](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ExecuteStatement.html). -
-Multi-attribute keys for Global Secondary Index are not supported.
+[Limit](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ExecuteStatement.html#DDB-ExecuteStatement-request-Limit)parameter in[ExecuteStatement](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ExecuteStatement.html).

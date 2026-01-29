@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocalHistory.html
-fetched_at: 2026-01-28T07:14:16.598819
+fetched_at: 2026-01-29T15:22:17.999667
 ---
 
 # Release history for DynamoDB local

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
-fetched_at: 2026-01-28T07:14:06.859758
+fetched_at: 2026-01-29T15:22:07.985000
 ---
 
 # Deploying DynamoDB locally on
@@ -153,7 +153,7 @@ Download and install Apache Maven. For more information, see
 [Downloading Apache Maven](https://maven.apache.org/download.cgi)and[Installing Apache Maven](https://maven.apache.org/install.html). -
 Add the DynamoDB Maven repository to your application's Project Object Model (POM) file.
 
-`<!--Dependency:--> <dependencies> <dependency> <groupId>com.amazonaws</groupId> <artifactId>DynamoDBLocal</artifactId> <version>3.1.0</version> </dependency> </dependencies>`
+`<!--Dependency:--> <dependencies> <dependency> <groupId>com.amazonaws</groupId> <artifactId>DynamoDBLocal</artifactId> <version>3.3.0</version> </dependency> </dependencies>`
 
 Example template for use with Spring Boot 3 and/or Spring Framework 6:
 

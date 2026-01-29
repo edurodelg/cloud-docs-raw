@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.ReadData.html
-fetched_at: 2026-01-28T07:16:11.795071
+fetched_at: 2026-01-29T15:24:13.058839
 ---
 
 # Differences between a relational (SQL) database

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SettingUp.DynamoWebService.html
-fetched_at: 2026-01-28T07:13:56.542978
+fetched_at: 2026-01-29T15:21:57.908113
 ---
 
 # Setting up DynamoDB (web service)
