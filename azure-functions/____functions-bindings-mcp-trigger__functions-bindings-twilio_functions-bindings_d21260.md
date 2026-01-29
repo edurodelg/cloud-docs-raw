@@ -1,8 +1,3676 @@
 ---
-merged_at: 2026-01-28T07:43:39.498476
+merged_at: 2026-01-29T15:49:53.283211
 merged_files: 2
 ---
 
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-mcp-trigger -->
+
+# MCP tool trigger for Azure Functions
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Use the MCP tool trigger to define tool endpoints in a [Model Content Protocol (MCP)](https://github.com/modelcontextprotocol) server. Client language models and agents can use tools to perform specific tasks, such as storing or accessing code snippets.
+
+For information on setup and configuration details, see the [overview](functions-bindings-mcp).
+
+## Example
+
+Note
+
+For C#, the Azure Functions MCP extension supports only the [isolated worker model](dotnet-isolated-process-guide).
+
+This code creates an endpoint to expose a tool named `SaveSnippet`
+
+that tries to persist a named code snippet to blob storage.
+
+```
+private const string BlobPath = "snippets/{mcptoolargs.snippetname}.json";
+[Function(nameof(SaveSnippet))]
+[BlobOutput(BlobPath)]
+public string SaveSnippet(
+[McpToolTrigger("save_snippet", "Saves a code snippet into your snippet collection.")]
+ToolInvocationContext context,
+[McpToolProperty("snippetname", "The name of the snippet.", isRequired: true)]
+string name,
+[McpToolProperty("snippet", "The code snippet.", isRequired: true)]
+string snippet
+)
+{
+return snippet;
+}
+```
+
+
+This code creates an endpoint to expose a tool named `GetSnippet`
+
+that tries to retrieve a code snippet by name from blob storage.
+
+```
+private const string BlobPath = "snippets/{mcptoolargs.snippetname}.json";
+[Function(nameof(GetSnippet))]
+public object GetSnippet(
+[McpToolTrigger("get_snippets", "Gets code snippets from your snippet collection.")]
+ToolInvocationContext context,
+[BlobInput(BlobPath)] string snippetContent
+)
+{
+return snippetContent;
+}
+```
+
+
+The tool properties for the `GetSnippet`
+
+function are configured in `Program.cs`
+
+:
+
+```
+var builder = FunctionsApplication.CreateBuilder(args);
+builder.ConfigureFunctionsWebApplication();
+builder.Services
+.AddApplicationInsightsTelemetryWorkerService()
+.ConfigureFunctionsApplicationInsights();
+builder
+.ConfigureMcpTool("get_snippets")
+.WithProperty("snippetname", "string", "The name of the snippet.", required: true);
+builder.Build().Run();
+```
+
+
+Tip
+
+The example above used literal strings for things like the name of the "get_snippets" tool in both `Program.cs`
+
+and the function. Consider instead using shared constant strings to keep things in sync across your project.
+
+For the complete code example, see [SnippetTool.cs](https://github.com/Azure-Samples/remote-mcp-functions-dotnet/blob/main/src/SnippetsTool.cs).
+
+This code creates an endpoint to expose a tool named `SaveSnippets`
+
+that tries to persist a named code snippet to blob storage.
+
+```
+@FunctionName("SaveSnippets")
+@StorageAccount("AzureWebJobsStorage")
+public String saveSnippet(
+@McpToolTrigger(
+name = "saveSnippets",
+description = "Saves a text snippet to your snippets collection."
+)
+String mcpToolInvocationContext,
+@McpToolProperty(
+name = "snippetName",
+propertyType = "string",
+description = "The name of the snippet.",
+required = true
+)
+String snippetName,
+@McpToolProperty(
+name = "snippet",
+propertyType = "string",
+description = "The content of the snippet.",
+required = true
+)
+String snippet,
+@BlobOutput(name = "outputBlob", path = "snippets/{mcptoolargs.snippetName}.json")
+OutputBinding<String> outputBlob,
+final ExecutionContext context
+) {
+// Log the entire incoming JSON for debugging
+context.getLogger().info(mcpToolInvocationContext);
+// Log the snippet name and content
+context.getLogger().info("Saving snippet with name: " + snippetName);
+context.getLogger().info("Snippet content:\n" + snippet);
+// Write the snippet content to the output blob
+outputBlob.setValue(snippet);
+return "Successfully saved snippet '" + snippetName + "' with " + snippet.length() + " characters.";
+}
+```
+
+
+This code creates an endpoint to expose a tool named `GetSnippets`
+
+that tries to retrieve a code snippet by name from blob storage.
+
+```
+@FunctionName("GetSnippets")
+@StorageAccount("AzureWebJobsStorage")
+public String getSnippet(
+@McpToolTrigger(
+name = "getSnippets",
+description = "Gets a text snippet from your snippets collection."
+)
+String mcpToolInvocationContext,
+@McpToolProperty(
+name = "snippetName",
+propertyType = "string",
+description = "The name of the snippet.",
+required = true
+)
+String snippetName,
+@BlobInput(name = "inputBlob", path = "snippets/{mcptoolargs.snippetName}.json")
+String inputBlob,
+final ExecutionContext context
+) {
+// Log the entire incoming JSON for debugging
+context.getLogger().info(mcpToolInvocationContext);
+// Log the snippet name and the fetched snippet content from the blob
+context.getLogger().info("Retrieving snippet with name: " + snippetName);
+context.getLogger().info("Snippet content:");
+context.getLogger().info(inputBlob);
+// Return the snippet content or a not found message
+if (inputBlob != null && !inputBlob.trim().isEmpty()) {
+return inputBlob;
+} else {
+return "Snippet '" + snippetName + "' not found.";
+}
+}
+```
+
+
+For the complete code example, see [Snippets.java](https://github.com/Azure-Samples/remote-mcp-functions-java/blob/main/src/main/java/com/function/Snippets.java).
+
+Example code for JavaScript isn't currently available. See the TypeScript examples for general guidance using Node.js.
+
+This code creates an endpoint to expose a tool named `savesnippet`
+
+that tries to persist a named code snippet to blob storage.
+
+```
+import { app, InvocationContext, input, output, arg } from "@azure/functions";
+app.mcpTool("saveSnippet", {
+toolName: SAVE_SNIPPET_TOOL_NAME,
+description: SAVE_SNIPPET_TOOL_DESCRIPTION,
+toolProperties: {
+[SNIPPET_NAME_PROPERTY_NAME]: arg.string().describe(SNIPPET_NAME_PROPERTY_DESCRIPTION),
+[SNIPPET_PROPERTY_NAME]: arg.string().describe(SNIPPET_PROPERTY_DESCRIPTION)
+},
+extraOutputs: [blobOutputBinding],
+handler: saveSnippet,
+});
+```
+
+
+This code handles the `savesnippet`
+
+trigger:
+
+```
+export async function saveSnippet(
+_toolArguments: unknown,
+context: InvocationContext
+): Promise<string> {
+console.info("Saving snippet");
+// Get snippet name and content from the tool arguments
+const mcptoolargs = context.triggerMetadata.mcptoolargs as {
+snippetname?: string;
+snippet?: string;
+};
+const snippetName = mcptoolargs?.snippetname;
+const snippet = mcptoolargs?.snippet;
+if (!snippetName) {
+return "No snippet name provided";
+}
+if (!snippet) {
+return "No snippet content provided";
+}
+// Save the snippet to blob storage using the output binding
+context.extraOutputs.set(blobOutputBinding, snippet);
+console.info(`Saved snippet: ${snippetName}`);
+return snippet;
+}
+```
+
+
+This code creates an endpoint to expose a tool named `getsnippet`
+
+that tries to retrieve a code snippet by name from blob storage.
+
+```
+import { app, InvocationContext, input, output, arg } from "@azure/functions";
+app.mcpTool("getSnippet", {
+toolName: GET_SNIPPET_TOOL_NAME,
+description: GET_SNIPPET_TOOL_DESCRIPTION,
+toolProperties: {
+[SNIPPET_NAME_PROPERTY_NAME]: arg.string().describe(SNIPPET_NAME_PROPERTY_DESCRIPTION)
+},
+extraInputs: [blobInputBinding],
+handler: getSnippet,
+});
+```
+
+
+This code handles the `getsnippet`
+
+trigger:
+
+```
+export async function getSnippet(
+_toolArguments: unknown,
+context: InvocationContext
+): Promise<string> {
+console.info("Getting snippet");
+// Get snippet name from the tool arguments
+const mcptoolargs = context.triggerMetadata.mcptoolargs as {
+snippetname?: string;
+};
+const snippetName = mcptoolargs?.snippetname;
+console.info(`Snippet name: ${snippetName}`);
+if (!snippetName) {
+return "No snippet name provided";
+}
+// Get the content from blob binding - properly retrieving from extraInputs
+const snippetContent = context.extraInputs.get(blobInputBinding);
+if (!snippetContent) {
+return `Snippet '${snippetName}' not found`;
+}
+console.info(`Retrieved snippet: ${snippetName}`);
+return snippetContent as string;
+}
+```
+
+
+For the complete code example, see [snippetsMcpTool.ts](https://github.com/Azure-Samples/remote-mcp-functions-typescript/blob/main/src/functions/snippetsMcpTool.ts).
+
+This code uses the `mcp_tool_trigger`
+
+decorator to create an endpoint to expose a tool named `save_snippet`
+
+that tries to persist a named code snippet to blob storage.
+
+```
+@app.mcp_tool_trigger(
+arg_name="context",
+tool_name="save_snippet",
+description="Save a snippet with a name.",
+tool_properties=tool_properties_save_snippets_json,
+)
+@app.blob_output(arg_name="file", connection="AzureWebJobsStorage", path=_BLOB_PATH)
+def save_snippet(file: func.Out[str], context) -> str:
+content = json.loads(context)
+snippet_name_from_args = content["arguments"][_SNIPPET_NAME_PROPERTY_NAME]
+snippet_content_from_args = content["arguments"][_SNIPPET_PROPERTY_NAME]
+if not snippet_name_from_args:
+return "No snippet name provided"
+if not snippet_content_from_args:
+return "No snippet content provided"
+file.set(snippet_content_from_args)
+logging.info(f"Saved snippet: {snippet_content_from_args}")
+return f"Snippet '{snippet_content_from_args}' saved successfully"
+```
+
+
+This code uses the `mcp_tool_trigger`
+
+decorator to create an endpoint to expose a tool named `get_snippet`
+
+that tries to retrieve a code snippet by name from blob storage.
+
+```
+@app.mcp_tool_trigger(
+arg_name="context",
+tool_name="get_snippet",
+description="Retrieve a snippet by name.",
+tool_properties=tool_properties_get_snippets_json,
+)
+@app.blob_input(arg_name="file", connection="AzureWebJobsStorage", path=_BLOB_PATH)
+def get_snippet(file: func.InputStream, context) -> str:
+"""
+Retrieves a snippet by name from Azure Blob Storage.
+Args:
+file (func.InputStream): The input binding to read the snippet from Azure Blob Storage.
+context: The trigger context containing the input arguments.
+Returns:
+str: The content of the snippet or an error message.
+"""
+snippet_content = file.read().decode("utf-8")
+logging.info(f"Retrieved snippet: {snippet_content}")
+return snippet_content
+```
+
+
+For the complete code example, see [function_app.py](https://github.com/Azure-Samples/remote-mcp-functions-python/blob/main/src/function_app.py).
+
+Important
+
+The MCP extension doesn't currently support PowerShell apps.
+
+## Attributes
+
+C# libraries use `McpToolTriggerAttribute`
+
+to define the function trigger.
+
+The attribute's constructor takes the following parameters:
+
+| Parameter | Description |
+|---|---|
+ToolName |
+(Required) name of the tool that's being exposed by the MCP trigger endpoint. |
+Description |
+(Optional) friendly description of the tool endpoint for clients. |
+
+See [Usage](#usage) to learn how to define properties of the endpoint as input parameters.
+
+## Annotations
+
+The `@McpToolTrigger`
+
+annotation creates a function that exposes a tool endpoint in your remote MCP server.
+
+The annotation supports the following configuration options:
+
+| Parameter | Description |
+|---|---|
+name |
+(Required) name of the tool that's being exposed by the MCP trigger endpoint. |
+description |
+(Optional) friendly description of the tool endpoint for clients. |
+
+The `@McpToolProperty`
+
+annotation defines individual properties for your tools. Each property parameter in your function should be annotated with this annotation.
+
+The `@McpToolProperty`
+
+annotation supports the following configuration options:
+
+| Parameter | Description |
+|---|---|
+name |
+(Required) name of the tool property that gets exposed to clients. |
+propertyType |
+(Required) type of the tool property. Valid types are: `string` , `number` , `integer` , `boolean` , `object` . |
+description |
+(Optional) description of what the tool property does. |
+required |
+(Optional) if set to `true` , the tool property is required as an argument for tool calls. Defaults to `false` . |
+
+## Decorators
+
+*Applies only to the Python v2 programming model.*
+
+The `mcp_tool_trigger`
+
+decorator requires version 1.24.0 or later of the [ azure-functions package](https://pypi.org/project/azure-functions/). The following MCP trigger properties are supported on
+
+`mcp_tool_trigger`
+
+:| Property | Description |
+|---|---|
+arg_name |
+The variable name (usually `context` ) used in function code to access the execution context. |
+tool_name |
+(Required) The name of the MCP server tool exposed by the function endpoint. |
+description |
+A description of the MCP server tool exposed by the function endpoint. |
+tool_properties |
+The JSON string representation of one or more property objects that expose properties of the tool to clients. |
+
+## Configuration
+
+The trigger supports these binding options, which are defined in your code:
+
+| Options | Description |
+|---|---|
+type |
+Must be set to `mcpToolTrigger` . Only used with generic definitions. |
+toolName |
+(Required) The name of the MCP server tool exposed by the function endpoint. |
+description |
+A description of the MCP server tool exposed by the function endpoint. |
+toolProperties |
+An array of `toolProperty` objects that expose properties of the tool to clients. |
+extraOutputs |
+When defined, sends function output to another binding. |
+handler |
+The method that contains the actual function code. |
+
+See the [Example section](#example) for complete examples.
+
+## Usage
+
+The MCP tool trigger can bind to the following types:
+
+| Type | Description |
+|---|---|
+|
+
+[define tool properties](#tool-properties).When binding to a JSON serializable type, you can optionally also include a parameter of type
+
+[ToolInvocationContext](https://github.com/Azure/azure-functions-mcp-extension/blob/main/src/Microsoft.Azure.Functions.Worker.Extensions.Mcp/Abstractions/ToolInvocationContext.cs)to access the tool call information.### Tool properties
+
+MCP clients invoke tools with arguments to provide data and context for the tool's operation. The clients know how to collect and pass these arguments based on properties that the tool advertises as part of the protocol. You therefore need to define properties of the tool in your function code.
+
+When you define a tool property, it's optional by default, and the client can omit it when invoking the tool. You need to explicitly mark properties as required if the tool can't operate without them.
+
+Note
+
+Earlier versions of the MCP extension preview made all tool properties required by default. This behavior changed as of version `1.0.0-preview.7`
+
+, and now you must explicitly mark properties as required.
+
+In C#, you can define properties for your tools in several ways. Which approach you use is a matter of code style preference. The options are:
+
+- Your function takes input parameters using the
+`McpToolProperty`
+
+attribute. - You define a custom type with the properties, and the function binds to that type.
+- You use the
+`FunctionsApplicationBuilder`
+
+to define properties in your`Program.cs`
+
+file.
+
+You can define one or more tool properties by applying the `McpToolProperty`
+
+attribute to input binding-style parameters in your function.
+
+The `McpToolPropertyAttribute`
+
+type supports these properties:
+
+| Property | Description |
+|---|---|
+PropertyName |
+Name of the tool property that gets exposed to clients. |
+Description |
+Description of what the tool property does. |
+IsRequired |
+(Optional) If set to `true` , the tool property is required as an argument for tool calls. Defaults to `false` . |
+
+The property type is inferred from the type of the parameter to which you apply the attribute. For example `[McpToolProperty("snippetname", "The name of the snippet.", true)] string name`
+
+defines a required tool property named `snippetname`
+
+of type `string`
+
+in MCP messages.
+
+You can see these attributes used in the `SaveSnippet`
+
+tool in the [Examples](#example).
+
+In Java, you define tool properties by using the `@McpToolProperty`
+
+annotation on individual function parameters. Each parameter that represents a tool property should be annotated with this annotation, specifying the property name, type, description, and whether it's required.
+
+You can see these annotations used in the [Examples](#example).
+
+You can configure tool properties in the trigger definition's `toolProperties`
+
+field, which is a string representation of an array of `ToolProperty`
+
+objects.
+
+A `ToolProperty`
+
+object has this structure:
+
+```
+{
+"propertyName": "Name of the property",
+"propertyType": "Type of the property",
+"description": "Optional property description",
+"isRequired": true|false,
+"isArray": true|false
+}
+```
+
+
+The fields of a `ToolProperty`
+
+object are:
+
+| Property | Description |
+|---|---|
+propertyName |
+Name of the tool property that gets exposed to clients. |
+propertyType |
+Type of the tool property. Valid types are: `string` , `number` , `integer` , `boolean` , `object` . See `isArray` for array types. |
+description |
+Description of what the tool property does. |
+isRequired |
+(Optional) If set to `true` , the tool property is required as an argument for tool calls. Defaults to `false` . |
+isArray |
+(Optional) If set to `true` , the tool property is an array of the specified property type. Defaults to `false` . |
+
+You can provide the `toolProperties`
+
+field as an array of `ToolProperty`
+
+objects, or you can use the `arg`
+
+helpers from `@azure/functions`
+
+to define properties in a more type-safe way:
+
+```
+toolProperties: {
+[SNIPPET_NAME_PROPERTY_NAME]: arg.string().describe(SNIPPET_NAME_PROPERTY_DESCRIPTION)
+}
+```
+
+
+For more information, see [Examples](#example).
+
+## host.json settings
+
+The host.json file contains settings that control MCP trigger behaviors. See the [host.json settings](functions-bindings-mcp#hostjson-settings) section for details regarding available settings.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-twilio -->
+
+# Twilio binding for Azure Functions
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This article explains how to send text messages by using [Twilio](https://www.twilio.com/) bindings in Azure Functions. Azure Functions supports output bindings for Twilio.
+
+This is reference information for Azure Functions developers. If you're new to Azure Functions, start with the following resources:
+
+C# developer references:
+
+
+## Install extension
+
+The extension NuGet package you install depends on the C# mode you're using in your function app:
+
+Functions execute in an isolated C# worker process. To learn more, see [Guide for running C# Azure Functions in an isolated worker process](dotnet-isolated-process-guide).
+
+The functionality of the extension varies depending on the extension version:
+
+There is currently no support for Twilio for an isolated worker process app.
+
+## Install bundle
+
+To be able to use this binding extension in your app, make sure that the *host.json* file in the root of your project contains this `extensionBundle`
+
+reference:
+
+```
+{
+"version": "2.0",
+"extensionBundle": {
+"id": "Microsoft.Azure.Functions.ExtensionBundle",
+"version": "[4.0.0, 5.0.0)"
+}
+}
+```
+
+
+In this example, the `version`
+
+value of `[4.0.0, 5.0.0)`
+
+instructs the Functions host to use a bundle version that is at least `4.0.0`
+
+but less than `5.0.0`
+
+, which includes all potential versions of 4.x. This notation effectively maintains your app on the latest available minor version of the v4.x extension bundle.
+
+When possible, you should use the latest extension bundle major version and allow the runtime to automatically maintain the latest minor version. You can view the contents of the latest bundle on the [extension bundles release page](https://github.com/Azure/azure-functions-extension-bundles/releases/latest). For more information, see [Azure Functions extension bundles](extension-bundles).
+
+## Example
+
+Unless otherwise noted, these examples are specific to version 2.x and later version of the Functions runtime.
+
+You can create a C# function by using one of the following C# modes:
+
+[Isolated worker model](dotnet-isolated-process-guide): Compiled C# function that runs in a worker process that's isolated from the runtime. An isolated worker process is required to support C# functions running on long-term support (LTS) and non-LTS versions for .NET and the .NET Framework.[In-process model](functions-dotnet-class-library): Compiled C# function that runs in the same process as the Azure Functions runtime.[C# script](functions-reference-csharp): Used primarily when you create C# functions in the Azure portal.
+
+Important
+
+[Support will end for the in-process model on November 10, 2026](https://aka.ms/azure-functions-retirements/in-process-model). We highly recommend that you [migrate your apps to the isolated worker model](/en-us/azure/azure-functions/migrate-dotnet-to-isolated-model) for full support.
+
+The Twilio binding isn't currently supported for a function app running in an isolated worker process.
+
+The following example shows a Twilio output binding in a *function.json* file and a [JavaScript function](functions-reference-node) that uses the binding.
+
+Here's binding data in the *function.json* file:
+
+Example function.json:
+
+```
+{
+"type": "twilioSms",
+"name": "message",
+"accountSidSetting": "TwilioAccountSid",
+"authTokenSetting": "TwilioAuthToken",
+"from": "+1425XXXXXXX",
+"direction": "out",
+"body": "Azure Functions Testing"
+}
+```
+
+
+Here's the JavaScript code:
+
+```
+module.exports = async function (context, myQueueItem) {
+context.log('Node.js queue trigger function processed work item', myQueueItem);
+// In this example the queue item is a JSON string representing an order that contains the name of a
+// customer and a mobile number to send text updates to.
+var msg = "Hello " + myQueueItem.name + ", thank you for your order.";
+// Even if you want to use a hard coded message in the binding, you must at least
+// initialize the message binding.
+context.bindings.message = {};
+// A dynamic message can be set instead of the body in the output binding. The "To" number
+// must be specified in code.
+context.bindings.message = {
+body : msg,
+to : myQueueItem.mobileNumber
+};
+};
+```
+
+
+Complete PowerShell examples aren't currently available for SendGrid bindings.
+
+The following example shows how to send an SMS message using the output binding as defined in the following *function.json*.
+
+```
+{
+"type": "twilioSms",
+"name": "twilioMessage",
+"accountSidSetting": "TwilioAccountSID",
+"authTokenSetting": "TwilioAuthToken",
+"from": "+1XXXXXXXXXX",
+"direction": "out",
+"body": "Azure Functions Testing"
+}
+```
+
+
+You can pass a serialized JSON object to the `func.Out`
+
+parameter to send the SMS message.
+
+```
+import logging
+import json
+import azure.functions as func
+def main(req: func.HttpRequest, twilioMessage: func.Out[str]) -> func.HttpResponse:
+message = req.params.get('message')
+to = req.params.get('to')
+value = {
+"body": message,
+"to": to
+}
+twilioMessage.set(json.dumps(value))
+return func.HttpResponse(f"Message sent")
+```
+
+
+The following example shows how to use the [TwilioSmsOutput](/en-us/java/api/com.microsoft.azure.functions.annotation.twiliosmsoutput) annotation to send an SMS message. Values for `to`
+
+, `from`
+
+, and `body`
+
+are required in the attribute definition even if you override them programmatically.
+
+```
+package com.function;
+import java.util.*;
+import com.microsoft.azure.functions.annotation.*;
+import com.microsoft.azure.functions.*;
+public class TwilioOutput {
+@FunctionName("TwilioOutput")
+public HttpResponseMessage run(
+@HttpTrigger(name = "req", methods = { HttpMethod.GET, HttpMethod.POST },
+authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<String>> request,
+@TwilioSmsOutput(
+name = "twilioMessage",
+accountSid = "AzureWebJobsTwilioAccountSID",
+authToken = "AzureWebJobsTwilioAuthToken",
+to = "+1XXXXXXXXXX",
+body = "From Azure Functions",
+from = "+1XXXXXXXXXX") OutputBinding<String> twilioMessage,
+final ExecutionContext context) {
+String message = request.getQueryParameters().get("message");
+String to = request.getQueryParameters().get("to");
+StringBuilder builder = new StringBuilder()
+.append("{")
+.append("\"body\": \"%s\",")
+.append("\"to\": \"%s\"")
+.append("}");
+final String body = String.format(builder.toString(), message, to);
+twilioMessage.setValue(body);
+return request.createResponseBuilder(HttpStatus.OK).body("Message sent").build();
+}
+}
+```
+
+
+## Attributes
+
+Both [in-process](functions-dotnet-class-library) and [isolated worker process](dotnet-isolated-process-guide) C# libraries use attributes to define the output binding. C# script instead uses a [function.json configuration file](#configuration).
+
+The Twilio binding isn't currently supported for a function app running in an isolated worker process.
+
+## Annotations
+
+The [TwilioSmsOutput](/en-us/java/api/com.microsoft.azure.functions.annotation.twiliosmsoutput) annotation allows you to declaratively configure the Twilio output binding by providing the following configuration values:
+
++
+
+Place the [TwilioSmsOutput](/en-us/java/api/com.microsoft.azure.functions.annotation.twiliosmsoutput) annotation on an [ OutputBinding<T>](/en-us/java/api/com.microsoft.azure.functions.outputbinding) parameter, where
+
+`T`
+
+may be any native Java type such as `int`
+
+, `String`
+
+, `byte[]`
+
+, or a POJO type.## Configuration
+
+The following table explains the binding configuration properties that you set in the *function.json* file, which differs by runtime version:
+
+| function.json property | Description |
+|---|---|
+type |
+must be set to `twilioSms` . |
+direction |
+must be set to `out` . |
+name |
+Variable name used in function code for the Twilio SMS text message. |
+accountSidSetting |
+This value must be set to the name of an app setting that holds your Twilio Account Sid (`TwilioAccountSid` ). When not set, the default app setting name is `AzureWebJobsTwilioAccountSid` . |
+authTokenSetting |
+This value must be set to the name of an app setting that holds your Twilio authentication token (`TwilioAccountAuthToken` ). When not set, the default app setting name is `AzureWebJobsTwilioAuthToken` . |
+from |
+This value is set to the phone number that the SMS text is sent from. |
+body |
+This value can be used to hard code the SMS text message if you don't need to set it dynamically in the code for your function. |
+
+In version 2.x, you set the `to`
+
+value in your code.
+
+When you're developing locally, add your application settings in the [local.settings.json file](functions-develop-local#local-settings-file) in the `Values`
+
+collection.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-rabbitmq-output -->
+
+# RabbitMQ output binding for Azure Functions overview
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Use the RabbitMQ output binding to send messages to a RabbitMQ queue.
+
+Note
+
+The RabbitMQ bindings are only fully supported on [Elastic Premium](functions-premium-plan) and [Dedicated (App Service)](dedicated-plan) plans. [Flex Consumption](flex-consumption-plan) and [Consumption](consumption-plan) plans aren't yet supported.
+
+RabbitMQ bindings aren't supported by the Azure Functions v1.x runtime.
+
+For information on setup and configuration details, see the [overview](functions-bindings-rabbitmq-output).
+
+## Example
+
+You can create a C# function by using one of the following C# modes:
+
+[Isolated worker model](dotnet-isolated-process-guide): Compiled C# function that runs in a worker process that's isolated from the runtime. An isolated worker process is required to support C# functions running on long-term support (LTS) and non-LTS versions for .NET and the .NET Framework.[In-process model](functions-dotnet-class-library): Compiled C# function that runs in the same process as the Azure Functions runtime.[C# script](functions-reference-csharp): Used primarily when you create C# functions in the Azure portal.
+
+Important
+
+[Support will end for the in-process model on November 10, 2026](https://aka.ms/azure-functions-retirements/in-process-model). We highly recommend that you [migrate your apps to the isolated worker model](/en-us/azure/azure-functions/migrate-dotnet-to-isolated-model) for full support.
+
+```
+[Function(nameof(RabbitMQFunction))]
+[RabbitMQOutput(QueueName = "destinationQueue", ConnectionStringSetting = "RabbitMQConnection")]
+public static string Run([RabbitMQTrigger("queue", ConnectionStringSetting = "RabbitMQConnection")] string item,
+FunctionContext context)
+{
+var logger = context.GetLogger(nameof(RabbitMQFunction));
+logger.LogInformation(item);
+var message = $"Output message created at {DateTime.Now}";
+return message;
+}
+```
+
+
+The following Java function uses the `@RabbitMQOutput`
+
+annotation from the [Java RabbitMQ types](https://mvnrepository.com/artifact/com.microsoft.azure.functions/azure-functions-java-library-rabbitmq) to describe the configuration for a RabbitMQ queue output binding. The function sends a message to the RabbitMQ queue when triggered by a TimerTrigger every 5 minutes.
+
+```
+@FunctionName("RabbitMQOutputExample")
+public void run(
+@TimerTrigger(name = "keepAliveTrigger", schedule = "0 */5 * * * *") String timerInfo,
+@RabbitMQOutput(connectionStringSetting = "rabbitMQConnectionAppSetting", queueName = "hello") OutputBinding<String> output,
+final ExecutionContext context) {
+output.setValue("Some string");
+}
+```
+
+
+The following example shows a RabbitMQ output binding in a *function.json* file and a [JavaScript function](functions-reference-node) that uses the binding. The function reads in the message from an HTTP trigger and outputs it to the RabbitMQ queue.
+
+Here's the binding data in the *function.json* file:
+
+```
+{
+"bindings": [
+{
+"type": "httpTrigger",
+"direction": "in",
+"authLevel": "function",
+"name": "input",
+"methods": [
+"get",
+"post"
+]
+},
+{
+"type": "rabbitMQ",
+"name": "outputMessage",
+"queueName": "outputQueue",
+"connectionStringSetting": "rabbitMQConnectionAppSetting",
+"direction": "out"
+}
+]
+}
+```
+
+
+Here's JavaScript code:
+
+```
+module.exports = async function (context, input) {
+context.bindings.outputMessage = input.body;
+};
+```
+
+
+The following example shows a RabbitMQ output binding in a *function.json* file and a Python function that uses the binding. The function reads in the message from an HTTP trigger and outputs it to the RabbitMQ queue.
+
+Here's the binding data in the *function.json* file:
+
+```
+{
+"scriptFile": "__init__.py",
+"bindings": [
+{
+"authLevel": "function",
+"type": "httpTrigger",
+"direction": "in",
+"name": "req",
+"methods": [
+"get",
+"post"
+]
+},
+{
+"type": "http",
+"direction": "out",
+"name": "$return"
+},
+{
+"type": "rabbitMQ",
+"name": "outputMessage",
+"queueName": "outputQueue",
+"connectionStringSetting": "rabbitMQConnectionAppSetting",
+"direction": "out"
+}
+]
+}
+```
+
+
+In * _init_.py*:
+
+```
+import azure.functions as func
+def main(req: func.HttpRequest, outputMessage: func.Out[str]) -> func.HttpResponse:
+input_msg = req.params.get('message')
+outputMessage.set(input_msg)
+return 'OK'
+```
+
+
+## Attributes
+
+Both [isolated worker process](dotnet-isolated-process-guide) and [in-process](functions-dotnet-class-library) C# libraries use an attribute to define an output binding that writes to a RabbitMQ queue.
+
+The `RabbitMQOutputAttribute`
+
+constructor accepts these parameters:
+
+| Parameter | Description |
+|---|---|
+QueueName |
+Name of the queue from which to receive messages. |
+HostName |
+This parameter is no longer supported and is ignored. It will be removed in a future version. |
+ConnectionStringSetting |
+The name of the app setting that contains the connection string for your RabbitMQ server. This setting only takes an app setting key name, you can't directly set a connection string value. For more information, see
+|
+
+**UserNameSetting****PasswordSetting****Port**`5672`
+
+.**DisableCertificateValidation**## Annotations
+
+The `RabbitMQOutput`
+
+annotation allows you to create a function that runs when a RabbitMQ message is created.
+
+The annotation supports the following configuration settings:
+
+| Setting | Description |
+|---|---|
+queueName |
+Name of the queue from which to receive messages. |
+connectionStringSetting |
+The name of the app setting that contains the connection string for your RabbitMQ server. This setting only takes an app setting key name, you can't directly set a connection string value. For more information, see
+|
+
+**disableCertificateValidation**## Configuration
+
+The following table explains the binding configuration properties that you set in the *function.json* file.
+
+| function.json property | Description |
+|---|---|
+type |
+Must be set to `RabbitMQ` . |
+direction |
+Must be set to `out` . |
+name |
+The name of the variable that represents the queue in function code. |
+queueName |
+Name of the queue to send messages to. |
+connectionStringSetting |
+The name of the app setting that contains the connection string for your RabbitMQ server. This setting only takes an app setting key name, you can't directly set a connection string value. For more information, see
+|
+
+**disableCertificateValidation**When you're developing locally, add your application settings in the [local.settings.json file](functions-develop-local#local-settings-file) in the `Values`
+
+collection.
+
+See the [Example section](#example) for complete examples.
+
+## Usage
+
+The parameter type supported by the RabbitMQ trigger depends on the Functions runtime version, the extension package version, and the C# modality used.
+
+The RabbitMQ bindings currently support only string and serializable object types when running in an isolated worker process.
+
+Use the following parameter types for the output binding:
+
+`byte[]`
+
+- If the parameter value is null when the function exits, Functions doesn't create a message.`string`
+
+- If the parameter value is null when the function exits, Functions doesn't create a message.`POJO`
+
+- If the parameter value isn't formatted as a Java object, an error will be received.
+
+The queue message is available via `context.bindings.<NAME>`
+
+where `<NAME>`
+
+matches the name defined in function.json. If the payload is JSON, the value is deserialized into an object.
+
+### Connections
+
+Important
+
+The RabbitMQ binding doesn't support Microsoft Entra authentication and managed identities. You can use Azure Key Vault to centrally managed your RabbitMQ connection strings. To learn more, see [Manage Connections](manage-connections).
+
+Starting with version 2.x of the extension, `hostName`
+
+, `userNameSetting`
+
+, and `passwordSetting`
+
+are no longer supported to define a connection to the RabbitMQ server. You must instead use `connectionStringSetting`
+
+.
+
+The `connectionStringSetting`
+
+property can only accept the name of a key-value pair in app settings. You can't directly set a connection string value in the binding.
+
+For example, when you have set `connectionStringSetting`
+
+to `rabbitMQConnection`
+
+in your binding definition, your function app must have an app setting named `rabbitMQConnection`
+
+that returns either a connection value like `amqp://myuser:***@contoso.rabbitmq.example.com:5672`
+
+or an [Azure Key Vault reference](../app-service/app-service-key-vault-references).
+
+When running locally, you must also have the key value for `connectionStringSetting`
+
+defined in your *local.settings.json* file. Otherwise, your app can't connect to the service from your local computer and an error occurs.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-kafka-trigger -->
+
+# Apache Kafka trigger for Azure Functions
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Use the Apache Kafka trigger in Azure Functions to run your function code in response to messages in Kafka topics. You can also use a [Kafka output binding](functions-bindings-kafka-output) to write from your function to a topic. For information on setup and configuration details, see [Apache Kafka bindings for Azure Functions overview](functions-bindings-kafka).
+
+Important
+
+Kafka bindings are available for Functions on the [Flex Consumption plan](flex-consumption-plan), [Elastic Premium Plan](functions-premium-plan), and [Dedicated (App Service) plan](dedicated-plan). They are only supported on version 4.x of the Functions runtime.
+
+## Example
+
+The usage of the trigger depends on the C# modality used in your function app, which can be one of the following modes:
+
+A compiled C# function that uses an [isolated worker process class library](dotnet-isolated-process-guide) that runs in a process that's separate from the runtime.
+
+The attributes you use depend on the specific event provider.
+
+The following example shows a C# function that reads and logs the Kafka message as a Kafka event:
+
+```
+[Function("KafkaTrigger")]
+public static void Run(
+[KafkaTrigger("BrokerList",
+"topic",
+Username = "ConfluentCloudUserName",
+Password = "ConfluentCloudPassword",
+Protocol = BrokerProtocol.SaslSsl,
+AuthenticationMode = BrokerAuthenticationMode.Plain,
+ConsumerGroup = "$Default")] string eventData, FunctionContext context)
+{
+var logger = context.GetLogger("KafkaFunction");
+logger.LogInformation($"C# Kafka trigger function processed a message: {JObject.Parse(eventData)["Value"]}");
+}
+```
+
+
+To receive events in a batch, use a string array as input, as shown in the following example:
+
+```
+[Function("KafkaTriggerMany")]
+public static void Run(
+[KafkaTrigger("BrokerList",
+"topic",
+Username = "ConfluentCloudUserName",
+Password = "ConfluentCloudPassword",
+Protocol = BrokerProtocol.SaslSsl,
+AuthenticationMode = BrokerAuthenticationMode.Plain,
+ConsumerGroup = "$Default",
+IsBatched = true)] string[] events, FunctionContext context)
+{
+foreach (var kevent in events)
+{
+var logger = context.GetLogger("KafkaFunction");
+logger.LogInformation($"C# Kafka trigger function processed a message: {JObject.Parse(kevent)["Value"]}");
+}
+```
+
+
+The following function logs the message and headers for the Kafka Event:
+
+```
+[Function("KafkaTriggerWithHeaders")]
+public static void Run(
+[KafkaTrigger("BrokerList",
+"topic",
+Username = "ConfluentCloudUserName",
+Password = "ConfluentCloudPassword",
+Protocol = BrokerProtocol.SaslSsl,
+AuthenticationMode = BrokerAuthenticationMode.Plain,
+ConsumerGroup = "$Default")] string eventData, FunctionContext context)
+{
+var eventJsonObject = JObject.Parse(eventData);
+var logger = context.GetLogger("KafkaFunction");
+logger.LogInformation($"C# Kafka trigger function processed a message: {eventJsonObject["Value"]}");
+var headersJArr = eventJsonObject["Headers"] as JArray;
+logger.LogInformation("Headers for this event: ");
+foreach (JObject header in headersJArr)
+{
+logger.LogInformation($"{header["Key"]} {System.Text.Encoding.UTF8.GetString((byte[])header["Value"])}");
+}
+}
+```
+
+
+For a complete set of working .NET examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/dotnet-isolated/).
+
+The usage of the trigger depends on your version of the Node.js programming model.
+
+In the Node.js v4 model, you define your trigger directly in your function code. For more information, see the [Azure Functions Node.js developer guide](functions-reference-node?pivots=nodejs-model-v4).
+
+In these examples, the event providers are either Confluent or Azure Event Hubs. These examples show how to define a Kafka trigger for a function that reads a Kafka message.
+
+```
+const { app } = require("@azure/functions");
+async function kafkaTrigger(event, context) {
+context.log("Event Offset: " + event.Offset);
+context.log("Event Partition: " + event.Partition);
+context.log("Event Topic: " + event.Topic);
+context.log("Event Timestamp: " + event.Timestamp);
+context.log("Event Key: " + event.Key);
+context.log("Event Value (as string): " + event.Value);
+let event_obj = JSON.parse(event.Value);
+context.log("Event Value Object: ");
+context.log(" Value.registertime: ", event_obj.registertime.toString());
+context.log(" Value.userid: ", event_obj.userid);
+context.log(" Value.regionid: ", event_obj.regionid);
+context.log(" Value.gender: ", event_obj.gender);
+}
+app.generic("Kafkatrigger", {
+trigger: {
+type: "kafkaTrigger",
+direction: "in",
+name: "event",
+topic: "topic",
+brokerList: "%BrokerList%",
+username: "%ConfluentCloudUserName%",
+password: "%ConfluentCloudPassword%",
+consumerGroup: "$Default",
+protocol: "saslSsl",
+authenticationMode: "plain",
+dataType: "string"
+},
+handler: kafkaTrigger,
+});
+```
+
+
+To receive events in a batch, set the `cardinality`
+
+value to `many`
+
+, as shown in these examples:
+
+```
+const { app } = require("@azure/functions");
+async function kafkaTriggerMany(events, context) {
+for (const event of events) {
+context.log("Event Offset: " + event.Offset);
+context.log("Event Partition: " + event.Partition);
+context.log("Event Topic: " + event.Topic);
+context.log("Event Key: " + event.Key);
+context.log("Event Timestamp: " + event.Timestamp);
+context.log("Event Value (as string): " + event.Value);
+let event_obj = JSON.parse(event.Value);
+context.log("Event Value Object: ");
+context.log(" Value.registertime: ", event_obj.registertime.toString());
+context.log(" Value.userid: ", event_obj.userid);
+context.log(" Value.regionid: ", event_obj.regionid);
+context.log(" Value.gender: ", event_obj.gender);
+}
+}
+app.generic("kafkaTriggerMany", {
+trigger: {
+type: "kafkaTrigger",
+direction: "in",
+name: "event",
+topic: "topic",
+brokerList: "%BrokerList%",
+username: "%ConfluentCloudUserName%",
+password: "%ConfluentCloudPassword%",
+consumerGroup: "$Default",
+protocol: "saslSsl",
+authenticationMode: "plain",
+dataType: "string",
+cardinality: "MANY"
+},
+handler: kafkaTriggerMany,
+});
+```
+
+
+You can define a generic [Avro schema](http://avro.apache.org/docs/current/) for the event passed to the trigger. This example defines the trigger for the specific provider with a generic Avro schema:
+
+```
+const { app } = require("@azure/functions");
+async function kafkaAvroGenericTrigger(event, context) {
+context.log("Processed kafka event: ", event);
+if (context.triggerMetadata?.key !== undefined) {
+context.log("message key: ", context.triggerMetadata?.key);
+}
+}
+app.generic("kafkaAvroGenericTrigger", {
+trigger: {
+type: "kafkaTrigger",
+direction: "in",
+name: "event",
+protocol: "SASLSSL",
+password: "EventHubConnectionString",
+dataType: "string",
+topic: "topic",
+authenticationMode: "PLAIN",
+avroSchema:
+'{"type":"record","name":"Payment","namespace":"io.confluent.examples.clients.basicavro","fields":[{"name":"id","type":"string"},{"name":"amount","type":"double"},{"name":"type","type":"string"}]}',
+consumerGroup: "$Default",
+username: "$ConnectionString",
+brokerList: "%BrokerList%",
+},
+handler: kafkaAvroGenericTrigger,
+});
+```
+
+
+For a complete set of working JavaScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/javascript-v4/src/functions).
+
+```
+import { app, InvocationContext } from "@azure/functions";
+// This is a sample interface that describes the actual data in your event.
+interface EventData {
+registertime: number;
+userid: string;
+regionid: string;
+gender: string;
+}
+export async function kafkaTrigger(
+event: any,
+context: InvocationContext
+): Promise<void> {
+context.log("Event Offset: " + event.Offset);
+context.log("Event Partition: " + event.Partition);
+context.log("Event Topic: " + event.Topic);
+context.log("Event Timestamp: " + event.Timestamp);
+context.log("Event Value (as string): " + event.Value);
+let event_obj: EventData = JSON.parse(event.Value);
+context.log("Event Value Object: ");
+context.log(" Value.registertime: ", event_obj.registertime.toString());
+context.log(" Value.userid: ", event_obj.userid);
+context.log(" Value.regionid: ", event_obj.regionid);
+context.log(" Value.gender: ", event_obj.gender);
+}
+app.generic("Kafkatrigger", {
+trigger: {
+type: "kafkaTrigger",
+direction: "in",
+name: "event",
+topic: "topic",
+brokerList: "%BrokerList%",
+username: "%ConfluentCloudUserName%",
+password: "%ConfluentCloudPassword%",
+consumerGroup: "$Default",
+protocol: "saslSsl",
+authenticationMode: "plain",
+dataType: "string"
+},
+handler: kafkaTrigger,
+});
+```
+
+
+To receive events in a batch, set the `cardinality`
+
+value to `many`
+
+, as shown in these examples:
+
+```
+import { app, InvocationContext } from "@azure/functions";
+// This is a sample interface that describes the actual data in your event.
+interface EventData {
+registertime: number;
+userid: string;
+regionid: string;
+gender: string;
+}
+interface KafkaEvent {
+Offset: number;
+Partition: number;
+Topic: string;
+Timestamp: number;
+Value: string;
+}
+export async function kafkaTriggerMany(
+events: any,
+context: InvocationContext
+): Promise<void> {
+for (const event of events) {
+context.log("Event Offset: " + event.Offset);
+context.log("Event Partition: " + event.Partition);
+context.log("Event Topic: " + event.Topic);
+context.log("Event Timestamp: " + event.Timestamp);
+context.log("Event Value (as string): " + event.Value);
+let event_obj: EventData = JSON.parse(event.Value);
+context.log("Event Value Object: ");
+context.log(" Value.registertime: ", event_obj.registertime.toString());
+context.log(" Value.userid: ", event_obj.userid);
+context.log(" Value.regionid: ", event_obj.regionid);
+context.log(" Value.gender: ", event_obj.gender);
+}
+}
+app.generic("kafkaTriggerMany", {
+trigger: {
+type: "kafkaTrigger",
+direction: "in",
+name: "event",
+topic: "topic",
+brokerList: "%BrokerList%",
+username: "%ConfluentCloudUserName%",
+password: "%ConfluentCloudPassword%",
+consumerGroup: "$Default",
+protocol: "saslSsl",
+authenticationMode: "plain",
+dataType: "string",
+cardinality: "MANY"
+},
+handler: kafkaTriggerMany,
+});
+```
+
+
+You can define a generic [Avro schema](http://avro.apache.org/docs/current/) for the event passed to the trigger. This example defines the trigger for the specific provider with a generic Avro schema:
+
+```
+import { app, InvocationContext } from "@azure/functions";
+export async function kafkaAvroGenericTrigger(
+event: any,
+context: InvocationContext
+): Promise<void> {
+context.log("Processed kafka event: ", event);
+context.log(
+`Message ID: ${event.id}, amount: ${event.amount}, type: ${event.type}`
+);
+if (context.triggerMetadata?.key !== undefined) {
+context.log(`Message Key : ${context.triggerMetadata?.key}`);
+}
+}
+app.generic("kafkaAvroGenericTrigger", {
+trigger: {
+type: "kafkaTrigger",
+direction: "in",
+name: "event",
+protocol: "SASLSSL",
+username: "ConfluentCloudUsername",
+password: "ConfluentCloudPassword",
+dataType: "string",
+topic: "topic",
+authenticationMode: "PLAIN",
+avroSchema:
+'{"type":"record","name":"Payment","namespace":"io.confluent.examples.clients.basicavro","fields":[{"name":"id","type":"string"},{"name":"amount","type":"double"},{"name":"type","type":"string"}]}',
+consumerGroup: "$Default",
+brokerList: "%BrokerList%",
+},
+handler: kafkaAvroGenericTrigger,
+});
+```
+
+
+For a complete set of working TypeScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/typescript-v4/src/functions).
+
+The specific properties of the `function.json`
+
+file depend on your event provider. In these examples, the event providers are either Confluent or Azure Event Hubs. The following examples show a Kafka trigger for a function that reads and logs a Kafka message.
+
+The following `function.json`
+
+file defines the trigger for the specific provider:
+
+```
+{
+"bindings": [
+{
+"type": "kafkaTrigger",
+"name": "kafkaEvent",
+"direction": "in",
+"protocol" : "SASLSSL",
+"password" : "%ConfluentCloudPassword%",
+"dataType" : "string",
+"topic" : "topic",
+"authenticationMode" : "PLAIN",
+"consumerGroup" : "$Default",
+"username" : "%ConfluentCloudUserName%",
+"brokerList" : "%BrokerList%",
+"sslCaLocation": "confluent_cloud_cacert.pem"
+}
+]
+}
+```
+
+
+The following code runs when the function is triggered:
+
+```
+using namespace System.Net
+param($kafkaEvent, $TriggerMetadata)
+Write-Output "Powershell Kafka trigger function called for message $kafkaEvent.Value"
+```
+
+
+To receive events in a batch, set the `cardinality`
+
+value to `many`
+
+in the function.json file, as shown in the following examples:
+
+```
+{
+"bindings": [
+{
+"type": "kafkaTrigger",
+"name": "kafkaEvent",
+"direction": "in",
+"protocol" : "SASLSSL",
+"password" : "%ConfluentCloudPassword%",
+"dataType" : "string",
+"topic" : "topic",
+"authenticationMode" : "PLAIN",
+"cardinality" : "MANY",
+"consumerGroup" : "$Default",
+"username" : "%ConfluentCloudUserName%",
+"brokerList" : "%BrokerList%",
+"sslCaLocation": "confluent_cloud_cacert.pem"
+}
+]
+}
+```
+
+
+The following code parses the array of events and logs the event data:
+
+```
+using namespace System.Net
+param($kafkaEvents, $TriggerMetadata)
+$kafkaEvents
+foreach ($kafkaEvent in $kafkaEvents) {
+$event = $kafkaEvent | ConvertFrom-Json -AsHashtable
+Write-Output "Powershell Kafka trigger function called for message $event.Value"
+}
+```
+
+
+The following code logs the header data:
+
+```
+using namespace System.Net
+param($kafkaEvents, $TriggerMetadata)
+foreach ($kafkaEvent in $kafkaEvents) {
+$kevent = $kafkaEvent | ConvertFrom-Json -AsHashtable
+Write-Output "Powershell Kafka trigger function called for message $kevent.Value"
+Write-Output "Headers for this message:"
+foreach ($header in $kevent.Headers) {
+$DecodedValue = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($header.Value))
+$Key = $header.Key
+Write-Output "Key: $Key Value: $DecodedValue"
+}
+}
+```
+
+
+You can define a generic [Avro schema](http://avro.apache.org/docs/current/) for the event passed to the trigger. The following function.json defines the trigger for the specific provider with a generic Avro schema:
+
+```
+{
+"bindings" : [ {
+"type" : "kafkaTrigger",
+"direction" : "in",
+"name" : "kafkaEvent",
+"protocol" : "SASLSSL",
+"password" : "ConfluentCloudPassword",
+"topic" : "topic",
+"authenticationMode" : "PLAIN",
+"avroSchema" : "{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"io.confluent.examples.clients.basicavro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"amount\",\"type\":\"double\"},{\"name\":\"type\",\"type\":\"string\"}]}",
+"consumerGroup" : "$Default",
+"username" : "ConfluentCloudUsername",
+"brokerList" : "%BrokerList%"
+} ]
+}
+```
+
+
+The following code runs when the function is triggered:
+
+```
+using namespace System.Net
+param($kafkaEvent, $TriggerMetadata)
+Write-Output "Powershell Kafka trigger function called for message $kafkaEvent.Value"
+```
+
+
+For a complete set of working PowerShell examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/powershell/).
+
+The usage of the trigger depends on your version of the Python programming model.
+
+In the Python v2 model, you define your trigger directly in your function code using decorators. For more information, see the [Azure Functions Python developer guide](functions-reference-python?pivots=python-mode-decorators).
+
+These examples show how to define a Kafka trigger for a function that reads a Kafka message.
+
+```
+@KafkaTrigger.function_name(name="KafkaTrigger")
+@KafkaTrigger.kafka_trigger(
+arg_name="kevent",
+topic="KafkaTopic",
+broker_list="KafkaBrokerList",
+username="KafkaUsername",
+password="KafkaPassword",
+protocol="SaslSsl",
+authentication_mode="Plain",
+consumer_group="$Default1")
+def kafka_trigger(kevent : func.KafkaEvent):
+logging.info(kevent.get_body().decode('utf-8'))
+logging.info(kevent.metadata)
+```
+
+
+This example receives events in a batch by setting the `cardinality`
+
+value to `many`
+
+.
+
+```
+@KafkaTrigger.function_name(name="KafkaTriggerMany")
+@KafkaTrigger.kafka_trigger(
+arg_name="kevents",
+topic="KafkaTopic",
+broker_list="KafkaBrokerList",
+username="KafkaUsername",
+password="KafkaPassword",
+protocol="SaslSsl",
+authentication_mode="Plain",
+cardinality="MANY",
+data_type="string",
+consumer_group="$Default2")
+def kafka_trigger_many(kevents : typing.List[func.KafkaEvent]):
+for event in kevents:
+logging.info(event.get_body())
+```
+
+
+You can define a generic [Avro schema](http://avro.apache.org/docs/current/) for the event passed to the trigger.
+
+```
+@KafkaTriggerAvro.function_name(name="KafkaTriggerAvroOne")
+@KafkaTriggerAvro.kafka_trigger(
+arg_name="kafkaTriggerAvroGeneric",
+topic="KafkaTopic",
+broker_list="KafkaBrokerList",
+username="KafkaUsername",
+password="KafkaPassword",
+protocol="SaslSsl",
+authentication_mode="Plain",
+consumer_group="$Default",
+avro_schema= "{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"io.confluent.examples.clients.basicavro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"amount\",\"type\":\"double\"},{\"name\":\"type\",\"type\":\"string\"}]}")
+def kafka_trigger_avro_one(kafkaTriggerAvroGeneric : func.KafkaEvent):
+logging.info(kafkaTriggerAvroGeneric.get_body().decode('utf-8'))
+logging.info(kafkaTriggerAvroGeneric.metadata)
+```
+
+
+For a complete set of working Python examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/python-v2/).
+
+The annotations you use to configure your trigger depend on the specific event provider.
+
+The following example shows a Java function that reads and logs the content of the Kafka event:
+
+```
+@FunctionName("KafkaTrigger")
+public void runSingle(
+@KafkaTrigger(
+name = "KafkaTrigger",
+topic = "topic",
+brokerList="%BrokerList%",
+consumerGroup="$Default",
+username = "%ConfluentCloudUsername%",
+password = "ConfluentCloudPassword",
+authenticationMode = BrokerAuthenticationMode.PLAIN,
+protocol = BrokerProtocol.SASLSSL,
+// sslCaLocation = "confluent_cloud_cacert.pem", // Enable this line for windows.
+dataType = "string"
+) String kafkaEventData,
+final ExecutionContext context) {
+context.getLogger().info(kafkaEventData);
+}
+```
+
+
+To receive events in a batch, use an input string as an array, as shown in the following example:
+
+```
+@FunctionName("KafkaTriggerMany")
+public void runMany(
+@KafkaTrigger(
+name = "kafkaTriggerMany",
+topic = "topic",
+brokerList="%BrokerList%",
+consumerGroup="$Default",
+username = "%ConfluentCloudUsername%",
+password = "ConfluentCloudPassword",
+authenticationMode = BrokerAuthenticationMode.PLAIN,
+protocol = BrokerProtocol.SASLSSL,
+// sslCaLocation = "confluent_cloud_cacert.pem", // Enable this line for windows.
+cardinality = Cardinality.MANY,
+dataType = "string"
+) String[] kafkaEvents,
+final ExecutionContext context) {
+for (String kevent: kafkaEvents) {
+context.getLogger().info(kevent);
+}
+}
+```
+
+
+The following function logs the message and headers for the Kafka Event:
+
+```
+@FunctionName("KafkaTriggerManyWithHeaders")
+public void runSingle(
+@KafkaTrigger(
+name = "KafkaTrigger",
+topic = "topic",
+brokerList="%BrokerList%",
+consumerGroup="$Default",
+username = "%ConfluentCloudUsername%",
+password = "ConfluentCloudPassword",
+authenticationMode = BrokerAuthenticationMode.PLAIN,
+protocol = BrokerProtocol.SASLSSL,
+// sslCaLocation = "confluent_cloud_cacert.pem", // Enable this line for windows.
+dataType = "string",
+cardinality = Cardinality.MANY
+) List<String> kafkaEvents,
+final ExecutionContext context) {
+Gson gson = new Gson();
+for (String keventstr: kafkaEvents) {
+KafkaEntity kevent = gson.fromJson(keventstr, KafkaEntity.class);
+context.getLogger().info("Java Kafka trigger function called for message: " + kevent.Value);
+context.getLogger().info("Headers for the message:");
+for (KafkaHeaders header : kevent.Headers) {
+String decodedValue = new String(Base64.getDecoder().decode(header.Value));
+context.getLogger().info("Key:" + header.Key + " Value:" + decodedValue);
+}
+}
+}
+```
+
+
+You can define a generic [Avro schema](http://avro.apache.org/docs/current/) for the event passed to the trigger. The following function defines a trigger for the specific provider with a generic Avro schema:
+
+```
+private static final String schema = "{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"io.confluent.examples.clients.basicavro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"amount\",\"type\":\"double\"},{\"name\":\"type\",\"type\":\"string\"}]}";
+@FunctionName("KafkaAvroGenericTrigger")
+public void runOne(
+@KafkaTrigger(
+name = "kafkaAvroGenericSingle",
+topic = "topic",
+brokerList="%BrokerList%",
+consumerGroup="$Default",
+username = "ConfluentCloudUsername",
+password = "ConfluentCloudPassword",
+avroSchema = schema,
+authenticationMode = BrokerAuthenticationMode.PLAIN,
+protocol = BrokerProtocol.SASLSSL) Payment payment,
+final ExecutionContext context) {
+context.getLogger().info(payment.toString());
+}
+```
+
+
+For a complete set of working Java examples for Confluent, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/java/confluent/src/main/java/com/contoso/kafka).
+
+## Attributes
+
+Both [in-process](functions-dotnet-class-library) and [isolated worker process](dotnet-isolated-process-guide) C# libraries use the `KafkaTriggerAttribute`
+
+to define the function trigger.
+
+The following table explains the properties you can set by using this trigger attribute:
+
+| Parameter | Description |
+|---|---|
+BrokerList |
+(Required) The list of Kafka brokers monitored by the trigger. See
+|
+
+**Topic****ConsumerGroup****AvroSchema****KeyAvroSchema****KeyDataType**`KeyAvroSchema`
+
+is set, this value is generic record. Accepted values are `Int`
+
+, `Long`
+
+, `String`
+
+, and `Binary`
+
+.**AuthenticationMode**`NotSet`
+
+(default), `Gssapi`
+
+, `Plain`
+
+, `ScramSha256`
+
+, `ScramSha512`
+
+, and `OAuthBearer`
+
+.**Username**`AuthenticationMode`
+
+is `Gssapi`
+
+. See [Connections](#connections)for more information.**Password**`AuthenticationMode`
+
+is `Gssapi`
+
+. See [Connections](#connections)for more information.**Protocol**`NotSet`
+
+(default), `plaintext`
+
+, `ssl`
+
+, `sasl_plaintext`
+
+, `sasl_ssl`
+
+.**SslCaLocation****SslCertificateLocation****SslKeyLocation****SslKeyPassword****SslCertificatePEM**[Connections](#connections)for more information.**SslKeyPEM**[Connections](#connections)for more information.**SslCaPEM**[Connections](#connections)for more information.**SslCertificateandKeyPEM**[Connections](#connections)for more information.**SchemaRegistryUrl**[Connections](#connections)for more information.**SchemaRegistryUsername**[Connections](#connections)for more information.**SchemaRegistryPassword**[Connections](#connections)for more information.**OAuthBearerMethod**`oidc`
+
+and `default`
+
+.**OAuthBearerClientId**`OAuthBearerMethod`
+
+is set to `oidc`
+
+, this specifies the OAuth bearer client ID. See [Connections](#connections)for more information.**OAuthBearerClientSecret**`OAuthBearerMethod`
+
+is set to `oidc`
+
+, this specifies the OAuth bearer client secret. See [Connections](#connections)for more information.**OAuthBearerScope****OAuthBearerTokenEndpointUrl**`oidc`
+
+method is used. See [Connections](#connections)for more information.**OAuthBearerExtensions**`oidc`
+
+method is used. For example: `supportFeatureX=true,organizationId=sales-emea`
+
+.## Annotations
+
+The `KafkaTrigger`
+
+annotation enables you to create a function that runs when it receives a topic. Supported options include the following elements:
+
+| Element | Description |
+|---|---|
+name |
+(Required) The name of the variable that represents the queue or topic message in function code. |
+brokerList |
+(Required) The list of Kafka brokers monitored by the trigger. See
+|
+
+**topic****cardinality**`ONE`
+
+(default) and `MANY`
+
+. Use `ONE`
+
+when the input is a single message and `MANY`
+
+when the input is an array of messages. When you use `MANY`
+
+, you must also set a `dataType`
+
+.**dataType**`string`
+
+, the input is treated as just a string. When `binary`
+
+, the message is received as binary data, and Functions tries to deserialize it to an actual parameter type byte[].**consumerGroup****avroSchema****authenticationMode**`NotSet`
+
+(default), `Gssapi`
+
+, `Plain`
+
+, `ScramSha256`
+
+, `ScramSha512`
+
+.**username**`AuthenticationMode`
+
+is `Gssapi`
+
+. See [Connections](#connections)for more information.**password**`AuthenticationMode`
+
+is `Gssapi`
+
+. See [Connections](#connections)for more information.**protocol**`NotSet`
+
+(default), `plaintext`
+
+, `ssl`
+
+, `sasl_plaintext`
+
+, `sasl_ssl`
+
+.**sslCaLocation****sslCertificateLocation****sslKeyLocation****sslKeyPassword****lagThreshold****schemaRegistryUrl**[Connections](#connections)for more information.**schemaRegistryUsername**[Connections](#connections)for more information.**schemaRegistryPassword**[Connections](#connections)for more information.## Configuration
+
+The following table explains the binding configuration properties that you set in the *function.json* file.
+
+function.json property |
+Description |
+|---|---|
+type |
+(Required) Set to `kafkaTrigger` . |
+direction |
+(Required) Set to `in` . |
+name |
+(Required) The name of the variable that represents the brokered data in function code. |
+brokerList |
+(Required) The list of Kafka brokers monitored by the trigger. See
+|
+
+**topic****cardinality**`ONE`
+
+(default) and `MANY`
+
+. Use `ONE`
+
+when the input is a single message and `MANY`
+
+when the input is an array of messages. When you use `MANY`
+
+, you must also set a `dataType`
+
+.**dataType**`string`
+
+, the input is treated as just a string. When `binary`
+
+, the message is received as binary data, and Functions tries to deserialize it to an actual byte array parameter type.**consumerGroup****avroSchema****keyAvroSchema****keyDataType**`keyAvroSchema`
+
+is set, this value is generic record. Accepted values are `Int`
+
+, `Long`
+
+, `String`
+
+, and `Binary`
+
+.**authenticationMode**`NotSet`
+
+(default), `Gssapi`
+
+, `Plain`
+
+, `ScramSha256`
+
+, `ScramSha512`
+
+.**username**`AuthenticationMode`
+
+is `Gssapi`
+
+. See [Connections](#connections)for more information.**password**`AuthenticationMode`
+
+is `Gssapi`
+
+. See [Connections](#connections)for more information.**protocol**`NotSet`
+
+(default), `plaintext`
+
+, `ssl`
+
+, `sasl_plaintext`
+
+, `sasl_ssl`
+
+.**sslCaLocation****sslCertificateLocation****sslKeyLocation****sslKeyPassword****sslCertificatePEM**[Connections](#connections)for more information.**sslKeyPEM**[Connections](#connections)for more information.**sslCaPEM**[Connections](#connections)for more information.**sslCertificateandKeyPEM**[Connections](#connections)for more information.**lagThreshold****schemaRegistryUrl**[Connections](#connections)for more information.**schemaRegistryUsername**[Connections](#connections)for more information.**schemaRegistryPassword**[Connections](#connections)for more information.**oAuthBearerMethod**`oidc`
+
+and `default`
+
+.**oAuthBearerClientId**`oAuthBearerMethod`
+
+is set to `oidc`
+
+, this specifies the OAuth bearer client ID. See [Connections](#connections)for more information.**oAuthBearerClientSecret**`oAuthBearerMethod`
+
+is set to `oidc`
+
+, this specifies the OAuth bearer client secret. See [Connections](#connections)for more information.**oAuthBearerScope****oAuthBearerTokenEndpointUrl**`oidc`
+
+method is used. See [Connections](#connections)for more information.## Configuration
+
+The following table explains the binding configuration properties that you set in the *function.json* file. Python uses snake_case naming conventions for configuration properties.
+
+function.json property |
+Description |
+|---|---|
+type |
+(Required) Set to `kafkaTrigger` . |
+direction |
+(Required) Set to `in` . |
+name |
+(Required) The name of the variable that represents the brokered data in function code. |
+broker_list |
+(Required) The list of Kafka brokers monitored by the trigger. See
+|
+
+**topic****cardinality**`ONE`
+
+(default) and `MANY`
+
+. Use `ONE`
+
+when the input is a single message and `MANY`
+
+when the input is an array of messages. When you use `MANY`
+
+, you must also set a `data_type`
+
+.**data_type**`string`
+
+, the input is treated as just a string. When `binary`
+
+, the message is received as binary data, and Functions tries to deserialize it to an actual parameter type byte[].**consumerGroup****avroSchema****authentication_mode**`NOTSET`
+
+(default), `Gssapi`
+
+, `Plain`
+
+, `ScramSha256`
+
+, `ScramSha512`
+
+.**username**`authentication_mode`
+
+is `Gssapi`
+
+. See [Connections](#connections)for more information.**password**`authentication_mode`
+
+is `Gssapi`
+
+. See [Connections](#connections)for more information.**protocol**`NOTSET`
+
+(default), `plaintext`
+
+, `ssl`
+
+, `sasl_plaintext`
+
+, `sasl_ssl`
+
+.**sslCaLocation****sslCertificateLocation****sslKeyLocation****sslKeyPassword****lag_threshold****schema_registry_url**[Connections](#connections)for more information.**schema_registry_username**[Connections](#connections)for more information.**schema_registry_password**[Connections](#connections)for more information.**o_auth_bearer_method**`oidc`
+
+and `default`
+
+.**o_auth_bearer_client_id**`o_auth_bearer_method`
+
+is set to `oidc`
+
+, this specifies the OAuth bearer client ID. See [Connections](#connections)for more information.**o_auth_bearer_client_secret**`o_auth_bearer_method`
+
+is set to `oidc`
+
+, this specifies the OAuth bearer client secret. See [Connections](#connections)for more information.**o_auth_bearer_scope****o_auth_bearer_token_endpoint_url**`oidc`
+
+method is used. See [Connections](#connections)for more information.Note
+
+Certificate PEM-related properties and Avro key-related properties aren't yet available in the Python library.
+
+## Usage
+
+The Kafka trigger currently supports Kafka events as strings and string arrays that are JSON payloads.
+
+The Kafka trigger passes Kafka messages to the function as strings. The trigger also supports string arrays that are JSON payloads.
+
+In a Premium plan, you must enable runtime scale monitoring for the Kafka output to scale out to multiple instances. To learn more, see [Enable runtime scaling](functions-bindings-kafka#enable-runtime-scaling).
+
+You can't use the **Test/Run** feature of the **Code + Test** page in the Azure portal to work with Kafka triggers. You must instead send test events directly to the topic being monitored by the trigger.
+
+For a complete set of supported host.json settings for the Kafka trigger, see [host.json settings](functions-bindings-kafka#hostjson-settings).
+
+## Connections
+
+Store all connection information required by your triggers and bindings in application settings, not in the binding definitions in your code. This guidance applies to credentials, which you should never store in your code.
+
+Important
+
+Credential settings must reference an [application setting](functions-how-to-use-azure-function-app-settings#settings). Don't hard-code credentials in your code or configuration files. When running locally, use the [local.settings.json file](functions-develop-local#local-settings-file) for your credentials, and don't publish the local.settings.json file.
+
+When connecting to a managed Kafka cluster provided by [Confluent in Azure](https://www.confluent.io/azure/), you can use one of the following authentication methods.
+
+Note
+
+When using the Flex Consumption plan, file location-based certificate authentication properties (`SslCaLocation`
+
+, `SslCertificateLocation`
+
+, `SslKeyLocation`
+
+) aren't supported. Instead, use the PEM-based certificate properties (`SslCaPEM`
+
+, `SslCertificatePEM`
+
+, `SslKeyPEM`
+
+, `SslCertificateandKeyPEM`
+
+) or store certificates in Azure Key Vault.
+
+#### Schema Registry
+
+To make use of schema registry provided by Confluent in Kafka Extension, set the following credentials:
+
+| Setting | Recommended Value | Description |
+|---|---|---|
+SchemaRegistryUrl |
+`SchemaRegistryUrl` |
+URL of the schema registry service used for schema management. Usually of the format `https://psrc-xyz.us-east-2.aws.confluent.cloud` |
+SchemaRegistryUsername |
+`CONFLUENT_API_KEY` |
+Username for basic auth on schema registry (if required). |
+SchemaRegistryPassword |
+`CONFLUENT_API_SECRET` |
+Password for basic auth on schema registry (if required). |
+
+#### Username/Password authentication
+
+While using this form of authentication, make sure that `Protocol`
+
+is set to either `SaslPlaintext`
+
+or `SaslSsl`
+
+, `AuthenticationMode`
+
+is set to `Plain`
+
+, `ScramSha256`
+
+or `ScramSha512`
+
+and, if the CA cert being used is different from the default ISRG Root X1 cert, make sure to update `SslCaLocation`
+
+or `SslCaPEM`
+
+.
+
+| Setting | Recommended value | Description |
+|---|---|---|
+BrokerList |
+`BootstrapServer` |
+App setting named `BootstrapServer` contains the value of bootstrap server found in Confluent Cloud settings page. The value resembles `xyz-xyzxzy.westeurope.azure.confluent.cloud:9092` . |
+Username |
+`ConfluentCloudUsername` |
+App setting named `ConfluentCloudUsername` contains the API access key from the Confluent Cloud web site. |
+Password |
+`ConfluentCloudPassword` |
+App setting named `ConfluentCloudPassword` contains the API secret obtained from the Confluent Cloud web site. |
+SslCaPEM |
+`SSLCaPemCertificate` |
+App setting named `SSLCaPemCertificate` that contains the CA certificate as a string in PEM format. The value should follow the standard format, for example: `-----BEGIN CERTIFICATE-----\nMII....JQ==\n-----END CERTIFICATE-----` . |
+
+#### SSL authentication
+
+Ensure that `Protocol`
+
+is set to `SSL`
+
+.
+
+| Setting | Recommended Value | Description |
+|---|---|---|
+BrokerList |
+`BootstrapServer` |
+App setting named `BootstrapServer` contains the value of bootstrap server found in Confluent Cloud settings page. The value resembles `xyz-xyzxzy.westeurope.azure.confluent.cloud:9092` . |
+SslCaPEM |
+`SslCaCertificatePem` |
+App setting named `SslCaCertificatePem` that contains PEM value of the CA certificate as a string. The value should follow the standard format: `-----BEGIN CERTIFICATE-----\nMII...JQ==\n-----END CERTIFICATE-----` |
+SslCertificatePEM |
+`SslClientCertificatePem` |
+App setting named `SslClientCertificatePem` that contains PEM value of the client certificate as a string. The value should follow the standard format: `-----BEGIN CERTIFICATE-----\nMII...JQ==\n-----END CERTIFICATE-----` |
+SslKeyPEM |
+`SslClientKeyPem` |
+App setting named `SslClientKeyPem` that contains PEM value of the client private key as a string. The value should follow the standard format: `-----BEGIN PRIVATE KEY-----\nMII...JQ==\n-----END PRIVATE KEY-----` |
+SslCertificateandKeyPEM |
+`SslClientCertificateAndKeyPem` |
+App setting named `SslClientCertificateAndKeyPem` that contains PEM value of the client certificate and client private key concatenated as a string. The value should follow the standard format: `-----BEGIN CERTIFICATE-----\nMII....JQ==\n-----END CERTIFICATE-----\n-----BEGIN PRIVATE KEY-----\nMIIE....BM=\n-----END PRIVATE KEY-----` |
+SslKeyPassword |
+`SslClientKeyPassword` |
+App setting named `SslClientKeyPassword` that contains the password for the private key (if any). |
+
+#### OAuth authentication
+
+When using OAuth authentication, configure the OAuth-related properties in your binding definitions.
+
+The string values you use for these settings must be present as [application settings in Azure](functions-how-to-use-azure-function-app-settings#settings) or in the `Values`
+
+collection in the [local.settings.json file](functions-develop-local#local-settings-file) during local development.
+
+You should also set the `Protocol`
+
+and `AuthenticationMode`
+
+in your binding definitions.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-app-settings -->
+
+# App settings reference for Azure Functions
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Application settings in a function app contain configuration options that affect all functions for that function app. These settings are accessed as environment variables. This article lists the app settings that are available in function apps.
+
+There are several ways that you can add, update, and delete function app settings:
+
+Changes to function app settings require your function app to be restarted.
+
+In this article, example connection string values are truncated for readability.
+
+Azure Functions uses the Azure App Service platform for hosting. You might find some settings relevant to hosting your function app in [Environment variables and app settings in Azure App Service](../app-service/reference-app-settings).
+
+## App setting considerations
+
+When you use app settings, you should be aware of the following considerations:
+
+Changing application settings causes your function app to restart by default across all hosting plans. For zero-downtime deployments when changing settings, use the
+
+[Flex Consumption plan](flex-consumption-plan)with[rolling updates as the site update strategy](flex-consumption-site-updates). For other hosting plans, see[optimize deployments](functions-best-practices#optimize-deployments)for guidance on minimizing downtime.In setting names, double-underscore (
+
+`__`
+
+) and colon (`:`
+
+) are considered reserved values. Double-underscores are interpreted as hierarchical delimiters on both Windows and Linux. Colons are interpreted in the same way only on Windows. For example, the setting`AzureFunctionsWebHost__hostid=somehost_123456`
+
+would be interpreted as the following JSON object:`"AzureFunctionsWebHost": { "hostid": "somehost_123456" }`
+
+In this article, only double-underscores are used, since they're supported on both operating systems. Most of the settings that support managed identity connections use double-underscores.
+
+When functions runs locally, app settings are specified in the
+
+`Values`
+
+collection in the[local.settings.json](functions-develop-local#local-settings-file).There are other function app configuration options in the
+
+[host.json](functions-host-json)file and in the[local.settings.json](functions-develop-local#local-settings-file)file.You can use application settings to override host.json setting values without having to change the host.json file itself. This approach is helpful for scenarios where you need to configure or modify specific host.json settings for a specific environment. This approach also lets you change host.json settings without having to republish your project. To learn more, see the
+
+[host.json reference article](functions-host-json#override-hostjson-values).This article documents the settings that are most relevant to your function apps. Because Azure Functions runs on App Service, other application settings are also supported. For more information, see
+
+[Environment variables and app settings in Azure App Service](../app-service/reference-app-settings).Some scenarios also require you to work with settings documented in
+
+[App Service site settings](#app-service-site-settings).Changing any
+
+*read-only*[App Service application settings](../app-service/reference-app-settings#app-environment)can put your function app into an unresponsive state.Take care when updating application settings by using REST APIs, including ARM templates. Because these APIs replace the existing application settings, you must include all existing settings when adding or modifying settings using REST APIs or ARM templates. When possible, use Azure CLI or Azure PowerShell to programmatically work with application settings. For more information, see
+
+[Work with application settings](functions-how-to-use-azure-function-app-settings#settings).
+
+## APPINSIGHTS_INSTRUMENTATIONKEY
+
+The instrumentation key for Application Insights. Don't use both `APPINSIGHTS_INSTRUMENTATIONKEY`
+
+and `APPLICATIONINSIGHTS_CONNECTION_STRING`
+
+. When possible, use `APPLICATIONINSIGHTS_CONNECTION_STRING`
+
+. When Application Insights runs in a sovereign cloud, you must use `APPLICATIONINSIGHTS_CONNECTION_STRING`
+
+. For more information, see [How to configure monitoring for Azure Functions](configure-monitoring).
+
+| Key | Sample value |
+|---|---|
+| APPINSIGHTS_INSTRUMENTATIONKEY | `55555555-af77-484b-9032-64f83bb83bb` |
+
+Don't use both `APPINSIGHTS_INSTRUMENTATIONKEY`
+
+and `APPLICATIONINSIGHTS_CONNECTION_STRING`
+
+. We recommend that you use `APPLICATIONINSIGHTS_CONNECTION_STRING`
+
+.
+
+## APPLICATIONINSIGHTS_AUTHENTICATION_STRING
+
+Enables access to Application Insights by using Microsoft Entra authentication. Use this setting when you must connect to your Application Insights workspace by using Microsoft Entra authentication. For more information, see [Microsoft Entra authentication for Application Insights](/en-us/azure/azure-monitor/app/azure-ad-authentication).
+
+When you use `APPLICATIONINSIGHTS_AUTHENTICATION_STRING`
+
+, the specific value that you set depends on the type of managed identity:
+
+| Managed identity | Setting value |
+|---|---|
+| System-assigned | `Authorization=AAD` |
+| User-assigned | `Authorization=AAD;ClientId=<USER_ASSIGNED_CLIENT_ID>` |
+
+This authentication requirement is applied to connections from the Functions host, snapshot debugger, profiler, and any language-specific agents. To use this setting, the managed identity must already be available to the function app, with an assigned role equivalent to [Monitoring Metrics Publisher](/en-us/azure/role-based-access-control/built-in-roles/monitor#monitoring-metrics-publisher).
+
+Note
+
+When using `APPLICATIONINSIGHTS_AUTHENTICATION_STRING`
+
+to connect to Application Insights using Microsoft Entra authentication, you should also [Disable local authentication for Application Insights](/en-us/azure/azure-monitor/app/azure-ad-authentication#disable-local-authentication). This configuration requires Microsoft Entra authentication in order for telemetry to be ingested into your workspace.
+
+## APPLICATIONINSIGHTS_CONNECTION_STRING
+
+The connection string for Application Insights. Don't use both `APPINSIGHTS_INSTRUMENTATIONKEY`
+
+and `APPLICATIONINSIGHTS_CONNECTION_STRING`
+
+. We recommend the use of `APPLICATIONINSIGHTS_CONNECTION_STRING`
+
+in all cases. It's a requirement in the following cases:
+
+- When your function app requires the added customizations supported by using the connection string
+- When your Application Insights instance runs in a sovereign cloud, which requires a custom endpoint
+
+For more information, see [Connection strings](/en-us/azure/azure-monitor/app/sdk-connection-string).
+
+| Key | Sample value |
+|---|---|
+| APPLICATIONINSIGHTS_CONNECTION_STRING | `InstrumentationKey=...` |
+
+To connect to Application Insights with Microsoft Entra authentication, you should use [ APPLICATIONINSIGHTS_AUTHENTICATION_STRING](#applicationinsights_authentication_string).
+
+## AZURE_FUNCTION_PROXY_DISABLE_LOCAL_CALL
+
+Important
+
+Azure Functions proxies was a feature of [versions 1.x through 3.x](functions-versions) of the Azure Functions runtime. For more information, see [Functions proxies](functions-proxies).
+
+## AZURE_FUNCTION_PROXY_BACKEND_URL_DECODE_SLASHES
+
+Important
+
+Azure Functions proxies was a feature of [versions 1.x through 3.x](functions-versions) of the Azure Functions runtime. For more information, see [Functions proxies](functions-proxies).
+
+## AZURE_FUNCTIONS_ENVIRONMENT
+
+Configures the runtime [hosting environment](/en-us/dotnet/api/microsoft.extensions.hosting.environments) of the function app when running in Azure. This value is read during initialization. The runtime accepts only these values:
+
+| Value | Description |
+|---|---|
+`Production` |
+Represents a production environment, with reduced logging and full performance optimizations. This value is the default when `AZURE_FUNCTIONS_ENVIRONMENT` either isn't set or is set to an unsupported value. |
+`Staging` |
+Represents a staging environment, such as when running in a
+|
+
+`Development`
+
+`AZURE_FUNCTIONS_ENVIRONMENT`
+
+to `Development`
+
+when running on your local computer. This setting can't be overridden in the local.settings.json file.Use this setting instead of `ASPNETCORE_ENVIRONMENT`
+
+when you need to change the runtime environment in Azure to something other than `Production`
+
+. For more information, see [Environment-based Startup class and methods](/en-us/aspnet/core/fundamentals/environments#environments).
+
+This setting isn't available in version 1.x of the Functions runtime.
+
+## AzureFunctionsJobHost__*
+
+In version 2.x and later versions of the Functions runtime, application settings can override [host.json](functions-host-json) settings in the current environment. These overrides are expressed as application settings named `AzureFunctionsJobHost__path__to__setting`
+
+. For more information, see [Override host.json values](functions-host-json#override-hostjson-values).
+
+## AzureFunctionsWebHost__hostid
+
+Sets the host ID for a given function app, which should be a unique ID. This setting overrides the automatically generated host ID value for your app. Use this setting only when you need to prevent host ID collisions between function apps that share the same storage account.
+
+A host ID must meet the following requirements:
+
+- Be between 1 and 32 characters
+- Contain only lowercase letters, numbers, and dashes
+- Not start or end with a dash
+- Not contain consecutive dashes
+
+An easy way to generate an ID is to take a GUID, remove the dashes, and make it lower case, such as by converting the GUID `1835D7B5-5C98-4790-815D-072CC94C6F71`
+
+to the value `1835d7b55c984790815d072cc94c6f71`
+
+.
+
+| Key | Sample value |
+|---|---|
+| AzureFunctionsWebHost__hostid | `myuniquefunctionappname123456789` |
+
+For more information, see [Host ID considerations](storage-considerations#host-id-considerations).
+
+## AzureWebJobsDashboard
+
+*This setting is deprecated and is only supported when running on version 1.x of the Azure Functions runtime.*
+
+Optional storage account connection string for storing logs and displaying them in the **Monitor** tab in the Azure portal. The storage account must be a general-purpose one that supports blobs, queues, and tables. To learn more, see [Storage account requirements](storage-considerations#storage-account-requirements).
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsDashboard | `DefaultEndpointsProtocol=https;AccountName=...` |
+
+## AzureWebJobsDisableHomepage
+
+A value of `true`
+
+disables the default landing page that is shown for the root URL of a function app. The default value is `false`
+
+.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsDisableHomepage | `true` |
+
+When this app setting is omitted or set to `false`
+
+, a page similar to the following example is displayed in response to the URL `<functionappname>.azurewebsites.net`
+
+.
+
+
+## AzureWebJobsDotNetReleaseCompilation
+
+`true`
+
+means use `Release`
+
+mode when compiling .NET code. `false`
+
+means use Debug mode. Default is `true`
+
+.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsDotNetReleaseCompilation | `true` |
+
+## AzureWebJobsFeatureFlags
+
+A comma-delimited list of beta features to enable. Beta features enabled by these flags aren't production ready, but can be enabled for experimental use before they go live.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsFeatureFlags | `feature1,feature2,EnableProxies` |
+
+If your app currently has this setting, add new flags to the end of the comma-delineated list.
+
+Currently supported feature flags:
+
+| Flag value | Description |
+|---|---|
+`EnableProxies` |
+Re-enables proxies on version 4.x of the Functions runtime while you plan your migration to Azure API Management. For more information, see
+|
+
+`EnableAzureMonitorTimeIsoFormat`
+
+`ISO 8601`
+
+time format in Azure Monitor logs for Linux apps running on a Dedicated (App Service) plan.## AzureWebJobsKubernetesSecretName
+
+Indicates the Kubernetes Secrets resource used for storing keys. Supported only when running in Kubernetes.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsKubernetesSecretName | `<SECRETS_RESOURCE>` |
+
+Considerations when you use a Kubernetes Secrets resource:
+
+- You must also set
+`AzureWebJobsSecretStorageType`
+
+to`kubernetes`
+
+. When`AzureWebJobsKubernetesSecretName`
+
+isn't set, the repository is considered read only. In this case, the values must be generated before deployment. - The
+[Azure Functions Core Tools](functions-run-local)generates the values automatically when deploying to Kubernetes. [Immutable secrets](https://kubernetes.io/docs/concepts/configuration/secret/#secret-immutable)aren't supported and using them results in runtime errors.
+
+To learn more, see [Manage key storage](function-keys-how-to#manage-key-storage).
+
+## AzureWebJobsSecretStorageKeyVaultClientId
+
+The client ID of the user-assigned managed identity or the app registration used to access the vault where keys are stored. This setting requires you to set `AzureWebJobsSecretStorageType`
+
+to `keyvault`
+
+. Supported in version 4.x and later versions of the Functions runtime.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsSecretStorageKeyVaultClientId | `<CLIENT_ID>` |
+
+To learn more, see [Manage key storage](function-keys-how-to#manage-key-storage).
+
+## AzureWebJobsSecretStorageKeyVaultClientSecret
+
+The secret for client ID of the user-assigned managed identity or the app registration used to access the vault where keys are stored. This setting requires you to set `AzureWebJobsSecretStorageType`
+
+to `keyvault`
+
+. Supported in version 4.x and later versions of the Functions runtime.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsSecretStorageKeyVaultClientSecret | `<CLIENT_SECRET>` |
+
+To learn more, see [Manage key storage](function-keys-how-to#manage-key-storage).
+
+## AzureWebJobsSecretStorageKeyVaultName
+
+*This setting is deprecated and was only used when running on version 3.x of the Azure Functions runtime.*
+
+The name of a key vault instance used to store keys. This setting was only used in version 3.x of the Functions runtime, which is no longer supported. For version 4.x, instead use `AzureWebJobsSecretStorageKeyVaultUri`
+
+. This setting requires you to set `AzureWebJobsSecretStorageType`
+
+to `keyvault`
+
+.
+
+The vault must have an access policy corresponding to the system-assigned managed identity of the hosting resource. The access policy should grant the identity the following secret permissions: `Get`
+
+,`Set`
+
+, `List`
+
+, and `Delete`
+
+.
+
+When your functions run locally, the developer identity is used. Settings must be in the [local.settings.json file](functions-develop-local#local-settings-file).
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsSecretStorageKeyVaultName | `<VAULT_NAME>` |
+
+To learn more, see [Manage key storage](function-keys-how-to#manage-key-storage).
+
+## AzureWebJobsSecretStorageKeyVaultTenantId
+
+The tenant ID of the app registration used to access the vault where keys are stored. This setting requires you to set `AzureWebJobsSecretStorageType`
+
+to `keyvault`
+
+. Supported in version 4.x and later versions of the Functions runtime. To learn more, see [Manage key storage](function-keys-how-to#manage-key-storage).
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsSecretStorageKeyVaultTenantId | `<TENANT_ID>` |
+
+## AzureWebJobsSecretStorageKeyVaultUri
+
+The URI of a key vault instance used to store keys. Supported in version 4.x and later versions of the Functions runtime. We recommend this setting for using a key vault instance for key storage. This setting requires you to set `AzureWebJobsSecretStorageType`
+
+to `keyvault`
+
+.
+
+The `AzureWebJobsSecretStorageKeyVaultUri`
+
+value should be the full value of **Vault URI** displayed in the **Key Vault overview** tab, including `https://`
+
+.
+
+The vault must have an access policy corresponding to the system-assigned managed identity of the hosting resource. The access policy should grant the identity the following secret permissions: `Get`
+
+,`Set`
+
+, `List`
+
+, and `Delete`
+
+.
+
+When your functions run locally, the developer identity is used, and settings must be in the [local.settings.json file](functions-develop-local#local-settings-file).
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsSecretStorageKeyVaultUri | `https://<VAULT_NAME>.vault.azure.net` |
+
+Important
+
+Secrets aren't scoped to individual function apps through the `AzureWebJobsSecretStorageKeyVaultUri`
+
+setting. If multiple function apps are configured to use the same Key Vault they share the same secrets, potentially leading to key collisions or overwrites. To avoid unintended behavior, we recommend that you use a separate Key Vault instance for each function app.
+
+To learn more, see [Manage Key Storage](function-keys-how-to#manage-key-storage).
+
+## AzureWebJobsSecretStorageSas
+
+A Blob Storage SAS URL for a second storage account used for key storage. By default, Functions uses the account set in `AzureWebJobsStorage`
+
+. When using this secret storage option, make sure that `AzureWebJobsSecretStorageType`
+
+isn't explicitly set or is set to `blob`
+
+. To learn more, see [Manage key storage](function-keys-how-to#manage-key-storage).
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsSecretStorageSas | `<BLOB_SAS_URL>` |
+
+## AzureWebJobsSecretStorageType
+
+Specifies the repository or provider to use for key storage. Keys are always encrypted before being stored using a secret unique to your function app.
+
+| Key | Value | Description |
+|---|---|---|
+| AzureWebJobsSecretStorageType | `blob` |
+Keys are stored in a Blob storage container in the account provided by the `AzureWebJobsStorage` setting. Blob storage is the default behavior when `AzureWebJobsSecretStorageType` isn't set.To specify a different storage account, use the `AzureWebJobsSecretStorageSas` setting to indicate the SAS URL of a second storage account. |
+| AzureWebJobsSecretStorageType | `files` |
+Keys are persisted on the file system. This behavior is the default for Functions v1.x. |
+| AzureWebJobsSecretStorageType | `keyvault` |
+Keys are stored in a key vault instance set by `AzureWebJobsSecretStorageKeyVaultName` . |
+| AzureWebJobsSecretStorageType | `kubernetes` |
+Supported only when running the Functions runtime in Kubernetes. When `AzureWebJobsKubernetesSecretName` isn't set, the repository is considered read only. In this case, the values must be generated before deployment. The
+|
+
+To learn more, see [Manage key storage](function-keys-how-to#manage-key-storage).
+
+## AzureWebJobsStorage
+
+Specifies the connection string for an Azure Storage account that the Functions runtime uses for normal operations. Some uses of this storage account by Functions include key management, timer trigger management, and Event Hubs checkpoints. The storage account must be a general-purpose one that supports blobs, queues, and tables. For more information, see [Storage account requirements](storage-considerations#storage-account-requirements).
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsStorage | `DefaultEndpointsProtocol=https;AccountName=...` |
+
+Instead of a connection string, you can use an identity-based connection for this storage account. For more information, see [Connecting to host storage with an identity](functions-reference#connecting-to-host-storage-with-an-identity).
+
+## AzureWebJobsStorage__accountName
+
+When using an identity-based storage connection, sets the account name of the storage account instead of using the connection string in `AzureWebJobsStorage`
+
+. This syntax is unique to `AzureWebJobsStorage`
+
+and can't be used for other identity-based connections.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsStorage__accountName | `<STORAGE_ACCOUNT_NAME>` |
+
+For sovereign clouds or when using a custom DNS, you must instead use the service-specific `AzureWebJobsStorage__*ServiceUri`
+
+settings.
+
+## AzureWebJobsStorage__blobServiceUri
+
+When using an identity-based storage connection, sets the data plane URI of the blob service of the storage account.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsStorage__blobServiceUri | `https://<STORAGE_ACCOUNT_NAME>.blob.core.windows.net` |
+
+Use this setting instead of `AzureWebJobsStorage__accountName`
+
+in sovereign clouds or when using a custom DNS. For more information, see [Connecting to host storage with an identity](functions-reference#connecting-to-host-storage-with-an-identity).
+
+## AzureWebJobsStorage__clientId
+
+Sets the client ID of a specific user-assigned identity used to obtain an access token for managed identity authentication. Requires that `AzureWebJobsStorage__credential`
+
+be set to `managedidentity`
+
+. The value is a client ID that corresponds to an identity assigned to the application. You can't set both `AzureWebJobsStorage__managedIdentityResourceId`
+
+and `AzureWebJobsStorage__clientId`
+
+. When not set, the system-assigned identity is used.
+
+## AzureWebJobsStorage__credential
+
+Defines how an access token is obtained for the connection. Use `managedidentity`
+
+for managed identity authentication. When using `managedidentity`
+
+, a managed identity must be available in the hosting environment. Don't set `AzureWebJobsStorage__credential`
+
+in local development scenarios.
+
+## AzureWebJobsStorage__managedIdentityResourceId
+
+Sets the resource identifier of a user-assigned identity used to obtain an access token for managed identity authentication. Requires that `AzureWebJobsStorage__credential`
+
+be set to `managedidentity`
+
+. The value is the resource ID of an identity assigned to the application used for managed identity authentication. You can't set both `AzureWebJobsStorage__managedIdentityResourceId`
+
+and `AzureWebJobsStorage__clientId`
+
+. When not set, the system-assigned identity is used.
+
+## AzureWebJobsStorage__queueServiceUri
+
+When using an identity-based storage connection, sets the data plane URI of the queue service of the storage account.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsStorage__queueServiceUri | `https://<STORAGE_ACCOUNT_NAME>.queue.core.windows.net` |
+
+Use this setting instead of `AzureWebJobsStorage__accountName`
+
+in sovereign clouds or when using a custom DNS. For more information, see [Connecting to host storage with an identity](functions-reference#connecting-to-host-storage-with-an-identity).
+
+## AzureWebJobsStorage__tableServiceUri
+
+When using an identity-based storage connection, sets data plane URI of a table service of the storage account.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobsStorage__tableServiceUri | `https://<STORAGE_ACCOUNT_NAME>.table.core.windows.net` |
+
+Use this setting instead of `AzureWebJobsStorage__accountName`
+
+in sovereign clouds or when using a custom DNS. For more information, see [Connecting to host storage with an identity](functions-reference#connecting-to-host-storage-with-an-identity).
+
+## AzureWebJobs_TypeScriptPath
+
+Path to the compiler used for TypeScript. Allows you to override the default if you need to.
+
+| Key | Sample value |
+|---|---|
+| AzureWebJobs_TypeScriptPath | `%HOME%\typescript` |
+
+## DOCKER_REGISTRY_SERVER_PASSWORD
+
+Indicates the password used to access a private container registry. This setting is only required when deploying your containerized function app from a private container registry. For more information, see [Environment variables and app settings in Azure App Service](../app-service/reference-app-settings#custom-containers).
+
+## DOCKER_REGISTRY_SERVER_URL
+
+Indicates the URL of a private container registry. This setting is only required when deploying your containerized function app from a private container registry. For more information, see [Environment variables and app settings in Azure App Service](../app-service/reference-app-settings#custom-containers).
+
+## DOCKER_REGISTRY_SERVER_USERNAME
+
+Indicates the account used to access a private container registry. This setting is only required when deploying your containerized function app from a private container registry. For more information, see [Environment variables and app settings in Azure App Service](../app-service/reference-app-settings#custom-containers).
+
+## DOCKER_SHM_SIZE
+
+Sets the shared memory size (in bytes) when the Python worker is using shared memory. To learn more, see [Shared memory](https://github.com/Azure/azure-functions-python-worker/wiki/Shared-Memory).
+
+| Key | Sample value |
+|---|---|
+| DOCKER_SHM_SIZE | `268435456` |
+
+The preceding value sets a shared memory size of ~256 MB.
+
+Requires that [FUNCTIONS_WORKER_SHARED_MEMORY_DATA_TRANSFER_ENABLED](#functions_worker_shared_memory_data_transfer_enabled) is set to `1`
+
+.
+
+## ENABLE_ORYX_BUILD
+
+Indicates whether the [Oryx build system](https://github.com/microsoft/Oryx) is used during deployment. `ENABLE_ORYX_BUILD`
+
+must be set to `true`
+
+when doing remote build deployments to Linux. For more information, see [Remote build](functions-deployment-technologies#remote-build).
+
+| Key | Sample value |
+|---|---|
+| ENABLE_ORYX_BUILD | `true` |
+
+## FUNCTION_APP_EDIT_MODE
+
+Indicates whether you can edit your function app in the Azure portal. Valid values are `readwrite`
+
+and `readonly`
+
+.
+
+| Key | Sample value |
+|---|---|
+| FUNCTION_APP_EDIT_MODE | `readonly` |
+
+The runtime sets the value based on the language stack and deployment status of your function app. For more information, see [Development limitations in the Azure portal](functions-how-to-use-azure-function-app-settings#development-limitations-in-the-azure-portal).
+
+## FUNCTIONS_EXTENSION_VERSION
+
+The version of the Functions runtime that hosts your function app. A tilde (`~`
+
+) with major version means use the latest version of that major version, for example, `~4`
+
+. When new minor versions of the same major version are available, they're automatically installed in the function app.
+
+| Key | Sample value |
+|---|---|
+| FUNCTIONS_EXTENSION_VERSION | `~4` |
+
+The following major runtime version values are supported:
+
+| Value | Runtime target | Comment |
+|---|---|---|
+`~4` |
+4.x | Recommended |
+`~1` |
+1.x | Support ends September 14, 2026 |
+
+A value of `~4`
+
+means that your app runs on version 4.x of the runtime. A value of `~1`
+
+pins your app to version 1.x of the runtime. Runtime versions 2.x and 3.x are no longer supported. For more information, see [Azure Functions runtime versions overview](functions-versions).
+
+If requested by support to pin your app to a specific minor version, use the full version number, for example, `4.0.12345`
+
+. For more information, see [How to target Azure Functions runtime versions](set-runtime-version).
+
+## FUNCTIONS_INPROC_NET8_ENABLED
+
+Indicates whether to an app can use .NET 8 on the in-process model. To use .NET 8 on the in-process model, this value must be set to `1`
+
+. See [Updating to target .NET 8](functions-dotnet-class-library#updating-to-target-net-8) for complete instructions, including other required configuration values.
+
+| Key | Sample value |
+|---|---|
+| FUNCTIONS_INPROC_NET8_ENABLED | `1` |
+
+Set to `0`
+
+to disable support for .NET 8 on the in-process model.
+
+## FUNCTIONS_NODE_BLOCK_ON_ENTRY_POINT_ERROR
+
+This app setting is a temporary way for Node.js apps to enable a breaking change that makes entry point errors easier to troubleshoot on Node.js v18 or lower. We highly recommend using `true`
+
+, especially for programming model v4 apps, which always use entry point files. The behavior without the breaking change (`false`
+
+) ignores entry point errors and doesn't log them in Application Insights.
+
+Starting with Node.js v20, the app setting has no effect and the breaking change behavior is always enabled.
+
+For Node.js v18 or lower, the app setting is used, and the default behavior depends on if the error happens before or after a model v4 function has been registered:
+
+- If the error is thrown before, the default behavior matches
+`false`
+
+. For example, if you're using model v3 or your entry point file doesn't exist. - If the error is thrown after, the default behavior matches
+`true`
+
+. For example, if you try to register duplicate model v4 functions.
+
+| Key | Value | Description |
+|---|---|---|
+| FUNCTIONS_NODE_BLOCK_ON_ENTRY_POINT_ERROR | `true` |
+Block on entry point errors and log them in Application Insights. |
+| FUNCTIONS_NODE_BLOCK_ON_ENTRY_POINT_ERROR | `false` |
+Ignore entry point errors and don't log them in Application Insights. |
+
+## FUNCTIONS_REQUEST_BODY_SIZE_LIMIT
+
+Overrides the default limit on the body size of requests sent to HTTP endpoints. The value is given in bytes, with a default maximum request size of 104,857,600 bytes.
+
+| Key | Sample value |
+|---|---|
+| FUNCTIONS_REQUEST_BODY_SIZE_LIMIT | `250000000` |
+
+## FUNCTIONS_V2_COMPATIBILITY_MODE
+
+Important
+
+This setting is no longer supported. It was originally provided to enable a short-term workaround for apps that targeted the v2.x runtime. They would be able to instead run on the v3.x runtime while it was still supported. Except for legacy apps that run on version 1.x, all function apps must run on version 4.x of the Functions runtime: `FUNCTIONS_EXTENSION_VERSION=~4`
+
+. For more information, see [Azure Functions runtime versions overview](functions-versions).
+
+## FUNCTIONS_WORKER_PROCESS_COUNT
+
+Specifies the maximum number of language worker processes, with a default value of `1`
+
+. The maximum value allowed is `10`
+
+. Function invocations are evenly distributed among language worker processes. Language worker processes are spawned every 10 seconds until the count set by `FUNCTIONS_WORKER_PROCESS_COUNT`
+
+is reached. Using multiple language worker processes isn't the same as [scaling](functions-scale). Consider using this setting when your workload has a mix of CPU-bound and I/O-bound invocations. This setting applies to all language runtimes, except for .NET running in process (`FUNCTIONS_WORKER_RUNTIME=dotnet`
+
+).
+
+| Key | Sample value |
+|---|---|
+| FUNCTIONS_WORKER_PROCESS_COUNT | `2` |
+
+## FUNCTIONS_WORKER_RUNTIME
+
+The language or language stack of the worker runtime to load in the function app. This value corresponds to the language being used in your application, for example, `python`
+
+. Starting with version 2.x of the Azure Functions runtime, a given function app can only support a single language.
+
+| Key | Sample value |
+|---|---|
+| FUNCTIONS_WORKER_RUNTIME | `node` |
+
+Valid values:
+
+| Value | Language/language stack |
+|---|---|
+`dotnet` |
+|
+
+`dotnet-isolated`
+
+[C# (isolated worker process)](dotnet-isolated-process-guide)`java`
+
+[Java](functions-reference-java)`node`
+
+[JavaScript](functions-reference-node?tabs=javascript)[TypeScript](functions-reference-node?tabs=typescript)`powershell`
+
+[PowerShell](functions-reference-powershell)`python`
+
+[Python](functions-reference-python)`custom`
+
+[Other](functions-custom-handlers)## FUNCTIONS_WORKER_SHARED_MEMORY_DATA_TRANSFER_ENABLED
+
+This setting enables the Python worker to use shared memory to improve throughput. Enable shared memory when your Python function app is hitting memory bottlenecks.
+
+| Key | Sample value |
+|---|---|
+| FUNCTIONS_WORKER_SHARED_MEMORY_DATA_TRANSFER_ENABLED | `1` |
+
+With this setting enabled, you can use the [DOCKER_SHM_SIZE](#docker_shm_size) setting to set the shared memory size. To learn more, see [Shared memory](https://github.com/Azure/azure-functions-python-worker/wiki/Shared-Memory).
+
+## JAVA_APPLICATIONINSIGHTS_ENABLE_TELEMETRY
+
+Indicates whether the Java worker process should output telemetry in an Open Telemetry format to the Application Insights endpoint. Setting this flag to `True`
+
+tells the Functions host to let the Java worker process stream OpenTelemetry logs directly, which prevents duplicate host-level entries. For more information, see [Configure application settings](opentelemetry-howto?pivots=programming-language-java#configure-application-settings).
+
+## JAVA_ENABLE_SDK_TYPES
+
+Enables your function app to use native Azure SDK types in bindings.
+
+Note
+
+Support for binding to SDK types is currently in preview and limited to the Azure Blob Storage SDK. For more information, see [SDK types](functions-reference-java#sdk-types) in the Java reference article.
+
+| Key | Sample value |
+|---|---|
+| JAVA_ENABLE_SDK_TYPES | `true` |
+
+For more information, see [SDK types](functions-reference-java#sdk-types) in the Java reference article.
+
+## JAVA_OPTS
+
+Used to customize the Java virtual machine (JVM) used to run your Java functions when running on a [Premium plan](functions-premium-plan) or [Dedicated plan](dedicated-plan). When running on a Consumption plan, instead use `languageWorkers__java__arguments`
+
+. For more information, see [Customize JVM](functions-reference-java#customize-jvm).
+
+## languageWorkers__java__arguments
+
+Used to customize the Java virtual machine (JVM) used to run your Java functions when running on a [Consumption plan](functions-premium-plan). This setting does increase the cold start times for Java functions running in a Consumption plan. For a Premium or Dedicated plan, instead use `JAVA_OPTS`
+
+. For more information, see [Customize JVM](functions-reference-java#customize-jvm).
+
+## MDMaxBackgroundUpgradePeriod
+
+Controls the managed dependencies background update period for PowerShell function apps, with a default value of `7.00:00:00`
+
+(weekly).
+
+Each PowerShell worker process initiates checking for module upgrades on the PowerShell Gallery on process start and every `MDMaxBackgroundUpgradePeriod`
+
+after the start. When a new module version is available in the PowerShell Gallery, it's installed to the file system and made available to PowerShell workers. Decreasing this value lets your function app get newer module versions sooner, but it also increases the app resource usage, including network I/O, CPU, and storage. Increasing this value decreases the app's resource usage, but it can also delay delivering new module versions to your app.
+
+| Key | Sample value |
+|---|---|
+| MDMaxBackgroundUpgradePeriod | `7.00:00:00` |
+
+To learn more, see [Dependency management](functions-reference-powershell#dependency-management).
+
+## MDNewSnapshotCheckPeriod
+
+Specifies how often each PowerShell worker checks whether managed dependency upgrades are installed. The default frequency is `01:00:00`
+
+(hourly).
+
+After new module versions are installed to the file system, every PowerShell worker process must be restarted. Restarting PowerShell workers affects your app availability because it can interrupt current function execution. Until all PowerShell worker processes are restarted, function invocations can use either the old or the new module versions. Restarting all PowerShell workers completes within `MDNewSnapshotCheckPeriod`
+
+.
+
+Within every `MDNewSnapshotCheckPeriod`
+
+, the PowerShell worker checks whether or not managed dependency upgrades are installed. When upgrades are installed, a restart is initiated. Increasing this value decreases the frequency of interruptions because of restarts. However, the increase might also increase the time during which function invocations could use either the old or the new module versions, nondeterministically.
+
+| Key | Sample value |
+|---|---|
+| MDNewSnapshotCheckPeriod | `01:00:00` |
+
+To learn more, see [Dependency management](functions-reference-powershell#dependency-management).
+
+## MDMinBackgroundUpgradePeriod
+
+The period of time after a previous managed dependency upgrade check before another upgrade check is started, with a default of `1.00:00:00`
+
+(daily).
+
+To avoid excessive module upgrades on frequent Worker restarts, checking for module upgrades isn't performed when any worker already initiated that check in the last `MDMinBackgroundUpgradePeriod`
+
+.
+
+| Key | Sample value |
+|---|---|
+| MDMinBackgroundUpgradePeriod | `1.00:00:00` |
+
+To learn more, see [Dependency management](functions-reference-powershell#dependency-management).
+
+## OTEL_EXPORTER_OTLP_ENDPOINT
+
+Indicates the URL to which OpenTelemetry-formatted data is exported for ingestion. For more information, see [Use OpenTelemetry with Azure Functions](opentelemetry-howto).
+
+## OTEL_EXPORTER_OTLP_HEADERS
+
+Sets an optional list of headers that are applied to all outgoing data exported to an OpenTelemetry endpoint. You should use this setting when the OpenTelemetry endpoint requires to supply an API key. For more information, see [Use OpenTelemetry with Azure Functions](opentelemetry-howto).
+
+## PIP_INDEX_URL
+
+Overrides the default base URL of the Python Package Index (`https://pypi.org/simple`
+
+) when running a remote build. Because this setting replaces the package index, you might see unexpected behaviour on restore. Only use this setting when you need to use a complete set of custom dependencies. When possible, you should instead use `PIP_EXTRA_URL`
+
+, which lets you reference an additional package index. For more information, see [Custom dependencies](python-build-options#custom-dependencies) in the Python build article.
+
+| Key | Sample value |
+|---|---|
+| PIP_INDEX_URL | `http://my.custom.package.repo/simple` |
+
+These custom dependencies can be in a package index repository compliant with PEP 503 (the simple repository API) or in a local directory that follows the same format. For more information, see [ pip documentation for --index-url](https://pip.pypa.io/en/stable/cli/pip_wheel/?highlight=index%20url#cmdoption-i).
+
+
+## PIP_EXTRA_INDEX_URL
+
+The value for this setting indicates an extra index URL for custom packages for Python apps, to use in addition to the `--index-url`
+
+. Use this setting when you need to run a remote build using custom dependencies that are found in an extra package index. For more information, see [Custom dependencies](python-build-options#custom-dependencies) in the Python build article.
+
+| Key | Sample value |
+|---|---|
+| PIP_EXTRA_INDEX_URL | `http://my.custom.package.repo/simple` |
+
+Should follow the same rules as `--index-url`
+
+. For more information, see [ pip documentation for --extra-index-url](https://pip.pypa.io/en/stable/cli/pip_wheel/?highlight=index%20url#cmdoption-extra-index-url).
+
+
+## PROJECT
+
+A [continuous deployment](functions-continuous-deployment) setting that tells the Kudu deployment service the folder in a connected repository to location the deployable project.
+
+| Key | Sample value |
+|---|---|
+| PROJECT | `WebProject/WebProject.csproj` |
+
+## PYTHON_APPLICATIONINSIGHTS_ENABLE_TELEMETRY
+
+Indicates whether the Python worker process should output telemetry in an Open Telemetry format to the Application Insights endpoint. Setting this flag to `True`
+
+tells the Functions host to let the Python worker process export OpenTelemetry data to [Application Insights endpoint](#applicationinsights_connection_string). For more information, see [Configure application settings](opentelemetry-howto?pivots=programming-language-python#configure-application-settings).
+
+## PYTHON_ISOLATE_WORKER_DEPENDENCIES
+
+The configuration is specific to Python function apps. It defines the prioritization of module loading order. By default, this value is set to `0`
+
+.
+
+| Key | Value | Description |
+|---|---|---|
+| PYTHON_ISOLATE_WORKER_DEPENDENCIES | `0` |
+Prioritize loading the Python libraries from internal Python worker's dependencies, which is the default behavior. Non-Microsoft libraries defined in requirements.txt might be shadowed. |
+| PYTHON_ISOLATE_WORKER_DEPENDENCIES | `1` |
+Prioritize loading the Python libraries from application's package defined in requirements.txt. This value prevents your libraries from colliding with internal Python worker's libraries. |
+
+## PYTHON_ENABLE_DEBUG_LOGGING
+
+Enables debug-level logging in a Python function app. A value of `1`
+
+enables debug-level logging. Without this setting or with a value of `0`
+
+, only information and higher-level logs are sent from the Python worker to the Functions host. Use this setting when debugging or tracing your Python function executions.
+
+When debugging Python functions, make sure to also set a debug or trace [logging level](functions-host-json#logging) in the host.json file, as needed. To learn more, see [How to configure monitoring for Azure Functions](configure-monitoring).
+
+## PYTHON_ENABLE_OPENTELEMETRY
+
+Indicates whether the Python worker process should export telemetry to an Open Telemetry endpoint. Setting this flag to `True`
+
+tells the Functions host to let the Python worker process export OpenTelemetry data to the configured [OTEL_EXPORTER_OTLP_ENDPOINT](#otel_exporter_otlp_endpoint). For more information, see [Configure application settings](opentelemetry-howto?pivots=programming-language-python#configure-application-settings).
+
+## PYTHON_ENABLE_WORKER_EXTENSIONS
+
+The configuration is specific to Python function apps. Setting this value to `1`
+
+allows the worker to load in [Python worker extensions](develop-python-worker-extensions) defined in requirements.txt. It enables your function app to access new features provided by partner packages. It can also change the behavior of function load and invocation in your app. Ensure the extension you choose is trustworthy as you bear the risk of using it. Azure Functions gives no express warranties to any extensions. For how to use an extension, visit the extension's manual page or readme doc. By default, this value sets to `0`
+
+.
+
+| Key | Value | Description |
+|---|---|---|
+| PYTHON_ENABLE_WORKER_EXTENSIONS | `0` |
+Disable any Python worker extension. |
+| PYTHON_ENABLE_WORKER_EXTENSIONS | `1` |
+Allow Python worker to load extensions from requirements.txt. |
+
+## PYTHON_THREADPOOL_THREAD_COUNT
+
+Specifies the maximum number of threads that a Python language worker would use to run function invocations, with a default value of `1`
+
+for Python version `3.8`
+
+and below. For Python version `3.9`
+
+and above, the value is set to `None`
+
+. This setting doesn't guarantee the number of threads that would be set during executions. The setting allows Python to expand the number of threads to the specified value. The setting only applies to Python functions apps. Additionally, the setting applies to synchronous functions invocation and not for coroutines.
+
+| Key | Sample value | Max value |
+|---|---|---|
+| PYTHON_THREADPOOL_THREAD_COUNT | 2 | 32 |
+
+## SCALE_CONTROLLER_LOGGING_ENABLED
+
+*This setting is currently in preview.*
+
+This setting controls logging from the Azure Functions scale controller. For more information, see [Scale controller logs](functions-monitoring#scale-controller-logs).
+
+| Key | Sample value |
+|---|---|
+| SCALE_CONTROLLER_LOGGING_ENABLED | `AppInsights:Verbose` |
+
+The value for this key is supplied in the format `<DESTINATION>:<VERBOSITY>`
+
+, which is defined as follows:
+
+| Property | Description |
+|---|---|
+`<DESTINATION>` |
+The destination to which logs are sent. Valid values are `AppInsights` and `Blob` .When you use `AppInsights` , ensure that the
+When you set the destination to `Blob` , logs are created in a blob container named `azure-functions-scale-controller` in the default storage account set in the `AzureWebJobsStorage` application setting. |
+`<VERBOSITY>` |
+Specifies the level of logging. Supported values are `None` , `Warning` , and `Verbose` .When set to `Verbose` , the scale controller logs a reason for every change in the worker count, and information about the triggers that factor into those decisions. Verbose logs include trigger warnings and the hashes used by the triggers before and after the scale controller runs. |
+
+Tip
+
+Keep in mind that while you leave scale controller logging enabled, it impacts the [potential costs of monitoring your function app](functions-monitoring#application-insights-pricing-and-limits). Consider enabling logging until you collect enough data to understand how the scale controller is behaving, and then disabling it.
+
+## SCM_DO_BUILD_DURING_DEPLOYMENT
+
+Controls remote build behavior during deployment. When `SCM_DO_BUILD_DURING_DEPLOYMENT`
+
+is set to `true`
+
+, the project is built remotely during deployment.
+
+| Key | Sample value |
+|---|---|
+| SCM_DO_BUILD_DURING_DEPLOYMENT | `true` |
+
+## SCM_LOGSTREAM_TIMEOUT
+
+Controls the timeout, in seconds, when connected to streaming logs. The default value is 7200 (2 hours).
+
+| Key | Sample value |
+|---|---|
+| SCM_LOGSTREAM_TIMEOUT | `1800` |
+
+The preceding sample value of `1800`
+
+sets a timeout of 30 minutes. For more information, see [Enable streaming execution logs in Azure Functions](streaming-logs).
+
+## WEBSITE_CONTENTAZUREFILECONNECTIONSTRING
+
+Connection string for storage account where the function app code and configuration are stored in event-driven scaling plans. For more information, see [Storage account connection setting](storage-considerations#storage-account-connection-setting).
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_CONTENTAZUREFILECONNECTIONSTRING | `DefaultEndpointsProtocol=https;AccountName=...` |
+
+This setting is required for both Consumption and Elastic Premium plan apps. It's not required for Dedicated plan apps, which Functions doesn't dynamically scale.
+
+The Flex Consumption plan is now the recommended serverless hosting plan for Azure Functions. It offers faster scaling, reduced cold starts, private networking, and more control over performance and cost. For more information, see [Flex Consumption plan](flex-consumption-plan).
+
+Changing or removing this setting can cause your function app to not start. To learn more, see [this troubleshooting article](functions-recover-storage-account#storage-account-application-settings-were-deleted).
+
+Azure Files doesn't currently support using managed identity when accessing the file share. For more information, see [Azure Files supported authentication scenarios](../storage/files/storage-files-active-directory-overview#supported-authentication-scenarios).
+
+You might use a [KeyVault reference](../app-service/app-service-key-vault-references) for this connection setting. However, additional configuration is required to create and dynamically scale a function app in a Premium or Consumption plan when the storage connection string is maintained in a KeyVault. For more information, see [Considerations for Azure Files mounting](../app-service/app-service-key-vault-references#considerations-for-azure-files-mounting).
+
+## WEBSITE_CONTENTOVERVNET
+
+Important
+
+WEBSITE_CONTENTOVERVNET is a legacy app setting that has been replaced by the [vnetContentShareEnabled](#vnetcontentshareenabled) site property.
+
+A value of `1`
+
+enables your function app to scale across stamps when you have your storage account restricted to a virtual network. You should enable this setting when restricting your storage account to a virtual network. Only required when using `WEBSITE_CONTENTSHARE`
+
+and `WEBSITE_CONTENTAZUREFILECONNECTIONSTRING`
+
+. To learn more, see [Restrict your storage account to a virtual network](configure-networking-how-to#restrict-your-storage-account-to-a-virtual-network).
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_CONTENTOVERVNET | `1` |
+
+This app setting is required for cross-stamp scaling on the [Elastic Premium](functions-premium-plan) and [Dedicated (App Service) plans](dedicated-plan) (Standard and higher) when the storage account is VNet-restricted. Without this setting, the function app can only scale within a single stamp (approximately 1-20 instances). Not supported when running on a [Consumption plan](consumption-plan).
+
+Note
+
+You must take special care when routing to the content share in a storage account shared by multiple function apps in the same plan. For more information, see [Consistent routing through virtual networks](storage-considerations#consistent-routing-through-virtual-networks) in the Storage considerations article.
+
+## WEBSITE_CONTENTSHARE
+
+The name of the file share that Functions uses to store function app code and configuration files. This content is required by event-driven scaling plans. Used with `WEBSITE_CONTENTAZUREFILECONNECTIONSTRING`
+
+. Default is a unique string generated by the runtime, which begins with the function app name. For more information, see [Storage account connection setting](storage-considerations#storage-account-connection-setting).
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_CONTENTSHARE | `functionapp091999e2` |
+
+This setting is required only for Consumption and Premium plan apps. It's not required for Dedicated plan apps, which aren't dynamically scaled by Functions.
+
+The Flex Consumption plan is now the recommended serverless hosting plan for Azure Functions. It offers faster scaling, reduced cold starts, private networking, and more control over performance and cost. For more information, see [Flex Consumption plan](flex-consumption-plan).
+
+The share is created when your function app is created. Changing or removing this setting can cause your function app to not start. To learn more, see [this troubleshooting article](functions-recover-storage-account#storage-account-application-settings-were-deleted).
+
+The following considerations apply when using an Azure Resource Manager (ARM) template or Bicep file to create a function app during deployment:
+
+- When you don't set a
+`WEBSITE_CONTENTSHARE`
+
+value for the main function app or any apps in slots, unique share values are generated for you. Not setting`WEBSITE_CONTENTSHARE`
+
+*is the recommended approach*for an ARM template deployment. - There are scenarios where you must set the
+`WEBSITE_CONTENTSHARE`
+
+value to a predefined value, such as when you[use a secured storage account in a virtual network](configure-networking-how-to#restrict-your-storage-account-to-a-virtual-network). In this case, you must set a unique share name for the main function app and the app for each deployment slot. For a storage account secured by a virtual network, you must also create the share itself as part of your automated deployment. For more information, see[Secured deployments](functions-infrastructure-as-code#secured-deployments). - Don't make
+`WEBSITE_CONTENTSHARE`
+
+a slot setting. - When you specify
+`WEBSITE_CONTENTSHARE`
+
+, the value must follow[this guidance for share names](/en-us/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata#share-names).
+
+## WEBSITE_DNS_SERVER
+
+Sets the DNS server used by an app when resolving IP addresses. This setting is often required when using certain networking functionality, such as [Azure DNS private zones](functions-networking-options#azure-dns-private-zones) and [private endpoints](functions-networking-options#restrict-your-storage-account-to-a-virtual-network).
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_DNS_SERVER | `168.63.129.16` |
+
+## WEBSITE_ENABLE_BROTLI_ENCODING
+
+Controls whether Brotli encoding is used for compression instead of the default gzip compression. When `WEBSITE_ENABLE_BROTLI_ENCODING`
+
+is set to `1`
+
+, Brotli encoding is used. Otherwise, gzip encoding is used.
+
+## WEBSITE_FUNCTIONS_ARMCACHE_ENABLED
+
+Disables caching when deploying function apps using Azure Resource Manager (ARM) templates.
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_FUNCTIONS_ARMCACHE_ENABLED | 0 |
+
+## WEBSITE_MAX_DYNAMIC_APPLICATION_SCALE_OUT
+
+The maximum number of instances that the app can scale out to. Default is no limit.
+
+Important
+
+This setting is in preview. An [app property for function max scale out](event-driven-scaling#limit-scale-out) now exists. We recommend this property to limit scale-out.
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_MAX_DYNAMIC_APPLICATION_SCALE_OUT | `5` |
+
+## WEBSITE_NODE_DEFAULT_VERSION
+
+*Windows only.*
+Sets the version of Node.js to use when running your function app on Windows. You should use a tilde (`~`
+
+) to have the runtime use the latest available version of the targeted major version. For example, when set to `~18`
+
+, the latest version of Node.js 18 is used. When a major version is targeted with a tilde, you don't have to manually update the minor version.
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_NODE_DEFAULT_VERSION | `~18` |
+
+## WEBSITE_OVERRIDE_STICKY_DIAGNOSTICS_SETTINGS
+
+When you perform [a slot swap](functions-deployment-slots#swap-slots) on a function app running on a Premium plan, the swap can fail when the dedicated storage account used by the app is network restricted. This failure is caused by a legacy [application logging feature](../app-service/troubleshoot-diagnostic-logs#enable-application-logging-windows), which both Functions and App Service share. This setting overrides that legacy logging feature and allows the swap to occur.
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_OVERRIDE_STICKY_DIAGNOSTICS_SETTINGS | `0` |
+
+Add `WEBSITE_OVERRIDE_STICKY_DIAGNOSTICS_SETTINGS`
+
+with a value of `0`
+
+to all slots to make sure that legacy diagnostic settings don't block your swaps. You can also add this setting and value to just the production slot as a [deployment slot ( sticky) setting](functions-deployment-slots#create-a-deployment-setting).
+
+## WEBSITE_OVERRIDE_STICKY_EXTENSION_VERSIONS
+
+By default, the version settings for function apps are specific to each slot. This setting is used when upgrading functions by using [deployment slots](functions-deployment-slots). This approach prevents unanticipated behavior due to changing versions after a swap. Set to `0`
+
+in production and in the slot to make sure that all version settings are also swapped. For more information, see [Upgrade using slots](migrate-version-3-version-4#update-using-slots).
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_OVERRIDE_STICKY_EXTENSION_VERSIONS | `0` |
+
+## WEBSITE_RUN_FROM_PACKAGE
+
+Enables your function app to run from a package file, which can be locally mounted or deployed to an external URL.
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_RUN_FROM_PACKAGE | `1` |
+
+Valid values are either a URL that resolves to the location of an external deployment package file, or `1`
+
+. When set to `1`
+
+, the package must be in the `d:\home\data\SitePackages`
+
+folder. When you use zip deployment with `WEBSITE_RUN_FROM_PACKAGE`
+
+enabled, the package is automatically uploaded to this location. For more information, see [Run your functions from a package file](run-functions-from-deployment-package).
+
+When you use `WEBSITE_RUN_FROM_PACKAGE=<URL>`
+
+, the URL must resolve to the package file location in an accessible storage location, such as an Azure Blob Storage container. The container must be private to prevent unauthorized access, which requires you to use either a shared access signature (SAS) in the URL or Microsoft Entra ID authentication to allow access. Using Microsoft Entra ID with managed identities is recommended.
+
+This is an example of setting `WEBSITE_RUN_FROM_PACKAGE`
+
+to the URL of a deployment package in an Azure Blog Storage container:
+
+`WEBSITE_RUN_FROM_PACKAGE=https://contosostorageaccount.blob.core.windows.net/mycontainer/mypackage.zip`
+
+
+When using SAS, you append the token to the URL as a query parameter.
+
+When you [deploy a package from Azure Blob Storage using a user-assigned managed identity](run-functions-from-deployment-package#fetch-a-package-from-azure-blob-storage-using-a-managed-identity), you must also set [ WEBSITE_RUN_FROM_PACKAGE_BLOB_MI_RESOURCE_ID](#website_run_from_package_blob_mi_resource_id) to the resource ID of the user-assigned managed identity. When you deploy from an external package URL, you must also manually sync triggers. For more information, see
+
+[Trigger syncing](functions-deployment-technologies#trigger-syncing).
+
+## WEBSITE_RUN_FROM_PACKAGE_BLOB_MI_RESOURCE_ID
+
+Indicates the resource ID of a user-assigned managed identity that's used when accessing a deployment package from an external Azure Blob Storage container secured using Microsoft Entra ID. This setting requires that [ WEBSITE_RUN_FROM_PACKAGE](#website_run_from_package) be set to the URL of the deployment package in a private container.
+
+Setting `WEBSITE_RUN_FROM_PACKAGE_BLOB_MI_RESOURCE_ID=SystemAssigned`
+
+is the same as omitting the setting, in which case the system-assigned managed identity for the app is used.
+
+## WEBSITE_SKIP_CONTENTSHARE_VALIDATION
+
+The [WEBSITE_CONTENTAZUREFILECONNECTIONSTRING](#website_contentazurefileconnectionstring) and [WEBSITE_CONTENTSHARE](#website_contentshare) settings have extra validation checks to ensure that the app can be properly started. Creation of application settings fail when the function app can't properly call out to the downstream Storage Account or Key Vault due to networking constraints or other limiting factors. When WEBSITE_SKIP_CONTENTSHARE_VALIDATION is set to `1`
+
+, the validation check is skipped. Otherwise, the value defaults to `0`
+
+and the validation takes place.
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_SKIP_CONTENTSHARE_VALIDATION | `1` |
+
+If validation is skipped and either the connection string or content share isn't valid, the app isn't able to start properly. In this case, functions return HTTP 500 errors. For more information, see [Troubleshoot error: "Azure Functions Runtime is unreachable"](functions-recover-storage-account).
+
+## WEBSITE_SLOT_NAME
+
+Read-only. Name of the current deployment slot. The name of the production slot is `Production`
+
+.
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_SLOT_NAME | `Production` |
+
+## WEBSITE_TIME_ZONE
+
+Allows you to set the timezone for your function app.
+
+| Key | OS | Sample value |
+|---|---|---|
+| WEBSITE_TIME_ZONE | Windows | `Eastern Standard Time` |
+| WEBSITE_TIME_ZONE | Linux | `America/New_York` |
+
+The default time zone used with the CRON expressions is Coordinated Universal Time (UTC). To have your CRON expression based on another time zone, create an app setting for your function app named `WEBSITE_TIME_ZONE`
+
+.
+
+The value of this setting depends on the operating system and plan on which your function app runs.
+
+| Operating system | Plan | Value |
+|---|---|---|
+Windows |
+All | Set the value to the name of the desired time zone as given by the second line from each pair given by the Windows command `tzutil.exe /L` |
+Linux |
+Premium Dedicated |
+Set the value to the name of the desired time zone as shown in the
+|
+
+Note
+
+`WEBSITE_TIME_ZONE`
+
+and `TZ`
+
+aren't currently supported when running on Linux in a [Flex Consumption](flex-consumption-plan) or [Consumption](consumption-plan) plan. In this case, the setting `WEBSITE_TIME_ZONE`
+
+or `TZ`
+
+can create SSL-related issues and cause metrics to stop working for your app.
+
+For example, Eastern Time in the US (represented by `Eastern Standard Time`
+
+(Windows) or `America/New_York`
+
+(Linux)) currently uses UTC-05:00 during standard time and UTC-04:00 during daylight time. To have a timer trigger fire at 10:00 AM Eastern Time every day, create an app setting for your function app named `WEBSITE_TIME_ZONE`
+
+, set the value to `Eastern Standard Time`
+
+(Windows) or `America/New_York`
+
+(Linux), and then use the following NCRONTAB expression:
+
+```
+"0 0 10 * * *"
+```
+
+
+When you use `WEBSITE_TIME_ZONE`
+
+, the time is adjusted for time changes in the specific timezone, including daylight saving time and changes in standard time.
+
+## WEBSITE_USE_PLACEHOLDER
+
+Indicates whether to use a specific [cold start](event-driven-scaling#cold-start) optimization when running on the [Consumption plan](consumption-plan). Set to `0`
+
+to disable the cold-start optimization on the Consumption plan.
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_USE_PLACEHOLDER | `1` |
+
+## WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED
+
+Indicates whether to use a specific [cold start](event-driven-scaling#cold-start) optimization when running .NET isolated worker process functions on the [Consumption plan](consumption-plan). Set to `0`
+
+to disable the cold-start optimization on the Consumption plan.
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED | `1` |
+
+## WEBSITE_VNET_ROUTE_ALL
+
+Important
+
+WEBSITE_VNET_ROUTE_ALL is a legacy app setting that has been replaced by the [vnetRouteAllEnabled](#vnetrouteallenabled) site setting.
+
+Indicates whether all outbound traffic from the app is routed through the virtual network. A setting value of `1`
+
+indicates that all application traffic is routed through the virtual network. You need this setting when configuring [Regional virtual network integration](functions-networking-options#regional-virtual-network-integration) in the Elastic Premium and Dedicated hosting plans. It's also used when a [virtual network NAT gateway is used to define a static outbound IP address](functions-how-to-use-nat-gateway).
+
+| Key | Sample value |
+|---|---|
+| WEBSITE_VNET_ROUTE_ALL | `1` |
+
+## WEBSITES_ENABLE_APP_SERVICE_STORAGE
+
+Indicates whether the `/home`
+
+directory is shared across scaled instances, with a default value of `true`
+
+. You should set this value to `false`
+
+when deploying your function app in a container.
+
+## App Service site settings
+
+Some configurations must be maintained at the App Service level as site settings, such as language versions. These settings are managed in the Azure portal, by using REST APIs, or by using Azure CLI or Azure PowerShell. The following are site settings that could be required, depending on your runtime language, OS, and versions.
+
+## AcrUseManagedIdentityCreds
+
+Indicates whether the image is obtained from an Azure Container Registry instance using managed identity authentication. A value of `true`
+
+requires that you use managed identity. We recommend this approach over stored authentication credentials as a security best practice.
+
+## AcrUserManagedIdentityID
+
+Indicates the managed identity to use when obtaining the image from an Azure Container Registry instance. Requires that `AcrUseManagedIdentityCreds`
+
+is set to `true`
+
+. These values are valid:
+
+| Value | Description |
+|---|---|
+`system` |
+The system assigned managed identity of the function app is used. |
+`<USER_IDENTITY_RESOURCE_ID>` |
+The fully qualified resource ID of a user-assigned managed identity. |
+
+The identity that you specify must be added to the `ACRPull`
+
+role in the container registry. For more information, see [Create and configure a function app on Azure with the image](functions-deploy-container-apps?tabs=acr#create-and-configure-a-function-app-on-azure-with-the-image).
+
+## alwaysOn
+
+On a function app running in a [Dedicated (App Service) plan](dedicated-plan), the Functions runtime goes idle after a few minutes of inactivity, a which point only requests to an HTTP trigger *wakes up* your function app. To make sure that your non-HTTP triggered functions run correctly, including Timer trigger functions, enable Always On for the function app by setting the `alwaysOn`
+
+site setting to a value of `true`
+
+.
+
+## functionsRuntimeAdminIsolationEnabled
+
+Determines whether the built-in administrator (`/admin`
+
+) endpoints in your function app can be accessed. When set to `false`
+
+(the default), the app allows requests to endpoints under `/admin`
+
+when those requests present a [master key](function-keys-how-to#understand-keys) in the request. When `true`
+
+, `/admin`
+
+endpoints can't be accessed, even with a master key.
+
+This property can't be set for apps running on Linux in a Consumption plan. It can't be set for apps running on version 1.x of Azure Functions. If you're using version 1.x, you must first [migrate to version 4.x](migrate-version-1-version-4).
+
+## linuxFxVersion
+
+For function apps running on Linux, `linuxFxVersion`
+
+indicates the language and version for the language-specific worker process. This information is used, along with [ FUNCTIONS_EXTENSION_VERSION](#functions_extension_version), to determine which specific Linux container image is installed to run your function app. This setting can be set to a predefined value or a custom image URI.
+
+This value is set for you when you create your Linux function app. You might need to set it for ARM template and Bicep deployments and in certain upgrade scenarios.
+
+### Valid linuxFxVersion values
+
+You can use the following Azure CLI command to see a table of current `linuxFxVersion`
+
+values, by supported Functions runtime version:
+
+```
+az functionapp list-runtimes --os linux --query "[].{stack:join(' ', [runtime, version]), LinuxFxVersion:linux_fx_version, SupportedFunctionsVersions:to_string(supported_functions_versions[])}" --output table
+```
+
+
+The previous command requires you to upgrade to version 2.40 of the Azure CLI.
+
+### Custom images
+
+When you create and maintain your own custom Linux container for your function app, the `linuxFxVersion`
+
+value is instead in the format `DOCKER|<IMAGE_URI>`
+
+, as in the following example:
+
+```
+linuxFxVersion = "DOCKER|contoso.com/azurefunctionsimage:v1.0.0"
+```
+
+
+This example indicates the registry source of the deployed container. For more information, see [Working with containers and Azure Functions](functions-how-to-custom-container).
+
+Important
+
+When you create your own containers, you're required to keep the base image of your container updated to the latest supported base image. Supported base images for Azure Functions are language-specific. See the [Azure Functions base image repos](https://mcr.microsoft.com/catalog?search=functions).
+
+The Functions team is committed to publishing monthly updates for these base images. Regular updates include the latest minor version updates and security fixes for both the Functions runtime and languages. You should regularly update your container from the latest base image and redeploy the updated version of your container. For more information, see [Maintaining custom containers](container-concepts#maintaining-custom-containers).
+
+## netFrameworkVersion
+
+Sets the specific version of .NET for C# functions. For more information, see [Update your function app in Azure](migrate-version-3-version-4?pivots=programming-language-csharp#update-your-function-app-in-azure).
+
+## powerShellVersion
+
+Sets the specific version of PowerShell on which your functions run. For more information, see [Changing the PowerShell version](functions-reference-powershell#changing-the-powershell-version).
+
+When running locally, you instead use the [ FUNCTIONS_WORKER_RUNTIME_VERSION](functions-reference-powershell#running-local-on-a-specific-version) setting in the local.settings.json file.
+
+## vnetContentShareEnabled
+
+Apps running in a Premium plan use a file share to store content. The name of this content share is stored in the [ WEBSITE_CONTENTSHARE](#website_contentshare) app setting and its connection string is stored in
+
+[. To route traffic between your function app and content share through a virtual network, you must also set](#website_contentazurefileconnectionstring)
+
+`WEBSITE_CONTENTAZUREFILECONNECTIONSTRING`
+
+`vnetContentShareEnabled`
+
+to `true`
+
+. Enabling this site property is required for cross-stamp scaling when [restricting your storage account to a virtual network](configure-networking-how-to#restrict-your-storage-account-to-a-virtual-network)in the Elastic Premium and Dedicated hosting plans. Without this setting, the function app can only scale within a single stamp (approximately 1-20 instances).
+
+Note
+
+You must take special care when routing to the content share in a storage account shared by multiple function apps in the same plan. For more information, see [Consistent routing through virtual networks](storage-considerations#consistent-routing-through-virtual-networks) in the Storage considerations article.
+
+This site property replaces the legacy [ WEBSITE_CONTENTOVERVNET](#website_contentovervnet) setting.
+
+## vnetImagePullEnabled
+
+Functions [supports function apps running in Linux containers](functions-how-to-custom-container). To connect and pull from a container registry inside a virtual network, you must set `vnetImagePullEnabled`
+
+to `true`
+
+. This site property is supported in the Elastic Premium and Dedicated hosting plans. The Flex Consumption plan doesn't rely on site properties or app settings to configure Networking. For more information, see [Flex Consumption plan deprecations](#flex-consumption-plan-deprecations).
+
+## vnetRouteAllEnabled
+
+Indicates whether all outbound traffic from the app is routed through the virtual network. A setting value of `true`
+
+indicates that all application traffic is routed through the virtual network. Use this setting when configuring [Regional virtual network integration](functions-networking-options#regional-virtual-network-integration) in the Elastic Premium and Dedicated plans. It's also used when a [virtual network NAT gateway is used to define a static outbound IP address](functions-how-to-use-nat-gateway). For more information, see [Configure application routing](../app-service/configure-vnet-integration-routing#configure-application-routing).
+
+This site setting replaces the legacy [WEBSITE_VNET_ROUTE_ALL](#website_vnet_route_all) setting.
+
+## Flex Consumption plan deprecations
+
+In the [Flex Consumption plan](flex-consumption-plan), these site properties and application settings are deprecated and shouldn't be used when creating function app resources:
+
+| Setting/property | Reason |
+|---|---|
+`ENABLE_ORYX_BUILD` |
+Replaced by the `remoteBuild` parameter when deploying in Flex Consumption |
+`FUNCTIONS_EXTENSION_VERSION` |
+App Setting is set by the backend. A value of ~1 can be ignored. |
+`FUNCTIONS_WORKER_RUNTIME` |
+Replaced by `name` in `properties.functionAppConfig.runtime` |
+`FUNCTIONS_WORKER_RUNTIME_VERSION` |
+Replaced by `version` in `properties.functionAppConfig.runtime` |
+`FUNCTIONS_MAX_HTTP_CONCURRENCY` |
+Replaced by scale and concurrency's trigger section |
+`FUNCTIONS_WORKER_PROCESS_COUNT` |
+Setting not valid |
+`FUNCTIONS_WORKER_DYNAMIC_CONCURRENCY_ENABLED` |
+Setting not valid |
+`SCM_DO_BUILD_DURING_DEPLOYMENT` |
+Replaced by the `remoteBuild` parameter when deploying in Flex Consumption |
+`WEBSITE_CONTENTAZUREFILECONNECTIONSTRING` |
+Replaced by functionAppConfig's deployment section |
+`WEBSITE_CONTENTOVERVNET` |
+Not used for networking in Flex Consumption |
+`WEBSITE_CONTENTSHARE` |
+Replaced by functionAppConfig's deployment section |
+`WEBSITE_DNS_SERVER` |
+DNS is inherited from the integrated virtual network in Flex |
+`WEBSITE_MAX_DYNAMIC_APPLICATION_SCALE_OUT` |
+Replaced by `maximumInstanceCount` in `properties.functionAppConfig.scaleAndConcurrency` |
+`WEBSITE_NODE_DEFAULT_VERSION` |
+Replaced by `version` in `properties.functionAppConfig.runtime` |
+`WEBSITE_RUN_FROM_PACKAGE` |
+Not used for deployments in Flex Consumption |
+`WEBSITE_SKIP_CONTENTSHARE_VALIDATION` |
+Content share isn't used in Flex Consumption |
+`WEBSITE_VNET_ROUTE_ALL` |
+Not used for networking in Flex Consumption |
+`properties.alwaysOn` |
+Not valid |
+`properties.containerSize` |
+Renamed as `instanceMemoryMB` |
+`properties.ftpsState` |
+FTPS not supported |
+`properties.isReserved` |
+Not valid |
+`properties.IsXenon` |
+Not valid |
+`properties.javaVersion` |
+Replaced by `version` in `properties.functionAppConfig.runtime` |
+`properties.LinuxFxVersion` |
+Replaced by `properties.functionAppConfig.runtime` |
+`properties.netFrameworkVersion` |
+Replaced by `version` in `properties.functionAppConfig.runtime` |
+`properties.powerShellVersion` |
+Replaced by `version` in `properties.functionAppConfig.runtime` |
+`properties.siteConfig.functionAppScaleLimit` |
+Renamed as `maximumInstanceCount` |
+`properties.siteConfig.preWarmedInstanceCount` |
+Renamed as `alwaysReadyInstances` |
+`properties.use32BitWorkerProcess` |
+32-bit not supported |
+`properties.vnetBackupRestoreEnabled` |
+Not used for networking in Flex Consumption |
+`properties.vnetContentShareEnabled` |
+Not used for networking in Flex Consumption |
+`properties.vnetImagePullEnabled` |
+Not used for networking in Flex Consumption |
+`properties.vnetRouteAllEnabled` |
+Not used for networking in Flex Consumption |
+`properties.windowsFxVersion` |
+Not valid |
+
+---
+<!-- Source: N/A -->
 
 ---
 <!-- Source: N/A -->

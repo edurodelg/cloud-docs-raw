@@ -1,8 +1,2461 @@
 ---
-merged_at: 2026-01-29T15:49:53.032443
+merged_at: 2026-01-29T15:49:53.274591
 merged_files: 2
 ---
 
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/scenario-database-changes-azure-sqldb -->
+
+# Quickstart: Respond to Azure SQL Database changes using Azure Functions
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+In this Quickstart, you use Visual Studio Code to build an app that responds to changes in an Azure SQL Database table. After testing the code locally, you deploy it to a new serverless function app running in a Flex Consumption plan in Azure Functions.
+
+The project source uses the Azure Developer CLI (azd) extension with Visual Studio Code to simplify initializing and verifying your project code locally, and deploying your code to Azure. This deployment follows current best practices for secure and scalable Azure Functions deployments.
+
+Important
+
+While responding to [changes in an Azure SQL database](functions-bindings-azure-mysql-trigger) is supported for all languages, this quickstart scenario currently only has examples for C#, Python, and TypeScript. To complete this quickstart, select one of these supported languages at the top of the article.
+
+## Prerequisites
+
+An Azure account with an active subscription.
+
+[Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).[Visual Studio Code](https://code.visualstudio.com/)on one of the[supported platforms](https://code.visualstudio.com/docs/supporting/requirements#_platforms).The
+
+[Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)for Visual Studio Code. This extension requires[Azure Functions Core Tools](functions-run-local). When this tool isn't available locally, the extension tries to install it by using a package-based installer. You can also install or update the Core Tools package by running`Azure Functions: Install or Update Azure Functions Core Tools`
+
+from the command palette. If you don't have npm or Homebrew installed on your local computer, you must instead[manually install or update Core Tools](functions-run-local#install-the-azure-functions-core-tools).
+
+[C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)for Visual Studio Code.
+
+[Node.js 18.x](https://nodejs.org/en/about/previous-releases)or above. Use the`node --version`
+
+command to check your version.
+
+Python versions that are
+
+[supported by Azure Functions](supported-languages#languages-by-runtime-version). For more information, see[How to install Python](https://wiki.python.org/moin/BeginnersGuide/Download).The
+
+[Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)for Visual Studio Code.
+
+- The
+[Azure Developer CLI extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azure-dev)for Visual Studio Code.
+
+- The
+[SQL Server (mssql) extension](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql)for Visual Studio Code.
+
+## Initialize the project
+
+You can use the `azd init`
+
+command from the command palette to create a local Azure Functions code project from a template.
+
+In Visual Studio Code, open a folder or workspace in which you want to create your project.
+
+Press
+
+`F1`to open the command palette, search for and run the command`Azure Developer CLI (azd): Initialize App (init)`
+
+, and then choose**Select a template**.When prompted, search for and select
+
+`Azure Functions with SQL Triggers and Bindings`
+
+.When prompted, enter a unique environment name, such as
+
+`sqldbchanges`
+
+.
+
+This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-dotnet-azd-sql) and initializes the project in the current folder or workspace. In `azd`
+
+, the environment is used to maintain a unique deployment context for your app, and you can define more than one. It's also part of the name of the resource group you create in Azure.
+
+This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-python-azd-sql) and initializes the project in the current folder or workspace. In `azd`
+
+, the environment is used to maintain a unique deployment context for your app, and you can define more than one. It's also part of the name of the resource group you create in Azure.
+
+This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-typescript-azd-sql) and initializes the project in the current folder or workspace. In `azd`
+
+, the environment is used to maintain a unique deployment context for your app, and you can define more than one. It's also part of the name of the resource group you create in Azure.
+
+Before you can run your app locally, you must create the resources in Azure.
+
+## Create Azure resources
+
+This project is configured to use the `azd provision`
+
+command to create a function app in a Flex Consumption plan, along with other required Azure resources that follow current best practices.
+
+In Visual Studio Code, press
+
+`F1`to open the command palette, search for and run the command`Azure Developer CLI (azd): Sign In with Azure Developer CLI`
+
+, and then sign in using your Azure account.Press
+
+`F1`to open the command palette, search for and run the command`Azure Developer CLI (azd): Provision Azure resources (provision)`
+
+to create the required Azure resources.When prompted in the Terminal window, provide these required deployment parameters:
+
+Prompt Description Select an Azure Subscription to use Select the subscription in which you want your resources to be created. *location*deployment parameterAzure region in which to create the resource group that contains the new Azure resources. Only regions that currently support the Flex Consumption plan are shown. *vnetEnabled*deployment parameterWhile the template supports creating resources inside a virtual network, to simplify deployment and testing, choose `False`
+
+.
+
+The `azd provision`
+
+command uses your response to these prompts with the Bicep configuration files to create and configure these required Azure resources, following the latest best practices:
+
+- Flex Consumption plan and function app
+- Azure SQL Database (default name: ToDo)
+- Azure Storage (required) and Application Insights (recommended)
+- Access policies and roles for your account
+- Service-to-service connections using managed identities (instead of stored connection strings)
+
+Post-provision hooks also generate the *local.settings.json* file, which is required to run locally. This file contains the settings required to connect to your database in Azure.
+
+## Review the code (optional)
+
+The sample defines two functions:
+
+| Function name | Code file | Trigger type | Description |
+|---|---|---|---|
+`httptrigger-sql-output` |
+|
+
+`ToDo`
+
+table.`ToDoTrigger`
+
+[sql_trigger.cs](https://github.com/Azure-Samples/functions-quickstart-dotnet-azd-sql/blob/main/sql_trigger.cs)`ToDo`
+
+table for row-level changes and returns an object that represents the changed row.The `ToDoItem`
+
+type is defined in [ToDoItem.cs](https://github.com/Azure-Samples/functions-quickstart-dotnet-azd-sql/blob/main/ToDoItem.cs).
+
+| Function name | Code file | Trigger type | Description |
+|---|---|---|---|
+`http_trigger_sql_output` |
+|
+
+`ToDo`
+
+table.`httptrigger-sql-output`
+
+[sql_trigger_todo](https://github.com/Azure-Samples/functions-quickstart-python-azd-sql/blob/main/function_app.py#L15C5-L15C21)`ToDo`
+
+table for row-level changes and returns an object that represents the changed row.The `ToDoItem`
+
+type is defined in [todo_item.py](https://github.com/Azure-Samples/functions-quickstart-python-azd-sql/blob/main/todo_item.py).
+
+| Function name | Code file | Trigger type | Description |
+|---|---|---|---|
+`httpTriggerSqlOutput` |
+|
+
+`ToDo`
+
+table.`sqlTriggerToDo`
+
+[sql_trigger.ts](https://github.com/Azure-Samples/functions-quickstart-typescript-azd-sql/blob/main/src/functions/sql_trigger.ts)`ToDo`
+
+table for row-level changes and returns an object that represents the changed row.The `ToDoItem`
+
+type is defined in [ToDoItem.ts](https://github.com/Azure-Samples/functions-quickstart-typescript-azd-sql/blob/main/src/models/ToDoItem.ts).
+
+Both functions use the app-level `AZURE_SQL_CONNECTION_STRING_KEY_*`
+
+environment variables that define an identity-based connection to the Azure SQL Database instance using Microsoft Entra ID authentication. These environment variables are created for you both in Azure (function app settings) and locally (local.settings.json) during the `azd provision`
+
+operation.
+
+## Connect to the SQL database
+
+You can use the SQL Server (mssql) extension for Visual Studio Code to connect to the new database. This extension helps you make updates in the `ToDo`
+
+table to run the SQL trigger function.
+
+Press
+
+`F1`and in the command palette search for and run the command`MS SQL: Add Connection`
+
+.In the
+
+**Connection dialog**, change**Input type**to**Browse Azure**and then set these remaining options:Option Choose Description **Server**Your SQL Server instance By default, all servers accessible to your Azure account are displayed. Use **Subscription**,**Resource group**, and**Location**to help filter the servers list.**Database**`ToDo`
+
+The database created during the provisioning process. **Authentication type****Microsoft Entra ID**If you aren't already signed-in, select **Sign in**and sign in to your Azure account.**Tenant ID**The specific account tenant. If your account has more than one tenant, choose the correct tenant for your subscription. Select
+
+**Connect**to connect to your database. The connection uses your local user account, which is granted admin permissions in the hosting server and mapped to`dbo`
+
+in the database.In the
+
+**SQL Server**view, locate and expand**Connections**and then your new server in SQL Server explorer. Expand**Tables**and verify that the`ToDo`
+
+table exists. If it doesn't exist, you might need run`azd provision`
+
+again and check for errors.
+
+## Run the function locally
+
+Visual Studio Code integrates with [Azure Functions Core tools](functions-run-local) to let you run this project on your local development computer before you publish to your new function app in Azure.
+
+Press
+
+`F1`and in the command palette search for and run the command`Azurite: Start`
+
+.To start the function locally, press
+
+`F5`or the**Run and Debug**icon in the left-hand side Activity bar.The
+
+**Terminal**panel displays the output from Core Tools. Your app starts in the**Terminal**panel, and you can see the name of the function that's running locally.
+
+With the app running, you can verify and debug both function triggers.
+
+To verify the HTTP trigger function that writes to a SQL output binding:
+
+Copy this JSON object, which you can also find in the
+
+`test.http`
+
+project file:`{ "id": "11111111-1111-1111-1111-111111111111", "order": 1, "title": "Test Todo Item", "url": "https://example.com", "completed": false }`
+
+This data represents a row that you insert in your SQL database when you call the HTTP endpoint. The output binding translates the data object into an
+
+`INSERT`
+
+operation in the database.With the app running, in the
+
+**Azure**view under**Workspace**expand**Local project**>**Functions**.Right-select your HTTP function (or
+
+`Ctrl`+click on macOS), select**Execute function now**, paste the copied JSON data, and press`Enter`.The function handles the HTTP request and writes the item to the connected SQL database and returns the created object.
+
+Back in the SQL Server explorer, right-select the
+
+`ToDo`
+
+table (or`Ctrl`+click on macOS), and choose**Select Top 1000**. When the query executes, it returns the inserted or updated row.Repeat Step 3 and resend the same data object with the same ID. This time, the output binding performs an
+
+`UPDATE`
+
+operation instead of an`INSERT`
+
+and modifies the existing row in the database.
+
+When you're done, type `Ctrl`+`C` in the terminal to stop the Core Tools process.
+
+## Deploy to Azure
+
+You can run the `azd deploy`
+
+command from Visual Studio Code to deploy the project code to your already provisioned resources in Azure.
+
+Press
+
+`F1`to open the command palette, search for and run the command`Azure Developer CLI (azd): Deploy to Azure (deploy)`
+
+.The
+
+`azd deploy`
+
+command packages and deploys your code to the deployment container. The app is then started and runs in the deployed package.After the command completes successfully, your app is running in Azure. Make a note of the
+
+`Endpoint`
+
+value, which is the URL of your function app running in Azure.
+
+## Invoke the function on Azure
+
+In Visual Studio Code, press
+
+`F1`and in the command palette search for and run the command`Azure: Open in portal`
+
+, select`Function app`
+
+, and choose your new app. Sign in with your Azure account, if necessary.Select
+
+**Log stream**in the left pane, which connects to the Application Insights logs for your app.Return to Visual Studio Code to run both the functions in Azure.
+
+
+Press
+
+`F1`to open the command palette, search for and run the command`Azure Functions: Execute Function Now...`
+
+.Search for and select your remote function app from the list, then select the HTTP trigger function.
+
+As before, paste your JSON object data in
+
+**Enter payload body**and press`Enter`.`{ "id": "11111111-1111-1111-1111-111111111111", "order": 1, "title": "Test Todo Item", "url": "https://example.com", "completed": false }`
+
+To perform an
+
+`INSERT`
+
+instead of an`UPDATE`
+
+, replace the`id`
+
+with a new GUID value.Return to the portal and view the execution output in the log window.
+
+
+## Clean up resources
+
+When you're done working with your function app and related resources, you can use this command to delete the function app and its related resources from Azure and avoid incurring any further costs:
+
+```
+azd down --no-prompt
+```
+
+
+Note
+
+The `--no-prompt`
+
+option instructs `azd`
+
+to delete your resource group without a confirmation from you.
+
+This command doesn't affect your local code project.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-diagnostics -->
+
+# Azure Functions diagnostics overview
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+When you’re running a function app, you want to be prepared for any issues that may arise, from 4xx errors to trigger failures. Azure Functions diagnostics is an intelligent and interactive experience to help you troubleshoot your function app with no configuration or extra cost. When you do run into issues with your function app, Azure Functions diagnostics points out what’s wrong. It guides you to the right information to more easily and quickly troubleshoot and resolve the issue. This article shows you the basics of how to use Azure Functions diagnostics to more quickly diagnose and solve common function app issues.
+
+## Start Azure Functions diagnostics
+
+To start Azure Functions diagnostics:
+
+Navigate to your function app in the
+
+[Azure portal](https://portal.azure.com).Select
+
+**Diagnose and solve problems**to open Azure Functions diagnostics.Choose a category that best describes the issue of your function app by using the keywords in the homepage tile. You can also type a keyword that best describes your issue in the search bar. For example, you could type
+
+`execution`
+
+to see a list of diagnostic reports related to your function app execution and open them directly from the homepage.
+
+## Use the Interactive interface
+
+Once you select a homepage category that best aligns with your function app's problem, Azure Functions diagnostics' interactive interface, named Genie, can guide you through diagnosing and solving problem of your app. You can use the tile shortcuts provided by Genie to view the full diagnostic report of the problem category that you're interested in. The tile shortcuts provide you a direct way of accessing your diagnostic metrics.
+
+
+After selecting a tile, you can see a list of topics related to the issue described in the tile. These topics provide snippets of notable information from the full report. Select any of these topics to investigate the issues further. Also, you can select **View Full Report** to explore all the topics on a single page.
+
+
+## View a diagnostic report
+
+After you choose a topic, you can view a diagnostic report specific to your function app. Diagnostic reports use status icons to indicate if there are any specific issues with your app. You see detailed description of the issue, recommended actions, related-metrics, and helpful docs. Customized diagnostic reports are generated from a series of checks run on your function app. Diagnostic reports can be a useful tool for pinpointing problems in your function app and guiding you towards resolving the issue.
+
+## Find the problem code
+
+For script-based functions, you can use **Function Execution and Errors** under **Function App Down or Reporting Errors** to narrow down on the line of code causing exceptions or errors. You can use this tool for getting to the root cause and fixing issues from a specific line of code. This option isn't available for precompiled C# and Java functions.
+
+
+## Next steps
+
+You can ask questions or provide feedback on Azure Functions diagnostics at [UserVoice](https://feedback.azure.com/d365community/forum/9df02822-f224-ec11-b6e6-000d3a4f0da0). Include `[Diag]`
+
+in the title of your feedback.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-openapi-definition -->
+
+# Expose serverless APIs from HTTP endpoints using Azure API Management
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Azure Functions integrates with Azure API Management in the portal to let you expose your HTTP trigger function endpoints as REST APIs. These APIs are described using an OpenAPI definition. This JSON (or YAML) file contains information about what operations are available in an API. It includes details about how the request and response data for the API should be structured. By integrating your function app, you can have API Management generate these OpenAPI definitions.
+
+This article shows you how to integrate your function app with API Management. This integration works for function apps developed in any [supported language](supported-languages). You can also [import your function app from Azure API Management](../api-management/import-function-app-as-api).
+
+For C# class library functions, you can also [use Visual Studio](openapi-apim-integrate-visual-studio) to create and publish serverless API that integrate with API Management.
+
+## Create the API Management instance
+
+To create an API Management instance linked to your function app:
+
+Select the function app, choose
+
+**API Management**from the left menu, and then select**Create new**under**API Management**.Use the API Management settings as specified in the following table:
+
+Setting Suggested value Description **Subscription**Your subscription The subscription under which this new resource is created. [Resource group](../azure-resource-manager/management/overview)myResourceGroup The same resource as your function app, which should get set for you. **Region**Location of the service Consider choosing the same location as your function app. **Resource name**Globally unique name A name is generated based on the name of your function app. **Organization name**Contoso The name of the organization used in the developer portal and for email notifications. **Administrator email**your email Email that received system notifications from API Management. **Pricing tier**Consumption Consumption tier isn't available in all regions. For complete pricing details, see the [API Management pricing page](https://azure.microsoft.com/pricing/details/api-management/)Choose
+
+**Review + create**and then**Create**to create the API Management instance, which may take several minutes.
+
+## Import functions
+
+After the API Management instance is created, you can import your HTTP triggered function endpoints. This example imports an endpoint named TurbineRepair.
+
+In the API Management page, select
+
+**Link API**.The
+
+**Import Azure Functions**opens with the**TurbineRepair**function highlighted. Choose**Select**to continue.In the
+
+**Create from Function App**page, accept the defaults, and then select**Create**. Azure creates the API for the function.
+
+## Download the OpenAPI definition
+
+After your functions have been imported, you can download the OpenAPI definition from the API Management instance.
+
+Select
+
+**Download OpenAPI definition**at the top of the page.Save the downloaded JSON file, and then open it. Review the definition.
+
+
+## Next steps
+
+You can now refine the definition in API Management in the portal. You can also [learn more about API Management](../api-management/api-management-key-concepts).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-maven-intellij -->
+
+# Create your first Java function in Azure using IntelliJ
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This article shows you how to use Java and IntelliJ to create an Azure function.
+
+Specifically, this article shows you:
+
+- How to create an HTTP-triggered Java function in an IntelliJ IDEA project.
+- Steps for testing and debugging the project in the integrated development environment (IDE) on your own computer.
+- Instructions for deploying the function project to Azure Functions.
+
+## Prerequisites
+
+- An Azure account with an active subscription.
+[Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - An
+[Azure supported Java Development Kit (JDK)](/en-us/azure/developer/java/fundamentals/java-support-on-azure), version 8, 11, 17 or 21. (Java 21 is currently supported on Linux only) - An
+[IntelliJ IDEA](https://www.jetbrains.com/idea/download/)Ultimate Edition or Community Edition installed [Maven 3.5.0+](https://maven.apache.org/download.cgi)- Latest
+[Function Core Tools](https://github.com/Azure/azure-functions-core-tools)
+
+## Install plugin and sign in
+
+To install the Azure Toolkit for IntelliJ and then sign in, follow these steps:
+
+In IntelliJ IDEA's
+
+**Settings/Preferences**dialog (Ctrl+Alt+S), select**Plugins**. Then, find the**Azure Toolkit for IntelliJ**in the**Marketplace**and select**Install**. After it's installed, select**Restart**to activate the plugin.To sign in to your Azure account, open the
+
+**Azure Explorer**sidebar, and then select the**Azure Sign In**icon in the bar on top (or from the IDEA menu, select**Tools > Azure > Azure Sign in**).In the
+
+**Azure Sign In**window, select**OAuth 2.0**, and then select**Sign in**. For other sign-in options, see[Sign-in instructions for the Azure Toolkit for IntelliJ](/en-us/azure/developer/java/toolkit-for-intellij/sign-in-instructions).In the browser, sign in with your account and then go back to IntelliJ. In the
+
+**Select Subscriptions**dialog box, select the subscriptions that you want to use, then select**Select**.
+
+## Create your local project
+
+To use Azure Toolkit for IntelliJ to create a local Azure Functions project, follow these steps:
+
+Open IntelliJ IDEA's
+
+**Welcome**dialog, select**New Project**to open a new project wizard, then select**Azure Functions**.Select
+
+**Http Trigger**, then select**Next**and follow the wizard to go through all the configurations in the following pages. Confirm your project location, then select**Finish**. IntelliJ IDEA then opens your new project.
+
+## Run the project locally
+
+To run the project locally, follow these steps:
+
+Important
+
+You must have the JAVA_HOME environment variable set correctly to the JDK directory that is used during code compiling using Maven. Make sure that the version of the JDK is at least as high as the `Java.version`
+
+setting.
+
+Navigate to
+
+*src/main/java/org/example/functions/HttpTriggerJava.java*to see the code generated. Beside line 17, you should see a green**Run**button. Select it and then select**Run 'Functions-azur...'**. You should see your function app running locally with a few logs.You can try the function by accessing the displayed endpoint from browser, such as
+
+`http://localhost:7071/api/HttpTriggerJava?name=Azure`
+
+.The log is also displayed in your IDEA. Stop the function app by selecting
+
+**Stop**.
+
+## Debug the project locally
+
+To debug the project locally, follow these steps:
+
+Select the
+
+**Debug**button in the toolbar. If you don't see the toolbar, enable it by choosing**View**>**Appearance**>**Toolbar**.Select line 20 of the file
+
+*src/main/java/org/example/functions/HttpTriggerJava.java*to add a breakpoint. Access the endpoint`http://localhost:7071/api/HttpTriggerJava?name=Azure`
+
+again and you should find that the breakpoint is hit. You can then try more debug features like**Step**,**Watch**, and**Evaluation**. Stop the debug session by selecting**Stop**.
+
+## Create the function app in Azure
+
+Use the following steps create a function app and related resources in your Azure subscription:
+
+In Azure Explorer in your IDEA, right-click
+
+**Function App**and then select**Create**.Select
+
+**More Settings**and provide the following information at the prompts:Prompt Selection **Subscription**Choose the subscription to use. **Resource Group**Choose the resource group for your function app. **Name**Specify the name for a new function app. Here you can accept the default value. **Platform**Select **Windows-Java 17**or another platform as appropriate.**Region**For better performance, choose a [region](https://azure.microsoft.com/regions/)near you.**Hosting Options**Choose the hosting options for your function app. **Plan**Choose the App Service plan pricing tier you want to use, or select **+**to create a new App Service plan.Important
+
+To create your app in the Flex Consumption plan, select
+
+**Flex Consumption**. The[Flex Consumption plan](flex-consumption-plan)is currently in preview.Select
+
+**OK**. A notification is displayed after your function app is created.
+
+## Deploy your project to Azure
+
+To deploy your project to Azure, follow these steps:
+
+Select and expand the Azure icon in IntelliJ Project explorer, then select
+
+**Deploy to Azure -> Deploy to Azure Functions**.You can select the function app from the previous section. To create a new one, select
+
+**+**on the**Function**line. Type in the function app name and choose the proper platform. Here, you can accept the default value. Select**OK**and the new function app you created is automatically selected. Select**Run**to deploy your functions.
+
+## Manage function apps from IDEA
+
+To manage your function apps with **Azure Explorer** in your IDEA, follow these steps:
+
+Select
+
+**Function App**to see all your function apps listed.Select one of your function apps, then right-click and select
+
+**Show Properties**to open the detail page.Right-click your
+
+**HttpTrigger-Java**function app, then select**Trigger Function in Browser**. You should see that the browser is opened with the trigger URL.
+
+## Add more functions to the project
+
+To add more functions to your project, follow these steps:
+
+Right-click the package
+
+**org.example.functions**and select**New -> Azure Function Class**.Fill in the class name
+
+**HttpTest**and select**HttpTrigger**in the create function class wizard, then select**OK**to create. In this way, you can create new functions as you want.
+
+## Cleaning up functions
+
+Select one of your function apps using **Azure Explorer** in your IDEA, then right-click and select **Delete**. This command might take several minutes to run. When it's done, the status refreshes in **Azure Explorer**.
+
+## Next steps
+
+You've created a Java project with an HTTP triggered function, run it on your local machine, and deployed it to Azure. Now, extend your function by continuing to the following article:
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-container-apps-hosting -->
+
+# Azure Container Apps hosting of Azure Functions
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+A new hosting method for running Azure Functions directly in Azure Container Apps is now available. See [Native Azure Functions Support in Azure Container Apps](https://techcommunity.microsoft.com/blog/appsonazureblog/announcing-native-azure-functions-support-in-azure-container-apps/4414039). This integration allows you to use the full features and capabilities of Azure Container Apps. You also benefit from the functions programming model and simplicity of autoscaling provided by Azure Functions.
+
+We recommend this approach for most new workloads. For more information, see [Azure Functions on Azure Container Apps](../container-apps/functions-overview).
+
+Azure Functions provides integrated support for developing, deploying, and managing containerized function apps on [Azure Container Apps](../container-apps/overview). Use Azure Container Apps to host your function app containers when you need to run your event-driven functions in Azure in the same environment as other microservices, APIs, websites, workflows, or any container hosted programs. Container Apps hosting lets you run your functions in a fully managed, Kubernetes-based environment with built-in support for open-source monitoring, mTLS, Dapr, and Kubernetes Event-driven Autoscaling (KEDA).
+
+You can write your function code in any [language stack supported by Functions](supported-languages). You can use the same Functions triggers and bindings with event-driven scaling. You can also use existing Functions client tools and the Azure portal to create containers, deploy function app containers to Container Apps, and configure continuous deployment.
+
+Container Apps integration also means that network and observability configurations, which are defined at the Container App environment level, apply to your function app as they do to all microservices running in a Container Apps environment. You also get the other cloud-native capabilities of Container Apps, including KEDA, Dapr, Envoy. You can still use Application Insights to monitor your functions executions, and your function app can access the same virtual networking resources provided by the environment.
+
+For a general overview of container hosting options for Azure Functions, see [Linux container support in Azure Functions](container-concepts).
+
+## Hosting and workload profiles
+
+There are two primary plans for Container Apps: a serverless [Consumption plan](../container-apps/plans#consumption) and a [Dedicated plan](../container-apps/plans#dedicated). Both can be used in Workload profiles environment types, with workload profiles determining the compute and memory resources available to your apps. A workload profile determines the amount of compute and memory resources available to container apps deployed in an environment. These profiles are configured to fit the different needs of your applications.
+
+The Consumption workload profile is the default profile added to every Workload profiles environment type. You can add Dedicated workload profiles to your environment as you create an environment or after it's created. To learn more about workload profiles, see [Workload profiles in Azure Container Apps](../container-apps/workload-profiles-overview).
+
+Container Apps hosting of containerized function apps is supported in all [regions that support Container Apps](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=container-apps).
+
+If your app doesn't have specific hardware requirements, you can run your environment either in a Consumption plan or in a Dedicated plan using the default Consumption workload profile. When running functions on Container Apps, you're charged only for the Container Apps usage. For more information, see the [Azure Container Apps pricing page](https://azure.microsoft.com/pricing/details/container-apps/).
+
+Azure Functions on Azure Container Apps supports GPU-enabled hosting in the Dedicated plan with workload profiles.
+
+To learn how to create and deploy a function app container to Container Apps in the default Consumption plan, see [Create your first containerized functions on Azure Container Apps](functions-deploy-container-apps).
+
+To learn how to create a Container Apps environment with workload profiles and deploy a function app container to a specific workload, see [Container Apps workload profiles](functions-how-to-custom-container#container-apps-workload-profiles).
+
+## Functions in containers
+
+To use Container Apps hosting, your code must run on a function app in a Linux container that you create and maintain. Functions maintains a set of [language-specific base images](https://mcr.microsoft.com/catalog?search=functions) that you can use to generate your containerized function apps.
+
+When you create a code project using [Azure Functions Core Tools](functions-run-local) and include the [ --docker option](functions-core-tools-reference#func-init), Core Tools generates the Dockerfile with the correct base image, which you can use as a starting point when creating your container.
+
+Important
+
+When you create your own containers, you're required to keep the base image of your container updated to the latest supported base image. Supported base images for Azure Functions are language-specific. See the [Azure Functions base image repos](https://mcr.microsoft.com/catalog?search=functions).
+
+The Functions team is committed to publishing monthly updates for these base images. Regular updates include the latest minor version updates and security fixes for both the Functions runtime and languages. You should regularly update your container from the latest base image and redeploy the updated version of your container. For more information, see [Maintaining custom containers](container-concepts#maintaining-custom-containers).
+
+When you make changes to your functions code, you must rebuild and republish your container image. For more information, see [Update an image in the registry](functions-how-to-custom-container#update-an-image-in-the-registry).
+
+## Deployment options
+
+Azure Functions currently supports the following methods of deploying a containerized function app to Azure Container Apps:
+
+[Apache Maven](https://github.com/microsoft/azure-maven-plugins/wiki/Azure-Functions:-Configuration-Details#properties-for-azure-container-apps-hosting-of-azure-functions)[ARM templates](/en-us/azure/templates/microsoft.web/sites?pivots=deployment-language-arm-template)[Azure CLI](functions-deploy-container-apps)[Azure Developer CLI (azd)](https://github.com/Azure/azure-functions-on-container-apps/tree/main/samples/azdtemplates)[Azure Functions Core Tools](functions-run-local#deploy-containers)[Azure Pipeline tasks](https://github.com/Azure/azure-functions-on-container-apps/tree/main/samples/AzurePipelineTasks)[Azure portal](https://aka.ms/funconacablade)[Bicep files](https://github.com/Azure/azure-functions-on-container-apps/tree/main/samples/Biceptemplates)[GitHub Actions](https://github.com/Azure/azure-functions-on-container-apps/tree/main/samples/GitHubActions)[Visual Studio Code](https://github.com/Azure/azure-functions-on-container-apps/tree/main/samples/VSCode%20Sample)
+
+You can continuously deploy your containerized apps from source code using either [Azure Pipelines](functions-how-to-azure-devops?pivots=v1#deploy-a-container) or [GitHub Actions](https://github.com/Azure/azure-functions-on-container-apps/tree/main/samples/GitHubActions). The continuous deployment feature of Functions isn't currently supported when deploying to Container Apps.
+
+## Managed identity authorization
+
+For the best security, you should connect to remote services using Microsoft Entra authentication and managed identity authorization. You can use managed identities for these connections:
+
+When running in Container Apps, you can use Microsoft Entra ID with managed identities for all binding extensions that support managed identities. Currently, only these binding extensions support event-driven scaling when using managed identity authentication:
+
+- Azure Event Hubs
+- Azure Queue Storage
+- Azure Service Bus
+
+For other bindings, use fixed replicas when using managed identity authentication. For more information, see the [Functions developer guide](functions-reference#connections).
+
+## Virtual network integration
+
+When you host your function apps in a Container Apps environment, your functions are able to take advantage of both internally and externally accessible virtual networks. To learn more about environment networks, see [Networking in Azure Container Apps environment](../container-apps/networking).
+
+## Event-driven scaling
+
+All Functions triggers can be used in your containerized function app. However, only these triggers can dynamically scale (from zero instances) based on received events when running in a Container Apps environment:
+
+- Azure Cosmos DB (KEDA connection)
+- Azure Event Grid
+- Azure Event Hubs
+- Azure Blob Storage (Event Grid based)
+- Azure Queue Storage
+- Azure Service Bus
+- Durable Functions (MSSQL storage provider)
+- HTTP
+- Kafka
+- Timer
+
+Azure Functions on Container Apps is designed to configure the scale parameters and rules as per the event target. You don't need to worry about configuring the KEDA scaled objects. You can still set minimum and maximum replica count when creating or modifying your function app. The following Azure CLI command sets the minimum and maximum replica count when creating a new function app in a Container Apps environment from an Azure Container Registry:
+
+```
+az functionapp create --name <APP_NAME> --resource-group <MY_RESOURCE_GROUP> --max-replicas 15 --min-replicas 1 --storage-account <STORAGE_NAME> --environment MyContainerappEnvironment --image <LOGIN_SERVER>/azurefunctionsimage:v1 --registry-username <USERNAME> --registry-password <SECURE_PASSWORD> --registry-server <LOGIN_SERVER>
+```
+
+
+The following command sets the same minimum and maximum replica count on an existing function app:
+
+```
+az functionapp config container set --name <APP_NAME> --resource-group <MY_RESOURCE_GROUP> --max-replicas 15 --min-replicas 1
+```
+
+
+## Managed resource groups
+
+Azure Functions on Container Apps runs your containerized function app resources in specially managed resource groups. These managed resource groups help protect the consistency of your apps by preventing unintended or unauthorized modification or deletion of resources in the managed group, even by service principals.
+
+A managed resource group is created for you the first time you create function app resources in a Container Apps environment. Container Apps resources required by your containerized function app run in this managed resource group. Any other function apps that you create in the same environment use this existing group.
+
+A managed resource group gets removed automatically after all function app container resources are removed from the environment. While the managed resource group is visible, any attempts to modify or remove the managed resource group result in an error. To remove a managed resource group from an environment, remove all of the function app container resources and it gets removed for you.
+
+If you run into any issues with these managed resource groups, you should contact support.
+
+## Application logging
+
+You can monitor your containerized function app hosted in Container Apps using Azure Monitor Application Insights in the same way you do with apps hosted by Azure Functions. For more information, see [Monitor Azure Functions](monitor-functions).
+
+For bindings that support event-driven scaling, scale events are logged as `FunctionsScalerInfo`
+
+and `FunctionsScalerError`
+
+events in your Log Analytics workspace. For more information, see [Application Logging in Azure Container Apps](../container-apps/logging).
+
+## Considerations for Container Apps hosting
+
+Keep in mind the following considerations when deploying your function app containers to Container Apps:
+
+- These limitations apply to Kafka triggers:
+- The protocol value of
+`ssl`
+
+isn't supported when hosted on Container Apps. Use a[different protocol value](functions-bindings-kafka-trigger?pivots=programming-language-csharp#attributes). - For a Kafka trigger to dynamically scale when connected to Event Hubs, the
+`username`
+
+property must resolve to an application setting that contains the actual username value. When the default`$ConnectionString`
+
+value is used, the Kafka trigger isn't able to cause the app to scale dynamically.
+
+- The protocol value of
+- For the built-in Container Apps
+[policy definitions](../container-apps/policy-reference#policy-definitions), currently only environment-level policies apply to Azure Functions containers. - By default, a containerized function app monitors port 80 for incoming requests. If your app must use a different port, use the
+to change this default port.`WEBSITES_PORT`
+
+application setting - You aren't currently able to use built-in continuous deployment features when hosting on Container Apps. You must instead deploy from source code using either
+[Azure Pipelines](functions-how-to-azure-devops?pivots=v1#deploy-a-container)or[GitHub Actions](https://github.com/Azure/azure-functions-on-container-apps/tree/main/samples/GitHubActions). - You currently can't move a Container Apps hosted function app deployment between resource groups or between subscriptions. Instead, you would have to recreate the existing containerized app deployment in a new resource group, subscription, or region.
+- When using Container Apps, you don't have direct access to the lower-level Kubernetes APIs.
+- The
+`containerapp`
+
+extension conflicts with the`appservice-kube`
+
+extension in Azure CLI. If you have previously published apps to Azure Arc, run`az extension list`
+
+and make sure that`appservice-kube`
+
+isn't installed. If it is, you can remove it by running`az extension remove -n appservice-kube`
+
+.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-cache-trigger-redisstream -->
+
+# RedisStreamTrigger for Azure Functions
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+The `RedisStreamTrigger`
+
+reads new entries from a stream and surfaces those elements to the function.
+
+## Scope of availability for functions triggers
+
+| Trigger Type | Azure Managed Redis | Azure Cache for Redis |
+|---|---|---|
+| Streams | Yes | Yes |
+
+Important
+
+When using Azure Managed Redis or the Enterprise tiers of Azure Cache for Redis, use port 10000 rather than port 6380 or 6379.
+
+Important
+
+Redis triggers aren't currently supported for functions running on a [Consumption plan](consumption-plan) or a [Flex Consumption plan](/en-us/azure/azure-functions/flex-consumption-plan).
+
+Important
+
+The Node.js v4 model for Functions isn't yet supported by the Azure Cache for Redis extension. For more details about how the v4 model works, refer to the [Azure Functions Node.js developer guide](functions-reference-node). To learn more about the differences between v3 and v4, refer to the [migration guide](functions-node-upgrade-v4).
+
+Important
+
+The Python v2 model for Functions isn't yet supported by the Azure Cache for Redis extension. For more details about how the v2 model works, refer to the [Azure Functions Python developer guide](functions-reference-python?pivots=python-mode-decorators).
+
+## Example
+
+Important
+
+For .NET functions, using the *isolated worker* model is recommended over the *in-process* model. For a comparison of the *in-process* and *isolated worker* models, see differences between the *isolated worker* model and the *in-process* model for .NET on Azure Functions.
+
+| Execution model | Description |
+|---|---|
+Isolated worker model |
+Your function code runs in a separate .NET worker process. Use with
+|
+
+**In-process model**[Long Term Support (LTS) versions of .NET](functions-dotnet-class-library#supported-versions). To learn more, see[Develop C# class library functions using Azure Functions](functions-dotnet-class-library).```
+using Microsoft.Extensions.Logging;
+namespace Microsoft.Azure.Functions.Worker.Extensions.Redis.Samples.RedisStreamTrigger
+{
+internal class SimpleStreamTrigger
+{
+private readonly ILogger<SimpleStreamTrigger> logger;
+public SimpleStreamTrigger(ILogger<SimpleStreamTrigger> logger)
+{
+this.logger = logger;
+}
+[Function(nameof(SimpleStreamTrigger))]
+public void Run(
+[RedisStreamTrigger(Common.connectionStringSetting, "streamKey")] string entry)
+{
+logger.LogInformation(entry);
+}
+}
+}
+```
+
+
+```
+package com.function.RedisStreamTrigger;
+import com.microsoft.azure.functions.*;
+import com.microsoft.azure.functions.annotation.*;
+import com.microsoft.azure.functions.redis.annotation.*;
+public class SimpleStreamTrigger {
+@FunctionName("SimpleStreamTrigger")
+public void run(
+@RedisStreamTrigger(
+name = "req",
+connection = "redisConnectionString",
+key = "streamTest",
+pollingIntervalInMs = 1000,
+maxBatchSize = 1)
+String message,
+final ExecutionContext context) {
+context.getLogger().info(message);
+}
+}
+```
+
+
+This sample uses the same `index.js`
+
+file, with binding data in the `function.json`
+
+file.
+
+Here's the `index.js`
+
+file:
+
+```
+module.exports = async function (context, entry) {
+context.log(entry);
+}
+```
+
+
+From `function.json`
+
+, here's the binding data:
+
+```
+{
+"bindings": [
+{
+"type": "redisStreamTrigger",
+"connection": "redisConnectionString",
+"key": "streamTest",
+"pollingIntervalInMs": 1000,
+"maxBatchSize": 16,
+"name": "entry",
+"direction": "in"
+}
+],
+"scriptFile": "index.js"
+}
+```
+
+
+This sample uses the same `run.ps1`
+
+file, with binding data in the `function.json`
+
+file.
+
+Here's the `run.ps1`
+
+file:
+
+```
+param($entry, $TriggerMetadata)
+Write-Host ($entry | ConvertTo-Json)
+```
+
+
+From `function.json`
+
+, here's the binding data:
+
+```
+{
+"bindings": [
+{
+"type": "redisStreamTrigger",
+"connection": "redisConnectionString",
+"key": "streamTest",
+"pollingIntervalInMs": 1000,
+"maxBatchSize": 16,
+"name": "entry",
+"direction": "in"
+}
+],
+"scriptFile": "run.ps1"
+}
+```
+
+
+The Python v1 programming model requires you to define bindings in a separate *function.json* file in the function folder. For more information, see the [Python developer guide](functions-reference-python?pivots=python-mode-configuration#programming-model).
+
+This sample uses the same `__init__.py`
+
+file, with binding data in the `function.json`
+
+file.
+
+Here's the `__init__.py`
+
+file:
+
+```
+import logging
+def main(entry: str):
+logging.info(entry)
+```
+
+
+From `function.json`
+
+, here's the binding data:
+
+```
+{
+"bindings": [
+{
+"type": "redisStreamTrigger",
+"connection": "redisConnectionString",
+"key": "streamTest",
+"pollingIntervalInMs": 1000,
+"maxBatchSize": 16,
+"name": "entry",
+"direction": "in"
+}
+],
+"scriptFile": "__init__.py"
+}
+```
+
+
+## Attributes
+
+| Parameters | Description | Required | Default |
+|---|---|---|---|
+`Connection` |
+The name of the
+`<cacheName>.redis.cache.windows.net:6380,password...` |
+
+`Key`
+
+`PollingIntervalInMs`
+
+`1000`
+
+`MessagesPerWorker`
+
+`100`
+
+`Count`
+
+`10`
+
+`DeleteAfterProcess`
+
+`false`
+
+## Annotations
+
+| Parameter | Description | Required | Default |
+|---|---|---|---|
+`name` |
+`entry` |
+Yes | |
+`connection` |
+The name of the
+`<cacheName>.redis.cache.windows.net:6380,password...` |
+
+`key`
+
+`pollingIntervalInMs`
+
+`1000`
+
+`messagesPerWorker`
+
+`100`
+
+`count`
+
+`10`
+
+`deleteAfterProcess`
+
+`false`
+
+## Configuration
+
+The following table explains the binding configuration properties that you set in the function.json file.
+
+| function.json Properties | Description | Required | Default |
+|---|---|---|---|
+`type` |
+Yes | ||
+`deleteAfterProcess` |
+Optional | `false` |
+|
+`connection` |
+The name of the
+`<cacheName>.redis.cache.windows.net:6380,password...` |
+
+`key`
+
+`pollingIntervalInMs`
+
+`1000`
+
+`messagesPerWorker`
+
+`100`
+
+`count`
+
+`10`
+
+`name`
+
+`direction`
+
+See the Example section for complete examples.
+
+## Usage
+
+The `RedisStreamTrigger`
+
+Azure Function reads new entries from a stream and surfaces those entries to the function.
+
+The trigger polls Redis at a configurable fixed interval, and uses [ XREADGROUP](https://redis.io/commands/xreadgroup/) to read elements from the stream.
+
+The consumer group for all instances of a function is the name of the function, that is, `SimpleStreamTrigger`
+
+for the [StreamTrigger sample](https://github.com/Azure/azure-functions-redis-extension/blob/main/samples/dotnet/RedisStreamTrigger/SimpleStreamTrigger.cs).
+
+Each functions instance uses the [ WEBSITE_INSTANCE_ID](/en-us/azure/app-service/reference-app-settings?tabs=kudu%2Cdotnet#scaling) or generates a random GUID to use as its consumer name within the group to ensure that scaled out instances of the function don't read the same messages from the stream.
+
+| Type | Description |
+|---|---|
+`byte[]` |
+The message from the channel. |
+`string` |
+The message from the channel. |
+`Custom` |
+The trigger uses Json.NET serialization to map the message from the channel from a `string` into a custom type. |
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-openai -->
+
+# Azure OpenAI extension for Azure Functions
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+The Azure OpenAI extension for Azure Functions is currently in preview.
+
+The Azure OpenAI extension for Azure Functions implements a set of triggers and bindings that enable you to easily integrate features and behaviors of [Azure OpenAI in Foundry Models](/en-us/azure/ai-services/openai/overview) into your function code executions.
+
+Azure Functions is an event-driven compute service that provides a set of [triggers and bindings](functions-triggers-bindings) to easily connect with other Azure services.
+
+With the integration between Azure OpenAI and Functions, you can build functions that can:
+
+| Action | Trigger/binding type |
+|---|---|
+| Use a standard text prompt for content completion |
+|
+
+[Azure OpenAI assistant trigger](functions-bindings-openai-assistant-trigger)[Azure OpenAI assistant create output binding](functions-bindings-openai-assistantcreate-output)[Azure OpenAI assistant post input binding](functions-bindings-openai-assistantpost-input)[Azure OpenAI assistant query input binding](functions-bindings-openai-assistantquery-input)[Azure OpenAI embeddings input binding](functions-bindings-openai-embeddings-input)[Azure OpenAI embeddings store output binding](functions-bindings-openai-embeddingsstore-output)[Azure OpenAI semantic search input binding](functions-bindings-openai-semanticsearch-input)## Install extension
+
+The extension NuGet package you install depends on the C# mode [in-process](functions-dotnet-class-library) or [isolated worker process](dotnet-isolated-process-guide) you're using in your function app:
+
+Add the Azure OpenAI extension to your project by installing the [Microsoft.Azure.Functions.Worker.Extensions.OpenAI](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.OpenAI) NuGet package, which you can do using the .NET CLI:
+
+```
+dotnet add package Microsoft.Azure.Functions.Worker.Extensions.OpenAI --prerelease
+```
+
+
+When using a vector database for storing content, you should also install at least one of these NuGet packages:
+
+- Azure AI Search:
+[Microsoft.Azure.Functions.Worker.Extensions.OpenAI.AzureAISearch](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.OpenAI.AzureAISearch) - Azure Cosmos DB for MongoDB vCore:
+[Microsoft.Azure.Functions.Worker.Extensions.OpenAI.CosmosDBSearch](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.OpenAI.CosmosDBSearch) - Azure Cosmos DB for NoSQL:
+[Microsoft.Azure.Functions.Worker.Extensions.OpenAI.CosmosDBSearch](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.OpenAI.CosmosDBNoSQLSearch) - Azure Data Explorer:
+[Microsoft.Azure.Functions.Worker.Extensions.OpenAI.Kusto](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.OpenAI.Kusto)
+
+## Install bundle
+
+To be able to use this preview binding extension in your app, you must reference a preview extension bundle that includes it.
+
+Add or replace the following code in your `host.json`
+
+file, which specifically targets the latest [preview version of the 4.x bundle](https://github.com/Azure/azure-functions-extension-bundles/releases?q=preview+NOT+experimental&expanded=true):
+
+```
+{
+"version": "2.0",
+"extensionBundle": {
+"id": "Microsoft.Azure.Functions.ExtensionBundle.Preview",
+"version": "[4.0.0, 5.0.0)"
+}
+}
+```
+
+
+Select the previous link to verify that the latest preview bundle version does contain the preview extension.
+
+## Connecting to OpenAI
+
+To use the Azure OpenAI binding extension, you need to specify a connection to OpenAI. This connection is defined using application settings, and the `AIConnectionName`
+
+property of the trigger or binding. You can also use environment variables to define key-based connections.
+
+We recommend that you use managed identity-based connections and the `AIConnectionName`
+
+property.
+
+The OpenAI bindings have an `AIConnectionName`
+
+property that you can use to specify the `<ConnectionNamePrefix>`
+
+for this group of app settings that define the connection to Azure OpenAI:
+
+| Setting name | Description |
+|---|---|
+`<CONNECTION_NAME_PREFIX>__endpoint` |
+Sets the URI endpoint of the Azure OpenAI in Foundry Models. This setting is always required. |
+`<CONNECTION_NAME_PREFIX>__clientId` |
+Sets the specific user-assigned identity to use when obtaining an access token. Requires that `<CONNECTION_NAME_PREFIX>__credential` is set to `managedidentity` . The property accepts a client ID corresponding to a user-assigned identity assigned to the application. It's invalid to specify both a Resource ID and a client ID. If not specified, the system-assigned identity is used. This property is used differently in
+`credential` shouldn't be set. |
+`<CONNECTION_NAME_PREFIX>__credential` |
+Defines how an access token is obtained for the connection. Use `managedidentity` for managed identity authentication. This value is only valid when a managed identity is available in the hosting environment. |
+`<CONNECTION_NAME_PREFIX>__managedIdentityResourceId` |
+When `credential` is set to `managedidentity` , this property can be set to specify the resource Identifier to be used when obtaining a token. The property accepts a resource identifier corresponding to the resource ID of the user-defined managed identity. It's invalid to specify both a resource ID and a client ID. If neither are specified, the system-assigned identity is used. This property is used differently in
+`credential` shouldn't be set. |
+`<CONNECTION_NAME_PREFIX>__key` |
+Sets the shared secret key required to access the endpoint of Azure OpenAI using key-based authentication. As a security best practice, you should always use Microsoft Entra ID with managed identities for authentication. |
+
+Consider these managed identity connection settings when then `AIConnectionName`
+
+property is set to `myAzureOpenAI`
+
+:
+
+`myAzureOpenAI__endpoint=https://contoso.openai.azure.com/`
+
+`myAzureOpenAI__credential=managedidentity`
+
+`myAzureOpenAI__clientId=aaaaaaaa-bbbb-cccc-1111-222222222222`
+
+
+At runtime, these settings are collectively interpreted by the host as a single `myAzureOpenAI`
+
+setting like this:
+
+```
+"myAzureOpenAI":
+{
+"endpoint": "https://contoso.openai.azure.com/",
+"credential": "managedidentity",
+"clientId": "aaaaaaaa-bbbb-cccc-1111-222222222222"
+}
+```
+
+
+When using managed identities, make sure to add your identity to the [Cognitive Services OpenAI User](../role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-openai-user) role.
+
+When running locally, you must add these settings to the *local.settings.json* project file. For more information, see [Local development with identity-based connections](functions-reference#local-development-with-identity-based-connections).
+
+For more information, see [Work with application settings](functions-how-to-use-azure-function-app-settings#settings).
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/language-support-policy -->
+
+# Azure Functions language stack support policy
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This article explains the support policy for the language stacks supported by Azure Functions. Guidance is language-specific. Make sure to choose your preferred development language at the [top of the article](#top).
+
+## Retirement process
+
+The Functions runtime includes the Functions host and programming language-specific workers. To maintain full-support coverage when running your functions in Azure, Functions support aligns with end-of-life support for a given language. To help you keep your apps up-to-date and supported, Functions implements a phased reduction in support as language stack versions reach their end-of-life dates. Support ends on the earlier of: the community end-of-support date for the language or the end-of-support date for the underlying base operating system. Retirement dates are published at general availability (GA) to allow time for upgrade planning and testing.
+
+**Notification phase**:The Functions team sends you notification emails about upcoming language version retirements that affect your function apps. When you receive this notification, you should prepare to upgrade these apps to use to a supported version.
+
+**Retirement phase**:After the language end-of-life date, function apps that use retired language versions can still be created and deployed, and they continue to run on the platform. However, these apps aren't eligible for new features, security patches, and performance optimizations until after you upgrade them to a supported language version. Further, if required, in certain cases we will limit the number of instances allocated to these apps including limit scaling to 1 instance.
+
+Important
+
+If you're running function apps using an unsupported runtime or language version, you might encounter issues and performance implications and are required to upgrade before receiving support for your function app. As such, you're highly encouraged to upgrade the language version of such an app to a supported version. TO learn how, see
+
+[Update language stack versions in Azure Functions](update-language-versions).
+
+## Retirement policy exceptions
+
+Any Functions-supported exceptions to language-specific retirement policies are documented here:
+
+There are currently no exceptions to the general retirement policy.
+
+
+## Language support-related resources
+
+Use these resources to better understand and plan for language support-related changes in your function apps.
+
+| Resource | Details |
+|---|---|
+Supported versions |
+|
+
+**Language version support timelines**[.NET support policy page](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)**Configuring language versions**[Isolated worker model](dotnet-isolated-process-guide#supported-versions)[In-process model](functions-dotnet-class-library#supported-versions)| Resource | Details |
+|---|---|
+Supported versions |
+|
+
+**Language version support timelines**[Node.js release page on GitHub](https://github.com/nodejs/Release#release-schedule)**Configuring language versions**[Setting the Node version](functions-reference-node#setting-the-node-version)| Resource | Details |
+|---|---|
+Supported versions |
+|
+
+**Language version support timelines**[Node.js release page on GitHub](https://github.com/nodejs/Release#release-schedule)**Configuring language versions**[Setting the Node version](functions-reference-node#setting-the-node-version)| Resource | Details |
+|---|---|
+Supported versions |
+|
+
+**Language version support timelines**[Java support on Azure and Azure Stack](/en-us/azure/developer/java/fundamentals/java-support-on-azure)**Configuring language versions**[Update the stack configuration](update-language-versions#update-the-stack-configuration)| Resource | Details |
+|---|---|
+Supported versions |
+|
+
+**Language version support timelines**[PowerShell Support Lifecycle](/en-us/powershell/scripting/powershell-support-lifecycle#powershell-end-of-support-dates)**Configuring language versions**[Changing the PowerShell version](functions-reference-python#supported-python-versions)| Resource | Details |
+|---|---|
+Supported versions |
+|
+
+**Language version support timelines**[Python developer's guide](https://devguide.python.org/#status-of-python-branches)**Configuring language versions**[Changing Python version](set-runtime-version?tabs=azure-portal&pivots=platform-linux#manual-version-updates-on-linux)## Frequently asked questions
+
+This section provides you with answers to questions that are frequently asked about language support policies.
+
+### Which versions of my preferred language does Functions currently support?
+
+For the up-to-date list of supported language stack versions, see [Supported languages in Azure Functions](supported-languages#languages-by-runtime-version).
+
+### How long will Functions continue to support my language version?
+
+Support ends on the earlier of: the community end-of-support date for the language or the end-of-support date for the underlying base operating system. Retirement dates are published at general availability (GA) to allow time for upgrade planning and testing. For the expected end-of-life dates of currently supported versions, see [Supported languages in Azure Functions](supported-languages#languages-by-runtime-version).
+
+### What happens when my runtime version reaches the end of support?
+
+After a previously supported Functions runtime version reaches its end-of-support, Microsoft no longer provides bug fixes, security updates, or patches. Apps using retired versions may also face performance degradation. You must upgrade to a supported version to maintain security and stability.
+
+### Can I continue to use an unsupported language stack or runtime version?
+
+You can continue to use previously supported language stacks and Functions runtime versions beyond the end-of-support date. However, you must take into account that unsupported runtime versions don't receive updates, security patches, or official support from Microsoft. Your apps might also face performance degradation when using retired runtime versions.
+
+### How do I upgrade my function app to a newer supported language stack or runtime version?
+
+To make sure that your app is compatible with both the latest supported Functions runtime version and the latest version of your language stack, see [Update language stack versions in Azure Functions](update-language-versions)
+
+### How do I check which language stack and runtime version is being used by my function app?
+
+Azure provides these methods to check the current runtime version used by your function app:
+
+The language stack used by your function app is determined based on the value of the `FUNCTIONS_WORKER_RUNTIME`
+
+application setting. For more information, see [Work with application settings](functions-how-to-use-azure-function-app-settings#settings).
+
+## Related articles
+
+To learn more about how to upgrade your function app's language version, see these articles:
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/manage-connections -->
+
+# Manage connections in Azure Functions
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Functions in a function app share resources. Among those shared resources are connections: HTTP connections, database connections, and connections to services such as Azure Storage. When many functions are running concurrently in a Consumption plan, it's possible to run out of available connections. This article explains how to code your functions to avoid using more connections than they need.
+
+Note
+
+Connection limits described in this article apply only when running in a [Consumption plan](consumption-plan). However, the techniques described here may be beneficial when running on any plan.
+
+## Connection limit
+
+The number of available connections in a Consumption plan is limited partly because a function app in this plan runs in a [sandbox environment](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox). One of the restrictions that the sandbox imposes on your code is a limit on the number of outbound connections, which is currently 600 active (1,200 total) connections per instance. When you reach this limit, the functions runtime writes the following message to the logs: `Host thresholds exceeded: Connections`
+
+. For more information, see the [Functions service limits](functions-scale#service-limits).
+
+This limit is per instance. When the [scale controller adds function app instances](event-driven-scaling) to handle more requests, each instance has an independent connection limit. That means there's no global connection limit, and you can have much more than 600 active connections across all active instances.
+
+When troubleshooting, make sure that you have enabled Application Insights for your function app. Application Insights lets you view metrics for your function apps like executions. For more information, see [View telemetry in Application Insights](analyze-telemetry-data#view-telemetry-in-application-insights).
+
+## Static clients
+
+To avoid holding more connections than necessary, reuse client instances rather than creating new ones with each function invocation. We recommend reusing client connections for any language that you might write your function in. For example, .NET clients like the [HttpClient](/en-us/dotnet/api/system.net.http.httpclient?view=netcore-3.1&preserve-view=true), [DocumentClient](/en-us/dotnet/api/microsoft.azure.documents.client.documentclient), and Azure Storage clients can manage connections if you use a single, static client.
+
+Here are some guidelines to follow when you're using a service-specific client in an Azure Functions application:
+
+*Do not*create a new client with every function invocation.*Do*create a single, static client that every function invocation can use.*Consider*creating a single, static client in a shared helper class if different functions use the same service.
+
+## Client code examples
+
+This section demonstrates best practices for creating and using clients from your function code.
+
+### HTTP requests
+
+Here's an example of C# function code that creates a static [HttpClient](/en-us/dotnet/api/system.net.http.httpclient?view=netcore-3.1&preserve-view=true) instance:
+
+```
+// Create a single, static HttpClient
+private static HttpClient httpClient = new HttpClient();
+public static async Task Run(string input)
+{
+var response = await httpClient.GetAsync("https://example.com");
+// Rest of function
+}
+```
+
+
+A common question about [HttpClient](/en-us/dotnet/api/system.net.http.httpclient?view=netcore-3.1&preserve-view=true) in .NET is "Should I dispose of my client?" In general, you dispose of objects that implement `IDisposable`
+
+when you're done using them. But you don't dispose of a static client because you aren't done using it when the function ends. You want the static client to live for the duration of your application.
+
+### Azure Cosmos DB clients
+
+[CosmosClient](/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclient) connects to an Azure Cosmos DB instance. The Azure Cosmos DB documentation recommends that you [use a singleton Azure Cosmos DB client for the lifetime of your application](/en-us/azure/cosmos-db/performance-tips-dotnet-sdk-v3-sql#sdk-usage). The following example shows one pattern for doing that in a function:
+
+```
+#r "Microsoft.Azure.Cosmos"
+using Microsoft.Azure.Cosmos;
+private static Lazy<CosmosClient> lazyClient = new Lazy<CosmosClient>(InitializeCosmosClient);
+private static CosmosClient cosmosClient => lazyClient.Value;
+private static CosmosClient InitializeCosmosClient()
+{
+// Perform any initialization here
+var uri = "https://youraccount.documents.azure.com:443";
+var authKey = "authKey";
+return new CosmosClient(uri, authKey);
+}
+public static async Task Run(string input)
+{
+Container container = cosmosClient.GetContainer("database", "collection");
+MyItem item = new MyItem{ id = "myId", partitionKey = "myPartitionKey", data = "example" };
+await container.UpsertItemAsync(document);
+// Rest of function
+}
+```
+
+
+Also, create a file named "function.proj" for your trigger and add the below content :
+
+```
+<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup>
+<TargetFramework>netcoreapp3.1</TargetFramework>
+</PropertyGroup>
+<ItemGroup>
+<PackageReference Include="Microsoft.Azure.Cosmos" Version="3.23.0" />
+</ItemGroup>
+</Project>
+```
+
+
+## SqlClient connections
+
+Your function code can use the .NET Framework Data Provider for SQL Server ([SqlClient](/en-us/dotnet/api/system.data.sqlclient)) to make connections to a SQL relational database. This is also the underlying provider for data frameworks that rely on ADO.NET, such as [Entity Framework](/en-us/ef/ef6/). Unlike [HttpClient](/en-us/dotnet/api/system.net.http.httpclient) and [DocumentClient](/en-us/dotnet/api/microsoft.azure.documents.client.documentclient) connections, ADO.NET implements connection pooling by default. But because you can still run out of connections, you should optimize connections to the database. For more information, see [SQL Server Connection Pooling (ADO.NET)](/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling).
+
+Tip
+
+Some data frameworks, such as Entity Framework, typically get connection strings from the **ConnectionStrings** section of a configuration file. In this case, you must explicitly add SQL database connection strings to the **Connection strings** collection of your function app settings and in the [local.settings.json file](functions-develop-local#local-settings-file) in your local project. If you're creating an instance of [SqlConnection](/en-us/dotnet/api/system.data.sqlclient.sqlconnection) in your function code, you should store the connection string value in **Application settings** with your other connections.
+
+## Next steps
+
+For more information about why we recommend static clients, see [Improper instantiation antipattern](/en-us/azure/architecture/antipatterns/improper-instantiation/).
+
+For more Azure Functions performance tips, see [Optimize the performance and reliability of Azure Functions](functions-best-practices).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-nat-gateway -->
+
+# Tutorial: Control Azure Functions outbound IP with an Azure virtual network NAT gateway
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Virtual network address translation (NAT) simplifies outbound-only internet connectivity for virtual networks. When configured on a subnet, all outbound connectivity uses your specified static public IP addresses. An NAT can be useful for apps that need to consume a third-party service that uses an allowlist of IP address as a security measure. To learn more, see [What is Azure NAT Gateway?](../virtual-network/nat-gateway/nat-overview).
+
+This tutorial shows you how to use NAT gateways to route outbound traffic from an HTTP triggered function. This function lets you check its own outbound IP address. During this tutorial, you'll:
+
+- Create a virtual network
+- Create a Premium plan function app
+- Create a public IP address
+- Create a NAT gateway
+- Configure function app to route outbound traffic through the NAT gateway
+
+Note
+
+You can't use a NAT gateway to route outbound traffic to an Azure Storage account in the same region as your function app. Services deployed in the same region your storage account use private Azure IP addresses for communication. For more information, see [NAT Gateway frequenty asked questions](/en-us/azure/nat-gateway/faq#can-i-use-nat-gateway-to-connect-to-a-storage-account-public-endpoint-in-the-same-region).
+
+## Topology
+
+The following diagram shows the architecture of the solution that you create:
+
+Functions running in the Premium plan have the same hosting capabilities as web apps in Azure App Service, which includes the VNet Integration feature. To learn more about VNet Integration, including troubleshooting and advanced configuration, see [Integrate your app with an Azure virtual network](../app-service/overview-vnet-integration).
+
+## Prerequisites
+
+For this tutorial, it's important that you understand IP addressing and subnetting. You can start with [this article that covers the basics of addressing and subnetting](https://support.microsoft.com/help/164015/understanding-tcp-ip-addressing-and-subnetting-basics). Many more articles and videos are available online.
+
+If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+
+If you've already completed the [integrate Functions with an Azure virtual network](functions-create-vnet) tutorial, you can skip to [Create an HTTP trigger function](#create-function).
+
+## Create a virtual network
+
+From the Azure portal menu, select
+
+**Create a resource**. From the Azure Marketplace, select**Networking**>**Virtual network**.In
+
+**Create virtual network**, enter or select the settings specified as shown in the following table:Setting Value Subscription Select your subscription. Resource group Select **Create new**, enter*myResourceGroup*, then select**OK**.Name Enter *myResourceGroup-vnet*.Location Select **East US**.Select
+
+**Next: IP Addresses**, and for**IPv4 address space**, enter*10.10.0.0/16*.Select
+
+**Add subnet**, then enter*Tutorial-Net*for**Subnet name**and*10.10.1.0/24*for**Subnet address range**.Select
+
+**Add**, then select**Review + create**. Leave the rest as default and select**Create**.In
+
+**Create virtual network**, select**Create**.
+
+Next, you create a function app in the [Premium plan](functions-premium-plan). This plan provides serverless scale while supporting virtual network integration.
+
+## Create a function app in a Premium plan
+
+This tutorial shows you how to create your function app in a [Premium plan](functions-premium-plan). The same functionality is also available when you host your app in a [Flex Consumption plan](flex-consumption-plan) or in a [Dedicated (App Service) plan](dedicated-plan).
+
+Note
+
+For the best experience in this tutorial, choose .NET for runtime stack and choose Windows for operating system. Also, create your function app in the same region as your virtual network.
+
+From the Azure portal menu or the
+
+**Home**page, select**Create a resource**.In the
+
+**New**page, select**Compute**>**Function App**.Under
+
+**Select a hosting option**, select**Functions Premium**>**Select**to create your app in a[Premium plan](functions-premium-plan). In this[serverless](https://azure.microsoft.com/overview/serverless-computing/)hosting option, you pay only for the time your functions run. To learn more about different hosting plans, see[Overview of plans](functions-scale#overview-of-plans).On the
+
+**Basics**page, use the function app settings as specified in the following table:Setting Suggested value Description **Subscription**Your subscription The subscription under which this new function app is created. [Resource Group](../azure-resource-manager/management/overview)*myResourceGroup*Name for the new resource group in which to create your function app. **Function App name**Globally unique name Name that identifies your new function app. Valid characters are `a-z`
+
+(case insensitive),`0-9`
+
+, and`-`
+
+. To guarantee a unique app name, you can optionally enable**Secure unique default hostname**, which is currently in preview.**Do you want to deploy code or container image?**Code Option to publish code files or a Docker container. **Operating system**Preferred OS Choose either Linux or Windows. **Runtime stack**Preferred language Choose a runtime that supports your favorite function programming language. **Version**Supported language version Choose a supported version of your function programming language. **Region**Preferred region Choose a [region](https://azure.microsoft.com/regions/)near you or near other services your functions access.Under
+
+**Environment details**for either**Windows Plan**or**Linux Plan**, select**Create new**,**Name**your App Service plan, and select a**Pricing plan**. The default pricing plan is**EP1**, where EP stands for*elastic premium*. To learn more, see the[list of Premium SKUs](functions-premium-plan#available-instance-skus). When running JavaScript functions on a Premium plan, you should choose an instance that has fewer vCPUs. For more information, see[Choose single-core Premium plans](functions-reference-node#considerations-for-javascript-functions).Unless you want to enable
+
+, keep the default value of**Zone Redundancy****Disabled**.Select
+
+**Next: Storage**. On the**Storage**page, create the default host[storage account](../storage/common/storage-account-create)required by your function app. Storage account names must be between 3 and 24 characters in length and only can contain numbers and lowercase letters. You can also use an existing account, which must meet the[storage account requirements](storage-considerations#storage-account-requirements).Unless you're enabling virtual network integration, select
+
+**Next: Monitoring**to skip the**Networking**tab. On the**Monitoring**page, enter the following settings:Setting Suggested value Description Enable Application Insights Yes Enables built-in Application Insight integration for monitoring your functions code. [Application Insights](functions-monitoring)Default Creates an Application Insights resource of the same *App name*in the nearest supported region. By expanding this setting, you can change the**New resource name**or choose a different**Location**in an[Azure geography](https://azure.microsoft.com/global-infrastructure/geographies/)to store your data.Select
+
+**Review + create**to accept the defaults for the remaining pages and review the app configuration selections.On the
+
+**Review + create**page, review your settings, and then select**Create**to provision and deploy the function app.Select the
+
+**Notifications**icon in the upper-right corner of the portal and watch for the**Deployment succeeded**message.Select
+
+**Go to resource**to view your new function app. You can also select**Pin to dashboard**. Pinning makes it easier to return to this function app resource from your dashboard.
+
+## Connect your function app to the virtual network
+
+You can now connect your function app to the virtual network.
+
+In your function app, select
+
+**Networking**in the left menu, then under**VNet Integration**, select**Click here to configure**.On the
+
+**VNET Integration**page, select**Add VNet**.In
+
+**Network Feature Status**, use the settings in the table below the image:Setting Suggested value Description **Virtual Network**MyResourceGroup-vnet This virtual network is the one you created earlier. **Subnet**Create New Subnet Create a subnet in the virtual network for your function app to use. VNet Integration must be configured to use an empty subnet. **Subnet name**Function-Net Name of the new subnet. **Virtual network address block**10.10.0.0/16 You should only have one address block defined. **Subnet Address Block**10.10.2.0/24 The subnet size restricts the total number of instances that your Premium plan function app can scale out to. This example uses a `/24`
+
+subnet with 254 available host addresses. This subnet is over-provisioned, but easy to calculate.Select
+
+**OK**to add the subnet. Close the**VNet Integration**and**Network Feature Status**pages to return to your function app page.
+
+The function app can now access the virtual network. When connectivity is enabled, the [ vnetrouteallenabled](functions-app-settings#vnetrouteallenabled) site setting is set to
+
+`1`
+
+. You must have either this site setting or the legacy [application setting set to](functions-app-settings#website_vnet_route_all)
+
+`WEBSITE_VNET_ROUTE_ALL`
+
+`1`
+
+.Next, you'll add an HTTP-triggered function to the function app.
+
+## Create an HTTP trigger function
+
+From the left menu of the
+
+**Functions**window, select**Functions**, then select**Add**from the top menu.From the
+
+**New Function**window, select**Http trigger**and accept the default name for**New Function**, or enter a new name.In
+
+**Code + Test**, replace the template-generated C# script (.csx) code with the following code:`#r "Newtonsoft.Json" using System.Net; using Microsoft.AspNetCore.Mvc; using Microsoft.Extensions.Primitives; using Newtonsoft.Json; public static async Task<IActionResult> Run(HttpRequest req, ILogger log) { log.LogInformation("C# HTTP trigger function processed a request."); var client = new HttpClient(); var response = await client.GetAsync(@"https://ifconfig.me"); var responseMessage = await response.Content.ReadAsStringAsync(); return new OkObjectResult(responseMessage); }`
+
+This code calls an external website that returns the IP address of the caller, which in this case is this function. This method lets you easily determine the outbound IP address being used by your function app.
+
+
+Now you're ready to run the function and check the current outbound IPs.
+
+## Verify current outbound IPs
+
+Now, you can run the function. But first, check in the portal and see what outbound IPs are being use by the function app.
+
+In your function app, select
+
+**Properties**and review the**Outbound IP Addresses**field.Now, return to your HTTP trigger function, select
+
+**Code + Test**and then**Test/Run**.Select
+
+**Run**to execute the function, then switch to the**Output**and verify that IP address in the HTTP response body is one of the values from the outbound IP addresses you viewed earlier.
+
+Now, you can create a public IP and use a NAT gateway to modify this outbound IP address.
+
+## Create public IP
+
+From your resource group, select
+
+**Add**, search the Azure Marketplace for**Public IP address**, and select**Create**. Use the settings in the table below the image:Setting Suggested value **IP Version**IPv4 **SKU**Standard **Tier**Regional **Name**Outbound-IP **Subscription**ensure your subscription is displayed **Resource group**myResourceGroup (or name you assigned to your resource group) **Location**East US (or location you assigned to your other resources) **Availability Zone**No Zone Select
+
+**Create**to submit the deployment.Once the deployment completes, navigate to your newly created Public IP Address resource and view the IP Address in the
+
+**Overview**.
+
+## Create NAT gateway
+
+Now, let's create the NAT gateway. When you start with the [previous virtual networking tutorial](functions-create-vnet), `Function-Net`
+
+was the suggested subnet name and `MyResourceGroup-vnet`
+
+was the suggested virtual network name in that tutorial.
+
+From your resource group, select
+
+**Add**, search the Azure Marketplace for**NAT gateway**, and select**Create**. Use the settings in the table below the image to populate the**Basics**tab:Setting Suggested value **Subscription**Your subscription **Resource group**myResourceGroup (or name you assigned to your resource group) **NAT gateway name**myNatGateway **Region**East US (or location you assigned to your other resources) **Availability Zone**None Select
+
+**Next: Outbound IP**. In the**Public IP addresses**field, select the previously created public IP address. Leave**Public IP Prefixes**unselected.Select
+
+**Next: Subnet**. Select the*myResourceGroup-vnet*resource in the**Virtual network**field and*Function-Net*subnet.Select
+
+**Review + Create**then**Create**to submit the deployment.
+
+Once the deployment completes, the NAT gateway is ready to route traffic from your function app subnet to the Internet.
+
+## Verify new outbound IPs
+
+Repeat [the steps earlier](#verify-current-outbound-ips) to run the function again. You should now see the outbound IP address that you configured in the NAT shown in the function output.
+
+## Clean up resources
+
+You created resources to complete this tutorial. You'll be billed for these resources, depending on your [account status](https://azure.microsoft.com/account/) and [service pricing](https://azure.microsoft.com/pricing/). To avoid incurring extra costs, delete the resources when you know longer need them.
+
+In the Azure portal, go to the
+
+**Resource group**page.To get to that page from the function app page, select the
+
+**Overview**tab, and then select the link under**Resource group**.To get to that page from the dashboard, select
+
+**Resource groups**, and then select the resource group that you used for this article.In the
+
+**Resource group**page, review the list of included resources, and verify that they're the ones you want to delete.Select
+
+**Delete resource group**and follow the instructions.Deletion might take a couple of minutes. When it's done, a notification appears for a few seconds. You can also select the bell icon at the top of the page to view the notification.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-java -->
+
+# Azure Functions Java developer guide
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This guide contains detailed information to help you succeed developing Azure Functions using Java.
+
+As a Java developer, if you're new to Azure Functions, consider first reading one of the following articles:
+
+| Getting started | Concepts | Scenarios/samples |
+|---|---|---|
+
+## Java function basics
+
+A Java function is a `public`
+
+method, decorated with the annotation `@FunctionName`
+
+. This method defines the entry for a Java function, and must be unique in a particular package. The package can have multiple classes with multiple public methods annotated with `@FunctionName`
+
+. A single package is deployed to a function app in Azure. In Azure, the function app provides the deployment, execution, and management context for your individual Java functions.
+
+## Programming model
+
+The concepts of [triggers and bindings](functions-triggers-bindings) are fundamental to Azure Functions. Triggers start the execution of your code. Bindings give you a way to pass data to and return data from a function, without having to write custom data access code.
+
+## Create Java functions
+
+To make it easier to create Java functions, there are Maven-based tooling and archetypes that use predefined Java templates to help you create projects with a specific function trigger.
+
+### Maven-based tooling
+
+The following developer environments have Azure Functions tooling that lets you create Java function projects:
+
+These articles show you how to create your first functions using your IDE of choice.
+
+### Project scaffolding
+
+If you prefer command line development from the Terminal, the simplest way to scaffold Java-based function projects is to use `Apache Maven`
+
+archetypes. The Java Maven archetype for Azure Functions is published under the following *groupId*:*artifactId*: [com.microsoft.azure:azure-functions-archetype](https://search.maven.org/artifact/com.microsoft.azure/azure-functions-archetype/).
+
+The following command generates a new Java function project using this archetype:
+
+```
+mvn archetype:generate \
+-DarchetypeGroupId=com.microsoft.azure \
+-DarchetypeArtifactId=azure-functions-archetype
+```
+
+
+To get started using this archetype, see the [Java quickstart](how-to-create-function-azure-cli?pivots=programming-language-java).
+
+## Folder structure
+
+Here's the folder structure of an Azure Functions Java project:
+
+```
+FunctionsProject
+| - src
+| | - main
+| | | - java
+| | | | - FunctionApp
+| | | | | - MyFirstFunction.java
+| | | | | - MySecondFunction.java
+| - target
+| | - azure-functions
+| | | - FunctionApp
+| | | | - FunctionApp.jar
+| | | | - host.json
+| | | | - MyFirstFunction
+| | | | | - function.json
+| | | | - MySecondFunction
+| | | | | - function.json
+| | | | - bin
+| | | | - lib
+| - pom.xml
+```
+
+
+You can use a shared [host.json](functions-host-json) file to configure the function app. Each function has its own code file (.java) and binding configuration file (function.json).
+
+You can have more than one function in a project. However, don't put your functions into separate jars. Using multiple jars in a single function app isn't supported. The `FunctionApp`
+
+in the target directory is what gets deployed to your function app in Azure.
+
+## Triggers and annotations
+
+Functions are invoked by a trigger, such as an HTTP request, a timer, or an update to data. Your function needs to process that trigger, and any other inputs, to produce one or more outputs.
+
+Use the Java annotations included in the [com.microsoft.azure.functions.annotation.*](/en-us/java/api/com.microsoft.azure.functions.annotation) package to bind input and outputs to your methods. For more information, see the [Java reference docs](/en-us/java/api/com.microsoft.azure.functions.annotation).
+
+Important
+
+You must configure an Azure Storage account in your [local.settings.json](functions-develop-local#local-settings-file) to run Azure Blob storage, Azure Queue storage, or Azure Table storage triggers locally.
+
+Example:
+
+```
+public class Function {
+public String echo(@HttpTrigger(name = "req",
+methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS)
+String req, ExecutionContext context) {
+return String.format(req);
+}
+}
+```
+
+
+Here's the generated corresponding `function.json`
+
+by the [azure-functions-maven-plugin](https://mvnrepository.com/artifact/com.microsoft.azure/azure-functions-maven-plugin):
+
+```
+{
+"scriptFile": "azure-functions-example.jar",
+"entryPoint": "com.example.Function.echo",
+"bindings": [
+{
+"type": "httpTrigger",
+"name": "req",
+"direction": "in",
+"authLevel": "anonymous",
+"methods": [ "GET","POST" ]
+},
+{
+"type": "http",
+"name": "$return",
+"direction": "out"
+}
+]
+}
+```
+
+
+## Java versions
+
+The version of Java on which your app runs in Azure is specified in the pom.xml file. The Maven archetype currently generates a pom.xml for Java 8, which you can change before publishing. The Java version in pom.xml should match the version of Java on which you develop and test your app locally.
+
+### Supported versions
+
+The following table shows current supported Java versions for each major version of the Functions runtime, by operating system:
+
+| Functions version | Java versions (Windows) | Java versions (Linux) |
+|---|---|---|
+| 4.x | 21 17 11 8 |
+21 17 11 8 |
+| 3.x | 11 8 |
+11 8 |
+| 2.x | 8 | n/a |
+
+Unless you specify a Java version for your deployment, the Maven archetype defaults to Java 8 during deployment to Azure.
+
+### Specify the deployment version
+
+You can control the version of Java targeted by the Maven archetype by using the `-DjavaVersion`
+
+parameter. This parameter must match [supported Java versions](supported-languages?pivots=programming-language-java#languages-by-runtime-version).
+
+The Maven archetype generates a pom.xml that targets the specified Java version. The following elements in pom.xml indicate the Java version to use:
+
+| Element | Java 8 value | Java 11 value | Java 17 value | Java 21 value | Description |
+|---|---|---|---|---|---|
+`Java.version` |
+1.8 | 11 | 17 | 21 | Version of Java used by the maven-compiler-plugin. |
+`JavaVersion` |
+8 | 11 | 17 | 21 | Java version hosted by the function app in Azure. |
+
+The following examples show the settings for Java 8 in the relevant sections of the pom.xml file:
+
+`Java.version`
+
+
+```
+<properties>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<java.version>1.8</java.version>
+<azure.functions.maven.plugin.version>1.6.0</azure.functions.maven.plugin.version>
+<azure.functions.java.library.version>1.3.1</azure.functions.java.library.version>
+<functionAppName>fabrikam-functions-20200718015742191</functionAppName>
+<stagingDirectory>${project.build.directory}/azure-functions/${functionAppName}</stagingDirectory>
+</properties>
+```
+
+
+`JavaVersion`
+
+
+```
+<runtime>
+<!-- runtime os, could be windows, linux or docker-->
+<os>windows</os>
+<javaVersion>8</javaVersion>
+<!-- for docker function, please set the following parameters -->
+<!-- <image>[hub-user/]repo-name[:tag]</image> -->
+<!-- <serverId></serverId> -->
+<!-- <registryUrl></registryUrl> -->
+</runtime>
+```
+
+
+Important
+
+You must have the JAVA_HOME environment variable set correctly to the JDK directory that is used during code compiling using Maven. Make sure that the version of the JDK is at least as high as the `Java.version`
+
+setting.
+
+### Specify the deployment OS
+
+Maven also lets you specify the operating system on which your function app runs in Azure. Use the `os`
+
+element to choose the operating system.
+
+| Element | Windows | Linux | Docker |
+|---|---|---|---|
+`os` |
+`windows` |
+`linux` |
+`docker` |
+
+The following example shows the operating system setting in the `runtime`
+
+section of the pom.xml file:
+
+```
+<runtime>
+<!-- runtime os, could be windows, linux or docker-->
+<os>windows</os>
+<javaVersion>8</javaVersion>
+<!-- for docker function, please set the following parameters -->
+<!-- <image>[hub-user/]repo-name[:tag]</image> -->
+<!-- <serverId></serverId> -->
+<!-- <registryUrl></registryUrl> -->
+</runtime>
+```
+
+
+## JDK runtime availability and support
+
+Microsoft and [Adoptium](https://adoptium.net/) builds of OpenJDK are provided and supported on Functions for Java 8 (Adoptium), Java 11, 17 and 21 (MSFT). These binaries are provided as a no-cost, multi-platform, production-ready distribution of the OpenJDK for Azure. They contain all the components for building and running Java SE applications.
+
+For local development or testing, you can download the [Microsoft build of OpenJDK](/en-us/java/openjdk/download) or [Adoptium Temurin](https://adoptium.net/?variant=openjdk8&jvmVariant=hotspot) binaries for free. [Azure support](https://azure.microsoft.com/support/) for issues with the JDKs and function apps is available with a [qualified support plan](https://azure.microsoft.com/support/plans/).
+
+If you would like to continue using the Zulu for Azure binaries on your Function app, [configure your app accordingly](https://github.com/Azure/azure-functions-java-worker/wiki/Customize-JVM-to-use-Zulu). You can continue to use the Azul binaries for your site. However, any security patches or improvements are only available in new versions of the OpenJDK. Because of this, you should eventually remove this configuration so that your apps use the latest available version of Java.
+
+## Customize JVM
+
+Functions lets you customize the Java virtual machine (JVM) used to run your Java functions. The [following JVM options](https://github.com/Azure/azure-functions-java-worker/blob/master/worker.config.json#L7) are used by default:
+
+`-XX:+TieredCompilation`
+
+`-XX:TieredStopAtLevel=1`
+
+`-noverify`
+
+`-Djava.net.preferIPv4Stack=true`
+
+`-jar`
+
+
+You can provide other arguments to the JVM by using one of the following application settings, depending on the plan type:
+
+| Plan type | Setting name | Comment |
+|---|---|---|
+|
+
+`languageWorkers__java__arguments`
+
+[Premium plan](functions-premium-plan)[Dedicated plan](dedicated-plan)`JAVA_OPTS`
+
+The following sections show you how to add these settings. To learn more about working with application settings, see the [Work with application settings](functions-how-to-use-azure-function-app-settings#settings) section.
+
+### Azure portal
+
+In the [Azure portal](https://portal.azure.com), use the [Application Settings tab](functions-how-to-use-azure-function-app-settings#settings) to add either the `languageWorkers__java__arguments`
+
+or the `JAVA_OPTS`
+
+setting.
+
+### Azure CLI
+
+You can use the [az functionapp config appsettings set](/en-us/cli/azure/functionapp/config/appsettings) command to add these settings, as shown in the following example for the `-Djava.awt.headless=true`
+
+option:
+
+```
+az functionapp config appsettings set \
+--settings "languageWorkers__java__arguments=-Djava.awt.headless=true" \
+--name <APP_NAME> --resource-group <RESOURCE_GROUP>
+```
+
+
+This example enables headless mode. Replace `<APP_NAME>`
+
+with the name of your function app, and `<RESOURCE_GROUP>`
+
+with the resource group.
+
+## Third-party libraries
+
+Azure Functions supports the use of third-party libraries. By default, all dependencies specified in your project `pom.xml`
+
+file are automatically bundled during the [ mvn package](https://github.com/Microsoft/azure-maven-plugins/blob/master/azure-functions-maven-plugin/README.md#azure-functionspackage) goal. For libraries not specified as dependencies in the
+
+`pom.xml`
+
+file, place them in a `lib`
+
+directory in the function's root directory. Dependencies placed in the `lib`
+
+directory are added to the system class loader at runtime.The `com.microsoft.azure.functions:azure-functions-java-library`
+
+dependency is provided on the classpath by default, and doesn't need to be included in the `lib`
+
+directory. Also, [azure-functions-java-worker](https://github.com/Azure/azure-functions-java-worker) adds dependencies listed [here](https://github.com/Azure/azure-functions-java-worker/wiki/Azure-Java-Functions-Worker-Dependencies) to the classpath.
+
+## Data type support
+
+You can use plain-old Java objects (POJOs), types defined in `azure-functions-java-library`
+
+, or primitive data types such as `String`
+
+and `Integer`
+
+to bind to input or output bindings.
+
+Note
+
+Support for binding to SDK types is currently in preview and limited to the Azure Blob Storage SDK. For more information, see [SDK types](functions-reference-java#sdk-types) in the Java reference article.
+
+### POJOs
+
+For converting input data to POJO, [azure-functions-java-worker](https://github.com/Azure/azure-functions-java-worker) uses the [gson](https://github.com/google/gson) library. POJO types used as inputs to functions should be `public`
+
+.
+
+### Binary data
+
+Bind binary inputs or outputs to `byte[]`
+
+, by setting the `dataType`
+
+field in your function.json to `binary`
+
+:
+
+```
+@FunctionName("BlobTrigger")
+@StorageAccount("AzureWebJobsStorage")
+public void blobTrigger(
+@BlobTrigger(name = "content", path = "myblob/{fileName}", dataType = "binary") byte[] content,
+@BindingName("fileName") String fileName,
+final ExecutionContext context
+) {
+context.getLogger().info("Java Blob trigger function processed a blob.\n Name: " + fileName + "\n Size: " + content.length + " Bytes");
+}
+```
+
+
+If you expect null values, use `Optional<T>`
+
+.
+
+### SDK types (preview)
+
+You can currently use these Blob Storage SDK types in your bindings: `BlobClient`
+
+and `BlobContainerClient`
+
+.
+
+With SDK types support enabled, your functions can use Azure SDK client types to access blobs as streams directly from storage, which provides these benefits over POJOs or binary types:
+
+- Lower latency
+- Reduced memory requirements
+- Removes request-based size limits (uses service defaults)
+- Provides access to the full SDK surface: metadata, ACLs, legal holds, and other SDK-specific data.
+
+#### Requirements
+
+- Set the
+app setting to`JAVA_ENABLE_SDK_TYPES`
+
+`true`
+
+to enable SDK types. `azure-functions-maven-plugin`
+
+(or Gradle plug-in) version`1.38.0`
+
+or a higher version.
+
+#### Examples
+
+Blob trigger that uses `BlobClient`
+
+to access properties of the blob.
+
+```
+@FunctionName("processBlob")
+public void run(
+@BlobTrigger(
+name = "content",
+path = "images/{name}",
+connection = "AzureWebJobsStorage") BlobClient blob,
+@BindingName("name") String file,
+ExecutionContext ctx)
+{
+ctx.getLogger().info("Size = " + blob.getProperties().getBlobSize());
+}
+```
+
+
+Blob trigger that uses `BlobContainerClient`
+
+to access info about blobs in the container.
+
+```
+@FunctionName("containerOps")
+public void run(
+@BlobTrigger(
+name = "content",
+path = "images/{name}",
+connection = "AzureWebJobsStorage") BlobContainerClient container,
+ExecutionContext ctx)
+{
+container.listBlobs()
+.forEach(b -> ctx.getLogger().info(b.getName()));
+}
+```
+
+
+Blob input binding that uses `BlobClient`
+
+to get information about the blob that triggered the execution.
+
+```
+@FunctionName("checkAgainstInputBlob")
+public void run(
+@BlobInput(
+name = "inputBlob",
+path = "inputContainer/input.txt") BlobClient inputBlob,
+@BlobTrigger(
+name = "content",
+path = "images/{name}",
+connection = "AzureWebJobsStorage",
+dataType = "string") String triggerBlob,
+ExecutionContext ctx)
+{
+ctx.getLogger().info("Size = " + inputBlob.getProperties().getBlobSize());
+}
+```
+
+
+#### Considerations
+
+- The
+`dataType`
+
+setting on`@BlobTrigger`
+
+is ignored when binding to an SDK type. - Currently, only one SDK type can be used at a time in a given function definition. When a function has both a Blog trigger or input binding and a Blob output binding, one binding can use an SDK type (such as
+`BlobClient`
+
+) and the others must use a native type or POJO. - You can use managed identities with SDK types.
+
+#### Troubleshooting
+
+These are potential errors that might occur when using SDK types:
+
+| Exception | Meaning |
+|---|---|
+`SdkAnalysisException` |
+Build plug-in couldn’t create metadata. This might be due to duplicate SDK-types in a single function definition, an unsupported parameter type, or some other misconfiguration. |
+`SdkRegistryException` |
+Runtime doesn’t recognize the stored FQCN, which can be caused by mismatched library versions. |
+`SdkHydrationException` |
+Middleware failed to build the SDK client, which can occur due to missing environment variables, reflection errors, credential failures, and similar runtime issues. |
+`SdkTypeCreationException` |
+Factory couldn’t turn metadata into the final SDK type, which is usually caused by a casting issues. |
+
+Check the inner message for more details about the exact cause. Most SDK types issues are caused by misspelled environment variable names or missing dependencies.
+
+## Bindings
+
+Input and output bindings provide a declarative way to connect to data from within your code. A function can have multiple input and output bindings.
+
+### Input binding example
+
+```
+package com.example;
+import com.microsoft.azure.functions.annotation.*;
+public class Function {
+@FunctionName("echo")
+public static String echo(
+@HttpTrigger(name = "req", methods = { HttpMethod.PUT }, authLevel = AuthorizationLevel.ANONYMOUS, route = "items/{id}") String inputReq,
+@TableInput(name = "item", tableName = "items", partitionKey = "Example", rowKey = "{id}", connection = "AzureWebJobsStorage") TestInputData inputData,
+@TableOutput(name = "myOutputTable", tableName = "Person", connection = "AzureWebJobsStorage") OutputBinding<Person> testOutputData
+) {
+testOutputData.setValue(new Person(httpbody + "Partition", httpbody + "Row", httpbody + "Name"));
+return "Hello, " + inputReq + " and " + inputData.getKey() + ".";
+}
+public static class TestInputData {
+public String getKey() { return this.rowKey; }
+private String rowKey;
+}
+public static class Person {
+public String partitionKey;
+public String rowKey;
+public String name;
+public Person(String p, String r, String n) {
+this.partitionKey = p;
+this.rowKey = r;
+this.name = n;
+}
+}
+}
+```
+
+
+You invoke this function with an HTTP request.
+
+- HTTP request payload is passed as a
+`String`
+
+for the argument`inputReq`
+
+. - One entry is retrieved from Table storage, and is passed as
+`TestInputData`
+
+to the argument`inputData`
+
+.
+
+To receive a batch of inputs, you can bind to `String[]`
+
+, `POJO[]`
+
+, `List<String>`
+
+, or `List<POJO>`
+
+.
+
+```
+@FunctionName("ProcessIotMessages")
+public void processIotMessages(
+@EventHubTrigger(name = "message", eventHubName = "%AzureWebJobsEventHubPath%", connection = "AzureWebJobsEventHubSender", cardinality = Cardinality.MANY) List<TestEventData> messages,
+final ExecutionContext context)
+{
+context.getLogger().info("Java Event Hub trigger received messages. Batch size: " + messages.size());
+}
+public class TestEventData {
+public String id;
+}
+```
+
+
+This function gets triggered whenever there's new data in the configured event hub. Because the `cardinality`
+
+is set to `MANY`
+
+, the function receives a batch of messages from the event hub. `EventData`
+
+from event hub gets converted to `TestEventData`
+
+for the function execution.
+
+### Output binding example
+
+You can bind an output binding to the return value by using `$return`
+
+.
+
+```
+package com.example;
+import com.microsoft.azure.functions.annotation.*;
+public class Function {
+@FunctionName("copy")
+@StorageAccount("AzureWebJobsStorage")
+@BlobOutput(name = "$return", path = "samples-output-java/{name}")
+public static String copy(@BlobTrigger(name = "blob", path = "samples-input-java/{name}") String content) {
+return content;
+}
+}
+```
+
+
+If there are multiple output bindings, use the return value for only one of them.
+
+To send multiple output values, use `OutputBinding<T>`
+
+defined in the `azure-functions-java-library`
+
+package.
+
+```
+@FunctionName("QueueOutputPOJOList")
+public HttpResponseMessage QueueOutputPOJOList(@HttpTrigger(name = "req", methods = { HttpMethod.GET,
+HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
+@QueueOutput(name = "itemsOut", queueName = "test-output-java-pojo", connection = "AzureWebJobsStorage") OutputBinding<List<TestData>> itemsOut,
+final ExecutionContext context) {
+context.getLogger().info("Java HTTP trigger processed a request.");
+String query = request.getQueryParameters().get("queueMessageId");
+String queueMessageId = request.getBody().orElse(query);
+itemsOut.setValue(new ArrayList<TestData>());
+if (queueMessageId != null) {
+TestData testData1 = new TestData();
+testData1.id = "msg1"+queueMessageId;
+TestData testData2 = new TestData();
+testData2.id = "msg2"+queueMessageId;
+itemsOut.getValue().add(testData1);
+itemsOut.getValue().add(testData2);
+return request.createResponseBuilder(HttpStatus.OK).body("Hello, " + queueMessageId).build();
+} else {
+return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR)
+.body("Did not find expected items in CosmosDB input list").build();
+}
+}
+public static class TestData {
+public String id;
+}
+```
+
+
+You invoke this function on an `HttpRequest`
+
+object. It writes multiple values to Queue storage.
+
+## HttpRequestMessage and HttpResponseMessage
+
+These helper types, which are designed to work with HTTP Trigger functions, are defined in `azure-functions-java-library`
+
+:
+
+| Specialized type | Target | Typical usage |
+|---|---|---|
+`HttpRequestMessage<T>` |
+HTTP Trigger | Gets method, headers, or queries |
+`HttpResponseMessage` |
+HTTP Output Binding | Returns status other than 200 |
+
+## Metadata
+
+Few triggers send [trigger metadata](functions-triggers-bindings) along with input data. You can use annotation `@BindingName`
+
+to bind to trigger metadata.
+
+```
+package com.example;
+import java.util.Optional;
+import com.microsoft.azure.functions.annotation.*;
+public class Function {
+@FunctionName("metadata")
+public static String metadata(
+@HttpTrigger(name = "req", methods = { HttpMethod.GET, HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) Optional<String> body,
+@BindingName("name") String queryValue
+) {
+return body.orElse(queryValue);
+}
+}
+```
+
+
+In the preceding example, the `queryValue`
+
+is bound to the query string parameter `name`
+
+in the HTTP request URL, `http://{example.host}/api/metadata?name=test`
+
+. Here's another example, showing how to bind to `Id`
+
+from queue trigger metadata.
+
+```
+@FunctionName("QueueTriggerMetadata")
+public void QueueTriggerMetadata(
+@QueueTrigger(name = "message", queueName = "test-input-java-metadata", connection = "AzureWebJobsStorage") String message,@BindingName("Id") String metadataId,
+@QueueOutput(name = "output", queueName = "test-output-java-metadata", connection = "AzureWebJobsStorage") OutputBinding<TestData> output,
+final ExecutionContext context
+) {
+context.getLogger().info("Java Queue trigger function processed a message: " + message + " with metadataId:" + metadataId );
+TestData testData = new TestData();
+testData.id = metadataId;
+output.setValue(testData);
+}
+```
+
+
+Note
+
+The name provided in the annotation needs to match the metadata property.
+
+## Execution context
+
+`ExecutionContext`
+
+, defined in the `azure-functions-java-library`
+
+, contains helper methods that are used to communicate with the functions runtime. For more information, see the [ExecutionContext reference article](/en-us/java/api/com.microsoft.azure.functions.executioncontext).
+
+### Logger
+
+Use `getLogger`
+
+, defined in `ExecutionContext`
+
+, to write logs from function code.
+
+Example:
+
+```
+import com.microsoft.azure.functions.*;
+import com.microsoft.azure.functions.annotation.*;
+public class Function {
+public String echo(@HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) String req, ExecutionContext context) {
+if (req.isEmpty()) {
+context.getLogger().warning("Empty request body received by function " + context.getFunctionName() + " with invocation " + context.getInvocationId());
+}
+return String.format(req);
+}
+}
+```
+
+
+## View logs and trace
+
+You can use the Azure CLI to stream Java stdout and stderr logging, and other application logging.
+
+Here's how to configure your function app to write application logging by using the Azure CLI:
+
+```
+az webapp log config --name functionname --resource-group myResourceGroup --application-logging true
+```
+
+
+To stream logging output for your function app by using the Azure CLI, open a new command prompt, Bash, or Terminal session, and enter the following command:
+
+The [az webapp log tail](/en-us/cli/azure/webapp/log) command has options to filter output by using the `--provider`
+
+option.
+
+To download the log files as a single ZIP file by using the Azure CLI, open a new command prompt, Bash, or Terminal session, and enter the following command:
+
+```
+az webapp log download --resource-group resourcegroupname --name functionappname
+```
+
+
+You must enable file system logging in the Azure portal or the Azure CLI before running this command.
+
+## Environment variables
+
+In Functions, [app settings](functions-app-settings), such as service connection strings, are exposed as environment variables during execution. You can access these settings by using, `System.getenv("AzureWebJobsStorage")`
+
+.
+
+The following example gets the [application setting](functions-how-to-use-azure-function-app-settings#settings), with the key named `myAppSetting`
+
+:
+
+```
+public class Function {
+public String echo(@HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) String req, ExecutionContext context) {
+context.getLogger().info("My app setting value: "+ System.getenv("myAppSetting"));
+return String.format(req);
+}
+}
+```
+
+
+## Use dependency injection in Java Functions
+
+Azure Functions Java supports the dependency injection (DI) software design pattern, which is a technique to achieve [Inversion of Control (IoC)](/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles#dependency-inversion) between classes and their dependencies. Java Azure Functions provides a hook to integrate with popular Dependency Injection frameworks in your Functions Apps. [Azure Functions Java SPI](https://github.com/Azure/azure-functions-java-additions/tree/dev/azure-functions-java-spi) contains an interface [FunctionInstanceInjector](https://github.com/Azure/azure-functions-java-additions/blob/dev/azure-functions-java-spi/src/main/java/com/microsoft/azure/functions/spi/inject/FunctionInstanceInjector.java). By implementing this interface, you can return an instance of your function class and your functions are invoked on this instance. This gives frameworks like [Spring](/en-us/azure/developer/java/spring-framework/getting-started-with-spring-cloud-function-in-azure?toc=%2Fazure%2Fazure-functions%2Ftoc.json), [Quarkus](/en-us/azure/azure-functions/functions-create-first-quarkus), Google Guice, Dagger, etc. the ability to create the function instance and register it into their IOC container. This means you can use those Dependency Injection frameworks to manage your functions naturally.
+
+Note
+
+Microsoft Azure Functions Java SPI Types ([azure-function-java-spi](https://mvnrepository.com/artifact/com.microsoft.azure.functions/azure-functions-java-spi/1.0.0)) is a package that contains all SPI interfaces for third parties to interact with Microsoft Azure functions runtime.
+
+### Function instance injector for dependency injection
+
+[azure-function-java-spi](https://mvnrepository.com/artifact/com.microsoft.azure.functions/azure-functions-java-spi/1.0.0) contains an interface FunctionInstanceInjector
+
+```
+package com.microsoft.azure.functions.spi.inject;
+/**
+* The instance factory used by DI framework to initialize function instance.
+*
+* @since 1.0.0
+*/
+public interface FunctionInstanceInjector {
+/**
+* This method is used by DI framework to initialize the function instance. This method takes in the customer class and returns
+* an instance create by the DI framework, later customer functions will be invoked on this instance.
+* @param functionClass the class that contains customer functions
+* @param <T> customer functions class type
+* @return the instance that will be invoked on by azure functions java worker
+* @throws Exception any exception that is thrown by the DI framework during instance creation
+*/
+<T> T getInstance(Class<T> functionClass) throws Exception;
+}
+```
+
+
+For more examples that use FunctionInstanceInjector to integrate with Dependency injection frameworks refer to [this](https://github.com/Azure/azure-functions-java-worker/tree/dev/samples/dependency-injection-example) repository.
+
+## Next steps
+
+For more information about Azure Functions Java development, see the following resources:
+
+[Best practices for Azure Functions](functions-best-practices)[Azure Functions developer reference](functions-reference)[Azure Functions triggers and bindings](functions-triggers-bindings)- Local development and debug with
+[Visual Studio Code](https://code.visualstudio.com/docs/java/java-azurefunctions),[IntelliJ](functions-create-maven-intellij), and[Eclipse](functions-create-maven-eclipse) [Remote Debug Java functions using Visual Studio Code](https://code.visualstudio.com/docs/java/java-serverless#_remote-debug-functions-running-in-the-cloud)[Maven plugin for Azure Functions](https://github.com/Microsoft/azure-maven-plugins/blob/develop/azure-functions-maven-plugin/README.md)- Streamline function creation through the
+`azure-functions:add`
+
+goal, and prepare a staging directory for[ZIP file deployment](deployment-zip-push).
+
+---
+<!-- Source: N/A -->
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/azure-functions/migration/migrate-aws-lambda-to-azure-functions -->
