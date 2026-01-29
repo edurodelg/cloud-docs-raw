@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/htmlcssguide.html
-fetched_at: 2026-01-28T07:24:00.039132
+fetched_at: 2026-01-29T15:32:17.895782
 ---
 
 # Google HTML/CSS Style Guide

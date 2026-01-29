@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/go/index
-fetched_at: 2026-01-28T07:24:20.241626
+fetched_at: 2026-01-29T15:32:37.099494
 ---
 
 # styleguide

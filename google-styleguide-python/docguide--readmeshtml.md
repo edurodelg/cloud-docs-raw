@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/docguide/READMEs.html
-fetched_at: 2026-01-28T07:24:57.967810
+fetched_at: 2026-01-29T15:33:09.647973
 ---
 
 # styleguide
