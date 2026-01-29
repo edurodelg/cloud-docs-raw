@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-testing.html
-fetched_at: 2026-01-28T07:06:39.882873
+fetched_at: 2026-01-29T15:14:42.781413
 ---
 
 # Testing Lambda durable functions

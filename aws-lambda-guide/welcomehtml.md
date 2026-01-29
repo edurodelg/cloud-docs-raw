@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/welcome.html
-fetched_at: 2026-01-28T07:03:59.179944
+fetched_at: 2026-01-29T15:11:57.179806
 ---
 
 # What is AWS Lambda?

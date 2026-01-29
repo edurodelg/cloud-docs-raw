@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-execution-idempotency.html
-fetched_at: 2026-01-28T07:06:34.777288
+fetched_at: 2026-01-29T15:14:37.966809
 ---
 
 # Idempotency
