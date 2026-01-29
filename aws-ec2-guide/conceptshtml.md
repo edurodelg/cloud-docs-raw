@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html
-fetched_at: 2026-01-28T07:07:03.659872
+fetched_at: 2026-01-29T15:15:06.881567
 ---
 
 # What is Amazon EC2?
