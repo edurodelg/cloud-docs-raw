@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStartedDynamoDB.html
-fetched_at: 2026-01-29T15:21:37.867975
+fetched_at: 2026-01-30T23:40:37.627121
 ---
 
 # Getting started with DynamoDB

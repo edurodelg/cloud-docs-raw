@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AccessingDynamoDB.html
-fetched_at: 2026-01-29T15:21:47.972664
+fetched_at: 2026-01-30T23:40:47.720924
 ---
 
 # Accessing DynamoDB
