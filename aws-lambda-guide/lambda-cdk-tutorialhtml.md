@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/lambda-cdk-tutorial.html
-fetched_at: 2026-01-29T15:13:17.888571
+fetched_at: 2026-01-30T23:32:16.296564
 ---
 
 # Deploying Lambda functions with AWS CDK

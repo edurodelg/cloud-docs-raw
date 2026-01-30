@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html
-fetched_at: 2026-01-29T15:12:01.320253
+fetched_at: 2026-01-30T23:30:59.754617
 ---
 
 # How Lambda works

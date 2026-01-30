@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html
-fetched_at: 2026-01-29T15:13:32.864669
+fetched_at: 2026-01-30T23:32:31.303522
 ---
 
 # Lambda durable functions

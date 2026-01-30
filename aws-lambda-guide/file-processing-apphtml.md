@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/file-processing-app.html
-fetched_at: 2026-01-29T15:12:38.323319
+fetched_at: 2026-01-30T23:31:37.477918
 ---
 
 # Create a serverless file-processing app
