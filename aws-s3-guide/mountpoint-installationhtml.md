@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint-installation.html
-fetched_at: 2026-01-29T15:19:45.085200
+fetched_at: 2026-01-30T23:38:43.882451
 ---
 
 # Installing Mountpoint

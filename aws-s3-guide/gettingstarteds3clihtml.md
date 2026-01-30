@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/GettingStartedS3CLI.html
-fetched_at: 2026-01-29T15:18:35.168573
+fetched_at: 2026-01-30T23:37:34.362060
 ---
 
 # Getting started with Amazon S3 using the AWS CLI

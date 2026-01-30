@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html
-fetched_at: 2026-01-29T15:18:39.990244
+fetched_at: 2026-01-30T23:37:39.214637
 ---
 
 # Creating, configuring, and working with Amazon S3 general purpose buckets

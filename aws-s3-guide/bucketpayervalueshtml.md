@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketPayerValues.html
-fetched_at: 2026-01-29T15:20:59.988332
+fetched_at: 2026-01-30T23:39:58.955241
 ---
 
 # Retrieving the requestPayment
