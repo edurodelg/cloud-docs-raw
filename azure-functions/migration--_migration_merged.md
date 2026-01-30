@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-29T15:49:53.032443
+merged_at: 2026-01-31T00:09:25.765625
 merged_files: 2
 ---
 
@@ -166,7 +166,7 @@ Resource-based built-in roles: - The Owner role gives full access, including acc
 | AWS Lambda | Azure Functions |
 |---|---|
 | Provisioned concurrency reduces latency and ensures predictable function performance by pre-initializing a requested number of function instances. Provisioned concurrency suits latency-sensitive applications and is priced separately from standard concurrency. | Function apps allow you to configure concurrency for each instance, which drives its scale. Multiple jobs can run in parallel in the same instance of the app, and subsequent jobs in the instance don't incur the initial cold start. Function apps also have always ready instances. Customers can specify a number of prewarmed instances to eliminate cold-start latency and ensure consistent performance. Function apps also scale out to more instances based on demand, while maintaining the always ready instances. |
-| Reserved concurrency specifies the maximum number of concurrent instances that a function can have. This limit ensures that a portion of your account's concurrency quota is set aside exclusively for that function. AWS Lambda dynamically scales out to handle incoming requests even when reserved concurrency is set, as long as the requests don't exceed the specified reserved concurrency limit. The lower limit for reserved concurrency in AWS Lambda is 1. The upper limit for reserved concurrency in AWS Lambda is determined by the account's regional concurrency quota. By default, this limit is 1,000 concurrent operations for each region. | Azure Functions doesn't have an equivalent feature to reserved concurrency. To achieve similar functionality, isolate specific functions into separate function apps and set the maximum scale-out limit for each app. Azure Functions dynamically scales out, or adds more instances, and scales in, or removes instances, within the scale-out limit set. By default, apps that run in a Flex Consumption plan start with a configurable limit of 100 overall instances. The lowest maximum instance count value is 40, and the highest supported maximum instance count value is 1,000.
+| Reserved concurrency specifies the maximum number of concurrent instances that a function can have. This limit ensures that a portion of your account's concurrency quota is set aside exclusively for that function. AWS Lambda dynamically scales out to handle incoming requests even when reserved concurrency is set, as long as the requests don't exceed the specified reserved concurrency limit. The lower limit for reserved concurrency in AWS Lambda is 1. The upper limit for reserved concurrency in AWS Lambda is determined by the account's regional concurrency quota. By default, this limit is 1,000 concurrent operations for each region. | Azure Functions doesn't have an equivalent feature to reserved concurrency. To achieve similar functionality, isolate specific functions into separate function apps and set the maximum scale-out limit for each app. Azure Functions dynamically scales out, or adds more instances, and scales in, or removes instances, within the scale-out limit set. By default, apps that run in a Flex Consumption plan start with a configurable limit of 100 overall instances. The lowest maximum instance count value is 1, and the highest supported maximum instance count value is 1,000.
 |
 
 ### Pricing
@@ -1663,7 +1663,11 @@ Consider concurrency settings first if you want your new app to scale similarly 
 
 If you had a custom scale-out limit set in your original app, you can also apply it to your new app. Otherwise, you can skip to the next section.
 
-The default maximum instance count is 100, and it must be set to a value of 40 or higher.
+The default maximum instance count is 100, and it must be set to a value between 1 and 1,000.
+
+Note
+
+Reducing maximum instance count below 40 for HTTP function apps can cause frequent request failures and prolonged throttling windows when traffic exceeds capacity. This setting is intended only for advanced scenarios where limited scale-out is acceptable and has been fully tested.
 
 Use this [ az functionapp scale config set](/en-us/cli/azure/functionapp/scale/config#az-functionapp-scale-config-set) command to set the maximum scale-out.
 

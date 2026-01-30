@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/azure-functions/errors-diagnostics/diagnostic-events/azfd0013
-fetched_at: 2026-01-29T15:47:33.425657
+fetched_at: 2026-01-31T00:07:21.917585
 ---
 
 # AZFD0013: The configured runtime does not match the worker runtime metadata found in the deployed function app artifacts
