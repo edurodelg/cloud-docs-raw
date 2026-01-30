@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-29T15:40:29.795062
+merged_at: 2026-01-31T00:00:15.446862
 merged_files: 2
 ---
 
@@ -27,10 +27,6 @@ Microsoft Foundry provides an observability platform for monitoring and tracing 
 - Each step of an agent's runtime might also involve nesting. For example, an agent might invoke a tool, which uses another process, which then invokes another tool. If you notice strange or incorrect output from a top-level agent run, it might be difficult to determine exactly where in the execution the issue was introduced.
 
 Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
-
-Note
-
-Agent tracing is only available in Sweden Central in Foundry (new).
 
 ## Before you begin
 
@@ -106,12 +102,6 @@ Tracing can capture sensitive information (for example, user inputs, model outpu
 - Don't store secrets, credentials, or tokens in prompts, tool arguments, or span attributes.
 - Redact or minimize personal data and other sensitive content before it appears in telemetry.
 - Treat trace data as production telemetry and apply the same access controls and retention policies you use for logs and metrics.
-
-## Availability and limitations
-
-- Agent tracing is available only in Sweden Central in Foundry (new).
-- Some tracing integrations can be language- or framework-specific. For details, see
-[Tracing integrations](../how-to/trace-agent-framework?view=foundry).
 
 ---
 <!-- Source: N/A -->
@@ -488,10 +478,6 @@ Tracing (preview) helps you understand how your agent works. Use traces to ident
 [Create a Foundry project](../../how-to/create-projects?view=foundry) - An
 [Azure Monitor Application Insights resource](/en-us/azure/azure-monitor/app/app-insights-overview)to store traces (create a new one or connect an existing one). - Access to the Application Insights resource connected to your project.
 
-Note
-
-Agent tracing availability varies by region. For current limitations, see [Availability and limitations](../concepts/trace-agent-concept?view=foundry#availability-and-limitations).
-
 ## Connect Application Insights to your Foundry project
 
 Foundry stores traces in [Azure Application Insights](/en-us/azure/azure-monitor/app/app-insights-overview) by using [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).
@@ -865,10 +851,6 @@ Select
 If you use log-based queries, start by granting the
 
 [Log Analytics Reader role](/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
-
-Note
-
-Agent tracing availability varies by region. For current limitations, see [Availability and limitations](../concepts/trace-agent-concept?view=foundry#availability-and-limitations).
 
 ## Security and privacy
 

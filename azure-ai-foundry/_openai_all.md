@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-29T15:40:29.607640
+merged_at: 2026-01-31T00:00:14.694762
 merged_files: 6
 ---
 
@@ -24491,6 +24491,7 @@ Note
 gpt-4.1, gpt-4.1-mini and gpt-4.1-nano don't support long context (requests estimated at larger than 128k prompt tokens).
 
 | Topic | gpt-5.2 |
+gpt-5.2-codex |
 gpt-5.1 |
 gpt-5.1-codex |
 gpt-5 |
@@ -24500,13 +24501,13 @@ gpt-4.1-mini |
 gpt-4.1-nano |
 o3 |
 o4-mini |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
-| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
-| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Input TPM per PTU | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
-| Latency Target Value | 99% > 50 Tokens Per Second* | 99% > 50 Tokens Per Second* | 99% > 50 Tokens Per Second* | 99% > 50 Tokens Per Second* | 99% > 80 Tokens Per Second* | 99% > 80 Tokens Per Second* | 99% > 90 Tokens Per Second* | 99% > 100 Tokens Per Second* | 99% > 80 Tokens Per Second* | 99% > 90 Tokens Per Second* |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
+| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Input TPM per PTU | 3,400 | 4,750 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
+| Latency Target Value | 99% > 50 Tokens Per Second* | 99% > 50 Tokens Per Second* | 99% > 50 Tokens Per Second* | 99% > 50 Tokens Per Second* | 99% > 50 Tokens Per Second* | 99% > 80 Tokens Per Second* | 99% > 80 Tokens Per Second* | 99% > 90 Tokens Per Second* | 99% > 100 Tokens Per Second* | 99% > 80 Tokens Per Second* | 99% > 90 Tokens Per Second* |
 
 * Calculated as p50 request latency on a per 5 minute basis.
 
@@ -32675,8 +32676,8 @@ In this article, you learn how to:
 - Read the
 [guide on when to use Foundry fine-tuning](../concepts/fine-tuning-considerations?view=foundry-classic). - You need an Azure subscription.
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - You need a Foundry project resource. To create one, sign in to the
-[Foundry portal](https://ai.azure.com). - Fine-tuning access requires the Azure AI User role.
-- If you don't already have access to view quotas and deploy models in the Foundry portal, you need
+[Foundry portal](https://ai.azure.com). - Fine-tuning requires the
+**Azure AI Owner**role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them. - If you don't already have access to view quotas and deploy models in the Foundry portal, you need
 [more permissions](role-based-access-control?view=foundry-classic).
 
 ### Supported models
@@ -32939,8 +32940,8 @@ You can't delete a fine-tuned model if it has an existing deployment. You must [
 ,`openai`
 
 . - You need the OpenAI Python library.
-- Fine-tuning access requires the Azure AI User role.
-- If you don't already have access to view quotas and deploy models in the Foundry portal, you need
+- Fine-tuning requires the
+**Azure AI Owner**role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them. - If you don't already have access to view quotas and deploy models in the Foundry portal, you need
 [more permissions](role-based-access-control?view=foundry-classic).
 
 ### Supported models
@@ -33392,8 +33393,8 @@ openai.File.delete(sid = id)
 - Read the
 [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations?view=foundry-classic). - You need an Azure subscription.
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - You need an Azure OpenAI resource. For more information, see
-[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). - Fine-tuning access requires the Azure AI User role.
-- If you don't already have access to view quotas and deploy models in the Foundry portal, you need
+[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). - Fine-tuning requires the
+**Azure AI Owner role**. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them. - If you don't already have access to view quotas and deploy models in the Foundry portal, you need
 [more permissions](role-based-access-control?view=foundry-classic).
 
 ### Supported models
@@ -33866,8 +33867,8 @@ Items marked (preview) in this article are currently in public preview. This pre
 - Read the
 [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations?view=foundry-classic). - You need an Azure subscription.
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - You need an Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. For the list of available models by region and supported functionality, check the
-[model summary table and region availability](../concepts/models?view=foundry-classic#fine-tuning-models). For more information, see[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). - Fine-tuning access requires the Azure AI User role.
-- If you don't already have access to view quotas and deploy models in the Foundry portal, you need
+[model summary table and region availability](../concepts/models?view=foundry-classic#fine-tuning-models). For more information, see[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). - Fine-tuning requires the
+**Azure AI Owner**role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them. - If you don't already have access to view quotas and deploy models in the Foundry portal, you need
 [more permissions](role-based-access-control?view=foundry-classic).
 
 ### Supported models
@@ -34196,8 +34197,8 @@ You can optionally delete training and validation files that you uploaded for tr
 ,`openai`
 
 . - You need the OpenAI Python library.
-- Fine-tuning access requires the Azure AI User role.
-- If you don't already have access to view quotas and deploy models in the Foundry portal, you need
+- Fine-tuning requires the
+**Azure AI Owner**role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them. - If you don't already have access to view quotas and deploy models in the Foundry portal, you need
 [more permissions](role-based-access-control?view=foundry-classic).
 
 ### Supported models
@@ -34649,8 +34650,8 @@ openai.File.delete(sid = id)
 - Read the
 [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations?view=foundry-classic). - You need an Azure subscription.
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - You need an Azure OpenAI resource. For more information, see
-[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). - Fine-tuning access requires the Azure AI User role.
-- If you don't already have access to view quotas and deploy models in the Foundry portal, you need
+[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). - Fine-tuning requires the
+**Azure AI Owner role**. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them. - If you don't already have access to view quotas and deploy models in the Foundry portal, you need
 [more permissions](role-based-access-control?view=foundry-classic).
 
 ### Supported models
