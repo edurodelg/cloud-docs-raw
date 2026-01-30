@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-29T15:32:00.468090
+merged_at: 2026-01-30T23:51:11.494035
 merged_files: 9
 ---
 
@@ -50,6 +50,10 @@ new destination
 Some ADK tools have limitations that can impact how you implement them within an agent workflow. This page lists these tool limitations and workarounds, if available.
 
 ## One tool per agent limitation[¶](#one-tool-one-agent)
+
+ONLY for Search in ADK Python v1.15.0 and lower
+
+This limitation only applies to the use of Google Search and Vertex AI Search tools in ADK Python v1.15.0 and lower. ADK Python release v1.16.0 and higher provides a built-in workaround to remove this limitation.
 
 In general, you can use more than one tool in an agent, but use of specific tools within an agent excludes the use of any other tools in that agent. The following ADK Tools can only be used by themselves, without any other tools, in a single agent object:
 
@@ -395,6 +399,13 @@ Access models, datasets, research papers, and AI tools
 ### Linear
 
 Manage issues, track projects, and streamline development
+
+[
+](/adk-docs/tools/third-party/mongodb/)
+
+### MongoDB
+
+Query collections, manage databases, and analyze schemas
 
 [
 ](/adk-docs/tools/third-party/n8n/)
@@ -1176,6 +1187,13 @@ Access models, datasets, research papers, and AI tools
 Manage issues, track projects, and streamline development
 
 [
+](/adk-docs/tools/third-party/mongodb/)
+
+### MongoDB
+
+Query collections, manage databases, and analyze schemas
+
+[
 ](/adk-docs/tools/third-party/n8n/)
 
 ### n8n
@@ -1269,6 +1287,28 @@ timeout=30,
 )
 
 
+import { LlmAgent, MCPToolset } from "@google/adk";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "asana_agent",
+instruction: "Help users manage projects, tasks, and goals in Asana",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"mcp-remote",
+"https://mcp.asana.com/sse",
+],
+},
+}),
+],
+});
+export { rootAgent };
+
+
 Note
 
 When you run this agent for the first time, a browser window opens automatically to request access via OAuth. Alternatively, you can use the authorization URL printed in the console. You must approve this request to allow the agent to access your Asana data.
@@ -1344,6 +1384,29 @@ timeout=30,
 )
 
 
+import { LlmAgent, MCPToolset } from "@google/adk";
+const CARTESIA_API_KEY = "YOUR_CARTESIA_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "cartesia_agent",
+instruction: "Help users generate speech and work with audio content",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "uvx",
+args: ["cartesia-mcp"],
+env: {
+CARTESIA_API_KEY: CARTESIA_API_KEY,
+// OUTPUT_DIRECTORY: "/path/to/output", // Optional
+},
+},
+}),
+],
+});
+export { rootAgent };
+
+
 ## Available tools[¶](#available-tools)
 
 | Tool | Description |
@@ -1379,117 +1442,93 @@ Your Cartesia API key | Yes |
 Directory to store generated audio files | No |
 
 ---
-<!-- Source: https://google.github.io/adk-docs/tools/third-party/postman/ -->
+<!-- Source: https://google.github.io/adk-docs/tools/third-party/ag-ui/ -->
 
-# Postman¶
+# Build chat experiences with AG-UI and CopilotKit¶
 
-# Postman[¶](#postman)
+# Build chat experiences with AG-UI and CopilotKit[¶](#build-chat-experiences-with-ag-ui-and-copilotkit)
 
-The [Postman MCP Server](https://github.com/postmanlabs/postman-mcp-server)
-connects your ADK agent to the [Postman](https://www.postman.com/) ecosystem.
-This integration gives your agent the ability to access workspaces, manage
-collections and environments, evaluate APIs, and automate workflows through
-natural language interactions.
+As an agent builder, you want users to interact with your agents through a rich
+and responsive interface. Building UIs from scratch requires a lot of effort,
+especially to support streaming events and client state. That's exactly what
+[AG-UI](https://docs.ag-ui.com/) was designed for - rich user experiences
+directly connected to an agent.
 
-## Use cases[¶](#use-cases)
+[AG-UI](https://github.com/ag-ui-protocol/ag-ui) provides a consistent interface
+to empower rich clients across technology stacks, from mobile to the web and
+even the command line. There are a number of different clients that support
+AG-UI:
 
--
-**API testing**: Continuously test your APIs using your Postman collections. -
-**Collection management**: Create and tag collections, update documentation, add comments, or perform actions across multiple collections without leaving your editor. -
-**Workspace and environment management**: Create workspaces and environments, and manage your environment variables. -
-**Client code generation**: Generate production-ready client code that consumes APIs following best practices and project conventions.
+[CopilotKit](https://copilotkit.ai)provides tooling and components to tightly integrate your agent with web applications- Clients for
+[Kotlin](https://github.com/ag-ui-protocol/ag-ui/tree/main/sdks/community/kotlin),[Java](https://github.com/ag-ui-protocol/ag-ui/tree/main/sdks/community/java),[Go](https://github.com/ag-ui-protocol/ag-ui/tree/main/sdks/community/go/example/client), and[CLI implementations](https://github.com/ag-ui-protocol/ag-ui/tree/main/apps/client-cli-example/src)in TypeScript
 
-## Prerequisites[¶](#prerequisites)
+This tutorial uses CopilotKit to create a sample app backed by an ADK agent that demonstrates some of the features supported by AG-UI.
 
-- Create a
-[Postman account](https://identity.getpostman.com/signup) - Generate a
-[Postman API key](https://postman.postman.co/settings/me/api-keys)
+## Quickstart[¶](#quickstart)
 
-## Use with agent[¶](#use-with-agent)
+To get started, let's create a sample application with an ADK agent and a simple web client:
 
-from google.adk.agents import Agent
-from google.adk.tools.mcp_tool import McpToolset
-from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
-from mcp import StdioServerParameters
-POSTMAN_API_KEY = "YOUR_POSTMAN_API_KEY"
-root_agent = Agent(
-model="gemini-2.5-pro",
-name="postman_agent",
-instruction="Help users manage their Postman workspaces and collections",
-tools=[
-McpToolset(
-connection_params=StdioConnectionParams(
-server_params=StdioServerParameters(
-command="npx",
-args=[
-"-y",
-"@postman/postman-mcp-server",
-# "--full", # Use all 100+ tools
-# "--code", # Use code generation tools
-# "--region", "eu", # Use EU region
+### Chat[¶](#chat)
+
+Chat is a familiar interface for exposing your agent, and AG-UI handles streaming messages between your users and agents:
+
+<CopilotSidebar
+clickOutsideToClose={false}
+defaultOpen={true}
+labels={{
+title: "Popup Assistant",
+initial: "👋 Hi, there! You're chatting with an agent. This agent comes with a few tools to get you started..."
+}}
+/>
+
+
+Learn more about the chat UI
+[in the CopilotKit docs](https://docs.copilotkit.ai/adk/agentic-chat-ui).
+
+### Tool Based Generative UI (Rendering Tools)[¶](#tool-based-generative-ui-rendering-tools)
+
+AG-UI lets you share tool information with a Generative UI so that it can be displayed to users:
+
+useCopilotAction({
+name: "get_weather",
+description: "Get the weather for a given location.",
+available: "disabled",
+parameters: [
+{ name: "location", type: "string", required: true },
 ],
-env={
-"POSTMAN_API_KEY": POSTMAN_API_KEY,
+render: ({ args }) => {
+return <WeatherCard location={args.location} themeColor={themeColor} />
 },
-),
-timeout=30,
-),
-)
+});
+
+
+Learn more about the Tool-based Generative UI
+[in the CopilotKit docs](https://docs.copilotkit.ai/adk/generative-ui/tool-based).
+
+### Shared State[¶](#shared-state)
+
+ADK agents can be stateful, and synchronizing that state between your agents and your UIs enables powerful and fluid user experiences. State can be synchronized both ways so agents are automatically aware of changes made by your user or other parts of your application:
+
+const { state, setState } = useCoAgent<AgentState>({
+name: "my_agent",
+initialState: {
+proverbs: [
+"CopilotKit may be new, but its the best thing since sliced bread.",
 ],
-)
-
-
-from google.adk.agents import Agent
-from google.adk.tools.mcp_tool import McpToolset
-from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPServerParams
-POSTMAN_API_KEY = "YOUR_POSTMAN_API_KEY"
-root_agent = Agent(
-model="gemini-2.5-pro",
-name="postman_agent",
-instruction="Help users manage their Postman workspaces and collections",
-tools=[
-McpToolset(
-connection_params=StreamableHTTPServerParams(
-url="https://mcp.postman.com/mcp",
-# (Optional) Use "/minimal" for essential tools only
-# (Optional) Use "/code" for code generation tools
-# (Optional) Use "https://mcp.eu.postman.com" for EU region
-headers={
-"Authorization": f"Bearer {POSTMAN_API_KEY}",
 },
-),
-)
-],
-)
+})
 
 
-## Configuration[¶](#configuration)
+Learn more about shared state
+[in the CopilotKit docs](https://docs.copilotkit.ai/adk/shared-state).
 
-Postman offers three tool configurations:
+### Try it out![¶](#try-it-out)
 
-**Minimal**(default): Essential tools for basic Postman operations. Best for simple modifications to collections, workspaces, or environments.**Full**: All available Postman API tools (100+ tools). Ideal for advanced collaboration and enterprise features.**Code**: Tools for searching API definitions and generating client code. Perfect for developers who need to consume APIs.
+## Resources[¶](#resources)
 
-To select a configuration:
+To see what other features you can build into your UI with AG-UI, refer to the CopilotKit docs:
 
-**Local server**: Add`--full`
-
-or`--code`
-
-to the`args`
-
-list.**Remote server**: Change the URL path to`/minimal`
-
-,`/mcp`
-
-(full), or`/code`
-
-.
-
-For EU region, use `--region eu`
-
-(local) or `https://mcp.eu.postman.com`
-
-(remote).
+Or try them out in the [AG-UI Dojo](https://dojo.ag-ui.com).
 
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/notion/ -->
@@ -1497,6 +1536,8 @@ For EU region, use `--region eu`
 # Notion¶
 
 # Notion[¶](#notion)
+
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 
 The [Notion MCP Server](https://github.com/makenotion/notion-mcp-server)
 connects your ADK agent to Notion, allowing it to search, create, and manage
@@ -1548,6 +1589,28 @@ timeout=30,
 )
 ],
 )
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const NOTION_TOKEN = "YOUR_NOTION_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "notion_agent",
+instruction: "Help users get information from Notion",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: ["-y", "@notionhq/notion-mcp-server"],
+env: {
+NOTION_TOKEN: NOTION_TOKEN,
+},
+},
+}),
+],
+});
+export { rootAgent };
 
 
 ## Available tools[¶](#available-tools)
@@ -1641,6 +1704,32 @@ timeout=30,
 )
 
 
+import { LlmAgent, MCPToolset } from "@google/adk";
+// Replace with your instance URL if self-hosted (e.g., "gitlab.example.com")
+const GITLAB_INSTANCE_URL = "gitlab.com";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "gitlab_agent",
+instruction: "Help users get information from GitLab",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"mcp-remote",
+`https://${GITLAB_INSTANCE_URL}/api/v4/mcp`,
+"--static-oauth-client-metadata",
+'{"scope": "mcp"}',
+],
+},
+}),
+],
+});
+export { rootAgent };
+
+
 Note
 
 When you run this agent for the first time, a browser window will open automatically (and an authorization URL will be printed) requesting OAuth permissions. You must approve this request to allow the agent to access your GitLab data.
@@ -1671,95 +1760,6 @@ Retrieves the jobs for a specific CI/CD pipeline |
 Searches for a term across the entire GitLab instance with the search API |
 `semantic_code_search` |
 Searches for relevant code snippets in a project |
-
----
-<!-- Source: https://google.github.io/adk-docs/tools/third-party/ag-ui/ -->
-
-# Build chat experiences with AG-UI and CopilotKit¶
-
-# Build chat experiences with AG-UI and CopilotKit[¶](#build-chat-experiences-with-ag-ui-and-copilotkit)
-
-As an agent builder, you want users to interact with your agents through a rich
-and responsive interface. Building UIs from scratch requires a lot of effort,
-especially to support streaming events and client state. That's exactly what
-[AG-UI](https://docs.ag-ui.com/) was designed for - rich user experiences
-directly connected to an agent.
-
-[AG-UI](https://github.com/ag-ui-protocol/ag-ui) provides a consistent interface
-to empower rich clients across technology stacks, from mobile to the web and
-even the command line. There are a number of different clients that support
-AG-UI:
-
-[CopilotKit](https://copilotkit.ai)provides tooling and components to tightly integrate your agent with web applications- Clients for
-[Kotlin](https://github.com/ag-ui-protocol/ag-ui/tree/main/sdks/community/kotlin),[Java](https://github.com/ag-ui-protocol/ag-ui/tree/main/sdks/community/java),[Go](https://github.com/ag-ui-protocol/ag-ui/tree/main/sdks/community/go/example/client), and[CLI implementations](https://github.com/ag-ui-protocol/ag-ui/tree/main/apps/client-cli-example/src)in TypeScript
-
-This tutorial uses CopilotKit to create a sample app backed by an ADK agent that demonstrates some of the features supported by AG-UI.
-
-## Quickstart[¶](#quickstart)
-
-To get started, let's create a sample application with an ADK agent and a simple web client:
-
-### Chat[¶](#chat)
-
-Chat is a familiar interface for exposing your agent, and AG-UI handles streaming messages between your users and agents:
-
-<CopilotSidebar
-clickOutsideToClose={false}
-defaultOpen={true}
-labels={{
-title: "Popup Assistant",
-initial: "👋 Hi, there! You're chatting with an agent. This agent comes with a few tools to get you started..."
-}}
-/>
-
-
-Learn more about the chat UI
-[in the CopilotKit docs](https://docs.copilotkit.ai/adk/agentic-chat-ui).
-
-### Tool Based Generative UI (Rendering Tools)[¶](#tool-based-generative-ui-rendering-tools)
-
-AG-UI lets you share tool information with a Generative UI so that it can be displayed to users:
-
-useCopilotAction({
-name: "get_weather",
-description: "Get the weather for a given location.",
-available: "disabled",
-parameters: [
-{ name: "location", type: "string", required: true },
-],
-render: ({ args }) => {
-return <WeatherCard location={args.location} themeColor={themeColor} />
-},
-});
-
-
-Learn more about the Tool-based Generative UI
-[in the CopilotKit docs](https://docs.copilotkit.ai/adk/generative-ui/tool-based).
-
-### Shared State[¶](#shared-state)
-
-ADK agents can be stateful, and synchronizing that state between your agents and your UIs enables powerful and fluid user experiences. State can be synchronized both ways so agents are automatically aware of changes made by your user or other parts of your application:
-
-const { state, setState } = useCoAgent<AgentState>({
-name: "my_agent",
-initialState: {
-proverbs: [
-"CopilotKit may be new, but its the best thing since sliced bread.",
-],
-},
-})
-
-
-Learn more about shared state
-[in the CopilotKit docs](https://docs.copilotkit.ai/adk/shared-state).
-
-### Try it out![¶](#try-it-out)
-
-## Resources[¶](#resources)
-
-To see what other features you can build into your UI with AG-UI, refer to the CopilotKit docs:
-
-Or try them out in the [AG-UI Dojo](https://dojo.ag-ui.com).
 
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/qdrant/ -->
@@ -1822,6 +1822,32 @@ timeout=30,
 )
 
 
+import { LlmAgent, MCPToolset } from "@google/adk";
+const QDRANT_URL = "http://localhost:6333"; // Or your Qdrant Cloud URL
+const COLLECTION_NAME = "my_collection";
+// const QDRANT_API_KEY = "YOUR_QDRANT_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "qdrant_agent",
+instruction: "Help users store and retrieve information using semantic search",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "uvx",
+args: ["mcp-server-qdrant"],
+env: {
+QDRANT_URL: QDRANT_URL,
+COLLECTION_NAME: COLLECTION_NAME,
+// QDRANT_API_KEY: QDRANT_API_KEY,
+},
+},
+}),
+],
+});
+export { rootAgent };
+
+
 ## Available tools[¶](#available-tools)
 
 | Tool | Description |
@@ -1867,146 +1893,13 @@ env={
 }
 
 ---
-<!-- Source: https://google.github.io/adk-docs/tools/third-party/linear/ -->
-
-# Linear¶
-
-# Linear[¶](#linear)
-
-The [Linear MCP Server](https://linear.app/docs/mcp) connects your ADK agent to
-[Linear](https://linear.app/), a purpose-built tool for planning and building
-products. This integration gives your agent the ability to manage issues, track
-project cycles, and automate development workflows using natural language.
-
-## Use cases[¶](#use-cases)
-
--
-**Streamline Issue Management**: Create, update, and organize issues using natural language. Let your agent handle logging bugs, assigning tasks, and updating statuses. -
-**Track Projects and Cycles**: Get instant visibility into your team's momentum. Query the status of active cycles, check project milestones, and retrieve deadlines. -
-**Contextual Search & Summarization**: Quickly catch up on long discussion threads or find specific project specifications. Your agent can search documentation and summarize complex issues.
-
-## Prerequisites[¶](#prerequisites)
-
-[Sign up](https://linear.app/signup)for a Linear account- Generate an API key in
-[Linear Settings > Security & access](https://linear.app/docs/security-and-access)(if using API authentication)
-
-## Use with agent[¶](#use-with-agent)
-
-from google.adk.agents import Agent
-from google.adk.tools.mcp_tool import McpToolset
-from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
-from mcp import StdioServerParameters
-root_agent = Agent(
-model="gemini-2.5-pro",
-name="linear_agent",
-instruction="Help users manage issues, projects, and cycles in Linear",
-tools=[
-McpToolset(
-connection_params=StdioConnectionParams(
-server_params=StdioServerParameters(
-command="npx",
-args=[
-"-y",
-"mcp-remote",
-"https://mcp.linear.app/mcp",
-]
-),
-timeout=30,
-),
-)
-],
-)
-
-
-Note
-
-When you run this agent for the first time, a browser window will open automatically to request access via OAuth. Alternatively, you can use the authorization URL printed in the console. You must approve this request to allow the agent to access your Linear data.
-
-from google.adk.agents import Agent
-from google.adk.tools.mcp_tool import McpToolset
-from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPServerParams
-LINEAR_API_KEY = "YOUR_LINEAR_API_KEY"
-root_agent = Agent(
-model="gemini-2.5-pro",
-name="linear_agent",
-instruction="Help users manage issues, projects, and cycles in Linear",
-tools=[
-McpToolset(
-connection_params=StreamableHTTPServerParams(
-url="https://mcp.linear.app/mcp",
-headers={
-"Authorization": f"Bearer {LINEAR_API_KEY}",
-},
-),
-)
-],
-)
-
-
-Note
-
-This code example uses an API key for authentication. To use a
-browser-based OAuth authentication flow instead, remove the `headers`
-
-parameter and run the agent.
-
-## Available tools[¶](#available-tools)
-
-| Tool | Description |
-|---|---|
-`list_comments` |
-List comments on an issue |
-`create_comment` |
-Create a comment on an issue |
-`list_cycles` |
-List cycles in a project |
-`get_document` |
-Get a document |
-`list_documents` |
-List documents |
-`get_issue` |
-Get an issue |
-`list_issues` |
-List issues |
-`create_issue` |
-Create an issue |
-`update_issue` |
-Update an issue |
-`list_issue_statuses` |
-List issue statuses |
-`get_issue_status` |
-Get an issue status |
-`list_issue_labels` |
-List issue labels |
-`create_issue_label` |
-Create an issue label |
-`list_projects` |
-List projects |
-`get_project` |
-Get a project |
-`create_project` |
-Create a project |
-`update_project` |
-Update a project |
-`list_project_labels` |
-List project labels |
-`list_teams` |
-List teams |
-`get_team` |
-Get a team |
-`list_users` |
-List users |
-`get_user` |
-Get a user |
-`search_documentation` |
-Search documentation |
-
----
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/github/ -->
 
 # GitHub¶
 
 # GitHub[¶](#github)
+
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 
 The [GitHub MCP Server](https://github.com/github/github-mcp-server) connects AI
 tools directly to GitHub's platform. This gives your ADK agent the ability to
@@ -2045,6 +1938,27 @@ headers={
 )
 ],
 )
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const GITHUB_TOKEN = "YOUR_GITHUB_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "github_agent",
+instruction: "Help users get information from GitHub",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://api.githubcopilot.com/mcp/",
+header: {
+Authorization: `Bearer ${GITHUB_TOKEN}`,
+"X-MCP-Toolsets": "all",
+"X-MCP-Readonly": "true",
+},
+}),
+],
+});
+export { rootAgent };
 
 
 ## Available tools[¶](#available-tools)
@@ -2107,6 +2021,308 @@ The Remote GitHub MCP server has optional headers that can be used to configure 
 `X-MCP-Readonly`
 
 : Enables only "read" tools.- If this header is empty, "false", "f", "no", "n", "0", or "off" (ignoring whitespace and case), it will be interpreted as false. All other values are interpreted as true.
+
+---
+<!-- Source: https://google.github.io/adk-docs/tools/third-party/atlassian/ -->
+
+# Atlassian¶
+
+# Atlassian[¶](#atlassian)
+
+The [Atlassian MCP Server](https://github.com/atlassian/atlassian-mcp-server)
+connects your ADK agent to the [Atlassian](https://www.atlassian.com/)
+ecosystem, bridging the gap between project tracking in Jira and knowledge
+management in Confluence. This integration gives your agent the ability to
+manage issues, search and update documentation pages, and streamline
+collaboration workflows using natural language.
+
+## Use cases[¶](#use-cases)
+
+-
+**Unified Knowledge Search**: Search across both Jira issues and Confluence pages simultaneously to find project specs, decisions, or historical context. -
+**Automate Issue Management**: Create, edit, and transition Jira issues, or add comments to existing tickets. -
+**Documentation Assistant**: Retrieve page content, generate drafts, or add inline comments to Confluence documents directly from your agent.
+
+## Prerequisites[¶](#prerequisites)
+
+- Sign up for an
+[Atlassian account](https://id.atlassian.com/signup) - An Atlassian Cloud site with Jira and/or Confluence
+
+## Use with agent[¶](#use-with-agent)
+
+from google.adk.agents import Agent
+from google.adk.tools.mcp_tool import McpToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
+from mcp import StdioServerParameters
+root_agent = Agent(
+model="gemini-2.5-pro",
+name="atlassian_agent",
+instruction="Help users work with data in Atlassian products",
+tools=[
+McpToolset(
+connection_params=StdioConnectionParams(
+server_params=StdioServerParameters(
+command="npx",
+args=[
+"-y",
+"mcp-remote",
+"https://mcp.atlassian.com/v1/mcp",
+]
+),
+timeout=30,
+),
+)
+],
+)
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "atlassian_agent",
+instruction: "Help users work with data in Atlassian products",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"mcp-remote",
+"https://mcp.atlassian.com/v1/mcp",
+],
+},
+}),
+],
+});
+export { rootAgent };
+
+
+Note
+
+When you run this agent for the first time, a browser window opens automatically to request access via OAuth. Alternatively, you can use the authorization URL printed in the console. You must approve this request to allow the agent to access your Atlassian data.
+
+## Available tools[¶](#available-tools)
+
+| Tool | Description |
+|---|---|
+`atlassianUserInfo` |
+Get information about the user |
+`getAccessibleAtlassianResources` |
+Get information about accessible Atlassian resources |
+`getJiraIssue` |
+Get information about a Jira issue |
+`editJiraIssue` |
+Edit a Jira issue |
+`createJiraIssue` |
+Create a new Jira issue |
+`getTransitionsForJiraIssue` |
+Get transitions for a Jira issue |
+`transitionJiraIssue` |
+Transition a Jira issue |
+`lookupJiraAccountId` |
+Lookup a Jira account ID |
+`searchJiraIssuesUsingJql` |
+Search Jira issues using JQL |
+`addCommentToJiraIssue` |
+Add a comment to a Jira issue |
+`getJiraIssueRemoteIssueLinks` |
+Get remote issue links for a Jira issue |
+`getVisibleJiraProjects` |
+Get visible Jira projects |
+`getJiraProjectIssueTypesMetadata` |
+Get issue types metadata for a Jira project |
+`getJiraIssueTypeMetaWithFields` |
+Get issue type metadata with fields for a Jira issue |
+`getConfluenceSpaces` |
+Get information about Confluence spaces |
+`getConfluencePage` |
+Get information about a Confluence page |
+`getPagesInConfluenceSpace` |
+Get information about pages in a Confluence space |
+`getConfluencePageFooterComments` |
+Get information about footer comments in a Confluence page |
+`getConfluencePageInlineComments` |
+Get information about inline comments in a Confluence page |
+`getConfluencePageDescendants` |
+Get information about descendants of a Confluence page |
+`createConfluencePage` |
+Create a new Confluence page |
+`updateConfluencePage` |
+Update an existing Confluence page |
+`createConfluenceFooterComment` |
+Create a footer comment in a Confluence page |
+`createConfluenceInlineComment` |
+Create an inline comment in a Confluence page |
+`searchConfluenceUsingCql` |
+Search Confluence using CQL |
+`search` |
+Search for information |
+`fetch` |
+Fetch information |
+
+---
+<!-- Source: https://google.github.io/adk-docs/tools/third-party/postman/ -->
+
+# Postman¶
+
+# Postman[¶](#postman)
+
+The [Postman MCP Server](https://github.com/postmanlabs/postman-mcp-server)
+connects your ADK agent to the [Postman](https://www.postman.com/) ecosystem.
+This integration gives your agent the ability to access workspaces, manage
+collections and environments, evaluate APIs, and automate workflows through
+natural language interactions.
+
+## Use cases[¶](#use-cases)
+
+-
+**API testing**: Continuously test your APIs using your Postman collections. -
+**Collection management**: Create and tag collections, update documentation, add comments, or perform actions across multiple collections without leaving your editor. -
+**Workspace and environment management**: Create workspaces and environments, and manage your environment variables. -
+**Client code generation**: Generate production-ready client code that consumes APIs following best practices and project conventions.
+
+## Prerequisites[¶](#prerequisites)
+
+- Create a
+[Postman account](https://identity.getpostman.com/signup) - Generate a
+[Postman API key](https://postman.postman.co/settings/me/api-keys)
+
+## Use with agent[¶](#use-with-agent)
+
+from google.adk.agents import Agent
+from google.adk.tools.mcp_tool import McpToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
+from mcp import StdioServerParameters
+POSTMAN_API_KEY = "YOUR_POSTMAN_API_KEY"
+root_agent = Agent(
+model="gemini-2.5-pro",
+name="postman_agent",
+instruction="Help users manage their Postman workspaces and collections",
+tools=[
+McpToolset(
+connection_params=StdioConnectionParams(
+server_params=StdioServerParameters(
+command="npx",
+args=[
+"-y",
+"@postman/postman-mcp-server",
+# "--full", # Use all 100+ tools
+# "--code", # Use code generation tools
+# "--region", "eu", # Use EU region
+],
+env={
+"POSTMAN_API_KEY": POSTMAN_API_KEY,
+},
+),
+timeout=30,
+),
+)
+],
+)
+
+
+from google.adk.agents import Agent
+from google.adk.tools.mcp_tool import McpToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPServerParams
+POSTMAN_API_KEY = "YOUR_POSTMAN_API_KEY"
+root_agent = Agent(
+model="gemini-2.5-pro",
+name="postman_agent",
+instruction="Help users manage their Postman workspaces and collections",
+tools=[
+McpToolset(
+connection_params=StreamableHTTPServerParams(
+url="https://mcp.postman.com/mcp",
+# (Optional) Use "/minimal" for essential tools only
+# (Optional) Use "/code" for code generation tools
+# (Optional) Use "https://mcp.eu.postman.com" for EU region
+headers={
+"Authorization": f"Bearer {POSTMAN_API_KEY}",
+},
+),
+)
+],
+)
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const POSTMAN_API_KEY = "YOUR_POSTMAN_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "postman_agent",
+instruction: "Help users manage their Postman workspaces and collections",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"@postman/postman-mcp-server",
+// "--full", // Use all 100+ tools
+// "--code", // Use code generation tools
+// "--region", "eu", // Use EU region
+],
+env: {
+POSTMAN_API_KEY: POSTMAN_API_KEY,
+},
+},
+}),
+],
+});
+export { rootAgent };
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const POSTMAN_API_KEY = "YOUR_POSTMAN_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "postman_agent",
+instruction: "Help users manage their Postman workspaces and collections",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://mcp.postman.com/mcp",
+// (Optional) Use "/minimal" for essential tools only
+// (Optional) Use "/code" for code generation tools
+// (Optional) Use "https://mcp.eu.postman.com" for EU region
+header: {
+Authorization: `Bearer ${POSTMAN_API_KEY}`,
+},
+}),
+],
+});
+export { rootAgent };
+
+
+## Configuration[¶](#configuration)
+
+Postman offers three tool configurations:
+
+**Minimal**(default): Essential tools for basic Postman operations. Best for simple modifications to collections, workspaces, or environments.**Full**: All available Postman API tools (100+ tools). Ideal for advanced collaboration and enterprise features.**Code**: Tools for searching API definitions and generating client code. Perfect for developers who need to consume APIs.
+
+To select a configuration:
+
+**Local server**: Add`--full`
+
+or`--code`
+
+to the`args`
+
+list.**Remote server**: Change the URL path to`/minimal`
+
+,`/mcp`
+
+(full), or`/code`
+
+.
+
+For EU region, use `--region eu`
+
+(local) or `https://mcp.eu.postman.com`
+
+(remote).
 
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/n8n/ -->
@@ -2203,6 +2419,53 @@ headers={
 )
 
 
+import { LlmAgent, MCPToolset } from "@google/adk";
+const N8N_INSTANCE_URL = "https://localhost:5678";
+const N8N_MCP_TOKEN = "YOUR_N8N_MCP_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "n8n_agent",
+instruction: "Help users manage and execute workflows in n8n",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"supergateway",
+"--streamableHttp",
+`${N8N_INSTANCE_URL}/mcp-server/http`,
+"--header",
+`authorization:Bearer ${N8N_MCP_TOKEN}`,
+],
+},
+}),
+],
+});
+export { rootAgent };
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const N8N_INSTANCE_URL = "https://localhost:5678";
+const N8N_MCP_TOKEN = "YOUR_N8N_MCP_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "n8n_agent",
+instruction: "Help users manage and execute workflows in n8n",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: `${N8N_INSTANCE_URL}/mcp-server/http`,
+header: {
+Authorization: `Bearer ${N8N_MCP_TOKEN}`,
+},
+}),
+],
+});
+export { rootAgent };
+
+
 ## Available tools[¶](#available-tools)
 
 | Tool | Description |
@@ -2222,123 +2485,6 @@ To make workflows accessible to your agent, they must meet the following criteri
 **Be Active**: The workflow must be activated in n8n. -
 **Supported Trigger**: Contain a Webhook, Schedule, Chat, or Form trigger node. -
 **Enabled for MCP**: You must toggle "Available in MCP" in the workflow settings or select "Enable MCP access" from the workflow card menu.
-
----
-<!-- Source: https://google.github.io/adk-docs/tools/third-party/atlassian/ -->
-
-# Atlassian¶
-
-# Atlassian[¶](#atlassian)
-
-The [Atlassian MCP Server](https://github.com/atlassian/atlassian-mcp-server)
-connects your ADK agent to the [Atlassian](https://www.atlassian.com/)
-ecosystem, bridging the gap between project tracking in Jira and knowledge
-management in Confluence. This integration gives your agent the ability to
-manage issues, search and update documentation pages, and streamline
-collaboration workflows using natural language.
-
-## Use cases[¶](#use-cases)
-
--
-**Unified Knowledge Search**: Search across both Jira issues and Confluence pages simultaneously to find project specs, decisions, or historical context. -
-**Automate Issue Management**: Create, edit, and transition Jira issues, or add comments to existing tickets. -
-**Documentation Assistant**: Retrieve page content, generate drafts, or add inline comments to Confluence documents directly from your agent.
-
-## Prerequisites[¶](#prerequisites)
-
-- Sign up for an
-[Atlassian account](https://id.atlassian.com/signup) - An Atlassian Cloud site with Jira and/or Confluence
-
-## Use with agent[¶](#use-with-agent)
-
-from google.adk.agents import Agent
-from google.adk.tools.mcp_tool import McpToolset
-from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
-from mcp import StdioServerParameters
-root_agent = Agent(
-model="gemini-2.5-pro",
-name="atlassian_agent",
-instruction="Help users work with data in Atlassian products",
-tools=[
-McpToolset(
-connection_params=StdioConnectionParams(
-server_params=StdioServerParameters(
-command="npx",
-args=[
-"-y",
-"mcp-remote",
-"https://mcp.atlassian.com/v1/sse",
-]
-),
-timeout=30,
-),
-)
-],
-)
-
-
-Note
-
-When you run this agent for the first time, a browser window opens automatically to request access via OAuth. Alternatively, you can use the authorization URL printed in the console. You must approve this request to allow the agent to access your Atlassian data.
-
-## Available tools[¶](#available-tools)
-
-| Tool | Description |
-|---|---|
-`atlassianUserInfo` |
-Get information about the user |
-`getAccessibleAtlassianResources` |
-Get information about accessible Atlassian resources |
-`getJiraIssue` |
-Get information about a Jira issue |
-`editJiraIssue` |
-Edit a Jira issue |
-`createJiraIssue` |
-Create a new Jira issue |
-`getTransitionsForJiraIssue` |
-Get transitions for a Jira issue |
-`transitionJiraIssue` |
-Transition a Jira issue |
-`lookupJiraAccountId` |
-Lookup a Jira account ID |
-`searchJiraIssuesUsingJql` |
-Search Jira issues using JQL |
-`addCommentToJiraIssue` |
-Add a comment to a Jira issue |
-`getJiraIssueRemoteIssueLinks` |
-Get remote issue links for a Jira issue |
-`getVisibleJiraProjects` |
-Get visible Jira projects |
-`getJiraProjectIssueTypesMetadata` |
-Get issue types metadata for a Jira project |
-`getJiraIssueTypeMetaWithFields` |
-Get issue type metadata with fields for a Jira issue |
-`getConfluenceSpaces` |
-Get information about Confluence spaces |
-`getConfluencePage` |
-Get information about a Confluence page |
-`getPagesInConfluenceSpace` |
-Get information about pages in a Confluence space |
-`getConfluencePageFooterComments` |
-Get information about footer comments in a Confluence page |
-`getConfluencePageInlineComments` |
-Get information about inline comments in a Confluence page |
-`getConfluencePageDescendants` |
-Get information about descendants of a Confluence page |
-`createConfluencePage` |
-Create a new Confluence page |
-`updateConfluencePage` |
-Update an existing Confluence page |
-`createConfluenceFooterComment` |
-Create a footer comment in a Confluence page |
-`createConfluenceInlineComment` |
-Create an inline comment in a Confluence page |
-`searchConfluenceUsingCql` |
-Search Confluence using CQL |
-`search` |
-Search for information |
-`fetch` |
-Fetch information |
 
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/stripe/ -->
@@ -2421,6 +2567,53 @@ headers={
 )
 
 
+import { LlmAgent, MCPToolset } from "@google/adk";
+const STRIPE_SECRET_KEY = "YOUR_STRIPE_SECRET_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "stripe_agent",
+instruction: "Help users manage their Stripe account",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"@stripe/mcp",
+"--tools=all",
+// (Optional) Specify which tools to enable
+// "--tools=customers.read,invoices.read,products.read",
+],
+env: {
+STRIPE_SECRET_KEY: STRIPE_SECRET_KEY,
+},
+},
+}),
+],
+});
+export { rootAgent };
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const STRIPE_SECRET_KEY = "YOUR_STRIPE_SECRET_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "stripe_agent",
+instruction: "Help users manage their Stripe account",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://mcp.stripe.com",
+header: {
+Authorization: `Bearer ${STRIPE_SECRET_KEY}`,
+},
+}),
+],
+});
+export { rootAgent };
+
+
 Best practices
 
 Enable human confirmation of tool actions and exercise caution when using the Stripe MCP server alongside other MCP servers to mitigate prompt injection risks.
@@ -2487,6 +2680,8 @@ Search Stripe knowledge |
 
 # Hugging Face[¶](#hugging-face)
 
+Supported in ADKPython v0.1.0TypeScript v0.2.0
+
 The [Hugging Face MCP Server](https://github.com/huggingface/hf-mcp-server) can be used to connect
 your ADK agent to the Hugging Face Hub and thousands of Gradio AI Applications.
 
@@ -2551,6 +2746,47 @@ headers={
 )
 
 
+import { LlmAgent, MCPToolset } from "@google/adk";
+const HUGGING_FACE_TOKEN = "YOUR_HUGGING_FACE_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "hugging_face_agent",
+instruction: "Help users get information from Hugging Face",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: ["-y", "@llmindset/hf-mcp-server"],
+env: {
+HF_TOKEN: HUGGING_FACE_TOKEN,
+},
+},
+}),
+],
+});
+export { rootAgent };
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const HUGGING_FACE_TOKEN = "YOUR_HUGGING_FACE_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "hugging_face_agent",
+instruction: "Help users get information from Hugging Face",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://huggingface.co/mcp",
+header: {
+Authorization: `Bearer ${HUGGING_FACE_TOKEN}`,
+},
+}),
+],
+});
+export { rootAgent };
+
+
 ## Available tools[¶](#available-tools)
 
 | Tool | Description |
@@ -2602,28 +2838,28 @@ is not set. `HF_API_TIMEOUT`
 : When set to true, automatically enables the hf_doc_fetch tool whenever hf_doc_search is enabled
 
 ---
-<!-- Source: https://google.github.io/adk-docs/tools/third-party/chroma/ -->
+<!-- Source: https://google.github.io/adk-docs/tools/third-party/linear/ -->
 
-# Chroma¶
+# Linear¶
 
-# Chroma[¶](#chroma)
+# Linear[¶](#linear)
 
-The [Chroma MCP Server](https://github.com/chroma-core/chroma-mcp) connects your
-ADK agent to [Chroma](https://www.trychroma.com/), an open-source embedding
-database. This integration gives your agent the ability to create collections,
-store documents, and retrieve information using semantic search, full text
-search, and metadata filtering.
+The [Linear MCP Server](https://linear.app/docs/mcp) connects your ADK agent to
+[Linear](https://linear.app/), a purpose-built tool for planning and building
+products. This integration gives your agent the ability to manage issues, track
+project cycles, and automate development workflows using natural language.
 
 ## Use cases[¶](#use-cases)
 
 -
-**Semantic Memory for Agents**: Store conversation context, facts, or learned information that agents can retrieve later using natural language queries. -
-**Knowledge Base Retrieval**: Build a retrieval-augmented generation (RAG) system by storing documents and retrieving relevant context for responses. -
-**Persistent Context Across Sessions**: Maintain long-term memory across conversations, allowing agents to reference past interactions and accumulated knowledge.
+**Streamline Issue Management**: Create, update, and organize issues using natural language. Let your agent handle logging bugs, assigning tasks, and updating statuses. -
+**Track Projects and Cycles**: Get instant visibility into your team's momentum. Query the status of active cycles, check project milestones, and retrieve deadlines. -
+**Contextual Search & Summarization**: Quickly catch up on long discussion threads or find specific project specifications. Your agent can search documentation and summarize complex issues.
 
 ## Prerequisites[¶](#prerequisites)
 
-**For local storage**: A directory path to persist data**For Chroma Cloud**: A[Chroma Cloud](https://www.trychroma.com/)account with tenant ID, database name, and API key
+[Sign up](https://linear.app/signup)for a Linear account- Generate an API key in
+[Linear Settings > Security & access](https://linear.app/docs/security-and-access)(if using API authentication)
 
 ## Use with agent[¶](#use-with-agent)
 
@@ -2631,38 +2867,20 @@ from google.adk.agents import Agent
 from google.adk.tools.mcp_tool import McpToolset
 from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
 from mcp import StdioServerParameters
-# For local storage, use:
-DATA_DIR = "/path/to/your/data/directory"
-# For Chroma Cloud, use:
-# CHROMA_TENANT = "your-tenant-id"
-# CHROMA_DATABASE = "your-database-name"
-# CHROMA_API_KEY = "your-api-key"
 root_agent = Agent(
 model="gemini-2.5-pro",
-name="chroma_agent",
-instruction="Help users store and retrieve information using semantic search",
+name="linear_agent",
+instruction="Help users manage issues, projects, and cycles in Linear",
 tools=[
 McpToolset(
 connection_params=StdioConnectionParams(
 server_params=StdioServerParameters(
-command="uvx",
+command="npx",
 args=[
-"chroma-mcp",
-# For local storage, use:
-"--client-type",
-"persistent",
-"--data-dir",
-DATA_DIR,
-# For Chroma Cloud, use:
-# "--client-type",
-# "cloud",
-# "--tenant",
-# CHROMA_TENANT,
-# "--database",
-# CHROMA_DATABASE,
-# "--api-key",
-# CHROMA_API_KEY,
-],
+"-y",
+"mcp-remote",
+"https://mcp.linear.app/mcp",
+]
 ),
 timeout=30,
 ),
@@ -2671,83 +2889,136 @@ timeout=30,
 )
 
 
+Note
+
+When you run this agent for the first time, a browser window will open automatically to request access via OAuth. Alternatively, you can use the authorization URL printed in the console. You must approve this request to allow the agent to access your Linear data.
+
+from google.adk.agents import Agent
+from google.adk.tools.mcp_tool import McpToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPServerParams
+LINEAR_API_KEY = "YOUR_LINEAR_API_KEY"
+root_agent = Agent(
+model="gemini-2.5-pro",
+name="linear_agent",
+instruction="Help users manage issues, projects, and cycles in Linear",
+tools=[
+McpToolset(
+connection_params=StreamableHTTPServerParams(
+url="https://mcp.linear.app/mcp",
+headers={
+"Authorization": f"Bearer {LINEAR_API_KEY}",
+},
+),
+)
+],
+)
+
+
+Note
+
+This code example uses an API key for authentication. To use a
+browser-based OAuth authentication flow instead, remove the `headers`
+
+parameter and run the agent.
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "linear_agent",
+instruction: "Help users manage issues, projects, and cycles in Linear",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: ["-y", "mcp-remote", "https://mcp.linear.app/mcp"],
+},
+}),
+],
+});
+export { rootAgent };
+
+
+Note
+
+When you run this agent for the first time, a browser window will open automatically to request access via OAuth. Alternatively, you can use the authorization URL printed in the console. You must approve this request to allow the agent to access your Linear data.
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const LINEAR_API_KEY = "YOUR_LINEAR_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "linear_agent",
+instruction: "Help users manage issues, projects, and cycles in Linear",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://mcp.linear.app/mcp",
+header: {
+Authorization: `Bearer ${LINEAR_API_KEY}`,
+},
+}),
+],
+});
+export { rootAgent };
+
+
+Note
+
+This code example uses an API key for authentication. To use a
+browser-based OAuth authentication flow instead, remove the `header`
+
+property and run the agent.
+
 ## Available tools[¶](#available-tools)
 
-### Collection management[¶](#collection-management)
-
 | Tool | Description |
 |---|---|
-`chroma_list_collections` |
-List all collections with pagination support |
-`chroma_create_collection` |
-Create a new collection with optional HNSW configuration |
-`chroma_get_collection_info` |
-Get detailed information about a collection |
-`chroma_get_collection_count` |
-Get the number of documents in a collection |
-`chroma_modify_collection` |
-Update a collection's name or metadata |
-`chroma_delete_collection` |
-Delete a collection |
-`chroma_peek_collection` |
-View a sample of documents in a collection |
-
-### Document operations[¶](#document-operations)
-
-| Tool | Description |
-|---|---|
-`chroma_add_documents` |
-Add documents with optional metadata and custom IDs |
-`chroma_query_documents` |
-Query documents using semantic search with advanced filtering |
-`chroma_get_documents` |
-Retrieve documents by IDs or filters with pagination |
-`chroma_update_documents` |
-Update existing documents' content, metadata, or embeddings |
-`chroma_delete_documents` |
-Delete specific documents from a collection |
-
-## Configuration[¶](#configuration)
-
-The Chroma MCP server supports multiple client types to suit different needs:
-
-### Client types[¶](#client-types)
-
-| Client Type | Description | Key Arguments |
-|---|---|---|
-`ephemeral` |
-In-memory storage, cleared on restart. Useful for testing. | None (default) |
-`persistent` |
-File-based storage on your local machine | `--data-dir` |
-`http` |
-Connect to a self-hosted Chroma server | `--host` , `--port` , `--ssl` , `--custom-auth-credentials` |
-`cloud` |
-Connect to Chroma Cloud (api.trychroma.com) | `--tenant` , `--database` , `--api-key` |
-
-### Environment variables[¶](#environment-variables)
-
-You can also configure the client using environment variables. Command-line arguments take precedence over environment variables.
-
-| Variable | Description |
-|---|---|
-`CHROMA_CLIENT_TYPE` |
-Client type: `ephemeral` , `persistent` , `http` , or `cloud` |
-`CHROMA_DATA_DIR` |
-Path for persistent local storage |
-`CHROMA_TENANT` |
-Tenant ID for Chroma Cloud |
-`CHROMA_DATABASE` |
-Database name for Chroma Cloud |
-`CHROMA_API_KEY` |
-API key for Chroma Cloud |
-`CHROMA_HOST` |
-Host for self-hosted HTTP client |
-`CHROMA_PORT` |
-Port for self-hosted HTTP client |
-`CHROMA_SSL` |
-Enable SSL for HTTP client (`true` or `false` ) |
-`CHROMA_DOTENV_PATH` |
-Path to `.env` file (defaults to `.chroma_env` ) |
+`list_comments` |
+List comments on an issue |
+`create_comment` |
+Create a comment on an issue |
+`list_cycles` |
+List cycles in a project |
+`get_document` |
+Get a document |
+`list_documents` |
+List documents |
+`get_issue` |
+Get an issue |
+`list_issues` |
+List issues |
+`create_issue` |
+Create an issue |
+`update_issue` |
+Update an issue |
+`list_issue_statuses` |
+List issue statuses |
+`get_issue_status` |
+Get an issue status |
+`list_issue_labels` |
+List issue labels |
+`create_issue_label` |
+Create an issue label |
+`list_projects` |
+List projects |
+`get_project` |
+Get a project |
+`create_project` |
+Create a project |
+`update_project` |
+Update a project |
+`list_project_labels` |
+List project labels |
+`list_teams` |
+List teams |
+`get_team` |
+Get a team |
+`list_users` |
+List users |
+`get_user` |
+Get a user |
+`search_documentation` |
+Search documentation |
 
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/elevenlabs/ -->
@@ -2802,6 +3073,28 @@ timeout=30,
 )
 ],
 )
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const ELEVENLABS_API_KEY = "YOUR_ELEVENLABS_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "elevenlabs_agent",
+instruction: "Help users generate speech, clone voices, and process audio",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "uvx",
+args: ["elevenlabs-mcp"],
+env: {
+ELEVENLABS_API_KEY: ELEVENLABS_API_KEY,
+},
+},
+}),
+],
+});
+export { rootAgent };
 
 
 ## Available tools[¶](#available-tools)
@@ -2902,6 +3195,431 @@ environment variable supports three modes:
 : Save files to disk AND return as MCP resources`both`
 
 ---
+<!-- Source: https://google.github.io/adk-docs/tools/third-party/chroma/ -->
+
+# Chroma¶
+
+# Chroma[¶](#chroma)
+
+The [Chroma MCP Server](https://github.com/chroma-core/chroma-mcp) connects your
+ADK agent to [Chroma](https://www.trychroma.com/), an open-source embedding
+database. This integration gives your agent the ability to create collections,
+store documents, and retrieve information using semantic search, full text
+search, and metadata filtering.
+
+## Use cases[¶](#use-cases)
+
+-
+**Semantic Memory for Agents**: Store conversation context, facts, or learned information that agents can retrieve later using natural language queries. -
+**Knowledge Base Retrieval**: Build a retrieval-augmented generation (RAG) system by storing documents and retrieving relevant context for responses. -
+**Persistent Context Across Sessions**: Maintain long-term memory across conversations, allowing agents to reference past interactions and accumulated knowledge.
+
+## Prerequisites[¶](#prerequisites)
+
+**For local storage**: A directory path to persist data**For Chroma Cloud**: A[Chroma Cloud](https://www.trychroma.com/)account with tenant ID, database name, and API key
+
+## Use with agent[¶](#use-with-agent)
+
+from google.adk.agents import Agent
+from google.adk.tools.mcp_tool import McpToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
+from mcp import StdioServerParameters
+# For local storage, use:
+DATA_DIR = "/path/to/your/data/directory"
+# For Chroma Cloud, use:
+# CHROMA_TENANT = "your-tenant-id"
+# CHROMA_DATABASE = "your-database-name"
+# CHROMA_API_KEY = "your-api-key"
+root_agent = Agent(
+model="gemini-2.5-pro",
+name="chroma_agent",
+instruction="Help users store and retrieve information using semantic search",
+tools=[
+McpToolset(
+connection_params=StdioConnectionParams(
+server_params=StdioServerParameters(
+command="uvx",
+args=[
+"chroma-mcp",
+# For local storage, use:
+"--client-type",
+"persistent",
+"--data-dir",
+DATA_DIR,
+# For Chroma Cloud, use:
+# "--client-type",
+# "cloud",
+# "--tenant",
+# CHROMA_TENANT,
+# "--database",
+# CHROMA_DATABASE,
+# "--api-key",
+# CHROMA_API_KEY,
+],
+),
+timeout=30,
+),
+)
+],
+)
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+// For local storage, use:
+const DATA_DIR = "/path/to/your/data/directory";
+// For Chroma Cloud, use:
+// const CHROMA_TENANT = "your-tenant-id";
+// const CHROMA_DATABASE = "your-database-name";
+// const CHROMA_API_KEY = "your-api-key";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "chroma_agent",
+instruction: "Help users store and retrieve information using semantic search",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "uvx",
+args: [
+"chroma-mcp",
+// For local storage, use:
+"--client-type",
+"persistent",
+"--data-dir",
+DATA_DIR,
+// For Chroma Cloud, use:
+// "--client-type",
+// "cloud",
+// "--tenant",
+// CHROMA_TENANT,
+// "--database",
+// CHROMA_DATABASE,
+// "--api-key",
+// CHROMA_API_KEY,
+],
+},
+}),
+],
+});
+export { rootAgent };
+
+
+## Available tools[¶](#available-tools)
+
+### Collection management[¶](#collection-management)
+
+| Tool | Description |
+|---|---|
+`chroma_list_collections` |
+List all collections with pagination support |
+`chroma_create_collection` |
+Create a new collection with optional HNSW configuration |
+`chroma_get_collection_info` |
+Get detailed information about a collection |
+`chroma_get_collection_count` |
+Get the number of documents in a collection |
+`chroma_modify_collection` |
+Update a collection's name or metadata |
+`chroma_delete_collection` |
+Delete a collection |
+`chroma_peek_collection` |
+View a sample of documents in a collection |
+
+### Document operations[¶](#document-operations)
+
+| Tool | Description |
+|---|---|
+`chroma_add_documents` |
+Add documents with optional metadata and custom IDs |
+`chroma_query_documents` |
+Query documents using semantic search with advanced filtering |
+`chroma_get_documents` |
+Retrieve documents by IDs or filters with pagination |
+`chroma_update_documents` |
+Update existing documents' content, metadata, or embeddings |
+`chroma_delete_documents` |
+Delete specific documents from a collection |
+
+## Configuration[¶](#configuration)
+
+The Chroma MCP server supports multiple client types to suit different needs:
+
+### Client types[¶](#client-types)
+
+| Client Type | Description | Key Arguments |
+|---|---|---|
+`ephemeral` |
+In-memory storage, cleared on restart. Useful for testing. | None (default) |
+`persistent` |
+File-based storage on your local machine | `--data-dir` |
+`http` |
+Connect to a self-hosted Chroma server | `--host` , `--port` , `--ssl` , `--custom-auth-credentials` |
+`cloud` |
+Connect to Chroma Cloud (api.trychroma.com) | `--tenant` , `--database` , `--api-key` |
+
+### Environment variables[¶](#environment-variables)
+
+You can also configure the client using environment variables. Command-line arguments take precedence over environment variables.
+
+| Variable | Description |
+|---|---|
+`CHROMA_CLIENT_TYPE` |
+Client type: `ephemeral` , `persistent` , `http` , or `cloud` |
+`CHROMA_DATA_DIR` |
+Path for persistent local storage |
+`CHROMA_TENANT` |
+Tenant ID for Chroma Cloud |
+`CHROMA_DATABASE` |
+Database name for Chroma Cloud |
+`CHROMA_API_KEY` |
+API key for Chroma Cloud |
+`CHROMA_HOST` |
+Host for self-hosted HTTP client |
+`CHROMA_PORT` |
+Port for self-hosted HTTP client |
+`CHROMA_SSL` |
+Enable SSL for HTTP client (`true` or `false` ) |
+`CHROMA_DOTENV_PATH` |
+Path to `.env` file (defaults to `.chroma_env` ) |
+
+---
+<!-- Source: https://google.github.io/adk-docs/tools/third-party/mongodb/ -->
+
+# MongoDB¶
+
+# MongoDB[¶](#mongodb)
+
+The [MongoDB MCP Server](https://github.com/mongodb-js/mongodb-mcp-server)
+connects your ADK agent to [MongoDB](https://www.mongodb.com/) databases and
+MongoDB Atlas clusters. This integration gives your agent the ability to query
+collections, manage databases, and interact with MongoDB Atlas infrastructure
+using natural language.
+
+## Use cases[¶](#use-cases)
+
+-
+**Data Exploration and Analysis**: Query MongoDB collections using natural language, run aggregations, and analyze document schemas without writing complex queries manually. -
+**Database Administration**: List databases and collections, create indexes, manage users, and monitor database statistics through conversational commands. -
+**Atlas Infrastructure Management**: Create and manage MongoDB Atlas clusters, configure access lists, and view performance recommendations directly from your agent.
+
+## Prerequisites[¶](#prerequisites)
+
+**For database access**: A MongoDB connection string (local, self-hosted, or Atlas cluster)**For Atlas management**: A[MongoDB Atlas](https://www.mongodb.com/atlas)service account with API credentials (client ID and secret)
+
+## Use with agent[¶](#use-with-agent)
+
+from google.adk.agents import Agent
+from google.adk.tools.mcp_tool import McpToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
+from mcp import StdioServerParameters
+# For database access, use a connection string:
+CONNECTION_STRING = "mongodb://localhost:27017/myDatabase"
+# For Atlas management, use API credentials:
+# ATLAS_CLIENT_ID = "YOUR_ATLAS_CLIENT_ID"
+# ATLAS_CLIENT_SECRET = "YOUR_ATLAS_CLIENT_SECRET"
+root_agent = Agent(
+model="gemini-2.5-pro",
+name="mongodb_agent",
+instruction="Help users query and manage MongoDB databases",
+tools=[
+McpToolset(
+connection_params=StdioConnectionParams(
+server_params=StdioServerParameters(
+command="npx",
+args=[
+"-y",
+"mongodb-mcp-server",
+"--readOnly", # Remove for write operations
+],
+env={
+# For database access, use:
+"MDB_MCP_CONNECTION_STRING": CONNECTION_STRING,
+# For Atlas management, use:
+# "MDB_MCP_API_CLIENT_ID": ATLAS_CLIENT_ID,
+# "MDB_MCP_API_CLIENT_SECRET": ATLAS_CLIENT_SECRET,
+},
+),
+timeout=30,
+),
+)
+],
+)
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+// For database access, use a connection string:
+const CONNECTION_STRING = "mongodb://localhost:27017/myDatabase";
+// For Atlas management, use API credentials:
+// const ATLAS_CLIENT_ID = "YOUR_ATLAS_CLIENT_ID";
+// const ATLAS_CLIENT_SECRET = "YOUR_ATLAS_CLIENT_SECRET";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "mongodb_agent",
+instruction: "Help users query and manage MongoDB databases",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"mongodb-mcp-server",
+"--readOnly", // Remove for write operations
+],
+env: {
+// For database access, use:
+MDB_MCP_CONNECTION_STRING: CONNECTION_STRING,
+// For Atlas management, use:
+// MDB_MCP_API_CLIENT_ID: ATLAS_CLIENT_ID,
+// MDB_MCP_API_CLIENT_SECRET: ATLAS_CLIENT_SECRET,
+},
+},
+}),
+],
+});
+export { rootAgent };
+
+
+## Available tools[¶](#available-tools)
+
+### MongoDB database tools[¶](#mongodb-database-tools)
+
+| Tool | Description |
+|---|---|
+`find` |
+Run a find query against a MongoDB collection |
+`aggregate` |
+Run an aggregation against a MongoDB collection |
+`count` |
+Get the number of documents in a collection |
+`list-databases` |
+List all databases for a MongoDB connection |
+`list-collections` |
+List all collections for a given database |
+`collection-schema` |
+Describe the schema for a collection |
+`collection-indexes` |
+Describe the indexes for a collection |
+`insert-many` |
+Insert documents into a collection |
+`update-many` |
+Update documents matching a filter |
+`delete-many` |
+Remove documents matching a filter |
+`create-collection` |
+Create a new collection |
+`drop-collection` |
+Remove a collection from the database |
+`drop-database` |
+Remove a database |
+`create-index` |
+Create an index for a collection |
+`drop-index` |
+Drop an index from a collection |
+`rename-collection` |
+Rename a collection |
+`db-stats` |
+Get statistics for a database |
+`explain` |
+Get query execution statistics |
+`export` |
+Export query results in EJSON format |
+
+### MongoDB Atlas tools[¶](#mongodb-atlas-tools)
+
+Note
+
+Atlas tools require API credentials. Set `MDB_MCP_API_CLIENT_ID`
+
+and
+`MDB_MCP_API_CLIENT_SECRET`
+
+environment variables to enable them.
+
+| Tool | Description |
+|---|---|
+`atlas-list-orgs` |
+List MongoDB Atlas organizations |
+`atlas-list-projects` |
+List MongoDB Atlas projects |
+`atlas-list-clusters` |
+List MongoDB Atlas clusters |
+`atlas-inspect-cluster` |
+Inspect metadata of a cluster |
+`atlas-list-db-users` |
+List database users |
+`atlas-create-free-cluster` |
+Create a free Atlas cluster |
+`atlas-create-project` |
+Create an Atlas project |
+`atlas-create-db-user` |
+Create a database user |
+`atlas-create-access-list` |
+Configure IP access list |
+`atlas-inspect-access-list` |
+View IP access list entries |
+`atlas-list-alerts` |
+List Atlas alerts |
+`atlas-get-performance-advisor` |
+Get performance recommendations |
+
+## Configuration[¶](#configuration)
+
+### Environment variables[¶](#environment-variables)
+
+| Variable | Description |
+|---|---|
+`MDB_MCP_CONNECTION_STRING` |
+MongoDB connection string for database access |
+`MDB_MCP_API_CLIENT_ID` |
+Atlas API client ID for Atlas tools |
+`MDB_MCP_API_CLIENT_SECRET` |
+Atlas API client secret for Atlas tools |
+`MDB_MCP_READ_ONLY` |
+Enable read-only mode (`true` or `false` ) |
+`MDB_MCP_DISABLED_TOOLS` |
+Comma-separated list of tools to disable |
+`MDB_MCP_LOG_PATH` |
+Directory for log files |
+
+### Read-only mode[¶](#read-only-mode)
+
+The `--readOnly`
+
+flag restricts the server to read, connect, and metadata
+operations only. This prevents any create, update, or delete operations,
+making it safe for data exploration without risk of accidental modifications.
+
+### Disabling tools[¶](#disabling-tools)
+
+You can disable specific tools or categories using `MDB_MCP_DISABLED_TOOLS`
+
+:
+
+- Tool names:
+`find`
+
+,`aggregate`
+
+,`insert-many`
+
+, etc. - Categories:
+`atlas`
+
+(all Atlas tools),`mongodb`
+
+(all database tools) - Operation types:
+`create`
+
+,`update`
+
+,`delete`
+
+,`read`
+
+,`metadata`
+
+---
 <!-- Source: https://google.github.io/adk-docs/tools/third-party/paypal/ -->
 
 # PayPal¶
@@ -2983,6 +3701,36 @@ headers={
 )
 ],
 )
+
+
+import { LlmAgent, MCPToolset } from "@google/adk";
+const PAYPAL_ENVIRONMENT = "SANDBOX"; // Options: "SANDBOX" or "PRODUCTION"
+const PAYPAL_ACCESS_TOKEN = "YOUR_PAYPAL_ACCESS_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "paypal_agent",
+instruction: "Help users manage their PayPal account",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"@paypal/mcp",
+"--tools=all",
+// (Optional) Specify which tools to enable
+// "--tools=subscriptionPlans.list,subscriptionPlans.show",
+],
+env: {
+PAYPAL_ACCESS_TOKEN: PAYPAL_ACCESS_TOKEN,
+PAYPAL_ENVIRONMENT: PAYPAL_ENVIRONMENT,
+},
+},
+}),
+],
+});
+export { rootAgent };
 
 
 Note

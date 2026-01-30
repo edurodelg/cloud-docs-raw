@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-29T15:32:00.473311
+merged_at: 2026-01-30T23:51:11.499443
 merged_files: 7
 ---
 
@@ -3647,7 +3647,7 @@ parameter could be used to limit the process to a fixed number of cycles, or ext
 # Part of agent.py --> Follow https://google.github.io/adk-docs/get-started/quickstart/ to learn the setup
 import asyncio
 import os
-from google.adk.agents import LoopAgent, LlmAgent, BaseAgent, SequentialAgent
+from google.adk.agents import LoopAgent, LlmAgent, SequentialAgent
 from google.genai import types
 from google.adk.runners import InMemoryRunner
 from google.adk.agents.invocation_context import InvocationContext

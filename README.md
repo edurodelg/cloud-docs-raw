@@ -4,8 +4,8 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-30%2023:43%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-562-green)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-01-30%2023:51%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-561-green)]()
 [![Fuentes](https://img.shields.io/badge/Fuentes-13-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
@@ -43,10 +43,10 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 | [gcp-cloud-run-python](./gcp-cloud-run-python/) | 50 | [Docs](https://cloud.google.com/python/docs/reference/run/latest) |
 | [gcp-storage-python](./gcp-storage-python/) | 48 | [Docs](https://cloud.google.com/python/docs/reference/storage/latest) |
 | [gcp-vertex-ai-python](./gcp-vertex-ai-python/) | 48 | [Docs](https://cloud.google.com/python/docs/reference/aiplatform/latest) |
-| [google-adk-docs](./google-adk-docs/) | 47 | [Docs](https://google.github.io/adk-docs/) |
+| [google-adk-docs](./google-adk-docs/) | 46 | [Docs](https://google.github.io/adk-docs/) |
 | [google-styleguide-python](./google-styleguide-python/) | 29 | [Docs](https://google.github.io/styleguide/pyguide.html) |
 
-> **Total:** 562 archivos Markdown
+> **Total:** 561 archivos Markdown
 
 ---
 

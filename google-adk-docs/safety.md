@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/safety/
-fetched_at: 2026-01-29T15:15:17.949472
+fetched_at: 2026-01-30T23:34:06.772877
 ---
 
 # Safety and Security for AI Agents¶

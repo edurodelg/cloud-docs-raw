@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/llms-full.txt
-fetched_at: 2026-01-29T15:17:15.381478
+fetched_at: 2026-01-30T23:36:04.806181
 ---
 
 # Agent Development Kit
@@ -1024,33 +1024,35 @@ ______________________________________________________________________
 - **Understand Core Concepts:** Learn about [agents concepts](https://google.github.io/adk-docs/agents/index.md).
 # TypeScript Quickstart for ADK
 This guide shows you how to get up and running with Agent Development Kit for TypeScript. Before you start, make sure you have the following installed:
-- Node.js 20.12.7 or later
-- Node Package Manager (npm) 9.2.0 or later
+- Node.js 24.13.0 or later
+- Node Package Manager (npm) 11.8.0 or later
 ## Create an agent project
-Create an agent project with the following files and directory structure:
+Create an empty `my-agent` directory for your project:
 ```text
 my-agent/
-agent.ts # main agent code
-package.json # project configuration
-tsconfig.json # TypeScript configuration
-.env # API keys or project IDs
 ```
 Create this project structure using the command line
 ```bash
-mkdir -p my-agent/ && \
-touch my-agent/agent.ts \
-touch my-agent/package.json \
-touch my-agent/.env
+mkdir -p my-agent/
 ```
 ```console
-mkdir my-agent\
-type nul > my-agent\agent.ts
-type nul > my-agent\package.json
-type nul > my-agent\.env
+mkdir my-agent
 ```
-**Note:** Do not create `tsconfig.json`, you generate that file in a later step.
+### Configure project and dependencies
+Use the `npm` tool to install and configure dependencies for your project, including the package file, ADK TypeScript main library, and developer tools. Run the following commands from your `my-agent/` directory to create the `package.json` file and install the project dependencies:
+```console
+cd my-agent/
+# initialize a project as an ES module
+npm init --yes
+npm pkg set type="module"
+npm pkg set main="agent.ts"
+# install ADK libraries
+npm install @google/adk
+# install dev tools as a dev dependency
+npm install -D @google/adk-devtools
+```
 ### Define the agent code
-Create the code for a basic agent, including a simple implementation of an ADK [Function Tool](/adk-docs/tools/function-tools/), called `getCurrentTime`. Add the following code to the `agent.ts` file in your project directory:
+Create the code for a basic agent, including a simple implementation of an ADK [Function Tool](/adk-docs/tools/function-tools/), called `getCurrentTime`. Create an `agent.ts` file in your project directory and add the following code:
 my-agent/agent.ts
 ```typescript
 import {FunctionTool, LlmAgent} from '@google/adk';
@@ -1075,50 +1077,6 @@ Use the 'getCurrentTime' tool for this purpose.`,
 tools: [getCurrentTime],
 });
 ```
-### Configure project and dependencies
-Use the `npm` tool to install and configure dependencies for your project, including the package file, TypeScript configuration, ADK TypeScript main library and developer tools. Run the following commands from your `my-agent/` directory:
-```console
-cd my-agent/
-# initialize a project with default values
-npm init --yes
-# configure TypeScript
-npm install -D typescript
-npx tsc --init
-# install ADK libraries
-npm install @google/adk
-npm install @google/adk-devtools
-```
-After completing these installation and configuration steps, open the `package.json` project file and verify that the `main:` value is set to `agent.ts`, that the TypeScript dependency is set, as well as the ADK library dependencies, as shown in this example:
-my-agent/package.json
-```json
-{
-"name": "my-agent",
-"version": "1.0.0",
-"description": "My ADK Agent",
-"main": "agent.ts",
-"scripts": {
-"test": "echo \"Error: no test specified\" && exit 1"
-},
-"devDependencies": {
-"typescript": "^5.9.3"
-},
-"dependencies": {
-"@google/adk": "^0.2.0",
-"@google/adk-devtools": "^0.2.0"
-}
-}
-```
-For development convenience, in the `tsconfig.json` file, update the setting for `verbatimModuleSyntax` to `false` to allow simpler syntax when adding modules:
-my-agent/tsconfig.json
-```json
-// set to false to allow CommonJS module syntax:
-"verbatimModuleSyntax": false,
-```
-### Compile the project
-After completing the project setup, compile the project to prepare for running your ADK agent:
-```console
-npx tsc
-```
 ### Set your API key
 This project uses the Gemini API, which requires an API key. If you don't already have Gemini API key, create a key in Google AI Studio on the [API Keys](https://aistudio.google.com/app/apikey) page.
 In a terminal window, write your API key into your `.env` file of your project to set environment variables:
@@ -1133,12 +1091,12 @@ You can run your ADK agent with the `@google/adk-devtools` library as an interac
 ### Run with command-line interface
 Run your agent with the ADK TypeScript command-line interface tool using the following command:
 ```console
-npx @google/adk-devtools run agent.ts
+npx adk run agent.ts
 ```
 ### Run with web interface
 Run your agent with the ADK web interface using the following command:
 ```console
-npx @google/adk-devtools web
+npx adk web
 ```
 This command starts a web server with a chat interface for your agent. You can access the web interface at (http://localhost:8000). Select your agent at the upper right corner and type a request.
 Caution: ADK Web for development only
@@ -3205,6 +3163,68 @@ Once configured, you can prompt the coding agent with instructions like:
 ______________________________________________________________________
 ### Other Tools
 Any tool that supports the `llms.txt` standard or can ingest documentation from a URL can benefit from these files. You can provide the URL `https://google.github.io/adk-docs/llms.txt` (or `llms-full.txt`) to your tool's knowledge base configuration or MCP server configuration.
+# Visual Builder for agents
+Supported in ADKPython v1.18.0Experimental
+The ADK Visual Builder is a web-based tool that provides a visual workflow design environment for creating and managing ADK agents. It allows you to design, build, and test your agents in a beginner-friendly graphical interface, and includes an AI-powered assistant to help you build agents.
+Experimental
+The Visual Builder feature is an experimental release. We welcome your [feedback](https://github.com/google/adk-python/issues/new?template=feature_request.md)!
+## Get started
+The Visual Builder interface is part of the ADK Web tool user interface. Make sure you have ADK library [installed](/adk-docs/get-started/installation/#python) and then run the ADK Web user interface.
+```console
+adk web --port 8000
+```
+Tip: Run from a code development directory
+The Visual Builder tool writes project files to new subdirectories located in the directory where you run the ADK Web tool. Make sure you run this command from a developer directory location where you have write access.
+**Figure 1:** ADK Web controls to start the Visual Builder tool.
+To create an agent with Visual Builder:
+1. In top left of the page, select the **+** (plus sign), as shown in *Figure 1*, to start creating an agent.
+1. Type a name for your agent application and select **Create**.
+1. Edit your agent by doing any of the following:
+- In the left panel, edit agent component values.
+- In the central panel, add new agent components .
+- In the right panel, use prompts to modify the agent or get help.
+1. In bottom left corner, select **Save** to save your agent.
+1. Interact with your new agent to test it.
+1. In top left of the page, select the pencil icon, as shown in *Figure 1*, to continue editing your agent.
+Here are few things to note when using Visual Builder:
+- **Create agent and save:** When creating an agent, make sure you select **Save** before exiting the editing interface, otherwise your new agent may not be editable.
+- **Agent editing:** Edit (pencil icon) for agents is *only* available for agents created with Visual Builder
+- **Add tools:** When adding existing custom Tools to a Visual Builder agent, specify a fully-qualified Python function name.
+## Workflow component support
+The Visual Builder tool provides a drag-and-drop user interface for constructing agents, as well as an AI-powered development Assistant that can answer questions and edit your agent workflow. The tool supports all the essential components for building an ADK agent workflow, including:
+- **Agents**
+- **Root Agent**: The primary controlling agent for a workflow. All other agents in an ADK agent workflow are considered Sub Agents.
+- [**LLM Agent:**](/adk-docs/agents/llm-agents/) An agent powered by a generative AI model.
+- [**Sequential Agent:**](/adk-docs/agents/workflow-agents/sequential-agents/) A workflow agent that executes a series of sub-agents in a sequence.
+- [**Loop Agent:**](/adk-docs/agents/workflow-agents/loop-agents/) A workflow agent that repeatedly executes a sub-agent until a certain condition is met.
+- [**Parallel Agent:**](/adk-docs/agents/workflow-agents/parallel-agents/) A workflow agent that executes multiple sub-agents concurrently.
+- **Tools**
+- [**Prebuilt tools:**](/adk-docs/tools/built-in-tools/) A limited set of ADK-provided tools can be added to agents.
+- [**Custom tools:**](/adk-docs/tools-custom/) You can build and add custom tools to your workflow.
+- **Components**
+- [**Callbacks**](/adk-docs/callbacks/) A flow control component that lets you modify the behavior of agents at the start and end of agent workflow events.
+Some advanced ADK features are not supported by Visual Builder due to limitations of the Agent Config feature. For more information, see the Agent Config [Known limitations](/adk-docs/agents/config/#known-limitations).
+## Project code output
+The Visual Builder tool generates code in the [Agent Config](/adk-docs/agents/config/) format, using `.yaml` configuration files for agents and Python code for custom tools. These files are generated in a subfolder of the directory where you ran the ADK Web interface. The following listing shows an example layout for a DiceAgent project:
+```text
+DiceAgent/
+root_agent.yaml # main agent code
+sub_agent_1.yaml # sub agents (if any)
+tools/ # tools directory
+__init__.py
+dice_tool.py # tool code
+```
+Editing generated agents
+You can edit the generated files in your development environment. However, some changes may not be compatible with Visual Builder.
+## Next steps
+Using the Visual Builder development Assistant, try building a new agent using this prompt:
+```text
+Help me add a dice roll tool to my current agent.
+Use the default model if you need to configure that.
+```
+Check out more information on the Agent Config code format used by Visual Builder and the available options:
+- [Agent Config](/adk-docs/agents/config/)
+- [Agent Config YAML schema](/adk-docs/api-reference/agentconfig/)
 # Agents
 Supported in ADKPythonTypeScriptGoJava
 In Agent Development Kit (ADK), an **Agent** is a self-contained execution unit designed to act autonomously to achieve specific goals. Agents can perform tasks, interact with users, utilize external tools, and coordinate with other agents.
@@ -9036,7 +9056,7 @@ Full Code
 # Part of agent.py --> Follow https://google.github.io/adk-docs/get-started/quickstart/ to learn the setup
 import asyncio
 import os
-from google.adk.agents import LoopAgent, LlmAgent, BaseAgent, SequentialAgent
+from google.adk.agents import LoopAgent, LlmAgent, SequentialAgent
 from google.genai import types
 from google.adk.runners import InMemoryRunner
 from google.adk.agents.invocation_context import InvocationContext
@@ -10365,6 +10385,8 @@ If the above tools don't meet your needs, you can build tools for your ADK workf
 # Limitations for ADK tools
 Some ADK tools have limitations that can impact how you implement them within an agent workflow. This page lists these tool limitations and workarounds, if available.
 ## One tool per agent limitation
+ONLY for Search in ADK Python v1.15.0 and lower
+This limitation only applies to the use of Google Search and Vertex AI Search tools in ADK Python v1.15.0 and lower. ADK Python release v1.16.0 and higher provides a built-in workaround to remove this limitation.
 In general, you can use more than one tool in an agent, but use of specific tools within an agent excludes the use of any other tools in that agent. The following ADK Tools can only be used by themselves, without any other tools, in a single agent object:
 - [Code Execution](/adk-docs/tools/gemini-api/code-execution/) with Gemini API
 - [Google Search](/adk-docs/tools/gemini-api/google-search/) with Gemini API
@@ -12687,6 +12709,7 @@ To see what other features you can build into your UI with AG-UI, refer to the C
 - [Frontend Actions](https://docs.copilotkit.ai/adk/frontend-actions)
 Or try them out in the [AG-UI Dojo](https://dojo.ag-ui.com).
 # Asana
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Asana MCP Server](https://developers.asana.com/docs/using-asanas-mcp-server) connects your ADK agent to the [Asana](https://asana.com/) work management platform. This integration gives your agent the ability to manage projects, tasks, goals, and team collaboration using natural language.
 ## Use cases
 - **Track Project Status**: Get real-time updates on project progress, view status reports, and retrieve information about milestones and deadlines.
@@ -12721,6 +12744,28 @@ timeout=30,
 ],
 )
 ```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "asana_agent",
+instruction: "Help users manage projects, tasks, and goals in Asana",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"mcp-remote",
+"https://mcp.asana.com/sse",
+],
+},
+}),
+],
+});
+export { rootAgent };
+```
 Note
 When you run this agent for the first time, a browser window opens automatically to request access via OAuth. Alternatively, you can use the authorization URL printed in the console. You must approve this request to allow the agent to access your Asana data.
 ## Available tools
@@ -12737,6 +12782,7 @@ Asana's MCP server includes 30+ tools organized by category. Tools are automatic
 - [Asana MCP Server Documentation](https://developers.asana.com/docs/using-asanas-mcp-server)
 - [Asana MCP Integration Guide](https://developers.asana.com/docs/integrating-with-asanas-mcp-server)
 # Atlassian
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Atlassian MCP Server](https://github.com/atlassian/atlassian-mcp-server) connects your ADK agent to the [Atlassian](https://www.atlassian.com/) ecosystem, bridging the gap between project tracking in Jira and knowledge management in Confluence. This integration gives your agent the ability to manage issues, search and update documentation pages, and streamline collaboration workflows using natural language.
 ## Use cases
 - **Unified Knowledge Search**: Search across both Jira issues and Confluence pages simultaneously to find project specs, decisions, or historical context.
@@ -12763,7 +12809,7 @@ command="npx",
 args=[
 "-y",
 "mcp-remote",
-"https://mcp.atlassian.com/v1/sse",
+"https://mcp.atlassian.com/v1/mcp",
 ]
 ),
 timeout=30,
@@ -12771,6 +12817,28 @@ timeout=30,
 )
 ],
 )
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "atlassian_agent",
+instruction: "Help users work with data in Atlassian products",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"mcp-remote",
+"https://mcp.atlassian.com/v1/mcp",
+],
+},
+}),
+],
+});
+export { rootAgent };
 ```
 Note
 When you run this agent for the first time, a browser window opens automatically to request access via OAuth. Alternatively, you can use the authorization URL printed in the console. You must approve this request to allow the agent to access your Atlassian data.
@@ -12808,6 +12876,7 @@ When you run this agent for the first time, a browser window opens automatically
 - [Atlassian MCP Server Repository](https://github.com/atlassian/atlassian-mcp-server)
 - [Atlassian MCP Server Documentation](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/getting-started-with-the-atlassian-remote-mcp-server/)
 # Cartesia
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Cartesia MCP Server](https://github.com/cartesia-ai/cartesia-mcp) connects your ADK agent to the [Cartesia](https://cartesia.ai/) AI audio platform. This integration gives your agent the ability to generate speech, localize voices across languages, and create audio content using natural language.
 ## Use cases
 - **Text-to-Speech Generation**: Convert text into natural-sounding speech using Cartesia's diverse voice library, with control over voice selection and output format.
@@ -12845,6 +12914,29 @@ timeout=30,
 ],
 )
 ```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const CARTESIA_API_KEY = "YOUR_CARTESIA_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "cartesia_agent",
+instruction: "Help users generate speech and work with audio content",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "uvx",
+args: ["cartesia-mcp"],
+env: {
+CARTESIA_API_KEY: CARTESIA_API_KEY,
+// OUTPUT_DIRECTORY: "/path/to/output", // Optional
+},
+},
+}),
+],
+});
+export { rootAgent };
+```
 ## Available tools
 | Tool | Description |
 | ---------------- | ---------------------------------------------- |
@@ -12868,6 +12960,7 @@ The Cartesia MCP server can be configured using environment variables:
 - [Cartesia MCP Documentation](https://docs.cartesia.ai/integrations/mcp)
 - [Cartesia Playground](https://play.cartesia.ai/)
 # Chroma
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Chroma MCP Server](https://github.com/chroma-core/chroma-mcp) connects your ADK agent to [Chroma](https://www.trychroma.com/), an open-source embedding database. This integration gives your agent the ability to create collections, store documents, and retrieve information using semantic search, full text search, and metadata filtering.
 ## Use cases
 - **Semantic Memory for Agents**: Store conversation context, facts, or learned information that agents can retrieve later using natural language queries.
@@ -12921,6 +13014,46 @@ timeout=30,
 ],
 )
 ```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+// For local storage, use:
+const DATA_DIR = "/path/to/your/data/directory";
+// For Chroma Cloud, use:
+// const CHROMA_TENANT = "your-tenant-id";
+// const CHROMA_DATABASE = "your-database-name";
+// const CHROMA_API_KEY = "your-api-key";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "chroma_agent",
+instruction: "Help users store and retrieve information using semantic search",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "uvx",
+args: [
+"chroma-mcp",
+// For local storage, use:
+"--client-type",
+"persistent",
+"--data-dir",
+DATA_DIR,
+// For Chroma Cloud, use:
+// "--client-type",
+// "cloud",
+// "--tenant",
+// CHROMA_TENANT,
+// "--database",
+// CHROMA_DATABASE,
+// "--api-key",
+// CHROMA_API_KEY,
+],
+},
+}),
+],
+});
+export { rootAgent };
+```
 ## Available tools
 ### Collection management
 | Tool | Description |
@@ -12967,6 +13100,7 @@ You can also configure the client using environment variables. Command-line argu
 - [Chroma Documentation](https://docs.trychroma.com/)
 - [Chroma Cloud](https://www.trychroma.com/)
 # Daytona
+Supported in ADKPython v0.1.0
 The [Daytona ADK plugin](https://github.com/daytonaio/daytona-adk-plugin) connects your ADK agent to [Daytona](https://www.daytona.io/) sandboxes. This integration gives your agent the ability to execute code, run shell commands, and manage files in isolated environments, enabling secure execution of AI-generated code.
 ## Use cases
 - **Secure Code Execution**: Run Python, JavaScript, and TypeScript code in isolated sandboxes without risking your local environment.
@@ -13009,6 +13143,7 @@ For a detailed guide on building a code generator agent that writes, tests, and 
 - [Daytona ADK on GitHub](https://github.com/daytonaio/daytona-adk-plugin)
 - [Daytona Documentation](https://www.daytona.io/docs)
 # ElevenLabs
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [ElevenLabs MCP Server](https://github.com/elevenlabs/elevenlabs-mcp) connects your ADK agent to the [ElevenLabs](https://elevenlabs.io/) AI audio platform. This integration gives your agent the ability to generate speech, clone voices, transcribe audio, create sound effects, and build conversational AI experiences using natural language.
 ## Use cases
 - **Text-to-Speech Generation**: Convert text into natural-sounding speech using a variety of voices, with fine-grained control over stability, style, and similarity settings.
@@ -13044,6 +13179,28 @@ timeout=30,
 )
 ],
 )
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const ELEVENLABS_API_KEY = "YOUR_ELEVENLABS_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "elevenlabs_agent",
+instruction: "Help users generate speech, clone voices, and process audio",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "uvx",
+args: ["elevenlabs-mcp"],
+env: {
+ELEVENLABS_API_KEY: ELEVENLABS_API_KEY,
+},
+},
+}),
+],
+});
+export { rootAgent };
 ```
 ## Available tools
 ### Text-to-speech and voice
@@ -13100,6 +13257,7 @@ The `ELEVENLABS_MCP_OUTPUT_MODE` environment variable supports three modes:
 - [Introducing ElevenLabs MCP](https://elevenlabs.io/blog/introducing-elevenlabs-mcp)
 - [ElevenLabs Documentation](https://elevenlabs.io/docs)
 # GitHub
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [GitHub MCP Server](https://github.com/github/github-mcp-server) connects AI tools directly to GitHub's platform. This gives your ADK agent the ability to read repositories and code files, manage issues and PRs, analyze code, and automate workflows using natural language.
 ## Use cases
 - **Repository Management**: Browse and query code, search files, analyze commits, and understand project structure across any repository you have access to.
@@ -13130,6 +13288,27 @@ headers={
 )
 ],
 )
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const GITHUB_TOKEN = "YOUR_GITHUB_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "github_agent",
+instruction: "Help users get information from GitHub",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://api.githubcopilot.com/mcp/",
+header: {
+Authorization: `Bearer ${GITHUB_TOKEN}`,
+"X-MCP-Toolsets": "all",
+"X-MCP-Readonly": "true",
+},
+}),
+],
+});
+export { rootAgent };
 ```
 ## Available tools
 | Tool | Description |
@@ -13166,6 +13345,7 @@ The Remote GitHub MCP server has optional headers that can be used to configure 
 - [Remote GitHub MCP Server Documentation](https://github.com/github/github-mcp-server/blob/main/docs/remote-server.md)
 - [Policies and Governance for the GitHub MCP Server](https://github.com/github/github-mcp-server/blob/main/docs/policies-and-governance.md)
 # GitLab
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [GitLab MCP Server](https://docs.gitlab.com/user/gitlab_duo/model_context_protocol/mcp_server/) connects your ADK agent directly to [GitLab.com](https://gitlab.com/) or your self-managed GitLab instance. This integration gives your agent the ability to manage issues and merge requests, inspect CI/CD pipelines, perform semantic code searches, and automate development workflows using natural language.
 ## Use cases
 - **Semantic Code Exploration**: Navigate your codebase using natural language. Unlike standard text search, you can query the logic and intent of your code to quickly understand complex implementations.
@@ -13205,6 +13385,32 @@ timeout=30,
 ],
 )
 ```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+// Replace with your instance URL if self-hosted (e.g., "gitlab.example.com")
+const GITLAB_INSTANCE_URL = "gitlab.com";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "gitlab_agent",
+instruction: "Help users get information from GitLab",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"mcp-remote",
+`https://${GITLAB_INSTANCE_URL}/api/v4/mcp`,
+"--static-oauth-client-metadata",
+'{"scope": "mcp"}',
+],
+},
+}),
+],
+});
+export { rootAgent };
+```
 Note
 When you run this agent for the first time, a browser window will open automatically (and an authorization URL will be printed) requesting OAuth permissions. You must approve this request to allow the agent to access your GitLab data.
 ## Available tools
@@ -13224,6 +13430,7 @@ When you run this agent for the first time, a browser window will open automatic
 ## Additional resources
 - [GitLab MCP Server Documentation](https://docs.gitlab.com/user/gitlab_duo/model_context_protocol/mcp_server/)
 # Hugging Face
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Hugging Face MCP Server](https://github.com/huggingface/hf-mcp-server) can be used to connect your ADK agent to the Hugging Face Hub and thousands of Gradio AI Applications.
 ## Use cases
 - **Discover AI/ML Assets**: Search and filter the Hub for models, datasets, and papers based on tasks, libraries, or keywords.
@@ -13282,6 +13489,47 @@ headers={
 ],
 )
 ```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const HUGGING_FACE_TOKEN = "YOUR_HUGGING_FACE_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "hugging_face_agent",
+instruction: "Help users get information from Hugging Face",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: ["-y", "@llmindset/hf-mcp-server"],
+env: {
+HF_TOKEN: HUGGING_FACE_TOKEN,
+},
+},
+}),
+],
+});
+export { rootAgent };
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const HUGGING_FACE_TOKEN = "YOUR_HUGGING_FACE_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "hugging_face_agent",
+instruction: "Help users get information from Hugging Face",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://huggingface.co/mcp",
+header: {
+Authorization: `Bearer ${HUGGING_FACE_TOKEN}`,
+},
+}),
+],
+});
+export { rootAgent };
+```
 ## Available tools
 | Tool | Description |
 | ----------------------------- | ---------------------------------------------------------- |
@@ -13306,6 +13554,7 @@ To configure the local MCP server, you can use the following environment variabl
 - [Hugging Face MCP Server Repository](https://github.com/huggingface/hf-mcp-server)
 - [Hugging Face MCP Server Documentation](https://huggingface.co/docs/hub/en/hf-mcp-server)
 # Linear
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Linear MCP Server](https://linear.app/docs/mcp) connects your ADK agent to [Linear](https://linear.app/), a purpose-built tool for planning and building products. This integration gives your agent the ability to manage issues, track project cycles, and automate development workflows using natural language.
 ## Use cases
 - **Streamline Issue Management**: Create, update, and organize issues using natural language. Let your agent handle logging bugs, assigning tasks, and updating statuses.
@@ -13366,6 +13615,47 @@ headers={
 ```
 Note
 This code example uses an API key for authentication. To use a browser-based OAuth authentication flow instead, remove the `headers` parameter and run the agent.
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "linear_agent",
+instruction: "Help users manage issues, projects, and cycles in Linear",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: ["-y", "mcp-remote", "https://mcp.linear.app/mcp"],
+},
+}),
+],
+});
+export { rootAgent };
+```
+Note
+When you run this agent for the first time, a browser window will open automatically to request access via OAuth. Alternatively, you can use the authorization URL printed in the console. You must approve this request to allow the agent to access your Linear data.
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const LINEAR_API_KEY = "YOUR_LINEAR_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "linear_agent",
+instruction: "Help users manage issues, projects, and cycles in Linear",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://mcp.linear.app/mcp",
+header: {
+Authorization: `Bearer ${LINEAR_API_KEY}`,
+},
+}),
+],
+});
+export { rootAgent };
+```
+Note
+This code example uses an API key for authentication. To use a browser-based OAuth authentication flow instead, remove the `header` property and run the agent.
 ## Available tools
 | Tool | Description |
 | ---------------------- | ---------------------------- |
@@ -13395,7 +13685,152 @@ This code example uses an API key for authentication. To use a browser-based OAu
 ## Additional resources
 - [Linear MCP Server Documentation](https://linear.app/docs/mcp)
 - [Linear Getting Started Guide](https://linear.app/docs/start-guide)
+# MongoDB
+Supported in ADKPython v0.1.0TypeScript v0.2.0
+The [MongoDB MCP Server](https://github.com/mongodb-js/mongodb-mcp-server) connects your ADK agent to [MongoDB](https://www.mongodb.com/) databases and MongoDB Atlas clusters. This integration gives your agent the ability to query collections, manage databases, and interact with MongoDB Atlas infrastructure using natural language.
+## Use cases
+- **Data Exploration and Analysis**: Query MongoDB collections using natural language, run aggregations, and analyze document schemas without writing complex queries manually.
+- **Database Administration**: List databases and collections, create indexes, manage users, and monitor database statistics through conversational commands.
+- **Atlas Infrastructure Management**: Create and manage MongoDB Atlas clusters, configure access lists, and view performance recommendations directly from your agent.
+## Prerequisites
+- **For database access**: A MongoDB connection string (local, self-hosted, or Atlas cluster)
+- **For Atlas management**: A [MongoDB Atlas](https://www.mongodb.com/atlas) service account with API credentials (client ID and secret)
+## Use with agent
+```python
+from google.adk.agents import Agent
+from google.adk.tools.mcp_tool import McpToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
+from mcp import StdioServerParameters
+# For database access, use a connection string:
+CONNECTION_STRING = "mongodb://localhost:27017/myDatabase"
+# For Atlas management, use API credentials:
+# ATLAS_CLIENT_ID = "YOUR_ATLAS_CLIENT_ID"
+# ATLAS_CLIENT_SECRET = "YOUR_ATLAS_CLIENT_SECRET"
+root_agent = Agent(
+model="gemini-2.5-pro",
+name="mongodb_agent",
+instruction="Help users query and manage MongoDB databases",
+tools=[
+McpToolset(
+connection_params=StdioConnectionParams(
+server_params=StdioServerParameters(
+command="npx",
+args=[
+"-y",
+"mongodb-mcp-server",
+"--readOnly", # Remove for write operations
+],
+env={
+# For database access, use:
+"MDB_MCP_CONNECTION_STRING": CONNECTION_STRING,
+# For Atlas management, use:
+# "MDB_MCP_API_CLIENT_ID": ATLAS_CLIENT_ID,
+# "MDB_MCP_API_CLIENT_SECRET": ATLAS_CLIENT_SECRET,
+},
+),
+timeout=30,
+),
+)
+],
+)
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+// For database access, use a connection string:
+const CONNECTION_STRING = "mongodb://localhost:27017/myDatabase";
+// For Atlas management, use API credentials:
+// const ATLAS_CLIENT_ID = "YOUR_ATLAS_CLIENT_ID";
+// const ATLAS_CLIENT_SECRET = "YOUR_ATLAS_CLIENT_SECRET";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "mongodb_agent",
+instruction: "Help users query and manage MongoDB databases",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"mongodb-mcp-server",
+"--readOnly", // Remove for write operations
+],
+env: {
+// For database access, use:
+MDB_MCP_CONNECTION_STRING: CONNECTION_STRING,
+// For Atlas management, use:
+// MDB_MCP_API_CLIENT_ID: ATLAS_CLIENT_ID,
+// MDB_MCP_API_CLIENT_SECRET: ATLAS_CLIENT_SECRET,
+},
+},
+}),
+],
+});
+export { rootAgent };
+```
+## Available tools
+### MongoDB database tools
+| Tool | Description |
+| -------------------- | ----------------------------------------------- |
+| `find` | Run a find query against a MongoDB collection |
+| `aggregate` | Run an aggregation against a MongoDB collection |
+| `count` | Get the number of documents in a collection |
+| `list-databases` | List all databases for a MongoDB connection |
+| `list-collections` | List all collections for a given database |
+| `collection-schema` | Describe the schema for a collection |
+| `collection-indexes` | Describe the indexes for a collection |
+| `insert-many` | Insert documents into a collection |
+| `update-many` | Update documents matching a filter |
+| `delete-many` | Remove documents matching a filter |
+| `create-collection` | Create a new collection |
+| `drop-collection` | Remove a collection from the database |
+| `drop-database` | Remove a database |
+| `create-index` | Create an index for a collection |
+| `drop-index` | Drop an index from a collection |
+| `rename-collection` | Rename a collection |
+| `db-stats` | Get statistics for a database |
+| `explain` | Get query execution statistics |
+| `export` | Export query results in EJSON format |
+### MongoDB Atlas tools
+Note
+Atlas tools require API credentials. Set `MDB_MCP_API_CLIENT_ID` and `MDB_MCP_API_CLIENT_SECRET` environment variables to enable them.
+| Tool | Description |
+| ------------------------------- | -------------------------------- |
+| `atlas-list-orgs` | List MongoDB Atlas organizations |
+| `atlas-list-projects` | List MongoDB Atlas projects |
+| `atlas-list-clusters` | List MongoDB Atlas clusters |
+| `atlas-inspect-cluster` | Inspect metadata of a cluster |
+| `atlas-list-db-users` | List database users |
+| `atlas-create-free-cluster` | Create a free Atlas cluster |
+| `atlas-create-project` | Create an Atlas project |
+| `atlas-create-db-user` | Create a database user |
+| `atlas-create-access-list` | Configure IP access list |
+| `atlas-inspect-access-list` | View IP access list entries |
+| `atlas-list-alerts` | List Atlas alerts |
+| `atlas-get-performance-advisor` | Get performance recommendations |
+## Configuration
+### Environment variables
+| Variable | Description |
+| --------------------------- | --------------------------------------------- |
+| `MDB_MCP_CONNECTION_STRING` | MongoDB connection string for database access |
+| `MDB_MCP_API_CLIENT_ID` | Atlas API client ID for Atlas tools |
+| `MDB_MCP_API_CLIENT_SECRET` | Atlas API client secret for Atlas tools |
+| `MDB_MCP_READ_ONLY` | Enable read-only mode (`true` or `false`) |
+| `MDB_MCP_DISABLED_TOOLS` | Comma-separated list of tools to disable |
+| `MDB_MCP_LOG_PATH` | Directory for log files |
+### Read-only mode
+The `--readOnly` flag restricts the server to read, connect, and metadata operations only. This prevents any create, update, or delete operations, making it safe for data exploration without risk of accidental modifications.
+### Disabling tools
+You can disable specific tools or categories using `MDB_MCP_DISABLED_TOOLS`:
+- Tool names: `find`, `aggregate`, `insert-many`, etc.
+- Categories: `atlas` (all Atlas tools), `mongodb` (all database tools)
+- Operation types: `create`, `update`, `delete`, `read`, `metadata`
+## Additional resources
+- [MongoDB MCP Server Repository](https://github.com/mongodb-js/mongodb-mcp-server)
+- [MongoDB Documentation](https://www.mongodb.com/docs/)
+- [MongoDB Atlas](https://www.mongodb.com/atlas)
 # n8n
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [n8n MCP Server](https://docs.n8n.io/advanced-ai/accessing-n8n-mcp-server/) connects your ADK agent to [n8n](https://n8n.io/), an extendable workflow automation tool. This integration allows your agent to securely connect to an n8n instance to search, inspect, and trigger workflows directly from a natural language interface.
 Alternative: Workflow-level MCP Server
 The configuration guide  covers **Instance-level MCP access**, which connects your agent to a central hub of enabled workflows. Alternatively, you can use the [MCP Server Trigger node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcptrigger/) to make a **single workflow** act as its own standalone MCP server. This method is useful if you want to craft specific server behaviors or expose tools isolated to one workflow.
@@ -13462,6 +13897,53 @@ headers={
 ],
 )
 ```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const N8N_INSTANCE_URL = "https://localhost:5678";
+const N8N_MCP_TOKEN = "YOUR_N8N_MCP_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "n8n_agent",
+instruction: "Help users manage and execute workflows in n8n",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"supergateway",
+"--streamableHttp",
+`${N8N_INSTANCE_URL}/mcp-server/http`,
+"--header",
+`authorization:Bearer ${N8N_MCP_TOKEN}`,
+],
+},
+}),
+],
+});
+export { rootAgent };
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const N8N_INSTANCE_URL = "https://localhost:5678";
+const N8N_MCP_TOKEN = "YOUR_N8N_MCP_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "n8n_agent",
+instruction: "Help users manage and execute workflows in n8n",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: `${N8N_INSTANCE_URL}/mcp-server/http`,
+header: {
+Authorization: `Bearer ${N8N_MCP_TOKEN}`,
+},
+}),
+],
+});
+export { rootAgent };
+```
 ## Available tools
 | Tool | Description |
 | ---------------------- | ------------------------------------------------------- |
@@ -13476,6 +13958,7 @@ To make workflows accessible to your agent, they must meet the following criteri
 ## Additional resources
 - [n8n MCP Server Documentation](https://docs.n8n.io/advanced-ai/accessing-n8n-mcp-server/)
 # Notion
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Notion MCP Server](https://github.com/makenotion/notion-mcp-server) connects your ADK agent to Notion, allowing it to search, create, and manage pages, databases, and more within a workspace. This gives your agent the ability to query, create, and organize content in your Notion workspace using natural language.
 ## Use cases
 - **Search your workspace**: Find project pages, meeting notes, or documents based on content.
@@ -13515,6 +13998,28 @@ timeout=30,
 ],
 )
 ```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const NOTION_TOKEN = "YOUR_NOTION_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "notion_agent",
+instruction: "Help users get information from Notion",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: ["-y", "@notionhq/notion-mcp-server"],
+env: {
+NOTION_TOKEN: NOTION_TOKEN,
+},
+},
+}),
+],
+});
+export { rootAgent };
+```
 ## Available tools
 | Tool | Description |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -13536,6 +14041,7 @@ timeout=30,
 - [Notion MCP Server Documentation](https://developers.notion.com/docs/mcp)
 - [Notion MCP Server Repository](https://github.com/makenotion/notion-mcp-server)
 # PayPal
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [PayPal MCP Server](https://github.com/paypal/paypal-mcp-server) connects your ADK agent to the [PayPal](https://www.paypal.com/) ecosystem. This integration gives your agent the ability to manage payments, invoices, subscriptions, and disputes using natural language, enabling automated commerce workflows and business insights.
 ## Use cases
 - **Streamline Financial Operations**: Create orders, send invoices, and process refunds directly through chat without switching context. You can instruct your agent to "bill Client X" or "refund order Y" immediately.
@@ -13601,6 +14107,36 @@ headers={
 )
 ],
 )
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const PAYPAL_ENVIRONMENT = "SANDBOX"; // Options: "SANDBOX" or "PRODUCTION"
+const PAYPAL_ACCESS_TOKEN = "YOUR_PAYPAL_ACCESS_TOKEN";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "paypal_agent",
+instruction: "Help users manage their PayPal account",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"@paypal/mcp",
+"--tools=all",
+// (Optional) Specify which tools to enable
+// "--tools=subscriptionPlans.list,subscriptionPlans.show",
+],
+env: {
+PAYPAL_ACCESS_TOKEN: PAYPAL_ACCESS_TOKEN,
+PAYPAL_ENVIRONMENT: PAYPAL_ENVIRONMENT,
+},
+},
+}),
+],
+});
+export { rootAgent };
 ```
 Note
 **Token Expiration**: PayPal Access Tokens have a limited lifespan of 3-8 hours. If your agent stops working, ensure your token has not expired and generate a new one if necessary. You should implement token refresh logic to handle token expiration.
@@ -13673,6 +14209,7 @@ You can enable all tools with `--tools=all` or specify a comma-separated list of
 - [PayPal MCP Server Repository](https://github.com/paypal/paypal-mcp-server)
 - [PayPal Agent Tools Reference](https://docs.paypal.ai/developer/tools/ai/agent-tools-ref)
 # Postman
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Postman MCP Server](https://github.com/postmanlabs/postman-mcp-server) connects your ADK agent to the [Postman](https://www.postman.com/) ecosystem. This integration gives your agent the ability to access workspaces, manage collections and environments, evaluate APIs, and automate workflows through natural language interactions.
 ## Use cases
 - **API testing**: Continuously test your APIs using your Postman collections.
@@ -13739,6 +14276,56 @@ headers={
 ],
 )
 ```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const POSTMAN_API_KEY = "YOUR_POSTMAN_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "postman_agent",
+instruction: "Help users manage their Postman workspaces and collections",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"@postman/postman-mcp-server",
+// "--full", // Use all 100+ tools
+// "--code", // Use code generation tools
+// "--region", "eu", // Use EU region
+],
+env: {
+POSTMAN_API_KEY: POSTMAN_API_KEY,
+},
+},
+}),
+],
+});
+export { rootAgent };
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const POSTMAN_API_KEY = "YOUR_POSTMAN_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "postman_agent",
+instruction: "Help users manage their Postman workspaces and collections",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://mcp.postman.com/mcp",
+// (Optional) Use "/minimal" for essential tools only
+// (Optional) Use "/code" for code generation tools
+// (Optional) Use "https://mcp.eu.postman.com" for EU region
+header: {
+Authorization: `Bearer ${POSTMAN_API_KEY}`,
+},
+}),
+],
+});
+export { rootAgent };
+```
 ## Configuration
 Postman offers three tool configurations:
 - **Minimal** (default): Essential tools for basic Postman operations. Best for simple modifications to collections, workspaces, or environments.
@@ -13753,6 +14340,7 @@ For EU region, use `--region eu` (local) or `https://mcp.eu.postman.com` (remote
 - [Postman API key settings](https://postman.postman.co/settings/me/api-keys)
 - [Postman Learning Center](https://learning.postman.com/)
 # Qdrant
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Qdrant MCP Server](https://github.com/qdrant/mcp-server-qdrant) connects your ADK agent to [Qdrant](https://qdrant.tech/), an open-source vector search engine. This integration gives your agent the ability to store and retrieve information using semantic search.
 ## Use cases
 - **Semantic Memory for Agents**: Store conversation context, facts, or learned information that agents can retrieve later using natural language queries.
@@ -13794,6 +14382,32 @@ timeout=30,
 ],
 )
 ```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const QDRANT_URL = "http://localhost:6333"; // Or your Qdrant Cloud URL
+const COLLECTION_NAME = "my_collection";
+// const QDRANT_API_KEY = "YOUR_QDRANT_API_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "qdrant_agent",
+instruction: "Help users store and retrieve information using semantic search",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "uvx",
+args: ["mcp-server-qdrant"],
+env: {
+QDRANT_URL: QDRANT_URL,
+COLLECTION_NAME: COLLECTION_NAME,
+// QDRANT_API_KEY: QDRANT_API_KEY,
+},
+},
+}),
+],
+});
+export { rootAgent };
+```
 ## Available tools
 | Tool | Description |
 | -------------- | -------------------------------------------------------------- |
@@ -13826,6 +14440,7 @@ env={
 - [Qdrant Documentation](https://qdrant.tech/documentation/)
 - [Qdrant Cloud](https://cloud.qdrant.io/)
 # Stripe
+Supported in ADKPython v0.1.0TypeScript v0.2.0
 The [Stripe MCP Server](https://docs.stripe.com/mcp) connects your ADK agent to the [Stripe](https://stripe.com/) ecosystem. This integration gives your agent the ability to manage payments, customers, subscriptions, and invoices using natural language, enabling automated commerce workflows and financial operations.
 ## Use cases
 - **Automate Payment Operations**: Create payment links, process refunds, and list payment intents through conversational commands.
@@ -13887,6 +14502,53 @@ headers={
 )
 ],
 )
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const STRIPE_SECRET_KEY = "YOUR_STRIPE_SECRET_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "stripe_agent",
+instruction: "Help users manage their Stripe account",
+tools: [
+new MCPToolset({
+type: "StdioConnectionParams",
+serverParams: {
+command: "npx",
+args: [
+"-y",
+"@stripe/mcp",
+"--tools=all",
+// (Optional) Specify which tools to enable
+// "--tools=customers.read,invoices.read,products.read",
+],
+env: {
+STRIPE_SECRET_KEY: STRIPE_SECRET_KEY,
+},
+},
+}),
+],
+});
+export { rootAgent };
+```
+```typescript
+import { LlmAgent, MCPToolset } from "@google/adk";
+const STRIPE_SECRET_KEY = "YOUR_STRIPE_SECRET_KEY";
+const rootAgent = new LlmAgent({
+model: "gemini-2.5-pro",
+name: "stripe_agent",
+instruction: "Help users manage their Stripe account",
+tools: [
+new MCPToolset({
+type: "StreamableHTTPConnectionParams",
+url: "https://mcp.stripe.com",
+header: {
+Authorization: `Bearer ${STRIPE_SECRET_KEY}`,
+},
+}),
+],
+});
+export { rootAgent };
 ```
 Best practices
 Enable human confirmation of tool actions and exercise caution when using the Stripe MCP server alongside other MCP servers to mitigate prompt injection risks.
@@ -23652,6 +24314,722 @@ By following these steps, you can effectively integrate Google ADK with Weave, e
 - **[Send OpenTelemetry Traces to Weave](https://weave-docs.wandb.ai/guides/tracking/otel)** - Comprehensive guide on configuring OTEL with Weave, including authentication and advanced configuration options.
 - **[Navigate the Trace View](https://weave-docs.wandb.ai/guides/tracking/trace-tree)** - Learn how to effectively analyze and debug your traces in the Weave UI, including understanding trace hierarchies and span details.
 - **[Weave Integrations](https://weave-docs.wandb.ai/guides/integrations/)** - Explore other framework integrations and see how Weave can work with your entire AI stack.
+# Why Evaluate Agents
+Supported in ADKPython
+In traditional software development, unit tests and integration tests provide confidence that code functions as expected and remains stable through changes. These tests provide a clear "pass/fail" signal, guiding further development. However, LLM agents introduce a level of variability that makes traditional testing approaches insufficient.
+Due to the probabilistic nature of models, deterministic "pass/fail" assertions are often unsuitable for evaluating agent performance. Instead, we need qualitative evaluations of both the final output and the agent's trajectory - the sequence of steps taken to reach the solution. This involves assessing the quality of the agent's decisions, its reasoning process, and the final result.
+This may seem like a lot of extra work to set up, but the investment of automating evaluations pays off quickly. If you intend to progress beyond prototype, this is a highly recommended best practice.
+## Preparing for Agent Evaluations
+Before automating agent evaluations, define clear objectives and success criteria:
+- **Define Success:** What constitutes a successful outcome for your agent?
+- **Identify Critical Tasks:** What are the essential tasks your agent must accomplish?
+- **Choose Relevant Metrics:** What metrics will you track to measure performance?
+These considerations will guide the creation of evaluation scenarios and enable effective monitoring of agent behavior in real-world deployments.
+## What to Evaluate?
+To bridge the gap between a proof-of-concept and a production-ready AI agent, a robust and automated evaluation framework is essential. Unlike evaluating generative models, where the focus is primarily on the final output, agent evaluation requires a deeper understanding of the decision-making process. Agent evaluation can be broken down into two components:
+1. **Evaluating Trajectory and Tool Use:** Analyzing the steps an agent takes to reach a solution, including its choice of tools, strategies, and the efficiency of its approach.
+1. **Evaluating the Final Response:** Assessing the quality, relevance, and correctness of the agent's final output.
+The trajectory is just a list of steps the agent took before it returned to the user. We can compare that against the list of steps we expect the agent to have taken.
+### Evaluating trajectory and tool use
+Before responding to a user, an agent typically performs a series of actions, which we refer to as a 'trajectory.' It might compare the user input with session history to disambiguate a term, or lookup a policy document, search a knowledge base or invoke an API to save a ticket. We call this a ‘trajectory’ of actions. Evaluating an agent's performance requires comparing its actual trajectory to an expected, or ideal, one. This comparison can reveal errors and inefficiencies in the agent's process. The expected trajectory represents the ground truth -- the list of steps we anticipate the agent should take.
+For example:
+```python
+# Trajectory evaluation will compare
+expected_steps = ["determine_intent", "use_tool", "review_results", "report_generation"]
+actual_steps = ["determine_intent", "use_tool", "review_results", "report_generation"]
+```
+ADK provides both groundtruth based and rubric based tool use evaluation metrics. To select the appropriate metric for your agent's specific requirements and goals, please refer to our [recommendations](#recommendations-on-criteria).
+## How Evaluation works with the ADK
+The ADK offers two methods for evaluating agent performance against predefined datasets and evaluation criteria. While conceptually similar, they differ in the amount of data they can process, which typically dictates the appropriate use case for each.
+### First approach: Using a test file
+This approach involves creating individual test files, each representing a single, simple agent-model interaction (a session). It's most effective during active agent development, serving as a form of unit testing. These tests are designed for rapid execution and should focus on simple session complexity. Each test file contains a single session, which may consist of multiple turns. A turn represents a single interaction between the user and the agent. Each turn includes
+- `User Content`: The user issued query.
+- `Expected Intermediate Tool Use Trajectory`: The tool calls we expect the agent to make in order to respond correctly to the user query.
+- `Expected Intermediate Agent Responses`: These are the natural language responses that the agent (or sub-agents) generates as it moves towards generating a final answer. These natural language responses are usually an artifact of an multi-agent system, where your root agent depends on sub-agents to achieve a goal. These intermediate responses, may or may not be of interest to the end user, but for a developer/owner of the system, are of critical importance, as they give you the confidence that the agent went through the right path to generate final response.
+- `Final Response`: The expected final response from the agent.
+You can give the file any name for example `evaluation.test.json`. The framework only checks for the `.test.json` suffix, and the preceding part of the filename is not constrained. The test files are backed by a formal Pydantic data model. The two key schema files are [Eval Set](https://github.com/google/adk-python/blob/main/src/google/adk/evaluation/eval_set.py) and [Eval Case](https://github.com/google/adk-python/blob/main/src/google/adk/evaluation/eval_case.py). Here is a test file with a few examples:
+*(Note: Comments are included for explanatory purposes and should be removed for the JSON to be valid.)*
+```json
+# Do note that some fields are removed for sake of making this doc readable.
+{
+"eval_set_id": "home_automation_agent_light_on_off_set",
+"name": "",
+"description": "This is an eval set that is used for unit testing `x` behavior of the Agent",
+"eval_cases": [
+{
+"eval_id": "eval_case_id",
+"conversation": [
+{
+"invocation_id": "b7982664-0ab6-47cc-ab13-326656afdf75", # Unique identifier for the invocation.
+"user_content": { # Content provided by the user in this invocation. This is the query.
+"parts": [
+{
+"text": "Turn off device_2 in the Bedroom."
+}
+],
+"role": "user"
+},
+"final_response": { # Final response from the agent that acts as a reference of benchmark.
+"parts": [
+{
+"text": "I have set the device_2 status to off."
+}
+],
+"role": "model"
+},
+"intermediate_data": {
+"tool_uses": [ # Tool use trajectory in chronological order.
+{
+"args": {
+"location": "Bedroom",
+"device_id": "device_2",
+"status": "OFF"
+},
+"name": "set_device_info"
+}
+],
+"intermediate_responses": [] # Any intermediate sub-agent responses.
+}
+}
+],
+"session_input": { # Initial session input.
+"app_name": "home_automation_agent",
+"user_id": "test_user",
+"state": {}
+}
+}
+]
+}
+```
+Test files can be organized into folders. Optionally, a folder can also include a `test_config.json` file that specifies the evaluation criteria.
+#### How to migrate test files not backed by the Pydantic schema?
+NOTE: If your test files don't adhere to [EvalSet](https://github.com/google/adk-python/blob/main/src/google/adk/evaluation/eval_set.py) schema file, then this section is relevant to you.
+Please use `AgentEvaluator.migrate_eval_data_to_new_schema` to migrate your existing `*.test.json` files to the Pydantic backed schema.
+The utility takes your current test data file and an optional initial session file, and generates a single output json file with data serialized in the new format. Given that the new schema is more cohesive, both the old test data file and initial session file can be ignored (or removed.)
+### Second approach: Using An Evalset File
+The evalset approach utilizes a dedicated dataset called an "evalset" for evaluating agent-model interactions. Similar to a test file, the evalset contains example interactions. However, an evalset can contain multiple, potentially lengthy sessions, making it ideal for simulating complex, multi-turn conversations. Due to its ability to represent complex sessions, the evalset is well-suited for integration tests. These tests are typically run less frequently than unit tests due to their more extensive nature.
+An evalset file contains multiple "evals," each representing a distinct session. Each eval consists of one or more "turns," which include the user query, expected tool use, expected intermediate agent responses, and a reference response. These fields have the same meaning as they do in the test file approach. Alternatively, an eval can define a *conversation scenario* which is used to [dynamically simulate](https://google.github.io/adk-docs/evaluate/user-sim/index.md) a user interaction with the agent. Each eval is identified by a unique name. Furthermore, each eval includes an associated initial session state.
+Creating evalsets manually can be complex, therefore UI tools are provided to help capture relevant sessions and easily convert them into evals within your evalset. Learn more about using the web UI for evaluation below. Here is an example evalset containing two sessions. The eval set files are backed by a formal Pydantic data model. The two key schema files are [Eval Set](https://github.com/google/adk-python/blob/main/src/google/adk/evaluation/eval_set.py) and [Eval Case](https://github.com/google/adk-python/blob/main/src/google/adk/evaluation/eval_case.py).
+Warning
+This evalset evaluation method requires the use of a paid service, [Vertex Gen AI Evaluation Service API](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/evaluation).
+*(Note: Comments are included for explanatory purposes and should be removed for the JSON to be valid.)*
+```json
+# Do note that some fields are removed for sake of making this doc readable.
+{
+"eval_set_id": "eval_set_example_with_multiple_sessions",
+"name": "Eval set with multiple sessions",
+"description": "This eval set is an example that shows that an eval set can have more than one session.",
+"eval_cases": [
+{
+"eval_id": "session_01",
+"conversation": [
+{
+"invocation_id": "e-0067f6c4-ac27-4f24-81d7-3ab994c28768",
+"user_content": {
+"parts": [
+{
+"text": "What can you do?"
+}
+],
+"role": "user"
+},
+"final_response": {
+"parts": [
+{
+"text": "I can roll dice of different sizes and check if numbers are prime."
+}
+],
+"role": null
+},
+"intermediate_data": {
+"tool_uses": [],
+"intermediate_responses": []
+}
+}
+],
+"session_input": {
+"app_name": "hello_world",
+"user_id": "user",
+"state": {}
+}
+},
+{
+"eval_id": "session_02",
+"conversation": [
+{
+"invocation_id": "e-92d34c6d-0a1b-452a-ba90-33af2838647a",
+"user_content": {
+"parts": [
+{
+"text": "Roll a 19 sided dice"
+}
+],
+"role": "user"
+},
+"final_response": {
+"parts": [
+{
+"text": "I rolled a 17."
+}
+],
+"role": null
+},
+"intermediate_data": {
+"tool_uses": [],
+"intermediate_responses": []
+}
+},
+{
+"invocation_id": "e-bf8549a1-2a61-4ecc-a4ee-4efbbf25a8ea",
+"user_content": {
+"parts": [
+{
+"text": "Roll a 10 sided dice twice and then check if 9 is a prime or not"
+}
+],
+"role": "user"
+},
+"final_response": {
+"parts": [
+{
+"text": "I got 4 and 7 from the dice roll, and 9 is not a prime number.\n"
+}
+],
+"role": null
+},
+"intermediate_data": {
+"tool_uses": [
+{
+"id": "adk-1a3f5a01-1782-4530-949f-07cf53fc6f05",
+"args": {
+"sides": 10
+},
+"name": "roll_die"
+},
+{
+"id": "adk-52fc3269-caaf-41c3-833d-511e454c7058",
+"args": {
+"sides": 10
+},
+"name": "roll_die"
+},
+{
+"id": "adk-5274768e-9ec5-4915-b6cf-f5d7f0387056",
+"args": {
+"nums": [
+9
+]
+},
+"name": "check_prime"
+}
+],
+"intermediate_responses": [
+[
+"data_processing_agent",
+[
+{
+"text": "I have rolled a 10 sided die twice. The first roll is 5 and the second roll is 3.\n"
+}
+]
+]
+]
+}
+}
+],
+"session_input": {
+"app_name": "hello_world",
+"user_id": "user",
+"state": {}
+}
+}
+]
+}
+```
+#### How to migrate eval set files not backed by the Pydantic schema?
+NOTE: If your eval set files don't adhere to [EvalSet](https://github.com/google/adk-python/blob/main/src/google/adk/evaluation/eval_set.py) schema file, then this section is relevant to you.
+Based on who is maintaining the eval set data, there are two routes:
+1. **Eval set data maintained by ADK UI** If you use ADK UI to maintain your Eval set data then *no action is needed* from you.
+1. **Eval set data is developed and maintained manually and used in ADK eval CLI** A migration tool is in the works, until then the ADK eval CLI command will continue to support data in the old format.
+### Evaluation Criteria
+ADK provides several built-in criteria for evaluating agent performance, ranging from tool trajectory matching to LLM-based response quality assessment. For a detailed list of available criteria and guidance on when to use them, please see [Evaluation Criteria](https://google.github.io/adk-docs/evaluate/criteria/index.md).
+Here is a summary of all the available criteria:
+- **tool_trajectory_avg_score**: Exact match of tool call trajectory.
+- **response_match_score**: ROUGE-1 similarity to reference response.
+- **final_response_match_v2**: LLM-judged semantic match to a reference response.
+- **rubric_based_final_response_quality_v1**: LLM-judged final response quality based on custom rubrics.
+- **rubric_based_tool_use_quality_v1**: LLM-judged tool usage quality based on custom rubrics.
+- **hallucinations_v1**: LLM-judged groundedness of agent response against context.
+- **safety_v1**: Safety/harmlessness of agent response.
+If no evaluation criteria are provided, the following default configuration is used:
+- `tool_trajectory_avg_score`: Defaults to 1.0, requiring a 100% match in the tool usage trajectory.
+- `response_match_score`: Defaults to 0.8, allowing for a small margin of error in the agent's natural language responses.
+Here is an example of a `test_config.json` file specifying custom evaluation criteria:
+```json
+{
+"criteria": {
+"tool_trajectory_avg_score": 1.0,
+"response_match_score": 0.8
+}
+}
+```
+#### Recommendations on Criteria
+Choose criteria based on your evaluation goals:
+- **Enable tests in CI/CD pipelines or regression testing:** Use `tool_trajectory_avg_score` and `response_match_score`. These criteria are fast, predictable, and suitable for frequent automated checks.
+- **Evaluate trusted reference responses:** Use `final_response_match_v2` to evaluate semantic equivalence. This LLM-based check is more flexible than exact matching and better captures whether the agent's response means the same thing as the reference response.
+- **Evaluate response quality without a reference response:** Use `rubric_based_final_response_quality_v1`. This is useful when you don't have a trusted reference, but you can define attributes of a good response (e.g., "The response is concise," "The response has a helpful tone").
+- **Evaluate the correctness of tool usage:** Use `rubric_based_tool_use_quality_v1`. This allows you to validate the agent's reasoning process by checking, for example, that a specific tool was called or that tools were called in the correct order (e.g., "Tool A must be called before Tool B").
+- **Check if responses are grounded in context:** Use `hallucinations_v1` to detect if the agent makes claims that are unsupported by or contradictory to the information available to it (e.g., tool outputs).
+- **Check for harmful content:** Use `safety_v1` to ensure that agent responses are safe and do not violate safety policies.
+In addition, criteria which require information on expected agent tool use and/or responses are not supported in combination with [User Simulation](https://google.github.io/adk-docs/evaluate/user-sim/index.md). Currently, only the `hallucinations_v1` and `safety_v1` criteria support such evals.
+### User Simulation
+When evaluating conversational agents, it is not always practical to use a fixed set of user prompts, as the conversation can proceed in unexpected ways. For example, if the agent needs the user to supply two values to perform a task, it may ask for those values one at a time or both at once. To resolve this issue, ADK allows you test the behavior of the agent in a specific *conversation scenario* with user prompts that are dynamically generated by an AI model. For details on how to set up an eval with user simulation, see [User Simulation](https://google.github.io/adk-docs/evaluate/user-sim/index.md).
+## How to run Evaluation with the ADK
+As a developer, you can evaluate your agents using the ADK in the following ways:
+1. **Web-based UI (**`adk web`**):** Evaluate agents interactively through a web-based interface.
+1. **Programmatically (**`pytest`**)**: Integrate evaluation into your testing pipeline using `pytest` and test files.
+1. **Command Line Interface (**`adk eval`**):** Run evaluations on an existing evaluation set file directly from the command line.
+### 1. `adk web` - Run Evaluations via the Web UI
+The web UI provides an interactive way to evaluate agents, generate evaluation datasets, and inspect agent behavior in detail.
+#### Step 1: Create and Save a Test Case
+1. Start the web server by running: `adk web `
+1. In the web interface, select an agent and interact with it to create a session.
+1. Navigate to the **Eval** tab on the right side of the interface.
+1. Create a new eval set or select an existing one.
+1. Click **"Add current session"** to save the conversation as a new evaluation case.
+#### Step 2: View and Edit Your Test Case
+Once a case is saved, you can click its ID in the list to inspect it. To make changes, click the **Edit current eval case** icon (pencil). This interactive view allows you to:
+- **Modify** agent text responses to refine test scenarios.
+- **Delete** individual agent messages from the conversation.
+- **Delete** the entire evaluation case if it's no longer needed.
+#### Step 3: Run the Evaluation with Custom Metrics
+1. Select one or more test cases from your evalset.
+1. Click **Run Evaluation**. An **EVALUATION METRIC** dialog will appear.
+1. In the dialog, use the sliders to configure the thresholds for:
+- **Tool trajectory avg score**
+- **Response match score**
+1. Click **Start** to run the evaluation using your custom criteria. The evaluation history will record the metrics used for each run.
+#### Step 4: Analyze Results
+After the run completes, you can analyze the results:
+- **Analyze Run Failures**: Click on any **Pass** or **Fail** result. For failures, you can hover over the `Fail` label to see a side-by-side comparison of the **Actual vs. Expected Output** and the scores that caused the failure.
+### Debugging with the Trace View
+The ADK web UI includes a powerful **Trace** tab for debugging agent behavior. This feature is available for any agent session, not just during evaluation.
+The **Trace** tab provides a detailed and interactive way to inspect your agent's execution flow. Traces are automatically grouped by user message, making it easy to follow the chain of events.
+Each trace row is interactive:
+- **Hovering** over a trace row highlights the corresponding message in the chat window.
+- **Clicking** on a trace row opens a detailed inspection panel with four tabs:
+- **Event**: The raw event data.
+- **Request**: The request sent to the model.
+- **Response**: The response received from the model.
+- **Graph**: A visual representation of the tool calls and agent logic flow.
+Blue rows in the trace view indicate that an event was generated from that interaction. Clicking on these blue rows will open the bottom event detail panel, providing deeper insights into the agent's execution flow.
+### 2. `pytest` - Run Tests Programmatically
+You can also use **`pytest`** to run test files as part of your integration tests.
+#### Example Command
+```shell
+pytest tests/integration/
+```
+#### Example Test Code
+Here is an example of a `pytest` test case that runs a single test file:
+```py
+from google.adk.evaluation.agent_evaluator import AgentEvaluator
+import pytest
+@pytest.mark.asyncio
+async def test_with_single_test_file():
+"""Test the agent's basic ability via a session file."""
+await AgentEvaluator.evaluate(
+agent_module="home_automation_agent",
+eval_dataset_file_path_or_dir="tests/integration/fixture/home_automation_agent/simple_test.test.json",
+)
+```
+This approach allows you to integrate agent evaluations into your CI/CD pipelines or larger test suites. If you want to specify the initial session state for your tests, you can do that by storing the session details in a file and passing that to `AgentEvaluator.evaluate` method.
+### 3. `adk eval` - Run Evaluations via the CLI
+You can also run evaluation of an eval set file through the command line interface (CLI). This runs the same evaluation that runs on the UI, but it helps with automation, i.e. you can add this command as a part of your regular build generation and verification process.
+Here is the command:
+```shell
+adk eval \
+\
+\
+[--config_file_path=] \
+[--print_detailed_results]
+```
+For example:
+```shell
+adk eval \
+samples_for_testing/hello_world \
+samples_for_testing/hello_world/hello_world_eval_set_001.evalset.json
+```
+Here are the details for each command line argument:
+- `AGENT_MODULE_FILE_PATH`: The path to the `__init__.py` file that contains a module by the name "agent". "agent" module contains a `root_agent`.
+- `EVAL_SET_FILE_PATH`: The path to evaluations file(s). You can specify one or more eval set file paths. For each file, all evals will be run by default. If you want to run only specific evals from a eval set, first create a comma separated list of eval names and then add that as a suffix to the eval set file name, demarcated by a colon `:` .
+- For example: `sample_eval_set_file.json:eval_1,eval_2,eval_3`\
+`This will only run eval_1, eval_2 and eval_3 from sample_eval_set_file.json`
+- `CONFIG_FILE_PATH`: The path to the config file.
+- `PRINT_DETAILED_RESULTS`: Prints detailed results on the console.
+# Evaluation Criteria
+Supported in ADKPython
+This page outlines the evaluation criteria provided by ADK to assess agent performance, including tool use trajectory, response quality, and safety.
+| Criterion | Description | Reference-Based | Requires Rubrics | LLM-as-a-Judge | Supports [User Simulation](https://google.github.io/adk-docs/evaluate/user-sim/index.md) |
+| ---------------------------------------- | --------------------------------------------------------- | --------------- | ---------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| `tool_trajectory_avg_score` | Exact match of tool call trajectory | Yes | No | No | No |
+| `response_match_score` | ROUGE-1 similarity to reference response | Yes | No | No | No |
+| `final_response_match_v2` | LLM-judged semantic match to reference response | Yes | No | Yes | No |
+| `rubric_based_final_response_quality_v1` | LLM-judged final response quality based on custom rubrics | No | Yes | Yes | Yes |
+| `rubric_based_tool_use_quality_v1` | LLM-judged tool usage quality based on custom rubrics | No | Yes | Yes | Yes |
+| `hallucinations_v1` | LLM-judged groundedness of agent response against context | No | No | Yes | Yes |
+| `safety_v1` | Safety/harmlessness of agent response | No | No | Yes | Yes |
+| `per_turn_user_simulator_quality_v1` | LLM-judged user simulator quality | No | No | Yes | Yes |
+## tool_trajectory_avg_score
+This criterion compares the sequence of tools called by the agent against a list of expected calls and computes an average score based on one of the match types: `EXACT`, `IN_ORDER`, or `ANY_ORDER`.
+#### When To Use This Criterion?
+This criterion is ideal for scenarios where agent correctness depends on tool calls. Depending on how strictly tool calls need to be followed, you can choose from one of three match types: `EXACT`, `IN_ORDER`, and `ANY_ORDER`.
+This metric is particularly valuable for:
+- **Regression testing:** Ensuring that agent updates do not unintentionally alter tool call behavior for established test cases.
+- **Workflow validation:** Verifying that agents correctly follow predefined workflows that require specific API calls in a specific order.
+- **High-precision tasks:** Evaluating tasks where slight deviations in tool parameters or call order can lead to significantly different or incorrect outcomes.
+Use `EXACT` match when you need to enforce a specific tool execution path and consider any deviation—whether in tool name, arguments, or order—as a failure.
+Use `IN_ORDER` match when you want to ensure certain key tool calls occur in a specific order, but allow for other tool calls to happen in between. This option is useful in assuring if certain key actions or tool calls occur and in certain order, leaving some scope for other tools calls to happen as well.
+Use `ANY_ORDER` match when you want to ensure certain key tool calls occur, but do not care about their order, and allow for other tool calls to happen in between. This criteria is helpful for cases where multiple tool calls about the same concept occur, like your agent issues 5 search queries. You don't really care the order in which the search queries are issued, till they occur.
+#### Details
+For each invocation that is being evaluated, this criterion compares the list of tool calls produced by the agent against the list of expected tool calls using one of three match types. If the tool calls match based on the selected match type, a score of 1.0 is awarded for that invocation, otherwise the score is 0.0. The final value is the average of these scores across all invocations in the eval case.
+The comparison can be done using one of following match types:
+- **`EXACT`**: Requires a perfect match between the actual and expected tool calls, with no extra or missing tool calls.
+- **`IN_ORDER`**: Requires all tool calls from the expected list to be present in the actual list, in the same order, but allows for other tool calls to appear in between.
+- **`ANY_ORDER`**: Requires all tool calls from the expected list to be present in the actual list, in any order, and allows for other tool calls to appear in between.
+#### How To Use This Criterion?
+By default, `tool_trajectory_avg_score` uses `EXACT` match type. You can specify just a threshold for this criterion in `EvalConfig` under the `criteria` dictionary for `EXACT` match type. The value should be a float between 0.0 and 1.0, which represents the minimum acceptable score for the eval case to pass. If you expect tool trajectories to match exactly in all invocations, you should set the threshold to 1.0.
+Example `EvalConfig` entry for `EXACT` match:
+```json
+{
+"criteria": {
+"tool_trajectory_avg_score": 1.0
+}
+}
+```
+Or you could specify the `match_type` explicitly:
+```json
+{
+"criteria": {
+"tool_trajectory_avg_score": {
+"threshold": 1.0,
+"match_type": "EXACT"
+}
+}
+}
+```
+If you want to use `IN_ORDER` or `ANY_ORDER` match type, you can specify it via `match_type` field along with threshold.
+Example `EvalConfig` entry for `IN_ORDER` match:
+```json
+{
+"criteria": {
+"tool_trajectory_avg_score": {
+"threshold": 1.0,
+"match_type": "IN_ORDER"
+}
+}
+}
+```
+Example `EvalConfig` entry for `ANY_ORDER` match:
+```json
+{
+"criteria": {
+"tool_trajectory_avg_score": {
+"threshold": 1.0,
+"match_type": "ANY_ORDER"
+}
+}
+}
+```
+#### Output And How To Interpret
+The output is a score between 0.0 and 1.0, where 1.0 indicates a perfect match between actual and expected tool trajectories for all invocations, and 0.0 indicates a complete mismatch for all invocations. Higher scores are better. A score below 1.0 means that for at least one invocation, the agent's tool call trajectory deviated from the expected one.
+## response_match_score
+This criterion evaluates if agent's final response matches a golden/expected final response using Rouge-1.
+### When To Use This Criterion?
+Use this criterion when you need a quantitative measure of how closely the agent's output matches the expected output in terms of content overlap.
+### Details
+ROUGE-1 specifically measures the overlap of unigrams (single words) between the system-generated text (candidate summary) and the a reference text. It essentially checks how many individual words from the reference text are present in the candidate text. To learn more, see details on [ROUGE-1](https://github.com/google-research/google-research/tree/master/rouge).
+### How To Use This Criterion?
+You can specify a threshold for this criterion in `EvalConfig` under the `criteria` dictionary. The value should be a float between 0.0 and 1.0, which represents the minimum acceptable score for the eval case to pass.
+Example `EvalConfig` entry:
+```json
+{
+"criteria": {
+"response_match_score": 0.8
+}
+}
+```
+### Output And How To Interpret
+Value range for this criterion is [0,1], with values closer to 1 more desirable.
+## final_response_match_v2
+This criterion evaluates if the agent's final response matches a golden/expected final response using LLM as a judge.
+### When To Use This Criterion?
+Use this criterion when you need to evaluate the correctness of an agent's final response against a reference, but require flexibility in how the answer is presented. It is suitable for cases where different phrasings or formats are acceptable, as long as the core meaning and information match the reference. This criterion is a good choice for evaluating question-answering, summarization, or other generative tasks where semantic equivalence is more important than exact lexical overlap, making it a more sophisticated alternative to `response_match_score`.
+### Details
+This criterion uses a Large Language Model (LLM) as a judge to determine if the agent's final response is semantically equivalent to the provided reference response. It is designed to be more flexible than lexical matching metrics (like `response_match_score`), as it focuses on whether the agent's response contains the correct information, while tolerating differences in formatting, phrasing, or the inclusion of additional correct details.
+For each invocation, the criterion prompts a judge LLM to rate the agent's response as "valid" or "invalid" compared to the reference. This is repeated multiple times for robustness (configurable via `num_samples`), and a majority vote determines if the invocation receives a score of 1.0 (valid) or 0.0 (invalid). The final criterion score is the fraction of invocations deemed valid across the entire eval case.
+### How To Use This Criterion?
+This criterion uses `LlmAsAJudgeCriterion`, allowing you to configure the evaluation threshold, the judge model, and the number of samples per invocation.
+Example `EvalConfig` entry:
+```json
+{
+"criteria": {
+"final_response_match_v2": {
+"threshold": 0.8,
+"judge_model_options": {
+"judge_model": "gemini-2.5-flash",
+"num_samples": 5
+}
+}
+}
+}
+}
+```
+### Output And How To Interpret
+The criterion returns a score between 0.0 and 1.0. A score of 1.0 means the LLM judge considered the agent's final response to be valid for all invocations, while a score closer to 0.0 indicates that many responses were judged as invalid when compared to the reference responses. Higher values are better.
+## rubric_based_final_response_quality_v1
+This criterion assesses the quality of an agent's final response against a user-defined set of rubrics using LLM as a judge.
+### When To Use This Criterion?
+Use this criterion when you need to evaluate aspects of response quality that go beyond simple correctness or semantic equivalence with a reference. It is ideal for assessing nuanced attributes like tone, style, helpfulness, or adherence to specific conversational guidelines defined in your rubrics. This criterion is particularly useful when no single reference response exists, or when quality depends on multiple subjective factors.
+### Details
+This criterion provides a flexible way to evaluate response quality based on specific criteria that you define as rubrics. For example, you could define rubrics to check if a response is concise, if it correctly infers user intent, or if it avoids jargon.
+The criterion uses an LLM-as-a-judge to evaluate the agent's final response against each rubric, producing a `yes` (1.0) or `no` (0.0) verdict for each. Like other LLM-based metrics, it samples the judge model multiple times per invocation and uses a majority vote to determine the score for each rubric in that invocation. The overall score for an invocation is the average of its rubric scores. The final criterion score for the eval case is the average of these overall scores across all invocations.
+### How To Use This Criterion?
+This criterion uses `RubricsBasedCriterion`, which requires a list of rubrics to be provided in the `EvalConfig`. Each rubric should be defined with a unique ID and its content.
+Example `EvalConfig` entry:
+```json
+{
+"criteria": {
+"rubric_based_final_response_quality_v1": {
+"threshold": 0.8,
+"judge_model_options": {
+"judge_model": "gemini-2.5-flash",
+"num_samples": 5
+},
+"rubrics": [
+{
+"rubric_id": "conciseness",
+"rubric_content": {
+"text_property": "The agent's response is direct and to the point."
+}
+},
+{
+"rubric_id": "intent_inference",
+"rubric_content": {
+"text_property": "The agent's response accurately infers the user's underlying goal from ambiguous queries."
+}
+}
+]
+}
+}
+}
+```
+### Output And How To Interpret
+The criterion outputs an overall score between 0.0 and 1.0, where 1.0 indicates that the agent's responses satisfied all rubrics across all invocations, and 0.0 indicates that no rubrics were satisfied. The results also include detailed per-rubric scores for each invocation. Higher values are better.
+## rubric_based_tool_use_quality_v1
+This criterion assesses the quality of an agent's tool usage against a user-defined set of rubrics using LLM as a judge.
+### When To Use This Criterion?
+Use this criterion when you need to evaluate *how* an agent uses tools, rather than just *if* the final response is correct. It is ideal for assessing whether the agent selected the right tool, used the correct parameters, or followed a specific sequence of tool calls. This is useful for validating agent reasoning processes, debugging tool-use errors, and ensuring adherence to prescribed workflows, especially in cases where multiple tool-use paths could lead to a similar final answer but only one path is considered correct.
+### Details
+This criterion provides a flexible way to evaluate tool usage based on specific rules that you define as rubrics. For example, you could define rubrics to check if a specific tool was called, if its parameters were correct, or if tools were called in a particular order.
+The criterion uses an LLM-as-a-judge to evaluate the agent's tool calls and responses against each rubric, producing a `yes` (1.0) or `no` (0.0) verdict for each. Like other LLM-based metrics, it samples the judge model multiple times per invocation and uses a majority vote to determine the score for each rubric in that invocation. The overall score for an invocation is the average of its rubric scores. The final criterion score for the eval case is the average of these overall scores across all invocations.
+### How To Use This Criterion?
+This criterion uses `RubricsBasedCriterion`, which requires a list of rubrics to be provided in the `EvalConfig`. Each rubric should be defined with a unique ID and its content, describing a specific aspect of tool use to evaluate.
+Example `EvalConfig` entry:
+```json
+{
+"criteria": {
+"rubric_based_tool_use_quality_v1": {
+"threshold": 1.0,
+"judge_model_options": {
+"judge_model": "gemini-2.5-flash",
+"num_samples": 5
+},
+"rubrics": [
+{
+"rubric_id": "geocoding_called",
+"rubric_content": {
+"text_property": "The agent calls the GeoCoding tool before calling the GetWeather tool."
+}
+},
+{
+"rubric_id": "getweather_called",
+"rubric_content": {
+"text_property": "The agent calls the GetWeather tool with coordinates derived from the user's location."
+}
+}
+]
+}
+}
+}
+```
+### Output And How To Interpret
+The criterion outputs an overall score between 0.0 and 1.0, where 1.0 indicates that the agent's tool usage satisfied all rubrics across all invocations, and 0.0 indicates that no rubrics were satisfied. The results also include detailed per-rubric scores for each invocation. Higher values are better.
+## hallucinations_v1
+This criterion assesses whether a model response contains any false, contradictory, or unsupported claims.
+### When To Use This Criterion?
+Use this criterion to ensure the agent's response is grounded in the provided context (e.g., tool outputs, user query, instructions) and does not contain hallucinations.
+### Details
+This criterion assesses whether a model response contains any false, contradictory, or unsupported claims based on context that includes developer instructions, user prompt, tool definitions, and tool invocations and their results. It uses LLM-as-a-judge and follows a two-step process:
+1. **Segmenter**: Segments the agent response into individual sentences.
+1. **Sentence Validator**: Evaluates each segmented sentence against the provided context for grounding. Each sentence is labeled as `supported`, `unsupported`, `contradictory`, `disputed` or `not_applicable`.
+The metric computes an Accuracy Score: the percentage of sentences that are `supported` or `not_applicable`. By default, only the final response is evaluated. If `evaluate_intermediate_nl_responses` is set to true in the criterion, intermediate natural language responses from agents are also evaluated.
+### How To Use This Criterion?
+This criterion uses `HallucinationsCriterion`, allowing you to configure the evaluation threshold, the judge model, the number of samples per invocation and whether to evaluate intermediate natural language responses.
+Example `EvalConfig` entry:
+```json
+{
+"criteria": {
+"hallucinations_v1": {
+"threshold": 0.8,
+"judge_model_options": {
+"judge_model": "gemini-2.5-flash",
+},
+"evaluate_intermediate_nl_responses": true
+}
+}
+}
+```
+### Output And How To Interpret
+The criterion returns a score between 0.0 and 1.0. A score of 1.0 means all sentences in agent's response are grounded in the context, while a score closer to 0.0 indicates that many sentences are false, contradictory, or unsupported. Higher values are better.
+## safety_v1
+This criterion evaluates the safety (harmlessness) of an Agent's Response.
+### When To Use This Criterion?
+This criterion should be used when you need to ensure that agent responses comply with safety guidelines and do not produce harmful or inappropriate content. It is essential for user-facing applications or any system where response safety is a priority.
+### Details
+This criterion assesses whether the agent's response contains any harmful content, such as hate speech, harassment, or dangerous information. Unlike other metrics implemented natively within ADK, `safety_v1` delegates the evaluation to the Vertex AI General AI Eval SDK.
+### How To Use This Criterion?
+Using this criterion requires a Google Cloud Project. You must have `GOOGLE_CLOUD_PROJECT` and `GOOGLE_CLOUD_LOCATION` environment variables set, typically in an `.env` file in your agent's directory, for the Vertex AI SDK to function correctly.
+You can specify a threshold for this criterion in `EvalConfig` under the `criteria` dictionary. The value should be a float between 0.0 and 1.0, representing the minimum safety score for a response to be considered passing.
+Example `EvalConfig` entry:
+```json
+{
+"criteria": {
+"safety_v1": 0.8
+}
+}
+```
+### Output And How To Interpret
+The criterion returns a score between 0.0 and 1.0. Scores closer to 1.0 indicate that the response is safe, while scores closer to 0.0 indicate potential safety issues.
+## per_turn_user_simulator_quality_v1
+This criterion evaluates whether a user simulator is faithful to a conversation plan.
+#### When To Use This Criterion?
+Use this criterion when you need to evaluate a user simulator in a multi-turn conversation. It is designed to assess whether the simulator follows the conversation plan defined in the `ConversationScenario`.
+#### Details
+This criterion determines whether the a user simulator follows a defined `ConversationScenario` in a multi-turn conversation.
+For the first turn, this criterion checks if user simulator response matches the `starting_prompt` in the `ConversationScenario`. For subsequent turns, it uses LLM-as-a-judge to evaluate if the user response follows the `conversation_plan` in the `ConversationScenario`.
+#### How To Use This Criterion?
+This criterion allows you to configure the evaluation threshold, the judge model and the number of samples per invocation. The criterion also lets you specify a `stop_signal`, which signals the LLM judge that the conversation was completed. For best results, use the stop signal in `LlmBackedUserSimulator`.
+Example `EvalConfig` entry:
+```json
+{
+"criteria": {
+"per_turn_user_simulator_quality_v1": {
+"threshold": 1.0,
+"judge_model_options": {
+"judge_model": "gemini-2.5-flash",
+"num_samples": 5
+},
+"stop_signal": ""
+}
+}
+}
+```
+#### Output And How To Interpret
+The criterion returns a score between 0.0 and 1.0, representing the fraction of turns in which the user simulator's response was judged to be valid according to the conversation scenario. A score of 1.0 indicates that the simulator behaved as expected in all turns, while a score closer to 0.0 indicates that the simulator deviated in many turns. Higher values are better.
+# User Simulation
+Supported in ADKPython v1.18.0
+When evaluating conversational agents, it is not always practical to use a fixed set of user prompts, as the conversation can proceed in unexpected ways. For example, if the agent needs the user to supply two values to perform a task, it may ask for those values one at a time or both at once. To resolve this issue, ADK can dynamically generate user prompts using a generative AI model.
+To use this feature, you must specify a [`ConversationScenario`](https://github.com/google/adk-python/blob/main/src/google/adk/evaluation/conversation_scenarios.py) which dictates the user's goals in their conversation with the agent. A sample conversation scenario for the [`hello_world`](https://github.com/google/adk-python/tree/main/contributing/samples/hello_world) agent is shown below:
+```json
+{
+"starting_prompt": "What can you do for me?",
+"conversation_plan": "Ask the agent to roll a 20-sided die. After you get the result, ask the agent to check if it is prime."
+}
+```
+The `starting_prompt` in a conversation scenario specifies a fixed initial prompt that the user should use to start the conversation with the agent. Specifying such fixed prompts for subsequent interactions with the agent is not practical as the agent may respond in different ways. Instead, the `conversation_plan` provides a guideline for how the rest of the conversation with the agent should proceed. An LLM uses this conversation plan, along with the conversation history, to dynamically generate user prompts until it judges that the conversation is complete.
+Try it in Colab
+Test this entire workflow yourself in an interactive notebook on [Simulating User Conversations to Dynamically Evaluate ADK Agents](https://github.com/google/adk-samples/blob/main/python/notebooks/evaluation/user_simulation_in_adk_evals.ipynb). You'll define a conversation scenario, run a "dry run" to check the dialogue, and then perform a full evaluation to score the agent's responses.
+## Example: Evaluating the [`hello_world`](https://github.com/google/adk-python/tree/main/contributing/samples/hello_world) agent with conversation scenarios
+To add evaluation cases containing conversation scenarios to a new or existing [`EvalSet`](https://github.com/google/adk-python/blob/main/src/google/adk/evaluation/eval_set.py), you need to first create a list of conversation scenarios to test the agent in.
+Try saving the following to `contributing/samples/hello_world/conversation_scenarios.json`:
+```json
+{
+"scenarios": [
+{
+"starting_prompt": "What can you do for me?",
+"conversation_plan": "Ask the agent to roll a 20-sided die. After you get the result, ask the agent to check if it is prime."
+},
+{
+"starting_prompt": "Hi, I'm running a tabletop RPG in which prime numbers are bad!",
+"conversation_plan": "Say that you don't care about the value; you just want the agent to tell you if a roll is good or bad. Once the agent agrees, ask it to roll a 6-sided die. Finally, ask the agent to do the same with 2 20-sided dice."
+}
+]
+}
+```
+You will also need a session input file containing information used during evaluation. Try saving the following to `contributing/samples/hello_world/session_input.json`:
+```json
+{
+"app_name": "hello_world",
+"user_id": "user"
+}
+```
+Then, you can add the conversation scenarios to an `EvalSet`:
+```bash
+# (optional) create a new EvalSet
+adk eval_set create \
+contributing/samples/hello_world \
+eval_set_with_scenarios
+# add conversation scenarios to the EvalSet as new eval cases
+adk eval_set add_eval_case \
+contributing/samples/hello_world \
+eval_set_with_scenarios \
+--scenarios_file contributing/samples/hello_world/conversation_scenarios.json \
+--session_input_file contributing/samples/hello_world/session_input.json
+```
+By default, ADK runs evaluations with metrics that require the agent's expected response to be specified. Since that is not the case for a dynamic conversation scenario, we will use an [`EvalConfig`](https://github.com/google/adk-python/blob/main/src/google/adk/evaluation/eval_config.py) with some alternate supported metrics.
+Try saving the following to `contributing/samples/hello_world/eval_config.json`:
+```json
+{
+"criteria": {
+"hallucinations_v1": {
+"threshold": 0.5,
+"evaluate_intermediate_nl_responses": true
+},
+"safety_v1": {
+"threshold": 0.8
+}
+}
+}
+```
+Finally, you can use the `adk eval` command to run the evaluation:
+```bash
+adk eval \
+contributing/samples/hello_world \
+--config_file_path contributing/samples/hello_world/eval_config.json \
+eval_set_with_scenarios \
+--print_detailed_results
+```
+## User simulator configuration
+You can override the default user simulator configuration to change the model, internal model behavior, and the maximum number of user-agent interactions. The below `EvalConfig` shows the default user simulator configuration:
+```json
+{
+"criteria": {
+# same as before
+},
+"user_simulator_config": {
+"model": "gemini-2.5-flash",
+"model_configuration": {
+"thinking_config": {
+"include_thoughts": true,
+"thinking_budget": 10240
+}
+},
+"max_allowed_invocations": 20
+}
+}
+```
+- `model`: The model backing the user simulator.
+- `model_configuration`: A [`GenerateContentConfig`](https://github.com/googleapis/python-genai/blob/6196b1b4251007e33661bb5d7dc27bafee3feefe/google/genai/types.py#L4295) which controls the model behavior.
+- `max_allowed_invocations`: The maximum user-agent interactions allowed before the conversation is forcefully terminated. This should be set to be greater than the longest reasonable user-agent interaction in your `EvalSet`.
 # Safety and Security for AI Agents
 Supported in ADKPythonTypeScriptGoJava
 As AI agents grow in capability, ensuring they operate safely, securely, and align with your brand values is paramount. Uncontrolled agents can pose risks, including executing misaligned or harmful actions, such as data exfiltration, and generating inappropriate content that can impact your brand’s reputation. **Sources of risk include vague instructions, model hallucination, jailbreaks and prompt injections from adversarial users, and indirect prompt injections via tool use.**
@@ -29938,218 +31316,4 @@ const CountryInput = z.object({
 country: z.string().describe("The country to get the capital for."),
 });
 async function getCapitalCity(
-params: z.infer,
-): Promise<{ result: string }> {
-console.log(`--- Tool 'get_capital_city' executing with country: ${params.country} ---`);
-const countryCapitals: Record = {
-"united states": "Washington, D.C.",
-"canada": "Ottawa",
-"france": "Paris",
-"germany": "Berlin",
-};
-const result = countryCapitals[params.country.toLowerCase()] ?? `Capital not found for ${params.country}`;
-return { result };
-}
-// --- Wrap the function into a Tool ---
-const capitalTool = new FunctionTool({
-name: "get_capital_city",
-description: "Retrieves the capital city for a given country",
-parameters: CountryInput,
-execute: getCapitalCity,
-});
-// --- Define the Callback Function ---
-function simpleAfterToolModifier({
-tool,
-args,
-context,
-response,
-}: {
-tool: BaseTool;
-args: Record;
-context: ToolContext;
-response: Record;
-}) {
-const agentName = context.agentName;
-const toolName = tool.name;
-console.log(`[Callback] After tool call for tool '${toolName}' in agent '${agentName}'`);
-console.log(`[Callback] Original args: ${args}`);
-const originalResultValue = response?.result || "";
-// --- Modification Example ---
-if (toolName === "get_capital_city" && originalResultValue === "Washington, D.C.") {
-const modifiedResponse = JSON.parse(JSON.stringify(response));
-modifiedResponse.result = `${originalResultValue} (Note: This is the capital of the USA).`;
-modifiedResponse["note_added_by_callback"] = true;
-console.log(
-`[Callback] Modified response: ${JSON.stringify(modifiedResponse)}`
-);
-return modifiedResponse;
-}
-console.log('[Callback] Passing original tool response through.');
-return undefined;
-};
-// Create LlmAgent and Assign Callback
-const myLlmAgent = new LlmAgent({
-name: "AfterToolCallbackAgent",
-model: MODEL_NAME,
-instruction: "You are an agent that finds capital cities using the get_capital_city tool. Report the result clearly.",
-description: "An LLM agent demonstrating after_tool_callback",
-tools: [capitalTool],
-afterToolCallback: simpleAfterToolModifier,
-});
-// Agent Interaction Logic
-async function callAgentAndPrint(
-runner: InMemoryRunner,
-agent: LlmAgent,
-sessionId: string,
-query: string,
-) {
-console.log(`
->>> Calling Agent: '${agent.name}' | Query: ${query}`);
-let finalResponseContent = "";
-for await (const event of runner.runAsync({
-userId: USER_ID,
-sessionId: sessionId,
-newMessage: createUserContent(query),
-})) {
-const authorName = event.author || "System";
-if (isFinalResponse(event) && event.content?.parts?.length) {
-finalResponseContent = 'The capital of the united states is Washington, D.C. (Note: This is the capital of the USA).';
-console.log(`--- Output from: ${authorName} ---`);
-} else if (event.errorMessage) {
-console.log(` -> Error from ${authorName}: ${event.errorMessage}`);
-}
-}
-console.log(`<<< Agent '${agent.name}' Response: ${finalResponseContent}`);
-}
-// Run Interactions
-async function main() {
-const runner = new InMemoryRunner({ appName: APP_NAME, agent: myLlmAgent });
-await runner.sessionService.createSession({
-appName: APP_NAME,
-userId: USER_ID,
-sessionId: SESSION_ID,
-});
-await callAgentAndPrint(runner, myLlmAgent, SESSION_ID, "united states");
-}
-main();
-```
-```go
-package main
-import (
-"context"
-"fmt"
-"log"
-"regexp"
-"strings"
-"google.golang.org/adk/agent"
-"google.golang.org/adk/agent/llmagent"
-"google.golang.org/adk/model"
-"google.golang.org/adk/model/gemini"
-"google.golang.org/adk/runner"
-"google.golang.org/adk/session"
-"google.golang.org/adk/tool"
-"google.golang.org/adk/tool/functiontool"
-"google.golang.org/genai"
-)
-// GetCapitalCityArgs defines the arguments for the getCapitalCity tool.
-type GetCapitalCityArgs struct {
-Country string `json:"country" jsonschema:"The country to get the capital of."`
-}
-// getCapitalCity is a tool that returns the capital of a given country.
-func getCapitalCity(ctx tool.Context, args *GetCapitalCityArgs) (string, error) {
-capitals := map[string]string{
-"canada": "Ottawa",
-"france": "Paris",
-"germany": "Berlin",
-"united states": "Washington, D.C.",
-}
-capital, ok := capitals[strings.ToLower(args.Country)]
-if !ok {
-return "", fmt.Errorf("unknown country: %s", args.Country)
-}
-return capital, nil
-}
-func onAfterTool(ctx tool.Context, t tool.Tool, args map[string]any, result map[string]any, err error) (map[string]any, error) {
-log.Printf("[Callback] AfterTool triggered for tool %q in agent %q.", t.Name(), ctx.AgentName())
-log.Printf("[Callback] Original result: %v", result)
-if err != nil {
-log.Printf("[Callback] Tool run produced an error: %v. Passing through.", err)
-return nil, err
-}
-if t.Name() == "getCapitalCity" {
-if originalResult, ok := result["result"].(string); ok && originalResult == "Washington, D.C." {
-log.Println("[Callback] Detected 'Washington, D.C.'. Modifying tool response.")
-modifiedResult := make(map[string]any)
-for k, v := range result {
-modifiedResult[k] = v
-}
-modifiedResult["result"] = fmt.Sprintf("%s (Note: This is the capital of the USA).", originalResult)
-modifiedResult["note_added_by_callback"] = true
-return modifiedResult, nil
-}
-}
-log.Println("[Callback] Passing original tool response through.")
-return nil, nil
-}
-func runAfterToolExample() {
-ctx := context.Background()
-geminiModel, err := gemini.NewModel(ctx, modelName, &genai.ClientConfig{})
-if err != nil {
-log.Fatalf("FATAL: Failed to create model: %v", err)
-}
-capitalTool, err := functiontool.New(functiontool.Config{
-Name: "getCapitalCity",
-Description: "Retrieves the capital city of a given country.",
-}, getCapitalCity)
-if err != nil {
-log.Fatalf("FATAL: Failed to create function tool: %v", err)
-}
-llmCfg := llmagent.Config{
-Name: "AgentWithAfterToolCallback",
-Model: geminiModel,
-Tools: []tool.Tool{capitalTool},
-AfterToolCallbacks: []llmagent.AfterToolCallback{onAfterTool},
-Instruction: "You are an agent that finds capital cities. Use the getCapitalCity tool.",
-}
-testAgent, err := llmagent.New(llmCfg)
-if err != nil {
-log.Fatalf("FATAL: Failed to create agent: %v", err)
-}
-sessionService := session.InMemoryService()
-r, err := runner.New(runner.Config{AppName: appName, Agent: testAgent, SessionService: sessionService})
-if err != nil {
-log.Fatalf("FATAL: Failed to create runner: %v", err)
-}
-log.Println("--- SCENARIO 1: Result should be modified ---")
-runScenario(ctx, r, sessionService, appName, "session_tool_after_modify", nil, "capital of united states")
-}
-```
-```java
-import com.google.adk.agents.LlmAgent;
-import com.google.adk.agents.InvocationContext;
-import com.google.adk.events.Event;
-import com.google.adk.runner.InMemoryRunner;
-import com.google.adk.sessions.Session;
-import com.google.adk.tools.Annotations.Schema;
-import com.google.adk.tools.BaseTool;
-import com.google.adk.tools.FunctionTool;
-import com.google.adk.tools.ToolContext;
-import com.google.common.collect.ImmutableMap;
-import com.google.genai.types.Content;
-import com.google.genai.types.Part;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Maybe;
-import java.util.HashMap;
-import java.util.Map;
-public class AfterToolCallbackExample {
-private static final String APP_NAME = "AfterToolCallbackAgentApp";
-private static final String USER_ID = "user_1";
-private static final String SESSION_ID = "session_001";
-private static final String MODEL_NAME = "gemini-2.0-flash";
-public static void main(String[] args) {
-AfterToolCallbackExample example = new AfterToolCallbackExample();
-example.runAgent("What is the capital of the United States?");
-}
-// --- Define a Simple Tool Function (Same as before) ---
-@Schema(description = "Retrieves the capital city of a given country.")
-public static Map
+params: z.infer

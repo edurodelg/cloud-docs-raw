@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/events/
-fetched_at: 2026-01-29T15:15:58.142378
+fetched_at: 2026-01-30T23:34:45.176124
 ---
 
 # Events¶
