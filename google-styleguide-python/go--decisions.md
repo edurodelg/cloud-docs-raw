@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/go/decisions
-fetched_at: 2026-01-29T15:32:41.665234
+fetched_at: 2026-01-30T23:51:51.934870
 ---
 
 # styleguide

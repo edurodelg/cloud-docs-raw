@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/objcguide.html
-fetched_at: 2026-01-29T15:32:26.714290
+fetched_at: 2026-01-30T23:51:38.101986
 ---
 
 # styleguide

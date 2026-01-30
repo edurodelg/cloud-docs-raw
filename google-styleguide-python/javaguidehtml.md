@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/javaguide.html
-fetched_at: 2026-01-29T15:32:21.379206
+fetched_at: 2026-01-30T23:51:32.949299
 ---
 
 # Google Java Style Guide

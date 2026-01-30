@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/Rguide.html
-fetched_at: 2026-01-29T15:32:28.254418
+fetched_at: 2026-01-30T23:51:39.441703
 ---
 
 # styleguide
