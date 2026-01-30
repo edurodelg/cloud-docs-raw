@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.retry
-fetched_at: 2026-01-29T15:35:52.378491
+fetched_at: 2026-01-30T23:54:08.353551
 ---
 
-# Module retry (3.7.0)
+# Module retry (3.8.0)
 
 Helpers for configuring retries with exponential back-off.
 

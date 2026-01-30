@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.hmac_key
-fetched_at: 2026-01-29T15:35:41.878112
+fetched_at: 2026-01-30T23:53:59.156364
 ---
 
-# Module hmac_key (3.7.0)
+# Module hmac_key (3.8.0)
 
 Configure HMAC keys that can be used to authenticate requests to Google Cloud Storage.
 

@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.batch
-fetched_at: 2026-01-29T15:34:28.199416
+fetched_at: 2026-01-30T23:52:57.697183
 ---
 
-# Module batch (3.7.0)
+# Module batch (3.8.0)
 
 Batch updates / deletes of storage buckets / blobs.
 

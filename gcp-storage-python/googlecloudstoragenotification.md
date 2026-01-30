@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.notification
-fetched_at: 2026-01-29T15:35:47.263887
+fetched_at: 2026-01-30T23:54:04.020146
 ---
 
-# Module notification (3.7.0)
+# Module notification (3.8.0)
 
 Configure bucket notification resources to interact with Google Cloud Pub/Sub.
 

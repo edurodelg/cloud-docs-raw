@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.acl
-fetched_at: 2026-01-29T15:34:14.422802
+fetched_at: 2026-01-30T23:52:45.303816
 ---
 
-# Module acl (3.7.0)
+# Module acl (3.8.0)
 
 Manage access to objects and buckets.
 

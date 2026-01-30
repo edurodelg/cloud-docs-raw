@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.transfer_manager
-fetched_at: 2026-01-29T15:35:57.633381
+fetched_at: 2026-01-30T23:54:12.554236
 ---
 
-# Module transfer_manager (3.7.0)
+# Module transfer_manager (3.8.0)
 
 Concurrent media operations.
 

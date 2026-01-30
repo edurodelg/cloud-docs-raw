@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.bucket.Bucket
-fetched_at: 2026-01-29T15:34:53.750848
+fetched_at: 2026-01-30T23:53:16.041327
 ---
 
-# Class Bucket (3.7.0)
+# Class Bucket (3.8.0)
 
 `Bucket(client, name=None, user_project=None, generation=None)`
 

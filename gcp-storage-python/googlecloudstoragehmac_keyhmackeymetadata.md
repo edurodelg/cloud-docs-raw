@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.hmac_key.HMACKeyMetadata
-fetched_at: 2026-01-29T15:35:44.338232
+fetched_at: 2026-01-30T23:54:01.496504
 ---
 
-# Class HMACKeyMetadata (3.7.0)
+# Class HMACKeyMetadata (3.8.0)
 
 `HMACKeyMetadata(client, access_id=None, project_id=None, user_project=None)`
 

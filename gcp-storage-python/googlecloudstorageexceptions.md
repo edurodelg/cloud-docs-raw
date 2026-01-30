@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.exceptions
-fetched_at: 2026-01-29T15:35:22.638244
+fetched_at: 2026-01-30T23:53:39.614478
 ---
 
-# Module exceptions (3.7.0)
+# Module exceptions (3.8.0)
 
 Exceptions raised by the library.
 

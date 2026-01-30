@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/summary_property
-fetched_at: 2026-01-29T15:34:03.623570
+fetched_at: 2026-01-30T23:52:36.812907
 ---
 
-# Package Properties and Attributes (3.7.0)
+# Package Properties and Attributes (3.8.0)
 
 Summary of entries of Properties and Attributes for storage.
 

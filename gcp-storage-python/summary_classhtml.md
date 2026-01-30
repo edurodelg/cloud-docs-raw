@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/summary_class.html
-fetched_at: 2026-01-29T15:36:00.468866
+fetched_at: 2026-01-30T23:54:14.707392
 ---
 
-# Package Classes (3.7.0)
+# Package Classes (3.8.0)
 
 Summary of entries of Classes for storage.
 

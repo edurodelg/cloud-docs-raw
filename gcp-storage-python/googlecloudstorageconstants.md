@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.constants
-fetched_at: 2026-01-29T15:35:20.209810
+fetched_at: 2026-01-30T23:53:37.377754
 ---
 
-# Module constants (3.7.0)
+# Module constants (3.8.0)
 
 Constants used across google.cloud.storage modules.
 

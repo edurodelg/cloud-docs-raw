@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.blob
-fetched_at: 2026-01-29T15:34:40.852751
+fetched_at: 2026-01-30T23:53:04.666233
 ---
 
-# Module blob (3.7.0)
+# Module blob (3.8.0)
 
 Create / interact with Google Cloud Storage blobs.
 

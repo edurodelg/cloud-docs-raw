@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/generation_metageneration
-fetched_at: 2026-01-29T15:34:09.071616
+fetched_at: 2026-01-30T23:52:41.089250
 ---
 
 # Conditional Requests Via ETag / Generation / Metageneration Preconditions

@@ -1,9 +1,9 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/summary_method.html
-fetched_at: 2026-01-29T15:36:05.029969
+fetched_at: 2026-01-30T23:54:18.584710
 ---
 
-# Package Methods (3.7.0)
+# Package Methods (3.8.0)
 
 Summary of entries of Methods for storage.
 
