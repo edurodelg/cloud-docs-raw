@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-paid-amis-finding-paid-ami.html
-fetched_at: 2026-01-29T15:15:56.757412
+fetched_at: 2026-01-30T23:34:54.965885
 ---
 
 # Find a paid AMI

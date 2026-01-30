@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/store-restore-how-it-works.html
-fetched_at: 2026-01-29T15:17:36.433767
+fetched_at: 2026-01-30T23:36:30.139197
 ---
 
 # How AMI store and restore works

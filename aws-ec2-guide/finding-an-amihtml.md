@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html
-fetched_at: 2026-01-29T15:15:37.578417
+fetched_at: 2026-01-30T23:34:35.458385
 ---
 
 # Find an AMI that meets the requirements for your EC2 instance

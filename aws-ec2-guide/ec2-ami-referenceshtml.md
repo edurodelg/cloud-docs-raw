@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-ami-references.html
-fetched_at: 2026-01-29T15:18:01.906843
+fetched_at: 2026-01-30T23:37:00.157392
 ---
 
 # Identify your resources referencing specified

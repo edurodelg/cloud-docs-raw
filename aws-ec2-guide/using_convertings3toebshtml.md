@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ConvertingS3toEBS.html
-fetched_at: 2026-01-29T15:16:46.619438
+fetched_at: 2026-01-30T23:35:48.653897
 ---
 
 # Convert your Amazon S3-backed AMI to an

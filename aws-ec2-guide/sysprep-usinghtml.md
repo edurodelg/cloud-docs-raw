@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sysprep-using.html
-fetched_at: 2026-01-29T15:17:06.971392
+fetched_at: 2026-01-30T23:36:05.541601
 ---
 
 # Create an AMI using Windows Sysprep with EC2Config
