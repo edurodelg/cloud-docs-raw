@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-28T07:24:29.863642
+merged_at: 2026-01-30T23:52:17.767890
 merged_files: 2
 ---
 
@@ -7,7 +7,7 @@ merged_files: 2
 ---
 <!-- Source: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.tasks.TasksClient -->
 
-# Class TasksClient (0.14.0)
+# Class TasksClient (0.15.0)
 
 ```
 TasksClient(
@@ -780,7 +780,7 @@ An `Operation` object. |
 ---
 <!-- Source: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.tasks.TasksAsyncClient -->
 
-# Class TasksAsyncClient (0.14.0)
+# Class TasksAsyncClient (0.15.0)
 
 ```
 TasksAsyncClient(

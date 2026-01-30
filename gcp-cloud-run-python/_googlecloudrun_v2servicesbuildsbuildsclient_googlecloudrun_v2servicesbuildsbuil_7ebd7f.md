@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-28T07:24:29.860170
+merged_at: 2026-01-30T23:52:17.766159
 merged_files: 2
 ---
 
@@ -7,7 +7,7 @@ merged_files: 2
 ---
 <!-- Source: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.builds.BuildsClient -->
 
-# Class BuildsClient (0.14.0)
+# Class BuildsClient (0.15.0)
 
 ```
 BuildsClient(
@@ -623,7 +623,7 @@ An `Operation` object. |
 ---
 <!-- Source: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.builds.BuildsAsyncClient -->
 
-# Class BuildsAsyncClient (0.14.0)
+# Class BuildsAsyncClient (0.15.0)
 
 ```
 BuildsAsyncClient(

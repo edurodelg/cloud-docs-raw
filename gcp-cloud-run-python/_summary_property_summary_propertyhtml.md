@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-28T07:24:29.861959
+merged_at: 2026-01-30T23:52:17.767427
 merged_files: 2
 ---
 
@@ -7,7 +7,7 @@ merged_files: 2
 ---
 <!-- Source: https://cloud.google.com/python/docs/reference/run/latest/summary_property -->
 
-# Package Properties and Attributes (0.14.0)
+# Package Properties and Attributes (0.15.0)
 
 Summary of entries of Properties and Attributes for run.
 
@@ -82,6 +82,42 @@ See more: [google.cloud.run_v2.services.executions.ExecutionsClient.transport](h
 Return the universe domain used by the client instance.
 
 See more: [google.cloud.run_v2.services.executions.ExecutionsClient.universe_domain](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient#google_cloud_run_v2_services_executions_ExecutionsClient_universe_domain)
+
+### google.cloud.run_v2.services.instances.InstancesAsyncClient.api_endpoint
+
+Return the API endpoint used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesAsyncClient.api_endpoint](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient#google_cloud_run_v2_services_instances_InstancesAsyncClient_api_endpoint)
+
+### google.cloud.run_v2.services.instances.InstancesAsyncClient.transport
+
+Returns the transport used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesAsyncClient.transport](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient#google_cloud_run_v2_services_instances_InstancesAsyncClient_transport)
+
+### google.cloud.run_v2.services.instances.InstancesAsyncClient.universe_domain
+
+Return the universe domain used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesAsyncClient.universe_domain](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient#google_cloud_run_v2_services_instances_InstancesAsyncClient_universe_domain)
+
+### google.cloud.run_v2.services.instances.InstancesClient.api_endpoint
+
+Return the API endpoint used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesClient.api_endpoint](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient#google_cloud_run_v2_services_instances_InstancesClient_api_endpoint)
+
+### google.cloud.run_v2.services.instances.InstancesClient.transport
+
+Returns the transport used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesClient.transport](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient#google_cloud_run_v2_services_instances_InstancesClient_transport)
+
+### google.cloud.run_v2.services.instances.InstancesClient.universe_domain
+
+Return the universe domain used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesClient.universe_domain](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient#google_cloud_run_v2_services_instances_InstancesClient_universe_domain)
 
 ### google.cloud.run_v2.services.jobs.JobsAsyncClient.api_endpoint
 
@@ -266,7 +302,7 @@ See more: [google.cloud.run_v2.services.worker_pools.WorkerPoolsClient.universe_
 ---
 <!-- Source: https://cloud.google.com/python/docs/reference/run/latest/summary_property.html -->
 
-# Package Properties and Attributes (0.14.0)
+# Package Properties and Attributes (0.15.0)
 
 Summary of entries of Properties and Attributes for run.
 
@@ -341,6 +377,42 @@ See more: [google.cloud.run_v2.services.executions.ExecutionsClient.transport](h
 Return the universe domain used by the client instance.
 
 See more: [google.cloud.run_v2.services.executions.ExecutionsClient.universe_domain](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient#google_cloud_run_v2_services_executions_ExecutionsClient_universe_domain)
+
+### google.cloud.run_v2.services.instances.InstancesAsyncClient.api_endpoint
+
+Return the API endpoint used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesAsyncClient.api_endpoint](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient#google_cloud_run_v2_services_instances_InstancesAsyncClient_api_endpoint)
+
+### google.cloud.run_v2.services.instances.InstancesAsyncClient.transport
+
+Returns the transport used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesAsyncClient.transport](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient#google_cloud_run_v2_services_instances_InstancesAsyncClient_transport)
+
+### google.cloud.run_v2.services.instances.InstancesAsyncClient.universe_domain
+
+Return the universe domain used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesAsyncClient.universe_domain](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient#google_cloud_run_v2_services_instances_InstancesAsyncClient_universe_domain)
+
+### google.cloud.run_v2.services.instances.InstancesClient.api_endpoint
+
+Return the API endpoint used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesClient.api_endpoint](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient#google_cloud_run_v2_services_instances_InstancesClient_api_endpoint)
+
+### google.cloud.run_v2.services.instances.InstancesClient.transport
+
+Returns the transport used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesClient.transport](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient#google_cloud_run_v2_services_instances_InstancesClient_transport)
+
+### google.cloud.run_v2.services.instances.InstancesClient.universe_domain
+
+Return the universe domain used by the client instance.
+
+See more: [google.cloud.run_v2.services.instances.InstancesClient.universe_domain](https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient#google_cloud_run_v2_services_instances_InstancesClient_universe_domain)
 
 ### google.cloud.run_v2.services.jobs.JobsAsyncClient.api_endpoint
 

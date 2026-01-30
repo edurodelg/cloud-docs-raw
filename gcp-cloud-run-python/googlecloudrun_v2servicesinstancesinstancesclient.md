@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesClient
-fetched_at: 2026-01-29T15:25:59.364289
+fetched_at: 2026-01-30T23:44:56.693369
 ---
 
 # Class InstancesClient (0.15.0)

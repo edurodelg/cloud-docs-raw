@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsAsyncClient
-fetched_at: 2026-01-29T15:25:34.808983
+fetched_at: 2026-01-30T23:44:36.562187
 ---
 
 # Class ExecutionsAsyncClient (0.15.0)
