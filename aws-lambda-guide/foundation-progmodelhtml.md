@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html
-fetched_at: 2026-01-30T23:31:06.191911
+fetched_at: 2026-02-01T07:35:45.432667
 ---
 
 # Understanding the Lambda programming model

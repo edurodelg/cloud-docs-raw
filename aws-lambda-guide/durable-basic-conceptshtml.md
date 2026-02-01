@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-basic-concepts.html
-fetched_at: 2026-01-30T23:32:36.316852
+fetched_at: 2026-02-01T07:37:26.959269
 ---
 
 # Basic concepts

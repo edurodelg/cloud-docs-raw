@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-invoking.html
-fetched_at: 2026-01-30T23:33:21.914951
+fetched_at: 2026-02-01T07:38:12.033529
 ---
 
 # Invoking durable Lambda functions

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-invoking-esm.html
-fetched_at: 2026-01-30T23:33:26.501639
+fetched_at: 2026-02-01T07:38:17.334639
 ---
 
 # Event source mappings with durable functions
