@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/bigquery/latest/summary_property.html
-fetched_at: 2026-01-31T00:04:50.790368
+fetched_at: 2026-02-01T08:09:53.204855
 ---
 
 # Package Properties and Attributes (3.40.0)
