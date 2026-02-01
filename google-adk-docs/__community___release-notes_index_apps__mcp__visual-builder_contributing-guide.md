@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-30T23:51:11.583471
+merged_at: 2026-02-01T07:57:00.076158
 merged_files: 2
 ---
 
@@ -52,11 +52,21 @@ Stay Connected
 
 Join the [ADK Community Google Group](https://groups.google.com/g/adk-community) for updates, calendar invites, and to connect with the ADK community.
 
+See recent recordings below, or browse all past calls on our [YouTube playlist](https://www.youtube.com/playlist?list=PLwi6PfxEP7zZbBPmWiZ8QbPcuKyAY5RR3).
+
+[
+Community Call
+](https://www.youtube.com/watch?v=h9Lueiqo89E)
+
+### 📞 Jan 2026 Recording
+
+Discussions include Session Service schema for cross-language support, TypeScript multi-agent demo, API Registry for MCP servers, and third-party tool integrations.
+
 [
 Community Call
 ](https://www.youtube.com/watch?v=cNVWhrbdn-E)
 
-### 📞 ADK Community Call (Dec 2025)
+### 📞 Dec 2025 Recording
 
 Discussions include the ADK TypeScript launch, Gemini 3 Flash support, bidirectional streaming for voice agents, and the Visual Builder UI.
 
@@ -64,17 +74,9 @@ Discussions include the ADK TypeScript launch, Gemini 3 Flash support, bidirecti
 Community Call
 ](https://www.youtube.com/watch?v=bftUz-WBqyw)
 
-### 📞 ADK Community Call (Nov 2025)
+### 📞 Nov 2025 Recording
 
 Discussions include the ADK Go launch, the reflect & retry plugin for error recovery, and time travel debugging for rewinding agent sessions.
-
-[
-Community Call
-](https://www.youtube.com/watch?v=A95mQaSRKik)
-
-### 📞 ADK Community Call (Oct 2025)
-
-Discussions include the ADK roadmap, context compaction and caching for reducing cost and latency, and community contribution guidelines.
 
 ## Courses & Deep Dives[¶](#courses-deep-dives)
 

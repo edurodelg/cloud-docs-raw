@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/mcp/
-fetched_at: 2026-01-30T23:34:51.763968
+fetched_at: 2026-02-01T07:40:39.746969
 ---
 
 # Model Context Protocol (MCP)¶
