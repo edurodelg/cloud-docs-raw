@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.DeleteData.html
-fetched_at: 2026-01-30T23:43:42.718833
+fetched_at: 2026-02-01T07:48:12.571087
 ---
 
 # Differences between a relational (SQL) database

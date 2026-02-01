@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html
-fetched_at: 2026-01-30T23:41:12.581863
+fetched_at: 2026-02-01T07:45:42.412918
 ---
 
 # DynamoDB local usage notes

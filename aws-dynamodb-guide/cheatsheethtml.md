@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CheatSheet.html
-fetched_at: 2026-01-30T23:42:12.659412
+fetched_at: 2026-02-01T07:46:42.523777
 ---
 
 # Cheat sheet for DynamoDB

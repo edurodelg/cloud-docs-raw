@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.html
-fetched_at: 2026-01-30T23:42:42.708236
+fetched_at: 2026-02-01T07:47:12.497614
 ---
 
 # Learn how to go from SQL to NoSQL

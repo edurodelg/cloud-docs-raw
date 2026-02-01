@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
-fetched_at: 2026-01-30T23:42:17.903941
+fetched_at: 2026-02-01T07:46:47.799443
 ---
 
 # Core components of Amazon DynamoDB
