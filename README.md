@@ -4,8 +4,8 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-02-01%2008:10%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-556-green)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-02-01%2008:17%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-563-green)]()
 [![Fuentes](https://img.shields.io/badge/Fuentes-13-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
@@ -38,7 +38,7 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 | [aws-s3-guide](./aws-s3-guide/) | 39 | [Docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
 | [azure-ai-foundry](./azure-ai-foundry/) | 45 | [Docs](https://learn.microsoft.com/en-us/azure/ai-foundry/) |
 | [azure-aks](./azure-aks/) | 50 | [Docs](https://learn.microsoft.com/en-us/azure/aks/) |
-| [azure-functions](./azure-functions/) | 39 | [Docs](https://learn.microsoft.com/en-us/azure/azure-functions/) |
+| [azure-functions](./azure-functions/) | 46 | [Docs](https://learn.microsoft.com/en-us/azure/azure-functions/) |
 | [gcp-bigquery-python](./gcp-bigquery-python/) | 50 | [Docs](https://cloud.google.com/python/docs/reference/bigquery/latest) |
 | [gcp-cloud-run-python](./gcp-cloud-run-python/) | 43 | [Docs](https://cloud.google.com/python/docs/reference/run/latest) |
 | [gcp-storage-python](./gcp-storage-python/) | 48 | [Docs](https://cloud.google.com/python/docs/reference/storage/latest) |
@@ -46,7 +46,7 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 | [google-adk-docs](./google-adk-docs/) | 46 | [Docs](https://google.github.io/adk-docs/) |
 | [google-styleguide-python](./google-styleguide-python/) | 29 | [Docs](https://google.github.io/styleguide/pyguide.html) |
 
-> **Total:** 556 archivos Markdown
+> **Total:** 563 archivos Markdown
 
 ---
 
