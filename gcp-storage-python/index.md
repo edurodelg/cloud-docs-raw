@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest
-fetched_at: 2026-01-30T23:52:25.197022
+fetched_at: 2026-02-01T07:56:55.920332
 ---
 
 # Python Client for Google Cloud Storage

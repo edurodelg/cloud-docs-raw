@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.client.Client
-fetched_at: 2026-01-30T23:53:35.097764
+fetched_at: 2026-02-01T07:58:21.697621
 ---
 
 # Class Client (3.8.0)
