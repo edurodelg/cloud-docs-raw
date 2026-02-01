@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html
-fetched_at: 2026-01-30T23:34:10.935084
+fetched_at: 2026-02-01T07:38:40.463806
 ---
 
 # Get started with Amazon EC2

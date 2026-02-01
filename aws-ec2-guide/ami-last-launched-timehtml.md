@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-last-launched-time.html
-fetched_at: 2026-01-30T23:36:55.098541
+fetched_at: 2026-02-01T07:41:27.609784
 ---
 
 # Check when an Amazon EC2 AMI was last used

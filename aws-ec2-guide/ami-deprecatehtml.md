@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html
-fetched_at: 2026-01-30T23:37:05.157969
+fetched_at: 2026-02-01T07:41:37.367745
 ---
 
 # Deprecate an Amazon EC2 AMI

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html
-fetched_at: 2026-01-30T23:36:16.905656
+fetched_at: 2026-02-01T07:40:40.792087
 ---
 
 # Copy an Amazon EC2 AMI

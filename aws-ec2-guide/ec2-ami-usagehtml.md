@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-ami-usage.html
-fetched_at: 2026-01-30T23:36:45.092367
+fetched_at: 2026-02-01T07:41:15.603615
 ---
 
 # Manage and monitor AMI usage
