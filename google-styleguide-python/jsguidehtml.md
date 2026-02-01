@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/jsguide.html
-fetched_at: 2026-01-30T23:51:31.461310
+fetched_at: 2026-02-01T07:57:20.713232
 ---
 
 # Google JavaScript Style Guide

@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/docguide/best_practices.html
-fetched_at: 2026-01-30T23:52:13.089855
+fetched_at: 2026-02-01T07:58:10.298577
 ---
 
 # styleguide

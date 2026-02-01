@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/lispguide.xml
-fetched_at: 2026-01-30T23:51:22.976813
+fetched_at: 2026-02-01T07:57:11.561227
 ---
 
 Revision 1.28

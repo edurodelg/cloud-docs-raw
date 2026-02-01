@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/index
-fetched_at: 2026-01-30T23:52:15.546843
+fetched_at: 2026-02-01T07:58:13.175916
 ---
 
 # styleguide

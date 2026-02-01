@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/go/best-practices.html
-fetched_at: 2026-01-30T23:52:04.057149
+fetched_at: 2026-02-01T07:58:03.405401
 ---
 
 # styleguide
