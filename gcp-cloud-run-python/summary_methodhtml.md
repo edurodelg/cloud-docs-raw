@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/summary_method.html
-fetched_at: 2026-01-30T23:52:13.109893
+fetched_at: 2026-02-01T07:56:46.315069
 ---
 
 # Package Methods (0.15.0)

@@ -1,33 +1,33 @@
 ---
-source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient
-fetched_at: 2026-02-01T07:49:15.677122
+source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient
+fetched_at: 2026-02-01T07:49:02.704902
 ---
 
-# Class InstancesAsyncClient (0.15.0)
+# Class ExecutionsClient (0.15.0)
 
 ```
-InstancesAsyncClient(
+ExecutionsClient(
 *,
 credentials: typing.Optional[google.auth.credentials.Credentials] = None,
 transport: typing.Optional[
 typing.Union[
 str,
-google.cloud.run_v2.services.instances.transports.base.InstancesTransport,
+google.cloud.run_v2.services.executions.transports.base.ExecutionsTransport,
 typing.Callable[
 [...],
-google.cloud.run_v2.services.instances.transports.base.InstancesTransport,
+google.cloud.run_v2.services.executions.transports.base.ExecutionsTransport,
 ],
 ]
-] = "grpc_asyncio",
+] = None,
 client_options: typing.Optional[
-google.api_core.client_options.ClientOptions
+typing.Union[google.api_core.client_options.ClientOptions, dict]
 ] = None,
 client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
 )
 ```
 
 
-The Cloud Run Instances API allows you to manage Cloud Run Instances.
+Cloud Run Execution Control Plane API.
 
 ## Properties
 
@@ -52,7 +52,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`InstancesTransport` |
+`ExecutionsTransport` |
 The transport used by the client instance. |
 
 ### universe_domain
@@ -69,31 +69,31 @@ The universe domain used by the client instance. |
 
 ## Methods
 
-### InstancesAsyncClient
+### ExecutionsClient
 
 ```
-InstancesAsyncClient(
+ExecutionsClient(
 *,
 credentials: typing.Optional[google.auth.credentials.Credentials] = None,
 transport: typing.Optional[
 typing.Union[
 str,
-google.cloud.run_v2.services.instances.transports.base.InstancesTransport,
+google.cloud.run_v2.services.executions.transports.base.ExecutionsTransport,
 typing.Callable[
 [...],
-google.cloud.run_v2.services.instances.transports.base.InstancesTransport,
+google.cloud.run_v2.services.executions.transports.base.ExecutionsTransport,
 ],
 ]
-] = "grpc_asyncio",
+] = None,
 client_options: typing.Optional[
-google.api_core.client_options.ClientOptions
+typing.Union[google.api_core.client_options.ClientOptions, dict]
 ] = None,
 client_info: google.api_core.gapic_v1.client_info.ClientInfo = google.api_core.gapic_v1.client_info.ClientInfo
 )
 ```
 
 
-Instantiates the instances async client.
+Instantiates the executions client.
 
 Parameters |
 |
@@ -104,8 +104,8 @@ Description |
 `Optional[google.auth.credentials.Credentials]`
 The authorization credentials to attach to requests. These credentials identify the application to the service; if none are specified, the client will attempt to ascertain the credentials from the environment. |
 `transport` |
-`Optional[Union[str,InstancesTransport,Callable[..., InstancesTransport]]]`
-The transport to use, or a Callable that constructs and returns a new transport to use. If a Callable is given, it will be called with the same set of initialization arguments as used in the InstancesTransport constructor. If set to None, a transport is chosen automatically. |
+`Optional[Union[str,ExecutionsTransport,Callable[..., ExecutionsTransport]]]`
+The transport to use, or a Callable that constructs and returns a new transport. If a Callable is given, it will be called with the same set of initialization arguments as used in the ExecutionsTransport constructor. If set to None, a transport is chosen automatically. |
 `client_options` |
 `Optional[Union[google.api_core.client_options.ClientOptions, dict]]`
 Custom options for the client. 1. The |
@@ -118,8 +118,93 @@ Exceptions |
 |---|---|
 Type |
 Description |
-`google.auth.exceptions.MutualTlsChannelError` |
+`google.auth.exceptions.MutualTLSChannelError` |
 If mutual TLS transport creation failed for any reason. |
+
+### __exit__
+
+`__exit__(type, value, traceback)`
+
+
+Releases underlying transport's resources.
+
+### cancel_execution
+
+```
+cancel_execution(
+request: typing.Optional[
+typing.Union[google.cloud.run_v2.types.execution.CancelExecutionRequest, dict]
+] = None,
+*,
+name: typing.Optional[str] = None,
+retry: typing.Optional[
+typing.Union[
+google.api_core.retry.retry_unary.Retry,
+google.api_core.gapic_v1.method._MethodDefault,
+]
+] = _MethodDefault._DEFAULT_VALUE,
+timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
+metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
+) -> google.api_core.operation.Operation
+```
+
+
+Cancels an Execution.
+
+```
+# This snippet has been automatically generated and should be regarded as a
+# code template only.
+# It will require modifications to work:
+# - It may require correct/in-range values for request initialization.
+# - It may require specifying regional endpoints when creating the service
+# client as shown in:
+# https://googleapis.dev/python/google-api-core/latest/client_options.html
+from google.cloud import
+```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
+def sample_cancel_execution():
+# Create a client
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ExecutionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html)()
+# Initialize request argument(s)
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[CancelExecutionRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.CancelExecutionRequest.html)(
+name="name_value",
+)
+# Make the request
+operation = client.[cancel_execution](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html#google_cloud_run_v2_services_executions_ExecutionsClient_cancel_execution)(request=request)
+print("Waiting for operation to complete...")
+response = operation.result()
+# Handle the response
+print(response)
+
+
+Parameters |
+|
+|---|---|
+Name |
+Description |
+`request` |
+`Union[`
+The request object. Request message for deleting an Execution. |
+`name` |
+`str`
+Required. The name of the Execution to cancel. Format: |
+`retry` |
+`google.api_core.retry.Retry`
+Designation of what errors, if any, should be retried. |
+`timeout` |
+`float`
+The timeout for this request. |
+`metadata` |
+`Sequence[Tuple[str, Union[str, bytes]]]`
+Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+Returns |
+|
+|---|---|
+Type |
+Description |
+`google.api_core.operation.Operation` |
+An object representing a long-running operation. The result type for the operation will be
+|
 
 ### common_billing_account_path
 
@@ -163,90 +248,6 @@ Returns a fully-qualified project string.
 
 Returns a fully-qualified connector string.
 
-### create_instance
-
-```
-create_instance(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.instance.CreateInstanceRequest, dict]
-] = None,
-*,
-parent: typing.Optional[str] = None,
-instance: typing.Optional[google.cloud.run_v2.types.instance.Instance] = None,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.api_core.operation_async.AsyncOperation
-```
-
-
-Creates an Instance.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-async def sample_create_instance():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesAsyncClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html)()
-# Initialize request argument(s)
-instance = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[Instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.Instance.html)()
-instance.containers.image = "image_value"
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[CreateInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.CreateInstanceRequest.html)(
-parent="parent_value",
-instance=instance,
-instance_id="instance_id_value",
-)
-# Make the request
-operation = client.[create_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html#google_cloud_run_v2_services_instances_InstancesAsyncClient_create_instance)(request=request)
-print("Waiting for operation to complete...")
-response = (await operation).result()
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Optional[Union[`
-The request object. |
-`parent` |
-This corresponds to the |
-`instance` |
-This corresponds to the |
-`retry` |
-`google.api_core.retry_async.AsyncRetry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-`google.api_core.operation_async.AsyncOperation` |
-An object representing a long-running operation. The result type for the operation will be
-|
-
 ### crypto_key_path
 
 `crypto_key_path(project: str, location: str, key_ring: str, crypto_key: str) -> str`
@@ -254,28 +255,28 @@ An object representing a long-running operation. The result type for the operati
 
 Returns a fully-qualified crypto_key string.
 
-### delete_instance
+### delete_execution
 
 ```
-delete_instance(
+delete_execution(
 request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.instance.DeleteInstanceRequest, dict]
+typing.Union[google.cloud.run_v2.types.execution.DeleteExecutionRequest, dict]
 ] = None,
 *,
 name: typing.Optional[str] = None,
 retry: typing.Optional[
 typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.retry.retry_unary.Retry,
 google.api_core.gapic_v1.method._MethodDefault,
 ]
 ] = _MethodDefault._DEFAULT_VALUE,
 timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
 metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.api_core.operation_async.AsyncOperation
+) -> google.api_core.operation.Operation
 ```
 
 
-Deletes a Instance
+Deletes an Execution.
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -287,17 +288,17 @@ Deletes a Instance
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-async def sample_delete_instance():
+def sample_delete_execution():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesAsyncClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ExecutionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html)()
 # Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[DeleteInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteInstanceRequest.html)(
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[DeleteExecutionRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.DeleteExecutionRequest.html)(
 name="name_value",
 )
 # Make the request
-operation = client.[delete_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html#google_cloud_run_v2_services_instances_InstancesAsyncClient_delete_instance)(request=request)
+operation = client.[delete_execution](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html#google_cloud_run_v2_services_executions_ExecutionsClient_delete_execution)(request=request)
 print("Waiting for operation to complete...")
-response = (await operation).result()
+response = operation.result()
 # Handle the response
 print(response)
 
@@ -308,12 +309,13 @@ Parameters |
 Name |
 Description |
 `request` |
-`Optional[Union[`
-The request object. |
+`Union[`
+The request object. Request message for deleting an Execution. |
 `name` |
-This corresponds to the |
+`str`
+Required. The name of the Execution to delete. Format: |
 `retry` |
-`google.api_core.retry_async.AsyncRetry`
+`google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
 `timeout` |
 `float`
@@ -327,7 +329,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`google.api_core.operation_async.AsyncOperation` |
+`google.api_core.operation.Operation` |
 An object representing a long-running operation. The result type for the operation will be
 |
 
@@ -341,7 +343,7 @@ google.longrunning.operations_pb2.DeleteOperationRequest
 *,
 retry: typing.Optional[
 typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.retry.retry_unary.Retry,
 google.api_core.gapic_v1.method._MethodDefault,
 ]
 ] = _MethodDefault._DEFAULT_VALUE,
@@ -368,7 +370,7 @@ Description |
 `request` |
 The request object. Request message for |
 `retry` |
-`google.api_core.retry_async.AsyncRetry`
+`google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
 `timeout` |
 `float`
@@ -376,6 +378,13 @@ The timeout for this request. |
 `metadata` |
 `Sequence[Tuple[str, Union[str, bytes]]]`
 Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
+
+### execution_path
+
+`execution_path(project: str, location: str, job: str, execution: str) -> str`
+
+
+Returns a fully-qualified execution string.
 
 ### from_service_account_file
 
@@ -398,7 +407,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`InstancesAsyncClient` |
+`ExecutionsClient` |
 The constructed client. |
 
 ### from_service_account_info
@@ -422,7 +431,7 @@ Returns |
 |---|---|
 Type |
 Description |
-`InstancesAsyncClient` |
+`ExecutionsClient` |
 The constructed client. |
 
 ### from_service_account_json
@@ -446,31 +455,31 @@ Returns |
 |---|---|
 Type |
 Description |
-`InstancesAsyncClient` |
+`ExecutionsClient` |
 The constructed client. |
 
-### get_instance
+### get_execution
 
 ```
-get_instance(
+get_execution(
 request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.instance.GetInstanceRequest, dict]
+typing.Union[google.cloud.run_v2.types.execution.GetExecutionRequest, dict]
 ] = None,
 *,
 name: typing.Optional[str] = None,
 retry: typing.Optional[
 typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.retry.retry_unary.Retry,
 google.api_core.gapic_v1.method._MethodDefault,
 ]
 ] = _MethodDefault._DEFAULT_VALUE,
 timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
 metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.cloud.run_v2.types.instance.Instance
+) -> google.cloud.run_v2.types.execution.Execution
 ```
 
 
-Gets a Instance
+Gets information about an Execution.
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -482,15 +491,15 @@ Gets a Instance
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-async def sample_get_instance():
+def sample_get_execution():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesAsyncClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ExecutionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html)()
 # Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[GetInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.GetInstanceRequest.html)(
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[GetExecutionRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.GetExecutionRequest.html)(
 name="name_value",
 )
 # Make the request
-response = await client.[get_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html#google_cloud_run_v2_services_instances_InstancesAsyncClient_get_instance)(request=request)
+response = client.[get_execution](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html#google_cloud_run_v2_services_executions_ExecutionsClient_get_execution)(request=request)
 # Handle the response
 print(response)
 
@@ -501,12 +510,13 @@ Parameters |
 Name |
 Description |
 `request` |
-`Optional[Union[`
-The request object. |
+`Union[`
+The request object. Request message for obtaining a Execution by its full name. |
 `name` |
-This corresponds to the |
+`str`
+Required. The full name of the Execution. Format: |
 `retry` |
-`google.api_core.retry_async.AsyncRetry`
+`google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
 `timeout` |
 `float`
@@ -521,7 +531,7 @@ Returns |
 Type |
 Description |
 |
-A Cloud Run Instance represents a single group of containers running in a region. |
+Execution represents the configuration of a single execution. A execution an immutable resource that references a container image which is run to completion. |
 
 ### get_mtls_endpoint_and_cert_source
 
@@ -534,7 +544,7 @@ google.api_core.client_options.ClientOptions
 ```
 
 
-Return the API endpoint and client cert source for mutual TLS.
+Deprecated. Return the API endpoint and client cert source for mutual TLS.
 
 The client cert source is determined in the following order:
 (1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE`
@@ -595,7 +605,7 @@ google.longrunning.operations_pb2.GetOperationRequest
 *,
 retry: typing.Optional[
 typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.retry.retry_unary.Retry,
 google.api_core.gapic_v1.method._MethodDefault,
 ]
 ] = _MethodDefault._DEFAULT_VALUE,
@@ -615,7 +625,7 @@ Description |
 `request` |
 The request object. Request message for |
 `retry` |
-`google.api_core.retry_async.AsyncRetry`
+`google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
 `timeout` |
 `float`
@@ -632,57 +642,35 @@ Description |
 |
 An `Operation` object. |
 
-### get_transport_class
+### job_path
+
+`job_path(project: str, location: str, job: str) -> str`
+
+
+Returns a fully-qualified job string.
+
+### list_executions
 
 ```
-get_transport_class(
-label: typing.Optional[str] = None,
-) -> typing.Type[
-google.cloud.run_v2.services.instances.transports.base.InstancesTransport
-]
-```
-
-
-Returns an appropriate transport class.
-
-Parameter |
-|
-|---|---|
-Name |
-Description |
-`label` |
-`typing.Optional[str]`
-The name of the desired transport. If none is provided, then the first transport in the registry is used. |
-
-### instance_path
-
-`instance_path(project: str, location: str, instance: str) -> str`
-
-
-Returns a fully-qualified instance string.
-
-### list_instances
-
-```
-list_instances(
+list_executions(
 request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.instance.ListInstancesRequest, dict]
+typing.Union[google.cloud.run_v2.types.execution.ListExecutionsRequest, dict]
 ] = None,
 *,
 parent: typing.Optional[str] = None,
 retry: typing.Optional[
 typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.retry.retry_unary.Retry,
 google.api_core.gapic_v1.method._MethodDefault,
 ]
 ] = _MethodDefault._DEFAULT_VALUE,
 timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
 metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.cloud.run_v2.services.instances.pagers.ListInstancesAsyncPager
+) -> google.cloud.run_v2.services.executions.pagers.ListExecutionsPager
 ```
 
 
-Lists Instances. Results are sorted by creation time, descending.
+Lists Executions from a Job. Results are sorted by creation time, descending.
 
 ```
 # This snippet has been automatically generated and should be regarded as a
@@ -694,17 +682,17 @@ Lists Instances. Results are sorted by creation time, descending.
 # https://googleapis.dev/python/google-api-core/latest/client_options.html
 from google.cloud import
 ```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-async def sample_list_instances():
+def sample_list_executions():
 # Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesAsyncClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html)()
+client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ExecutionsClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html)()
 # Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ListInstancesRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.ListInstancesRequest.html)(
+request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[ListExecutionsRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.ListExecutionsRequest.html)(
 parent="parent_value",
 )
 # Make the request
-page_result = client.[list_instances](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html#google_cloud_run_v2_services_instances_InstancesAsyncClient_list_instances)(request=request)
+page_result = client.[list_executions](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.executions.ExecutionsClient.html#google_cloud_run_v2_services_executions_ExecutionsClient_list_executions)(request=request)
 # Handle the response
-async for response in page_result:
+for response in page_result:
 print(response)
 
 
@@ -714,12 +702,13 @@ Parameters |
 Name |
 Description |
 `request` |
-`Optional[Union[`
-The request object. Request message for retrieving a list of Instances. |
+`Union[`
+The request object. Request message for retrieving a list of Executions. |
 `parent` |
-Required. The location and project to list resources on. Format: projects/{project}/locations/{location}, where {project} can be project id or number. This corresponds to the |
+`str`
+Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use "-" instead of Job name. Format: |
 `retry` |
-`google.api_core.retry_async.AsyncRetry`
+`google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
 `timeout` |
 `float`
@@ -734,7 +723,7 @@ Returns |
 Type |
 Description |
 |
-Response message containing a list of Instances. Iterating over this object will yield results and resolve additional pages automatically. |
+Response message containing a list of Executions. Iterating over this object will yield results and resolve additional pages automatically. |
 
 ### list_operations
 
@@ -746,7 +735,7 @@ google.longrunning.operations_pb2.ListOperationsRequest
 *,
 retry: typing.Optional[
 typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.retry.retry_unary.Retry,
 google.api_core.gapic_v1.method._MethodDefault,
 ]
 ] = _MethodDefault._DEFAULT_VALUE,
@@ -766,7 +755,7 @@ Description |
 `request` |
 The request object. Request message for |
 `retry` |
-`google.api_core.retry_async.AsyncRetry`
+`google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
 `timeout` |
 `float`
@@ -832,19 +821,19 @@ Parses a connector path into its component segments.
 
 Parses a crypto_key path into its component segments.
 
-### parse_instance_path
+### parse_execution_path
 
-`parse_instance_path(path: str) -> typing.Dict[str, str]`
-
-
-Parses a instance path into its component segments.
-
-### parse_policy_path
-
-`parse_policy_path(path: str) -> typing.Dict[str, str]`
+`parse_execution_path(path: str) -> typing.Dict[str, str]`
 
 
-Parses a policy path into its component segments.
+Parses a execution path into its component segments.
+
+### parse_job_path
+
+`parse_job_path(path: str) -> typing.Dict[str, str]`
+
+
+Parses a job path into its component segments.
 
 ### parse_secret_path
 
@@ -860,13 +849,6 @@ Parses a secret path into its component segments.
 
 Parses a secret_version path into its component segments.
 
-### policy_path
-
-`policy_path(project: str) -> str`
-
-
-Returns a fully-qualified policy string.
-
 ### secret_path
 
 `secret_path(project: str, secret: str) -> str`
@@ -881,160 +863,6 @@ Returns a fully-qualified secret string.
 
 Returns a fully-qualified secret_version string.
 
-### start_instance
-
-```
-start_instance(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.instance.StartInstanceRequest, dict]
-] = None,
-*,
-name: typing.Optional[str] = None,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.api_core.operation_async.AsyncOperation
-```
-
-
-Starts an Instance.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-async def sample_start_instance():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesAsyncClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html)()
-# Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[StartInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.StartInstanceRequest.html)(
-name="name_value",
-)
-# Make the request
-operation = client.[start_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html#google_cloud_run_v2_services_instances_InstancesAsyncClient_start_instance)(request=request)
-print("Waiting for operation to complete...")
-response = (await operation).result()
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Optional[Union[`
-The request object. Request message for starting an Instance. |
-`name` |
-Required. The name of the Instance to stop. Format: |
-`retry` |
-`google.api_core.retry_async.AsyncRetry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-`google.api_core.operation_async.AsyncOperation` |
-An object representing a long-running operation. The result type for the operation will be
-|
-
-### stop_instance
-
-```
-stop_instance(
-request: typing.Optional[
-typing.Union[google.cloud.run_v2.types.instance.StopInstanceRequest, dict]
-] = None,
-*,
-name: typing.Optional[str] = None,
-retry: typing.Optional[
-typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
-google.api_core.gapic_v1.method._MethodDefault,
-]
-] = _MethodDefault._DEFAULT_VALUE,
-timeout: typing.Union[float, object] = _MethodDefault._DEFAULT_VALUE,
-metadata: typing.Sequence[typing.Tuple[str, typing.Union[str, bytes]]] = ()
-) -> google.api_core.operation_async.AsyncOperation
-```
-
-
-Stops an Instance.
-
-```
-# This snippet has been automatically generated and should be regarded as a
-# code template only.
-# It will require modifications to work:
-# - It may require correct/in-range values for request initialization.
-# - It may require specifying regional endpoints when creating the service
-# client as shown in:
-# https://googleapis.dev/python/google-api-core/latest/client_options.html
-from google.cloud import
-```[run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest)
-async def sample_stop_instance():
-# Create a client
-client = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[InstancesAsyncClient](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html)()
-# Initialize request argument(s)
-request = [run_v2](https://docs.cloud.google.com/python/docs/reference/run/latest).[StopInstanceRequest](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.types.StopInstanceRequest.html)(
-name="name_value",
-)
-# Make the request
-operation = client.[stop_instance](https://docs.cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient.html#google_cloud_run_v2_services_instances_InstancesAsyncClient_stop_instance)(request=request)
-print("Waiting for operation to complete...")
-response = (await operation).result()
-# Handle the response
-print(response)
-
-
-Parameters |
-|
-|---|---|
-Name |
-Description |
-`request` |
-`Optional[Union[`
-The request object. Request message for deleting an Instance. |
-`name` |
-Required. The name of the Instance to stop. Format: |
-`retry` |
-`google.api_core.retry_async.AsyncRetry`
-Designation of what errors, if any, should be retried. |
-`timeout` |
-`float`
-The timeout for this request. |
-`metadata` |
-`Sequence[Tuple[str, Union[str, bytes]]]`
-Key/value pairs which should be sent along with the request as metadata. Normally, each value must be of type |
-
-Returns |
-|
-|---|---|
-Type |
-Description |
-`google.api_core.operation_async.AsyncOperation` |
-An object representing a long-running operation. The result type for the operation will be
-|
-
 ### wait_operation
 
 ```
@@ -1045,7 +873,7 @@ google.longrunning.operations_pb2.WaitOperationRequest
 *,
 retry: typing.Optional[
 typing.Union[
-google.api_core.retry.retry_unary_async.AsyncRetry,
+google.api_core.retry.retry_unary.Retry,
 google.api_core.gapic_v1.method._MethodDefault,
 ]
 ] = _MethodDefault._DEFAULT_VALUE,
@@ -1072,7 +900,7 @@ Description |
 `request` |
 The request object. Request message for |
 `retry` |
-`google.api_core.retry_async.AsyncRetry`
+`google.api_core.retry.Retry`
 Designation of what errors, if any, should be retried. |
 `timeout` |
 `float`

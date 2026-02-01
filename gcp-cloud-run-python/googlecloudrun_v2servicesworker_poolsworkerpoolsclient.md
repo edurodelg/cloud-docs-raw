@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.worker_pools.WorkerPoolsClient
-fetched_at: 2026-01-30T23:46:29.842384
+fetched_at: 2026-02-01T07:50:42.630176
 ---
 
 # Class WorkerPoolsClient (0.15.0)
