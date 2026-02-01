@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html
-fetched_at: 2026-01-30T23:38:07.592348
+fetched_at: 2026-02-01T07:42:33.457651
 ---
 
 # Accessing an Amazon S3 general purpose bucket

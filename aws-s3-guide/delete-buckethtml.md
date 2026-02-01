@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/delete-bucket.html
-fetched_at: 2026-01-30T23:38:33.841761
+fetched_at: 2026-02-01T07:43:03.487327
 ---
 
 # Deleting a general purpose bucket

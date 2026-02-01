@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html
-fetched_at: 2026-01-30T23:40:24.023378
+fetched_at: 2026-02-01T07:44:54.118456
 ---
 
 # Working with object metadata
