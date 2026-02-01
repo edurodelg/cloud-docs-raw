@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-30T23:42:48.933076
+merged_at: 2026-02-01T07:48:55.753870
 merged_files: 2
 ---
 
@@ -1698,253 +1698,6 @@ To learn more about AKS Automatic, continue to the introduction.
 <!-- Source: N/A -->
 
 ---
-<!-- Source: N/A -->
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/aks/shared-health-probes -->
-
-# Use shared health probes for externalTrafficPolicy: Cluster Services (preview) in Azure Kubernetes Service (AKS)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-# Use shared health probes for
-
-This article describes how to enable **shared health probe mode** (preview) for Services with `externalTrafficPolicy: Cluster`
-
-in Azure Kubernetes Service (AKS). Shared probe mode improves load balancer efficiency, reduces configuration complexity, and provides more accurate node health monitoring.
-
-## About shared health probe mode
-
-In clusters that use `externalTrafficPolicy: Cluster`
-
-, Azure Standard Load Balancer (SLB) currently creates a *separate probe per Service* and targets each Service's `nodePort`
-
-.
-
-This design means SLB infers node health from whichever **application pod** answers the probe. As clusters grow, this approach leads to several issues, including:
-
-**Configuration drift and blind spots**: SLB can't detect a failed or misconfigured`kube‑proxy`
-
-if iptables rules are still present.**Duplicate health logic**: Readiness must be defined twice. Once in each pod's`readinessProbe`
-
-, and again through SLB annotations.**Operational overhead**: Each Service on each node is probed every*five seconds*, consuming connections, SNAT ports, and SLB rule space.**Feature friction**: Customers can't set`allocateLoadBalancerNodePorts=false`
-
-, and workloads like Istio or ingress‑nginx require extra annotations to keep probes working.**Troubleshooting confusion**: An unhealthy app, Network Policy rule, or scale‑to‑zero event can make an*entire node*appear down.
-
-**Shared probe mode** solves these problems by moving to a *single HTTP probe* for all `externalTrafficPolicy: Cluster`
-
-Services. In shared probe mode:
-
-- SLB probes
-`http://<node‑ip>:10356/healthz`
-
-, the standard`kube‑proxy`
-
-health endpoint. - A lightweight sidecar runs next to
-`kube‑proxy`
-
-to relay the probe and handle PROXY protocol when Private Link Service is enabled.
-
-## Benefits of shared probe mode
-
-The following table outlines **key benefits** of using shared probe mode:
-
-| Benefit | Why it matters |
-|---|---|
-| Accurate node health | SLB now measures `kube‑proxy` directly, not an arbitrary backend pod. |
-| Simpler configuration | No per‑Service probe annotations; readiness lives solely in the pod spec. |
-| Lower traffic overhead | One probe per node instead of Services × (nodes – 1) probes. |
-
-Note
-
-Keep the following information in mind when using shared probe mode:
-
-- Services that use
-`externalTrafficPolicy: Local`
-
-are**unchanged**. - This feature does
-**not**address container‑native load balancing.
-
-## Before you begin
-
-[Install or update the](#install-or-update-the-aks-preview-azure-cli-extension).`aks-preview`
-
-Azure CLI extension[Register the](#register-the-enableslbsharedhealthprobepreview-feature-flag).`EnableSLBSharedHealthProbePreview`
-
-feature flag in your Azure subscription
-
-### Install or update the `aks-preview`
-
-Azure CLI extension
-
-Important
-
-AKS preview features are available on a self-service, opt-in basis. Previews are provided "as is" and "as available," and they're excluded from the service-level agreements and limited warranty. AKS previews are partially covered by customer support on a best-effort basis. As such, these features aren't meant for production use. For more information, see the following support articles:
-
-Install the
-
-`aks-preview`
-
-extension using thecommand.`az extension add`
-
-`az extension add --name aks-preview`
-
-Update to the latest version of the
-
-`aks-preview`
-
-extension using thecommand.`az extension update`
-
-`az extension update --name aks-preview`
-
-
-### Register the `EnableSLBSharedHealthProbePreview`
-
-feature flag
-
-Register the
-
-`EnableSLBSharedHealthProbePreview`
-
-feature flag using thecommand.`az feature register`
-
-`az feature register --namespace "Microsoft.ContainerService" --name "EnableSLBSharedHealthProbePreview"`
-
-It takes a few minutes for the status to show
-
-*Registered*.Verify the registration status using the
-
-command:`az feature show`
-
-`az feature show --namespace "Microsoft.ContainerService" --name "EnableSLBSharedHealthProbePreview"`
-
-When the status reflects
-
-*Registered*, refresh the registration of the*Microsoft.ContainerService*resource provider using thecommand.`az provider register`
-
-`az provider register --namespace Microsoft.ContainerService`
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay-pod-expand -->
-
-# Expand pod CIDR space in Azure CNI Overlay Azure Kubernetes Service (AKS) clusters
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-You can expand your pod Classless Inter-Domain Routing (CIDR) space on Azure CNI Overlay clusters in Azure Kubernetes Service with Linux nodes only. The operation uses the [ az aks update](/en-us/cli/azure/aks#az_aks_update) command and allows expansions without the need to re-create your AKS cluster.
-
-Important
-
-AKS preview features are available on a self-service, opt-in basis. Previews are provided "as is" and "as available," and they're excluded from the service-level agreements and limited warranty. AKS previews are partially covered by customer support on a best-effort basis. As such, these features aren't meant for production use. For more information, see the following support articles:
-
-## Requirements and parameters
-
-| Requirement or parameter | Supported versions or values | Description |
-|---|---|---|
-| Feature flag | `EnableAzureCNIOverlayPodCIDRExpansion` |
-This feature flag must be registered in your subscription to enable pod CIDR expansion in Azure CNI Overlay AKS clusters. |
-| Azure CLI version | 2.48.0 or later | The Azure CLI version must be 2.48.0 or later to support the pod CIDR expansion feature. |
-| Kubernetes version | 1.33 | Pod CIDR expansion is supported only on AKS clusters running Kubernetes version 1.33. |
-| Node operating system | Linux | Pod CIDR expansion is supported only on Azure CNI Overlay AKS clusters with Linux nodes. |
-| Networking mode | Azure CNI Overlay | Pod CIDR expansion is supported only on AKS clusters that use Azure CNI Overlay networking. |
-| Example original pod CIDR | `10.244.0.0/18` |
-This is an example of a starting pod CIDR block. |
-| Example expanded pod CIDR | `10.244.0.0/16` |
-This is an example of a target expanded pod CIDR block. |
-
-## Limitations
-
-- Windows nodes and hybrid node scenarios aren't supported.
-- Shrinking or changing the pod CIDR isn't supported.
-- Adding a discontinuous pod CIDR isn't supported. The new pod CIDR must be a larger superset that contains the complete original range.
-- IPv6 pod CIDR expansion isn't supported.
-- Changing multiple pod CIDR blocks via
-`--pod-cidrs`
-
-isn't supported. - If an
-[Azure availability zone](availability-zones)is down during the expansion operation, new nodes might appear as`unready`
-
-. You can expect these nodes to reconcile after the availability zone is up.
-
-## Prerequisites
-
-- You need an Azure subscription. If you don't have an Azure subscription, create a
-[free account](https://azure.microsoft.com/free/)before you begin. - Ensure that you meet the requirements listed in the
-[Requirements and parameters](#requirements-and-parameters)section.
-
-## Register the `EnableAzureCNIOverlayPodCIDRExpansion`
-
-feature flag
-
-Register the
-
-`EnableAzureCNIOverlayPodCIDRExpansion`
-
-feature flag by using thecommand:`az feature register`
-
-`az feature register --namespace Microsoft.ContainerService --name EnableAzureCNIOverlayPodCIDRExpansion`
-
-Verify successful registration by using the
-
-command. It takes a few minutes for the registration to finish.`az feature show`
-
-`az feature show --namespace "Microsoft.ContainerService" --name "EnableAzureCNIOverlayPodCIDRExpansion"`
-
-After the feature shows
-
-`Registered`
-
-, refresh the registration of the`Microsoft.ContainerService`
-
-resource provider by using thecommand:`az provider register`
-
-`az provider register --namespace Microsoft.ContainerService`
-
-
-## Update an Azure CNI Overlay AKS cluster to expand the pod CIDR space
-
-Starting from a pod CIDR block of
-
-`10.244.0.0/18`
-
-, you can expand the pod CIDR space by using thecommand. For example:`az aks update`
-
-`az aks update \ --name $CLUSTER_NAME \ --resource-group $RESOURCE_GROUP \ --pod-cidr 10.244.0.0/16`
-
-Note
-
-Although the update operation might successfully finish and show the new pod CIDR in the network profile, be sure to validate the new cluster state through
-
-`NodeNetworkConfig`
-
-(`nnc`
-
-).Verify the state of the upgrade operation by checking
-
-`NodeNetworkConfig`
-
-(`nnc`
-
-) via the`kubectl get nnc`
-
-command. In the output, all node pools should match your new pod CIDR block (for example,`10.244.0.0/16`
-
-).`kubectl get nnc -A -o jsonpath='{range .items[*]}{.metadata.name}{" "}{.status.networkContainers[0].subnetAddressSpace}{"\n"}{end}'`
-
-
-## Related content
-
-To learn more about Azure CNI Overlay networking on AKS, see the following articles:
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-azure-container-storage -->
 
 # Tutorial - Deploy Azure Container Storage (version 1.x.x) on an AKS cluster
@@ -2147,6 +1900,146 @@ In this tutorial, you deployed Azure Container Storage (version 1.x.x) on your A
 - Deploy a pod with a generic ephemeral volume.
 
 In the next tutorial, you learn how to deploy an application to your cluster.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/node-updates-kured -->
+
+# Apply security and kernel updates to Linux nodes in Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+To protect your clusters, security updates are automatically applied to Linux nodes in AKS. These updates include OS security fixes or kernel updates. Some of these updates require a node reboot to complete the process. AKS doesn't automatically reboot these Linux nodes to complete the update process.
+
+The process to keep Windows Server nodes up to date is a little different. Windows Server nodes don't receive daily updates. Instead, you perform an AKS upgrade that deploys new nodes with the latest base Window Server image and patches. For AKS clusters that use Windows Server nodes, see [Upgrade a node pool in AKS](manage-node-pools#upgrade-a-single-node-pool).
+
+This article shows you how to use the open-source [kured (KUbernetes REboot Daemon)](https://github.com/kubereboot/kured) to watch for Linux nodes that require a reboot, then automatically handle the rescheduling of running pods and node reboot process.
+
+Note
+
+`Kured`
+
+is an open-source project in the Cloud Native Computing Foundation. Please direct issues to the [kured GitHub](https://github.com/kubereboot/kured). Additional support can be found in the #kured channel on [CNCF Slack](https://slack.cncf.io).
+
+Important
+
+Open-source software is mentioned throughout AKS documentation and samples. Software that you deploy is excluded from AKS service-level agreements, limited warranty, and Azure support. As you use open-source technology alongside AKS, consult the support options available from the respective communities and project maintainers to develop a plan.
+
+Microsoft takes responsibility for building the open-source packages that we deploy on AKS. That responsibility includes having complete ownership of the build, scan, sign, validate, and hotfix process, along with control over the binaries in container images. For more information, see [Vulnerability management for AKS](concepts-vulnerability-management#aks-container-images) and [AKS support coverage](support-policies#aks-support-coverage).
+
+Important
+
+Starting on **November 30, 2025**, Azure Kubernetes Service (AKS) no longer supports or provides security updates for Azure Linux 2.0. The Azure Linux 2.0 node image is frozen at the [202512.06.0 release](https://raw.githubusercontent.com/Azure/AgentBaker/main/vhdbuilder/release-notes/AKSCBLMarinerV2/gen2/202512.06.0.txt). Beginning on **March 31, 2026**, node images will be removed, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by [upgrading your node pools](/en-us/azure/aks/upgrade-aks-cluster) to a supported Kubernetes version or migrating to [osSku AzureLinux3](/en-us/azure/aks/upgrade-os-version). For more information, see the [Retirement GitHub issue](https://github.com/Azure/AKS/issues/4988) and the [Azure Updates retirement announcement](https://azure.microsoft.com/updates?id=500645). To stay informed on announcements and updates, follow the [AKS release notes](https://github.com/Azure/AKS/releases).
+
+## Before you begin
+
+You need the Azure CLI version 2.0.59 or later installed and configured. Run `az --version`
+
+to find the version. If you need to install or upgrade, see [Install Azure CLI](/en-us/cli/azure/install-azure-cli).
+
+## Understand the AKS node update experience
+
+In an AKS cluster, your Kubernetes nodes run as Azure virtual machines (VMs). These Linux-based VMs use an Ubuntu or Azure Linux image, with the OS configured to automatically check for updates every day. If security or kernel updates are available, they're automatically downloaded and installed.
+
+Some security updates, such as kernel updates, require a node reboot to finalize the process. A Linux node that requires a reboot creates a file named */var/run/reboot-required*. This reboot process doesn't happen automatically.
+
+You can use your own workflows and processes to handle node reboots, or use `kured`
+
+to orchestrate the process. With `kured`
+
+, a [DaemonSet](concepts-clusters-workloads#statefulsets-and-daemonsets) is deployed that runs a pod on each Linux node in the cluster. These pods in the DaemonSet watch for existence of the */var/run/reboot-required* file, and then initiate a process to reboot the nodes.
+
+### Node image upgrades
+
+Unattended upgrades apply updates to the Linux node OS, but the image used to create nodes for your cluster remains unchanged. If a new Linux node is added to your cluster, the original image is used to create the node. This new node receives all the security and kernel updates available during the automatic check every day but remains unpatched until all checks and restarts are complete.
+
+Alternatively, you can use node image upgrade to check for and update node images used by your cluster. For more information on node image upgrade, see [Azure Kubernetes Service (AKS) node image upgrade](node-image-upgrade).
+
+### Node upgrades
+
+There's another process in AKS that lets you *upgrade* a cluster. An upgrade is typically to move to a newer version of Kubernetes, not just apply node security updates. An AKS upgrade performs the following actions:
+
+- A new node is deployed with the latest security updates and Kubernetes version applied.
+- An old node is cordoned and drained.
+- Pods are scheduled on the new node.
+- The old node is deleted.
+
+You can't remain on the same Kubernetes version during an upgrade event. You must specify a newer version of Kubernetes. To upgrade to the latest version of Kubernetes, you can [upgrade your AKS cluster](upgrade-cluster).
+
+## Deploy kured in an AKS cluster
+
+To deploy the `kured`
+
+DaemonSet, install the following official Kured Helm chart. This creates a role and cluster role, bindings, and a service account, then deploys the DaemonSet using `kured`
+
+.
+
+```
+# Add the Kured Helm repository
+helm repo add kubereboot https://kubereboot.github.io/charts/
+# Update your local Helm chart repository cache
+helm repo update
+# Create a dedicated namespace where you would like to deploy kured into
+kubectl create namespace kured
+# Install kured in that namespace with Helm 3 (only on Linux nodes, kured is not working on Windows nodes)
+helm install my-release kubereboot/kured --namespace kured --set controller.nodeSelector."kubernetes\.io/os"=linux
+```
+
+
+You can also configure extra parameters for `kured`
+
+, such as integration with Prometheus or Slack. For more information about configuration parameters, see the [kured Helm chart](https://github.com/kubereboot/charts/tree/main/charts/kured).
+
+## Update cluster nodes
+
+By default, Linux nodes in AKS check for updates every evening. If you don't want to wait, you can manually perform an update to check that `kured`
+
+runs correctly. First, follow the steps to [SSH to one of your AKS nodes](ssh). Once you have an SSH connection to the Linux node, check for updates and apply them as follows:
+
+```
+sudo apt-get update && sudo apt-get upgrade -y
+```
+
+
+If updates were applied that require a node reboot, a file is written to */var/run/reboot-required*. `Kured`
+
+checks for nodes that require a reboot every 60 minutes by default.
+
+## Monitor and review reboot process
+
+When one of the replicas in the DaemonSet detects that a node reboot is required, a lock is placed on the node through the Kubernetes API. This lock prevents more pods from being scheduled on the node. The lock also indicates that only one node should be rebooted at a time. With the node cordoned off, running pods are drained from the node, and the node is rebooted.
+
+You can monitor the status of the nodes using the [kubectl get nodes](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command. The following example output shows a node with a status of *SchedulingDisabled* as the node prepares for the reboot process:
+
+```
+NAME STATUS ROLES AGE VERSION
+aks-nodepool1-28993262-0 Ready,SchedulingDisabled agent 1h v1.11.7
+```
+
+
+Once the update process is complete, you can view the status of the nodes using the [kubectl get nodes](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command with the `--output wide`
+
+parameter. This output lets you see a difference in *KERNEL-VERSION* of the underlying nodes, as shown in the following example output. The *aks-nodepool1-28993262-0* was updated in a previous step and shows kernel version *4.15.0-1039-azure*. The node *aks-nodepool1-28993262-1* that hasn't been updated shows kernel version *4.15.0-1037-azure*.
+
+```
+NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
+aks-nodepool1-28993262-0 Ready agent 1h v1.11.7 10.240.0.4 <none> Ubuntu 16.04.6 LTS 4.15.0-1039-azure docker://3.0.4
+aks-nodepool1-28993262-1 Ready agent 1h v1.11.7 10.240.0.5 <none> Ubuntu 16.04.6 LTS 4.15.0-1037-azure docker://3.0.4
+```
+
+
+## Next steps
+
+This article detailed how to use `kured`
+
+to reboot Linux nodes automatically as part of the security update process. To upgrade to the latest version of Kubernetes, you can [upgrade your AKS cluster](upgrade-cluster).
+
+For AKS clusters that use Windows Server nodes, see [Upgrade a node pool in AKS](manage-node-pools#upgrade-a-single-node-pool).
+
+For a detailed discussion of upgrade best practices and other considerations, see [AKS patch and upgrade guidance](/en-us/azure/architecture/operator-guides/aks/aks-upgrade-practices).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/private-clusters -->
@@ -2506,146 +2399,6 @@ The command returns output similar to the following example output:
 <!-- Source: N/A -->
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/aks/node-updates-kured -->
-
-# Apply security and kernel updates to Linux nodes in Azure Kubernetes Service (AKS)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-To protect your clusters, security updates are automatically applied to Linux nodes in AKS. These updates include OS security fixes or kernel updates. Some of these updates require a node reboot to complete the process. AKS doesn't automatically reboot these Linux nodes to complete the update process.
-
-The process to keep Windows Server nodes up to date is a little different. Windows Server nodes don't receive daily updates. Instead, you perform an AKS upgrade that deploys new nodes with the latest base Window Server image and patches. For AKS clusters that use Windows Server nodes, see [Upgrade a node pool in AKS](manage-node-pools#upgrade-a-single-node-pool).
-
-This article shows you how to use the open-source [kured (KUbernetes REboot Daemon)](https://github.com/kubereboot/kured) to watch for Linux nodes that require a reboot, then automatically handle the rescheduling of running pods and node reboot process.
-
-Note
-
-`Kured`
-
-is an open-source project in the Cloud Native Computing Foundation. Please direct issues to the [kured GitHub](https://github.com/kubereboot/kured). Additional support can be found in the #kured channel on [CNCF Slack](https://slack.cncf.io).
-
-Important
-
-Open-source software is mentioned throughout AKS documentation and samples. Software that you deploy is excluded from AKS service-level agreements, limited warranty, and Azure support. As you use open-source technology alongside AKS, consult the support options available from the respective communities and project maintainers to develop a plan.
-
-Microsoft takes responsibility for building the open-source packages that we deploy on AKS. That responsibility includes having complete ownership of the build, scan, sign, validate, and hotfix process, along with control over the binaries in container images. For more information, see [Vulnerability management for AKS](concepts-vulnerability-management#aks-container-images) and [AKS support coverage](support-policies#aks-support-coverage).
-
-Important
-
-Starting on **November 30, 2025**, Azure Kubernetes Service (AKS) no longer supports or provides security updates for Azure Linux 2.0. The Azure Linux 2.0 node image is frozen at the [202512.06.0 release](https://raw.githubusercontent.com/Azure/AgentBaker/main/vhdbuilder/release-notes/AKSCBLMarinerV2/gen2/202512.06.0.txt). Beginning on **March 31, 2026**, node images will be removed, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by [upgrading your node pools](/en-us/azure/aks/upgrade-aks-cluster) to a supported Kubernetes version or migrating to [osSku AzureLinux3](/en-us/azure/aks/upgrade-os-version). For more information, see the [Retirement GitHub issue](https://github.com/Azure/AKS/issues/4988) and the [Azure Updates retirement announcement](https://azure.microsoft.com/updates?id=500645). To stay informed on announcements and updates, follow the [AKS release notes](https://github.com/Azure/AKS/releases).
-
-## Before you begin
-
-You need the Azure CLI version 2.0.59 or later installed and configured. Run `az --version`
-
-to find the version. If you need to install or upgrade, see [Install Azure CLI](/en-us/cli/azure/install-azure-cli).
-
-## Understand the AKS node update experience
-
-In an AKS cluster, your Kubernetes nodes run as Azure virtual machines (VMs). These Linux-based VMs use an Ubuntu or Azure Linux image, with the OS configured to automatically check for updates every day. If security or kernel updates are available, they're automatically downloaded and installed.
-
-Some security updates, such as kernel updates, require a node reboot to finalize the process. A Linux node that requires a reboot creates a file named */var/run/reboot-required*. This reboot process doesn't happen automatically.
-
-You can use your own workflows and processes to handle node reboots, or use `kured`
-
-to orchestrate the process. With `kured`
-
-, a [DaemonSet](concepts-clusters-workloads#statefulsets-and-daemonsets) is deployed that runs a pod on each Linux node in the cluster. These pods in the DaemonSet watch for existence of the */var/run/reboot-required* file, and then initiate a process to reboot the nodes.
-
-### Node image upgrades
-
-Unattended upgrades apply updates to the Linux node OS, but the image used to create nodes for your cluster remains unchanged. If a new Linux node is added to your cluster, the original image is used to create the node. This new node receives all the security and kernel updates available during the automatic check every day but remains unpatched until all checks and restarts are complete.
-
-Alternatively, you can use node image upgrade to check for and update node images used by your cluster. For more information on node image upgrade, see [Azure Kubernetes Service (AKS) node image upgrade](node-image-upgrade).
-
-### Node upgrades
-
-There's another process in AKS that lets you *upgrade* a cluster. An upgrade is typically to move to a newer version of Kubernetes, not just apply node security updates. An AKS upgrade performs the following actions:
-
-- A new node is deployed with the latest security updates and Kubernetes version applied.
-- An old node is cordoned and drained.
-- Pods are scheduled on the new node.
-- The old node is deleted.
-
-You can't remain on the same Kubernetes version during an upgrade event. You must specify a newer version of Kubernetes. To upgrade to the latest version of Kubernetes, you can [upgrade your AKS cluster](upgrade-cluster).
-
-## Deploy kured in an AKS cluster
-
-To deploy the `kured`
-
-DaemonSet, install the following official Kured Helm chart. This creates a role and cluster role, bindings, and a service account, then deploys the DaemonSet using `kured`
-
-.
-
-```
-# Add the Kured Helm repository
-helm repo add kubereboot https://kubereboot.github.io/charts/
-# Update your local Helm chart repository cache
-helm repo update
-# Create a dedicated namespace where you would like to deploy kured into
-kubectl create namespace kured
-# Install kured in that namespace with Helm 3 (only on Linux nodes, kured is not working on Windows nodes)
-helm install my-release kubereboot/kured --namespace kured --set controller.nodeSelector."kubernetes\.io/os"=linux
-```
-
-
-You can also configure extra parameters for `kured`
-
-, such as integration with Prometheus or Slack. For more information about configuration parameters, see the [kured Helm chart](https://github.com/kubereboot/charts/tree/main/charts/kured).
-
-## Update cluster nodes
-
-By default, Linux nodes in AKS check for updates every evening. If you don't want to wait, you can manually perform an update to check that `kured`
-
-runs correctly. First, follow the steps to [SSH to one of your AKS nodes](ssh). Once you have an SSH connection to the Linux node, check for updates and apply them as follows:
-
-```
-sudo apt-get update && sudo apt-get upgrade -y
-```
-
-
-If updates were applied that require a node reboot, a file is written to */var/run/reboot-required*. `Kured`
-
-checks for nodes that require a reboot every 60 minutes by default.
-
-## Monitor and review reboot process
-
-When one of the replicas in the DaemonSet detects that a node reboot is required, a lock is placed on the node through the Kubernetes API. This lock prevents more pods from being scheduled on the node. The lock also indicates that only one node should be rebooted at a time. With the node cordoned off, running pods are drained from the node, and the node is rebooted.
-
-You can monitor the status of the nodes using the [kubectl get nodes](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command. The following example output shows a node with a status of *SchedulingDisabled* as the node prepares for the reboot process:
-
-```
-NAME STATUS ROLES AGE VERSION
-aks-nodepool1-28993262-0 Ready,SchedulingDisabled agent 1h v1.11.7
-```
-
-
-Once the update process is complete, you can view the status of the nodes using the [kubectl get nodes](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command with the `--output wide`
-
-parameter. This output lets you see a difference in *KERNEL-VERSION* of the underlying nodes, as shown in the following example output. The *aks-nodepool1-28993262-0* was updated in a previous step and shows kernel version *4.15.0-1039-azure*. The node *aks-nodepool1-28993262-1* that hasn't been updated shows kernel version *4.15.0-1037-azure*.
-
-```
-NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
-aks-nodepool1-28993262-0 Ready agent 1h v1.11.7 10.240.0.4 <none> Ubuntu 16.04.6 LTS 4.15.0-1039-azure docker://3.0.4
-aks-nodepool1-28993262-1 Ready agent 1h v1.11.7 10.240.0.5 <none> Ubuntu 16.04.6 LTS 4.15.0-1037-azure docker://3.0.4
-```
-
-
-## Next steps
-
-This article detailed how to use `kured`
-
-to reboot Linux nodes automatically as part of the security update process. To upgrade to the latest version of Kubernetes, you can [upgrade your AKS cluster](upgrade-cluster).
-
-For AKS clusters that use Windows Server nodes, see [Upgrade a node pool in AKS](manage-node-pools#upgrade-a-single-node-pool).
-
-For a detailed discussion of upgrade best practices and other considerations, see [AKS patch and upgrade guidance](/en-us/azure/architecture/operator-guides/aks/aks-upgrade-practices).
-
----
 <!-- Source: N/A -->
 
 ---
@@ -2784,9 +2537,6 @@ Configure virtual nodes for your clusters:
 [Create virtual nodes using Azure CLI](virtual-nodes-cli)[Create virtual nodes using the portal in Azure Kubernetes Services (AKS)](virtual-nodes-portal)
 
 Virtual nodes are often one component of a scaling solution in AKS. For more information on scaling solutions, see the following articles:
-
----
-<!-- Source: N/A -->
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/static-ip -->
@@ -2985,6 +2735,224 @@ Warning CreatingLoadBalancerFailed 6s (x2 over 12s) service-controller Error cre
 ## Next steps
 
 For more control over the network traffic to your applications, use the application routing addon for AKS. For more information about the app routing addon, see [Managed NGINX ingress with the application routing add-on](app-routing).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/deploy-ray -->
+
+# Configure and deploy a Ray cluster on Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+In this article, you configure and deploy a Ray cluster on Azure Kubernetes Service (AKS) using KubeRay. You also learn how to use the Ray cluster to train a simple machine learning model and display the results on the Ray Dashboard.
+
+This article provides two methods to deploy the Ray cluster on AKS:
+
+: Use the[Non-interactive deployment](#deploy-the-ray-sample-non-interactively)`deploy.sh`
+
+script in the GitHub repository to deploy the complete Ray sample non-interactively.: Follow the manual deployment steps to deploy the Ray sample to AKS.[Manual deployment](#manually-deploy-the-ray-sample)
+
+## Prerequisites
+
+- Review the
+[Ray cluster on AKS overview](ray-overview)to understand the components and deployment process. - An Azure subscription. If you don't have an Azure subscription, you can create a free account
+[here](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - The Azure CLI installed on your local machine. You can install it using the instructions in
+[How to install the Azure CLI](/en-us/cli/azure/install-azure-cli). - The
+[Azure Kubernetes Service Preview extension](/en-us/azure/aks/draft#install-the-aks-preview-azure-cli-extension)installed. [Helm](https://helm.sh/docs/intro/install/)installed.[Terraform client tools](https://developer.hashicorp.com/terraform/install)or[OpenTofu](https://opentofu.org/)installed. This article uses Terraform, but the modules used should be compatible with OpenTofu.
+
+## Deploy the Ray sample non-interactively
+
+If you want to deploy the complete Ray sample non-interactively, you can use the `deploy.sh`
+
+script in the GitHub repository ([https://github.com/Azure-Samples/aks-ray-sample](https://github.com/Azure-Samples/aks-ray-sample)). This script completes the steps outlined in the [Ray deployment process section](ray-overview#ray-deployment-process).
+
+Clone the GitHub repo locally and change to the root of the repo using the following commands:
+
+`git clone https://github.com/Azure-Samples/aks-ray-sample cd aks-ray-sample`
+
+Deploy the complete sample using the following commands:
+
+`chmod +x deploy.sh ./deploy.sh`
+
+Once the deployment completes, review the output of the logs and the resource group in the Azure portal to see the infrastructure that was created.
+
+
+## Manually deploy the Ray sample
+
+Fashion MNIST is a dataset of Zalando's article images consisting of a training set of 60,000 examples and a test set of 10,000 examples. Each example is a 28x28 grayscale image associated with a label from ten classes. In this guide, you train a simple PyTorch model on this dataset using the Ray cluster.
+
+### Deploy the RayJob specification
+
+To train the model, you need to submit a Ray Job specification to the KubeRay operator running on a private AKS cluster. The Ray Job specification is a YAML file that describes the resources required to run the job, including the Docker image, the command to run, and the number of workers to use.
+
+Looking at the Ray Job description, you might need to modify some fields to match your environment:
+
+- The
+`replicas`
+
+field under the`workerGroupSpecs`
+
+section in`rayClusterSpec`
+
+specifies the number of worker pods that KubeRay schedules to the Kubernetes cluster. Each worker pod requires*3 CPUs*and*4 GB of memory*. The head pod requires*1 CPU*and*4 GB of memory*. Setting the`replicas`
+
+field to*2*requires*8 vCPUs*in the node pool used to implement the RayCluster for the job. - The
+`NUM_WORKERS`
+
+field under`runtimeEnvYAML`
+
+in`spec`
+
+specifies the number of Ray actors to launch. Each Ray actor must be serviced by a worker pod in the Kubernetes cluster, so this field must be less than or equal to the`replicas`
+
+field. In this example, we set`NUM_WORKERS`
+
+to*2*, which matches the`replicas`
+
+field. - The
+`CPUS_PER_WORKER`
+
+field must be set to*less than or equal the number of CPUs allocated to each worker pod minus 1*. In this example, the CPU resource request per worker pod is*3*, so`CPUS_PER_WORKER`
+
+is set to*2*.
+
+To summarize, you need a total of *8 vCPUs* in the node pool to run the PyTorch model training job. Since we added a taint on the system node pool so that no user pods can be scheduled on it, we must create a new node pool with at least *8 vCPUs* to host the Ray cluster.
+
+Download the Ray Job specification file using the following command:
+
+`curl -LO https://raw.githubusercontent.com/ray-project/kuberay/master/ray-operator/config/samples/pytorch-mnist/ray-job.pytorch-mnist.yaml`
+
+Make any necessary modifications to the Ray Job specification file.
+
+Launch the PyTorch model training job using the
+
+`kubectl apply`
+
+command.`kubectl apply -n kuberay -f ray-job.pytorch-mnist.yaml`
+
+
+### Verify the RayJob deployment
+
+Verify that you have two worker pods and one head pod running in the namespace using the
+
+`kubectl get pods`
+
+command.`kubectl get pods -n kuberay`
+
+Your output should look similar to the following example output:
+
+`NAME READY STATUS RESTARTS AGE kuberay-operator-7d7998bcdb-9h8hx 1/1 Running 0 3d2h pytorch-mnist-raycluster-s7xd9-worker-small-group-knpgl 1/1 Running 0 6m15s pytorch-mnist-raycluster-s7xd9-worker-small-group-p74cm 1/1 Running 0 6m15s rayjob-pytorch-mnist-fc959 1/1 Running 0 5m35s rayjob-pytorch-mnist-raycluster-s7xd9-head-l24hn 1/1 Running 0 6m15s`
+
+Check the status of the RayJob using the
+
+`kubectl get`
+
+command.`kubectl get rayjob -n kuberay`
+
+Your output should look similar to the following example output:
+
+`NAME JOB STATUS DEPLOYMENT STATUS START TIME END TIME AGE rayjob-pytorch-mnist RUNNING Running 2024-11-22T03:08:22Z 9m36s`
+
+Wait until the RayJob completes. This might take a few minutes. Once the
+
+`JOB STATUS`
+
+is`SUCCEEDED`
+
+, you can check the training logs. You can do this by first getting the name of the pod running the RayJob using the`kubectl get pods`
+
+command.`kubectl get pods -n kuberay`
+
+In the output, you should see a pod with a name that starts with
+
+`rayjob-pytorch-mnist`
+
+, similar to the following example output:`NAME READY STATUS RESTARTS AGE kuberay-operator-7d7998bcdb-9h8hx 1/1 Running 0 3d2h pytorch-mnist-raycluster-s7xd9-worker-small-group-knpgl 1/1 Running 0 14m pytorch-mnist-raycluster-s7xd9-worker-small-group-p74cm 1/1 Running 0 14m rayjob-pytorch-mnist-fc959 0/1 Completed 0 13m rayjob-pytorch-mnist-raycluster-s7xd9-head-l24hn 1/1 Running 0 14m`
+
+View the logs of the RayJob using the
+
+`kubectl logs`
+
+command. Make sure to replace`rayjob-pytorch-mnist-fc959`
+
+with the name of the pod running your RayJob.`kubectl logs -n kuberay rayjob-pytorch-mnist-fc959`
+
+In the output, you should see the training logs for the PyTorch model, similar to the following example output:
+
+`2024-11-21 19:09:04,986 INFO cli.py:39 -- Job submission server address: http://rayjob-pytorch-mnist-raycluster-s7xd9-head-svc.kuberay.svc.cluster.local:8265 2024-11-21 19:09:05,712 SUCC cli.py:63 -- ------------------------------------------------------- 2024-11-21 19:09:05,713 SUCC cli.py:64 -- Job 'rayjob-pytorch-mnist-hndpx' submitted successfully 2024-11-21 19:09:05,713 SUCC cli.py:65 -- ------------------------------------------------------- 2024-11-21 19:09:05,713 INFO cli.py:289 -- Next steps 2024-11-21 19:09:05,713 INFO cli.py:290 -- Query the logs of the job: 2024-11-21 19:09:05,713 INFO cli.py:292 -- ray job logs rayjob-pytorch-mnist-hndpx 2024-11-21 19:09:05,713 INFO cli.py:294 -- Query the status of the job: ... View detailed results here: /home/ray/ray_results/TorchTrainer_2024-11-21_19-11-23 To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2024-11-21_19-08-24_556164_1/artifacts/2024-11-21_19-11-24/TorchTrainer_2024-11-21_19-11-23/driver_artifacts` Training started with configuration: ╭─────────────────────────────────────────────────╮ │ Training config │ ├─────────────────────────────────────────────────┤ │ train_loop_config/batch_size_per_worker 16 │ │ train_loop_config/epochs 10 │ │ train_loop_config/lr 0.001 │ ╰─────────────────────────────────────────────────╯ (RayTrainWorker pid=1193, ip=10.244.4.193) Setting up process group for: env:// [rank=0, world_size=2] (TorchTrainer pid=1138, ip=10.244.4.193) Started distributed worker processes: (TorchTrainer pid=1138, ip=10.244.4.193) - (node_id=3ea81f12c0f73ebfbd5b46664e29ced00266e69355c699970e1d824b, ip=10.244.4.193, pid=1193) world_rank=0, local_rank=0, node_rank=0 (TorchTrainer pid=1138, ip=10.244.4.193) - (node_id=2b00ea2b369c9d27de9596ce329daad1d24626b149975cf23cd10ea3, ip=10.244.1.42, pid=1341) world_rank=1, local_rank=0, node_rank=1 (RayTrainWorker pid=1341, ip=10.244.1.42) Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz (RayTrainWorker pid=1193, ip=10.244.4.193) Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz to /home/ray/data/FashionMNIST/raw/train-images-idx3-ubyte.gz (RayTrainWorker pid=1193, ip=10.244.4.193) 0%| | 0.00/26.4M [00:00<?, ?B/s] (RayTrainWorker pid=1193, ip=10.244.4.193) 0%| | 65.5k/26.4M [00:00<01:13, 356kB/s] (RayTrainWorker pid=1193, ip=10.244.4.193) 100%|██████████| 26.4M/26.4M [00:01<00:00, 18.9MB/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Extracting /home/ray/data/FashionMNIST/raw/train-images-idx3-ubyte.gz to /home/ray/data/FashionMNIST/raw (RayTrainWorker pid=1341, ip=10.244.1.42) 100%|██████████| 26.4M/26.4M [00:01<00:00, 18.7MB/s] ... Training finished iteration 1 at 2024-11-21 19:15:46. Total running time: 4min 22s ╭───────────────────────────────╮ │ Training result │ ├───────────────────────────────┤ │ checkpoint_dir_name │ │ time_this_iter_s 144.9 │ │ time_total_s 144.9 │ │ training_iteration 1 │ │ accuracy 0.805 │ │ loss 0.52336 │ ╰───────────────────────────────╯ (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 0: 97%|█████████▋| 303/313 [00:01<00:00, 269.60it/s] Test Epoch 0: 100%|██████████| 313/313 [00:01<00:00, 267.14it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 1: 0%| | 0/1875 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 0: 100%|██████████| 313/313 [00:01<00:00, 270.44it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 0: 100%|█████████▉| 1866/1875 [00:24<00:00, 82.49it/s] [repeated 35x across cluster] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 0: 100%|██████████| 1875/1875 [00:24<00:00, 77.99it/s] Train Epoch 0: 100%|██████████| 1875/1875 [00:24<00:00, 76.19it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 0: 0%| | 0/313 [00:00<?, ?it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 0: 88%|████████▊ | 275/313 [00:01<00:00, 265.39it/s] [repeated 19x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 19%|█▉ | 354/1875 [00:04<00:18, 82.66it/s] [repeated 80x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 0%| | 0/1875 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 40%|████ | 757/1875 [00:09<00:13, 83.01it/s] [repeated 90x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 62%|██████▏ | 1164/1875 [00:14<00:08, 83.39it/s] [repeated 92x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 82%|████████▏ | 1533/1875 [00:19<00:05, 68.09it/s] [repeated 91x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 91%|█████████▏| 1713/1875 [00:22<00:02, 70.20it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 1: 91%|█████████ | 1707/1875 [00:22<00:02, 70.04it/s] [repeated 47x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 0%| | 0/313 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 8%|▊ | 24/313 [00:00<00:01, 237.98it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 1: 96%|█████████▋| 302/313 [00:01<00:00, 250.76it/s] Test Epoch 1: 100%|██████████| 313/313 [00:01<00:00, 262.94it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 2: 0%| | 0/1875 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 92%|█████████▏| 289/313 [00:01<00:00, 222.57it/s] Training finished iteration 2 at 2024-11-21 19:16:12. Total running time: 4min 48s ╭───────────────────────────────╮ │ Training result │ ├───────────────────────────────┤ │ checkpoint_dir_name │ │ time_this_iter_s 25.975 │ │ time_total_s 170.875 │ │ training_iteration 2 │ │ accuracy 0.828 │ │ loss 0.45946 │ ╰───────────────────────────────╯ (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 100%|██████████| 313/313 [00:01<00:00, 226.04it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 1: 100%|██████████| 1875/1875 [00:24<00:00, 76.24it/s] [repeated 45x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 2: 13%|█▎ | 239/1875 [00:03<00:24, 67.30it/s] [repeated 64x across cluster] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 1: 0%| | 0/313 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 85%|████████▍ | 266/313 [00:01<00:00, 222.54it/s] [repeated 20x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) .. Training completed after 10 iterations at 2024-11-21 19:19:47. Total running time: 8min 23s 2024-11-21 19:19:47,596 INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/home/ray/ray_results/TorchTrainer_2024-11-21_19-11-23' in 0.0029s. Training result: Result( metrics={'loss': 0.35892221605786073, 'accuracy': 0.872}, path='/home/ray/ray_results/TorchTrainer_2024-11-21_19-11-23/TorchTrainer_74867_00000_0_2024-11-21_19-11-24', filesystem='local', checkpoint=None ) (RayTrainWorker pid=1341, ip=10.244.1.42) Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz [repeated 7x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz to /home/ray/data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz [repeated 7x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Extracting /home/ray/data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz to /home/ray/data/FashionMNIST/raw [repeated 7x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 9: 91%|█████████ | 1708/1875 [00:21<00:01, 83.84it/s] [repeated 23x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 9: 100%|██████████| 1875/1875 [00:23<00:00, 78.52it/s] [repeated 37x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 9: 0%| | 0/313 [00:00<?, ?it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 9: 89%|████████▉ | 278/313 [00:01<00:00, 266.46it/s] [repeated 19x across cluster] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 9: 97%|█████████▋| 305/313 [00:01<00:00, 256.69it/s] Test Epoch 9: 100%|██████████| 313/313 [00:01<00:00, 267.35it/s] 2024-11-21 19:19:51,728 SUCC cli.py:63 -- ------------------------------------------ 2024-11-21 19:19:51,728 SUCC cli.py:64 -- Job 'rayjob-pytorch-mnist-hndpx' succeeded 2024-11-21 19:19:51,728 SUCC cli.py:65 -- ------------------------------------------`
+
+
+## View training results on the Ray Dashboard
+
+When the RayJob successfully completes, you can view the training results on the Ray Dashboard. The Ray Dashboard provides real-time monitoring and visualizations of Ray clusters. You can use the Ray Dashboard to monitor the status of Ray clusters, view logs, and visualize the results of machine learning jobs.
+
+To access the Ray Dashboard, you need to expose the Ray head service to the public internet by creating a *service shim* to expose the Ray head service on port 80 instead of port 8265.
+
+Note
+
+The `deploy.sh`
+
+described in the previous section automatically exposes the Ray head service to the public internet. The following steps are included in the `deploy.sh`
+
+script.
+
+Get the name of the Ray head service and save it in a shell variable using the following command:
+
+`rayclusterhead=$(kubectl get service -n $kuberay_namespace | grep 'rayjob-pytorch-mnist-raycluster' | grep 'ClusterIP' | awk '{print $1}')`
+
+Create the service shim to expose the Ray head service on port 80 using the
+
+`kubectl expose service`
+
+command.`kubectl expose service $rayclusterhead \ -n $kuberay_namespace \ --port=80 \ --target-port=8265 \ --type=NodePort \ --name=ray-dash`
+
+Create the ingress to expose the service shim using the ingress controller using the following command:
+
+`cat <<EOF | kubectl apply -f - apiVersion: networking.k8s.io/v1 kind: Ingress metadata: name: ray-dash namespace: kuberay annotations: nginx.ingress.kubernetes.io/rewrite-target: / spec: ingressClassName: webapprouting.kubernetes.azure.com rules: - http: paths: - backend: service: name: ray-dash port: number: 80 path: / pathType: Prefix EOF`
+
+Get the public IP address of the ingress controller using the
+
+`kubectl get service`
+
+command.`kubectl get service -n app-routing-system`
+
+In the output, you should see the public IP address of the load balancer attached to the ingress controller. Copy the public IP address and paste it into a web browser. You should see the Ray Dashboard.
+
+
+## Clean up resources
+
+To clean up the resources created in this guide, you can delete the Azure resource group that contains the AKS cluster.
+
+## Next steps
+
+To learn more about AI and machine learning workloads on AKS, see the following articles:
+
+[Deploy an application that uses OpenAI on Azure Kubernetes Service (AKS)](open-ai-quickstart)[Build and deploy data and machine learning pipelines with Flyte on Azure Kubernetes Service (AKS)](use-flyte)[Deploy an AI model on Azure Kubernetes Service (AKS) with the AI toolchain operator](ai-toolchain-operator)
+
+## Contributors
+
+*Microsoft maintains this article. The following contributors originally wrote it:*
+
+- Russell de Pina | Principal TPM
+- Ken Kilty | Principal TPM
+- Erin Schaffer | Content Developer 2
+- Adrian Joian | Principal Customer Engineer
+- Ryan Graham | Principal Technical Specialist
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/istio-deploy-addon -->
@@ -3316,224 +3284,6 @@ To test this sample application against ingress, check out [next-steps](#next-st
 [Deploy external or internal ingresses for Istio service mesh add-on](istio-deploy-ingress)[Scale istiod and ingress gateway HPA](istio-scale#scaling)[Collect metrics for Istio service mesh add-on workloads in Azure Managed Prometheus](istio-metrics-managed-prometheus)[Deploy egress gateways for the Istio service mesh add-on](istio-deploy-egress)[Enable Istio CNI for Istio service mesh add-on (Preview)](istio-cni)
 
 ---
-<!-- Source: N/A -->
-
----
-<!-- Source: N/A -->
-
----
-<!-- Source: N/A -->
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/aks/deploy-ray -->
-
-# Configure and deploy a Ray cluster on Azure Kubernetes Service (AKS)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-In this article, you configure and deploy a Ray cluster on Azure Kubernetes Service (AKS) using KubeRay. You also learn how to use the Ray cluster to train a simple machine learning model and display the results on the Ray Dashboard.
-
-This article provides two methods to deploy the Ray cluster on AKS:
-
-: Use the[Non-interactive deployment](#deploy-the-ray-sample-non-interactively)`deploy.sh`
-
-script in the GitHub repository to deploy the complete Ray sample non-interactively.: Follow the manual deployment steps to deploy the Ray sample to AKS.[Manual deployment](#manually-deploy-the-ray-sample)
-
-## Prerequisites
-
-- Review the
-[Ray cluster on AKS overview](ray-overview)to understand the components and deployment process. - An Azure subscription. If you don't have an Azure subscription, you can create a free account
-[here](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - The Azure CLI installed on your local machine. You can install it using the instructions in
-[How to install the Azure CLI](/en-us/cli/azure/install-azure-cli). - The
-[Azure Kubernetes Service Preview extension](/en-us/azure/aks/draft#install-the-aks-preview-azure-cli-extension)installed. [Helm](https://helm.sh/docs/intro/install/)installed.[Terraform client tools](https://developer.hashicorp.com/terraform/install)or[OpenTofu](https://opentofu.org/)installed. This article uses Terraform, but the modules used should be compatible with OpenTofu.
-
-## Deploy the Ray sample non-interactively
-
-If you want to deploy the complete Ray sample non-interactively, you can use the `deploy.sh`
-
-script in the GitHub repository ([https://github.com/Azure-Samples/aks-ray-sample](https://github.com/Azure-Samples/aks-ray-sample)). This script completes the steps outlined in the [Ray deployment process section](ray-overview#ray-deployment-process).
-
-Clone the GitHub repo locally and change to the root of the repo using the following commands:
-
-`git clone https://github.com/Azure-Samples/aks-ray-sample cd aks-ray-sample`
-
-Deploy the complete sample using the following commands:
-
-`chmod +x deploy.sh ./deploy.sh`
-
-Once the deployment completes, review the output of the logs and the resource group in the Azure portal to see the infrastructure that was created.
-
-
-## Manually deploy the Ray sample
-
-Fashion MNIST is a dataset of Zalando's article images consisting of a training set of 60,000 examples and a test set of 10,000 examples. Each example is a 28x28 grayscale image associated with a label from ten classes. In this guide, you train a simple PyTorch model on this dataset using the Ray cluster.
-
-### Deploy the RayJob specification
-
-To train the model, you need to submit a Ray Job specification to the KubeRay operator running on a private AKS cluster. The Ray Job specification is a YAML file that describes the resources required to run the job, including the Docker image, the command to run, and the number of workers to use.
-
-Looking at the Ray Job description, you might need to modify some fields to match your environment:
-
-- The
-`replicas`
-
-field under the`workerGroupSpecs`
-
-section in`rayClusterSpec`
-
-specifies the number of worker pods that KubeRay schedules to the Kubernetes cluster. Each worker pod requires*3 CPUs*and*4 GB of memory*. The head pod requires*1 CPU*and*4 GB of memory*. Setting the`replicas`
-
-field to*2*requires*8 vCPUs*in the node pool used to implement the RayCluster for the job. - The
-`NUM_WORKERS`
-
-field under`runtimeEnvYAML`
-
-in`spec`
-
-specifies the number of Ray actors to launch. Each Ray actor must be serviced by a worker pod in the Kubernetes cluster, so this field must be less than or equal to the`replicas`
-
-field. In this example, we set`NUM_WORKERS`
-
-to*2*, which matches the`replicas`
-
-field. - The
-`CPUS_PER_WORKER`
-
-field must be set to*less than or equal the number of CPUs allocated to each worker pod minus 1*. In this example, the CPU resource request per worker pod is*3*, so`CPUS_PER_WORKER`
-
-is set to*2*.
-
-To summarize, you need a total of *8 vCPUs* in the node pool to run the PyTorch model training job. Since we added a taint on the system node pool so that no user pods can be scheduled on it, we must create a new node pool with at least *8 vCPUs* to host the Ray cluster.
-
-Download the Ray Job specification file using the following command:
-
-`curl -LO https://raw.githubusercontent.com/ray-project/kuberay/master/ray-operator/config/samples/pytorch-mnist/ray-job.pytorch-mnist.yaml`
-
-Make any necessary modifications to the Ray Job specification file.
-
-Launch the PyTorch model training job using the
-
-`kubectl apply`
-
-command.`kubectl apply -n kuberay -f ray-job.pytorch-mnist.yaml`
-
-
-### Verify the RayJob deployment
-
-Verify that you have two worker pods and one head pod running in the namespace using the
-
-`kubectl get pods`
-
-command.`kubectl get pods -n kuberay`
-
-Your output should look similar to the following example output:
-
-`NAME READY STATUS RESTARTS AGE kuberay-operator-7d7998bcdb-9h8hx 1/1 Running 0 3d2h pytorch-mnist-raycluster-s7xd9-worker-small-group-knpgl 1/1 Running 0 6m15s pytorch-mnist-raycluster-s7xd9-worker-small-group-p74cm 1/1 Running 0 6m15s rayjob-pytorch-mnist-fc959 1/1 Running 0 5m35s rayjob-pytorch-mnist-raycluster-s7xd9-head-l24hn 1/1 Running 0 6m15s`
-
-Check the status of the RayJob using the
-
-`kubectl get`
-
-command.`kubectl get rayjob -n kuberay`
-
-Your output should look similar to the following example output:
-
-`NAME JOB STATUS DEPLOYMENT STATUS START TIME END TIME AGE rayjob-pytorch-mnist RUNNING Running 2024-11-22T03:08:22Z 9m36s`
-
-Wait until the RayJob completes. This might take a few minutes. Once the
-
-`JOB STATUS`
-
-is`SUCCEEDED`
-
-, you can check the training logs. You can do this by first getting the name of the pod running the RayJob using the`kubectl get pods`
-
-command.`kubectl get pods -n kuberay`
-
-In the output, you should see a pod with a name that starts with
-
-`rayjob-pytorch-mnist`
-
-, similar to the following example output:`NAME READY STATUS RESTARTS AGE kuberay-operator-7d7998bcdb-9h8hx 1/1 Running 0 3d2h pytorch-mnist-raycluster-s7xd9-worker-small-group-knpgl 1/1 Running 0 14m pytorch-mnist-raycluster-s7xd9-worker-small-group-p74cm 1/1 Running 0 14m rayjob-pytorch-mnist-fc959 0/1 Completed 0 13m rayjob-pytorch-mnist-raycluster-s7xd9-head-l24hn 1/1 Running 0 14m`
-
-View the logs of the RayJob using the
-
-`kubectl logs`
-
-command. Make sure to replace`rayjob-pytorch-mnist-fc959`
-
-with the name of the pod running your RayJob.`kubectl logs -n kuberay rayjob-pytorch-mnist-fc959`
-
-In the output, you should see the training logs for the PyTorch model, similar to the following example output:
-
-`2024-11-21 19:09:04,986 INFO cli.py:39 -- Job submission server address: http://rayjob-pytorch-mnist-raycluster-s7xd9-head-svc.kuberay.svc.cluster.local:8265 2024-11-21 19:09:05,712 SUCC cli.py:63 -- ------------------------------------------------------- 2024-11-21 19:09:05,713 SUCC cli.py:64 -- Job 'rayjob-pytorch-mnist-hndpx' submitted successfully 2024-11-21 19:09:05,713 SUCC cli.py:65 -- ------------------------------------------------------- 2024-11-21 19:09:05,713 INFO cli.py:289 -- Next steps 2024-11-21 19:09:05,713 INFO cli.py:290 -- Query the logs of the job: 2024-11-21 19:09:05,713 INFO cli.py:292 -- ray job logs rayjob-pytorch-mnist-hndpx 2024-11-21 19:09:05,713 INFO cli.py:294 -- Query the status of the job: ... View detailed results here: /home/ray/ray_results/TorchTrainer_2024-11-21_19-11-23 To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2024-11-21_19-08-24_556164_1/artifacts/2024-11-21_19-11-24/TorchTrainer_2024-11-21_19-11-23/driver_artifacts` Training started with configuration: ╭─────────────────────────────────────────────────╮ │ Training config │ ├─────────────────────────────────────────────────┤ │ train_loop_config/batch_size_per_worker 16 │ │ train_loop_config/epochs 10 │ │ train_loop_config/lr 0.001 │ ╰─────────────────────────────────────────────────╯ (RayTrainWorker pid=1193, ip=10.244.4.193) Setting up process group for: env:// [rank=0, world_size=2] (TorchTrainer pid=1138, ip=10.244.4.193) Started distributed worker processes: (TorchTrainer pid=1138, ip=10.244.4.193) - (node_id=3ea81f12c0f73ebfbd5b46664e29ced00266e69355c699970e1d824b, ip=10.244.4.193, pid=1193) world_rank=0, local_rank=0, node_rank=0 (TorchTrainer pid=1138, ip=10.244.4.193) - (node_id=2b00ea2b369c9d27de9596ce329daad1d24626b149975cf23cd10ea3, ip=10.244.1.42, pid=1341) world_rank=1, local_rank=0, node_rank=1 (RayTrainWorker pid=1341, ip=10.244.1.42) Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz (RayTrainWorker pid=1193, ip=10.244.4.193) Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz to /home/ray/data/FashionMNIST/raw/train-images-idx3-ubyte.gz (RayTrainWorker pid=1193, ip=10.244.4.193) 0%| | 0.00/26.4M [00:00<?, ?B/s] (RayTrainWorker pid=1193, ip=10.244.4.193) 0%| | 65.5k/26.4M [00:00<01:13, 356kB/s] (RayTrainWorker pid=1193, ip=10.244.4.193) 100%|██████████| 26.4M/26.4M [00:01<00:00, 18.9MB/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Extracting /home/ray/data/FashionMNIST/raw/train-images-idx3-ubyte.gz to /home/ray/data/FashionMNIST/raw (RayTrainWorker pid=1341, ip=10.244.1.42) 100%|██████████| 26.4M/26.4M [00:01<00:00, 18.7MB/s] ... Training finished iteration 1 at 2024-11-21 19:15:46. Total running time: 4min 22s ╭───────────────────────────────╮ │ Training result │ ├───────────────────────────────┤ │ checkpoint_dir_name │ │ time_this_iter_s 144.9 │ │ time_total_s 144.9 │ │ training_iteration 1 │ │ accuracy 0.805 │ │ loss 0.52336 │ ╰───────────────────────────────╯ (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 0: 97%|█████████▋| 303/313 [00:01<00:00, 269.60it/s] Test Epoch 0: 100%|██████████| 313/313 [00:01<00:00, 267.14it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 1: 0%| | 0/1875 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 0: 100%|██████████| 313/313 [00:01<00:00, 270.44it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 0: 100%|█████████▉| 1866/1875 [00:24<00:00, 82.49it/s] [repeated 35x across cluster] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 0: 100%|██████████| 1875/1875 [00:24<00:00, 77.99it/s] Train Epoch 0: 100%|██████████| 1875/1875 [00:24<00:00, 76.19it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 0: 0%| | 0/313 [00:00<?, ?it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 0: 88%|████████▊ | 275/313 [00:01<00:00, 265.39it/s] [repeated 19x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 19%|█▉ | 354/1875 [00:04<00:18, 82.66it/s] [repeated 80x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 0%| | 0/1875 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 40%|████ | 757/1875 [00:09<00:13, 83.01it/s] [repeated 90x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 62%|██████▏ | 1164/1875 [00:14<00:08, 83.39it/s] [repeated 92x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 82%|████████▏ | 1533/1875 [00:19<00:05, 68.09it/s] [repeated 91x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 1: 91%|█████████▏| 1713/1875 [00:22<00:02, 70.20it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 1: 91%|█████████ | 1707/1875 [00:22<00:02, 70.04it/s] [repeated 47x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 0%| | 0/313 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 8%|▊ | 24/313 [00:00<00:01, 237.98it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 1: 96%|█████████▋| 302/313 [00:01<00:00, 250.76it/s] Test Epoch 1: 100%|██████████| 313/313 [00:01<00:00, 262.94it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 2: 0%| | 0/1875 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 92%|█████████▏| 289/313 [00:01<00:00, 222.57it/s] Training finished iteration 2 at 2024-11-21 19:16:12. Total running time: 4min 48s ╭───────────────────────────────╮ │ Training result │ ├───────────────────────────────┤ │ checkpoint_dir_name │ │ time_this_iter_s 25.975 │ │ time_total_s 170.875 │ │ training_iteration 2 │ │ accuracy 0.828 │ │ loss 0.45946 │ ╰───────────────────────────────╯ (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 100%|██████████| 313/313 [00:01<00:00, 226.04it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Train Epoch 1: 100%|██████████| 1875/1875 [00:24<00:00, 76.24it/s] [repeated 45x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 2: 13%|█▎ | 239/1875 [00:03<00:24, 67.30it/s] [repeated 64x across cluster] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 1: 0%| | 0/313 [00:00<?, ?it/s] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 1: 85%|████████▍ | 266/313 [00:01<00:00, 222.54it/s] [repeated 20x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) .. Training completed after 10 iterations at 2024-11-21 19:19:47. Total running time: 8min 23s 2024-11-21 19:19:47,596 INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/home/ray/ray_results/TorchTrainer_2024-11-21_19-11-23' in 0.0029s. Training result: Result( metrics={'loss': 0.35892221605786073, 'accuracy': 0.872}, path='/home/ray/ray_results/TorchTrainer_2024-11-21_19-11-23/TorchTrainer_74867_00000_0_2024-11-21_19-11-24', filesystem='local', checkpoint=None ) (RayTrainWorker pid=1341, ip=10.244.1.42) Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz [repeated 7x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz to /home/ray/data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz [repeated 7x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Extracting /home/ray/data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz to /home/ray/data/FashionMNIST/raw [repeated 7x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 9: 91%|█████████ | 1708/1875 [00:21<00:01, 83.84it/s] [repeated 23x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Train Epoch 9: 100%|██████████| 1875/1875 [00:23<00:00, 78.52it/s] [repeated 37x across cluster] (RayTrainWorker pid=1341, ip=10.244.1.42) Test Epoch 9: 0%| | 0/313 [00:00<?, ?it/s] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 9: 89%|████████▉ | 278/313 [00:01<00:00, 266.46it/s] [repeated 19x across cluster] (RayTrainWorker pid=1193, ip=10.244.4.193) Test Epoch 9: 97%|█████████▋| 305/313 [00:01<00:00, 256.69it/s] Test Epoch 9: 100%|██████████| 313/313 [00:01<00:00, 267.35it/s] 2024-11-21 19:19:51,728 SUCC cli.py:63 -- ------------------------------------------ 2024-11-21 19:19:51,728 SUCC cli.py:64 -- Job 'rayjob-pytorch-mnist-hndpx' succeeded 2024-11-21 19:19:51,728 SUCC cli.py:65 -- ------------------------------------------`
-
-
-## View training results on the Ray Dashboard
-
-When the RayJob successfully completes, you can view the training results on the Ray Dashboard. The Ray Dashboard provides real-time monitoring and visualizations of Ray clusters. You can use the Ray Dashboard to monitor the status of Ray clusters, view logs, and visualize the results of machine learning jobs.
-
-To access the Ray Dashboard, you need to expose the Ray head service to the public internet by creating a *service shim* to expose the Ray head service on port 80 instead of port 8265.
-
-Note
-
-The `deploy.sh`
-
-described in the previous section automatically exposes the Ray head service to the public internet. The following steps are included in the `deploy.sh`
-
-script.
-
-Get the name of the Ray head service and save it in a shell variable using the following command:
-
-`rayclusterhead=$(kubectl get service -n $kuberay_namespace | grep 'rayjob-pytorch-mnist-raycluster' | grep 'ClusterIP' | awk '{print $1}')`
-
-Create the service shim to expose the Ray head service on port 80 using the
-
-`kubectl expose service`
-
-command.`kubectl expose service $rayclusterhead \ -n $kuberay_namespace \ --port=80 \ --target-port=8265 \ --type=NodePort \ --name=ray-dash`
-
-Create the ingress to expose the service shim using the ingress controller using the following command:
-
-`cat <<EOF | kubectl apply -f - apiVersion: networking.k8s.io/v1 kind: Ingress metadata: name: ray-dash namespace: kuberay annotations: nginx.ingress.kubernetes.io/rewrite-target: / spec: ingressClassName: webapprouting.kubernetes.azure.com rules: - http: paths: - backend: service: name: ray-dash port: number: 80 path: / pathType: Prefix EOF`
-
-Get the public IP address of the ingress controller using the
-
-`kubectl get service`
-
-command.`kubectl get service -n app-routing-system`
-
-In the output, you should see the public IP address of the load balancer attached to the ingress controller. Copy the public IP address and paste it into a web browser. You should see the Ray Dashboard.
-
-
-## Clean up resources
-
-To clean up the resources created in this guide, you can delete the Azure resource group that contains the AKS cluster.
-
-## Next steps
-
-To learn more about AI and machine learning workloads on AKS, see the following articles:
-
-[Deploy an application that uses OpenAI on Azure Kubernetes Service (AKS)](open-ai-quickstart)[Build and deploy data and machine learning pipelines with Flyte on Azure Kubernetes Service (AKS)](use-flyte)[Deploy an AI model on Azure Kubernetes Service (AKS) with the AI toolchain operator](ai-toolchain-operator)
-
-## Contributors
-
-*Microsoft maintains this article. The following contributors originally wrote it:*
-
-- Russell de Pina | Principal TPM
-- Ken Kilty | Principal TPM
-- Erin Schaffer | Content Developer 2
-- Adrian Joian | Principal Customer Engineer
-- Ryan Graham | Principal Technical Specialist
-
----
-<!-- Source: N/A -->
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/configure-azure-cni-dynamic-ip-allocation -->
 
 # Configure Azure CNI Pod Subnet - Dynamic IP Allocation and enhanced subnet support in Azure Kubernetes Service (AKS)
@@ -3724,6 +3474,9 @@ command. This will restart the pod and after 5-10 minutes, the metrics will be v
 ## Next steps
 
 Learn more about networking in AKS in the following articles:
+
+---
+<!-- Source: N/A -->
 
 ---
 <!-- Source: N/A -->
@@ -3927,12 +3680,6 @@ If you have a question or want to offer product feedback, please open an issue o
 To learn more about other AKS add-ons and extensions, see [Add-ons, extensions, and other integrations for AKS](integrations).
 
 ---
-<!-- Source: N/A -->
-
----
-<!-- Source: N/A -->
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-upgrade-cluster -->
 
 # Tutorial - Upgrade an Azure Kubernetes Service (AKS) cluster
@@ -4099,6 +3846,12 @@ In this tutorial, you upgraded Kubernetes in an AKS cluster. You learned how to:
 - Validate a successful upgrade.
 
 For more information on AKS, see the [AKS overview](intro-kubernetes). For guidance on how to create full solutions with AKS, see the [AKS solution guidance](/en-us/azure/architecture/reference-architectures/containers/aks-start-here?WT.mc_id=AKSDOCSPAGE).
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/managed-azure-ad -->
@@ -4359,9 +4112,6 @@ If you lack administrative access to a valid Microsoft Entra group, you can foll
 [Azure Resource Manager templates](/en-us/azure/templates/microsoft.containerservice/managedclusters)to create AKS-managed Microsoft Entra ID enabled clusters.
 
 ---
-<!-- Source: N/A -->
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/enable-authentication-microsoft-entra-id -->
 
 # Enable AKS-managed Microsoft Entra integration for Kubernetes clusters with kubelogin
@@ -4620,6 +4370,9 @@ If you lack administrative access to a valid Microsoft Entra group, you can foll
 [Azure Resource Manager templates](/en-us/azure/templates/microsoft.containerservice/managedclusters)to create AKS-managed Microsoft Entra ID enabled clusters.
 
 ---
+<!-- Source: N/A -->
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster -->
 
 # Automatically upgrade an Azure Kubernetes Service (AKS) cluster
@@ -4787,15 +4540,6 @@ channel. - Follow
 [AKS troubleshooting documentation](/en-us/support/azure/azure-kubernetes/welcome-azure-kubernetes).
 
 For a detailed discussion of upgrade best practices and other considerations, see [AKS patch and upgrade guidance](/en-us/azure/architecture/operator-guides/aks/aks-upgrade-practices).
-
----
-<!-- Source: N/A -->
-
----
-<!-- Source: N/A -->
-
----
-<!-- Source: N/A -->
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/ai-toolchain-operator-tool-calling -->
@@ -4973,6 +4717,15 @@ If the external MCP server requires authentication (API key, header, etc.), ensu
 - Set up
 [vLLM monitoring in the AI toolchain operator add-on](ai-toolchain-operator-monitoring)with Prometheus and Grafana on AKS. - Learn about
 [MCP server support with KAITO](ai-toolchain-operator-mcp)and test standardized tool calling examples on your AKS cluster.
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: N/A -->
 
 ---
 <!-- Source: N/A -->
@@ -5236,6 +4989,233 @@ If you're new to AKS upgrades, follow this learning sequence:
 - For more help, choose your scenario from the preceding options or start with
 [Production upgrade strategies](aks-production-upgrade-strategies). - For more information, see
 [AKS support options](aks-support-help)or the[Troubleshooting guide](upgrade-cluster#common-upgrade-scenarios-and-recommendations).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/manage-azure-rbac -->
+
+# Use Azure role-based access control for Kubernetes Authorization
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This article covers how to use Azure RBAC for Kubernetes Authorization, which allows for the unified management and access control across Azure resources, AKS, and Kubernetes resources. For more information, see [Azure RBAC for Kubernetes Authorization](/en-us/azure/aks/concepts-identity#azure-rbac-for-kubernetes-authorization).
+
+Note
+
+When using [integrated authentication between Microsoft Entra ID and AKS](managed-azure-ad), you can use Microsoft Entra users, groups, or service principals as subjects in [Kubernetes role-based access control (Kubernetes RBAC)](/en-us/azure/aks/concepts-identity#azure-rbac-for-kubernetes-authorization). With this feature, you don't need to separately manage user identities and credentials for Kubernetes. However, you still need to set up and manage Azure RBAC and Kubernetes RBAC separately.
+
+## Before you begin
+
+- You need the Azure CLI version 2.24.0 or later installed and configured. Run
+`az --version`
+
+to find the version. If you need to install or upgrade, see[Install Azure CLI](/en-us/cli/azure/install-azure-cli). - You need
+`kubectl`
+
+, with a minimum version of[1.18.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#v1183). - You need managed Microsoft Entra integration enabled on your cluster before you can add Azure RBAC for Kubernetes authorization. If you need to enable managed Microsoft Entra integration, see
+[Use Microsoft Entra ID in AKS](managed-azure-ad). - If you have CRDs and are making custom role definitions, the only way to cover CRDs today is to use
+`Microsoft.ContainerService/managedClusters/*/read`
+
+. For the remaining objects, you can use the specific API groups, such as`Microsoft.ContainerService/apps/deployments/read`
+
+. - New role assignments can take
+*up to five minutes*to propagate and be updated by the authorization server. - Azure RBAC for Kubernetes Authorization requires that the Microsoft Entra tenant configured for authentication is same as the tenant for the subscription that holds your AKS cluster.
+
+## Create a new AKS cluster with managed Microsoft Entra integration and Azure RBAC for Kubernetes Authorization
+
+Create an Azure resource group using the
+
+command.`az group create`
+
+`export RESOURCE_GROUP=<resource-group-name> export LOCATION=<azure-region> az group create --name $RESOURCE_GROUP --location $LOCATION`
+
+Create an AKS cluster with managed Microsoft Entra integration and Azure RBAC for Kubernetes Authorization using the
+
+command.`az aks create`
+
+`export CLUSTER_NAME=<cluster-name> az aks create \ --resource-group $RESOURCE_GROUP \ --name $CLUSTER_NAME \ --enable-aad \ --enable-azure-rbac \ --generate-ssh-keys`
+
+Your output should look similar to the following example output:
+
+`"AADProfile": { "adminGroupObjectIds": null, "clientAppId": null, "enableAzureRbac": true, "managed": true, "serverAppId": null, "serverAppSecret": null, "tenantId": "****-****-****-****-****" }`
+
+
+## Enable Azure RBAC on an existing AKS cluster
+
+Enable Azure RBAC for Kubernetes Authorization on an existing AKS cluster using the
+
+command with the`az aks update`
+
+`--enable-azure-rbac`
+
+flag.`az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --enable-azure-rbac`
+
+
+## Disable Azure RBAC for Kubernetes Authorization from an AKS cluster
+
+Remove Azure RBAC for Kubernetes Authorization from an existing AKS cluster using the
+
+command with the`az aks update`
+
+`--disable-azure-rbac`
+
+flag.`az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --disable-azure-rbac`
+
+
+## AKS built-in roles
+
+AKS provides the following built-in roles:
+
+| Role | Description |
+|---|---|
+| Azure Kubernetes Service RBAC Reader | Allows read-only access to see most objects in a namespace. It doesn't allow viewing roles or role bindings. This role doesn't allow viewing `Secrets` , since reading the contents of Secrets enables access to ServiceAccount credentials in the namespace, which would allow API access as any ServiceAccount in the namespace (a form of privilege escalation). |
+| Azure Kubernetes Service RBAC Writer | Allows read/write access to most objects in a namespace. This role doesn't allow viewing or modifying roles or role bindings. However, this role allows accessing `Secrets` and running Pods as any ServiceAccount in the namespace, so it can be used to gain the API access levels of any ServiceAccount in the namespace. |
+| Azure Kubernetes Service RBAC Admin | Allows admin access, intended to be granted within a namespace. Allows read/write access to most resources in a namespace (or cluster scope), including the ability to create roles and role bindings within the namespace. This role doesn't allow write access to resource quota or to the namespace itself. |
+| Azure Kubernetes Service RBAC Cluster Admin | Allows super-user access to perform any action on any resource. It gives full control over every resource in the cluster and in all namespaces. |
+
+## Create role assignments for cluster access
+
+Get your AKS resource ID using the
+
+command.`az aks show`
+
+`AKS_ID=$(az aks show --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --query id --output tsv)`
+
+Create a role assignment using the
+
+command.`az role assignment create`
+
+`<AAD-ENTITY-ID>`
+
+can be a username or the client ID of a service principal. The following example creates a role assignment for the*Azure Kubernetes Service RBAC Admin*role.`az role assignment create --role "Azure Kubernetes Service RBAC Admin" --assignee <AAD-ENTITY-ID> --scope $AKS_ID`
+
+Note
+
+You can create the
+
+*Azure Kubernetes Service RBAC Reader*and*Azure Kubernetes Service RBAC Writer*role assignments scoped to a specific namespace within the cluster using thecommand and setting the scope to the desired namespace.`az role assignment create`
+
+`az role assignment create --role "Azure Kubernetes Service RBAC Reader" --assignee <AAD-ENTITY-ID> --scope $AKS_ID/namespaces/<namespace-name>`
+
+
+## Create custom roles definitions
+
+The following example custom role definition allows a user to only read deployments and nothing else. For the full list of possible actions, see [Microsoft.ContainerService operations](/en-us/azure/role-based-access-control/resource-provider-operations#microsoftcontainerservice).
+
+To create your own custom role definitions, copy the following file, replacing
+
+`<YOUR SUBSCRIPTION ID>`
+
+with your own subscription ID, and then save it as`deploy-view.json`
+
+.`{ "Name": "AKS Deployment Reader", "Description": "Lets you view all deployments in cluster/namespace.", "Actions": [], "NotActions": [], "DataActions": [ "Microsoft.ContainerService/managedClusters/apps/deployments/read" ], "NotDataActions": [], "assignableScopes": [ "/subscriptions/<YOUR SUBSCRIPTION ID>" ] }`
+
+Create the role definition using the
+
+command, setting the`az role definition create`
+
+`--role-definition`
+
+to the`deploy-view.json`
+
+file you created in the previous step.`az role definition create --role-definition @deploy-view.json`
+
+Assign the role definition to a user or other identity using the
+
+command.`az role assignment create`
+
+`az role assignment create --role "AKS Deployment Reader" --assignee <AAD-ENTITY-ID> --scope $AKS_ID`
+
+
+## Use Azure RBAC for Kubernetes Authorization with `kubectl`
+
+
+Make sure you have the
+
+[Azure Kubernetes Service Cluster User](/en-us/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-user-role)built-in role, and then get the kubeconfig of your AKS cluster using thecommand.`az aks get-credentials`
+
+`az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME`
+
+You can now use
+
+`kubectl`
+
+to manage your cluster. For example, you can list the nodes in your cluster using`kubectl get nodes`
+
+.`kubectl get nodes`
+
+Example output:
+
+`NAME STATUS ROLES AGE VERSION aks-nodepool1-93451573-vmss000000 Ready agent 3h6m v1.15.11 aks-nodepool1-93451573-vmss000001 Ready agent 3h6m v1.15.11 aks-nodepool1-93451573-vmss000002 Ready agent 3h6m v1.15.11`
+
+
+## Use Azure RBAC for Kubernetes Authorization with `kubelogin`
+
+
+AKS created the [ kubelogin](https://github.com/Azure/kubelogin) plugin to help unblock scenarios such as non-interactive logins, older
+
+`kubectl`
+
+versions, or leveraging SSO across multiple clusters without the need to sign in to a new cluster.Use the
+
+`kubelogin`
+
+plugin by running the following command:`export KUBECONFIG=/path/to/kubeconfig kubelogin convert-kubeconfig`
+
+You can now use
+
+`kubectl`
+
+to manage your cluster. For example, you can list the nodes in your cluster using`kubectl get nodes`
+
+.`kubectl get nodes`
+
+Example output:
+
+`NAME STATUS ROLES AGE VERSION aks-nodepool1-93451573-vmss000000 Ready agent 3h6m v1.15.11 aks-nodepool1-93451573-vmss000001 Ready agent 3h6m v1.15.11 aks-nodepool1-93451573-vmss000002 Ready agent 3h6m v1.15.11`
+
+
+## Clean up resources
+
+### Delete role assignment
+
+List role assignments using the
+
+command.`az role assignment list`
+
+`az role assignment list --scope $AKS_ID --query [].id --output tsv`
+
+Delete role assignments using the
+
+command.`az role assignment delete`
+
+`az role assignment delete --ids <LIST OF ASSIGNMENT IDS>`
+
+
+### Delete role definition
+
+Delete the custom role definition using the
+
+command.`az role definition delete`
+
+`az role definition delete --name "AKS Deployment Reader"`
+
+
+### Delete resource group and AKS cluster
+
+Delete the resource group and AKS cluster using the
+
+command.`az group delete`
+
+`az group delete --name $RESOURCE_GROUP --yes --no-wait`
+
+
+## Next steps
+
+To learn more about AKS authentication, authorization, Kubernetes RBAC, and Azure RBAC, see:
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/create-postgresql-ha -->
@@ -5589,233 +5569,6 @@ This documentation was jointly developed with EnterpriseDB, the maintainers of t
 <!-- Source: N/A -->
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/aks/manage-azure-rbac -->
-
-# Use Azure role-based access control for Kubernetes Authorization
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-This article covers how to use Azure RBAC for Kubernetes Authorization, which allows for the unified management and access control across Azure resources, AKS, and Kubernetes resources. For more information, see [Azure RBAC for Kubernetes Authorization](/en-us/azure/aks/concepts-identity#azure-rbac-for-kubernetes-authorization).
-
-Note
-
-When using [integrated authentication between Microsoft Entra ID and AKS](managed-azure-ad), you can use Microsoft Entra users, groups, or service principals as subjects in [Kubernetes role-based access control (Kubernetes RBAC)](/en-us/azure/aks/concepts-identity#azure-rbac-for-kubernetes-authorization). With this feature, you don't need to separately manage user identities and credentials for Kubernetes. However, you still need to set up and manage Azure RBAC and Kubernetes RBAC separately.
-
-## Before you begin
-
-- You need the Azure CLI version 2.24.0 or later installed and configured. Run
-`az --version`
-
-to find the version. If you need to install or upgrade, see[Install Azure CLI](/en-us/cli/azure/install-azure-cli). - You need
-`kubectl`
-
-, with a minimum version of[1.18.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#v1183). - You need managed Microsoft Entra integration enabled on your cluster before you can add Azure RBAC for Kubernetes authorization. If you need to enable managed Microsoft Entra integration, see
-[Use Microsoft Entra ID in AKS](managed-azure-ad). - If you have CRDs and are making custom role definitions, the only way to cover CRDs today is to use
-`Microsoft.ContainerService/managedClusters/*/read`
-
-. For the remaining objects, you can use the specific API groups, such as`Microsoft.ContainerService/apps/deployments/read`
-
-. - New role assignments can take
-*up to five minutes*to propagate and be updated by the authorization server. - Azure RBAC for Kubernetes Authorization requires that the Microsoft Entra tenant configured for authentication is same as the tenant for the subscription that holds your AKS cluster.
-
-## Create a new AKS cluster with managed Microsoft Entra integration and Azure RBAC for Kubernetes Authorization
-
-Create an Azure resource group using the
-
-command.`az group create`
-
-`export RESOURCE_GROUP=<resource-group-name> export LOCATION=<azure-region> az group create --name $RESOURCE_GROUP --location $LOCATION`
-
-Create an AKS cluster with managed Microsoft Entra integration and Azure RBAC for Kubernetes Authorization using the
-
-command.`az aks create`
-
-`export CLUSTER_NAME=<cluster-name> az aks create \ --resource-group $RESOURCE_GROUP \ --name $CLUSTER_NAME \ --enable-aad \ --enable-azure-rbac \ --generate-ssh-keys`
-
-Your output should look similar to the following example output:
-
-`"AADProfile": { "adminGroupObjectIds": null, "clientAppId": null, "enableAzureRbac": true, "managed": true, "serverAppId": null, "serverAppSecret": null, "tenantId": "****-****-****-****-****" }`
-
-
-## Enable Azure RBAC on an existing AKS cluster
-
-Enable Azure RBAC for Kubernetes Authorization on an existing AKS cluster using the
-
-command with the`az aks update`
-
-`--enable-azure-rbac`
-
-flag.`az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --enable-azure-rbac`
-
-
-## Disable Azure RBAC for Kubernetes Authorization from an AKS cluster
-
-Remove Azure RBAC for Kubernetes Authorization from an existing AKS cluster using the
-
-command with the`az aks update`
-
-`--disable-azure-rbac`
-
-flag.`az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --disable-azure-rbac`
-
-
-## AKS built-in roles
-
-AKS provides the following built-in roles:
-
-| Role | Description |
-|---|---|
-| Azure Kubernetes Service RBAC Reader | Allows read-only access to see most objects in a namespace. It doesn't allow viewing roles or role bindings. This role doesn't allow viewing `Secrets` , since reading the contents of Secrets enables access to ServiceAccount credentials in the namespace, which would allow API access as any ServiceAccount in the namespace (a form of privilege escalation). |
-| Azure Kubernetes Service RBAC Writer | Allows read/write access to most objects in a namespace. This role doesn't allow viewing or modifying roles or role bindings. However, this role allows accessing `Secrets` and running Pods as any ServiceAccount in the namespace, so it can be used to gain the API access levels of any ServiceAccount in the namespace. |
-| Azure Kubernetes Service RBAC Admin | Allows admin access, intended to be granted within a namespace. Allows read/write access to most resources in a namespace (or cluster scope), including the ability to create roles and role bindings within the namespace. This role doesn't allow write access to resource quota or to the namespace itself. |
-| Azure Kubernetes Service RBAC Cluster Admin | Allows super-user access to perform any action on any resource. It gives full control over every resource in the cluster and in all namespaces. |
-
-## Create role assignments for cluster access
-
-Get your AKS resource ID using the
-
-command.`az aks show`
-
-`AKS_ID=$(az aks show --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --query id --output tsv)`
-
-Create a role assignment using the
-
-command.`az role assignment create`
-
-`<AAD-ENTITY-ID>`
-
-can be a username or the client ID of a service principal. The following example creates a role assignment for the*Azure Kubernetes Service RBAC Admin*role.`az role assignment create --role "Azure Kubernetes Service RBAC Admin" --assignee <AAD-ENTITY-ID> --scope $AKS_ID`
-
-Note
-
-You can create the
-
-*Azure Kubernetes Service RBAC Reader*and*Azure Kubernetes Service RBAC Writer*role assignments scoped to a specific namespace within the cluster using thecommand and setting the scope to the desired namespace.`az role assignment create`
-
-`az role assignment create --role "Azure Kubernetes Service RBAC Reader" --assignee <AAD-ENTITY-ID> --scope $AKS_ID/namespaces/<namespace-name>`
-
-
-## Create custom roles definitions
-
-The following example custom role definition allows a user to only read deployments and nothing else. For the full list of possible actions, see [Microsoft.ContainerService operations](/en-us/azure/role-based-access-control/resource-provider-operations#microsoftcontainerservice).
-
-To create your own custom role definitions, copy the following file, replacing
-
-`<YOUR SUBSCRIPTION ID>`
-
-with your own subscription ID, and then save it as`deploy-view.json`
-
-.`{ "Name": "AKS Deployment Reader", "Description": "Lets you view all deployments in cluster/namespace.", "Actions": [], "NotActions": [], "DataActions": [ "Microsoft.ContainerService/managedClusters/apps/deployments/read" ], "NotDataActions": [], "assignableScopes": [ "/subscriptions/<YOUR SUBSCRIPTION ID>" ] }`
-
-Create the role definition using the
-
-command, setting the`az role definition create`
-
-`--role-definition`
-
-to the`deploy-view.json`
-
-file you created in the previous step.`az role definition create --role-definition @deploy-view.json`
-
-Assign the role definition to a user or other identity using the
-
-command.`az role assignment create`
-
-`az role assignment create --role "AKS Deployment Reader" --assignee <AAD-ENTITY-ID> --scope $AKS_ID`
-
-
-## Use Azure RBAC for Kubernetes Authorization with `kubectl`
-
-
-Make sure you have the
-
-[Azure Kubernetes Service Cluster User](/en-us/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-user-role)built-in role, and then get the kubeconfig of your AKS cluster using thecommand.`az aks get-credentials`
-
-`az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME`
-
-You can now use
-
-`kubectl`
-
-to manage your cluster. For example, you can list the nodes in your cluster using`kubectl get nodes`
-
-.`kubectl get nodes`
-
-Example output:
-
-`NAME STATUS ROLES AGE VERSION aks-nodepool1-93451573-vmss000000 Ready agent 3h6m v1.15.11 aks-nodepool1-93451573-vmss000001 Ready agent 3h6m v1.15.11 aks-nodepool1-93451573-vmss000002 Ready agent 3h6m v1.15.11`
-
-
-## Use Azure RBAC for Kubernetes Authorization with `kubelogin`
-
-
-AKS created the [ kubelogin](https://github.com/Azure/kubelogin) plugin to help unblock scenarios such as non-interactive logins, older
-
-`kubectl`
-
-versions, or leveraging SSO across multiple clusters without the need to sign in to a new cluster.Use the
-
-`kubelogin`
-
-plugin by running the following command:`export KUBECONFIG=/path/to/kubeconfig kubelogin convert-kubeconfig`
-
-You can now use
-
-`kubectl`
-
-to manage your cluster. For example, you can list the nodes in your cluster using`kubectl get nodes`
-
-.`kubectl get nodes`
-
-Example output:
-
-`NAME STATUS ROLES AGE VERSION aks-nodepool1-93451573-vmss000000 Ready agent 3h6m v1.15.11 aks-nodepool1-93451573-vmss000001 Ready agent 3h6m v1.15.11 aks-nodepool1-93451573-vmss000002 Ready agent 3h6m v1.15.11`
-
-
-## Clean up resources
-
-### Delete role assignment
-
-List role assignments using the
-
-command.`az role assignment list`
-
-`az role assignment list --scope $AKS_ID --query [].id --output tsv`
-
-Delete role assignments using the
-
-command.`az role assignment delete`
-
-`az role assignment delete --ids <LIST OF ASSIGNMENT IDS>`
-
-
-### Delete role definition
-
-Delete the custom role definition using the
-
-command.`az role definition delete`
-
-`az role definition delete --name "AKS Deployment Reader"`
-
-
-### Delete resource group and AKS cluster
-
-Delete the resource group and AKS cluster using the
-
-command.`az group delete`
-
-`az group delete --name $RESOURCE_GROUP --yes --no-wait`
-
-
-## Next steps
-
-To learn more about AKS authentication, authorization, Kubernetes RBAC, and Azure RBAC, see:
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/use-cvm -->
 
 # Use Confidential Virtual Machines (CVM) in Azure Kubernetes Service (AKS) cluster
@@ -6046,6 +5799,175 @@ In this article, you learned how to add a node pool with CVM to an AKS cluster.
 [Confidential VM node pools support on AKS](/en-us/azure/confidential-computing/confidential-node-pool-aks). - To migrate an existing node pool to a CVM vm size, you can
 [resize your node pool](resize-node-pool). - If you're only interested in enabling Trusted Launch on your node pools, see
 [Trusted Launch on AKS](use-trusted-launch).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/aks/open-service-mesh-deploy-addon-bicep -->
+
+# Deploy the Open Service Mesh add-on using Bicep in Azure Kubernetes Service (AKS)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+This article shows you how to deploy the Open Service Mesh (OSM) add-on to Azure Kubernetes Service (AKS) using a [Bicep](/en-us/azure/azure-resource-manager/bicep/) template.
+
+Important
+
+Starting on **September 30, 2027**, Azure Kubernetes Service (AKS) no longer supports the Open Service Mesh (OSM) add-on. The [Cloud Native Computing Foundation (CNCF)](https://docs.openservicemesh.io/) retired the upstream OSM project. [Migrate any existing OSM configurations to equivalent Istio configurations](/en-us/azure/aks/open-service-mesh-istio-migration-guidance). For more information on this retirement, see the [Azure Updates retirement announcement](https://azure.microsoft.com/updates?id=open-service-mesh-add-on-for-aks-will-be-retired-on-september-30-2027). To stay informed on announcements and updates, follow the [AKS release notes](https://github.com/Azure/AKS/releases).
+
+Important
+
+Based on the version of Kubernetes your cluster is running, the OSM add-on installs a different version of OSM.
+
+| Kubernetes version | OSM version installed |
+|---|---|
+| 1.24.0 or greater | 1.2.5 |
+| Between 1.23.5 and 1.24.0 | 1.1.3 |
+| Below 1.23.5 | 1.0.0 |
+
+Older versions of OSM may not be available for install or be actively supported if the corresponding AKS version has reached end of life. You can check the [AKS Kubernetes release calendar](supported-kubernetes-versions#aks-kubernetes-release-calendar) for information on AKS version support windows.
+
+[Bicep](/en-us/azure/azure-resource-manager/bicep/overview) is a domain-specific language that uses declarative syntax to deploy Azure resources. You can use Bicep in place of creating [Azure Resource Manager templates](/en-us/azure/azure-resource-manager/templates/overview) to deploy your infrastructure-as-code Azure resources.
+
+## Before you begin
+
+Before you begin, make sure you have the following prerequisites in place:
+
+- The Azure CLI version 2.20.0 or later. Run
+`az --version`
+
+to find the version. If you need to install or upgrade, see[Install Azure CLI](/en-us/cli/azure/install-azure-cli). - An SSH public key used for deploying AKS. For more information, see
+[Create SSH keys using the Azure CLI](/en-us/azure/virtual-machines/ssh-keys-azure-cli). [Visual Studio Code](https://code.visualstudio.com/)with a Bash terminal.- The Visual Studio Code
+[Bicep extension](/en-us/azure/azure-resource-manager/bicep/install).
+
+## Install the OSM add-on for a new AKS cluster by using Bicep
+
+For deployment of a new AKS cluster, you enable the OSM add-on at cluster creation. The following instructions use a generic Bicep template that deploys an AKS cluster by using ephemeral disks and the [ kubenet](configure-kubenet) container network interface, and then enables the OSM add-on. For more advanced deployment scenarios, see
+
+[What is Bicep?](/en-us/azure/azure-resource-manager/bicep/overview)
+
+### Create a resource group
+
+Create a resource group using the
+
+command.`az group create`
+
+`az group create --name <my-osm-bicep-aks-cluster-rg> --location <azure-region>`
+
+
+### Create the main and parameters Bicep files
+
+Create a directory to store the necessary Bicep deployment files. The following example creates a directory named
+
+*bicep-osm-aks-addon*and changes to the directory:`mkdir bicep-osm-aks-addon cd bicep-osm-aks-addon`
+
+Create the main file and the parameters file.
+
+`touch osm.aks.bicep && touch osm.aks.parameters.json`
+
+Open the
+
+*osm.aks.bicep*file and copy in the following content:`// https://learn.microsoft.com/azure/aks/troubleshooting#what-naming-restrictions-are-enforced-for-aks-resources-and-parameters @minLength(3) @maxLength(63) @description('Provide a name for the AKS cluster. The only allowed characters are letters, numbers, dashes, and underscore. The first and last character must be a letter or a number.') param clusterName string @minLength(3) @maxLength(54) @description('Provide a name for the AKS dnsPrefix. Valid characters include alphanumeric values and hyphens (-). The dnsPrefix can\'t include special characters such as a period (.)') param clusterDNSPrefix string param k8Version string param sshPubKey string param location string param adminUsername string resource aksCluster 'Microsoft.ContainerService/managedClusters@2021-03-01' = { name: clusterName location: location identity: { type: 'SystemAssigned' } properties: { kubernetesVersion: k8Version dnsPrefix: clusterDNSPrefix enableRBAC: true agentPoolProfiles: [ { name: 'agentpool' count: 3 vmSize: 'Standard_DS2_v2' osDiskSizeGB: 30 osDiskType: 'Ephemeral' osType: 'Linux' mode: 'System' } ] linuxProfile: { adminUsername: adminUserName ssh: { publicKeys: [ { keyData: sshPubKey } ] } } addonProfiles: { openServiceMesh: { enabled: true config: {} } } } }`
+
+Open the
+
+*osm.aks.parameters.json*file and copy in the following content. Make sure you replace the deployment parameter values with your own values.Note
+
+The
+
+*osm.aks.parameters.json*file is an example template parameters file needed for the Bicep deployment. Update the parameters specifically for your deployment environment. The parameters you need to add values for include:`clusterName`
+
+,`clusterDNSPrefix`
+
+,`k8Version`
+
+,`sshPubKey`
+
+,`location`
+
+, and`adminUsername`
+
+. To find a list of supported Kubernetes versions in your region, use the`az aks get-versions --location <region>`
+
+command.`{ "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#", "contentVersion": "1.0.0.0", "parameters": { "clusterName": { "value": "<YOUR CLUSTER NAME HERE>" }, "clusterDNSPrefix": { "value": "<YOUR CLUSTER DNS PREFIX HERE>" }, "k8Version": { "value": "<YOUR SUPPORTED KUBERNETES VERSION HERE>" }, "sshPubKey": { "value": "<YOUR SSH KEY HERE>" }, "location": { "value": "<YOUR AZURE REGION HERE>" }, "adminUsername": { "value": "<YOUR ADMIN USERNAME HERE>" } } }`
+
+
+### Deploy the Bicep files
+
+Open a terminal and authenticate to your Azure account for the Azure CLI using the
+
+`az login`
+
+command.Deploy the Bicep files using the
+
+command.`az deployment group create`
+
+`az deployment group create \ --name OSMBicepDeployment \ --resource-group osm-bicep-test \ --template-file osm.aks.bicep \ --parameters @osm.aks.parameters.json`
+
+
+## Validate installation of the OSM add-on
+
+Query the add-on profiles of the cluster to check the enabled state of the installed add-ons. The following command should return
+
+`true`
+
+:`az aks list -g <my-osm-aks-cluster-rg> -o json | jq -r '.[].addonProfiles.openServiceMesh.enabled'`
+
+Get the status of the
+
+*osm-controller*using the following`kubectl`
+
+commands.`kubectl get deployments -n kube-system --selector app=osm-controller kubectl get pods -n kube-system --selector app=osm-controller kubectl get services -n kube-system --selector app=osm-controller`
+
+
+## Access the OSM add-on configuration
+
+You can configure the OSM controller using the OSM MeshConfig resource, and you can view the OSM controller's configuration settings using the Azure CLI.
+
+View the OSM controller's configuration settings using the
+
+`kubectl get`
+
+command.`kubectl get meshconfig osm-mesh-config -n kube-system -o yaml`
+
+Here's an example output of MeshConfig:
+
+`apiVersion: config.openservicemesh.io/v1alpha1 kind: MeshConfig metadata: creationTimestamp: "0000-00-00A00:00:00A" generation: 1 name: osm-mesh-config namespace: kube-system resourceVersion: "2494" uid: 6c4d67f3-c241-4aeb-bf4f-b029b08faa31 spec: certificate: serviceCertValidityDuration: 24h featureFlags: enableEgressPolicy: true enableMulticlusterMode: false enableWASMStats: true observability: enableDebugServer: true osmLogLevel: info tracing: address: jaeger.osm-system.svc.cluster.local enable: false endpoint: /api/v2/spans port: 9411 sidecar: configResyncInterval: 0s enablePrivilegedInitContainer: false envoyImage: mcr.microsoft.com/oss/envoyproxy/envoy:v1.18.3 initContainerImage: mcr.microsoft.com/oss/openservicemesh/init:v0.9.1 logLevel: error maxDataPlaneConnections: 0 resources: {} traffic: enableEgress: true enablePermissiveTrafficPolicyMode: true inboundExternalAuthorization: enable: false failureModeAllow: false statPrefix: inboundExtAuthz timeout: 1s useHTTPSIngress: false`
+
+Notice that
+
+`enablePermissiveTrafficPolicyMode`
+
+is configured to`true`
+
+. In OSM, permissive traffic policy mode bypasses[SMI](https://smi-spec.io/)traffic policy enforcement. In this mode, OSM automatically discovers services that are a part of the service mesh. The discovered services will have traffic policy rules programmed on each Envoy proxy sidecar to allow communications between these services.Warning
+
+Before you proceed, verify that your permissive traffic policy mode is set to
+
+`true`
+
+. If it isn't, change it to`true`
+
+using the following command:`kubectl patch meshconfig osm-mesh-config -n kube-system -p '{"spec":{"traffic":{"enablePermissiveTrafficPolicyMode":true}}}' --type=merge`
+
+
+## Clean up resources
+
+When you no longer need the Azure resources, delete the deployment's test resource group using the
+
+command.`az group delete`
+
+`az group delete --name osm-bicep-test`
+
+Alternatively, you can uninstall the OSM add-on and the related resources from your cluster. For more information, see
+
+[Uninstall the Open Service Mesh add-on from your AKS cluster](open-service-mesh-uninstall-add-on).
+
+## Next steps
+
+This article showed you how to install the OSM add-on on an AKS cluster and verify that it's installed and running. With the OSM add-on installed on your cluster, you can [deploy a sample application](https://release-v1-0.docs.openservicemesh.io/docs/getting_started/install_apps/) or [onboard an existing application](https://release-v1-0.docs.openservicemesh.io/docs/guides/app_onboarding/) to work with your OSM mesh.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/aks/http-proxy -->
