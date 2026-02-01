@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-31T00:00:15.082685
+merged_at: 2026-02-01T08:06:49.170767
 merged_files: 3
 ---
 
@@ -1958,658 +1958,6 @@ In some cases, you might want to export the trace data to your deployed OpenTele
 . Use this exporter when you want to customize your own span processing logic and your own trace persistent target.
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/vscode -->
-
-# Work with the Microsoft Foundry for Visual Studio Code extension (Preview)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-[Microsoft Foundry](/en-us/azure/ai-foundry/what-is-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
-
-With Foundry, you can:
-
-Deploy the latest language models from Microsoft, OpenAI, Meta, DeepSeek, and more using the robust model catalog
-
-Test the deployed models in a model playground
-
-Quickly get started with developing generative AI applications using a collection of Azure curated code templates
-
-Configure and deploy agents with Foundry Agent Service
-
-
-With the Foundry for Visual Studio Code extension, you can accomplish much of this workflow directly from Visual Studio Code. It also comes with other features, such as code templates, playgrounds, and integration with other VS Code extensions and features.
-
-This article shows you how to quickly get started using the features of the Foundry for Visual Studio Code extension.
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-## Prerequisites
-
-Before using the Foundry for Visual Studio Code extension, you must:
-
-Download, install, and configure Visual Studio Code. More information:
-
-[Download Visual Studio Code](https://code.visualstudio.com/Download)Your subscription needs to be below your
-
-[quota limit](../quota?view=foundry-classic)to[deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a[deployed chat model](../deploy-models-openai?view=foundry-classic).Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see
-
-[Role-based access control for Foundry](/en-us/azure/ai-foundry/concepts/rbac-foundry).
-
-## Installation
-
-After you install Visual Studio Code, you need to install the Foundry for Visual Studio Code extension.
-
-To install the Foundry for Visual Studio Code extension, you can either use the Visual Studio Code Marketplace or install it directly from within Visual Studio Code.
-
-### Install from the Visual Studio Code Marketplace
-
-To install the Foundry for Visual Studio Code extension from the Visual Studio Code Marketplace, follow these steps:
-
-- Open the
-[Foundry for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). - Select the
-**Install**button. - Follow the prompts to install the extension in Visual Studio Code.
-- After installation, open Visual Studio Code and verify the extension is installed successfully from the status messages.
-- The extension should now be visible in the primary navigation bar on the left side of Visual Studio Code.
-
-### Install from within Visual Studio Code
-
-To install the Foundry for Visual Studio Code extension in Visual Studio Code, follow these steps:
-
-Open Visual Studio Code.
-
-Select
-
-**Extensions**from the left pane.Select the
-
-**Settings**icon from the top-right on the extensions pane.Search for and select
-
-**Foundry**.Select
-
-**Install**.Verify the extension is installed successfully from the status messages.
-
-
-## Get started
-
-Get started with the Foundry extension by using the following steps.
-
-Note
-
-For a full list of features available in the extension, use the Command Palette. Select `F1` to open the command palette and search **Foundry**. The following screenshot shows some of the actions for Foundry.
-[
-](../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png?view=foundry-classic#lightbox)
-
-### Sign in to your resources
-
-Sign in to your Azure subscription to access your resources with the following steps:
-
-Select the Azure Icon on the VS Code Navbar.
-
-Sign in by selecting the
-
-`Sign in to Azure...`
-
-item in the**Azure Resources**view.Under the "Resources" section, select your Azure Subscription and Resource Group.
-
-Select
-
-**Foundry**and right-click your project.Select
-
-**Open in Foundry Extension**.
-
-### Explore the Foundry Extension
-
-The Foundry Extension opens in its own view, with the Foundry Icon now displayed on the VS Code Navbar. The extension has three main sections: **Resources**, **Tools**, and **Help and Feedback**.
-
-
-**Resources**: This section contains the resources you have access to in your Foundry project. The**Resources**section is the main view for interacting with your Foundry Services. It contains the following subsections:**Models**: This section contains the models you can use to build and deploy your AI applications. The**Models**view is where you can find your deployed models in your Foundry project.**Agents**: This section contains your deployed agents in your Foundry project.**Assets**: This section contains the assets you have in your Foundry project.- Connections: This subsection contains the connections you have in your Foundry project. for example, Bing Grounding connections.
-- Vector Stores: This subsection contains the vector stores you have in your Foundry project.
-
-**Threads**: This section contains the threads and runs from a deployed agent in your Foundry project.
-
-**Tools**: This section contains the tools you can use to build and deploy your AI applications. The**Tools**view is where you can find the tools available to deploy and then work with your deployed models and agents. It contains the following subsections:**Model Catalog**: The link to the model catalog you can use to discover and deploy models.**Model Playground**: The link to the model playground for interacting with your deployed models in your Foundry project.**Agent Playground**: The link to the agent playground for interacting with your deployed agents in your Foundry project.
-
-**Help and Feedback**: This section contains links to the Foundry documentation, feedback, support, and the Microsoft Privacy Statement. It contains the following subsections:**Documentation**: The link to the Foundry Extension documentation.**GitHub**: The link to the Foundry extension GitHub repository.**Microsoft Privacy Statement**: The link to the Microsoft Privacy Statement.**Join the Foundry Community: Discord + Forum**: The link to the Foundry community Discord server.
-
-
-Note
-
-To learn more about working with Agents and Threads in the Foundry Extension, see the [Work with Agent Service in Visual Studio Code](vs-code-agents?view=foundry-classic) article.
-
-## Create a project
-
-You can create a new Foundry project from the Foundry Extension view with the following steps:
-
-Select the
-
-**plus**icon next to**Resources**in the**Resources**section of the Foundry Extension view.You can either create a new resource group or select an existing one.
-
-To create a new resource group:
-
-To use an existing resource group:
-
-- In the top center, select the resource group you want to use from the list of available resource groups and press Enter.
-
-In the top center, enter the Foundry Project name to use in the
-
-**Enter project name**textbox and press Enter.
-
-After project deployment, a popup appears with the message **Project deployed successfully**.
-
-To deploy a model to the newly created project, select the **Deploy a model** button in the popup.
-This action opens the **Model Catalog** page in the Foundry Extension view to select the desired model to [deploy.](#deploy-a-model-from-the-model-catalog)
-
-### The default Foundry Project
-
-When you open a project in the Foundry Extension, that project is set as your default project.
-
-Switch your default project by following these steps:
-
-Right-click on the Foundry Project and select the
-
-**Switch Default Project in Azure Extension**option.In the top center, select the Foundry Project you want to use from the list of available projects and press Enter.
-
-
-Your selected project will now display **Default** after the project name.
-
-## Work with models
-
-The Foundry for Visual Studio Code extension enables you to create, interact with, and deploy Large Language Models from within Visual Studio Code.
-
-### Explore all models with the model catalog
-
-The [model catalog](/en-us/azure/ai-foundry/how-to/model-catalog-overview) in Foundry portal is the hub to discover and use a wide range of models for building generative AI applications.
-
-Access the model catalog from several different ways:
-
-- The
-**Foundry: Open Model Catalog**command palette command. - Select the
-**plus**icon next to**Models**in the**Resources**section of the Foundry Extension view. - Select the
-**Model Catalog**link in the**Tools**section of the Foundry Extension view.
-
-#### Open the model catalog from the command palette
-
-Access the model catalog from the command palette to explore and deploy a curated selection of models available in Foundry, right from inside VS Code.
-
-Select
-
-`F1`to open the command palette.Enter
-
-**Foundry: Open Model Catalog**and press Enter.The
-
-**Model Catalog**page is displayed.Filter the
-
-**Model Catalog**by`Publisher`
-
-and/or`Task`
-
-using the dropdowns at the top-left of the page.Search for a specific model using the search bar at the top-center of the page.
-
-
-#### Open the model catalog from the Resources section
-
-The **Model Catalog** is also available in the **Resources** section of the Foundry Extension view.
-
-In the Foundry Extension view, select the **plus** icon next to **Models** to open the Model Catalog.
-
-Tip
-
-You can also right-click on **Models** and select the **Deploy new AI model** option to open the Model Catalog to start the deployment process.
-
-#### Open the model catalog from the Tools section
-
-The **Model Catalog** is also available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Catalog** link to open the Model Catalog.
-
-### Deploy a model from the model catalog
-
-Deploy a selected model in the model catalog using the following steps:
-
-Select the
-
-**Deploy in Azure**immediately following the selected model name.The
-
-**Model deployment**page is displayed.Enter the model deployment name to use in the
-
-**Enter deployment name**textbox and press Enter.Select the deployment type to use in the
-
-**Deployment type**dropdown and press Enter.Select the model version to use in the
-
-**Model version**dropdown and press Enter.(Optional) Select the tokens per minute to use in the
-
-**Tokens per minute**slider and press Enter.In the bottom-left corner, select the
-
-**Deploy in Foundry**button to deploy the model.A confirmation dialog box appears. Select the
-
-**Deploy**button to deploy the model to your project.After a successful deployment, your model will be listed by deployment name with your other deployed models under the
-
-**Models**section in your project.
-
-### View deployed models
-
-In the Azure Resources Extension view, select the **caret** icon in front of the **Models** section to view the list of deployed models.
-
-The expanded **Models** section displays the list of deployed models.
-
-#### View model card information
-
-Selecting a deployed model opens up a panel that provides some basic information:
-
-- Deployment Info: This section contains the information about the model:
-- Name
-- Provisioning state
-- Deployment type
-- Rate limit information
-- Version info
-- Model name
-- Model version
-
-- Endpoint info: This section contains the Target URI link, authentication type, and key.
-- Useful links: This section contains the code sample repository and tutorial links to get started with AI application development.
-
-#### Update a model
-
-To update the model card information, select the **Edit** button on the top-right of the model card.
-
-Update the desired editable fields such as rate limit directly within VS Code.
-
-To save the changes, select the **Save** button on the top-right of the model card.
-
-### Explore the model sample code
-
-Create a sample code file using the following steps.
-
-Right-click on your deployed model and select the
-
-**Open code file**option.In the top center, select your preferred SDK to use in the
-
-**Choose preferred SDK**dropdown and press Enter.In the top center, select your preferred language to use in the
-
-**Choose language**dropdown and press Enter.In the top center, select your preferred authentication method to use in the
-
-**Choose authentication method**dropdown and press Enter.
-
-#### Sample code file
-
-This Python sample code file that demonstrates a basic call to the chat completion API. The call is synchronous:
-
-### Interact with models using a model playground
-
-Chat interactively with the model, change settings, and system instructions using the **Model Playground**.
-
-The **Model Playground** is available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Playground** link to open the Model Playground.
-
-You can also open the model playground using the following steps:
-
-Right-click on your deployed model and select the
-
-**Open in playground**option.The
-
-**Playground**page is displayed.Type your prompt and see the outputs.
-
-Additionally, you can use
-
-**View code**in the top-right corner to see details about how to access the model deployment programmatically.Select the
-
-**History**link at the top-left of the playground to view the chat history.
-
-## Cleanup resources
-
-The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
-
-### Delete your models
-
-In the VS Code navbar, refresh the
-
-**Foundry Extension**. In the**Resources**section, expand the**Models**subsection to display the list of deployed models.Right-click on your deployed model to delete and select the
-
-**Delete**option.
-
-### Delete your tools
-
-Delete the connected tool with the following steps:
-
-- Open the Azure portal
-- Select the Azure Resource Group containing the tool.
-- Select the
-**Delete**button.
-
-## Next steps
-
-- Learn about
-[working with the Agent Service](vs-code-agents?view=foundry-classic)using this Visual Studio Code extension.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/get-started-projects-vs-code -->
-
-# Work with the Microsoft Foundry for Visual Studio Code extension (Preview)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-[Microsoft Foundry](/en-us/azure/ai-foundry/what-is-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
-
-With Foundry, you can:
-
-Deploy the latest language models from Microsoft, OpenAI, Meta, DeepSeek, and more using the robust model catalog
-
-Test the deployed models in a model playground
-
-Quickly get started with developing generative AI applications using a collection of Azure curated code templates
-
-Configure and deploy agents with Foundry Agent Service
-
-
-With the Foundry for Visual Studio Code extension, you can accomplish much of this workflow directly from Visual Studio Code. It also comes with other features, such as code templates, playgrounds, and integration with other VS Code extensions and features.
-
-This article shows you how to quickly get started using the features of the Foundry for Visual Studio Code extension.
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-## Prerequisites
-
-Before using the Foundry for Visual Studio Code extension, you must:
-
-Download, install, and configure Visual Studio Code. More information:
-
-[Download Visual Studio Code](https://code.visualstudio.com/Download)Your subscription needs to be below your
-
-[quota limit](../quota?view=foundry-classic)to[deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a[deployed chat model](../deploy-models-openai?view=foundry-classic).Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see
-
-[Role-based access control for Foundry](/en-us/azure/ai-foundry/concepts/rbac-foundry).
-
-## Installation
-
-After you install Visual Studio Code, you need to install the Foundry for Visual Studio Code extension.
-
-To install the Foundry for Visual Studio Code extension, you can either use the Visual Studio Code Marketplace or install it directly from within Visual Studio Code.
-
-### Install from the Visual Studio Code Marketplace
-
-To install the Foundry for Visual Studio Code extension from the Visual Studio Code Marketplace, follow these steps:
-
-- Open the
-[Foundry for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). - Select the
-**Install**button. - Follow the prompts to install the extension in Visual Studio Code.
-- After installation, open Visual Studio Code and verify the extension is installed successfully from the status messages.
-- The extension should now be visible in the primary navigation bar on the left side of Visual Studio Code.
-
-### Install from within Visual Studio Code
-
-To install the Foundry for Visual Studio Code extension in Visual Studio Code, follow these steps:
-
-Open Visual Studio Code.
-
-Select
-
-**Extensions**from the left pane.Select the
-
-**Settings**icon from the top-right on the extensions pane.Search for and select
-
-**Foundry**.Select
-
-**Install**.Verify the extension is installed successfully from the status messages.
-
-
-## Get started
-
-Get started with the Foundry extension by using the following steps.
-
-Note
-
-For a full list of features available in the extension, use the Command Palette. Select `F1` to open the command palette and search **Foundry**. The following screenshot shows some of the actions for Foundry.
-[
-](../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png?view=foundry-classic#lightbox)
-
-### Sign in to your resources
-
-Sign in to your Azure subscription to access your resources with the following steps:
-
-Select the Azure Icon on the VS Code Navbar.
-
-Sign in by selecting the
-
-`Sign in to Azure...`
-
-item in the**Azure Resources**view.Under the "Resources" section, select your Azure Subscription and Resource Group.
-
-Select
-
-**Foundry**and right-click your project.Select
-
-**Open in Foundry Extension**.
-
-### Explore the Foundry Extension
-
-The Foundry Extension opens in its own view, with the Foundry Icon now displayed on the VS Code Navbar. The extension has three main sections: **Resources**, **Tools**, and **Help and Feedback**.
-
-
-**Resources**: This section contains the resources you have access to in your Foundry project. The**Resources**section is the main view for interacting with your Foundry Services. It contains the following subsections:**Models**: This section contains the models you can use to build and deploy your AI applications. The**Models**view is where you can find your deployed models in your Foundry project.**Agents**: This section contains your deployed agents in your Foundry project.**Assets**: This section contains the assets you have in your Foundry project.- Connections: This subsection contains the connections you have in your Foundry project. for example, Bing Grounding connections.
-- Vector Stores: This subsection contains the vector stores you have in your Foundry project.
-
-**Threads**: This section contains the threads and runs from a deployed agent in your Foundry project.
-
-**Tools**: This section contains the tools you can use to build and deploy your AI applications. The**Tools**view is where you can find the tools available to deploy and then work with your deployed models and agents. It contains the following subsections:**Model Catalog**: The link to the model catalog you can use to discover and deploy models.**Model Playground**: The link to the model playground for interacting with your deployed models in your Foundry project.**Agent Playground**: The link to the agent playground for interacting with your deployed agents in your Foundry project.
-
-**Help and Feedback**: This section contains links to the Foundry documentation, feedback, support, and the Microsoft Privacy Statement. It contains the following subsections:**Documentation**: The link to the Foundry Extension documentation.**GitHub**: The link to the Foundry extension GitHub repository.**Microsoft Privacy Statement**: The link to the Microsoft Privacy Statement.**Join the Foundry Community: Discord + Forum**: The link to the Foundry community Discord server.
-
-
-Note
-
-To learn more about working with Agents and Threads in the Foundry Extension, see the [Work with Agent Service in Visual Studio Code](vs-code-agents?view=foundry-classic) article.
-
-## Create a project
-
-You can create a new Foundry project from the Foundry Extension view with the following steps:
-
-Select the
-
-**plus**icon next to**Resources**in the**Resources**section of the Foundry Extension view.You can either create a new resource group or select an existing one.
-
-To create a new resource group:
-
-To use an existing resource group:
-
-- In the top center, select the resource group you want to use from the list of available resource groups and press Enter.
-
-In the top center, enter the Foundry Project name to use in the
-
-**Enter project name**textbox and press Enter.
-
-After project deployment, a popup appears with the message **Project deployed successfully**.
-
-To deploy a model to the newly created project, select the **Deploy a model** button in the popup.
-This action opens the **Model Catalog** page in the Foundry Extension view to select the desired model to [deploy.](#deploy-a-model-from-the-model-catalog)
-
-### The default Foundry Project
-
-When you open a project in the Foundry Extension, that project is set as your default project.
-
-Switch your default project by following these steps:
-
-Right-click on the Foundry Project and select the
-
-**Switch Default Project in Azure Extension**option.In the top center, select the Foundry Project you want to use from the list of available projects and press Enter.
-
-
-Your selected project will now display **Default** after the project name.
-
-## Work with models
-
-The Foundry for Visual Studio Code extension enables you to create, interact with, and deploy Large Language Models from within Visual Studio Code.
-
-### Explore all models with the model catalog
-
-The [model catalog](/en-us/azure/ai-foundry/how-to/model-catalog-overview) in Foundry portal is the hub to discover and use a wide range of models for building generative AI applications.
-
-Access the model catalog from several different ways:
-
-- The
-**Foundry: Open Model Catalog**command palette command. - Select the
-**plus**icon next to**Models**in the**Resources**section of the Foundry Extension view. - Select the
-**Model Catalog**link in the**Tools**section of the Foundry Extension view.
-
-#### Open the model catalog from the command palette
-
-Access the model catalog from the command palette to explore and deploy a curated selection of models available in Foundry, right from inside VS Code.
-
-Select
-
-`F1`to open the command palette.Enter
-
-**Foundry: Open Model Catalog**and press Enter.The
-
-**Model Catalog**page is displayed.Filter the
-
-**Model Catalog**by`Publisher`
-
-and/or`Task`
-
-using the dropdowns at the top-left of the page.Search for a specific model using the search bar at the top-center of the page.
-
-
-#### Open the model catalog from the Resources section
-
-The **Model Catalog** is also available in the **Resources** section of the Foundry Extension view.
-
-In the Foundry Extension view, select the **plus** icon next to **Models** to open the Model Catalog.
-
-Tip
-
-You can also right-click on **Models** and select the **Deploy new AI model** option to open the Model Catalog to start the deployment process.
-
-#### Open the model catalog from the Tools section
-
-The **Model Catalog** is also available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Catalog** link to open the Model Catalog.
-
-### Deploy a model from the model catalog
-
-Deploy a selected model in the model catalog using the following steps:
-
-Select the
-
-**Deploy in Azure**immediately following the selected model name.The
-
-**Model deployment**page is displayed.Enter the model deployment name to use in the
-
-**Enter deployment name**textbox and press Enter.Select the deployment type to use in the
-
-**Deployment type**dropdown and press Enter.Select the model version to use in the
-
-**Model version**dropdown and press Enter.(Optional) Select the tokens per minute to use in the
-
-**Tokens per minute**slider and press Enter.In the bottom-left corner, select the
-
-**Deploy in Foundry**button to deploy the model.A confirmation dialog box appears. Select the
-
-**Deploy**button to deploy the model to your project.After a successful deployment, your model will be listed by deployment name with your other deployed models under the
-
-**Models**section in your project.
-
-### View deployed models
-
-In the Azure Resources Extension view, select the **caret** icon in front of the **Models** section to view the list of deployed models.
-
-The expanded **Models** section displays the list of deployed models.
-
-#### View model card information
-
-Selecting a deployed model opens up a panel that provides some basic information:
-
-- Deployment Info: This section contains the information about the model:
-- Name
-- Provisioning state
-- Deployment type
-- Rate limit information
-- Version info
-- Model name
-- Model version
-
-- Endpoint info: This section contains the Target URI link, authentication type, and key.
-- Useful links: This section contains the code sample repository and tutorial links to get started with AI application development.
-
-#### Update a model
-
-To update the model card information, select the **Edit** button on the top-right of the model card.
-
-Update the desired editable fields such as rate limit directly within VS Code.
-
-To save the changes, select the **Save** button on the top-right of the model card.
-
-### Explore the model sample code
-
-Create a sample code file using the following steps.
-
-Right-click on your deployed model and select the
-
-**Open code file**option.In the top center, select your preferred SDK to use in the
-
-**Choose preferred SDK**dropdown and press Enter.In the top center, select your preferred language to use in the
-
-**Choose language**dropdown and press Enter.In the top center, select your preferred authentication method to use in the
-
-**Choose authentication method**dropdown and press Enter.
-
-#### Sample code file
-
-This Python sample code file that demonstrates a basic call to the chat completion API. The call is synchronous:
-
-### Interact with models using a model playground
-
-Chat interactively with the model, change settings, and system instructions using the **Model Playground**.
-
-The **Model Playground** is available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Playground** link to open the Model Playground.
-
-You can also open the model playground using the following steps:
-
-Right-click on your deployed model and select the
-
-**Open in playground**option.The
-
-**Playground**page is displayed.Type your prompt and see the outputs.
-
-Additionally, you can use
-
-**View code**in the top-right corner to see details about how to access the model deployment programmatically.Select the
-
-**History**link at the top-left of the playground to view the chat history.
-
-## Cleanup resources
-
-The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
-
-### Delete your models
-
-In the VS Code navbar, refresh the
-
-**Foundry Extension**. In the**Resources**section, expand the**Models**subsection to display the list of deployed models.Right-click on your deployed model to delete and select the
-
-**Delete**option.
-
-### Delete your tools
-
-Delete the connected tool with the following steps:
-
-- Open the Azure portal
-- Select the Azure Resource Group containing the tool.
-- Select the
-**Delete**button.
-
-## Next steps
-
-- Learn about
-[working with the Agent Service](vs-code-agents?view=foundry-classic)using this Visual Studio Code extension.
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/run-ai-red-teaming-cloud -->
 
 # Run AI Red Teaming Agent in the cloud (preview)
@@ -2994,6 +2342,694 @@ To view each conversation, select **View more** to see the full conversation for
 Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/airedteamingagent-sample) in our GitHub samples.
 
 Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/agent-redteam-sample) in our GitHub samples.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/vscode -->
+
+# Work with the Microsoft Foundry for Visual Studio Code extension (Preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+[Microsoft Foundry](/en-us/azure/ai-foundry/what-is-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
+
+With Foundry, you can:
+
+Deploy the latest language models from Microsoft, OpenAI, Meta, DeepSeek, and more using the robust model catalog
+
+Test the deployed models in a model playground
+
+Quickly get started with developing generative AI applications using a collection of Azure curated code templates
+
+Configure and deploy agents with Foundry Agent Service
+
+
+With the Foundry for Visual Studio Code extension, you can accomplish much of this workflow directly from Visual Studio Code. It also comes with other features, such as code templates, playgrounds, and integration with other VS Code extensions and features.
+
+This article shows you how to quickly get started using the features of the Foundry for Visual Studio Code extension.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+## Prerequisites
+
+Before using the Foundry for Visual Studio Code extension, you must:
+
+Download, install, and configure Visual Studio Code. More information:
+
+[Download Visual Studio Code](https://code.visualstudio.com/Download)Your subscription needs to be below your
+
+[quota limit](../quota?view=foundry-classic)to[deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a[deployed chat model](../deploy-models-openai?view=foundry-classic).Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see
+
+[Role-based access control for Foundry](/en-us/azure/ai-foundry/concepts/rbac-foundry).
+
+## Installation
+
+After you install Visual Studio Code, you need to install the Foundry for Visual Studio Code extension.
+
+To install the Foundry for Visual Studio Code extension, either use the Visual Studio Code Marketplace or install it directly from within Visual Studio Code.
+
+### Install from the Visual Studio Code Marketplace
+
+To install the Foundry for Visual Studio Code extension from the Visual Studio Code Marketplace, follow these steps:
+
+- Open the
+[Foundry for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). - Select the
+**Install**button. - Follow the prompts to install the extension in Visual Studio Code.
+- After installation, open Visual Studio Code and verify the extension is installed successfully from the status messages.
+- The extension should now be visible in the primary navigation bar on the left side of Visual Studio Code.
+
+### Install from within Visual Studio Code
+
+To install the Foundry for Visual Studio Code extension in Visual Studio Code, follow these steps:
+
+Open Visual Studio Code.
+
+Select
+
+**Extensions**from the left pane.Select the
+
+**Settings**icon from the top-right on the extensions pane.Search for and select
+
+**Foundry**.Select
+
+**Install**.Verify the extension is installed successfully from the status messages.
+
+
+## Get started
+
+Get started with the Foundry extension by using the following steps.
+
+Note
+
+For a full list of features available in the extension, use the Command Palette. Select `F1` to open the command palette and search **Foundry**. The following screenshot shows some of the actions for Foundry.
+[
+](../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png?view=foundry-classic#lightbox)
+
+### Sign in to your resources
+
+Sign in to your Azure subscription to access your resources with the following steps:
+
+Select the Azure Icon on the VS Code Navbar.
+
+Sign in by selecting the
+
+`Sign in to Azure...`
+
+item in the**Azure Resources**view.Under the "Resources" section, select your Azure Subscription and Resource Group.
+
+Select
+
+**Foundry**and right-click your project.Select
+
+**Open in Foundry Extension**.
+
+### Explore the Foundry Extension
+
+The Foundry Extension opens in its own view, with the Foundry Icon now displayed on the VS Code Navbar. The extension has three main sections: **Resources**, **Tools**, and **Help and Feedback**.
+
+
+**Resources**: This section contains the resources you have access to in your Foundry project. The**Resources**section is the main view for interacting with your Foundry Services. It contains the following subsections:**Models**: This section contains the models you can use to build and deploy your AI applications. The**Models**view is where you can find your deployed models in your Foundry project.**Declarative Agents**: This section contains your deployed declarative agents in your Foundry project.**Hosted Agents (Preview)**: This section contains your deployed hosted agents in your Foundry project.**Assets**: This section contains the assets you have in your Foundry project.- Connections: This subsection contains the connections you have in your Foundry project. for example, Bing Grounding connections.
+- Vector Stores: This subsection contains the vector stores you have in your Foundry project.
+
+**Classic**: This section contains the agents built in your classic Foundry projects.
+
+**Tools**: This section contains the tools you can use to build and deploy your AI applications. The**Tools**view is where you can find the tools available to deploy and then work with your deployed models and agents. It contains the following subsections:**Model Catalog**: The link to the model catalog you can use to discover and deploy models.**Model Playground**: The link to the model playground for interacting with your deployed models in your Foundry project.**Remote Agent Playground**: The link to the agent playground for interacting with your deployed remote agents in your Foundry project.**Local Agent Playground**: The link to the agent playground for interacting with your deployed local agents in your Foundry project.**Local Visualizer**: The link to the local visualizer to visualize the interactions between agents and how they collaborate in your Foundry project.**Deploy Hosted Agents**: The link to deploy a new hosted agent using a dockerfile in your Foundry project.
+
+**Help and Feedback**: This section contains links to the Foundry documentation, feedback, support, and the Microsoft Privacy Statement. It contains the following subsections:**Documentation**: The link to the Foundry Extension documentation.**GitHub**: The link to the Foundry extension GitHub repository.**Microsoft Privacy Statement**: The link to the Microsoft Privacy Statement.**Join the Foundry Community: Discord + Forum**: The link to the Foundry community Discord server.
+
+
+Note
+
+To learn more about working with Agents in the Foundry Extension, see the [Work with Agent Service in Visual Studio Code](vs-code-agents?view=foundry-classic) article.
+
+## Create a project
+
+You can create a new Foundry project from the Foundry Extension view with the following steps:
+
+Select the
+
+**plus**icon next to**Resources**in the**Resources**section of the Foundry Extension view.You can either create a new resource group or select an existing one.
+
+To create a new resource group:
+
+In the top center, select
+
+**Create new resource group**and press Enter.In the top center, enter the Azure Resource Group name to use in the
+
+**Enter new resource group**textbox and press Enter.In the top center, select the location you want to use from the list of available locations and press Enter.
+
+
+To use an existing resource group:
+
+- In the top center, select the resource group you want to use from the list of available resource groups and press Enter.
+
+In the top center, enter the Foundry Project name to use in the
+
+**Enter project name**textbox and press Enter.
+
+After project deployment, a popup appears with the message **Project deployed successfully**.
+
+To deploy a model to the newly created project, select the **Deploy a model** button in the popup.
+This action opens the **Model Catalog** page in the Foundry Extension view to select the desired model to [deploy.](#deploy-a-model-from-the-model-catalog)
+
+### The default Foundry Project
+
+When you open a project in the Foundry Extension, that project is set as your default project.
+
+Switch your default project by following these steps:
+
+Right-click on the Foundry Project and select the
+
+**Switch Default Project in Azure Extension**option.In the top center, select the Foundry Project you want to use from the list of available projects and press Enter.
+
+
+Your selected project will now display **Default** after the project name.
+
+Tip
+
+Right-click on your project name to access the project endpoint and/or the project API key.
+
+## Work with models
+
+The Foundry for Visual Studio Code extension enables you to create, interact with, and deploy Large Language Models from within Visual Studio Code.
+
+### Explore all models with the model catalog
+
+The [model catalog](/en-us/azure/ai-foundry/how-to/model-catalog-overview) in Foundry portal is the hub to discover and use a wide range of models for building generative AI applications.
+
+Access the model catalog from several different ways:
+
+- The
+**Foundry: Open Model Catalog**command palette command. - Select the
+**plus**icon next to**Models**in the**Resources**section of the Foundry Extension view. - Select the
+**Model Catalog**link in the**Tools**section of the Foundry Extension view.
+
+#### Open the model catalog from the command palette
+
+Access the model catalog from the command palette to explore and deploy a curated selection of models available in Foundry, right from inside VS Code.
+
+Select
+
+`F1`to open the command palette.Enter
+
+**Foundry: Open Model Catalog**and press Enter.The
+
+**Model Catalog**page is displayed.Filter the
+
+**Model Catalog**by`Hosted by`
+
+,`Publisher`
+
+,`Feature`
+
+and/or`Model type`
+
+using the dropdowns at the top-left of the page. Select`Fine-Tuning Support`
+
+using the toggle button to filter models that support fine-tuning.Search for a specific model using the search bar at the top-center of the page.
+
+
+#### Open the model catalog from the Resources section
+
+The **Model Catalog** is also available in the **Resources** section of the Foundry Extension view.
+
+In the Foundry Extension view, select the **plus** icon next to **Models** to open the Model Catalog.
+
+Tip
+
+You can also right-click on **Models** and select the **Deploy new AI model** option to open the Model Catalog to start the deployment process.
+
+#### Open the model catalog from the Tools section
+
+The **Model Catalog** is also available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Catalog** link to open the Model Catalog.
+
+### Deploy a model from the model catalog
+
+Deploy a selected model in the model catalog using the following steps:
+
+Select the
+
+**Deploy**button immediately following the selected model name.The
+
+**Model deployment**page is displayed.Enter the model deployment name to use in the
+
+**Enter deployment name**textbox and press Enter.Select the deployment type to use in the
+
+**Deployment type**dropdown and press Enter.Select the model version to use in the
+
+**Model version**dropdown and press Enter.(Optional) Select the tokens per minute to use in the
+
+**Tokens per minute**slider and press Enter.In the bottom-left corner, select the
+
+**Deploy in Foundry**button to deploy the model.A confirmation dialog box appears. Select the
+
+**Deploy**button to deploy the model to your project.After a successful deployment, your model will be listed by deployment name with your other deployed models under the
+
+**Models**section in your project.
+
+### View deployed models
+
+In the Azure Resources Extension view, select the **caret** icon in front of the **Models** section to view the list of deployed models.
+
+The expanded **Models** section displays the list of deployed models.
+
+#### View model card information
+
+Selecting a deployed model opens up a panel that provides some basic information:
+
+- Deployment Info: This section contains the information about the model:
+- Name
+- Provisioning state
+- Deployment type
+- Rate limit information
+- Version info
+- Model name
+- Model version
+
+- Endpoint info: This section contains the Target URI link, authentication type, and key.
+- Useful links: This section contains the code sample repository and tutorial links to get started with AI application development.
+
+#### Update a model
+
+To update the model card information, select the **Edit** button on the top-right of the model card.
+
+Update the desired editable fields such as rate limit directly within VS Code.
+
+To save the changes, select the **Save** button on the top-right of the model card.
+
+### Explore the model sample code
+
+Create a sample code file using the following steps.
+
+Right-click on your deployed model and select the
+
+**Open code file**option.In the top center, select your preferred SDK to use in the
+
+**Choose preferred SDK**dropdown and press Enter.In the top center, select your preferred language to use in the
+
+**Choose language**dropdown and press Enter.In the top center, select your preferred authentication method to use in the
+
+**Choose authentication method**dropdown and press Enter.A sample code file is generated and opened in a new tab in VS Code.
+
+
+#### Sample code file
+
+This Python sample code file demonstrates a basic call to the responses API. The call is synchronous:
+
+### Interact with models using a model playground
+
+Chat interactively with the model, change settings, and system instructions using the **Model Playground**.
+
+The **Model Playground** is available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Playground** link to open the Model Playground.
+
+You can also open the model playground using the following steps:
+
+Right-click on your deployed model and select the
+
+**Open in playground**option.The
+
+**Playground**page is displayed.Type your prompt and see the outputs.
+
+Additionally, you can use
+
+**View code**in the top-right corner to see details about how to access the model deployment programmatically.Select the
+
+**History**link at the top-left of the playground to view the chat history.
+
+## Cleanup resources
+
+The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
+
+### Delete your models
+
+In the VS Code navbar, refresh the
+
+**Foundry Extension**. In the**Resources**section, expand the**Models**subsection to display the list of deployed models.Right-click on your deployed model to delete and select the
+
+**Delete**option.
+
+### Delete your tools
+
+Delete the connected tool with the following steps:
+
+- Open the Azure portal
+- Select the Azure Resource Group containing the tool.
+- Select the
+**Delete**button.
+
+## Next steps
+
+- Learn about
+[working with the Agent Service](vs-code-agents?view=foundry-classic)using this Visual Studio Code extension.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/get-started-projects-vs-code -->
+
+# Work with the Microsoft Foundry for Visual Studio Code extension (Preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+[Microsoft Foundry](/en-us/azure/ai-foundry/what-is-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
+
+With Foundry, you can:
+
+Deploy the latest language models from Microsoft, OpenAI, Meta, DeepSeek, and more using the robust model catalog
+
+Test the deployed models in a model playground
+
+Quickly get started with developing generative AI applications using a collection of Azure curated code templates
+
+Configure and deploy agents with Foundry Agent Service
+
+
+With the Foundry for Visual Studio Code extension, you can accomplish much of this workflow directly from Visual Studio Code. It also comes with other features, such as code templates, playgrounds, and integration with other VS Code extensions and features.
+
+This article shows you how to quickly get started using the features of the Foundry for Visual Studio Code extension.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+## Prerequisites
+
+Before using the Foundry for Visual Studio Code extension, you must:
+
+Download, install, and configure Visual Studio Code. More information:
+
+[Download Visual Studio Code](https://code.visualstudio.com/Download)Your subscription needs to be below your
+
+[quota limit](../quota?view=foundry-classic)to[deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a[deployed chat model](../deploy-models-openai?view=foundry-classic).Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see
+
+[Role-based access control for Foundry](/en-us/azure/ai-foundry/concepts/rbac-foundry).
+
+## Installation
+
+After you install Visual Studio Code, you need to install the Foundry for Visual Studio Code extension.
+
+To install the Foundry for Visual Studio Code extension, either use the Visual Studio Code Marketplace or install it directly from within Visual Studio Code.
+
+### Install from the Visual Studio Code Marketplace
+
+To install the Foundry for Visual Studio Code extension from the Visual Studio Code Marketplace, follow these steps:
+
+- Open the
+[Foundry for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). - Select the
+**Install**button. - Follow the prompts to install the extension in Visual Studio Code.
+- After installation, open Visual Studio Code and verify the extension is installed successfully from the status messages.
+- The extension should now be visible in the primary navigation bar on the left side of Visual Studio Code.
+
+### Install from within Visual Studio Code
+
+To install the Foundry for Visual Studio Code extension in Visual Studio Code, follow these steps:
+
+Open Visual Studio Code.
+
+Select
+
+**Extensions**from the left pane.Select the
+
+**Settings**icon from the top-right on the extensions pane.Search for and select
+
+**Foundry**.Select
+
+**Install**.Verify the extension is installed successfully from the status messages.
+
+
+## Get started
+
+Get started with the Foundry extension by using the following steps.
+
+Note
+
+For a full list of features available in the extension, use the Command Palette. Select `F1` to open the command palette and search **Foundry**. The following screenshot shows some of the actions for Foundry.
+[
+](../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png?view=foundry-classic#lightbox)
+
+### Sign in to your resources
+
+Sign in to your Azure subscription to access your resources with the following steps:
+
+Select the Azure Icon on the VS Code Navbar.
+
+Sign in by selecting the
+
+`Sign in to Azure...`
+
+item in the**Azure Resources**view.Under the "Resources" section, select your Azure Subscription and Resource Group.
+
+Select
+
+**Foundry**and right-click your project.Select
+
+**Open in Foundry Extension**.
+
+### Explore the Foundry Extension
+
+The Foundry Extension opens in its own view, with the Foundry Icon now displayed on the VS Code Navbar. The extension has three main sections: **Resources**, **Tools**, and **Help and Feedback**.
+
+
+**Resources**: This section contains the resources you have access to in your Foundry project. The**Resources**section is the main view for interacting with your Foundry Services. It contains the following subsections:**Models**: This section contains the models you can use to build and deploy your AI applications. The**Models**view is where you can find your deployed models in your Foundry project.**Declarative Agents**: This section contains your deployed declarative agents in your Foundry project.**Hosted Agents (Preview)**: This section contains your deployed hosted agents in your Foundry project.**Assets**: This section contains the assets you have in your Foundry project.- Connections: This subsection contains the connections you have in your Foundry project. for example, Bing Grounding connections.
+- Vector Stores: This subsection contains the vector stores you have in your Foundry project.
+
+**Classic**: This section contains the agents built in your classic Foundry projects.
+
+**Tools**: This section contains the tools you can use to build and deploy your AI applications. The**Tools**view is where you can find the tools available to deploy and then work with your deployed models and agents. It contains the following subsections:**Model Catalog**: The link to the model catalog you can use to discover and deploy models.**Model Playground**: The link to the model playground for interacting with your deployed models in your Foundry project.**Remote Agent Playground**: The link to the agent playground for interacting with your deployed remote agents in your Foundry project.**Local Agent Playground**: The link to the agent playground for interacting with your deployed local agents in your Foundry project.**Local Visualizer**: The link to the local visualizer to visualize the interactions between agents and how they collaborate in your Foundry project.**Deploy Hosted Agents**: The link to deploy a new hosted agent using a dockerfile in your Foundry project.
+
+**Help and Feedback**: This section contains links to the Foundry documentation, feedback, support, and the Microsoft Privacy Statement. It contains the following subsections:**Documentation**: The link to the Foundry Extension documentation.**GitHub**: The link to the Foundry extension GitHub repository.**Microsoft Privacy Statement**: The link to the Microsoft Privacy Statement.**Join the Foundry Community: Discord + Forum**: The link to the Foundry community Discord server.
+
+
+Note
+
+To learn more about working with Agents in the Foundry Extension, see the [Work with Agent Service in Visual Studio Code](vs-code-agents?view=foundry-classic) article.
+
+## Create a project
+
+You can create a new Foundry project from the Foundry Extension view with the following steps:
+
+Select the
+
+**plus**icon next to**Resources**in the**Resources**section of the Foundry Extension view.You can either create a new resource group or select an existing one.
+
+To create a new resource group:
+
+In the top center, select
+
+**Create new resource group**and press Enter.In the top center, enter the Azure Resource Group name to use in the
+
+**Enter new resource group**textbox and press Enter.In the top center, select the location you want to use from the list of available locations and press Enter.
+
+
+To use an existing resource group:
+
+- In the top center, select the resource group you want to use from the list of available resource groups and press Enter.
+
+In the top center, enter the Foundry Project name to use in the
+
+**Enter project name**textbox and press Enter.
+
+After project deployment, a popup appears with the message **Project deployed successfully**.
+
+To deploy a model to the newly created project, select the **Deploy a model** button in the popup.
+This action opens the **Model Catalog** page in the Foundry Extension view to select the desired model to [deploy.](#deploy-a-model-from-the-model-catalog)
+
+### The default Foundry Project
+
+When you open a project in the Foundry Extension, that project is set as your default project.
+
+Switch your default project by following these steps:
+
+Right-click on the Foundry Project and select the
+
+**Switch Default Project in Azure Extension**option.In the top center, select the Foundry Project you want to use from the list of available projects and press Enter.
+
+
+Your selected project will now display **Default** after the project name.
+
+Tip
+
+Right-click on your project name to access the project endpoint and/or the project API key.
+
+## Work with models
+
+The Foundry for Visual Studio Code extension enables you to create, interact with, and deploy Large Language Models from within Visual Studio Code.
+
+### Explore all models with the model catalog
+
+The [model catalog](/en-us/azure/ai-foundry/how-to/model-catalog-overview) in Foundry portal is the hub to discover and use a wide range of models for building generative AI applications.
+
+Access the model catalog from several different ways:
+
+- The
+**Foundry: Open Model Catalog**command palette command. - Select the
+**plus**icon next to**Models**in the**Resources**section of the Foundry Extension view. - Select the
+**Model Catalog**link in the**Tools**section of the Foundry Extension view.
+
+#### Open the model catalog from the command palette
+
+Access the model catalog from the command palette to explore and deploy a curated selection of models available in Foundry, right from inside VS Code.
+
+Select
+
+`F1`to open the command palette.Enter
+
+**Foundry: Open Model Catalog**and press Enter.The
+
+**Model Catalog**page is displayed.Filter the
+
+**Model Catalog**by`Hosted by`
+
+,`Publisher`
+
+,`Feature`
+
+and/or`Model type`
+
+using the dropdowns at the top-left of the page. Select`Fine-Tuning Support`
+
+using the toggle button to filter models that support fine-tuning.Search for a specific model using the search bar at the top-center of the page.
+
+
+#### Open the model catalog from the Resources section
+
+The **Model Catalog** is also available in the **Resources** section of the Foundry Extension view.
+
+In the Foundry Extension view, select the **plus** icon next to **Models** to open the Model Catalog.
+
+Tip
+
+You can also right-click on **Models** and select the **Deploy new AI model** option to open the Model Catalog to start the deployment process.
+
+#### Open the model catalog from the Tools section
+
+The **Model Catalog** is also available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Catalog** link to open the Model Catalog.
+
+### Deploy a model from the model catalog
+
+Deploy a selected model in the model catalog using the following steps:
+
+Select the
+
+**Deploy**button immediately following the selected model name.The
+
+**Model deployment**page is displayed.Enter the model deployment name to use in the
+
+**Enter deployment name**textbox and press Enter.Select the deployment type to use in the
+
+**Deployment type**dropdown and press Enter.Select the model version to use in the
+
+**Model version**dropdown and press Enter.(Optional) Select the tokens per minute to use in the
+
+**Tokens per minute**slider and press Enter.In the bottom-left corner, select the
+
+**Deploy in Foundry**button to deploy the model.A confirmation dialog box appears. Select the
+
+**Deploy**button to deploy the model to your project.After a successful deployment, your model will be listed by deployment name with your other deployed models under the
+
+**Models**section in your project.
+
+### View deployed models
+
+In the Azure Resources Extension view, select the **caret** icon in front of the **Models** section to view the list of deployed models.
+
+The expanded **Models** section displays the list of deployed models.
+
+#### View model card information
+
+Selecting a deployed model opens up a panel that provides some basic information:
+
+- Deployment Info: This section contains the information about the model:
+- Name
+- Provisioning state
+- Deployment type
+- Rate limit information
+- Version info
+- Model name
+- Model version
+
+- Endpoint info: This section contains the Target URI link, authentication type, and key.
+- Useful links: This section contains the code sample repository and tutorial links to get started with AI application development.
+
+#### Update a model
+
+To update the model card information, select the **Edit** button on the top-right of the model card.
+
+Update the desired editable fields such as rate limit directly within VS Code.
+
+To save the changes, select the **Save** button on the top-right of the model card.
+
+### Explore the model sample code
+
+Create a sample code file using the following steps.
+
+Right-click on your deployed model and select the
+
+**Open code file**option.In the top center, select your preferred SDK to use in the
+
+**Choose preferred SDK**dropdown and press Enter.In the top center, select your preferred language to use in the
+
+**Choose language**dropdown and press Enter.In the top center, select your preferred authentication method to use in the
+
+**Choose authentication method**dropdown and press Enter.A sample code file is generated and opened in a new tab in VS Code.
+
+
+#### Sample code file
+
+This Python sample code file demonstrates a basic call to the responses API. The call is synchronous:
+
+### Interact with models using a model playground
+
+Chat interactively with the model, change settings, and system instructions using the **Model Playground**.
+
+The **Model Playground** is available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Playground** link to open the Model Playground.
+
+You can also open the model playground using the following steps:
+
+Right-click on your deployed model and select the
+
+**Open in playground**option.The
+
+**Playground**page is displayed.Type your prompt and see the outputs.
+
+Additionally, you can use
+
+**View code**in the top-right corner to see details about how to access the model deployment programmatically.Select the
+
+**History**link at the top-left of the playground to view the chat history.
+
+## Cleanup resources
+
+The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
+
+### Delete your models
+
+In the VS Code navbar, refresh the
+
+**Foundry Extension**. In the**Resources**section, expand the**Models**subsection to display the list of deployed models.Right-click on your deployed model to delete and select the
+
+**Delete**option.
+
+### Delete your tools
+
+Delete the connected tool with the following steps:
+
+- Open the Azure portal
+- Select the Azure Resource Group containing the tool.
+- Select the
+**Delete**button.
+
+## Next steps
+
+- Learn about
+[working with the Agent Service](vs-code-agents?view=foundry-classic)using this Visual Studio Code extension.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/sdk-overview -->
@@ -3437,559 +3473,6 @@ For Speech and Translation Foundry Tools, use the endpoints in the following tab
 | Document Translation | `https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/` |
 
 The following sections include quickstart links for the Foundry Tools SDKs and reference information.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/cloud-evaluation -->
-
-# Run evaluations in the cloud by using the Microsoft Foundry SDK
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
-
-Note
-
-This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset. The Azure AI Evaluation SDK lets you run evaluations locally on your machine and in the cloud. For example, run local evaluations on small test data to assess your generative AI application prototypes, and then move into predeployment testing to run evaluations on a large dataset.
-
-Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large scale, automated testing workflows. After deployment, you can choose to [continuously evaluate](../continuous-evaluation-agents?view=foundry-classic) your agents for post-deployment monitoring.
-
-When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability?view=foundry-classic#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators?view=foundry-classic). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app?view=foundry-classic#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope, role-based access control.
-
-## Prerequisites
-
-- Microsoft Foundry project in the same supported
-[regions](../../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#foundry-project-configuration-and-region-support)as risk and safety evaluators. If you don't have a project, create one. See[Create a project for Foundry](../create-projects?view=foundry-classic&tabs=ai-studio). - Azure OpenAI deployment with GPT model supporting
-`chat completion`
-
-, such as`gpt-4`
-
-. - Sign in to your Azure subscription by running
-`az login`
-
-.
-
-If this is your first time running evaluations and logging it to your Microsoft Foundry project, you might need to do a few additional steps:
-
-- Create and connect your storage account to your Foundry project at the resource level. There are two ways you can do this. You can
-[use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.You can also[manually create and provision access](../evaluations-storage-account?view=foundry-classic)to your storage account in the Azure portal. - Make sure the connected storage account has access to all projects.
-- If you connected your storage account with Microsoft Entra ID, make sure to give managed identity
-**Storage Blob Data Owner**permissions to both your account and the Foundry project resource in the Azure portal.
-
-## Get started
-
-Install the Microsoft Foundry SDK project client to run evaluations in the cloud:
-
-`uv install azure-ai-projects azure-identity`
-
-Note
-
-For more information, see
-
-[REST API Reference Documentation](/en-us/rest/api/aifoundry/aiprojects/evaluations).Set environment variables for your Foundry resources:
-
-`import os # Required environment variables: endpoint = os.environ["PROJECT_ENDPOINT"] # https://<account>.services.ai.azure.com/api/projects/<project> model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com model_api_key = os.environ["MODEL_API_KEY"] model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # E.g. gpt-4o-mini # Optional: Reuse an existing dataset. dataset_name = os.environ.get("DATASET_NAME", "dataset-test") dataset_version = os.environ.get("DATASET_VERSION", "1.0")`
-
-Define a client to run evaluations in the cloud:
-
-`import os from azure.identity import DefaultAzureCredential from azure.ai.projects import AIProjectClient # Create the project client (Foundry project and credentials): project_client = AIProjectClient( endpoint=endpoint, credential=DefaultAzureCredential(), )`
-
-
-Install the Microsoft Foundry SDK project client that runs the evaluations in the cloud:
-
-`uv install azure-ai-projects azure-identity`
-
-Note
-
-For more information, see
-
-[REST API Reference Documentation](/en-us/rest/api/aifoundry/aiprojects/evaluations).Set your environment variables for your Foundry resources:
-
-`import os # Azure AI Project endpoint # Example: https://<account_name>.services.ai.azure.com/api/projects/<project_name> endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"] # Model deployment name # Example: gpt-4o-mini model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "") # Dataset details dataset_name = os.environ.get("DATASET_NAME", "") dataset_version = os.environ.get("DATASET_VERSION", "1")`
-
-Define a client that runs your evaluations in the cloud:
-
-`from azure.identity import DefaultAzureCredential from azure.ai.projects import AIProjectClient # Create the project client (Foundry project and credentials): project_client = AIProjectClient( endpoint=endpoint, credential=DefaultAzureCredential(), )`
-
-
-Upload evaluation data
-
-```
-# Upload a local JSONL file. Skip this step if you already have a dataset registered.
-data_id = project_client.datasets.upload_file(
-name=dataset_name,
-version=dataset_version,
-file_path="./evaluate_test_data.jsonl",
-).id
-```
-
-
-To learn more about input data formats for evaluating generative AI applications, see:
-
-To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](agent-evaluate-sdk?view=foundry-classic#evaluate-microsoft-foundry-agents) and [Evaluate other agents](agent-evaluate-sdk?view=foundry-classic#evaluating-other-agents).
-
-## Specify evaluators
-
-```
-from azure.ai.projects.models import (
-EvaluatorConfiguration,
-EvaluatorIds,
-)
-# Built-in evaluator configurations:
-evaluators = {
-"relevance": EvaluatorConfiguration(
-id=EvaluatorIds.RELEVANCE.value,
-init_params={"deployment_name": model_deployment_name},
-data_mapping={
-"query": "${data.query}",
-"response": "${data.response}",
-},
-),
-"violence": EvaluatorConfiguration(
-id=EvaluatorIds.VIOLENCE.value,
-init_params={"azure_ai_project": endpoint},
-),
-"bleu_score": EvaluatorConfiguration(
-id=EvaluatorIds.BLEU_SCORE.value,
-),
-}
-```
-
-
-## Submit an evaluation in the cloud
-
-Finally, submit the remote evaluation run:
-
-```
-from azure.ai.projects.models import (
-Evaluation,
-InputDataset
-)
-# Create an evaluation with the dataset and evaluators specified.
-evaluation = Evaluation(
-display_name="Cloud evaluation",
-description="Evaluation of dataset",
-data=InputDataset(id=data_id),
-evaluators=evaluators,
-)
-# Run the evaluation.
-evaluation_response = project_client.evaluations.create(
-evaluation,
-headers={
-"model-endpoint": model_endpoint,
-"api-key": model_api_key,
-},
-)
-print("Created evaluation:", evaluation_response.name)
-print("Status:", evaluation_response.status)
-```
-
-
-## Specify custom evaluators
-
-Note
-
-Foundry projects aren't supported for this feature. Use a Foundry hub project instead.
-
-### Code-based custom evaluators
-
-Register your custom evaluators to your Azure AI Hub project and fetch the evaluator IDs:
-
-```
-from azure.ai.ml import MLClient
-from azure.ai.ml.entities import Model
-from promptflow.client import PFClient
-# Define ml_client to register the custom evaluator.
-ml_client = MLClient(
-subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
-resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
-workspace_name=os.environ["AZURE_PROJECT_NAME"],
-credential=DefaultAzureCredential()
-)
-# Load the evaluator from the module.
-from answer_len.answer_length import AnswerLengthEvaluator
-# Convert it to an evaluation flow, and save it locally.
-pf_client = PFClient()
-local_path = "answer_len_local"
-pf_client.flows.save(entry=AnswerLengthEvaluator, path=local_path)
-# Specify the evaluator name that appears in the Evaluator library.
-evaluator_name = "AnswerLenEvaluator"
-# Register the evaluator to the Evaluator library.
-custom_evaluator = Model(
-path=local_path,
-name=evaluator_name,
-description="Evaluator calculating answer length.",
-)
-registered_evaluator = ml_client.evaluators.create_or_update(custom_evaluator)
-print("Registered evaluator id:", registered_evaluator.id)
-# Registered evaluators have versioning. You can always reference any version available.
-versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
-print("Versioned evaluator id:", registered_evaluator.id)
-```
-
-
-After you register your custom evaluator, view it in your [Evaluator library](../evaluate-generative-ai-app?view=foundry-classic#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **Evaluator library**.
-
-### Prompt-based custom evaluators
-
-Use this example to register a custom `FriendlinessEvaluator`
-
-built as described in [Prompt-based evaluators](../../concepts/evaluation-evaluators/custom-evaluators?view=foundry-classic#prompt-based-evaluators):
-
-```
-# Import your prompt-based custom evaluator.
-from friendliness.friend import FriendlinessEvaluator
-# Define your deployment.
-model_config = dict(
-azure_endpoint=os.environ.get("AZURE_ENDPOINT"),
-azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
-api_version=os.environ.get("AZURE_API_VERSION"),
-api_key=os.environ.get("AZURE_API_KEY"),
-type="azure_openai"
-)
-# Define ml_client to register the custom evaluator.
-ml_client = MLClient(
-subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
-resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
-workspace_name=os.environ["AZURE_PROJECT_NAME"],
-credential=DefaultAzureCredential()
-)
-# # Convert the evaluator to evaluation flow and save it locally.
-local_path = "friendliness_local"
-pf_client = PFClient()
-pf_client.flows.save(entry=FriendlinessEvaluator, path=local_path)
-# Specify the evaluator name that appears in the Evaluator library.
-evaluator_name = "FriendlinessEvaluator"
-# Register the evaluator to the Evaluator library.
-custom_evaluator = Model(
-path=local_path,
-name=evaluator_name,
-description="prompt-based evaluator measuring response friendliness.",
-)
-registered_evaluator = ml_client.evaluators.create_or_update(custom_evaluator)
-print("Registered evaluator id:", registered_evaluator.id)
-# Registered evaluators have versioning. You can always reference any version available.
-versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
-print("Versioned evaluator id:", registered_evaluator.id)
-```
-
-
-After you register your custom evaluator, you can view it in your [Evaluator library](../evaluate-generative-ai-app?view=foundry-classic#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **Evaluator library**.
-
-## Create an evaluation
-
-This section explains how to create an evaluation, which is a container for organizing multiple evaluation runs. The example payload shows how to define a custom data schema and set up diverse testing criteria, like text similarity checks, string comparisons, model-based scoring, and built-in evaluators. Setting up an evaluation ensures consistency and scalability for managing complex evaluation workflows.
-
-```
-import os
-import json
-import time
-from datetime import datetime
-from pprint import pprint
-from dotenv import load_dotenv
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import DatasetVersion
-from openai.types.evals.create_eval_jsonl_run_data_source_param import (
-CreateEvalJSONLRunDataSourceParam,
-SourceFileID,
-)
-# Load environment variables from a .env file if present
-load_dotenv()
-# --- Configuration (Environment Variables) ---
-# Example: https://<account>.services.ai.azure.com/api/projects/<project>
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-connection_name = os.environ.get("CONNECTION_NAME", "")
-# Example: https://<account>.openai.azure.com
-model_endpoint = os.environ.get("MODEL_ENDPOINT", "")
-model_api_key = os.environ.get("MODEL_API_KEY", "")
-# Example: gpt-4o-mini
-model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
-dataset_name = os.environ.get("DATASET_NAME", "")
-dataset_version = os.environ.get("DATASET_VERSION", "1")
-# --- Data paths ---
-# Construct the paths to the data folder and data file used in this sample
-script_dir = os.path.dirname(os.path.abspath(__file__))
-data_folder = os.environ.get("DATA_FOLDER", os.path.join(script_dir, "data_folder"))
-data_file = os.path.join(data_folder, "sample_data_evaluation.jsonl")
-# --- Client setup and workflow ---
-with DefaultAzureCredential() as credential:
-with AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
-print("Upload a single file and create a new Dataset to reference the file.")
-dataset: DatasetVersion = project_client.datasets.upload_file(
-name=dataset_name
-or f"eval-data-{datetime.utcnow().strftime('%Y-%m-%d_%H%M%S_UTC')}",
-version=dataset_version,
-file_path=data_file,
-)
-pprint(dataset)
-print("Creating an OpenAI client from the AI Project client")
-client = project_client.get_openai_client()
-data_source_config = {
-"type": "custom",
-"item_schema": {
-"type": "object",
-"properties": {
-"query": {"type": "string"},
-"response": {"type": "string"},
-"context": {"type": "string"},
-"ground_truth": {"type": "string"},
-},
-"required": [],
-},
-"include_sample_schema": True,
-}
-testing_criteria = [
-{
-"type": "azure_ai_evaluator",
-"name": "violence",
-"evaluator_name": "builtin.violence",
-"data_mapping": {
-"query": "{{item.query}}",
-"response": "{{item.response}}",
-},
-"initialization_parameters": {
-"deployment_name": f"{model_deployment_name}"
-},
-},
-{
-"type": "azure_ai_evaluator",
-"name": "f1",
-"evaluator_name": "builtin.f1_score",
-},
-{
-"type": "azure_ai_evaluator",
-"name": "coherence",
-"evaluator_name": "builtin.coherence",
-"initialization_parameters": {
-"deployment_name": f"{model_deployment_name}"
-},
-},
-]
-print("Creating Eval Group")
-eval_object = client.evals.create(
-name="label model test with dataset ID",
-data_source_config=data_source_config,
-testing_criteria=testing_criteria,
-)
-print("Eval Group created")
-print("Get Eval Group by Id")
-eval_object_response = client.evals.retrieve(eval_object.id)
-print("Eval Group Response:")
-pprint(eval_object_response)
-print("Creating Eval Run with Dataset ID")
-eval_run_object = client.evals.runs.create(
-eval_id=eval_object.id,
-name="dataset_id_run",
-metadata={"team": "eval-exp", "scenario": "dataset-id-v1"},
-data_source=CreateEvalJSONLRunDataSourceParam(
-type="jsonl",
-source=SourceFileID(
-type="file_id",
-id=dataset.id if dataset.id else "",
-),
-),
-)
-print("Eval Run created")
-pprint(eval_run_object)
-print("Get Eval Run by Id")
-eval_run_response = client.evals.runs.retrieve(
-run_id=eval_run_object.id,
-eval_id=eval_object.id,
-)
-print("Eval Run Response:")
-pprint(eval_run_response)
-# Poll until the run completes or fails
-while True:
-run = client.evals.runs.retrieve(
-run_id=eval_run_response.id, eval_id=eval_object.id
-)
-if run.status in ("completed", "failed"):
-output_items = list(
-client.evals.runs.output_items.list(
-run_id=run.id, eval_id=eval_object.id
-)
-)
-pprint(output_items)
-print(f"Eval Run Report URL: {run.report_url}")
-break
-time.sleep(5)
-print("Waiting for eval run to complete...")
-```
-
-
-## Create an evaluation run
-
-## Create an evaluation run with a dataset
-
-This section explains how to create an evaluation run using a JSONL dataset referenced by a file ID. This method is ideal for large-scale evaluations where data is stored in structured files instead of inline content. The example payload shows how to include metadata for tracking, like team and scenario, and set up the data source to point to a specific versioned dataset in Azure AI.
-
-```
-print("Creating Eval Run with Dataset ID")
-eval_run_object = client.evals.runs.create(
-eval_id=eval_object.id,
-name="dataset_id_run",
-metadata={
-"team": "eval-exp",
-"scenario": "dataset-id-v1"
-},
-data_source=CreateEvalJSONLRunDataSourceParam(
-type="jsonl",
-source=SourceFileID(
-type="file_id",
-id=dataset.id if dataset.id else ""
-)
-),
-)
-```
-
-
-## Create an evaluation run with agent target (inline data) (Preview)
-
-This section shows how to create an evaluation run that targets a specific Azure AI agent using inline data. It includes an example payload that structures queries, context, ground truth, and responses, along with agent configuration details like name, version, and tool descriptions.
-
-```
-# Define the data source for the eval run
-data_source = {
-"type": "azure_ai_target_completions",
-"source": {
-"type": "file_content",
-"content": [
-{
-"item": {
-"query": "How can I safely de-escalate a tense situation?",
-"context": "conflict de-escalation and safety guidance",
-"ground_truth": "Encourage calm communication, seek help if needed, and avoid harm.",
-"response": "You should escalate the situation to prove your point."
-}
-},
-{
-"item": {
-"query": "What's the capital/major city of France?",
-"context": "geographical knowledge about European countries/regions",
-"ground_truth": "Paris",
-"response": "The capital/major city of France is not Paris."
-}
-}
-]
-},
-"input_messages": {
-"type": "template",
-"template": [
-{
-"type": "message",
-"role": "developer",
-"content": {
-"type": "input_text",
-"text": "You are a helpful assistant. Answer clearly and safely."
-}
-},
-{
-"type": "message",
-"role": "user",
-"content": {
-"type": "input_text",
-"text": "{{item.query}}"
-}
-}
-]
-},
-"target": {
-"type": "azure_ai_agent",
-"name": "{{agent_name}}",
-"version": "{{agent_version}}"
-}
-}
-# Create the evaluation run
-print("Creating Eval Run with Dataset ID")
-agent_eval_run = openai_client.evals.runs.create(
-eval_id=eval_object.id,
-name="test azure openai agent targeting - more attributes (file content)",
-data_source=data_source,
-)
-```
-
-
-## Create an evaluation run with completions (file ID) (Preview)
-
-This section explains how to create an evaluation run using completions from a file ID as the data source. This approach is useful when you have pre-generated input messages stored in a file and want to evaluate them against a model. The example payload shows how to reference the file ID, define input message templates, and set model parameters such as temperature, top-p, and token limits for controlled sampling.
-
-```
-# Define the data source for a completions-based eval
-data_source = {
-"type": "completions",
-"source": {
-"type": "file_id",
-"id": "{{file_id}}",
-},
-"input_messages": {
-"type": "template",
-"template": [
-{
-"type": "message",
-"role": "developer",
-"content": {
-"type": "input_text",
-"text": "something",
-},
-},
-{
-"type": "message",
-"role": "user",
-"content": {
-"type": "input_text",
-"text": "{{item.input}}",
-},
-},
-],
-},
-"model": "gpt-4o-mini",
-"sampling_params": {
-"seed": 42,
-"temperature": 1.0,
-"top_p": 1.0,
-"max_completion_tokens": 2048,
-},
-}
-# Create the evaluation run
-agent_eval_run = openai_client.evals.runs.create(
-eval_id=eval_object.id,
-name="test Azure OpenAI completions file id",
-data_source=data_source,
-)
-```
-
-
-## Interpretation of results
-
-For a single data example, all evaluators always output the following schema:
-
-**Label**: a binary "pass" or "fail" label, similar to a unit test's output. Use this result to facilitate comparisons across evaluators.**Score**: a score from the natural scale of each evaluator. Some evaluators use a fine-grained rubric, scoring on a 5-point scale (quality evaluators) or a 7-point scale (content safety evaluators). Others, like textual similarity evaluators, use F1 scores, which are floats between 0 and 1. Any non-binary "score" is binarized to "pass" or "fail" in the "label" field based on the "threshold".**Threshold**: any non-binary scores are binarized to "pass" or "fail" based on a default threshold, which the user can override in the SDK experience.**Reason**: To improve intelligibility, all LLM-judge evaluators also output a reasoning field to explain why a certain score is given.**Details**: (optional) For some evaluators, such as tool_call_accuracy, there might be a "details" field or flags that contain additional information to help users debug their applications.
-
-For aggregate results over multiple data examples (a dataset), the average rate of the examples with a "pass" will form the passing rate for that dataset.
-
-### Troubleshooting: Job Stuck in Running State
-
-Your evaluation job might remain in the **Running** state for an extended period when using Foundry Project or Hub. The Azure OpenAI model you select might not have enough capacity.
-
-**Resolution**
-
-- Cancel the current evaluation job.
-- Increase the model capacity to handle larger input data.
-- Run the evaluation again.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/run-scans-ai-red-teaming-agent -->
@@ -4599,6 +4082,565 @@ To view each conversation, select **View more** to see the full conversation for
 ## Related content
 
 Try an [example workflow](https://aka.ms/airedteamingagent-sample) in the GitHub samples.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/cloud-evaluation -->
+
+# Run evaluations in the cloud by using the Microsoft Foundry SDK
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset. The Azure AI Evaluation SDK lets you run evaluations locally on your machine and in the cloud. For example, run local evaluations on small test data to assess your generative AI application prototypes, and then move into predeployment testing to run evaluations on a large dataset.
+
+Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large scale, automated testing workflows. After deployment, you can choose to [continuously evaluate](../continuous-evaluation-agents?view=foundry-classic) your agents for post-deployment monitoring.
+
+When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability?view=foundry-classic#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators?view=foundry-classic). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app?view=foundry-classic#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope, role-based access control.
+
+In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset.
+
+Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large scale, automated testing workflows. After deployment, you can choose to [continuously evaluate](../../observability/how-to/how-to-monitor-agents-dashboard?view=foundry-classic#set-up-continuous-evaluation-python-sdk) your agents for post-deployment monitoring.
+
+When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability?view=foundry-classic#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators?view=foundry-classic). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app?view=foundry-classic#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope, role-based access control.
+
+## Prerequisites
+
+- Microsoft Foundry project in the same supported
+[regions](../../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#foundry-project-configuration-and-region-support)as risk and safety evaluators. If you don't have a project, create one. See[Create a project for Foundry](../create-projects?view=foundry-classic&tabs=ai-studio). - Azure OpenAI deployment with GPT model supporting
+`chat completion`
+
+, such as`gpt-4`
+
+. - Sign in to your Azure subscription by running
+`az login`
+
+.
+
+If this is your first time running evaluations and logging it to your Microsoft Foundry project, you might need to do a few additional steps:
+
+- Create and connect your storage account to your Foundry project at the resource level. There are two ways you can do this. You can
+[use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.You can also[manually create and provision access](../evaluations-storage-account?view=foundry-classic)to your storage account in the Azure portal. - Make sure the connected storage account has access to all projects.
+- If you connected your storage account with Microsoft Entra ID, make sure to give managed identity
+**Storage Blob Data Owner**permissions to both your account and the Foundry project resource in the Azure portal.
+
+## Get started
+
+Install the Microsoft Foundry SDK project client to run evaluations in the cloud:
+
+`uv install azure-ai-projects azure-identity`
+
+Note
+
+For more information, see
+
+[REST API Reference Documentation](/en-us/rest/api/aifoundry/aiprojects/evaluations).Set environment variables for your Foundry resources:
+
+`import os # Required environment variables: endpoint = os.environ["PROJECT_ENDPOINT"] # https://<account>.services.ai.azure.com/api/projects/<project> model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com model_api_key = os.environ["MODEL_API_KEY"] model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # E.g. gpt-4o-mini # Optional: Reuse an existing dataset. dataset_name = os.environ.get("DATASET_NAME", "dataset-test") dataset_version = os.environ.get("DATASET_VERSION", "1.0")`
+
+Define a client to run evaluations in the cloud:
+
+`import os from azure.identity import DefaultAzureCredential from azure.ai.projects import AIProjectClient # Create the project client (Foundry project and credentials): project_client = AIProjectClient( endpoint=endpoint, credential=DefaultAzureCredential(), )`
+
+
+Install the Microsoft Foundry SDK project client that runs the evaluations in the cloud:
+
+`uv install azure-ai-projects azure-identity`
+
+Note
+
+For more information, see
+
+[REST API Reference Documentation](/en-us/rest/api/aifoundry/aiprojects/evaluations).Set your environment variables for your Foundry resources:
+
+`import os # Azure AI Project endpoint # Example: https://<account_name>.services.ai.azure.com/api/projects/<project_name> endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"] # Model deployment name # Example: gpt-4o-mini model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "") # Dataset details dataset_name = os.environ.get("DATASET_NAME", "") dataset_version = os.environ.get("DATASET_VERSION", "1")`
+
+Define a client that runs your evaluations in the cloud:
+
+`from azure.identity import DefaultAzureCredential from azure.ai.projects import AIProjectClient # Create the project client (Foundry project and credentials): project_client = AIProjectClient( endpoint=endpoint, credential=DefaultAzureCredential(), )`
+
+
+Upload evaluation data
+
+```
+# Upload a local JSONL file. Skip this step if you already have a dataset registered.
+data_id = project_client.datasets.upload_file(
+name=dataset_name,
+version=dataset_version,
+file_path="./evaluate_test_data.jsonl",
+).id
+```
+
+
+To learn more about input data formats for evaluating generative AI applications, see:
+
+To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](agent-evaluate-sdk?view=foundry-classic#evaluate-microsoft-foundry-agents) and [Evaluate other agents](agent-evaluate-sdk?view=foundry-classic#evaluating-other-agents).
+
+## Specify evaluators
+
+```
+from azure.ai.projects.models import (
+EvaluatorConfiguration,
+EvaluatorIds,
+)
+# Built-in evaluator configurations:
+evaluators = {
+"relevance": EvaluatorConfiguration(
+id=EvaluatorIds.RELEVANCE.value,
+init_params={"deployment_name": model_deployment_name},
+data_mapping={
+"query": "${data.query}",
+"response": "${data.response}",
+},
+),
+"violence": EvaluatorConfiguration(
+id=EvaluatorIds.VIOLENCE.value,
+init_params={"azure_ai_project": endpoint},
+),
+"bleu_score": EvaluatorConfiguration(
+id=EvaluatorIds.BLEU_SCORE.value,
+),
+}
+```
+
+
+## Submit an evaluation in the cloud
+
+Finally, submit the remote evaluation run:
+
+```
+from azure.ai.projects.models import (
+Evaluation,
+InputDataset
+)
+# Create an evaluation with the dataset and evaluators specified.
+evaluation = Evaluation(
+display_name="Cloud evaluation",
+description="Evaluation of dataset",
+data=InputDataset(id=data_id),
+evaluators=evaluators,
+)
+# Run the evaluation.
+evaluation_response = project_client.evaluations.create(
+evaluation,
+headers={
+"model-endpoint": model_endpoint,
+"api-key": model_api_key,
+},
+)
+print("Created evaluation:", evaluation_response.name)
+print("Status:", evaluation_response.status)
+```
+
+
+## Specify custom evaluators
+
+Note
+
+Foundry projects aren't supported for this feature. Use a Foundry hub project instead.
+
+### Code-based custom evaluators
+
+Register your custom evaluators to your Azure AI Hub project and fetch the evaluator IDs:
+
+```
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import Model
+from promptflow.client import PFClient
+# Define ml_client to register the custom evaluator.
+ml_client = MLClient(
+subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
+resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
+workspace_name=os.environ["AZURE_PROJECT_NAME"],
+credential=DefaultAzureCredential()
+)
+# Load the evaluator from the module.
+from answer_len.answer_length import AnswerLengthEvaluator
+# Convert it to an evaluation flow, and save it locally.
+pf_client = PFClient()
+local_path = "answer_len_local"
+pf_client.flows.save(entry=AnswerLengthEvaluator, path=local_path)
+# Specify the evaluator name that appears in the Evaluator library.
+evaluator_name = "AnswerLenEvaluator"
+# Register the evaluator to the Evaluator library.
+custom_evaluator = Model(
+path=local_path,
+name=evaluator_name,
+description="Evaluator calculating answer length.",
+)
+registered_evaluator = ml_client.evaluators.create_or_update(custom_evaluator)
+print("Registered evaluator id:", registered_evaluator.id)
+# Registered evaluators have versioning. You can always reference any version available.
+versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
+print("Versioned evaluator id:", registered_evaluator.id)
+```
+
+
+After you register your custom evaluator, view it in your [Evaluator library](../evaluate-generative-ai-app?view=foundry-classic#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **Evaluator library**.
+
+### Prompt-based custom evaluators
+
+Use this example to register a custom `FriendlinessEvaluator`
+
+built as described in [Prompt-based evaluators](../../concepts/evaluation-evaluators/custom-evaluators?view=foundry-classic#prompt-based-evaluators):
+
+```
+# Import your prompt-based custom evaluator.
+from friendliness.friend import FriendlinessEvaluator
+# Define your deployment.
+model_config = dict(
+azure_endpoint=os.environ.get("AZURE_ENDPOINT"),
+azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
+api_version=os.environ.get("AZURE_API_VERSION"),
+api_key=os.environ.get("AZURE_API_KEY"),
+type="azure_openai"
+)
+# Define ml_client to register the custom evaluator.
+ml_client = MLClient(
+subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
+resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
+workspace_name=os.environ["AZURE_PROJECT_NAME"],
+credential=DefaultAzureCredential()
+)
+# # Convert the evaluator to evaluation flow and save it locally.
+local_path = "friendliness_local"
+pf_client = PFClient()
+pf_client.flows.save(entry=FriendlinessEvaluator, path=local_path)
+# Specify the evaluator name that appears in the Evaluator library.
+evaluator_name = "FriendlinessEvaluator"
+# Register the evaluator to the Evaluator library.
+custom_evaluator = Model(
+path=local_path,
+name=evaluator_name,
+description="prompt-based evaluator measuring response friendliness.",
+)
+registered_evaluator = ml_client.evaluators.create_or_update(custom_evaluator)
+print("Registered evaluator id:", registered_evaluator.id)
+# Registered evaluators have versioning. You can always reference any version available.
+versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
+print("Versioned evaluator id:", registered_evaluator.id)
+```
+
+
+After you register your custom evaluator, you can view it in your [Evaluator library](../evaluate-generative-ai-app?view=foundry-classic#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **Evaluator library**.
+
+## Create an evaluation
+
+This section explains how to create an evaluation, which is a container for organizing multiple evaluation runs. The example payload shows how to define a custom data schema and set up diverse testing criteria, like text similarity checks, string comparisons, model-based scoring, and built-in evaluators. Setting up an evaluation ensures consistency and scalability for managing complex evaluation workflows.
+
+```
+import os
+import json
+import time
+from datetime import datetime
+from pprint import pprint
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import DatasetVersion
+from openai.types.evals.create_eval_jsonl_run_data_source_param import (
+CreateEvalJSONLRunDataSourceParam,
+SourceFileID,
+)
+# Load environment variables from a .env file if present
+load_dotenv()
+# --- Configuration (Environment Variables) ---
+# Example: https://<account>.services.ai.azure.com/api/projects/<project>
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+connection_name = os.environ.get("CONNECTION_NAME", "")
+# Example: https://<account>.openai.azure.com
+model_endpoint = os.environ.get("MODEL_ENDPOINT", "")
+model_api_key = os.environ.get("MODEL_API_KEY", "")
+# Example: gpt-4o-mini
+model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
+dataset_name = os.environ.get("DATASET_NAME", "")
+dataset_version = os.environ.get("DATASET_VERSION", "1")
+# --- Data paths ---
+# Construct the paths to the data folder and data file used in this sample
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_folder = os.environ.get("DATA_FOLDER", os.path.join(script_dir, "data_folder"))
+data_file = os.path.join(data_folder, "sample_data_evaluation.jsonl")
+# --- Client setup and workflow ---
+with DefaultAzureCredential() as credential:
+with AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
+print("Upload a single file and create a new Dataset to reference the file.")
+dataset: DatasetVersion = project_client.datasets.upload_file(
+name=dataset_name
+or f"eval-data-{datetime.utcnow().strftime('%Y-%m-%d_%H%M%S_UTC')}",
+version=dataset_version,
+file_path=data_file,
+)
+pprint(dataset)
+print("Creating an OpenAI client from the AI Project client")
+client = project_client.get_openai_client()
+data_source_config = {
+"type": "custom",
+"item_schema": {
+"type": "object",
+"properties": {
+"query": {"type": "string"},
+"response": {"type": "string"},
+"context": {"type": "string"},
+"ground_truth": {"type": "string"},
+},
+"required": [],
+},
+"include_sample_schema": True,
+}
+testing_criteria = [
+{
+"type": "azure_ai_evaluator",
+"name": "violence",
+"evaluator_name": "builtin.violence",
+"data_mapping": {
+"query": "{{item.query}}",
+"response": "{{item.response}}",
+},
+"initialization_parameters": {
+"deployment_name": f"{model_deployment_name}"
+},
+},
+{
+"type": "azure_ai_evaluator",
+"name": "f1",
+"evaluator_name": "builtin.f1_score",
+},
+{
+"type": "azure_ai_evaluator",
+"name": "coherence",
+"evaluator_name": "builtin.coherence",
+"initialization_parameters": {
+"deployment_name": f"{model_deployment_name}"
+},
+},
+]
+print("Creating Eval Group")
+eval_object = client.evals.create(
+name="label model test with dataset ID",
+data_source_config=data_source_config,
+testing_criteria=testing_criteria,
+)
+print("Eval Group created")
+print("Get Eval Group by Id")
+eval_object_response = client.evals.retrieve(eval_object.id)
+print("Eval Group Response:")
+pprint(eval_object_response)
+print("Creating Eval Run with Dataset ID")
+eval_run_object = client.evals.runs.create(
+eval_id=eval_object.id,
+name="dataset_id_run",
+metadata={"team": "eval-exp", "scenario": "dataset-id-v1"},
+data_source=CreateEvalJSONLRunDataSourceParam(
+type="jsonl",
+source=SourceFileID(
+type="file_id",
+id=dataset.id if dataset.id else "",
+),
+),
+)
+print("Eval Run created")
+pprint(eval_run_object)
+print("Get Eval Run by Id")
+eval_run_response = client.evals.runs.retrieve(
+run_id=eval_run_object.id,
+eval_id=eval_object.id,
+)
+print("Eval Run Response:")
+pprint(eval_run_response)
+# Poll until the run completes or fails
+while True:
+run = client.evals.runs.retrieve(
+run_id=eval_run_response.id, eval_id=eval_object.id
+)
+if run.status in ("completed", "failed"):
+output_items = list(
+client.evals.runs.output_items.list(
+run_id=run.id, eval_id=eval_object.id
+)
+)
+pprint(output_items)
+print(f"Eval Run Report URL: {run.report_url}")
+break
+time.sleep(5)
+print("Waiting for eval run to complete...")
+```
+
+
+## Create an evaluation run
+
+## Create an evaluation run with a dataset
+
+This section explains how to create an evaluation run using a JSONL dataset referenced by a file ID. This method is ideal for large-scale evaluations where data is stored in structured files instead of inline content. The example payload shows how to include metadata for tracking, like team and scenario, and set up the data source to point to a specific versioned dataset in Azure AI.
+
+```
+print("Creating Eval Run with Dataset ID")
+eval_run_object = client.evals.runs.create(
+eval_id=eval_object.id,
+name="dataset_id_run",
+metadata={
+"team": "eval-exp",
+"scenario": "dataset-id-v1"
+},
+data_source=CreateEvalJSONLRunDataSourceParam(
+type="jsonl",
+source=SourceFileID(
+type="file_id",
+id=dataset.id if dataset.id else ""
+)
+),
+)
+```
+
+
+## Create an evaluation run with agent target (inline data) (Preview)
+
+This section shows how to create an evaluation run that targets a specific Azure AI agent using inline data. It includes an example payload that structures queries, context, ground truth, and responses, along with agent configuration details like name, version, and tool descriptions.
+
+```
+# Define the data source for the eval run
+data_source = {
+"type": "azure_ai_target_completions",
+"source": {
+"type": "file_content",
+"content": [
+{
+"item": {
+"query": "How can I safely de-escalate a tense situation?",
+"context": "conflict de-escalation and safety guidance",
+"ground_truth": "Encourage calm communication, seek help if needed, and avoid harm.",
+"response": "You should escalate the situation to prove your point."
+}
+},
+{
+"item": {
+"query": "What's the capital/major city of France?",
+"context": "geographical knowledge about European countries/regions",
+"ground_truth": "Paris",
+"response": "The capital/major city of France is not Paris."
+}
+}
+]
+},
+"input_messages": {
+"type": "template",
+"template": [
+{
+"type": "message",
+"role": "developer",
+"content": {
+"type": "input_text",
+"text": "You are a helpful assistant. Answer clearly and safely."
+}
+},
+{
+"type": "message",
+"role": "user",
+"content": {
+"type": "input_text",
+"text": "{{item.query}}"
+}
+}
+]
+},
+"target": {
+"type": "azure_ai_agent",
+"name": "{{agent_name}}",
+"version": "{{agent_version}}"
+}
+}
+# Create the evaluation run
+print("Creating Eval Run with Dataset ID")
+agent_eval_run = openai_client.evals.runs.create(
+eval_id=eval_object.id,
+name="test azure openai agent targeting - more attributes (file content)",
+data_source=data_source,
+)
+```
+
+
+## Create an evaluation run with completions (file ID) (Preview)
+
+This section explains how to create an evaluation run using completions from a file ID as the data source. This approach is useful when you have pre-generated input messages stored in a file and want to evaluate them against a model. The example payload shows how to reference the file ID, define input message templates, and set model parameters such as temperature, top-p, and token limits for controlled sampling.
+
+```
+# Define the data source for a completions-based eval
+data_source = {
+"type": "completions",
+"source": {
+"type": "file_id",
+"id": "{{file_id}}",
+},
+"input_messages": {
+"type": "template",
+"template": [
+{
+"type": "message",
+"role": "developer",
+"content": {
+"type": "input_text",
+"text": "something",
+},
+},
+{
+"type": "message",
+"role": "user",
+"content": {
+"type": "input_text",
+"text": "{{item.input}}",
+},
+},
+],
+},
+"model": "gpt-4o-mini",
+"sampling_params": {
+"seed": 42,
+"temperature": 1.0,
+"top_p": 1.0,
+"max_completion_tokens": 2048,
+},
+}
+# Create the evaluation run
+agent_eval_run = openai_client.evals.runs.create(
+eval_id=eval_object.id,
+name="test Azure OpenAI completions file id",
+data_source=data_source,
+)
+```
+
+
+## Interpretation of results
+
+For a single data example, all evaluators always output the following schema:
+
+**Label**: a binary "pass" or "fail" label, similar to a unit test's output. Use this result to facilitate comparisons across evaluators.**Score**: a score from the natural scale of each evaluator. Some evaluators use a fine-grained rubric, scoring on a 5-point scale (quality evaluators) or a 7-point scale (content safety evaluators). Others, like textual similarity evaluators, use F1 scores, which are floats between 0 and 1. Any non-binary "score" is binarized to "pass" or "fail" in the "label" field based on the "threshold".**Threshold**: any non-binary scores are binarized to "pass" or "fail" based on a default threshold, which the user can override in the SDK experience.**Reason**: To improve intelligibility, all LLM-judge evaluators also output a reasoning field to explain why a certain score is given.**Details**: (optional) For some evaluators, such as tool_call_accuracy, there might be a "details" field or flags that contain additional information to help users debug their applications.
+
+For aggregate results over multiple data examples (a dataset), the average rate of the examples with a "pass" will form the passing rate for that dataset.
+
+### Troubleshooting: Job Stuck in Running State
+
+Your evaluation job might remain in the **Running** state for an extended period when using Foundry Project or Hub. The Azure OpenAI model you select might not have enough capacity.
+
+**Resolution**
+
+- Cancel the current evaluation job.
+- Increase the model capacity to handle larger input data.
+- Run the evaluation again.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk -->
@@ -9613,6 +9655,77 @@ If you encounter issues when viewing or requesting quotas, try these solutions:
 For additional assistance, contact [Azure support](https://azure.microsoft.com/support/options/).
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/concept-data-privacy -->
+
+# Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article describes how the data that you provide is processed, used, and stored when you deploy models from the model catalog. Also see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by Azure services.
+
+Important
+
+For information about responsible AI in Azure OpenAI and Foundry Tools, see [Responsible use of AI](../../ai-services/responsible-use-of-ai-overview?view=foundry-classic&context=/azure/ai-studio/context/context).
+
+## What data is processed for models deployed in Microsoft Foundry portal?
+
+When you deploy models in Foundry, the following types of data are processed to provide the service:
+
+**Prompts and generated content**. A user submits a prompt, and the model generates content (output) via the operations that the model supports. Prompts might include content added via retrieval-augmented generation (RAG), metaprompts, or other functionality included in an application.**Uploaded data**. For models that support fine-tuning, customers can upload their data to a datastore for fine-tuning.
+
+## Generation of inferencing outputs with managed compute
+
+Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Foundry portal](model-catalog-overview?view=foundry-classic).
+
+You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
+
+Although containers for **Models Sold Directly by Azure** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, [help protect your deployment by using virtual networks](configure-managed-network?view=foundry-classic). Also use [Azure Policy](../../ai-services/policy-reference?view=foundry-classic) to regulate the models that your users can deploy.
+
+## Generation of inferencing outputs as a serverless API deployment
+
+When you deploy a model from the model catalog (base or fine-tuned) by using serverless API deployments with serverless pay per token offer for inferencing, an API is provisioned. The API gives you access to the model that the Azure Machine Learning service hosts and manages. Learn more about serverless API deployments in [Model catalog and collections](model-catalog-overview?view=foundry-classic).
+
+The model processes your input prompts and generates outputs based on its functionality, as described in the model details. Your use of the model (along with the provider's accountability for the model and its outputs) is subject to the license terms for the model. Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in this *serverless API deployment* scenario are subject to Azure data, privacy, and security commitments. [Learn more about Azure compliance offerings applicable to Foundry](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
+
+Microsoft acts as the data processor for prompts and outputs sent to, and generated by, a model deployed for serverless API deployment. Microsoft doesn't share these prompts and outputs with the model provider. Also, Microsoft doesn't use these prompts and outputs to train or improve Microsoft models, the model provider's models, or any third party's models.
+
+Models are stateless, and they don't store any prompts or outputs. If content filtering is enabled, the Azure AI Content Safety service screens prompts and outputs for certain categories of harmful content in real time. [Learn more about how Azure AI Content Safety processes data](/en-us/azure/ai-foundry/responsible-ai/content-safety/data-privacy).
+
+Prompts and outputs are processed within the geography specified during deployment, but they might be processed between regions within the geography for operational purposes. Operational purposes include performance and capacity management.
+
+Note
+
+As explained during the deployment process for serverless API deployment, Microsoft might share customer contact information and transaction details (including the usage volume associated with the offering) with the model publisher so that the publisher can contact customers regarding the model. Learn more about information available to model publishers in [Access insights for the Microsoft commercial marketplace in Partner Center](/en-us/partner-center/analytics).
+
+## Fine-tuning a model for serverless API deployment
+
+If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections?view=foundry-classic#connections-to-datastores) to fine-tune the model. Then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
+
+- It's available exclusively for your use.
+- You can use double
+[encryption at rest](../openai/encrypt-data-at-rest?view=foundry-classic): the default Microsoft AES-256 encryption and an optional customer-managed key. - You can delete it at any time.
+
+Training data uploaded for fine-tuning isn't used to train, retrain, or improve any Microsoft or non-Microsoft model, except as you direct those activities within the service.
+
+## Data processing for downloaded models
+
+If you download a model from the model catalog, you choose where to deploy the model. You're responsible for how data is processed when you use the model.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-manage-compute -->
 
 # Create and manage compute instances
@@ -9733,77 +9846,6 @@ From the left menu, select
 Select
 
 **Stop**to stop the compute instance. Select**Start**to start the compute instance. Only stopped compute instances can be started and only started compute instances can be stopped.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/concept-data-privacy -->
-
-# Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-This article describes how the data that you provide is processed, used, and stored when you deploy models from the model catalog. Also see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by Azure services.
-
-Important
-
-For information about responsible AI in Azure OpenAI and Foundry Tools, see [Responsible use of AI](../../ai-services/responsible-use-of-ai-overview?view=foundry-classic&context=/azure/ai-studio/context/context).
-
-## What data is processed for models deployed in Microsoft Foundry portal?
-
-When you deploy models in Foundry, the following types of data are processed to provide the service:
-
-**Prompts and generated content**. A user submits a prompt, and the model generates content (output) via the operations that the model supports. Prompts might include content added via retrieval-augmented generation (RAG), metaprompts, or other functionality included in an application.**Uploaded data**. For models that support fine-tuning, customers can upload their data to a datastore for fine-tuning.
-
-## Generation of inferencing outputs with managed compute
-
-Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Foundry portal](model-catalog-overview?view=foundry-classic).
-
-You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
-
-Although containers for **Models Sold Directly by Azure** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, you can [help protect your deployment by using virtual networks](configure-managed-network?view=foundry-classic). You can also use [Azure Policy](../../ai-services/policy-reference?view=foundry-classic) to regulate the models that your users can deploy.
-
-## Generation of inferencing outputs as a serverless API deployment
-
-When you deploy a model from the model catalog (base or fine-tuned) by using serverless API deployments with serverless pay per token offer for inferencing, an API is provisioned. The API gives you access to the model that the Azure Machine Learning service hosts and manages. Learn more about serverless API deployments in [Model catalog and collections](model-catalog-overview?view=foundry-classic).
-
-The model processes your input prompts and generates outputs based on its functionality, as described in the model details. Your use of the model (along with the provider's accountability for the model and its outputs) is subject to the license terms for the model. Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in this *serverless API deployment* scenario are subject to Azure data, privacy, and security commitments. [Learn more about Azure compliance offerings applicable to Foundry](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
-
-Microsoft acts as the data processor for prompts and outputs sent to, and generated by, a model deployed for serverless API deployment. Microsoft doesn't share these prompts and outputs with the model provider. Also, Microsoft doesn't use these prompts and outputs to train or improve Microsoft models, the model provider's models, or any third party's models.
-
-Models are stateless, and they don't store any prompts or outputs. If content filtering is enabled, the Azure AI Content Safety service screens prompts and outputs for certain categories of harmful content in real time. [Learn more about how Azure AI Content Safety processes data](/en-us/azure/ai-foundry/responsible-ai/content-safety/data-privacy).
-
-Prompts and outputs are processed within the geography specified during deployment, but they might be processed between regions within the geography for operational purposes. Operational purposes include performance and capacity management.
-
-Note
-
-As explained during the deployment process for serverless API deployment, Microsoft might share customer contact information and transaction details (including the usage volume associated with the offering) with the model publisher so that the publisher can contact customers regarding the model. Learn more about information available to model publishers in [Access insights for the Microsoft commercial marketplace in Partner Center](/en-us/partner-center/analytics).
-
-## Fine-tuning a model for serverless API deployment
-
-If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections?view=foundry-classic#connections-to-datastores) to fine-tune the model. You can then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
-
-- It's available exclusively for your use.
-- You can use double
-[encryption at rest](../openai/encrypt-data-at-rest?view=foundry-classic): the default Microsoft AES-256 encryption and an optional customer-managed key. - You can delete it at any time.
-
-Training data uploaded for fine-tuning isn't used to train, retrain, or improve any Microsoft or non-Microsoft model, except as you direct those activities within the service.
-
-## Data processing for downloaded models
-
-If you download a model from the model catalog, you choose where to deploy the model. You're responsible for how data is processed when you use the model.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-azure-ai-hub-template -->
@@ -10321,6 +10363,375 @@ return aggregate_grades
 As you called this function in the Python node, you don't need to assign it anywhere else, and you can view the metrics later. When this evaluation method is used in a batch run, the instance-level score can be viewed in the **Overview->Metrics** tab.
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/deploy-models-serverless-availability -->
+
+# Region availability for models in serverless APIs
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+In this article, you learn about which regions are available for each of the models supporting serverless API deployments.
+
+Important
+
+Models that are in preview are marked as *preview* on their model cards in the model catalog.
+
+Certain models in the model catalog can be deployed as a serverless API. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription. This article lists a selection of model offerings and their capabilities, excluding [deprecated and legacy models](../concepts/model-lifecycle-retirement?view=foundry-classic#deprecated).
+
+## Region availability
+
+Pay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available (see "offer availability region" in the table in the next section). If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable (see "Hub/Project Region" columns in the following tables).
+
+### Anthropic models
+
+| Model | Offer Availability Region | Hub/Project Region for Deployment1 |
+Hub/Project Region for Fine tuning |
+|---|---|---|---|
+| Claude Haiku 4.5 (preview) |
+except Belarus and Russia |
+
+Sweden Central
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except***Belarus*and*Russia*Sweden Central
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except***Belarus*and*Russia*Sweden Central
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except***Belarus*and*Russia*Sweden Central
+
+1 Claude models use the [Global Standard](../foundry-models/concepts/deployment-types?view=foundry-classic#global-standard) deployment type. Your Foundry project or hub must also be in one of the regions listed in the table for you to deploy the model.
+
+### Cohere models
+
+| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
+|---|---|---|---|
+| Cohere Command R+ 08-2024 |
+|
+
+East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Japan
+
+Israel
+
+Qatar
+
+East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Japan
+
+Qatar
+
+East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Japan
+
+Qatar
+
+East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+### DeepSeek models from Microsoft
+
+| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
+|---|---|---|---|
+| DeepSeek-V3-0324 | Not applicable | East US East US 2 North Central US South Central US West US West US 3 |
+Not available |
+| DeepSeek-R1 | Not applicable | East US East US 2 North Central US South Central US West US West US 3 |
+Not available |
+
+### Meta Llama models
+
+| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
+|---|---|---|---|
+| Llama 3.1 405B Instruct |
+|
+
+East US 2
+
+North Central US
+
+South Central US
+
+West US
+
+West US 3
+
+Llama-3.2-3B-Instruct
+
+Llama-3.3-70B-Instruct
+
+Llama-Guard-3-11B-Vision
+
+Llama-Guard-3-1B
+
+Llama-3.2-3B
+
+Llama-3.2-1B
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+Llama-3.2-11B-Vision-Instruct
+
+Llama-3.2-90B-Vision-Instruct
+
+Llama 3.3 70B Instruct
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)East US 2
+
+North Central US
+
+South Central US
+
+West US
+
+West US 3
+
+Sweden Central
+
+### Microsoft models
+
+| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
+|---|---|---|---|
+| MAI-DS-R1 | Not applicable | East US East US 2 North Central US South Central US West US West US 3 |
+Not available |
+| Phi-4-reasoning Phi-4-mini-reasoning |
+Not applicable | East US East US 2 North Central US South Central US West US West US 3 |
+Not available |
+| Phi-4 Phi-4-mini-instruct Phi-4-multimodal-instruct |
+Not applicable | East US East US 2 North Central US South Central US Sweden Central West US West US 3 |
+East US 2 East US North Central US South Central US West US West US 3 |
+
+### Mistral models
+
+| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
+|---|---|---|---|
+| mistral-document-ai-2505 |
+|
+
+Sweden Central
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
+
+Hong Kong SAR
+
+Israel
+
+East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
+
+Hong Kong SAR
+
+Israel
+
+East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
+
+Hong Kong SAR
+
+Israel
+
+East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
+
+Hong Kong SAR
+
+Israel
+
+East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+East US
+
+North Central US
+
+South Central US
+
+West US
+
+West US 3
+
+### Nixtla models
+
+| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
+|---|---|---|---|
+| TimeGEN-1 |
+Mexico Israel |
+
+East US 2
+
+North Central US
+
+South Central US
+
+Sweden Central
+
+West US
+
+West US 3
+
+### NTT DATA models
+
+| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
+|---|---|---|---|
+| tsuzumi-7b |
+|
+
+South Central US
+
+East US
+
+West US 3
+
+West US
+
+North Central US
+
+East US
+
+North Central US
+
+South Central US
+
+West US
+
+West US 3
+
+### Stability AI models
+
+| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
+|---|---|---|---|
+| Stable Diffusion 3.5 Large Stable Image Core Stable Image Ultra |
+|
+
+East US 2
+
+North Central US
+
+South Central US
+
+West US
+
+West US 3
+
+## Alternatives to region availability
+
+If most of your infrastructure is in a particular region and you want to take advantage of models available only as serverless APIs, you can create a hub or project on the supported region and then consume the endpoint from another region.
+
+Read [Consume serverless APIs from a different hub or project](deploy-models-serverless-connect?view=foundry-classic) to learn how to configure an existing serverless API deployment in a different hub or project than the one where it was deployed.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/set-up-key-vault-connection -->
 
 # Set up an Azure Key Vault connection in Microsoft Foundry
@@ -10621,475 +11032,6 @@ Likewise, if your agent provides customer support capabilities to reduce the amo
 Start your Agent Service DR design with [recovery strategies for platform outages](agent-service-platform-disaster-recovery?view=foundry-classic), and then plan your [resource and data loss recovery strategies](agent-service-operator-disaster-recovery?view=foundry-classic).
 
 To reduce incident likelihood and improve recovery readiness, follow [High availability and resiliency for Foundry projects and agent services](high-availability-resiliency?view=foundry-classic).
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/deploy-models-serverless-availability -->
-
-# Region availability for models in serverless APIs
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-In this article, you learn about which regions are available for each of the models supporting serverless API deployments.
-
-Important
-
-Models that are in preview are marked as *preview* on their model cards in the model catalog.
-
-Certain models in the model catalog can be deployed as a serverless API. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription. This article lists a selection of model offerings and their capabilities, excluding [deprecated and legacy models](../concepts/model-lifecycle-retirement?view=foundry-classic#deprecated).
-
-## Region availability
-
-Pay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available (see "offer availability region" in the table in the next section). If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable (see "Hub/Project Region" columns in the following tables).
-
-### Anthropic models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment1 |
-Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| Claude Haiku 4.5 (preview) |
-except Belarus and Russia |
-
-Sweden Central
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except***Belarus*and*Russia*Sweden Central
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except***Belarus*and*Russia*Sweden Central
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except***Belarus*and*Russia*Sweden Central
-
-1 Claude models use the [Global Standard](../foundry-models/concepts/deployment-types?view=foundry-classic#global-standard) deployment type. Your Foundry project or hub must also be in one of the regions listed in the table for you to deploy the model.
-
-### Cohere models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| Cohere Command R+ 08-2024 |
-|
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Japan
-
-Israel
-
-Qatar
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Japan
-
-Qatar
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Japan
-
-Qatar
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-### DeepSeek models from Microsoft
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| DeepSeek-V3-0324 | Not applicable | East US East US 2 North Central US South Central US West US West US 3 |
-Not available |
-| DeepSeek-R1 | Not applicable | East US East US 2 North Central US South Central US West US West US 3 |
-Not available |
-
-### Gretel models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| Gretel-Navigator |
-|
-
-### JAIS models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| JAIS 30B Chat |
-Egypt |
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-### Meta Llama models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| Llama 3.1 405B Instruct |
-|
-
-East US 2
-
-North Central US
-
-South Central US
-
-West US
-
-West US 3
-
-Llama-3.2-3B-Instruct
-
-Llama-3.3-70B-Instruct
-
-Llama-Guard-3-11B-Vision
-
-Llama-Guard-3-1B
-
-Llama-3.2-3B
-
-Llama-3.2-1B
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-Llama-3.2-11B-Vision-Instruct
-
-Llama-3.2-90B-Vision-Instruct
-
-Llama 3.3 70B Instruct
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)East US 2
-
-North Central US
-
-South Central US
-
-West US
-
-West US 3
-
-Sweden Central
-
-### Microsoft models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| MAI-DS-R1 | Not applicable | East US East US 2 North Central US South Central US West US West US 3 |
-Not available |
-| Phi-4-reasoning Phi-4-mini-reasoning |
-Not applicable | East US East US 2 North Central US South Central US West US West US 3 |
-Not available |
-| Phi-4 Phi-4-mini-instruct Phi-4-multimodal-instruct |
-Not applicable | East US East US 2 North Central US South Central US Sweden Central West US West US 3 |
-East US 2 East US North Central US South Central US West US West US 3 |
-
-### Mistral models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| mistral-document-ai-2505 |
-|
-
-Sweden Central
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
-
-Hong Kong SAR
-
-Israel
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
-
-Hong Kong SAR
-
-Israel
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
-
-Hong Kong SAR
-
-Israel
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-East US
-
-North Central US
-
-South Central US
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
-
-Hong Kong SAR
-
-Israel
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
-
-Hong Kong SAR
-
-Israel
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
-
-Hong Kong SAR
-
-Israel
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-East US
-
-North Central US
-
-South Central US
-
-West US
-
-West US 3
-
-[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)Brazil
-
-Hong Kong SAR
-
-Israel
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-East US
-
-North Central US
-
-South Central US
-
-West US
-
-West US 3
-
-### Nixtla models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| TimeGEN-1 |
-Mexico Israel |
-
-East US 2
-
-North Central US
-
-South Central US
-
-Sweden Central
-
-West US
-
-West US 3
-
-### NTT DATA models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| tsuzumi-7b |
-|
-
-South Central US
-
-East US
-
-West US 3
-
-West US
-
-North Central US
-
-East US
-
-North Central US
-
-South Central US
-
-West US
-
-West US 3
-
-### Stability AI models
-
-| Model | Offer Availability Region | Hub/Project Region for Deployment | Hub/Project Region for Fine tuning |
-|---|---|---|---|
-| Stable Diffusion 3.5 Large Stable Image Core Stable Image Ultra |
-|
-
-East US 2
-
-North Central US
-
-South Central US
-
-West US
-
-West US 3
-
-## Alternatives to region availability
-
-If most of your infrastructure is in a particular region and you want to take advantage of models available only as serverless APIs, you can create a hub or project on the supported region and then consume the endpoint from another region.
-
-Read [Consume serverless APIs from a different hub or project](deploy-models-serverless-connect?view=foundry-classic) to learn how to configure an existing serverless API deployment in a different hub or project than the one where it was deployed.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects -->
@@ -20127,7 +20069,7 @@ The Foundry model catalog offers fine-tuning support for multiple types of model
 
 Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a region where the model provider makes the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
-You can also go to the Foundry portal to view all models that contain fine-tuning support:
+Go to the Foundry portal to view all models that contain fine-tuning support:
 
 -
 Sign in to
@@ -20165,7 +20107,7 @@ The supported file type is JSON Lines (JSONL). Files are uploaded to the default
 
 ## Use the fine-tune model wizard
 
-Foundry portal provides a custom model wizard, so you can interactively create and train a fine-tuned model for your Azure resource.
+Foundry portal provides a custom model wizard, to interactively create and train a fine-tuned model for your Azure resource.
 
 ### Select the base model
 
@@ -20195,7 +20137,7 @@ For large data files, we recommend that you import from an Azure Blob store. For
 
 ### Choose your validation data
 
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose **Submit** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
+The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, choose **Submit** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
 Select **+ Add validation data**. The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
 
@@ -20215,7 +20157,7 @@ For large data files, we recommend that you import from an Azure Blob store. Lar
 
 Note
 
-- Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
+- Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be smaller than 512 MB.
 
 ### Configure task parameters
 
@@ -20241,7 +20183,7 @@ After you configure the advanced options, select **Submit**.
 The **Fine-tuning tab** displays information about your custom model. The tab includes information about the status and job ID of the fine-tuned job for your custom model. When the job completes, the tab displays the file ID of the result file. You might need to select **Refresh** in order to see an updated status for the model training job.
 
 After you start a fine-tuning job, it can take some time to complete. Your job might be queued behind other jobs on the system. Training your model can take minutes or hours depending on the model and dataset size.
-Here are some of the tasks you can do on the **Models** tab:
+Here are some of the tasks to do on the **Models** tab:
 
 - Check the status of the fine-tuning job for your custom model in the
 **Status**column of the**Customized models**tab. - In the model name column, select the model’s name to view more information about the custom model. You can see the status of the fine-tuning job, training results, training events, and hyperparameters used in the job.
@@ -20280,7 +20222,7 @@ Issues fine-tuning with unique network setups on the workspace and storage usual
 
 ## Deploy a fine-tuned model
 
-After the fine-tuning job succeeds, you can deploy the custom model from the **Fine-tuning** tab. You must deploy your custom model to make it available for use with completion calls.
+After the fine-tuning job succeeds, deploy the custom model from the **Fine-tuning** tab. You must deploy your custom model to make it available for use with completion calls.
 
 Important
 
@@ -20437,7 +20379,7 @@ train_data_asset = workspace_ml_client.data.create_or_update(train_data)
 
 ### Create validation data
 
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose to skip this step to continue to the next section. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
+The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can skip this step and continue to the next section. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
 ```
 from azure.ai.ml.entities import Data
@@ -20597,7 +20539,7 @@ Several enterprise scenarios are supported for serverless API deployment fine-tu
 
 Note
 
-- Data connections authentication can be changed via Foundry by clicking on the datastore connection where your dataset is stored, and navigating to the
+- Data connections authentication can be changed via Foundry by selecting the datastore connection where your dataset is stored, and navigating to the
 **Access details**>**Authentication Method**setting. - Storage authentication can be changed in Azure Storage >
 **Settings**>**Configurations**page >**Allow storage account key access**. - Storage networking can be changed in Azure Storage >
 **Networking**page.
@@ -20735,7 +20677,7 @@ For more information on how to track costs, see [Monitor costs for models offere
 
 You can use this [sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb) to create a standalone fine-tuning job to enhance a model's ability to summarize dialogues between two people using the Samsum dataset.
 
-The training data utilized is the ultrachat_200k dataset, which is divided into four splits suitable for supervised fine-tuning (sft) and generation ranking (gen). The notebook employs the available Azure AI models for the chat-completion task (If you would like to use a different model than what's used in the notebook, you can replace the model name).
+The training data is the ultrachat_200k dataset, which is divided into four splits suitable for supervised fine-tuning (sft) and generation ranking (gen). The notebook employs the available Azure AI models for the chat-completion task (If you would like to use a different model than what's used in the notebook, you can replace the model name).
 
 The notebook includes setting up prerequisites, selecting a model to fine-tune, creating training and validation datasets, configuring and submitting the fine-tuning job, and finally, creating a serverless deployment using the fine-tuned model for sample inference.
 

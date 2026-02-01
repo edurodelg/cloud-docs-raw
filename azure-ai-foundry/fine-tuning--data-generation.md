@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/ai-foundry/fine-tuning/data-generation
-fetched_at: 2026-01-30T23:50:28.023664
+fetched_at: 2026-02-01T07:57:20.225669
 ---
 
 # Generate synthetic data for fine-tuning in Microsoft Foundry (Preview)
@@ -92,7 +92,7 @@ Our generators require a single reference file as the basis for generating new, 
 
 Supported formats:
 
-**Simple Q&A**: A PDF, Markdown, or plain text document less than 20MB containing the subject knowledge you want the model to learn from.**Tool use**: A valid OpenAPI Specification (Swagger) file in JSON less than 20MB that describes the APIs you want the model to learn to call as tools.
+**Simple Q&A**: A PDF, Markdown, or plain text document less than 20MB containing the subject knowledge you want the model to learn from.**Tool use**: A valid 3.0.x or 3.1.x OpenAPI Specification (Swagger) file in JSON less than 20MB that describes the APIs you want the model to learn to call as tools.
 
 Tip
 
@@ -219,9 +219,9 @@ Example (note the inclusion of description with business policies for the path a
 ```
 
 
-### Start with generating a smaller batch and iterate
+### Start with generating a sample size and iterate
 
-When generating synthetic data for the first time, start with a smaller generation batch size to evaluate the quality of the generated data. Review the outputs and make adjustments to your reference file or generation parameters as needed before scaling up to larger batches. This can help you avoid unnecessary costs and ensure that the generated data meets your requirements.
+When generating synthetic data for the first time, start with a smaller generation sample size to evaluate the quality of the generated data. Review the outputs and make adjustments to your reference file or generation parameters as needed before scaling up to larger sample sizes. This can help you avoid unnecessary costs and ensure that the generated data meets your requirements.
 
 ### Experiment with hyperparameters when fine-tuning on synthetic data
 

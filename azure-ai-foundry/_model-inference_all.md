@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-31T00:00:14.913803
+merged_at: 2026-02-01T08:06:49.018978
 merged_files: 4
 ---
 
@@ -8866,7 +8866,7 @@ Resource logs provide insight into operations that were done by an Azure resourc
 
 ## Configure diagnostic settings
 
-All of the metrics are exportable with diagnostic settings in Azure Monitor. To analyze logs and metrics data with Azure Monitor Log Analytics queries, you need to configure diagnostic settings for your Foundry Tools resource. You need to perform this operation on each resource.
+All of the metrics are exportable with diagnostic settings in Azure Monitor. To analyze logs and metrics data with Azure Monitor Log Analytics queries, you can configure diagnostic settings for your Foundry Tools resource. Perform this operation on each resource.
 
 
 There's a cost for collecting data in a Log Analytics workspace, so only collect the categories you require for each service. The data volume for resource logs varies significantly between services.

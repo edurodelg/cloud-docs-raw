@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-01-31T00:00:15.096865
+merged_at: 2026-02-01T08:06:49.190736
 merged_files: 2
 ---
 
@@ -4789,7 +4789,7 @@ Foundry portal might automatically pick a deployment option based on your enviro
 
 ### Standard deployment in Foundry resources
 
-Foundry resources (formerly referred to as Azure AI Services resources), is **the preferred deployment option** in Foundry. It offers the widest range of capabilities, including regional, data zone, or global processing, and it offers standard and [provisioned throughput (PTU)](../../ai-services/openai/concepts/provisioned-throughput?view=foundry-classic) options. Flagship models in Foundry Models support this deployment option.
+Foundry resources is **the preferred deployment option** in Foundry. It offers the widest range of capabilities, including regional, data zone, or global processing, and it offers standard and [provisioned throughput (PTU)](../openai/concepts/provisioned-throughput?view=foundry-classic) options. Flagship models in Foundry Models support this deployment option.
 
 This deployment option is available in:
 
@@ -4803,13 +4803,13 @@ To get started with standard deployment in Foundry resources, see [How-to: Deplo
 
 ### Serverless API endpoint
 
-This deployment option is available **only in** [Azure AI hub resources](ai-resources?view=foundry-classic). It allows you to create dedicated endpoints to host the model, accessible through an API. Foundry Models support serverless API endpoints with pay-as-you-go billing, and you can create only regional deployments for serverless API endpoints.
+This deployment option is available **only in** [AI Hub resources](ai-resources?view=foundry-classic). It allows you to create dedicated endpoints to host the model, accessible through an API. Foundry Models support serverless API endpoints with pay-as-you-go billing, and you can create only regional deployments for serverless API endpoints.
 
 To get started with deployment to a serverless API endpoint, see [Deploy models as serverless API deployments](../how-to/deploy-models-serverless?view=foundry-classic).
 
 ### Managed compute
 
-This deployment option is available **only in** [Azure AI hub resources](ai-resources?view=foundry-classic). It allows you to create a dedicated endpoint to host the model in a **dedicated compute**. You need to have compute quota in your subscription to host the model, and you're billed per compute uptime.
+This deployment option is available **only in** [AI Hub resources](ai-resources?view=foundry-classic). It allows you to create a dedicated endpoint to host the model in a **dedicated compute**. You need to have compute quota in your subscription to host the model, and you're billed per compute uptime.
 
 Managed compute deployment is required for model collections that include:
 
@@ -4830,11 +4830,11 @@ Use [Standard deployments in Foundry resources](#standard-deployment-in-foundry-
 | Which models can be deployed? |
 |
 
-[Foundry Models with pay-as-you-go billing](../how-to/model-catalog-overview?view=foundry-classic)[Open and custom models](../how-to/model-catalog-overview?view=foundry-classic#availability-of-models-for-deployment-as-managed-compute)Data-zone
+[Foundry Models with pay-as-you-go billing](../how-to/deploy-models-serverless-availability?view=foundry-classic)[Open and custom models](../how-to/deploy-models-managed?view=foundry-classic)Data-zone
 
 Global
 
-[provisioned throughput units](../../ai-services/openai/concepts/provisioned-throughput?view=foundry-classic)232 A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in serverless deployment. After you delete the endpoint, no further charges accrue.
+[provisioned throughput units](../openai/concepts/provisioned-throughput?view=foundry-classic)232 A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in serverless deployment. After you delete the endpoint, no further charges accrue.
 
 3 Billing is on a per-minute basis, depending on the product tier and the number of instances used in the deployment since the moment of creation. After you delete the endpoint, no further charges accrue.
 
@@ -6002,6 +6002,172 @@ For high-level guidance on setting up Entra ID authentication in Foundry, see [C
 - Remove key-based authentication after all callers use token authentication. Optionally disable local authentication in deployment templates.
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/model-lifecycle-retirement -->
+
+# Model deprecation and retirement for Microsoft Foundry Models
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+Microsoft Foundry Models are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
+
+This article covers general deprecation and retirement information for Foundry Models. For details specific to Azure OpenAI in Foundry Models, see [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements?view=foundry-classic).
+
+## Model lifecycle stages
+
+Models in the model catalog belong to one of these stages:
+
+- Preview
+- Generally available
+- Legacy
+- Deprecated
+- Retired
+
+### Preview
+
+Models labeled *Preview* are experimental in nature. A model's weights, runtime, and API schema can change while the model is in preview. Models in preview aren't guaranteed to become generally available. Models in preview have a *Preview* label next to their name in the model catalog.
+
+### Generally available (GA)
+
+This stage is the default model stage. Models that don't include a lifecycle label next to their name are GA and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches don't affect model outputs.
+
+### Legacy
+
+Models labeled *Legacy* are intended for deprecation. You should plan to move to a different model, such as a new, improved model that might be available in the same model family. While a model is in the legacy stage, existing deployments of the model continue to work, and you can create new deployments of the model until the deprecation date.
+
+### Deprecated
+
+Models labeled *Deprecated* are no longer available for new deployments. You can't create any new deployments for the model; however, existing deployments continue to work until the retirement date.
+
+### Retired
+
+Models labeled *Retired* are no longer available for use. You can't create new deployments, and attempts to use existing deployments return `404`
+
+errors.
+
+## Notifications for Foundry Models
+
+Customers that have Foundry Model deployments receive notifications for upcoming model retirements according to the following schedule:
+
+Models are labeled as
+
+*Legacy*and remain in the legacy state for at least 30 days before being moved to the deprecated state. During this notification period, you can create new deployments as you prepare for deprecation and retirement.Models are labeled
+
+*Deprecated*and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
+
+For each subscription that has a model deployed as a serverless API deployment or deployed to a Foundry resource, members of the *owner*, *contributor*, *reader*, *monitoring contributor*, and *monitoring reader* roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
+
+## Notifications for Azure OpenAI in Foundry Models
+
+For Azure OpenAI models, customers with active Azure OpenAI deployments receive notice for models with upcoming retirement as follows:
+
+- At model launch, we programmatically designate a "not sooner than" retirement date (typically one year out).
+- At least 60 days notice before model retirement for Generally Available (GA) models.
+- At least 30 days notice before preview model version upgrades.
+
+Members of the *owner*, *contributor*, *reader*, *monitoring contributor*, and *monitoring reader* roles receive notification for each subscription with a deployment of a model that has an upcoming retirement.
+
+Retirements are done on a rolling basis, region by region. Notifications are sent from an unmonitored mailbox, `azure-noreply@microsoft.com`
+
+.
+
+To learn more about the Azure OpenAI models lifecycle, including information for current, deprecated, and retired models, see [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements?view=foundry-classic).
+
+## Upcoming retirements for Foundry Models
+
+The following tables list the timelines for models that are on track for retirement. The specified dates are in UTC time.
+
+#### Cohere
+
+| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|---|---|
+|
+
+[Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs),[Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs)#### Microsoft
+
+| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|---|---|
+|
+
+## Retired Foundry Models
+
+The following models have been retired and are no longer available for new deployments or inference.
+
+#### AI21 Labs
+
+| Model | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|
+| Jamba Instruct | March 1, 2025 | N/A |
+| AI21-Jamba-1.5-Large | August 1, 2025 | N/A |
+| AI21-Jamba-1.5-Mini | August 1, 2025 | N/A |
+
+#### Bria
+
+| Model | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|
+| Bria-2.3-Fast | October 31, 2025 | N/A |
+
+#### Cohere
+
+| Model | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|
+| Command R | June 30, 2025 |
+|
+
+[Cohere Command R+ 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024?cid=learnDocs)[Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs),[Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs)[Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs),[Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs)#### Core42
+
+| Model | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|
+| jais-30b-chat | January 30, 2026 | N/A |
+
+#### DeepSeek
+
+| Model | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|
+| DeepSeek-V3 | August 31, 2025 |
+|
+
+#### Gretel
+
+| Model | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|
+| Gretel-Navigator-Tabular | September 16, 2025 | N/A |
+
+#### Meta
+
+| Model | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|
+| Llama-2-13b | June 30, 2025 |
+|
+
+[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)#### Microsoft
+
+| Model | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|
+| Phi-3-medium-4k-instruct | August 30, 2025 |
+|
+
+[Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)#### Mistral AI
+
+| Model | Retirement date (UTC) | Suggested replacement model |
+|---|---|---|
+| Mistral-Nemo | January 30, 2026 |
+|
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/fine-tuning-overview -->
 
 # Fine-tune models with Microsoft Foundry
@@ -6277,150 +6443,6 @@ AI Toolkit offers a simple way to trace locally in VS Code. It uses a local OTLP
 The toolkit supports the OpenAI SDK and other AI frameworks through OpenTelemetry. You can see traces instantly in your development environment.
 
 For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/model-lifecycle-retirement -->
-
-# Model deprecation and retirement for Microsoft Foundry Models
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
-
-Note
-
-This document refers to the [Microsoft Foundry (new)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-Microsoft Foundry Models are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
-
-This article covers general deprecation and retirement information for Foundry Models. For details specific to Azure OpenAI in Foundry Models, see [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements?view=foundry-classic).
-
-## Model lifecycle stages
-
-Models in the model catalog belong to one of these stages:
-
-- Preview
-- Generally available
-- Legacy
-- Deprecated
-- Retired
-
-### Preview
-
-Models labeled *Preview* are experimental in nature. A model's weights, runtime, and API schema can change while the model is in preview. Models in preview aren't guaranteed to become generally available. Models in preview have a *Preview* label next to their name in the model catalog.
-
-### Generally available (GA)
-
-This stage is the default model stage. Models that don't include a lifecycle label next to their name are GA and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches don't affect model outputs.
-
-### Legacy
-
-Models labeled *Legacy* are intended for deprecation. You should plan to move to a different model, such as a new, improved model that might be available in the same model family. While a model is in the legacy stage, existing deployments of the model continue to work, and you can create new deployments of the model until the deprecation date.
-
-### Deprecated
-
-Models labeled *Deprecated* are no longer available for new deployments. You can't create any new deployments for the model; however, existing deployments continue to work until the retirement date.
-
-### Retired
-
-Models labeled *Retired* are no longer available for use. You can't create new deployments, and attempts to use existing deployments return `<return code>`
-
-errors.
-
-## Notifications for Foundry Models
-
-Customers that have Foundry Model deployments receive notifications for upcoming model retirements according to the following schedule:
-
-Models are labeled as
-
-*Legacy*and remain in the legacy state for at least 30 days before being moved to the deprecated state. During this notification period, you can create new deployments as you prepare for deprecation and retirement.Models are labeled
-
-*Deprecated*and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
-
-For each subscription that has a model deployed as a serverless API deployment or deployed to a Foundry resource, members of the *owner*, *contributor*, *reader*, *monitoring contributor*, and *monitoring reader* roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
-
-## Notifications for Azure OpenAI in Foundry Models
-
-For Azure OpenAI models, customers with active Azure OpenAI deployments receive notice for models with upcoming retirement as follows:
-
-- At model launch, we programmatically designate a "not sooner than" retirement date (typically one year out).
-- At least 60 days notice before model retirement for Generally Available (GA) models.
-- At least 30 days notice before preview model version upgrades.
-
-Members of the *owner*, *contributor*, *reader*, *monitoring contributor*, and *monitoring reader* roles receive notification for each subscription with a deployment of a model that has an upcoming retirement.
-
-Retirements are done on a rolling basis, region by region. Notifications are sent from an unmonitored mailbox, `azure-noreply@microsoft.com`
-
-.
-
-To learn more about the Azure OpenAI models lifecycle, including information for current, deprecated, and retired models, see [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements?view=foundry-classic).
-
-## Timelines for Foundry Models
-
-The following tables list the timelines for models that are on track for retirement. The specified dates are in UTC time.
-
-#### AI21 Labs
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|---|---|---|---|---|
-| Jamba Instruct | February 1, 2025 | February 1, 2025 | March 1, 2025 | N/A |
-|
-
-[AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21/?cid=learnDocs)#### Bria
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|---|---|---|---|---|
-|
-
-#### Cohere
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|---|---|---|---|---|
-|
-
-[Cohere Command R 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024?cid=learnDocs)[Command R+](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere?cid=learnDocs)[Cohere Command R+ 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024?cid=learnDocs)[Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere/?cid=learnDocs)[Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs),[Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs)[Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere/?cid=learnDocs)[Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs),[Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs)[Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere/?cid=learnDocs)[Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs),[Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs)#### Core42
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|---|---|---|---|---|
-|
-
-#### DeepSeek
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|---|---|---|---|---|
-|
-
-[DeepSeek-V3-0324](https://aka.ms/azureai/landing/DeepSeek-V3-0324?cid=learnDocs)#### Gretel
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|---|---|---|---|---|
-|
-
-#### Meta
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|---|---|---|---|---|
-|
-
-[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-2-13b-chat](https://ai.azure.com/explore/models/Llama-2-13b-chat/version/22/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-2-70b](https://ai.azure.com/explore/models/Llama-2-70b/version/25/registry/azureml-meta/?cid=learnDocs)[Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-2-70b-chat](https://ai.azure.com/explore/models/Llama-2-70b-chat/version/22/registry/azureml-meta/?cid=learnDocs)[Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-2-7b](https://ai.azure.com/explore/models/Llama-2-7b/version/23/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-2-7b-chat](https://ai.azure.com/explore/models/Llama-2-7b-chat/version/27/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/9/registry/azureml-meta/?cid=learnDocs)[Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/9/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)[Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)#### Microsoft
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|---|---|---|---|---|
-|
-
-[Phi-3-medium-4k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-4k-instruct/version/6/registry/azureml/?cid=learnDocs)[Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs)[Phi-3-medium-128k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-128k-instruct/version/7/registry/azureml/?cid=learnDocs)[Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs)[Phi-3-mini-4k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-4k-instruct/version/15/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-3-mini-128k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-128k-instruct/version/13/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-3-small-8k-instruct](https://ai.azure.com/explore/models/Phi-3-small-8k-instruct/version/6/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-3-small-128k-instruct](https://ai.azure.com/explore/models/Phi-3-small-128k-instruct/version/5/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-3.5-mini-instruct](https://ai.azure.com/explore/models/Phi-3.5-mini-instruct/version/6/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-3.5-MoE-instruct](https://ai.azure.com/explore/models/Phi-3.5-MoE-instruct/version/5/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)[Phi-3.5-vision-instruct](https://ai.azure.com/explore/models/Phi-3.5-vision-instruct/version/2/registry/azureml/?cid=learnDocs)[Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs)#### Mistral AI
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|---|---|---|---|---|
-|
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/models-featured -->

@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/ai-foundry/ai-services/content-safety-overview
-fetched_at: 2026-01-30T23:53:04.120101
+fetched_at: 2026-02-01T07:59:59.524777
 ---
 
 # Content Safety in the Microsoft Foundry portal
