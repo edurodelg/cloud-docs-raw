@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/artifacts/
-fetched_at: 2026-02-01T07:40:29.500122
+fetched_at: 2026-02-02T15:48:37.396721
 ---
 
 # Artifacts¶
