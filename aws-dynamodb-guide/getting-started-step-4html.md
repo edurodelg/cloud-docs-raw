@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-4.html
-fetched_at: 2026-02-01T07:46:13.262971
+fetched_at: 2026-02-02T15:55:25.969981
 ---
 
 # Step 4: Update data in a DynamoDB table

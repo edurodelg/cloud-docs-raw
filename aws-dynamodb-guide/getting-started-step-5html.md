@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-5.html
-fetched_at: 2026-02-01T07:46:17.671246
+fetched_at: 2026-02-02T15:55:30.909387
 ---
 
 # Step 5: Query data in a DynamoDB table

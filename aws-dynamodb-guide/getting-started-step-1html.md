@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-1.html
-fetched_at: 2026-02-01T07:45:57.777725
+fetched_at: 2026-02-02T15:55:11.175024
 ---
 
 # Step 1: Create a table in DynamoDB
