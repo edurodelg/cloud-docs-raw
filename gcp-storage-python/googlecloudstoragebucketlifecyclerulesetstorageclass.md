@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.bucket.LifecycleRuleSetStorageClass
-fetched_at: 2026-02-01T07:58:13.697196
+fetched_at: 2026-02-02T16:07:20.918408
 ---
 
 # Class LifecycleRuleSetStorageClass (3.8.0)
