@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/xmlstyle.html
-fetched_at: 2026-02-01T07:57:38.395639
+fetched_at: 2026-02-02T16:05:29.225212
 ---
 
 # Google XML Document Format Style Guide
