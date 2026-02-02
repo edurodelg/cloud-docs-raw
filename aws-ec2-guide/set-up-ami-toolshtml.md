@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-up-ami-tools.html
-fetched_at: 2026-02-01T07:40:05.322654
+fetched_at: 2026-02-02T15:49:13.752527
 ---
 
 # Set up the Amazon EC2 AMI tools

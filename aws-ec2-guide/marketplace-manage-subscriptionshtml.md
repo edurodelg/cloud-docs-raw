@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/marketplace-manage-subscriptions.html
-fetched_at: 2026-02-01T07:39:45.331500
+fetched_at: 2026-02-02T15:48:53.611739
 ---
 
 # Manage your AWS Marketplace
