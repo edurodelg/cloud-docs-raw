@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-storagebrowser.html
-fetched_at: 2026-02-01T07:43:33.497179
+fetched_at: 2026-02-02T15:52:42.107217
 ---
 
 # Using Storage Browser for S3

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html
-fetched_at: 2026-02-01T07:42:28.716950
+fetched_at: 2026-02-02T15:51:36.876047
 ---
 
 # General purpose bucket quotas, limitations, and restrictions

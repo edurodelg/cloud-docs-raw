@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration-getting-started.html
-fetched_at: 2026-02-01T07:44:03.980511
+fetched_at: 2026-02-02T15:53:12.001515
 ---
 
 # Getting started with
