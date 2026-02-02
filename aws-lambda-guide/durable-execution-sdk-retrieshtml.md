@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-execution-sdk-retries.html
-fetched_at: 2026-02-01T07:38:22.508746
+fetched_at: 2026-02-02T15:47:14.608915
 ---
 
 # Retries for Lambda durable functions

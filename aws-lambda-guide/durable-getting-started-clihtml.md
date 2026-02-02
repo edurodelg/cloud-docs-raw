@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-getting-started-cli.html
-fetched_at: 2026-02-01T07:37:37.296150
+fetched_at: 2026-02-02T15:46:29.322427
 ---
 
 # Deploy and invoke Lambda durable functions with the AWS CLI

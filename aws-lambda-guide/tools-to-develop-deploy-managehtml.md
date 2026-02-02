@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/tools-to-develop-deploy-manage.html
-fetched_at: 2026-02-01T07:36:46.989273
+fetched_at: 2026-02-02T15:45:35.016316
 ---
 
 # Development tools for Lambda
