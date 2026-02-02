@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-01T08:06:49.170767
+merged_at: 2026-02-02T16:14:01.012939
 merged_files: 3
 ---
 
@@ -1767,7 +1767,7 @@ Important
 
 Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-After you deploy a generative AI application in production, you might want to enhance your understanding and optimize performance. Trace data for each request, aggregated metrics, and user feedback play critical roles.
+After you deploy a generative AI application in production, you might want to enhance your understanding and optimize performance. Trace data for each request, aggregated metrics, and user feedback all play critical roles.
 
 In this article, you learn to enable tracing, collect aggregated metrics, and collect user feedback during the inference time of your flow deployment.
 
@@ -1804,11 +1804,11 @@ Use the latest prompt flow base image to deploy the flow so that it supports the
 
 ## Enable trace and collect system metrics for your deployment
 
-If you're using the Foundry portal to deploy, select **Deployment** > **Application Insights diagnostics** > **Advanced settings** in the deployment wizard. In this way, the tracing data and system metrics are collected to the project linked to Application Insights.
+If you're using the Foundry portal to deploy, select **Deployment** > **Application Insights diagnostics** > **Advanced settings** in the deployment wizard. By using this method, you collect tracing data and system metrics to the project linked to Application Insights.
 
 If you're using the SDK or the CLI, add the `app_insights_enabled: true`
 
-property in the deployment .yaml file that collects data to the project linked to Application Insights.
+property in the deployment .yaml file to collect data to the project linked to Application Insights.
 
 ```
 app_insights_enabled: true
@@ -1829,7 +1829,7 @@ Note
 
 If you set only `app_insights_enabled: true`
 
-but your project doesn't have a linked Application Insights resource, your deployment won't fail but no data is collected.
+but your project doesn't have a linked Application Insights resource, your deployment doesn't fail but no data is collected.
 
 If you specify both `app_insights_enabled: true`
 
@@ -1841,7 +1841,7 @@ to collect trace data and metrics to the application insights that you specified
 
 ## View tracing data in Application Insights
 
-Traces record specific events or the state of an application during execution. It can include data about function calls, variable values, and system events. Traces help to break down an application's components into discrete inputs and outputs. This process is crucial for debugging and understanding an application. To learn more about traces, see [this website](https://opentelemetry.io/docs/concepts/signals/traces/). The trace data follows the [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
+Traces record specific events or the state of an application during execution. They can include data about function calls, variable values, and system events. Traces help to break down an application's components into discrete inputs and outputs. This process is crucial for debugging and understanding an application. To learn more about traces, see [this website](https://opentelemetry.io/docs/concepts/signals/traces/). The trace data follows the [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
 
 You can view the detailed trace in the application insights that you specified. The following screenshot shows an example of an event of a deployed flow that contains multiple nodes. Select **Application Insights** > **Investigate** > **Transaction search**, and then select each node to view its detailed trace.
 
@@ -1849,7 +1849,7 @@ The **Dependency** type event records calls from your deployments. The name of t
 
 ## View system metrics in Application Insights
 
-| Metrics name | Type | Dimensions | Description |
+| Metric name | Type | Dimensions | Description |
 |---|---|---|---|
 `token_consumption` |
 counter | - `flow` - `node` - `llm_engine` - `token_type` : `prompt_tokens` : LLM API input tokens; `completion_tokens` : LLM API response tokens; `total_tokens` = `prompt_tokens + completion tokens` |
@@ -1879,8 +1879,8 @@ The streaming response sending cost, ranging from sending the first byte to send
 You can find the workspace default Application Insights metrics on your workspace overview page in the Azure portal.
 
 - Open Application Insights and select
-**Usage and estimated costs**on the left pane. Select**Custom metrics (Preview)**>**With dimensions**, and save the change. - Select the
-**Metrics**tab on the left pane. From**Metric Namespace**, select**promptflow standard metrics**. You can explore the metrics from the**Metric**dropdown list with different aggregation methods.
+**Usage and estimated costs**in the left pane. Select**Custom metrics (Preview)**>**With dimensions**, and save the change. - Select the
+**Metrics**tab in the left pane. From**Metric Namespace**, select**promptflow standard metrics**. You can explore the metrics from the**Metric**dropdown list with different aggregation methods.
 
 ## Collect feedback and send to Application Insights
 
@@ -6137,7 +6137,7 @@ values and pass the values in while running the function call in `simulate()`
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-agents-sdk -->
 
-# Trace and Observe AI Agents in Microsoft Foundry (preview)
+# Trace and observe AI agents in Microsoft Foundry (preview)
 
 Note
 
@@ -6157,21 +6157,21 @@ Items marked (preview) in this article are currently in public preview. This pre
 
 In this article, you learn how to:
 
-- Understand key tracing concepts
-- Trace and observe AI agents in Foundry
-- Explore new semantic conventions with multi-agent observability
-- Integrate with popular agent frameworks
-- View traces in the Foundry portal and Azure Monitor
-- View agent threads in the Agents playground
+- Understand key tracing concepts.
+- Trace and observe AI agents in Foundry.
+- Explore new semantic conventions with multi-agent observability.
+- Integrate with popular agent frameworks.
+- View traces in the Foundry portal and Azure Monitor.
+- View agent threads in the Agents playground.
 
 Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
 
 - There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
 - The sequence of steps might vary based on user input.
-- The inputs/outputs at each stage might be long and deserve more detailed inspection.
+- The inputs and outputs at each stage might be long and deserve more detailed inspection.
 - Each step of an agent's runtime might also involve nesting. For example, an agent might invoke a tool, which uses another process, which then invokes another tool. If you notice strange or incorrect output from a top-level agent run, it might be difficult to determine exactly where in the execution the issue was introduced.
 
-Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
+Trace results solve this problem by allowing you to view the inputs and outputs of each primitive involved in a particular agent run. The results are displayed in the order the primitives are invoked, making it easy to understand and debug your AI agent's behavior.
 
 ## Trace key concepts overview
 
@@ -6179,19 +6179,19 @@ Here's a brief overview of key concepts before getting started:
 
 | Key concepts | Description |
 |---|---|
-| Traces | Traces capture the journey of a request or workflow through your application by recording events and state changes (function calls, values, system events). See
+| Traces | Traces capture the journey of a request or workflow through your application by recording events and state changes, such as function calls, values, and system events. See
 |
 
 [OpenTelemetry's Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).### Best practices
 
 - Use consistent span attributes.
-- Correlate evaluation run IDs for quality + performance analysis.
-- Redact sensitive content; avoid storing secrets in attributes.
+- Correlate evaluation run IDs for quality and performance analysis.
+- Redact sensitive content. Avoid storing secrets in attributes.
 
 ## Extending OpenTelemetry with multi-agent observability
 
-Microsoft is enhancing multi-agent observability by introducing new semantic conventions to [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/), developed collaboratively with Outshift, Cisco's incubation engine. These additions—built upon OpenTelemetry and W3C Trace Context—establish standardized practices for tracing and telemetry within multi-agent systems, facilitating consistent logging of key metrics for quality, performance, safety, and cost. This systematic approach enables more comprehensive visibility into multi-agent workflows, including tool invocations and collaboration.
-These advancements have been integrated into Microsoft Foundry, Microsoft Agent Framework, Semantic Kernel, and Azure AI packages for LangChain, LangGraph, and the OpenAI Agents SDK, enabling customers to get unified observability for agentic systems built using any of these frameworks with Foundry. Learn more about [tracing integrations](#integrations).
+Microsoft is enhancing multi-agent observability by introducing new semantic conventions to [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/), developed collaboratively with Outshift, Cisco's incubation engine. These additions, built upon OpenTelemetry and W3C Trace Context, establish standardized practices for tracing and telemetry within multi-agent systems. They facilitate consistent logging of key metrics for quality, performance, safety, and cost. This systematic approach enables more comprehensive visibility into multi-agent workflows, including tool invocations and collaboration.
+Microsoft integrated these advancements into Microsoft Foundry, Microsoft Agent Framework, Semantic Kernel, and Azure AI packages for LangChain, LangGraph, and the OpenAI Agents SDK. By using Foundry, customers can get unified observability for agentic systems built using any of these frameworks. Learn more about [tracing integrations](#integrations).
 
 | Type | Context/Parent Span | Name/Attribute/Event | Purpose |
 |---|---|---|---|
@@ -6215,14 +6215,14 @@ pip install azure-ai-projects azure-identity
 ```
 
 
-To instrument tracing, you need to install the following instrumentation libraries:
+To instrument tracing, install the following instrumentation libraries:
 
 ```
 pip install azure-monitor-opentelemetry opentelemetry-sdk
 ```
 
 
-To view traces in Foundry, you need to connect an Application Insights resource to your Foundry project.
+To view traces in Foundry, connect an Application Insights resource to your Foundry project.
 
 - Navigate to
 **Tracing**in the left navigation pane of the Foundry portal. - Create a new Application Insights resource if you don't already have one.
@@ -6232,7 +6232,7 @@ To view traces in Foundry, you need to connect an Application Insights resource 
 
 To trace the content of chat messages, set the `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED`
 
-environment variable to true (case insensitive). Keep in mind this might contain personal data. To learn more, see [Azure Core Tracing OpenTelemetry client library for Python](/en-us/python/api/overview/azure/core-tracing-opentelemetry-readme).
+environment variable to true (case insensitive). This content might contain personal data. For more information, see [Azure Core Tracing OpenTelemetry client library for Python](/en-us/python/api/overview/azure/core-tracing-opentelemetry-readme).
 
 ```
 import os
@@ -6286,7 +6286,7 @@ After running your agent, you can begin to [view traces in Foundry portal](#view
 
 ### Log traces locally
 
-To connect to [Aspire Dashboard](https://aspiredashboard.com/#start) or another OpenTelemetry compatible backend, install the OpenTelemetry Protocol (OTLP) exporter. This enables you to print traces to the console or use a local viewer such as Aspire Dashboard.
+To connect to [Aspire Dashboard](https://aspiredashboard.com/#start) or another OpenTelemetry compatible backend, install the OpenTelemetry Protocol (OTLP) exporter. By using this exporter, you can print traces to the console or use a local viewer such as Aspire Dashboard.
 
 ```
 pip install azure-core-tracing-opentelemetry opentelemetry-exporter-otlp opentelemetry-sdk
@@ -6309,7 +6309,7 @@ trace.set_tracer_provider(tracer_provider)
 ```
 
 
-Or modify the above code, based on [Aspire Dashboard](https://aspiredashboard.com/#start), to trace to a local OTLP viewer.
+Or modify the preceding code, based on [Aspire Dashboard](https://aspiredashboard.com/#start), to trace to a local OTLP viewer.
 
 Now enable Agent instrumentation and run your Agent:
 
@@ -6344,7 +6344,7 @@ For detailed setup instructions and SDK-specific code examples, see [Tracing in 
 
 To trace your custom functions, use the OpenTelemetry SDK to instrument your code.
 
-**Set up a tracer provider**: Initialize a tracer provider to manage and create spans.**Create spans**: Wrap the code you want to trace with spans. Each span represents a unit of work and can be nested to form a trace tree.**Add attributes**: Enrich spans with attributes to provide more context for the trace data.**Configure an exporter**: Send the trace data to a backend for analysis and visualization.
+**Set up a tracer provider**: Initialize a tracer provider to manage and create spans.**Create spans**: Wrap the code you want to trace with spans. Each span represents a unit of work and you can nest spans to form a trace tree.**Add attributes**: Enrich spans with attributes to provide more context for the trace data.**Configure an exporter**: Send the trace data to a backend for analysis and visualization.
 
 Here's an example of tracing a custom function:
 
@@ -6362,17 +6362,17 @@ custom_function()
 ```
 
 
-For detailed instructions and advanced usage, refer to the [OpenTelemetry documentation](https://opentelemetry.io/docs/).
+For detailed instructions and advanced usage, see the [OpenTelemetry documentation](https://opentelemetry.io/docs/).
 
 ## Attach user feedback to traces
 
-To attach user feedback to traces and visualize it in the Foundry portal, you can instrument your application to enable tracing and log user feedback using OpenTelemetry's semantic conventions.
+To attach user feedback to traces and visualize it in the Foundry portal, instrument your application to enable tracing and log user feedback by using OpenTelemetry's semantic conventions.
 
-By correlating feedback traces with their respective chat request traces using the response ID or thread ID, you can view and manage these traces in the Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in the Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.
+By correlating feedback traces with their respective chat request traces by using the response ID or thread ID, you can view and manage these traces in the Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which you can analyze in the Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.
 
 To log user feedback, follow this format:
 
-The user feedback evaluation event can be captured if and only if the user provided a reaction to the GenAI model response. It SHOULD, when possible, be parented to the GenAI span describing such response.
+The user feedback evaluation event is captured only if the user provides a reaction to the GenAI model response. When possible, parent this event to the GenAI span describing such response.
 
 The user feedback event body has the following structure:
 
@@ -6384,13 +6384,13 @@ string | Additional details about the user feedback | `"I did not like it"` |
 
 ## Using service name in trace data
 
-To identify your service via a unique ID in Application Insights, you can use the service name OpenTelemetry property in your trace data. This is useful if you're logging data from multiple applications to the same Application Insights resource, and you want to differentiate between them.
+To identify your service via a unique ID in Application Insights, use the service name OpenTelemetry property in your trace data. This property is useful if you're logging data from multiple applications to the same Application Insights resource, and you want to differentiate between them.
 
 For example, let's say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Relevance**. You can use the service name to filter by `Application`
 
 when monitoring your application in Foundry portal.
 
-To set up the service name property, you can do so directly in your application code by following the steps, see [Using multiple tracer providers with different Resource](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, you can set the environment variable `OTEL_SERVICE_NAME`
+To set up the service name property, add it directly in your application code by following the steps in [Using multiple tracer providers with different Resource](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, set the environment variable `OTEL_SERVICE_NAME`
 
 before deploying your app. To learn more about working with the service name, see [OTEL Environment Variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) and [Service Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/#service).
 
@@ -6405,7 +6405,7 @@ property.
 
 ## Integrations
 
-Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
+Foundry makes it easy to log traces with minimal changes by using its tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
 
 ### Tracing agents built on Microsoft Agent Framework and Semantic Kernel
 
@@ -6414,7 +6414,7 @@ Foundry has native integrations with Microsoft Agent Framework and Semantic Kern
 - Learn more about tracing and observability in
 [Semantic Kernel](/en-us/semantic-kernel/concepts/enterprise-readiness/observability)and[Microsoft Agent Framework](/en-us/agent-framework/user-guide/workflows/observability).
 
-### Enable tracing for Agents built on LangChain & LangGraph
+### Enable tracing for agents built on LangChain and LangGraph
 
 Note
 
@@ -6422,17 +6422,17 @@ Tracing integration for LangChain and LangGraph described here is currently avai
 
 You can enable tracing for LangChain that follows OpenTelemetry standards as per [opentelemetry-instrumentation-langchain](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/).
 
-Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](https://pypi.org/project/langchain-azure-ai/).
+Once you install the necessary packages, you can easily [instrument tracing in your code](https://pypi.org/project/langchain-azure-ai/).
 
 Note
 
-LangChain and LangGraph "v1" releases are currently under active development. API surface and tracing behavior can change as part of this release. Track updates at the [LangChain v1.0 release notes page](https://docs.langchain.com/oss/python/releases/langchain-v1)
+LangChain and LangGraph "v1" releases are currently under active development. API surface and tracing behavior can change as part of this release. Track updates at the [LangChain v1.0 release notes page](https://docs.langchain.com/oss/python/releases/langchain-v1).
 
 #### Sample: LangChain v1 agent with Azure AI tracing
 
-Use this end-to-end sample to instrument a LangChain v1 agent using the `langchain-azure-ai`
+Use this end-to-end sample to instrument a LangChain v1 agent by using the `langchain-azure-ai`
 
-tracer, which implements the latest OpenTelemetry (OTel) spec so you can view rich traces in Observability.
+tracer. It implements the latest OpenTelemetry (OTel) spec so you can view rich traces in Observability.
 
 ##### Install packages
 
@@ -6463,9 +6463,9 @@ rich
 .- Azure credentials are resolved via
 `DefaultAzureCredential`
 
-(supports environment variables, managed identity, VS Code sign-in, etc.).
+(supports environment variables, managed identity, VS Code sign-in, and more).
 
-You can store these in a `.env`
+You can store these values in a `.env`
 
 file for local development.
 
@@ -6591,9 +6591,9 @@ main()
 ```
 
 
-With `langchain-azure-ai`
+When you enable `langchain-azure-ai`
 
-enabled, all LangChain v1 operations (LLM calls, tool invocations, agent steps) are traced using the latest OpenTelemetry semantic conventions and appear in Observability, linked to your Application Insights resource.
+, all LangChain v1 operations (LLM calls, tool invocations, agent steps) are traced by using the latest OpenTelemetry semantic conventions. They appear in Observability, linked to your Application Insights resource.
 
 #### Sample: LangGraph agent with Azure AI tracing
 
@@ -6628,7 +6628,7 @@ python-dotenv
 
 .
 
-You can store these in a `.env`
+You can store these values in a `.env`
 
 file for local development.
 
@@ -6728,13 +6728,13 @@ event["messages"][-1].pretty_print()
 ```
 
 
-With `langchain-azure-ai`
+By enabling `langchain-azure-ai`
 
-enabled, your LangGraph execution emits OpenTelemetry-compliant spans for model calls, tool invocations, and graph transitions. These traces flow to Application Insights and surface in Observability.
+, your LangGraph execution emits OpenTelemetry-compliant spans for model calls, tool invocations, and graph transitions. These traces flow to Application Insights and surface in Observability.
 
 #### Sample: LangChain 0.3 setup with Azure AI tracing
 
-This minimal setup shows how to enable Azure AI tracing in a LangChain 0.3 application using the `langchain-azure-ai`
+This minimal setup shows how to enable Azure AI tracing in a LangChain 0.3 application by using the `langchain-azure-ai`
 
 tracer and `AzureChatOpenAI`
 
@@ -6799,7 +6799,7 @@ Attach `callbacks=[azure_tracer]`
 
 to your chains, tools, or agents to ensure LangChain 0.3 operations are traced and visible in Observability.
 
-### Enable tracing for Agents built on OpenAI Agents SDK
+### Enable tracing for agents built on OpenAI Agents SDK
 
 Use this snippet to configure OpenTelemetry tracing for the OpenAI Agents SDK and instrument the framework. It exports to Azure Monitor if `APPLICATION_INSIGHTS_CONNECTION_STRING`
 
@@ -6840,11 +6840,11 @@ pass
 
 In your project, go to **Tracing** to filter your traces as you see fit.
 
-By selecting a trace, you can step through each span and identify issues while observing how your application is responding. This can help you debug and pinpoint issues in your application.
+By selecting a trace, you can step through each span and identify problems while observing how your application is responding. This process helps you debug and pinpoint problems in your application.
 
 ## View traces in Azure Monitor
 
-If you logged traces using the previous code snippet, then you're all set to view your traces in Azure Monitor Application Insights. You can open Application Insights from **Manage data source** and use the **End-to-end transaction details view** to further investigate.
+If you logged traces by using the preceding code snippet, you're all set to view your traces in Azure Monitor Application Insights. You can open Application Insights from **Manage data source** and use the **End-to-end transaction details view** to further investigate.
 
 For more information on how to send Azure AI Inference traces to Azure Monitor and create Azure Monitor resource, see [Azure Monitor OpenTelemetry documentation](/en-us/azure/azure-monitor/app/opentelemetry-enable).
 
@@ -6854,7 +6854,7 @@ The Agents playground in the Foundry portal lets you view results for threads an
 
 Note
 
-Evaluation in the playground is billed as outlined under Trust and Observability on [the pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42). Results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
+As outlined under Trust and Observability on [the pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42), evaluation in the playground is billed. Results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
 
 - Evaluations aren't available in the following regions.
 `australiaeast`
@@ -6879,7 +6879,7 @@ Tip
 If you want to view thread results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
 [
 ](../../agents/media/thread-highlight.png?view=foundry-classic#lightbox)
-You'll be able to see the **Thread logs** button at the top of the screen to view the trace results.
+You can see the **Thread logs** button at the top of the screen to view the trace results.
 
 Note
 
@@ -6887,7 +6887,7 @@ Observability features such as Risk and Safety Evaluation are billed based on co
 
 ## Related content
 
-[Python samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py)containing fully runnable Python code for tracing using synchronous and asynchronous clients.[Python samples for tracing agents with console tracing and Azure Monitor](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-agents/samples/agents_telemetry)[JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src)containing fully runnable JavaScript code for tracing using synchronous and asynchronous clients.[C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md)containing fully runnable C# code for doing inference using synchronous and asynchronous methods.
+[Python samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py)containing fully runnable Python code for tracing by using synchronous and asynchronous clients.[Python samples for tracing agents with console tracing and Azure Monitor](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-agents/samples/agents_telemetry)[JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src)containing fully runnable JavaScript code for tracing by using synchronous and asynchronous clients.[C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md)containing fully runnable C# code for doing inference by using synchronous and asynchronous methods.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/agent-evaluate-sdk -->
@@ -8762,7 +8762,7 @@ Important
 
 This guidance only applies to the new Foundry resource based projects, not hub-based projects. These steps aren't required for hub-based projects.
 
-When running evaluations with user provided datasets, users must connect a Storage Account to their Microsoft Foundry Resource. This is the storage account that is used to store these datasets. However, providing this connection isn't enough, the project must also be given contributor access to the blob storage to allow read and write access to the storage account. These instructions walk you through how to create the storage account, connect it to your project, and give resource permission.
+When you run evaluations by using user-provided datasets, you must connect a storage account to your Microsoft Foundry Resource. Use this storage account to store the datasets. However, providing this connection isn't enough. You must also give the project contributor access to the blob storage to allow read and write access to the storage account. These instructions walk you through how to create the storage account, connect it to your project, and give resource permission.
 
 ## Prerequisites
 
@@ -8774,17 +8774,17 @@ You must use a **Foundry project** for this feature. A **hub-based project** isn
 
 If you have already created your blob storage account, you can skip this section.
 
-Foundry evaluations use the user's blob storage account to store datasets for use in evaluations. To create the storage account, follow the below steps:
+Foundry evaluations use the user's blob storage account to store datasets for use in evaluations. To create the storage account, follow the steps in this section:
 
-Go to your Foundry Project and find your resource group. To find your resource group, select the project name in the top right corner and select your resource group. This takes you to the resource group in Azure portal.
+Go to your Foundry project and find your resource group. To find your resource group, select the project name in the top right corner and select your resource group. This selection takes you to the resource group in Azure portal.
 
 Select
 
-**Create**on the Resource Group page.Search "Storage Account" and select the Storage Account option that is published by Microsoft.
+**Create**on the Resource Group page.Search for "Storage Account" and select the Storage Account option that's published by Microsoft.
 
 Create your storage account.
 
-*Storage account name*: Give your storage account a meaningful name.*Region*: Recommendation: Create the storage account in the same region you created your project. To find this, go back to Foundry, select the project name in the top right corner of the screen (which is the same option you selected earlier to find the link to your resource group), and review the Location of the resource group. Note: it will not default to the same region.*Primary service*: Azure Blob Storage or Azure Data Lake Storage Gen 2.*Performance*: Standard.*Redundancy*: Geo-redundant storage (GRS).- Select
+*Storage account name*: Give your storage account a meaningful name.*Region*: Recommendation: Create the storage account in the same region you created your project. To find this region, go back to Foundry, select the project name in the top right corner of the screen (which is the same option you selected earlier to find the link to your resource group), and review the Location of the resource group. Note: it doesn't default to the same region.*Primary service*: Azure Blob Storage or Azure Data Lake Storage Gen 2.*Performance*: Standard.*Redundancy*: Geo-redundant storage (GRS).- Select
 **Review+Create**. - Select
 **Create**.
 
@@ -8793,29 +8793,29 @@ Your storage account is now created. Allow time for the resource to be fully pro
 
 ## Connect your blob storage account in Foundry
 
-Now that the storage account has been created, it's time to connect the blob storage account to the Foundry resource. If you have already completed this step, you can skip to the next section.
+After you create the storage account, connect the blob storage account to the Foundry resource. If you have already connected the storage account, you can skip this section.
 
-- Navigate to your project at ai.azure.com. Ensure you are in the project you're trying to run evaluations for.
+- Go to your project at ai.azure.com. Make sure you're in the project where you want to run evaluations.
 - In the lower left corner at the bottom of the menu, select
 **Management Center**. - Select
 **Connected Resources**under "Resource (your resource name here)", NOT Project. - Select
 **New connection**. - Select
 **Storage account**. - Search for your storage account name that you created.
-- Authentication method: Recommended: Microsoft Entra ID.
-- Select
-**Add Connection**. - The connection is now created. Continue to the next section to provision permissions for Foundry resource to the blob storage account.
+- For
+**Authentication method**, select Microsoft Entra ID. - Select
+**Add Connection**. - The connection is created. Continue to the next section to provision permissions for Foundry resource to the blob storage account.
 
-## Give Foundry resource permission to read/write to the storage account
+## Give Foundry resource permission to read and write to the storage account
 
-The final step to setting up this storage account to store your datasets for evaluation runs in Foundry, you must provide the project permissions to access the storage account. To do so, follow the below steps:
+To set up this storage account to store your datasets for evaluation runs in Foundry, you must provide the project permissions to access the storage account.
 
-Navigate to your project in Foundry.
+Go to your project in Foundry.
 
-In the top left corner, select your project name dropdown.
+In the upper-left corner, select your project name dropdown.
 
-Select the Resource Group link, which will take you to Azure portal for the resource group.
+Select the
 
-Select the storage account you created under the
+**Resource Group**link. This link takes you to Azure portal for the resource group.Select the storage account you created under the
 
 *Resources*table.On the right hand side, select
 
@@ -8839,7 +8839,7 @@ Select
 
 **Review + assign**twice.
 
-You have now provided your project with write access to your blob storage account. After a few minutes, you'll be able to add data during an evaluation in Foundry.
+You now provided your project with write access to your blob storage account. After a few minutes, you can add data during an evaluation in Foundry.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/built-in-policy-model-deployment -->
@@ -9347,7 +9347,7 @@ Important
 
 Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Monitoring your generative AI applications has never been more important, due to the complexity and rapid evolution of the AI industry. Observability, integrated with Azure Monitor Application Insights, enables you to continuously monitor your deployed AI applications to ensure that they're performant, safe, and produce high-quality results in production. In addition to the continuous monitoring capabilities, we also provide [continuous evaluation capabilities for Agents](continuous-evaluation-agents?view=foundry-classic) to further enhance the Foundry Observability dashboard with visibility into additional critical quality and safety metrics.
+Monitoring your generative AI applications is important because of the complexity and rapid evolution of the AI industry. By using observability integrated with Azure Monitor Application Insights, you can continuously monitor your deployed AI applications to ensure that they're performant, safe, and produce high-quality results in production. In addition to the continuous monitoring capabilities, the Foundry Observability dashboard also provides [continuous evaluation capabilities for Agents](continuous-evaluation-agents?view=foundry-classic) with visibility into critical quality and safety metrics.
 
 Note
 
@@ -9355,40 +9355,42 @@ You must use a **Foundry project** for this feature. A **hub-based project** isn
 
 ## How to enable monitoring
 
-To use monitoring capabilities in Microsoft Foundry, you need to connect an Application Insights resource to your Foundry project.
+To use monitoring capabilities in Microsoft Foundry, connect an Application Insights resource to your Foundry project.
 
 - Navigate to
 **Monitoring**in the left navigation pane of the Foundry portal. - Select the
 **Application analytics**tab. - Create a new Application Insights resource if you don't already have one.
 - Connect the resource to your Foundry project.
 
-### Collecting production data for monitoring
+### Collect production data for monitoring
 
-From here, you want to begin collecting telemetry for your application that you can monitor in our built-in views. To do this, we recommend:
+Start collecting telemetry for your application that you can monitor in the built-in views. To do this, follow these recommendations:
 
-Instrumenting traces allows you to capture detailed telemetry data from your application. This data provides insights into the performance, latency, and behavior of your application in production.
+Instrument traces to capture detailed telemetry data from your application. This data provides insights into the performance, latency, and behavior of your application in production.
 
-[Continuous evaluations](continuous-evaluation-agents?view=foundry-classic)help monitor the quality and safety of your agent in production by assessing its outputs against predefined metrics and thresholds.
+Use
+
+[continuous evaluations](continuous-evaluation-agents?view=foundry-classic)to help monitor the quality and safety of your agent in production by assessing its outputs against predefined metrics and thresholds.
 
 ## Viewing monitoring results
 
 In Foundry portal, the **Application analytics** dashboard view uses signals from [Azure Monitor Application Insights](/en-us/azure/azure-monitor/app/overview-dashboard), querying it through [Azure Workbooks](/en-us/azure/azure-monitor/visualize/workbooks-overview) and creating visualizations.
 
-These views are designed to bring key metrics - token consumption, latency, exceptions, response quality into a single pane of glass that provides transparency to teams to track operational health and quality, understand trends, and assess continuously to improve their application.
+These views bring key metrics - token consumption, latency, exceptions, response quality - into a single pane that provides transparency to teams. They help teams track operational health and quality, understand trends, and continuously assess to improve their application.
 
 Follow these steps to access and utilize the built-in monitoring view in your Foundry Project:
 
-- Navigate to your Foundry Project in the Foundry portal.
+- Go to your Foundry Project in the Foundry portal.
 - Select
 **Monitoring**from the left navigation pane. - Under the
-**Application analytics**tab, review the overview of your application's health. - Use filters to specify a time range, application, and/or model to extract detailed insights.
-- If you notice issues, such as declining quality metrics, go to
-**Tracing**to[debug issues in your application](develop/trace-application?view=foundry-classic). - To further customize your monitoring experience and use advanced capabilities in Azure Monitor, scroll to the bottom and select
+**Application analytics**tab, review the overview of your application's health. - Use filters to specify a time range, application, and model to extract detailed insights.
+- If you notice problems, such as declining quality metrics, go to
+**Tracing**to[debug problems in your application](develop/trace-application?view=foundry-classic). - To further customize your monitoring experience and use advanced capabilities in Azure Monitor, select
 **View in Azure Monitor Application Insights**.
 
 Note
 
-When you're sharing this workbook with your team members, they must have at least 'Reader' role to the connected Application Insights resource to view the displayed information.
+When you share this workbook with your team members, they must have at least the **Reader** role to the connected Application Insights resource to view the displayed information.
 
 ## Customize and share your dashboard
 
@@ -9398,29 +9400,27 @@ You can open the **Application analytics** dashboard in Azure Monitor Applicatio
 
 This dashboard is opened as an editable workbook where you can customize the workbook and save according to your needs.
 
-Modify elements as needed per your use case. Select
+Modify elements as needed for your use case. Select
 
-**...**on an element to edit, add, move/resize, clone, or remove. For example, you can add a tile using KQL to track a custom attribute you're collecting and not shown in our built-in view.Save your latest changes and create different views as needed by selecting
+**...**on an element to edit, add, move, resize, clone, or remove. For example, you can add a tile by using KQL to track a custom attribute you're collecting and that isn't shown in the built-in view.Save your latest changes and create different views as needed by selecting
 
-**Save**.Share with your team by selecting the
-
-**Share**icon in the command bar.
+**Save**.
 
 ## Explore and analyze with Kusto Query Language (KQL)
 
-[KQL (Kusto Query Language)](/en-us/kusto/query/) is a powerful query language used in Azure to explore, analyze, and visualize large volumes of telemetry and log data.
+[KQL (Kusto Query Language)](/en-us/kusto/query/) is a powerful query language you can use in Azure to explore, analyze, and visualize large volumes of telemetry and log data.
 
-In the **Application analytics** dashboard view, you can **Open query link** by selecting the icon in the top right for a particular tile or chart.
+In the **Application analytics** dashboard view, you can **Open query link** by selecting the icon in the upper right for a particular tile or chart.
 
-Once you select that, you can view and run the same KQL queries powering your monitoring view and deep dive into the related data.
+When you select that icon, you can view and run the same KQL queries that power your monitoring view. You can also deep dive into the related data.
 
 ## Set up Azure Alerts
 
-You can define Azure Alert rules based on the previous KQL queries to proactively detect issues with your post-production operations in the future. Select **...** to view more options like **New alert rule**.
+You can define Azure Alert rules based on the previous KQL queries to proactively detect problems with your post-production operations. Select **...** to view more options like **New alert rule**.
 
 Selecting the **New alert rule** button opens a wizard to create an alert rule on the related signal.
 
-To learn more about setting up and managing Azure Alerts to proactively address issues, see [Alerts in Azure Monitor](/en-us/azure/azure-monitor/alerts/alerts-overview).
+To learn more about setting up and managing Azure Alerts to proactively address problems, see [Alerts in Azure Monitor](/en-us/azure/azure-monitor/alerts/alerts-overview).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-applications -->
@@ -9443,7 +9443,7 @@ Important
 
 Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Monitoring your generative AI applications has never been more important, due to the complexity and rapid evolution of the AI industry. Observability, integrated with Azure Monitor Application Insights, enables you to continuously monitor your deployed AI applications to ensure that they're performant, safe, and produce high-quality results in production. In addition to the continuous monitoring capabilities, we also provide [continuous evaluation capabilities for Agents](continuous-evaluation-agents?view=foundry-classic) to further enhance the Foundry Observability dashboard with visibility into additional critical quality and safety metrics.
+Monitoring your generative AI applications is important because of the complexity and rapid evolution of the AI industry. By using observability integrated with Azure Monitor Application Insights, you can continuously monitor your deployed AI applications to ensure that they're performant, safe, and produce high-quality results in production. In addition to the continuous monitoring capabilities, the Foundry Observability dashboard also provides [continuous evaluation capabilities for Agents](continuous-evaluation-agents?view=foundry-classic) with visibility into critical quality and safety metrics.
 
 Note
 
@@ -9451,40 +9451,42 @@ You must use a **Foundry project** for this feature. A **hub-based project** isn
 
 ## How to enable monitoring
 
-To use monitoring capabilities in Microsoft Foundry, you need to connect an Application Insights resource to your Foundry project.
+To use monitoring capabilities in Microsoft Foundry, connect an Application Insights resource to your Foundry project.
 
 - Navigate to
 **Monitoring**in the left navigation pane of the Foundry portal. - Select the
 **Application analytics**tab. - Create a new Application Insights resource if you don't already have one.
 - Connect the resource to your Foundry project.
 
-### Collecting production data for monitoring
+### Collect production data for monitoring
 
-From here, you want to begin collecting telemetry for your application that you can monitor in our built-in views. To do this, we recommend:
+Start collecting telemetry for your application that you can monitor in the built-in views. To do this, follow these recommendations:
 
-Instrumenting traces allows you to capture detailed telemetry data from your application. This data provides insights into the performance, latency, and behavior of your application in production.
+Instrument traces to capture detailed telemetry data from your application. This data provides insights into the performance, latency, and behavior of your application in production.
 
-[Continuous evaluations](continuous-evaluation-agents?view=foundry-classic)help monitor the quality and safety of your agent in production by assessing its outputs against predefined metrics and thresholds.
+Use
+
+[continuous evaluations](continuous-evaluation-agents?view=foundry-classic)to help monitor the quality and safety of your agent in production by assessing its outputs against predefined metrics and thresholds.
 
 ## Viewing monitoring results
 
 In Foundry portal, the **Application analytics** dashboard view uses signals from [Azure Monitor Application Insights](/en-us/azure/azure-monitor/app/overview-dashboard), querying it through [Azure Workbooks](/en-us/azure/azure-monitor/visualize/workbooks-overview) and creating visualizations.
 
-These views are designed to bring key metrics - token consumption, latency, exceptions, response quality into a single pane of glass that provides transparency to teams to track operational health and quality, understand trends, and assess continuously to improve their application.
+These views bring key metrics - token consumption, latency, exceptions, response quality - into a single pane that provides transparency to teams. They help teams track operational health and quality, understand trends, and continuously assess to improve their application.
 
 Follow these steps to access and utilize the built-in monitoring view in your Foundry Project:
 
-- Navigate to your Foundry Project in the Foundry portal.
+- Go to your Foundry Project in the Foundry portal.
 - Select
 **Monitoring**from the left navigation pane. - Under the
-**Application analytics**tab, review the overview of your application's health. - Use filters to specify a time range, application, and/or model to extract detailed insights.
-- If you notice issues, such as declining quality metrics, go to
-**Tracing**to[debug issues in your application](develop/trace-application?view=foundry-classic). - To further customize your monitoring experience and use advanced capabilities in Azure Monitor, scroll to the bottom and select
+**Application analytics**tab, review the overview of your application's health. - Use filters to specify a time range, application, and model to extract detailed insights.
+- If you notice problems, such as declining quality metrics, go to
+**Tracing**to[debug problems in your application](develop/trace-application?view=foundry-classic). - To further customize your monitoring experience and use advanced capabilities in Azure Monitor, select
 **View in Azure Monitor Application Insights**.
 
 Note
 
-When you're sharing this workbook with your team members, they must have at least 'Reader' role to the connected Application Insights resource to view the displayed information.
+When you share this workbook with your team members, they must have at least the **Reader** role to the connected Application Insights resource to view the displayed information.
 
 ## Customize and share your dashboard
 
@@ -9494,29 +9496,27 @@ You can open the **Application analytics** dashboard in Azure Monitor Applicatio
 
 This dashboard is opened as an editable workbook where you can customize the workbook and save according to your needs.
 
-Modify elements as needed per your use case. Select
+Modify elements as needed for your use case. Select
 
-**...**on an element to edit, add, move/resize, clone, or remove. For example, you can add a tile using KQL to track a custom attribute you're collecting and not shown in our built-in view.Save your latest changes and create different views as needed by selecting
+**...**on an element to edit, add, move, resize, clone, or remove. For example, you can add a tile by using KQL to track a custom attribute you're collecting and that isn't shown in the built-in view.Save your latest changes and create different views as needed by selecting
 
-**Save**.Share with your team by selecting the
-
-**Share**icon in the command bar.
+**Save**.
 
 ## Explore and analyze with Kusto Query Language (KQL)
 
-[KQL (Kusto Query Language)](/en-us/kusto/query/) is a powerful query language used in Azure to explore, analyze, and visualize large volumes of telemetry and log data.
+[KQL (Kusto Query Language)](/en-us/kusto/query/) is a powerful query language you can use in Azure to explore, analyze, and visualize large volumes of telemetry and log data.
 
-In the **Application analytics** dashboard view, you can **Open query link** by selecting the icon in the top right for a particular tile or chart.
+In the **Application analytics** dashboard view, you can **Open query link** by selecting the icon in the upper right for a particular tile or chart.
 
-Once you select that, you can view and run the same KQL queries powering your monitoring view and deep dive into the related data.
+When you select that icon, you can view and run the same KQL queries that power your monitoring view. You can also deep dive into the related data.
 
 ## Set up Azure Alerts
 
-You can define Azure Alert rules based on the previous KQL queries to proactively detect issues with your post-production operations in the future. Select **...** to view more options like **New alert rule**.
+You can define Azure Alert rules based on the previous KQL queries to proactively detect problems with your post-production operations. Select **...** to view more options like **New alert rule**.
 
 Selecting the **New alert rule** button opens a wizard to create an alert rule on the related signal.
 
-To learn more about setting up and managing Azure Alerts to proactively address issues, see [Alerts in Azure Monitor](/en-us/azure/azure-monitor/alerts/alerts-overview).
+To learn more about setting up and managing Azure Alerts to proactively address problems, see [Alerts in Azure Monitor](/en-us/azure/azure-monitor/alerts/alerts-overview).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/hub-quota -->
@@ -11250,7 +11250,7 @@ Important
 
 Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by Large Language Models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
+Prompt flow is a development tool that streamlines the entire development cycle of AI applications powered by large language models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
 
 Prompt flow is available independently as an open-source project on [GitHub](https://github.com/microsoft/promptflow), with its own SDK and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow). Prompt flow is also available and recommended to use as a feature within both [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) and [Azure Machine Learning studio](https://ml.azure.com). This set of documentation focuses on prompt flow in Foundry portal.
 
@@ -11262,15 +11262,15 @@ This article provides legacy support for hub-based projects. It will not work fo
 
 Definitions:
 
-*Prompt flow*is a feature that can be used to generate, customize, or run a flow.- A
-*flow*is an executable instruction set that can implement the AI logic. Flows can be created or run via multiple tools, like a prebuilt canvas, LangChain, etcetera. Iterations of a flow can be saved as assets; once deployed a flow becomes an API. Not all flows are prompt flows; rather, prompt flow is one way to create a flow. - A
-*prompt*is a package of input sent to a model, consisting of the user input, system message, and any examples. User input is text submitted in the chat window. System message is a set of instructions to the model scoping its behaviors and functionality. - A
+*Prompt flow*is a feature that you can use to generate, customize, or run a flow.- A
+*flow*is an executable instruction set that implements the AI logic. You can create or run flows through multiple tools, like a prebuilt canvas, LangChain, and others. You save iterations of a flow as assets. Once deployed, a flow becomes an API. Not all flows are prompt flows. Rather, prompt flow is one way to create a flow. - A
+*prompt*is a package of input sent to a model, consisting of the user input, system message, and any examples. User input is text submitted in the chat window. System message is a set of instructions to the model that scope its behaviors and functionality. - A
 *sample flow*is a simple, prebuilt orchestration flow that shows how flows work, and can be customized. - A
 *sample prompt*is a defined prompt for a specific scenario that can be copied from a library and used as-is or modified in prompt design.
 
 ## Benefits of prompt flow
 
-With prompt flow in Foundry portal, you can:
+By using prompt flow in Foundry portal, you can:
 
 - Orchestrate executable flows with LLMs, prompts, and Python tools through a visualized graph.
 - Debug, share, and iterate your flows with ease through team collaboration.
@@ -11278,18 +11278,18 @@ With prompt flow in Foundry portal, you can:
 
 ### Prompt engineering agility
 
-- Interactive authoring experience: Prompt flow provides a visual representation of the flow's structure, allowing you to easily understand and navigate projects.
+- Interactive authoring experience: Prompt flow provides a visual representation of the flow's structure, so you can easily understand and navigate projects.
 - Variants for prompt tuning: You can create and compare multiple prompt variants, facilitating an iterative refinement process.
-- Evaluation: Built-in evaluation flows enable you to assess the quality and effectiveness of their prompts and flows.
+- Evaluation: Built-in evaluation flows enable you to assess the quality and effectiveness of your prompts and flows.
 - Comprehensive resources: Prompt flow includes a library of built-in tools, samples, and templates that serve as a starting point for development, inspiring creativity, and accelerating the process.
 
 ### Enterprise readiness
 
-- Collaboration: Prompt flow supports team collaboration, allowing multiple users to work together on prompt engineering projects, share knowledge, and maintain version control.
-- All-in-one platform: Prompt flow streamlines the entire prompt engineering process, from development and evaluation to deployment and monitoring. You can effortlessly deploy their flows as Azure AI endpoints and monitor their performance in real-time, ensuring optimal operation and continuous improvement.
+- Collaboration: Prompt flow supports team collaboration, so multiple users can work together on prompt engineering projects, share knowledge, and maintain version control.
+- All-in-one platform: Prompt flow streamlines the entire prompt engineering process, from development and evaluation to deployment and monitoring. You can effortlessly deploy your flows as Azure AI endpoints and monitor their performance in real-time, ensuring optimal operation and continuous improvement.
 - Enterprise Readiness Solutions: Prompt flow applies robust Azure AI enterprise readiness solutions, providing a secure, scalable, and reliable foundation for the development, experimentation, and deployment of flows.
 
-With prompt flow in Foundry portal, you can unleash prompt engineering agility, collaborate effectively, and apply enterprise-grade solutions for successful LLM-based application development and deployment.
+By using prompt flow in Foundry portal, you can unleash prompt engineering agility, collaborate effectively, and apply enterprise-grade solutions for successful LLM-based application development and deployment.
 
 ## Flow development lifecycle
 
@@ -11310,7 +11310,7 @@ In Foundry portal, you can start a new flow by selecting a flow type or a templa
 
 Here are some examples of flow types:
 
-**Standard flow**: Designed for general application development, the standard flow allows you to create a flow using a wide range of built-in tools for developing LLM-based applications. It provides flexibility and versatility for developing applications across different domains.**Chat flow**: Tailored for conversational application development, the Chat flow builds upon the capabilities of the standard flow and provides enhanced support for chat inputs/outputs and chat history management. With native conversation mode and built-in features, you can seamlessly develop and debug their applications within a conversational context.**Evaluation flow**: Designed for evaluation scenarios, the evaluation flow enables you to create a flow that takes the outputs of previous flow runs as inputs. This flow type allows you to evaluate the performance of previous run results and output relevant metrics, facilitating the assessment and improvement of their models or applications.
+**Standard flow**: Designed for general application development, the standard flow allows you to create a flow using a wide range of built-in tools for developing LLM-based applications. It provides flexibility and versatility for developing applications across different domains.**Chat flow**: Tailored for conversational application development, the Chat flow builds upon the capabilities of the standard flow and provides enhanced support for chat inputs and outputs and chat history management. By using native conversation mode and built-in features, you can seamlessly develop and debug your applications within a conversational context.**Evaluation flow**: Designed for evaluation scenarios, the evaluation flow enables you to create a flow that takes the outputs of previous flow runs as inputs. This flow type allows you to evaluate the performance of previous run results and output relevant metrics, facilitating the assessment and improvement of their models or applications.
 
 ## Flows
 
@@ -11320,7 +11320,7 @@ Within a flow, nodes take center stage, representing specific tools with unique 
 
 To facilitate node configuration and fine-tuning, a visual representation of the workflow structure is provided through a DAG (Directed Acyclic Graph) graph. This graph showcases the connectivity and dependencies between nodes, providing a clear overview of the entire workflow.
 
-With the flow feature in Prompt flow, you have the power to design, customize, and optimize the logic of your AI application. The cohesive arrangement of nodes ensures efficient data processing and effective flow management, empowering you to create robust and advanced applications.
+By using the flow feature in Prompt flow, you can design, customize, and optimize the logic of your AI application. The cohesive arrangement of nodes ensures efficient data processing and effective flow management, empowering you to create robust and advanced applications.
 
 ## Prompt flow tools
 
@@ -11330,7 +11330,7 @@ In Foundry portal, tool options include the [LLM tool](../how-to/prompt-flow-too
 
 Each tool is a simple, executable unit with a specific function. By combining different tools, you can create a flow that accomplishes a wide range of goals. For example, you can use the LLM tool to generate text or summarize an article and the Python tool to process the text to inform the next flow component or result.
 
-One of the key benefit of Prompt flow tools is their seamless integration with third-party APIs and python open source packages. This not only improves the functionality of large language models but also makes the development process more efficient for developers.
+One of the key benefits of Prompt flow tools is their seamless integration with third-party APIs and Python open source packages. This integration not only improves the functionality of large language models but also makes the development process more efficient for developers.
 
 If the prompt flow tools in Foundry portal don't meet your requirements, you can [develop your own custom tool and make it a tool package](https://microsoft.github.io/promptflow/how-to-guides/develop-a-tool/create-and-use-tool-package.html). To discover more custom tools developed by the open source community, visit [prompt flow custom tools](https://microsoft.github.io/promptflow/integrations/tools/index.html).
 
@@ -15723,6 +15723,223 @@ Recovery point: State is preserved up to about 10 minutes before the Storage fai
 Account for human-based failures in your recovery design.
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/evaluation-azure-devops -->
+
+# How to run an evaluation in Azure DevOps (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action?view=foundry-classic), an Azure DevOps extension is also available in the Azure DevOps Marketplace. By using this extension, you can evaluate AI agents offline within your CI/CD pipelines.
+
+This [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview?view=foundry-classic) within your CI/CD pipelines. It streamlines the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
+
+To use this extension, provide a data set with test queries and a list of evaluators. This task invokes your agents with the queries, evaluates them, and generates a summary report.
+
+## Features
+
+**Automated Evaluation**: Integrate offline evaluation into your CI/CD workflows to automate the pre-production assessment of AI models.**Built-in Evaluators**: Leverage existing evaluators provided by the[Azure AI Evaluation SDK](develop/evaluate-sdk?view=foundry-classic).The following evaluators are supported:
+
+Category Evaluator class/Metrics AI Agent evaluations GenAI evaluations General purpose (AI-assisted) [QAEvaluator](../concepts/evaluation-evaluators/general-purpose-evaluators?view=foundry-classic#question-answering-composite-evaluator)Not Supported Supported General purpose (AI-assisted) [CoherenceEvaluator](../concepts/evaluation-evaluators/general-purpose-evaluators?view=foundry-classic#coherence)Supported Supported General purpose (AI-assisted) [FluencyEvaluator](../concepts/evaluation-evaluators/general-purpose-evaluators?view=foundry-classic#fluency)Supported Supported Textual similarity [SimilarityEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#similarity)Not Supported Supported Textual similarity [F1ScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#f1-score)Not Supported Supported Textual similarity [RougeScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic)Not Supported Not Supported Textual similarity [GleuScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#gleu-score)Not Supported Supported Textual similarity [BleuScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#bleu-score)Not Supported Supported Textual similarity [MeteorScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#meteor-score)Not Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [GroundednessEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#groundedness)Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [GroundednessProEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#groundedness-pro)Not Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [RetrievalEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#relevance)Not Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [RelevanceEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#retrieval)Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [ResponseCompletenessEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#response-completeness)Not Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [DocumentRetrievalEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#document-retrieval)Not Supported Not Supported Risk and safety (AI-assisted) [ViolenceEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#violent-content)Supported Supported Risk and safety (AI-assisted) [SexualEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#sexual-content)Supported Supported Risk and safety (AI-assisted) [SelfHarmEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#self-harm-related-content)Supported Supported Risk and safety (AI-assisted) [HateUnfairnessEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#hateful-and-unfair-content)Supported Supported Risk and safety (AI-assisted) [IndirectAttackEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#indirect-attack-jailbreak-xpia)Supported Supported Risk and safety (AI-assisted) [ProtectedMaterialEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#protected-material-content)Supported Supported Risk and safety (AI-assisted) [CodeVulnerabilityEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#code-vulnerability)Supported Supported Risk and safety (AI-assisted) [UngroundedAttributesEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#ungrounded-attributes)Not Supported Supported Risk and safety (AI-assisted) [ContentSafetyEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#content-safety-composite-evaluator)Supported Supported Agent (AI-assisted) [IntentResolutionEvaluator](../concepts/evaluation-evaluators/agent-evaluators?view=foundry-classic#intent-resolution)Supported Supported Agent (AI-assisted) [TaskAdherenceEvaluator](../concepts/evaluation-evaluators/agent-evaluators?view=foundry-classic#task-adherence)Supported Supported Agent (AI-assisted) [ToolCallAccuracyEvaluator](../concepts/evaluation-evaluators/agent-evaluators?view=foundry-classic#tool-call-accuracy)Supported Supported Composite `AgentOverallEvaluator`
+
+Not Supported Not Supported Operational metrics Client run duration Supported Not Supported Operational metrics Server run duration Supported Not Supported Operational metrics Completion tokens Supported Not Supported Operational metrics Prompt tokens Supported Not Supported [Custom evaluators](../concepts/evaluation-evaluators/custom-evaluators?view=foundry-classic)Not Supported Not Supported
+
+**Agent Evaluation**: Automate pre-production assessment of Microsoft Foundry agents in your CI/CD workflow.**Evaluators**: Use any evaluators from the Foundry evaluator catalog.**Statistical Analysis**: Evaluation results include confidence intervals and test for statistical significance to determine if changes are meaningful and not due to random variation.
+
+## Evaluator categories
+
+[Agent evaluators](../concepts/evaluation-evaluators/agent-evaluators?view=foundry-classic): Process and system-level evaluators for agent workflows.[RAG evaluators](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic): Evaluate end-to-end and retrieval processes in RAG systems.[Risk and safety evaluators](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic): Assess risks and safety concerns in responses.[General purpose evaluators](../concepts/evaluation-evaluators/general-purpose-evaluators?view=foundry-classic): Quality evaluation such as coherence and fluency.[OpenAI-based graders](../concepts/evaluation-evaluators/azure-openai-graders?view=foundry-classic): Use OpenAI graders including string check, text similarity, score/label model.[Custom evaluators](../concepts/evaluation-evaluators/custom-evaluators?view=foundry-classic): Define your own custom evaluators using Python code or LLM-as-a-judge patterns.
+
+## Prerequisites
+
+- Foundry project or Hubs based project. To learn more, see
+[Create a project](create-projects?view=foundry-classic). - Install Azure AI evaluation extension.
+- Go to
+[Azure DevOps Marketplace](https://marketplace.visualstudio.com/azuredevops). - Search for Azure AI evaluation and install the extension into your Azure DevOps organization.
+
+- Go to
+
+- A project. To learn more, see
+[Create a project](create-projects?view=foundry-classic). - Install the
+[AI Agent AI evaluation extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation).
+
+## Set up YAML configuration file
+
+- Create a new YAML file in your repository.
+You can use the sample YAML provided in the README or copy from the
+[GitHub repo](https://github.com/microsoft/ai-agent-evals?tab=readme-ov-file). - Configure the following inputs:
+- Set up
+[Azure CLI](/en-us/azure/devops/pipelines/tasks/reference/azure-cli-v2)with[service connection](/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&preserve-view=true)and Azure Login. - Foundry project connection string
+- Dataset and evaluators
+- Specify the evaluator names you want to use for this evaluation run.
+- Queries (required).
+
+- Agent IDs Retrieve agent identifiers from Foundry.
+
+- Set up
+
+See the following sample dataset:
+
+```
+{
+"name": "MyTestData",
+"evaluators": [
+"FluencyEvaluator",
+"ViolenceEvaluator"
+],
+"data": [
+{
+"query": "Tell me about Tokyo?",
+},
+{
+"query": "Where is Italy?",
+}
+]
+}
+```
+
+
+A sample YAML file:
+
+```
+trigger:
+- main
+pool:
+vmImage: 'windows-latest'
+steps:
+- task: AzureCLI@2
+inputs:
+addSpnToEnvironment: true
+azureSubscription: ${{vars.Service_Connection_Name}}
+scriptType: bash
+scriptLocation: inlineScript
+inlineScript: |
+echo "##vso[task.setvariable variable=ARM_CLIENT_ID]$servicePrincipalId"
+echo "##vso[task.setvariable variable=ARM_ID_TOEKN]$idToken"
+echo "##vso[task.setvariable variable=ARM_TENANT_ID]$tenantId"
+- bash: |
+az login --service-principal -u $(ARM_CLIENT_ID) --tenant $(ARM_TENANT_ID) --allow-no-subscriptions --federated-token $(ARM_ID_TOEKN)
+displayName: 'Login Azure'
+- task: UsePythonVersion@0
+inputs:
+versionSpec: '3.11'
+- task: AIAgentEvaluation@0
+inputs:
+azure-ai-project-endpoint: "<your-ai-project-endpoint>"
+deployment-name: "gpt-4o-mini"
+data-path: $(Build.SourcesDirectory)\tests\data\golden-dataset-medium.json
+agent-ids: "<your-ai-agent-ids>
+```
+
+
+## Set up a new pipeline and trigger an evaluation run
+
+Commit and run the pipeline in Azure DevOps.
+
+## View results
+
+- Select the run and go to the
+**Azure AI Evaluation**tab. - The results are shown in this format:
+- The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Microsoft Foundry portal. You can also select the link for
+**Evaluation Results**, and it directs you to Foundry portal to view individual result in detail. - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
+
+- The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Microsoft Foundry portal. You can also select the link for
+
+## Inputs
+
+### Parameters
+
+| Name | Required? | Description |
+|---|---|---|
+| azure-ai-project-endpoint | Yes | Endpoint of your Microsoft Foundry Project. |
+| deployment-name | Yes | The name of the Azure AI model deployment to use for evaluation. |
+| data-path | Yes | Path to the data file that contains the evaluators and input queries for evaluations. |
+| agent-IDs | Yes | ID of one or more agents to evaluate in format `agent-name:version` (for example, `my-agent:1` or `my-agent:1,my-agent:2` ). Multiple agents are comma-separated and compared with statistical test results. |
+| baseline-agent-id | No | ID of the baseline agent to compare against when evaluating multiple agents. If not provided, the first agent is used. |
+
+### Data file
+
+The input data file should be a JSON file with the following structure:
+
+| Field | Type | Required? | Description |
+|---|---|---|---|
+| name | string | Yes | Name of the evaluation dataset. |
+| evaluators | string[] | Yes | List of evaluator names to use. Check out the list of available evaluators in your project's evaluator catalog in Foundry portal: Build > Evaluations > Evaluator catalog. |
+| data | object[] | Yes | Array of input objects with `query` and optional evaluator fields like `ground_truth` , `context` . Automapped to evaluators; use `data_mapping` to override. |
+| openai_graders | object | No | Configuration for OpenAI-based evaluators (label_model, score_model, string_check, etc.). |
+| evaluator_parameters | object | No | Evaluator-specific initialization parameters (for example, thresholds, custom settings). |
+| data_mapping | object | No | Custom data field mappings (autogenerated from data if not provided). |
+
+#### Basic sample data file
+
+```
+{
+"name": "test-data",
+"evaluators": [
+"builtin.fluency",
+"builtin.task_adherence",
+"builtin.violence",
+],
+"data": [
+{
+"query": "Tell me about Tokyo disneyland"
+},
+{
+"query": "How do I install Python?"
+}
+]
+}
+```
+
+
+#### Additional sample data files
+
+| Filename | Description |
+|---|---|
+|
+
+[dataset.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset.json)[dataset-builtin-evaluators.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset-builtin-evaluators.json)[dataset-openai-graders.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset-openai-graders.json)[dataset-custom-evaluators.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset-custom-evaluators.json)[dataset-data-mapping.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset-data-mapping.json)## Sample pipeline
+
+To use this Azure DevOps extension, add the task to your Azure Pipeline and configure authentication to access your Microsoft Foundry project.
+
+```
+steps:
+- task: AIAgentEvaluation@2
+displayName: "Evaluate AI Agents"
+inputs:
+azure-ai-project-endpoint: "$(AzureAIProjectEndpoint)"
+deployment-name: "$(DeploymentName)"
+data-path: "$(System.DefaultWorkingDirectory)/path/to/your/dataset.json"
+agent-ids: "$(AgentIds)"
+```
+
+
+## Evaluation results and outputs
+
+Evaluation results appear in the Azure DevOps pipeline summary with detailed metrics and comparisons between agents when multiple are evaluated.
+
+Evaluation results output to the summary section for each AI Evaluation task run in your Azure DevOps pipeline.
+
+The following screenshot is a sample report for comparing two agents.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/evaluate-generative-ai-app -->
 
 # Evaluate generative AI models and applications by using Microsoft Foundry
@@ -17605,6 +17822,394 @@ If you receive "model not found" errors:
 - Ensure the deployment name matches exactly (case-sensitive).
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-quality-safety -->
+
+# Monitor quality and token usage of deployed prompt flow applications
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Monitoring applications that you deploy to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time. These changes can result in outdated systems that negatively affect business outcomes. Such systems expose organizations to compliance, economic, and reputation risks.
+
+Note
+
+For an improved way to perform continuous monitoring of deployed applications, other than prompt flow, consider using [Azure AI online evaluations](online-evaluation?view=foundry-classic).
+
+By using Azure AI monitoring for generative AI applications, you can monitor your applications in production for token usage, generation quality, and operational metrics.
+
+Integrations for monitoring a prompt flow deployment allow you to:
+
+- Collect production inference data from your deployed prompt flow application.
+- Apply Responsible AI evaluation metrics, such as groundedness, coherence, fluency, and relevance, which are interoperable with prompt flow evaluation metrics.
+- Monitor prompts, completion, and total token usage across each model deployment in your prompt flow.
+- Monitor operational metrics, such as request count, latency, and error rate.
+- Use preconfigured alerts and defaults to run monitoring on a recurring basis.
+- Consume data visualizations and configure advanced behavior in the Microsoft Foundry portal.
+
+## Prerequisites
+
+Important
+
+This article provides legacy support for hub-based projects. It will not work for **Foundry projects**. See [How do I know which type of project I have?](../what-is-foundry?view=foundry-classic#how-do-i-know-which-type-of-project-i-have)
+
+**SDK compatibility note**: Code examples require a specific Microsoft Foundry SDK version. If you encounter compatibility issues, consider [migrating from a hub-based to a Foundry project](migrate-project?view=foundry-classic).
+
+- An Azure account with an active subscription. If you don't have one, create a
+[free Azure account, which includes a free trial subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - If you don't have one,
+[create a hub-based project](hub-create-projects?view=foundry-classic).
+
+- A prompt flow ready for deployment. If you don't have one, see
+[Develop a prompt flow](flow-develop?view=foundry-classic). - Azure role-based access controls to grant access to operations in the Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see
+[Role-based access control for Foundry](../concepts/rbac-foundry?view=foundry-classic).
+
+## Requirements for monitoring metrics
+
+Generative pretrained transformer (GPT) language models generate monitoring metrics when you configure them with specific evaluation instructions, or *prompt templates*. These models act as evaluator models for sequence-to-sequence tasks.
+
+Using this technique to generate monitoring metrics shows strong empirical results and high correlation with human judgment when compared to standard generative AI evaluation metrics. For more information about prompt flow evaluation, see [Submit a batch test and evaluate a flow](flow-bulk-test-evaluation?view=foundry-classic) and [Observability in generative AI](../concepts/observability?view=foundry-classic).
+
+The following GPT models generate monitoring metrics. These GPT models are supported with monitoring and configured as your Azure OpenAI resource:
+
+- GPT-3.5 Turbo
+- GPT-4
+- GPT-4-32k
+
+### Supported metrics for monitoring
+
+The following metrics are supported for monitoring.
+
+| Metric | Description |
+|---|---|
+| Groundedness | Measures how well the model's generated answers align with information from the source data (user-defined context). |
+| Relevance | Measures the extent to which the model's generated responses are pertinent and directly related to the given questions. |
+| Coherence | Measures the extent to which the model's generated responses are logically consistent and connected. |
+| Fluency | Measures the grammatical proficiency of a generative AI's predicted answer. |
+
+### Column name mapping
+
+When you create your flow, make sure you map your column names. The following input data column names are used to measure generation safety and quality.
+
+| Input column name | Definition | Required/Optional |
+|---|---|---|
+| Question | The original prompt given, also known as inputs or question. |
+Required |
+| Answer | The final completion from the API call that's returned, also known as outputs or answer. |
+Required |
+| Context | Any context data that's sent to the API call, together with the original prompt. For example, if you want to get search results only from certain certified information sources or websites, you can define this context in the evaluation steps. | Optional |
+
+### Parameters required for metrics
+
+The parameters that you configure in your data asset dictate what metrics you can produce, according to this table.
+
+| Metric | Question | Answer | Context |
+|---|---|---|---|
+| Coherence | Required | Required | - |
+| Fluency | Required | Required | - |
+| Groundedness | Required | Required | Required |
+| Relevance | Required | Required | Required |
+
+For information on the specific data mapping requirements for each metric, see [Query and response metric requirements](evaluate-generative-ai-app?view=foundry-classic#query-and-response-metric-requirements).
+
+## Set up monitoring for a prompt flow
+
+To set up monitoring for your prompt flow application, deploy your prompt flow application with inferencing data collection. Then, configure monitoring for the deployed application.
+
+### Deploy your prompt flow application with inferencing data collection
+
+In this section, you learn how to deploy your prompt flow with inferencing data collection enabled. For more information, see [Deploy a flow for real-time inference](flow-deploy?view=foundry-classic).
+
+Tip
+
+Because you can [customize the left pane](../what-is-foundry?view=foundry-classic#customize-the-left-pane) in the Microsoft Foundry portal, you might see different items than shown in these steps. If you don't see what you're looking for, select **... More** at the bottom of the left pane.
+
+-
+Sign in to
+
+[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. If you're not already in your project, select it.
+
+Important
+
+This article provides legacy support for hub-based projects. It will not work for
+
+**Foundry projects**. See[How do I know which type of project I have?](../what-is-foundry?view=foundry-classic#how-do-i-know-which-type-of-project-i-have)**SDK compatibility note**: Code examples require a specific Microsoft Foundry SDK version. If you encounter compatibility issues, consider[migrating from a hub-based to a Foundry project](migrate-project?view=foundry-classic).On the left pane, select
+
+**Prompt flow**.Select the prompt flow that you created previously.
+
+This article assumes that you created a prompt flow that's ready for deployment. If you don't have one, see
+
+[Develop a prompt flow](flow-develop?view=foundry-classic).Confirm that your flow runs successfully and that the required inputs and outputs are configured for the
+
+[metrics that you want to assess](#supported-metrics-for-monitoring).The minimum required parameters are question/inputs and answer/outputs. Supplying the minimum parameters provides only two metrics:
+
+*coherence*and*fluency*. Configure your flow as described in[Requirements for monitoring metrics](#requirements-for-monitoring-metrics). This example uses`question`
+
+(Question) and`chat_history`
+
+(Context) as the flow inputs, and`answer`
+
+(Answer) as the flow output.Select
+
+**Deploy**to begin deploying your flow.In the deployment window, ensure that
+
+**Inferencing data collection**is enabled. Use this setting to seamlessly collect your application's inference data to Azure Blob Storage. This data collection is required for monitoring.Proceed through the steps in the deployment window to complete the advanced settings.
+
+On the
+
+**Review**page, review the deployment configuration and select**Create**to deploy your flow.By default, all inputs and outputs of your deployed prompt flow application are collected to your blob storage. As users invoke the deployment, the data is collected for your monitor to use.
+
+Select the
+
+**Test**tab on the deployment page. Then test your deployment to ensure that it's working properly.Monitoring requires that at least one data point comes from a source other than the
+
+**Test**tab in the deployment. Use the REST API available on the**Consume**tab to send sample requests to your deployment. For more information on how to send sample requests to your deployment, see[Create an online deployment](flow-deploy?view=foundry-classic#create-an-online-deployment).
+
+### Configure monitoring
+
+In this section, you learn how to configure monitoring for your deployed prompt flow application.
+
+On the left pane, go to
+
+**My assets**>**Models + endpoints**.Select the prompt flow deployment that you created.
+
+In the
+
+**Enable generation quality monitoring**box, select**Enable**.Begin to configure monitoring by selecting the metrics that you want.
+
+Confirm that your column names are mapped from your flow as defined in
+
+[Column name mapping](#column-name-mapping).Select the
+
+**Azure OpenAI Connection**and**Deployment**values that you want to use to perform monitoring for your prompt flow application.Select
+
+**Advanced options**to see more options to configure.Adjust the sampling rate and the thresholds for your configured metrics. Specify the email addresses that should receive alerts when the average score for a given metric falls below the threshold.
+
+If data collection isn't enabled for your deployment, creation of a monitor enables collection of inferencing data to your blob storage. This task takes the deployment offline for a few minutes.
+
+Select
+
+**Create**to create your monitor.
+
+## Consume monitoring results
+
+After you create your monitor, it runs daily to compute the token usage and generation quality metrics.
+
+In the deployment, select the
+
+**Monitoring (preview)**tab to view the monitoring results. You see an overview of monitoring results during the selected time window. Use the date picker to change the time window of data that you're monitoring. The following metrics are available in this overview:**Total request count**: The total number of requests sent to the deployment during the selected time window.**Total token count**: The total number of tokens used by the deployment during the selected time window.**Prompt token count**: The number of prompt tokens used by the deployment during the selected time window.**Completion token count**: The number of completion tokens used by the deployment during the selected time window.
+
+View the metrics on the
+
+**Token usage**tab. This tab is selected by default. You can view the token usage of your application over time. You can also see the distribution of prompt and completion tokens over time. Change the**Trendline scope**value to monitor all tokens in the entire application or token usage for a particular deployment, for example, GPT-4, used in your application.Select the
+
+**Generation quality**tab to monitor the quality of your application over time. The following metrics are shown in the time chart:**Violation count**: The violation count for a given metric, such as fluency, is the sum of violations over the selected time window. A*violation*occurs for a metric when the metrics are computed if the computed value for the metric falls below the set threshold value. By default, metrics are computed daily.**Average score**: The average score for a given metric, such as fluency, is the sum of the scores for all instances, or requests, divided by the number of instances, or requests, over the selected time window.
+
+**Generation quality violations**shows the violation rate over the selected time window. The violation rate is the number of violations divided by the total number of possible violations. You can adjust the thresholds for metrics in the settings. By default, metrics are computed daily. You can also adjust this frequency in the settings.On the
+
+**Monitoring (Preview)**tab, you can view a comprehensive table of all sampled requests sent to the deployment during the selected time window.Monitoring sets the default sampling rate at 10%. For example, if 100 requests are sent to your deployment, 10 get sampled and are used to compute the generation quality metrics. You can adjust the sampling rate in the settings.
+
+To see tracing details for a request, on the right side of a row, select
+
+**Trace**. This view provides comprehensive trace details for the request to your application.Close the trace view.
+
+To view the operational metrics for the deployment in near real time, select the
+
+**Operational**tab. This view supports the following operational metrics:- Request count
+- Latency
+- Error rate
+
+
+The results on the **Monitoring (preview)** tab of your deployment provide insights to help you proactively improve the performance of your prompt flow application.
+
+## Advanced monitoring configuration with SDK v2
+
+Monitoring supports advanced configuration options with the SDK v2. The following scenarios are supported.
+
+### Enable monitoring for token usage
+
+To enable only token usage monitoring for your deployed prompt flow application, adapt the following script to your scenario:
+
+```
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import (
+MonitorSchedule,
+CronTrigger,
+MonitorDefinition,
+ServerlessSparkCompute,
+MonitoringTarget,
+AlertNotification,
+GenerationTokenStatisticsSignal,
+)
+from azure.ai.ml.entities._inputs_outputs import Input
+from azure.ai.ml.constants import MonitorTargetTasks, MonitorDatasetContext
+# Authentication package
+from azure.identity import DefaultAzureCredential
+credential = DefaultAzureCredential()
+# Update your Azure resources details
+subscription_id = "INSERT YOUR SUBSCRIPTION ID"
+resource_group = "INSERT YOUR RESOURCE GROUP NAME"
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Foundry project name
+endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
+deployment_name = "INSERT YOUR DEPLOYMENT NAME"
+# These variables can be renamed but it is not necessary
+monitor_name ="gen_ai_monitor_tokens"
+defaulttokenstatisticssignalname ="token-usage-signal"
+# Determine the frequency to run the monitor, and the emails to receive email alerts
+trigger_schedule = CronTrigger(expression="15 10 * * *")
+notification_emails_list = ["test@example.com", "def@example.com"]
+ml_client = MLClient(
+credential=credential,
+subscription_id=subscription_id,
+resource_group_name=resource_group,
+workspace_name=project_name,
+)
+spark_compute = ServerlessSparkCompute(instance_type="standard_e4s_v3", runtime_version="3.3")
+monitoring_target = MonitoringTarget(
+ml_task=MonitorTargetTasks.QUESTION_ANSWERING,
+endpoint_deployment_id=f"azureml:{endpoint_name}:{deployment_name}",
+)
+# Create an instance of a token statistic signal
+token_statistic_signal = GenerationTokenStatisticsSignal()
+monitoring_signals = {
+defaulttokenstatisticssignalname: token_statistic_signal,
+}
+monitor_settings = MonitorDefinition(
+compute=spark_compute,
+monitoring_target=monitoring_target,
+monitoring_signals = monitoring_signals,
+alert_notification=AlertNotification(emails=notification_emails_list),
+)
+model_monitor = MonitorSchedule(
+name = monitor_name,
+trigger=trigger_schedule,
+create_monitor=monitor_settings
+)
+ml_client.schedules.begin_create_or_update(model_monitor)
+```
+
+
+### Enable monitoring for generation quality
+
+To enable only generation quality monitoring for your deployed prompt flow application, adapt the following script to your scenario:
+
+```
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import (
+MonitorSchedule,
+CronTrigger,
+MonitorDefinition,
+ServerlessSparkCompute,
+MonitoringTarget,
+AlertNotification,
+GenerationSafetyQualityMonitoringMetricThreshold,
+GenerationSafetyQualitySignal,
+BaselineDataRange,
+LlmData,
+)
+from azure.ai.ml.entities._inputs_outputs import Input
+from azure.ai.ml.constants import MonitorTargetTasks, MonitorDatasetContext
+# Authentication package
+from azure.identity import DefaultAzureCredential
+credential = DefaultAzureCredential()
+# Update your Azure resources details
+subscription_id = "INSERT YOUR SUBSCRIPTION ID"
+resource_group = "INSERT YOUR RESOURCE GROUP NAME"
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Foundry project name
+endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
+deployment_name = "INSERT YOUR DEPLOYMENT NAME"
+aoai_deployment_name ="INSERT YOUR AOAI DEPLOYMENT NAME"
+aoai_connection_name = "INSERT YOUR AOAI CONNECTION NAME"
+# These variables can be renamed but it is not necessary
+app_trace_name = "app_traces"
+app_trace_Version = "1"
+monitor_name ="gen_ai_monitor_generation_quality"
+defaultgsqsignalname ="gsq-signal"
+# Determine the frequency to run the monitor and the emails to receive email alerts
+trigger_schedule = CronTrigger(expression="15 10 * * *")
+notification_emails_list = ["test@example.com", "def@example.com"]
+ml_client = MLClient(
+credential=credential,
+subscription_id=subscription_id,
+resource_group_name=resource_group,
+workspace_name=project_name,
+)
+spark_compute = ServerlessSparkCompute(instance_type="standard_e4s_v3", runtime_version="3.3")
+monitoring_target = MonitoringTarget(
+ml_task=MonitorTargetTasks.QUESTION_ANSWERING,
+endpoint_deployment_id=f"azureml:{endpoint_name}:{deployment_name}",
+)
+# Set thresholds for the passing rate (0.7 = 70%)
+aggregated_groundedness_pass_rate = 0.7
+aggregated_relevance_pass_rate = 0.7
+aggregated_coherence_pass_rate = 0.7
+aggregated_fluency_pass_rate = 0.7
+# Create an instance of a gsq signal
+generation_quality_thresholds = GenerationSafetyQualityMonitoringMetricThreshold(
+groundedness = {"aggregated_groundedness_pass_rate": aggregated_groundedness_pass_rate},
+relevance={"aggregated_relevance_pass_rate": aggregated_relevance_pass_rate},
+coherence={"aggregated_coherence_pass_rate": aggregated_coherence_pass_rate},
+fluency={"aggregated_fluency_pass_rate": aggregated_fluency_pass_rate},
+)
+input_data = Input(
+type="uri_folder",
+path=f"{endpoint_name}-{deployment_name}-{app_trace_name}:{app_trace_Version}",
+)
+data_window = BaselineDataRange(lookback_window_size="P7D", lookback_window_offset="P0D")
+production_data = LlmData(
+data_column_names={"prompt_column": "question", "completion_column": "answer", "context_column": "context"},
+input_data=input_data,
+data_window=data_window,
+)
+gsq_signal = GenerationSafetyQualitySignal(
+connection_id=f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{project_name}/connections/{aoai_connection_name}",
+metric_thresholds=generation_quality_thresholds,
+production_data=[production_data],
+sampling_rate=1.0,
+properties={
+"aoai_deployment_name": aoai_deployment_name,
+"enable_action_analyzer": "false",
+"azureml.modelmonitor.gsq_thresholds": '[{"metricName":"average_fluency","threshold":{"value":4}},{"metricName":"average_coherence","threshold":{"value":4}}]',
+},
+)
+monitoring_signals = {
+defaultgsqsignalname: gsq_signal,
+}
+monitor_settings = MonitorDefinition(
+compute=spark_compute,
+monitoring_target=monitoring_target,
+monitoring_signals = monitoring_signals,
+alert_notification=AlertNotification(emails=notification_emails_list),
+)
+model_monitor = MonitorSchedule(
+name = monitor_name,
+trigger=trigger_schedule,
+create_monitor=monitor_settings
+)
+ml_client.schedules.begin_create_or_update(model_monitor)
+```
+
+
+After you create your monitor from the SDK, you can [consume the monitoring results](#consume-monitoring-results) in the Foundry portal.
+
+## Related content
+
+- Learn more about what you can do in
+[Foundry](../what-is-foundry?view=foundry-classic). - Get answers to frequently asked questions in the
+[Foundry FAQ](../faq?view=foundry-classic).
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/secure-data-playground -->
 
 # Use your data securely with the Microsoft Foundry portal playground
@@ -17887,394 +18492,6 @@ print("Error:", e)
 Reference: [AzureOpenAI](/en-us/python/api/azure-ai-inference/azure.ai.inference.aio.chatcompletionsclient) | [DefaultAzureCredential](/en-us/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-quality-safety -->
-
-# Monitor quality and token usage of deployed prompt flow applications
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-Monitoring applications that are deployed to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time. The changes can result in outdated systems that negatively affect business outcomes. Such systems expose organizations to compliance, economic, and reputation risks.
-
-Note
-
-For an improved way to perform continuous monitoring of deployed applications, other than prompt flow, consider using [Azure AI online evaluations](online-evaluation?view=foundry-classic).
-
-By using Azure AI monitoring for generative AI applications, you can monitor your applications in production for token usage, generation quality, and operational metrics.
-
-Integrations for monitoring a prompt flow deployment allow you to:
-
-- Collect production inference data from your deployed prompt flow application.
-- Apply Responsible AI evaluation metrics, such as groundedness, coherence, fluency, and relevance, which are interoperable with prompt flow evaluation metrics.
-- Monitor prompts, completion, and total token usage across each model deployment in your prompt flow.
-- Monitor operational metrics, such as request count, latency, and error rate.
-- Use preconfigured alerts and defaults to run monitoring on a recurring basis.
-- Consume data visualizations and configure advanced behavior in the Microsoft Foundry portal.
-
-## Prerequisites
-
-Important
-
-This article provides legacy support for hub-based projects. It will not work for **Foundry projects**. See [How do I know which type of project I have?](../what-is-foundry?view=foundry-classic#how-do-i-know-which-type-of-project-i-have)
-
-**SDK compatibility note**: Code examples require a specific Microsoft Foundry SDK version. If you encounter compatibility issues, consider [migrating from a hub-based to a Foundry project](migrate-project?view=foundry-classic).
-
-- An Azure account with an active subscription. If you don't have one, create a
-[free Azure account, which includes a free trial subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - If you don't have one,
-[create a hub-based project](hub-create-projects?view=foundry-classic).
-
-- A prompt flow ready for deployment. If you don't have one, see
-[Develop a prompt flow](flow-develop?view=foundry-classic). - Azure role-based access controls are used to grant access to operations in the Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see
-[Role-based access control for Foundry](../concepts/rbac-foundry?view=foundry-classic).
-
-## Requirements for monitoring metrics
-
-Generative pretrained transformer (GPT) language models generate monitoring metrics that are configured with specific evaluation instructions, or *prompt templates*. These models act as evaluator models for sequence-to-sequence tasks.
-
-Using this technique to generate monitoring metrics shows strong empirical results and high correlation with human judgment when compared to standard generative AI evaluation metrics. For more information about prompt flow evaluation, see [Submit a batch test and evaluate a flow](flow-bulk-test-evaluation?view=foundry-classic) and [Observability in generative AI](../concepts/observability?view=foundry-classic).
-
-The following GPT models generate monitoring metrics. These GPT models are supported with monitoring and configured as your Azure OpenAI resource:
-
-- GPT-3.5 Turbo
-- GPT-4
-- GPT-4-32k
-
-### Supported metrics for monitoring
-
-The following metrics are supported for monitoring.
-
-| Metric | Description |
-|---|---|
-| Groundedness | Measures how well the model's generated answers align with information from the source data (user-defined context.) |
-| Relevance | Measures the extent to which the model's generated responses are pertinent and directly related to the given questions. |
-| Coherence | Measures the extent to which the model's generated responses are logically consistent and connected. |
-| Fluency | Measures the grammatical proficiency of a generative AI's predicted answer. |
-
-### Column name mapping
-
-When you create your flow, ensure that your column names are mapped. The following input data column names are used to measure generation safety and quality.
-
-| Input column name | Definition | Required/Optional |
-|---|---|---|
-| Question | The original prompt given, also known as inputs or question. |
-Required |
-| Answer | The final completion from the API call that's returned, also known as outputs or answer. |
-Required |
-| Context | Any context data that's sent to the API call, together with the original prompt. For example, if you hope to get search results only from certain certified information sources or websites, you can define this context in the evaluation steps. | Optional |
-
-### Parameters required for metrics
-
-The parameters that are configured in your data asset dictate what metrics you can produce, according to this table.
-
-| Metric | Question | Answer | Context |
-|---|---|---|---|
-| Coherence | Required | Required | - |
-| Fluency | Required | Required | - |
-| Groundedness | Required | Required | Required |
-| Relevance | Required | Required | Required |
-
-For information on the specific data mapping requirements for each metric, see [Query and response metric requirements](evaluate-generative-ai-app?view=foundry-classic#query-and-response-metric-requirements).
-
-## Set up monitoring for a prompt flow
-
-To set up monitoring for your prompt flow application, deploy your prompt flow application with inferencing data collection. Then configure monitoring for the deployed application.
-
-### Deploy your prompt flow application with inferencing data collection
-
-In this section, you learn how to deploy your prompt flow with inferencing data collection enabled. For more information, see [Deploy a flow for real-time inference](flow-deploy?view=foundry-classic).
-
-Tip
-
-Because you can [customize the left pane](../what-is-foundry?view=foundry-classic#customize-the-left-pane) in the Microsoft Foundry portal, you might see different items than shown in these steps. If you don't see what you're looking for, select **... More** at the bottom of the left pane.
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. If you're not already in your project, select it.
-
-Important
-
-This article provides legacy support for hub-based projects. It will not work for
-
-**Foundry projects**. See[How do I know which type of project I have?](../what-is-foundry?view=foundry-classic#how-do-i-know-which-type-of-project-i-have)**SDK compatibility note**: Code examples require a specific Microsoft Foundry SDK version. If you encounter compatibility issues, consider[migrating from a hub-based to a Foundry project](migrate-project?view=foundry-classic).On the left pane, select
-
-**Prompt flow**.Select the prompt flow that you created previously.
-
-This article assumes that you created a prompt flow that's ready for deployment. If you don't have one, see
-
-[Develop a prompt flow](flow-develop?view=foundry-classic).Confirm that your flow runs successfully and that the required inputs and outputs are configured for the
-
-[metrics that you want to assess](#supported-metrics-for-monitoring).The minimum required parameters are question/inputs and answer/outputs. Supplying the minimum parameters provides only two metrics:
-
-*coherence*and*fluency*. Configure your flow as described in[Requirements for monitoring metrics](#requirements-for-monitoring-metrics). This example uses`question`
-
-(Question) and`chat_history`
-
-(Context) as the flow inputs, and`answer`
-
-(Answer) as the flow output.Select
-
-**Deploy**to begin deploying your flow.In the deployment window, ensure that
-
-**Inferencing data collection**is enabled. Use this setting to seamlessly collect your application's inference data to Azure Blob Storage. This data collection is required for monitoring.Proceed through the steps in the deployment window to complete the advanced settings.
-
-On the
-
-**Review**page, review the deployment configuration and select**Create**to deploy your flow.By default, all inputs and outputs of your deployed prompt flow application are collected to your blob storage. As users invoke the deployment, the data is collected for your monitor to use.
-
-Select the
-
-**Test**tab on the deployment page. Then test your deployment to ensure that it's working properly.Monitoring requires that at least one data point comes from a source other than the
-
-**Test**tab in the deployment. We recommend using the REST API available on the**Consume**tab to send sample requests to your deployment. For more information on how to send sample requests to your deployment, see[Create an online deployment](flow-deploy?view=foundry-classic#create-an-online-deployment).
-
-### Configure monitoring
-
-In this section, you learn how to configure monitoring for your deployed prompt flow application.
-
-On the left pane, go to
-
-**My assets**>**Models + endpoints**.Select the prompt flow deployment that you created.
-
-In the
-
-**Enable generation quality monitoring**box, select**Enable**.Begin to configure monitoring by selecting the metrics that you want.
-
-Confirm that your column names are mapped from your flow as defined in
-
-[Column name mapping](#column-name-mapping).Select the
-
-**Azure OpenAI Connection**and**Deployment**values that you want to use to perform monitoring for your prompt flow application.Select
-
-**Advanced options**to see more options to configure.Adjust the sampling rate and the thresholds for your configured metrics. Specify the email addresses that should receive alerts when the average score for a given metric falls below the threshold.
-
-If data collection isn't enabled for your deployment, creation of a monitor enables collection of inferencing data to your blob storage. This task takes the deployment offline for a few minutes.
-
-Select
-
-**Create**to create your monitor.
-
-## Consume monitoring results
-
-After you create your monitor, it runs daily to compute the token usage and generation quality metrics.
-
-In the deployment, select the
-
-**Monitoring (preview)**tab to view the monitoring results. You see an overview of monitoring results during the selected time window. Use the date picker to change the time window of data that you're monitoring. The following metrics are available in this overview:**Total request count**: The total number of requests sent to the deployment during the selected time window.**Total token count**: The total number of tokens used by the deployment during the selected time window.**Prompt token count**: The number of prompt tokens used by the deployment during the selected time window.**Completion token count**: The number of completion tokens used by the deployment during the selected time window.
-
-View the metrics on the
-
-**Token usage**tab. This tab is selected by default. You can view the token usage of your application over time. You can also see the distribution of prompt and completion tokens over time. Change the**Trendline scope**value to monitor all tokens in the entire application or token usage for a particular deployment, for example, GPT-4, used in your application.Select the
-
-**Generation quality**tab to monitor the quality of your application over time. The following metrics are shown in the time chart:**Violation count**: The violation count for a given metric, for example, fluency, is the sum of violations over the selected time window. A*violation*occurs for a metric when the metrics are computed if the computed value for the metric falls below the set threshold value. By default, metrics are computed daily.**Average score**: The average score for a given metric, for example, fluency, is the sum of the scores for all instances, or requests, divided by the number of instances, or requests, over the selected time window.
-
-**Generation quality violations**shows the violation rate over the selected time window. The violation rate is the number of violations divided by the total number of possible violations. You can adjust the thresholds for metrics in the settings. By default, metrics are computed daily. You can also adjust this frequency in the settings.On the
-
-**Monitoring (Preview)**tab, you can view a comprehensive table of all sampled requests sent to the deployment during the selected time window.Monitoring sets the default sampling rate at 10%. For example, if 100 requests are sent to your deployment, 10 get sampled and are used to compute the generation quality metrics. You can adjust the sampling rate in the settings.
-
-To see tracing details for a request, on the right side of a row, select
-
-**Trace**. This view provides comprehensive trace details for the request to your application.Close the trace view.
-
-To view the operational metrics for the deployment in near real time, select the
-
-**Operational**tab. This view supports the following operational metrics:- Request count
-- Latency
-- Error rate
-
-
-The results on the **Monitoring (preview)** tab of your deployment provide insights to help you proactively improve the performance of your prompt flow application.
-
-## Advanced monitoring configuration with SDK v2
-
-Monitoring also supports advanced configuration options with the SDK v2. The following scenarios are supported.
-
-### Enable monitoring for token usage
-
-If you want to enable only token usage monitoring for your deployed prompt flow application, adapt the following script to your scenario:
-
-```
-from azure.ai.ml import MLClient
-from azure.ai.ml.entities import (
-MonitorSchedule,
-CronTrigger,
-MonitorDefinition,
-ServerlessSparkCompute,
-MonitoringTarget,
-AlertNotification,
-GenerationTokenStatisticsSignal,
-)
-from azure.ai.ml.entities._inputs_outputs import Input
-from azure.ai.ml.constants import MonitorTargetTasks, MonitorDatasetContext
-# Authentication package
-from azure.identity import DefaultAzureCredential
-credential = DefaultAzureCredential()
-# Update your Azure resources details
-subscription_id = "INSERT YOUR SUBSCRIPTION ID"
-resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Foundry project name
-endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
-deployment_name = "INSERT YOUR DEPLOYMENT NAME"
-# These variables can be renamed but it is not necessary
-monitor_name ="gen_ai_monitor_tokens"
-defaulttokenstatisticssignalname ="token-usage-signal"
-# Determine the frequency to run the monitor, and the emails to receive email alerts
-trigger_schedule = CronTrigger(expression="15 10 * * *")
-notification_emails_list = ["test@example.com", "def@example.com"]
-ml_client = MLClient(
-credential=credential,
-subscription_id=subscription_id,
-resource_group_name=resource_group,
-workspace_name=project_name,
-)
-spark_compute = ServerlessSparkCompute(instance_type="standard_e4s_v3", runtime_version="3.3")
-monitoring_target = MonitoringTarget(
-ml_task=MonitorTargetTasks.QUESTION_ANSWERING,
-endpoint_deployment_id=f"azureml:{endpoint_name}:{deployment_name}",
-)
-# Create an instance of a token statistic signal
-token_statistic_signal = GenerationTokenStatisticsSignal()
-monitoring_signals = {
-defaulttokenstatisticssignalname: token_statistic_signal,
-}
-monitor_settings = MonitorDefinition(
-compute=spark_compute,
-monitoring_target=monitoring_target,
-monitoring_signals = monitoring_signals,
-alert_notification=AlertNotification(emails=notification_emails_list),
-)
-model_monitor = MonitorSchedule(
-name = monitor_name,
-trigger=trigger_schedule,
-create_monitor=monitor_settings
-)
-ml_client.schedules.begin_create_or_update(model_monitor)
-```
-
-
-### Enable monitoring for generation quality
-
-If you want to enable only generation quality monitoring for your deployed prompt flow application, adapt the following script to your scenario:
-
-```
-from azure.ai.ml import MLClient
-from azure.ai.ml.entities import (
-MonitorSchedule,
-CronTrigger,
-MonitorDefinition,
-ServerlessSparkCompute,
-MonitoringTarget,
-AlertNotification,
-GenerationSafetyQualityMonitoringMetricThreshold,
-GenerationSafetyQualitySignal,
-BaselineDataRange,
-LlmData,
-)
-from azure.ai.ml.entities._inputs_outputs import Input
-from azure.ai.ml.constants import MonitorTargetTasks, MonitorDatasetContext
-# Authentication package
-from azure.identity import DefaultAzureCredential
-credential = DefaultAzureCredential()
-# Update your Azure resources details
-subscription_id = "INSERT YOUR SUBSCRIPTION ID"
-resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Foundry project name
-endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
-deployment_name = "INSERT YOUR DEPLOYMENT NAME"
-aoai_deployment_name ="INSERT YOUR AOAI DEPLOYMENT NAME"
-aoai_connection_name = "INSERT YOUR AOAI CONNECTION NAME"
-# These variables can be renamed but it is not necessary
-app_trace_name = "app_traces"
-app_trace_Version = "1"
-monitor_name ="gen_ai_monitor_generation_quality"
-defaultgsqsignalname ="gsq-signal"
-# Determine the frequency to run the monitor and the emails to receive email alerts
-trigger_schedule = CronTrigger(expression="15 10 * * *")
-notification_emails_list = ["test@example.com", "def@example.com"]
-ml_client = MLClient(
-credential=credential,
-subscription_id=subscription_id,
-resource_group_name=resource_group,
-workspace_name=project_name,
-)
-spark_compute = ServerlessSparkCompute(instance_type="standard_e4s_v3", runtime_version="3.3")
-monitoring_target = MonitoringTarget(
-ml_task=MonitorTargetTasks.QUESTION_ANSWERING,
-endpoint_deployment_id=f"azureml:{endpoint_name}:{deployment_name}",
-)
-# Set thresholds for the passing rate (0.7 = 70%)
-aggregated_groundedness_pass_rate = 0.7
-aggregated_relevance_pass_rate = 0.7
-aggregated_coherence_pass_rate = 0.7
-aggregated_fluency_pass_rate = 0.7
-# Create an instance of a gsq signal
-generation_quality_thresholds = GenerationSafetyQualityMonitoringMetricThreshold(
-groundedness = {"aggregated_groundedness_pass_rate": aggregated_groundedness_pass_rate},
-relevance={"aggregated_relevance_pass_rate": aggregated_relevance_pass_rate},
-coherence={"aggregated_coherence_pass_rate": aggregated_coherence_pass_rate},
-fluency={"aggregated_fluency_pass_rate": aggregated_fluency_pass_rate},
-)
-input_data = Input(
-type="uri_folder",
-path=f"{endpoint_name}-{deployment_name}-{app_trace_name}:{app_trace_Version}",
-)
-data_window = BaselineDataRange(lookback_window_size="P7D", lookback_window_offset="P0D")
-production_data = LlmData(
-data_column_names={"prompt_column": "question", "completion_column": "answer", "context_column": "context"},
-input_data=input_data,
-data_window=data_window,
-)
-gsq_signal = GenerationSafetyQualitySignal(
-connection_id=f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{project_name}/connections/{aoai_connection_name}",
-metric_thresholds=generation_quality_thresholds,
-production_data=[production_data],
-sampling_rate=1.0,
-properties={
-"aoai_deployment_name": aoai_deployment_name,
-"enable_action_analyzer": "false",
-"azureml.modelmonitor.gsq_thresholds": '[{"metricName":"average_fluency","threshold":{"value":4}},{"metricName":"average_coherence","threshold":{"value":4}}]',
-},
-)
-monitoring_signals = {
-defaultgsqsignalname: gsq_signal,
-}
-monitor_settings = MonitorDefinition(
-compute=spark_compute,
-monitoring_target=monitoring_target,
-monitoring_signals = monitoring_signals,
-alert_notification=AlertNotification(emails=notification_emails_list),
-)
-model_monitor = MonitorSchedule(
-name = monitor_name,
-trigger=trigger_schedule,
-create_monitor=monitor_settings
-)
-ml_client.schedules.begin_create_or_update(model_monitor)
-```
-
-
-After you create your monitor from the SDK, you can [consume the monitoring results](#consume-monitoring-results) in the Foundry portal.
-
-## Related content
-
-- Learn more about what you can do in
-[Foundry](../what-is-foundry?view=foundry-classic). - Get answers to frequently asked questions in the
-[Foundry FAQ](../faq?view=foundry-classic).
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/high-availability-resiliency -->
 
 # High availability and resiliency for Microsoft Foundry projects and Agent Services
@@ -18528,6 +18745,379 @@ If you delete a project and its resources, some resources support soft delete an
 |
 
 For recovery of other Foundry resources (accounts, projects) after deletion or purge scenarios, see [Recover or purge deleted Foundry resources](/en-us/azure/ai-services/recover-purge-resources).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/evaluation-github-action -->
+
+# How to run an evaluation in GitHub Action (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This GitHub Action enables offline evaluation of AI models and agents within your CI/CD pipelines. It streamlines the evaluation process, so you can assess model performance and make informed decisions before deploying to production.
+
+Offline evaluation involves testing AI models and agents by using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and appropriateness. After you select a model in the [Foundry model catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), perform offline pre-production evaluation to validate the AI application during integration testing. This process allows developers to identify potential problems and make improvements before deploying the model or application to production, such as when creating and updating agents.
+
+This [GitHub Action](https://github.com/microsoft/ai-agent-evals) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview?view=foundry-classic) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
+
+To use this action, provide a data set with test queries and a list of evaluators. This action invokes your agents with the queries, runs the evaluations, and generates a summary report.
+
+## Features
+
+**Automated Evaluation**: Integrate offline evaluation into your CI/CD workflows to automate the pre-production assessment of AI models.**Built-in Evaluators**: Leverage existing evaluators provided by the[Azure AI Evaluation SDK](develop/evaluate-sdk?view=foundry-classic).The following evaluators are supported:
+
+Category Evaluator class/Metrics AI Agent evaluations GenAI evaluations General purpose (AI-assisted) [QAEvaluator](../concepts/evaluation-evaluators/general-purpose-evaluators?view=foundry-classic#question-answering-composite-evaluator)Not Supported Supported General purpose (AI-assisted) [CoherenceEvaluator](../concepts/evaluation-evaluators/general-purpose-evaluators?view=foundry-classic#coherence)Supported Supported General purpose (AI-assisted) [FluencyEvaluator](../concepts/evaluation-evaluators/general-purpose-evaluators?view=foundry-classic#fluency)Supported Supported Textual similarity [SimilarityEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#similarity)Not Supported Supported Textual similarity [F1ScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#f1-score)Not Supported Supported Textual similarity [RougeScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic)Not Supported Not Supported Textual similarity [GleuScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#gleu-score)Not Supported Supported Textual similarity [BleuScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#bleu-score)Not Supported Supported Textual similarity [MeteorScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators?view=foundry-classic#meteor-score)Not Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [GroundednessEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#groundedness)Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [GroundednessProEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#groundedness-pro)Not Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [RetrievalEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#relevance)Not Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [RelevanceEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#retrieval)Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [ResponseCompletenessEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#response-completeness)Not Supported Supported Retrieval-augmented Generation (RAG) (AI-assisted) [DocumentRetrievalEvaluator](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic#document-retrieval)Not Supported Not Supported Risk and safety (AI-assisted) [ViolenceEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#violent-content)Supported Supported Risk and safety (AI-assisted) [SexualEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#sexual-content)Supported Supported Risk and safety (AI-assisted) [SelfHarmEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#self-harm-related-content)Supported Supported Risk and safety (AI-assisted) [HateUnfairnessEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#hateful-and-unfair-content)Supported Supported Risk and safety (AI-assisted) [IndirectAttackEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#indirect-attack-jailbreak-xpia)Supported Supported Risk and safety (AI-assisted) [ProtectedMaterialEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#protected-material-content)Supported Supported Risk and safety (AI-assisted) [CodeVulnerabilityEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#code-vulnerability)Supported Supported Risk and safety (AI-assisted) [UngroundedAttributesEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#ungrounded-attributes)Not Supported Supported Risk and safety (AI-assisted) [ContentSafetyEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#content-safety-composite-evaluator)Supported Supported Agent (AI-assisted) [IntentResolutionEvaluator](../concepts/evaluation-evaluators/agent-evaluators?view=foundry-classic#intent-resolution)Supported Supported Agent (AI-assisted) [TaskAdherenceEvaluator](../concepts/evaluation-evaluators/agent-evaluators?view=foundry-classic#task-adherence)Supported Supported Agent (AI-assisted) [ToolCallAccuracyEvaluator](../concepts/evaluation-evaluators/agent-evaluators?view=foundry-classic#tool-call-accuracy)Supported Supported Composite `AgentOverallEvaluator`
+
+Not Supported Not Supported Operational metrics Client run duration Supported Not Supported Operational metrics Server run duration Supported Not Supported Operational metrics Completion tokens Supported Not Supported Operational metrics Prompt tokens Supported Not Supported [Custom evaluators](../concepts/evaluation-evaluators/custom-evaluators?view=foundry-classic)Not Supported Not Supported
+
+**Agent Evaluation**: Automate pre-production assessment of Microsoft Foundry agents in your CI/CD workflow.**Evaluators**: Use any evaluators from the Foundry evaluator catalog.**Statistical Analysis**: Evaluation results include confidence intervals and test for statistical significance to determine if changes are meaningful and not due to random variation.
+
+## Evaluator categories
+
+[Agent evaluators](../concepts/evaluation-evaluators/agent-evaluators?view=foundry-classic): Process and system-level evaluators for agent workflows.[RAG evaluators](../concepts/evaluation-evaluators/rag-evaluators?view=foundry-classic): Evaluate end-to-end and retrieval processes in RAG systems.[Risk and safety evaluators](../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic): Assess risks and safety concerns in responses.[General purpose evaluators](../concepts/evaluation-evaluators/general-purpose-evaluators?view=foundry-classic): Quality evaluation such as coherence and fluency.[OpenAI-based graders](../concepts/evaluation-evaluators/azure-openai-graders?view=foundry-classic): Use OpenAI graders including string check, text similarity, score/label model.[Custom evaluators](../concepts/evaluation-evaluators/custom-evaluators?view=foundry-classic): Define your own custom evaluators using Python code or LLM-as-a-judge patterns.
+
+**Seamless Integration**: Easily integrate with existing GitHub workflows to run evaluation based on rules that you specify in your workflows (for examples, when changes are committed to agent versions, prompt templates, or feature flag configuration).**Statistical Analysis**: Evaluation results include confidence intervals and test for statistical significance to determine if changes are meaningful and not due to random variation.**Out-of-box operation metrics**: Automatically generates operational metrics for each evaluation run (client run duration, server run duration, completion tokens, and prompt tokens).
+
+## Prerequisites
+
+- A project. To learn more, see
+[Create a project](create-projects?view=foundry-classic). - A
+[Foundry agent](../agents/overview?view=foundry-classic).
+
+Tip
+
+The recommended way to authenticate is by using Microsoft Entra ID, which allows you to securely connect to your Azure resources. You can automate the authentication process by using the [Azure Login GitHub action](/en-us/azure/developer/github/connect-from-azure). To learn more, see [Azure Login action with OpenID Connect](/en-us/azure/developer/github/connect-from-azure-openid-connect).
+
+Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
+
+- If your application already uses Foundry agents,
+**ai-agent-evals**is a good choice because it offers a simplified setup process and direct integration with agent-based workflows. **genai-evals**is designed for evaluating generative AI models outside of the agent framework.
+
+Note
+
+The **ai-agent-evals** interface is more straightforward to configure. In contrast, **genai-evals** requires you to prepare structured evaluation input data. Code samples are provided to help with setup.
+
+## How to set up AI agent evaluations
+
+### AI agent evaluations input
+
+The input of ai-agent-evals includes:
+
+**Required:**
+
+`azure-ai-project-endpoint`
+
+: The endpoint of the Foundry project. Use this endpoint to connect to your AI project, simulate conversations with each agent, and connect to the Azure AI evaluation SDK to perform the evaluation.
+
+`deployment-name`
+
+: The deployed model name for evaluation judgment.`data-path`
+
+: Path to the input data file containing the conversation starters. Each conversation starter is sent to each agent for a pairwise comparison of evaluation results.`evaluators`
+
+: Built-in evaluator names.`data`
+
+: A set of conversation starters or queries.- Only single agent turn is supported.
+
+`agent-ids`
+
+: A unique identifier for the agent and a comma-separated list of agent IDs to evaluate.- When you specify only one
+`agent-id`
+
+, the evaluation results include the absolute values for each metric along with the corresponding confidence intervals. - When you specify multiple
+`agent-ids`
+
+, the results include absolute values for each agent and a statistical comparison against the designated baseline agent ID.
+
+- When you specify only one
+
+**Optional:**
+
+`api-version`
+
+: The API version of deployed model.`baseline-agent-id`
+
+: Agent ID of the baseline agent to compare against. By default, the first agent is used.`evaluation-result-view`
+
+: Specifies the format of evaluation results. Defaults to "default" (boolean scores such as passing and defect rates) if omitted. Options are "default", "all-scores" (includes all evaluation scores), and "raw-scores-only" (non-boolean scores only).
+
+Here's a sample of the dataset:
+
+```
+{
+"name": "MyTestData",
+"evaluators": [
+"RelevanceEvaluator",
+"ViolenceEvaluator",
+"HateUnfairnessEvaluator",
+],
+"data": [
+{
+"query": "Tell me about Tokyo?",
+},
+{
+"query": "Where is Italy?",
+}
+]
+}
+```
+
+
+#### Parameters
+
+| Name | Required? | Description |
+|---|---|---|
+| azure-ai-project-endpoint | Yes | Endpoint of your Microsoft Foundry Project. |
+| deployment-name | Yes | The name of the Azure AI model deployment to use for evaluation. |
+| data-path | Yes | Path to the data file that contains the evaluators and input queries for evaluations. |
+| agent-IDs | Yes | ID of one or more agents to evaluate in format `agent-name:version` (for example, `my-agent:1` or `my-agent:1,my-agent:2` ). Multiple agents are comma-separated and compared with statistical test results. |
+| baseline-agent-id | No | ID of the baseline agent to compare against when evaluating multiple agents. If not provided, the first agent is used. |
+
+#### Data file
+
+The input data file should be a JSON file with the following structure:
+
+| Field | Type | Required? | Description |
+|---|---|---|---|
+| name | string | Yes | Name of the evaluation dataset. |
+| evaluators | string[] | Yes | List of evaluator names to use. Check out the list of available evaluators in your project's evaluator catalog in Foundry portal: Build > Evaluations > Evaluator catalog. |
+| data | object[] | Yes | Array of input objects with `query` and optional evaluator fields like `ground_truth` , `context` . Automapped to evaluators; use `data_mapping` to override. |
+| openai_graders | object | No | Configuration for OpenAI-based evaluators (label_model, score_model, string_check, etc.). |
+| evaluator_parameters | object | No | Evaluator-specific initialization parameters (for example, thresholds, custom settings). |
+| data_mapping | object | No | Custom data field mappings (autogenerated from data if not provided). |
+
+#### Basic sample data file
+
+```
+{
+"name": "test-data",
+"evaluators": [
+"builtin.fluency",
+"builtin.task_adherence",
+"builtin.violence",
+],
+"data": [
+{
+"query": "Tell me about Tokyo disneyland"
+},
+{
+"query": "How do I install Python?"
+}
+]
+}
+```
+
+
+#### Additional sample data files
+
+| Filename | Description |
+|---|---|
+|
+
+[dataset.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset.json)[dataset-builtin-evaluators.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset-builtin-evaluators.json)[dataset-openai-graders.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset-openai-graders.json)[dataset-custom-evaluators.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset-custom-evaluators.json)[dataset-data-mapping.json](https://github.com/microsoft/ai-agent-evals/blob/main/samples/data/dataset-data-mapping.json)### AI agent evaluations workflow
+
+To use the GitHub Action, add the GitHub Action to your CI/CD workflows. Specify the trigger criteria, such as on commit, and the file paths to trigger your automated workflows.
+
+Tip
+
+To minimize costs, don't run evaluation on every commit.
+
+This example shows how you can run Azure Agent AI Evaluation when you compare different agents by using agent IDs.
+
+```
+name: "AI Agent Evaluation"
+on:
+workflow_dispatch:
+push:
+branches:
+- main
+permissions:
+id-token: write
+contents: read
+jobs:
+run-action:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout
+uses: actions/checkout@v4
+- name: Azure login using Federated Credentials
+uses: azure/login@v2
+with:
+client-id: ${{ vars.AZURE_CLIENT_ID }}
+tenant-id: ${{ vars.AZURE_TENANT_ID }}
+subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+- name: Run Evaluation
+uses: microsoft/ai-agent-evals@v2-beta
+with:
+# Replace placeholders with values for your Azure AI Project
+azure-ai-project-endpoint: "<your-ai-project-endpoint>"
+deployment-name: "<your-deployment-name>"
+agent-ids: "<your-ai-agent-ids>"
+data-path: ${{ github.workspace }}/path/to/your/data-file
+```
+
+
+```
+name: "AI Agent Evaluation"
+on:
+workflow_dispatch:
+push:
+branches:
+- main
+permissions:
+id-token: write
+contents: read
+jobs:
+run-action:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout
+uses: actions/checkout@v4
+- name: Azure login using Federated Credentials
+uses: azure/login@v2
+with:
+client-id: ${{ vars.AZURE_CLIENT_ID }}
+tenant-id: ${{ vars.AZURE_TENANT_ID }}
+subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+- name: Run Evaluation
+uses: microsoft/ai-agent-evals@v3-beta
+with:
+# Replace placeholders with values for your Foundry Project
+azure-ai-project-endpoint: "<your-ai-project-endpoint>"
+deployment-name: "<your-deployment-name>"
+agent-ids: "<your-ai-agent-ids>"
+data-path: ${{ github.workspace }}/path/to/your/data-file
+```
+
+
+### AI agent evaluations output
+
+The evaluation process outputs results to the summary section for each AI evaluation GitHub Action run. You can view these results under **Actions** in GitHub.com.
+
+The result includes two main parts:
+
+The top section summarizes the overview of your AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Foundry portal. You can also select the link for Evaluation Results, and it directs you to Foundry portal to view individual result in detail.
+
+The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
+
+
+Multi agent evaluation result:
+
+Single agent evaluation result:
+
+Evaluation results are output to the summary section for each AI Evaluation GitHub Action run under Actions in GitHub.
+
+The following is a sample report for comparing two agents.
+
+## How to set up genAI evaluations
+
+### GenAI evaluations input
+
+The input for genai-evals includes the following items. Some items are optional depending on the evaluator you use:
+
+Evaluation configuration file:
+
+`data`
+
+: a set of queries and ground truth. Ground-truth is optional and only required for a subset of evaluators. (See which[evaluator requires ground-truth](develop/evaluate-sdk?view=foundry-classic#data-requirements-for-built-in-evaluators)).Here's a sample of the dataset:
+
+`[ { "query": "Tell me about Tokyo?", "ground-truth": "Tokyo is the capital of Japan and the largest city in the country. It is located on the eastern coast of Honshu, the largest of Japan's four main islands. Tokyo is the political, economic, and cultural center of Japan and is one of the world's most populous cities. It is also one of the world's most important financial centers and is home to the Tokyo Stock Exchange." }, { "query": "Where is Italy?", "ground-truth": "Italy is a country in southern Europe, located on the Italian Peninsula and the two largest islands in the Mediterranean Sea, Sicily and Sardinia. It is a unitary parliamentary republic with its capital in Rome, the largest city in Italy. Other major cities include Milan, Naples, Turin, and Palermo." }, { "query": "Where is Papua New Guinea?", "ground-truth": "Papua New Guinea is an island country that lies in the south-western Pacific. It includes the eastern half of New Guinea and many small offshore islands. Its neighbours include Indonesia to the west, Australia to the south and Solomon Islands to the south-east." } ]`
+
+`evaluators`
+
+: Built-in evaluator names.`ai_model_configuration`
+
+: includes type,`azure_endpoint`
+
+,`azure_deployment`
+
+, and`api_version`
+
+.
+
+### GenAI evaluations workflow
+
+This example shows how to run Azure AI Evaluation when you commit changes to specific files in your repo.
+
+Note
+
+Update `GENAI_EVALS_DATA_PATH`
+
+to point to the correct directory in your repo.
+
+```
+name: Sample Evaluate Action
+on:
+workflow_call:
+workflow_dispatch:
+permissions:
+id-token: write
+contents: read
+jobs:
+evaluate:
+runs-on: ubuntu-latest
+env:
+GENAI_EVALS_CONFIG_PATH: ${{ github.workspace }}/evaluate-config.json
+GENAI_EVALS_DATA_PATH: ${{ github.workspace }}/.github/.test_files/eval-input.jsonl
+steps:
+- uses: actions/checkout@v4
+- uses: azure/login@v2
+with:
+client-id: ${{ secrets.OIDC_AZURE_CLIENT_ID }}
+tenant-id: ${{ secrets.OIDC_AZURE_TENANT_ID }}
+subscription-id: ${{ secrets.OIDC_AZURE_SUBSCRIPTION_ID }}
+- name: Write evaluate config
+run: |
+cat > ${{ env.GENAI_EVALS_CONFIG_PATH }} <<EOF
+{
+"data": "${{ env.GENAI_EVALS_DATA_PATH }}",
+"evaluators": {
+"coherence": "CoherenceEvaluator",
+"fluency": "FluencyEvaluator"
+},
+"ai_model_configuration": {
+"type": "azure_openai",
+"azure_endpoint": "${{ secrets.AZURE_OPENAI_ENDPOINT }}",
+"azure_deployment": "${{ secrets.AZURE_OPENAI_CHAT_DEPLOYMENT }}",
+"api_key": "${{ secrets.AZURE_OPENAI_API_KEY }}",
+"api_version": "${{ secrets.AZURE_OPENAI_API_VERSION }}"
+}
+}
+EOF
+- name: Run AI Evaluation
+id: run-ai-evaluation
+uses: microsoft/genai-evals@main
+with:
+evaluate-configuration: ${{ env.GENAI_EVALS_CONFIG_PATH }}
+```
+
+
+### GenAI evaluations output
+
+The evaluation process outputs results to the summary section for each AI evaluation GitHub Action run. You can view these results under **Actions** in GitHub.com.
+
+The results include three parts:
+
+- Test Variants: a summary of variant names and system prompts.
+- Average scores: the average score of each evaluator for each variant.
+- Individual test scores: detailed result for each individual test case.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/agent-service-operator-disaster-recovery -->

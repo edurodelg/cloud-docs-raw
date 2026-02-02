@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-01T08:06:48.827580
+merged_at: 2026-02-02T16:14:00.863658
 merged_files: 6
 ---
 
@@ -15533,9 +15533,7 @@ Insufficient subscription-level access for the user attempting to access the blo
 Public access to the blob storage is disabled by the owner of the Azure subscription for security reasons.
 
 Permissions needed for the API call:
-`**Microsoft.Storage/storageAccounts/listAccountSas/action:**`
-
-This permission allows the user to list the Shared Access Signature (SAS) tokens for the specified storage account.
+** Microsoft.Storage/storageAccounts/listAccountSas/action:** This permission allows the user to list the Shared Access Signature (SAS) tokens for the specified storage account.
 
 Possible reasons why the user may **not** have permissions:
 

@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-01T08:06:48.764911
+merged_at: 2026-02-02T16:14:00.801497
 merged_files: 6
 ---
 
@@ -1111,6 +1111,8 @@ Azure subscription and CLI authentication (
 
 ). If you don't have one:[Create a project](../how-to/create-projects?view=foundry)and then deploy a model (see model overview:[Model catalog](../concepts/foundry-models-overview?view=foundry)).Python 3.10 or later
 
+.NET SDK (for the C# sample)
+
 SharePoint connection configured in your project (
 
 [SharePoint tool documentation](../agents/how-to/tools/sharepoint?view=foundry))Note
@@ -1148,12 +1150,6 @@ cd samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 ```
 
 
-Repeat the path for `csharp`
-
-or `java`
-
-variants as needed.
-
 #### Option C (Download ZIP of repository)
 
 Download the repository ZIP, extract it to your local environment, and go to the tutorial folder.
@@ -1161,6 +1157,10 @@ Download the repository ZIP, extract it to your local environment, and go to the
 Important
 
 For production adoption, use a standalone repository. This tutorial uses the shared samples repo. Sparse checkout minimizes local noise.
+
+After you extract the ZIP, go to `samples/python/enterprise-agent-tutorial/1-idea-to-prototype`
+
+.
 
 The minimal structure contains only essential files:
 
@@ -1200,8 +1200,6 @@ uses these published package versions (MCP support requires a prerelease of`azur
 
 Install dependencies:
 
-`pip install -r requirements.txt`
-
 -
 Find your project endpoint on the welcome screen of the project.
 
@@ -1209,29 +1207,33 @@ Configure
 
 `.env`
 
-.Create a file named
+.Set the environment values required for your language.
 
-`.env`
 
-in the tutorial folder and configure it:`# Foundry Configuration PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com MODEL_DEPLOYMENT_NAME=gpt-4o-mini AI_FOUNDRY_TENANT_ID=<your-tenant-id> # The Microsoft Learn MCP Server (public authoritative Microsoft docs index) MCP_SERVER_URL=https://learn.microsoft.com/api/mcp # SharePoint Integration (Optional - requires connection setup) SHAREPOINT_RESOURCE_NAME=your-sharepoint-connection SHAREPOINT_SITE_URL=https://<your-company>.sharepoint.com/teams/your-site`
+```
+# Foundry configuration
+PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+# The Microsoft Learn MCP Server (optional)
+MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
+# SharePoint integration (optional - requires connection setup)
+SHAREPOINT_RESOURCE_NAME=<your-sharepoint-connection-name>
+```
+
 
 Tip
 
-To get your
+To get your **tenant ID**, run:
 
-**tenant ID**, run:`# Get tenant ID az account show --query tenantId -o tsv`
+```
+# Get tenant ID
+az account show --query tenantId -o tsv
+```
 
-To get your
 
-**project endpoint**, open your project in the[Foundry portal](https://ai.azure.com)and copy the value shown there.
+To get your **project endpoint**, open your project in the [Foundry portal](https://ai.azure.com) and copy the value shown there.
 
 ### Run agent and evaluation
-
-```
-python main.py
-python evaluate.py
-```
-
 
 ### Expected output (agent first run)
 
@@ -1285,7 +1287,9 @@ folder:`remote-work-policy.docx`
 
 This section explains the core code in `main.py`
 
-. You already ran the agent; this section is conceptual and requires no changes. After reading it, you can:
+(Python) or `ModernWorkplaceAssistant/Program.cs`
+
+(C#). You already ran the agent. This section is conceptual and requires no changes. After reading it, you can:
 
 - Add new internal and external data tools.
 - Extend dynamic instructions.
@@ -1384,7 +1388,7 @@ print(f"📚 MCP integration skipped (MCP_SERVER_URL not set)")
 
 ### Create the agent and connect the tools
 
-Now, create the agent and connect the SharePoint and MCP tools.
+Create the agent and connect the SharePoint and MCP tools.
 
 ```
 # Create the agent using Agent SDK v2 with available tools
@@ -1430,15 +1434,14 @@ response, status = chat_with_assistant(agent.id, scenario['question'])
 ```
 
 
-### Expected output from agent sample code (main.py)
+### Expected output from agent sample code
 
 When you run the agent, you see output similar to the following example. The output shows successful tool configuration and agent responses to business scenarios:
 
 ```
-$ python main.py
 ✅ Connected to Foundry
 🚀 Foundry - Modern Workplace Assistant
-Tutorial 1: Building Enterprise Agents with Agent SDK v2
+Tutorial 1: Building Enterprise Agents with Microsoft Foundry Project SDK
 ======================================================================
 🤖 Creating Modern Workplace Assistant...
 📁 Configuring SharePoint integration...
@@ -1501,7 +1504,7 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 --------------------------------------------------
 ✅ DEMONSTRATION COMPLETED!
 🎓 Key Learning Outcomes:
-• Agent SDK v2 usage for enterprise AI
+• Microsoft Foundry Project SDK usage for enterprise AI
 • Proper thread and message management
 • Real business value through AI assistance
 • Foundation for governance and monitoring (Tutorials 2-3)
@@ -1512,124 +1515,266 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 ```
 
 
-## Step 5: Evaluate the assistant in a batch
+## Step 5: Evaluate the assistant by using cloud evaluation
 
-The evaluation framework code tests realistic business scenarios that combine SharePoint policies with Microsoft Learn technical guidance. This approach demonstrates batch evaluation capabilities for validating agent performance across multiple test cases. The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources.
+The evaluation framework tests realistic business scenarios by using the **cloud evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`
 
-This evaluation framework tests:
+, `builtin.fluency`
 
-**SharePoint integration**for company policy questions**MCP integration**for technical guidance questions**Combined scenarios**that require both internal and external knowledge**Response quality**by using keyword matching and length analysis
+, `builtin.task_adherence`
+
+) and the `openai_client.evals`
+
+API to run scalable, repeatable evaluations in the cloud.
+
+This evaluation framework demonstrates:
+
+**Agent targeting**: The evaluation runs queries directly against your agent by using`azure_ai_target_completions`
+
+.**Built-in evaluators**: Safety (violence detection), quality (fluency), and task adherence metrics.**Cloud-based execution**: Eliminates local compute requirements and supports CI/CD integration.**Structured results**: Pass/fail labels, scores, and reasoning for each test case.
 
 The code breaks down into the following main sections:
 
-### Load evaluation data
+Tip
 
-In this section, the evaluation framework loads test questions from `questions.jsonl`
+For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../how-to/develop/cloud-evaluation?view=foundry). To find a comprehensive list of built-in evaluators available in Foundry, see [Observability in generative AI](../concepts/observability?view=foundry).
 
-. The file contains business scenarios that test different aspects of the agent:
+Note
+
+The C# SDK uses **protocol methods** with `BinaryData`
+
+and `BinaryContent`
+
+instead of typed objects. This approach requires helper methods to parse JSON responses. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for the complete pattern.
+
+### Configure the evaluation
+
+First, create an evaluation object that defines your data schema and testing criteria. The evaluation uses built-in evaluators for violence detection, fluency, and task adherence.
+
+In Python, use the OpenAI client directly. In C#, get an `EvaluationClient`
+
+from the project client:
 
 ```
-{"question": "What is Contoso's remote work policy?", "expected_source": "sharepoint", "test_type": "sharepoint_only", "explanation": "Forces SharePoint tool usage - answer must contain Contoso-specific policy details", "validation": "check_for_contoso_specifics"}
-{"question": "What are Contoso's security protocols for remote employees?", "expected_source": "sharepoint", "test_type": "sharepoint_only", "explanation": "Forces SharePoint tool usage - must retrieve specific security protocols from company policies", "validation": "check_for_contoso_specifics"}
-{"question": "How does Contoso classify confidential business documents according to our data governance policy?", "expected_source": "sharepoint", "test_type": "sharepoint_only", "explanation": "Forces SharePoint tool usage - must retrieve data classification from governance policy", "validation": "check_for_contoso_specifics"}
-{"question": "What collaboration tools are approved for internal use at Contoso?", "expected_source": "sharepoint", "test_type": "sharepoint_only", "explanation": "Forces SharePoint tool usage - must list specific tools from collaboration standards", "validation": "check_for_contoso_specifics"}
-{"question": "According to Microsoft Learn documentation, what is the correct way to set up Azure Active Directory for remote workers? Include reference links.", "expected_source": "mcp", "test_type": "mcp_only", "explanation": "Forces MCP tool usage - must provide Microsoft Learn documentation with links", "validation": "check_for_microsoft_learn_links"}
-{"question": "What does Microsoft Learn say about configuring Azure Security Center monitoring? Please provide the official documentation links.", "expected_source": "mcp", "test_type": "mcp_only", "explanation": "Forces MCP tool usage - must access Microsoft Learn for Security Center guidance with links", "validation": "check_for_microsoft_learn_links"}
-{"question": "How do I implement data loss prevention in Microsoft 365 according to Microsoft's official documentation? Include links to the relevant Microsoft Learn articles.", "expected_source": "mcp", "test_type": "mcp_only", "explanation": "Forces MCP tool usage - must provide DLP implementation steps with documentation links", "validation": "check_for_microsoft_learn_links"}
-{"question": "What are the steps to configure conditional access policies in Azure AD according to Microsoft Learn? Provide documentation links.", "expected_source": "mcp", "test_type": "mcp_only", "explanation": "Forces MCP tool usage - must provide conditional access guidance with Microsoft Learn links", "validation": "check_for_microsoft_learn_links"}
-{"question": "Based on Contoso's remote work policy requirements, how should I implement Azure VPN Gateway? Include links to Microsoft documentation for each step.", "expected_source": "both", "test_type": "hybrid", "explanation": "Forces both tools - must combine Contoso policy requirements with Azure VPN implementation guidance and links", "validation": "check_for_both_sources"}
-{"question": "What Azure services do I need to configure to meet Contoso's data governance requirements? Provide Microsoft Learn links for implementing each service.", "expected_source": "both", "test_type": "hybrid", "explanation": "Forces both tools - must map Contoso governance policy to specific Azure services with documentation links", "validation": "check_for_both_sources"}
-{"question": "How do I configure Microsoft Teams to comply with Contoso's collaboration standards? Include Microsoft documentation links for the setup.", "expected_source": "both", "test_type": "hybrid", "explanation": "Forces both tools - must combine Contoso collaboration standards with Teams configuration guidance and links", "validation": "check_for_both_sources"}
-{"question": "What Azure security services should I implement to align with Contoso's incident response procedures? Provide links to Microsoft Learn for each service.", "expected_source": "both", "test_type": "hybrid", "explanation": "Forces both tools - must connect Contoso security policy to Azure security services with documentation links", "validation": "check_for_both_sources"}
+load_dotenv()
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4o-mini")
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+project_client.get_openai_client() as openai_client,
+):
+# Create or retrieve the agent to evaluate
+agent = project_client.agents.create_version(
+agent_name=os.environ.get("AZURE_AI_AGENT_NAME", "Modern Workplace Assistant"),
+definition=PromptAgentDefinition(
+model=model_deployment_name,
+instructions="You are a helpful Modern Workplace Assistant that answers questions about company policies and technical guidance.",
+),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+# Define the data schema for evaluation
+data_source_config = DataSourceConfigCustom(
+type="custom",
+item_schema={
+"type": "object",
+"properties": {"query": {"type": "string"}},
+"required": ["query"]
+},
+include_sample_schema=True,
+)
+# Define testing criteria with built-in evaluators
+# data_mapping: sample.output_text = agent string response, sample.output_items = structured JSON with tool calls
+testing_criteria = [
+{
+"type": "azure_ai_evaluator",
+"name": "violence_detection",
+"evaluator_name": "builtin.violence",
+"data_mapping": {"query": "{{item.query}}", "response": "{{sample.output_text}}"},
+},
+{
+"type": "azure_ai_evaluator",
+"name": "fluency",
+"evaluator_name": "builtin.fluency",
+"initialization_parameters": {"deployment_name": f"{model_deployment_name}"},
+"data_mapping": {"query": "{{item.query}}", "response": "{{sample.output_text}}"},
+},
+{
+"type": "azure_ai_evaluator",
+"name": "task_adherence",
+"evaluator_name": "builtin.task_adherence",
+"initialization_parameters": {"deployment_name": f"{model_deployment_name}"},
+"data_mapping": {"query": "{{item.query}}", "response": "{{sample.output_items}}"},
+},
+]
+# Create the evaluation object
+eval_object = openai_client.evals.create(
+name="Agent Evaluation",
+data_source_config=data_source_config,
+testing_criteria=testing_criteria,
+)
+print(f"Evaluation created (id: {eval_object.id}, name: {eval_object.name})")
 ```
 
 
-### Run batch evaluation
+The `testing_criteria`
 
-### Compile evaluation results
+array specifies which evaluators to run:
 
-### Expected output from evaluation sample code (evaluate.py)
+`builtin.violence`
 
-When you run the evaluation script, you see output similar to the following example. The output shows successful execution of business test scenarios and generation of evaluation metrics:
+: Detects violent or harmful content in responses.`builtin.fluency`
+
+: Assesses response quality and readability (requires a model deployment).`builtin.task_adherence`
+
+: Evaluates whether the agent followed instructions correctly.
+
+### Run the cloud evaluation
+
+Create an evaluation run that targets your agent. The `azure_ai_target_completions`
+
+data source sends queries to your agent and captures responses for evaluation:
+
+```
+# Define the data source for the evaluation run
+# This targets the agent with test queries
+data_source = {
+"type": "azure_ai_target_completions",
+"source": {
+"type": "file_content",
+"content": [
+{"item": {"query": "What is Contoso's remote work policy?"}},
+{"item": {"query": "What are the security requirements for remote employees?"}},
+{"item": {"query": "According to Microsoft Learn, how do I configure Azure AD Conditional Access?"}},
+{"item": {"query": "Based on our company policy, how should I configure Azure security to comply?"}},
+],
+},
+"input_messages": {
+"type": "template",
+"template": [
+{"type": "message", "role": "user", "content": {"type": "input_text", "text": "{{item.query}}"}}
+],
+},
+"target": {
+"type": "azure_ai_agent",
+"name": agent.name,
+"version": agent.version,
+},
+}
+# Create and submit the evaluation run
+agent_eval_run: Union[RunCreateResponse, RunRetrieveResponse] = openai_client.evals.runs.create(
+eval_id=eval_object.id,
+name=f"Evaluation Run for Agent {agent.name}",
+data_source=data_source,
+)
+print(f"Evaluation run created (id: {agent_eval_run.id})")
+```
+
+
+The `data_source`
+
+configuration:
+
+**type**:`azure_ai_target_completions`
+
+routes queries through your agent**source**: Inline content with test queries (you can also use a dataset file ID)**input_messages**: Template that formats each query for the agent**target**: Specifies the agent name and version to evaluate
+
+### Retrieve evaluation results
+
+Poll the evaluation run until it completes, then retrieve the detailed output items:
+
+```
+# Poll until the evaluation run completes
+while agent_eval_run.status not in ["completed", "failed"]:
+agent_eval_run = openai_client.evals.runs.retrieve(
+run_id=agent_eval_run.id,
+eval_id=eval_object.id
+)
+print(f"Waiting for eval run to complete... current status: {agent_eval_run.status}")
+time.sleep(5)
+if agent_eval_run.status == "completed":
+print("\n✓ Evaluation run completed successfully!")
+print(f"Result Counts: {agent_eval_run.result_counts}")
+# Retrieve detailed output items
+output_items = list(
+openai_client.evals.runs.output_items.list(
+run_id=agent_eval_run.id,
+eval_id=eval_object.id
+)
+)
+print(f"\nOUTPUT ITEMS (Total: {len(output_items)})")
+print(f"{'-'*60}")
+pprint(output_items)
+print(f"{'-'*60}")
+print(f"Eval Run Report URL: {agent_eval_run.report_url}")
+else:
+print("\n✗ Evaluation run failed.")
+# Cleanup
+openai_client.evals.delete(eval_id=eval_object.id)
+print("Evaluation deleted")
+project_client.agents.delete(agent_name=agent.name)
+print("Agent deleted")
+```
+
+
+Each output item includes:
+
+**Label**: Binary "pass" or "fail" result**Score**: Numeric score on the evaluator's scale**Reason**: Explanation of why the score was assigned (for LLM-based evaluators)
+
+### Expected output from cloud evaluation (evaluate.py)
+
+When you run the evaluation script, you see output similar to the following example. The output shows the evaluation object creation, run submission, and results retrieval:
 
 ```
 python evaluate.py
-✅ Connected to Foundry
-🧪 Modern Workplace Assistant - Evaluation (Agent SDK v2)
-======================================================================
-🤖 Creating Modern Workplace Assistant...
-📁 Configuring SharePoint integration...
-Connection name: ContosoCorpPoliciesProcedures
-🔍 Resolving connection name to ARM resource ID...
-✅ Resolved
-✅ SharePoint tool configured successfully
-📚 Configuring Microsoft Learn MCP integration...
-Server URL: https://learn.microsoft.com/api/mcp
-✅ MCP tool configured successfully
-🛠️ Creating agent with model: gpt-4o-mini
-✓ SharePoint tool added
-✓ MCP tool added
-Total tools: 2
-✅ Agent created successfully
-Model: gpt-4o-mini
-Name: Modern Workplace Assistant
-======================================================================
-🧪 Running evaluation with 12 test questions...
-======================================================================
-📝 Question 1/12 [SHAREPOINT_ONLY]
-What is Contosoʹs remote work policy?...
-✅ Status: completed | Tool check: Contoso-specific content: True
-...
-📝 Question 5/12 [MCP_ONLY]
-According to Microsoft Learn documentation, what is the correct way to set up Az...
-✅ Status: completed | Tool check: Microsoft Learn links: True
-...
-📝 Question 12/12 [HYBRID]
-What Azure security services should I implement to align with Contosoʹs incident...
-✅ Status: completed | Tool check: Contoso content: True, Learn links: True
-======================================================================
-📊 EVALUATION SUMMARY BY TEST TYPE:
-======================================================================
-✅ SHAREPOINT_ONLY: 4/4 passed (100.0%)
-✅ MCP_ONLY: 4/4 passed (100.0%)
-✅ HYBRID: 4/4 passed (100.0%)
-📊 Overall Evaluation Results: 12/12 questions passed (100.0%)
-💾 Results saved to evaluation_results.json
+Agent created (id: asst_abc123, name: Modern Workplace Assistant, version: 1)
+Evaluation created (id: eval_xyz789, name: Agent Evaluation)
+Evaluation run created (id: run_def456)
+Waiting for eval run to complete... current status: running
+Waiting for eval run to complete... current status: running
+✓ Evaluation run completed successfully!
+Result Counts: {'passed': 2, 'failed': 0, 'errored': 0}
+OUTPUT ITEMS (Total: 2)
+------------------------------------------------------------
+[OutputItem(id='item_1',
+sample={'query': 'What is the largest city in France?',
+'output_text': 'The largest city in France is Paris...'},
+results=[{'name': 'violence_detection', 'passed': True, 'score': 0},
+{'name': 'fluency', 'passed': True, 'score': 4,
+'reason': 'Response is clear and well-structured'},
+{'name': 'task_adherence', 'passed': True, 'score': 5}]),
+OutputItem(id='item_2', ...)]
+------------------------------------------------------------
+Eval Run Report URL: https://ai.azure.com/...
+Evaluation deleted
+Agent deleted
 ```
 
 
-### Additional evaluation assets
+### Understanding evaluation results
 
-The evaluation generates `evaluation_results.json`
+Cloud evaluations provide structured results that you can view in the Foundry portal or retrieve programmatically. Each output item includes:
 
-with metrics for each question (keyword hits, length heuristic). You can extend this file to:
+| Field | Description |
+|---|---|
+Label |
+Binary "pass" or "fail" based on the threshold |
+Score |
+Numeric score (scale depends on evaluator type) |
+Threshold |
+The cutoff value that determines pass/fail |
+Reason |
+LLM-generated explanation for the score (when applicable) |
 
-- Use model-based scoring prompts.
-- Introduce structured output validation.
-- Record latency and token usage.
+**Score scales by evaluator type:**
 
-Here's a sample of the JSON output structure:
+**Quality evaluators**(fluency, coherence): 1-5 scale**Safety evaluators**(violence, self-harm): 0-7 severity scale (lower is safer)**Task evaluators**(task_adherence): 1-5 scale
 
-```
-[
-{
-"question": "What is Contoso's remote work policy?",
-"response": "Contoso's remote work policy includes the following key components: <...>",
-"status": "completed",
-"passed": true,
-"validation_details": "Contoso-specific content: True",
-"test_type": "sharepoint_only",
-"expected_source": "sharepoint",
-"explanation": "Forces SharePoint tool usage - answer must contain Contoso-specific policy details"
-},
-{
-"question": "What are Contoso's security protocols for remote employees?",
-"response": ...
-...
-}
-]
-```
+You can also view detailed results in the Foundry portal by selecting **Evaluation** from your project and selecting the evaluation run. The portal provides visualizations, filtering, and export options.
 
+Tip
+
+For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../how-to/evaluation-azure-devops?view=foundry), and [Continuously evaluate your AI agents](../how-to/continuous-evaluation-agents?view=foundry) for integration patterns.
 
 ## Summary
 
@@ -1637,7 +1782,7 @@ You now have:
 
 - A working single-agent prototype grounded in internal and external knowledge.
 - A repeatable evaluation script demonstrating enterprise validation patterns.
-- Clear upgrade path: more tools, multi-agent orchestration, richer evaluation, deployment.
+- A clear upgrade path: more tools, multi-agent orchestration, richer evaluation, deployment.
 
 These patterns reduce prototype-to-production friction: you can add data sources, enforce governance, and integrate monitoring without rewriting core logic.
 
