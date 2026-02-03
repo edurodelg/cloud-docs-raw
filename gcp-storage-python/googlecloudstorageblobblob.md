@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.blob.Blob
-fetched_at: 2026-02-02T16:06:57.768021
+fetched_at: 2026-02-04T00:28:26.317008
 ---
 
 # Class Blob (3.8.0)

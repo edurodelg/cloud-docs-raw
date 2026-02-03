@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.bucket.LifecycleRuleAbortIncompleteMultipartUpload
-fetched_at: 2026-02-02T16:07:13.021316
+fetched_at: 2026-02-04T00:28:43.116073
 ---
 
 # Class LifecycleRuleAbortIncompleteMultipartUpload (3.8.0)

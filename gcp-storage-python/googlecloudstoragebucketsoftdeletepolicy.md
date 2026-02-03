@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.bucket.SoftDeletePolicy
-fetched_at: 2026-02-02T16:07:22.900283
+fetched_at: 2026-02-04T00:28:55.276644
 ---
 
 # Class SoftDeletePolicy (3.8.0)

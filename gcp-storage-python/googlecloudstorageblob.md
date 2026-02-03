@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.blob
-fetched_at: 2026-02-02T16:06:53.905187
+fetched_at: 2026-02-04T00:28:22.586807
 ---
 
 # Module blob (3.8.0)

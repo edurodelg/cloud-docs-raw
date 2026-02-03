@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.bucket
-fetched_at: 2026-02-02T16:07:03.816177
+fetched_at: 2026-02-04T00:28:32.406605
 ---
 
 # Module bucket (3.8.0)
