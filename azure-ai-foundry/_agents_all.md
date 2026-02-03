@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-02T16:14:00.971191
+merged_at: 2026-02-04T00:35:27.785270
 merged_files: 4
 ---
 
@@ -362,7 +362,7 @@ Note
 
 This document refers to the [Microsoft Foundry (new)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
 
-This article describes the quotas and limits for Foundry Agent Service.
+This article describes the quotas and limits for Foundry Agent Service. Understanding these limits helps you design agents that scale reliably and avoid runtime errors in production.
 
 ## How quotas and limits apply
 
@@ -374,7 +374,7 @@ If you're using threads and messages, see [Threads, runs, and messages in Foundr
 
 ## Default quotas and limits for the service
 
-The following table lists default limits enforced by the Agent Service.
+The following table lists default limits enforced by the Agent Service. These limits apply to all Foundry projects regardless of subscription type or region.
 
 | Limit name | Limit value |
 |---|---|
@@ -387,9 +387,28 @@ Maximum size of `text` content per message |
 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
 
-## What happens when you reach a limit
+Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../openai/quotas-limits?view=foundry-classic) for model-specific rate limits.
 
-When you exceed one of the limits in this article, the related operation fails. For example:
+## Handle limit errors
+
+When you exceed a limit, the Agent Service returns an error. Handle these errors gracefully in your application.
+
+| Error scenario | HTTP status | Error code | Recommended action |
+|---|---|---|---|
+| File too large | 400 | `file_size_exceeded` |
+Split content into smaller files |
+| Vector store token limit | 400 | `token_limit_exceeded` |
+Reduce file content or split files |
+| Thread message cap | 400 | `message_limit_exceeded` |
+Create a new thread |
+| Message content too large | 400 | `content_size_exceeded` |
+Use file search for large content |
+| Too many tools | 400 | `tool_limit_exceeded` |
+Remove unused tools |
+| Rate limit exceeded | 429 | `rate_limit_exceeded` |
+Implement exponential backoff |
+
+For example:
 
 **File exceeds the maximum size**: Uploading the file fails. Split the content into smaller files or reduce file size before you upload.**Vector store token limit**: Attaching a file to a vector store fails if the file exceeds the token limit. Reduce the file content or split it into multiple files.**Thread message cap**: Adding messages can fail after a thread reaches the message limit. Create a new thread for a new conversation session, or archive and rotate threads as part of your application design.**Message content size**: Creating a message can fail if the`text`
 
@@ -401,7 +420,7 @@ For file search scenarios, see [Vector stores for file search](concepts/vector-s
 
 Use the following practices to reduce limit-related failures:
 
-**Keep files small and focused**. Prefer multiple smaller documents over a single large document.**Avoid very large messages**. Put long content in uploaded files and query it by using file search.**Plan for long conversations**. Treat threads as session state and rotate to new threads when conversations become very long.**Register only required tools**. Remove unused tools from agent definitions.**Monitor usage trends**. Track agent activity and tokens to identify growth early.
+**Keep files small and focused**. Prefer multiple smaller documents over a single large document.**Avoid very large messages**. Put long content in uploaded files and query it by using file search.**Plan for long conversations**. Treat threads as session state and rotate to new threads when conversations become very long.**Register only required tools**. Remove unused tools from agent definitions.**Monitor usage trends**. Track agent activity using[Foundry Agent Service metrics](how-to/metrics?view=foundry-classic)to identify growth before you hit limits.
 
 ## Quotas and limits for models
 
@@ -410,6 +429,12 @@ Agents follow the quotas and rate limits for the model deployments they use.
 For current model quotas and limits, see:
 
 To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../how-to/quota?view=foundry-classic).
+
+## Request a limit increase
+
+The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
+
+**Model quotas**: You can request increases for model deployment quotas. See[Manage and increase quotas for resources with Microsoft Foundry](../how-to/quota?view=foundry-classic).**Agent Service limits**: The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints using the best practices described earlier.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/environment-setup -->
@@ -553,9 +578,15 @@ To compare setup options and choose the right one, see [Set up your environment]
 
 ### What permissions (RBAC roles) do I need?
 
-Role requirements depend on what you're doing. For example, you typically need permissions to create an account and project, and separate permissions to create and edit agents.
+Role requirements depend on what you're doing. Common roles include:
 
-For the current role requirements, see [Required permissions](environment-setup?view=foundry-classic#required-permissions) and [Role-based access control (RBAC) in Microsoft Foundry](../concepts/rbac-foundry?view=foundry-classic).
+**Azure AI Account Owner**: Create accounts and projects**Azure AI User**: Create and edit agents**Role Based Access Control Administrator**(or**Owner**): Required for standard setup to assign roles to connected resources
+
+For standard setup, you also need the `Microsoft.Authorization/roleAssignments/write`
+
+permission.
+
+For complete role requirements, see [Required permissions](environment-setup?view=foundry-classic#required-permissions) and [Role-based access control (RBAC) in Microsoft Foundry](../concepts/rbac-foundry?view=foundry-classic).
 
 ### Where should I start if I'm new to Foundry Agent Service?
 
@@ -577,13 +608,14 @@ To learn how conversations and responses work, see [Agent runtime components](co
 
 ### Where is this data stored?
 
-**Basic setup**: Data is stored in a secure, Microsoft-managed storage account that's logically separated.**Standard setup**: Data is stored in your own Azure resources, so you have full ownership and control.
+**Basic setup**: Data is stored in a secure, Microsoft-managed storage account that's logically separated.**Standard setup**: Data is stored in your own Azure resources, so you have full ownership and control:**Azure Storage**: Files and attachments**Azure Cosmos DB**: Threads and conversation history**Azure AI Search**: Vector stores
+
 
 To learn about setup options that control where data is stored, see [Set up your environment](environment-setup?view=foundry-classic#choose-your-setup).
 
 ### How long is this data stored?
 
-Data persists unless you explicitly delete it.
+Data persists unless you explicitly delete it. To delete agent data, use the API or SDK to delete threads, files, or vector stores.
 
 For concepts and terminology (for example, conversation and response), see [Agent runtime components](concepts/runtime-components?view=foundry-classic).
 
@@ -657,13 +689,17 @@ Agent Service networking uses Azure Container Apps. When you deploy into your vi
 
 For details, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks?view=foundry-classic) and [Virtual network configuration](/en-us/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
 
-### What regions are supported for Class A?
+### What regions support virtual network isolation?
 
-Region availability and limitations can change. For the current requirements and limitations, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks?view=foundry-classic).
+Region availability for virtual network isolation can change. For the current supported regions and limitations, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks?view=foundry-classic).
 
 ### What class range is supported for public or private Class A, B, and C subnets?
 
-Only private Class A, B, and C ranges are supported. No public class ranges are supported.
+Only private IP ranges are supported:
+
+**Class A**: 10.0.0.0/8**Class B**: 172.16.0.0/12**Class C**: 192.168.0.0/16
+
+Public IP ranges aren't supported for agent subnets.
 
 ### What is the minimum size for the agent subnet, and how many IPs should I use?
 
@@ -689,7 +725,7 @@ For Agent Service private networking guidance, see [How to use a virtual network
 
 ### Can multiple Microsoft Foundry resources reuse the virtual network?
 
-Yes, multiple Microsoft Foundry resources can reuse a virtual network. But the agent runtime subnet is per Microsoft Foundry account.
+Yes, multiple Microsoft Foundry resources can reuse the same virtual network. However, each Foundry resource requires its own dedicated agent runtime subnet—the agent subnet can't be shared across multiple Foundry resources.
 
 ### Does the virtual network need to be in the same resource group as Foundry?
 
@@ -853,12 +889,6 @@ To understand and manage cost drivers, see [Plan and manage costs](../concepts/m
 If you're blocked getting started, check these common issues:
 
 **Model isn't available in your region**: See[models that inform agents](concepts/model-region-support?view=foundry-classic).**Requests are throttled or fail due to quota**: See[Quotas and limits for Agent Service](quotas-limits?view=foundry-classic).**You can't access resources or deployments**: Confirm your role assignments and follow[environment setup](environment-setup?view=foundry-classic).**You need to debug tool calls or agent behavior**: Start with[trace agents with the SDK](../how-to/develop/trace-agents-sdk?view=foundry-classic)and[metrics](how-to/metrics?view=foundry-classic).
-
-## Related content
-
-- Learn more about the
-[models that inform agents](concepts/model-region-support?view=foundry-classic). - Learn about the
-[Microsoft Foundry SDKs](../how-to/develop/sdk-overview?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/quickstart -->
@@ -1712,7 +1742,7 @@ curl --request GET \
 
 ## Next steps
 
-Learn about the [ tools](how-to/tools/overview?view=foundry-classic) you can use to extend your agents' capabilities, such as accessing the web, provide grounding information, and more.
+Learn about the [ tools](how-to/tools-classic/overview?view=foundry-classic) you can use to extend your agents' capabilities, such as accessing the web, provide grounding information, and more.
 
 ---
 <!-- Source: N/A -->
@@ -1757,90 +1787,6 @@ Messages are the individual pieces of communication within a thread. They can be
 ## Runs
 
 A run involves invoking the agent on the thread. The agent processes the messages in the thread and might append new messages, which are responses from the agent. The agent uses its configuration and the thread's messages to perform tasks by calling models and tools. As part of a run, the agent appends messages to the thread.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/runtime-components -->
-
-# Agent runtime components
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Microsoft Foundry Agent Service uses a small set of runtime objects to generate outputs and optionally persist state across turns.
-
-This article explains the roles of an **agent**, **conversation**, and **response**, and how they work together during response generation.
-
-## Prerequisites
-
-- A
-[Microsoft Foundry project](../../how-to/create-projects?view=foundry). - Familiarity with the
-[agent development lifecycle](development-lifecycle?view=foundry)(optional).
-
-## Agent components
-
-When you work with an agent, you follow these steps:
-
-**Create an agent**: Define an agent to start sending messages and receiving responses.**Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.**Generate a response**: The agent processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.**Check response status**: Monitor the response until it finishes (especially in streaming or background mode).**Retrieve the response**: Display the generated response to the user.
-
-
-The diagram illustrates a loop: you provide user input (and optionally conversation history), the service generates a response (including tool calls when configured), and the resulting items can be reused as context for the next turn.
-
-## Agent
-
-An agent is a persisted orchestration definition that combines AI models, instructions, code, tools, parameters, and optional safety or governance controls.
-
-Store agents as named, versioned assets in Microsoft Foundry. During response generation, the agent definition works with interaction history (conversation or previous response) to process and respond to user input.
-
-## Conversation
-
-A conversation manages states automatically, so you don't need to pass inputs manually for each turn.
-
-Conversations are durable objects with unique identifiers. After creation, you can reuse them across sessions.
-
-Conversations store items, which can include messages, tool calls, tool outputs, and other data.
-
-### When to use a conversation
-
-Use a conversation when you want:
-
-**Multi-turn continuity**: Keep a stable history across turns without rebuilding context yourself.**Cross-session continuity**: Reuse the same conversation for a user who returns later.**Easier debugging**: Inspect what happened over time (for example, tool calls and outputs).
-
-If you don't create a conversation, you can still build multi-turn flows by using the output from a previous response as the starting point for the next request. For an overview of how this approach differs from older thread-based patterns, see [Migrate to the Agents SDK](../how-to/migrate?view=foundry).
-
-## Conversation items
-
-Conversations store **items** rather than only chat messages. Items capture what happened during response generation so the next turn can reuse that context.
-
-Common item types include:
-
-**Message items**: User or assistant messages.**Tool call items**: Records of tool invocations the agent attempted.**Tool output items**: Outputs returned by tools (for example, retrieval results).**Output items**: The response content you display back to the user.
-
-For examples that show how conversations and responses work together in code, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage?view=foundry).
-
-## Response
-
-Response generation invokes the agent. The agent uses its configuration and any provided history (conversation or previous response) to perform tasks by calling models and tools. As part of response generation, the agent appends items to the conversation.
-
-You can also generate a response without defining an agent. In this case, you provide all configurations directly in the request and use them only for that response. This approach is useful for simple scenarios with minimal tools.
-
-## Streaming and background responses
-
-Some response generation modes return results incrementally (streaming) or complete asynchronously (background). In these cases, you typically monitor the response until it finishes and then consume the final output items.
-
-For details about response modes and how to consume outputs, see [Responses API](../../openai/how-to/responses?view=foundry).
-
-## Security and data handling
-
-Because conversations and responses can persist user-provided content and tool outputs, treat runtime data like application data:
-
-**Avoid storing secrets in prompts or conversation history**. Use connections and managed secret stores instead (for example,[Set up a Key Vault connection](../../how-to/set-up-key-vault-connection?view=foundry)).**Use least privilege for tool access**. When a tool accesses external systems, the agent can potentially read or send data through that tool.**Be careful with non-Microsoft services**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. For related considerations, see[Discover tools in the Foundry Tools](tool-catalog?view=foundry).
-
-## Limits and constraints
-
-Limits can depend on the model, region, and the tools you attach (for example, streaming availability and tool support). For current availability and constraints for responses, see [Responses API](../../openai/how-to/responses?view=foundry).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/what-is-foundry-iq -->
@@ -1934,6 +1880,92 @@ Each IQ workload is standalone, but you can use them together to provide compreh
 [Watch this video](https://www.youtube.com/watch?v=bHL1jbWjJUc)for a quick demonstration of the portal.Review application code in the
 
 [Azure OpenAI demo](/en-us/samples/azure-samples/azure-search-openai-demo/azure-search-openai-demo/), which uses agentic retrieval.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/runtime-components -->
+
+# Agent runtime components
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Agent runtime components are the core objects—agents, conversations, and responses—that power stateful, multi-turn interactions in Microsoft Foundry Agent Service. Together, these components let you generate outputs, persist state across turns, and build conversational applications.
+
+This article explains the roles of an **agent**, **conversation**, and **response**, and how they work together during response generation.
+
+## Prerequisites
+
+- A
+[Microsoft Foundry project](../../how-to/create-projects?view=foundry). - Familiarity with the
+[agent development lifecycle](development-lifecycle?view=foundry)(optional).
+
+## How runtime components work together
+
+When you work with an agent, you follow a consistent pattern:
+
+**Create an agent**: Define an agent to start sending messages and receiving responses.**Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.**Generate a response**: The agent processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.**Check response status**: Monitor the response until it finishes (especially in streaming or background mode).**Retrieve the response**: Display the generated response to the user.
+
+The following diagram illustrates how these components interact in a typical agent loop.
+
+
+You provide user input (and optionally conversation history), the service generates a response (including tool calls when configured), and the resulting items can be reused as context for the next turn.
+
+## What is an agent?
+
+An agent is a persisted orchestration definition that combines AI models, instructions, code, tools, parameters, and optional safety or governance controls.
+
+Store agents as named, versioned assets in Microsoft Foundry. During response generation, the agent definition works with interaction history (conversation or previous response) to process and respond to user input.
+
+## What is a conversation?
+
+A conversation manages state automatically, so you don't need to pass inputs manually for each turn.
+
+Conversations are durable objects with unique identifiers. After creation, you can reuse them across sessions.
+
+Conversations store items, which can include messages, tool calls, tool outputs, and other data.
+
+### When to use a conversation
+
+Use a conversation when you want:
+
+**Multi-turn continuity**: Keep a stable history across turns without rebuilding context yourself.**Cross-session continuity**: Reuse the same conversation for a user who returns later.**Easier debugging**: Inspect what happened over time (for example, tool calls and outputs).
+
+If you don't create a conversation, you can still build multi-turn flows by using the output from a previous response as the starting point for the next request. This approach gives you more flexibility than the older thread-based pattern, where state was tightly coupled to thread objects. For migration guidance, see [Migrate to the Agents SDK](../how-to/migrate?view=foundry).
+
+## Conversation items
+
+Conversations store **items** rather than only chat messages. Items capture what happened during response generation so the next turn can reuse that context.
+
+Common item types include:
+
+**Message items**: User or assistant messages.**Tool call items**: Records of tool invocations the agent attempted.**Tool output items**: Outputs returned by tools (for example, retrieval results).**Output items**: The response content you display back to the user.
+
+For examples that show how conversations and responses work together in code, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage?view=foundry).
+
+## How responses work
+
+Response generation invokes the agent. The agent uses its configuration and any provided history (conversation or previous response) to perform tasks by calling models and tools. As part of response generation, the agent appends items to the conversation.
+
+You can also generate a response without defining an agent. In this case, you provide all configurations directly in the request and use them only for that response. This approach is useful for simple scenarios with minimal tools.
+
+## Streaming and background responses
+
+Some response generation modes return results incrementally (streaming) or complete asynchronously (background). In these cases, you typically monitor the response until it finishes and then consume the final output items.
+
+For details about response modes and how to consume outputs, see [Responses API](../../openai/how-to/responses?view=foundry).
+
+## Security and data handling
+
+Because conversations and responses can persist user-provided content and tool outputs, treat runtime data like application data:
+
+**Avoid storing secrets in prompts or conversation history**. Use connections and managed secret stores instead (for example,[Set up a Key Vault connection](../../how-to/set-up-key-vault-connection?view=foundry)).**Use least privilege for tool access**. When a tool accesses external systems, the agent can potentially read or send data through that tool.**Be careful with non-Microsoft services**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. For related considerations, see[Discover tools in the Foundry Tools](tool-catalog?view=foundry).
+
+## Limits and constraints
+
+Limits can depend on the model, region, and the tools you attach (for example, streaming availability and tool support). For current availability and constraints for responses, see [Responses API](../../openai/how-to/responses?view=foundry).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/vector-stores -->
@@ -2436,155 +2468,6 @@ In the standard agent template file, replace the following placeholders:
 `aiSearchServiceResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}`
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/model-region-support -->
-
-# Supported models and regions for Foundry Agent Service
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
-
-Note
-
-This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-In this article, you learn which Azure OpenAI models and regions are supported for agents in Microsoft Foundry Agent Service. These models have different capabilities and price points.
-
-Microsoft Foundry offers two main types of deployments:
-
-*Standard*includes a global deployment option that routes traffic globally to provide higher throughput.*Provisioned*also includes a global deployment option. You can purchase and deploy provisioned throughput units across the Azure global infrastructure.
-
-All deployments can perform the same inference operations. However, the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types?view=foundry-classic).
-
-## How to use this page
-
-Use the tables in this article to choose a supported combination of deployment type, model version, and Azure region.
-
-**Deployment type**: Use the tabs to select the deployment type you plan to use (standard or provisioned).**Region**: The**Region**column lists the Azure region where you deploy the model.**Availability markers**:- ✅: Supported.
-- Blank cells or
-`-`
-
-: Not supported.
-
-
-## Available models
-
-Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
-
-Keep in mind that model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs.
-
-Note
-
-[Hub-based projects](../../what-is-foundry?view=foundry-classic#types-of-projects)are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.[Spillover traffic management](../../openai/how-to/spillover-traffic-management?view=foundry-classic)for[provisioned throughput](../../openai/concepts/provisioned-throughput?view=foundry-classic)is compatible with agents.- For information on Class A subnet support, see the
-[setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup). - The
-[file search tool](../how-to/tools-classic/file-search?view=foundry-classic)is currently unavailable in the Italy North and Brazil South regions. - The gpt-5 models can use only the
-[code interpreter](../how-to/tools-classic/code-interpreter?view=foundry-classic)and[file search](../how-to/tools-classic/file-search?view=foundry-classic)tools. [Registration](https://aka.ms/openai/gpt-5/2025-08-07)is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
-
-Note
-
-[Spillover traffic management](../../openai/how-to/spillover-traffic-management?view=foundry-classic)for[provisioned throughput](../../openai/concepts/provisioned-throughput?view=foundry-classic)is compatible with agents.- For information on Class A subnet support, see the
-[setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup). - The
-[file search tool](../how-to/tools/file-search?view=foundry&preserve-view=true)is currently unavailable in the Italy North and Brazil South regions. - The gpt-5 models are available for the
-[code interpreter](../how-to/tools/code-interpreter?view=foundry&preserve-view=true)and[file search](../how-to/tools/file-search?view=foundry&preserve-view=true)tools. [Registration](https://aka.ms/openai/gpt-5/2025-08-07)is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
-
-| Region | gpt-5.2, 2025-12-11 | gpt-5.1, 2025-11-13 | gpt-5, 2025-08-07 | gpt-5-mini, 2025-08-07 | gpt-5-nano, 2025-08-07 | gpt-5-chat, 2025-08-07 | gpt-4.1, 2025-04-14 | gpt-4.1-nano, 2025-04-14 | gpt-4.1-mini, 2025-04-14 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 | gpt-4, 0613 | gpt-4, turbo-2024-04-09 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-`australiaeast` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||
-`brazilsouth` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ||||||
-`canadaeast` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||||
-`eastus` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||||
-`eastus2` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-`francecentral` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||||
-`germanywestcentral` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||||
-`italynorth` |
-✅ | ✅ | ✅ | - | - | ✅ | ✅ | - | - | ||||||
-`japaneast` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||
-`norwayeast` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||||
-`southafricanorth` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ||||||
-`southcentralus` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||||
-`southindia` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||
-`swedencentral` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-`switzerlandnorth` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||
-`uksouth` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||
-`westeurope` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ||||||
-`westus` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||||
-`westus3` |
-✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-
-## Other model collections
-
-The following lists of Foundry Models are available for your agents to use.
-
-**Models sold directly by Azure:**
-
-**MAI-DS-R1**: Deterministic, precision-focused reasoning.**grok-4**: Frontier-scale reasoning for complex, multiple-step problem solving.**grok-4-fast-reasoning**: Accelerated agentic reasoning optimized for workflow automation.**grok-4-fast-non-reasoning**: High-throughput, low-latency generation and system routing.**grok-3**: Strong reasoning for complex, system-level workflows.**grok-3-mini**: Lightweight model optimized for interactive, high-volume use cases.**Llama-3.3-70B-Instruct**: Versatile model for enterprise Q&A, decision support, and system orchestration.**Llama-4-Maverick-17B-128E-Instruct-FP8**: FP8-optimized model that delivers fast, cost-efficient inference.**DeepSeek-V3-0324**: Multimodal understanding across text and images.**DeepSeek-V3.1**: Enhanced multimodal reasoning and grounded retrieval.**DeepSeek-R1-0528**: Advanced long-form and multiple-step reasoning.**gpt-oss-120b**: Open-ecosystem model that supports transparency and reproducibility.
-
-## View all agent-supported models in the Foundry portal
-
-To see a full list of the supported models in the Foundry portal:
-
-- Sign in to
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**.Sign in to[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. - Go to the
-**Model catalog**. - Filter the models by
-**Capabilities**and select**Agent supported**.
-
-- Sign in to
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**.Sign in to[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. - Select
-**Discover**in the upper-right navigation, then**Models**in the left pane. - Open the
-**Capabilities**dropdown and select the**Agent supported**filter.
-
-## Verify model support
-
-Model availability can change over time.
-
-- To verify what you can deploy for your project and region, use the Foundry portal model experience described in the previous section.
-- If you use provisioned throughput, make sure you have provisioned throughput units (PTUs) available in the target region. For background, see
-[Provisioned throughput](../../openai/concepts/provisioned-throughput?view=foundry-classic).
-
-## Troubleshooting
-
-### A model or version isn't available in your region
-
-- Confirm you selected the right tab for your deployment type.
-- Try a different region that supports the model and version.
-- If you're using gpt-5 models, make sure your subscription has access. Some models require registration.
-
-### File search isn't available
-
-- File search isn't available in Italy North and Brazil South. Choose a supported region, or use a different tool.
-
-### Provisioned throughput deployment fails
-
-- Confirm you have enough PTUs available in the region.
-- Review
-[Provisioned throughput](../../openai/concepts/provisioned-throughput?view=foundry-classic)and[Spillover traffic management](../../openai/how-to/spillover-traffic-management?view=foundry-classic).
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/foundry-iq-faq -->
 
 # Foundry IQ frequently asked questions
@@ -2725,127 +2608,6 @@ Each IQ workload is standalone, but they can work together to answer virtually a
 ### What is the difference between Copilot knowledge sources and Foundry IQ knowledge sources?
 
 The concept is the same: connecting agents to enterprise data. However, the supported data sources differ by platform and aren't interoperable. In other words, you can't use Foundry IQ knowledge sources in Copilot, and you can't use Copilot knowledge sources in Foundry IQ.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/development-lifecycle -->
-
-# Agent development lifecycle
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-The agent building experience in Microsoft Foundry includes tools for development and observability, from agent creation to embedding your agent into your applications. You can use the Foundry portal or code to build, customize, and test your agent's behavior. You can then iterate with tracing, evaluation, and monitoring to improve quality and reliability. When you're ready, publish your agent as an agent application to share it and integrate it into your apps.
-
-## Prerequisites
-
-- A
-[Microsoft Foundry project](../../how-to/create-projects?view=foundry) - Familiarity with the
-[Agents playground](../../concepts/concept-playgrounds?view=foundry)
-
-## Lifecycle at a glance
-
-Use this lifecycle as a practical checklist while you build and ship an agent.
-
-**Choose an agent type**: Start with a prompt-based agent, a workflow, or a hosted agent.**Create your agent and start testing**: Iterate in the playground or in code.**Add tools and data**: Attach tools for retrieval and actions, and validate the configuration before you save.**Save changes as versions**: Capture meaningful milestones and compare versions.**Debug with tracing**: Use tracing to confirm tool calls, latency, and end-to-end behavior. For details, see[Agent tracing overview](../../observability/concepts/trace-agent-concept?view=foundry).**Evaluate quality and safety**: Run repeatable evaluations to catch regressions before publishing. For conceptual guidance, see[Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators?view=foundry).**Publish and integrate**: Publish a stable endpoint and integrate it into your application. For steps, see[Publish and share agents in Microsoft Foundry](../how-to/publish-agent?view=foundry).**Monitor and iterate**: Monitor performance and quality in production, then update and republish as needed. For guidance, see[Monitor quality and safety](../../how-to/monitor-quality-safety?view=foundry).
-
-## Types of agents
-
-There are three types of agents:
-
-**Prompt-based**: A prompt-based agent is a declaratively defined single agent that combines model configuration, instructions, tools, and natural language prompts to drive behavior. You can extend it by attaching tools for knowledge and memory. You can edit, version, test, evaluate, monitor, and publish prompt-based agents from the[Agents playground](../../concepts/concept-playgrounds?view=foundry)in the Foundry portal.**Workflow**: Use workflows to build a more advanced workflow that orchestrates a sequence of actions or coordinates multiple agents. Workflows have their own interface in the portal, but the same lifecycle applies. For details, see[Build a workflow in Microsoft Foundry](workflow?view=foundry).**Hosted**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see[What are hosted agents?](hosted-agents?view=foundry)
-
-You can create prompt-based agents and workflows in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../quickstarts/get-started-code?view=foundry).
-
-## Creating a prompt-based agent
-
-If you already know what kind of agent you want to create, name it and then start configuring its model instructions and tools.
-
-Note
-
-After you name your agent, you can't change the name. In code, you refer to your agent by `<agent_name>:<version>`
-
-.
-
-## Develop in code
-
-If you prefer to work in code, use supported ways to bring your agent code into a development environment from which you can test locally and then deploy to Azure.
-
-From the **Code** tab in the agent playground's chat pane, you can take a code snippet that references your agent to a dedicated Visual Studio Code for the Web cloud environment. The snippet comes preconfigured with the packages and extensions that you need, along with instructions to efficiently develop and deploy your Foundry agent to Azure. You can also copy the code snippet directly to your preferred development environment. For details, see the [playground documentation](../../concepts/concept-playgrounds?view=foundry#open-in-vs-code-capability).
-
-## Core capabilities for the agent development lifecycle
-
-The agent building experience offers integrated experiences for each core step of the agent development lifecycle. Use these core capabilities as you develop your production-ready agent application. Each capability has in-depth documentation where you can learn more.
-
-### Save changes as versions
-
-After you create the first version of a prompt-based agent or a workflow, save subsequent changes as new versions. You can test unsaved changes in the agent playground. But if you want to view conversation history, monitor your agent's performance, or run full evaluations, you need to save your changes.
-
-Agent versioning provides the following capabilities for managing agent configurations and iterations. This system ensures that all changes are tracked, testable, and comparable across versions.
-
-**Version immutability**: Each version of an agent is immutable after you save it. Any modifications to an existing version require saving and creating a new version. This requirement helps ensure version integrity and prevents accidental overwrites.**Draft state management**: You can test agents in an unsaved state for experimentation. You lose unsaved changes if you leave the Foundry portal, so save frequently to preserve important modifications.**Version control operations**: You can direct requests to specific agent versions to enable controlled deployment and rollback capabilities.**Version history navigation**: You can access the version history for any agent, go to any specific version, and perform the following comparisons:- Agent setup comparison: Compare configuration settings between versions. You can choose which versions you want to compare by using the version dropdown list.
-- Chat output comparison: Analyze response differences between agent versions by using identical inputs.
-- YAML definition comparison: Review differences in agent definitions.
-
-
-### Add tools
-
-You can make your agent more powerful by giving it knowledge (specific files or indexes) or by allowing it to take actions (calling external APIs). Tools are available for most use cases, from simple file uploads to custom Model Context Protocol (MCP) server connections. For more complicated tools, you might need to configure authentication or add connections as part of attaching them to an agent.
-
-To save an agent with a tool attached, you must successfully configure the tool. You can reuse configured tools across agents. For information about available tools, see the [tools catalog](tool-catalog?view=foundry).
-
-### Debug and validate by using tracing
-
-As you add tools and iterate on prompts, use tracing to validate end-to-end behavior:
-
-- Confirm whether the agent called the tools you expected.
-- Inspect tool inputs and outputs.
-- Identify latency hotspots across model and tool calls.
-
-For more information, see [Agent tracing overview](../../observability/concepts/trace-agent-concept?view=foundry).
-
-### Evaluate quality and safety
-
-Before you publish your agent (and after any meaningful change), run evaluations to catch regressions and measure quality consistently across versions.
-
-- For the key evaluation dimensions for agents, see
-[Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators?view=foundry). - For a code-first workflow you can automate, see
-[Evaluate your AI agents locally](../../how-to/develop/agent-evaluate-sdk?view=foundry).
-
-### Monitor after publishing
-
-After you publish an agent application, treat it like production software:
-
-- Monitor quality and safety signals.
-- Review traces when behavior changes.
-- Update and republish when you fix issues or make improvements.
-
-For guidance, see [Monitor quality and safety](../../how-to/monitor-quality-safety?view=foundry).
-
-### Plan for identity and permissions
-
-Tools and downstream resources often require authentication. When you publish an agent, its identity and permission model can change. Make sure your published agent has only the access it needs.
-
-For details, see [Agent identity concepts in Microsoft Foundry](agent-identity?view=foundry).
-
-### Security and access
-
-Treat your agent configuration like application code. Protect secrets and permissions throughout the lifecycle:
-
-- Use least privilege and role assignments instead of embedding keys. For more information, see
-[Role-based access control in Foundry portal](../../concepts/rbac-foundry?view=foundry). - Store secrets in a managed secret store and reference them through connections instead of hardcoding them in code, configuration files, or prompts. For guidance, see
-[Set up a Key Vault connection](../../how-to/set-up-key-vault-connection?view=foundry). - Before publishing, confirm that the agent identity and tool connections in the published agent application have only the access they need. For details, see
-[Agent identity concepts in Microsoft Foundry](agent-identity?view=foundry).
-
-### Publish your agent or workflow
-
-After you create an agent or workflow version that you're happy with, [publish it as an agent application](../how-to/publish-agent?view=foundry). You get a stable endpoint that you can open and test in the browser, share with others, or embed in your existing applications. You and your collaborators can validate performance and identify what needs refinement. You can make any necessary updates and republish a new version at any time.
-
-## Common pitfalls
-
-**Unsaved changes are temporary**: If you want to compare versions, view history, or run full evaluations, save your changes as a version.**Tools must be configured before saving**: If a tool requires authentication or a connection, complete setup before you save.**Publishing can require permission updates**: After publishing, recheck resource access for the published agent identity and remove any access the agent no longer needs.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/agent-to-agent-authentication -->
@@ -3022,6 +2784,148 @@ Configure your agent to use the A2A tool and reference the project connection.
 | You don't get a consent link when you expect one | OAuth identity passthrough isn't configured for the connection, or the agent didn't invoke the A2A tool | Confirm the project connection is configured for OAuth identity passthrough and trigger an A2A tool call again. |
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/model-region-support -->
+
+# Azure OpenAI models and regions for Foundry Agent Service
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+Azure OpenAI models power agents in Microsoft Foundry Agent Service. This article helps you choose a supported model and region combination for your deployment. Choosing the right model and region affects your agent's capabilities, latency, and cost.
+
+To use these models, you need a [Microsoft Foundry project](../../what-is-foundry?view=foundry-classic) with access to Foundry Agent Service.
+
+Microsoft Foundry offers two main types of deployments:
+
+*Standard*includes a global deployment option that routes traffic across Azure's global infrastructure to maximize throughput and availability.*Provisioned*also includes a global deployment option. You can purchase and deploy provisioned throughput units (PTUs) across Azure's global infrastructure for predictable performance.
+
+All deployments can perform the same inference operations. However, the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types?view=foundry-classic).
+
+## How to use this page
+
+Use the tables in this article to choose a supported combination of deployment type, model version, and Azure region.
+
+**Deployment type**: Use the tabs to select the deployment type you plan to use (standard or provisioned).**Region**: The**Region**column lists the Azure region where you deploy the model.**Availability markers**:- ✅: Supported.
+- Blank cells or
+`-`
+
+: Not supported.
+
+
+## Choose a model
+
+Select a model based on your agent's requirements:
+
+**gpt-5 family**(gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat): Frontier-scale reasoning for complex, multi-step tasks. Registration is required for access.**gpt-4.1 family**(gpt-4.1, gpt-4.1-mini, gpt-4.1-nano): Cost-effective models for general-purpose agent workloads.**gpt-4o family**(gpt-4o, gpt-4o-mini): Multimodal capabilities with vision support.**gpt-4 and gpt-35-turbo**: Legacy models for backward compatibility.
+
+Tip
+
+**Quick start**: For most new agents, deploy **gpt-4o, 2024-11-20** in **swedencentral** or **eastus2** using Global standard deployment. These regions have broad model availability and low latency for most scenarios.
+
+## Available models
+
+Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
+
+Keep in mind that model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs.
+
+Note
+
+[Hub-based projects](../../what-is-foundry?view=foundry-classic#types-of-projects)are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.[Spillover traffic management](../../openai/how-to/spillover-traffic-management?view=foundry-classic)for[provisioned throughput](../../openai/concepts/provisioned-throughput?view=foundry-classic)is compatible with agents.- For information on Class A subnet support, see the
+[setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup). - The
+[file search tool](../how-to/tools-classic/file-search?view=foundry-classic)is currently unavailable in the Italy North and Brazil South regions. - The gpt-5 models can use only the
+[code interpreter](../how-to/tools-classic/code-interpreter?view=foundry-classic)and[file search](../how-to/tools-classic/file-search?view=foundry-classic)tools. [Registration](https://aka.ms/openai/gpt-5/2025-08-07)is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
+
+Note
+
+[Spillover traffic management](../../openai/how-to/spillover-traffic-management?view=foundry-classic)for[provisioned throughput](../../openai/concepts/provisioned-throughput?view=foundry-classic)is compatible with agents.- For information on Class A subnet support, see the
+[setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup). - The
+[file search tool](../how-to/tools/file-search?view=foundry&preserve-view=true)is currently unavailable in the Italy North and Brazil South regions. - The gpt-5 models are available for the
+[code interpreter](../how-to/tools/code-interpreter?view=foundry&preserve-view=true)and[file search](../how-to/tools/file-search?view=foundry&preserve-view=true)tools. [Registration](https://aka.ms/openai/gpt-5/2025-08-07)is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
+
+| Region | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-5-nano | gpt-5-chat | gpt-4.1 | gpt-4.1-nano | gpt-4.1-mini | gpt-4o (05-13) | gpt-4o (08-06) | gpt-4o (11-20) | gpt-4o-mini | gpt-4 | gpt-4-turbo |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| australiaeast | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||
+| brazilsouth | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||||||
+| canadaeast | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||||
+| eastus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||||
+| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| francecentral | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||||
+| germanywestcentral | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||||
+| italynorth | ✅ | ✅ | ✅ | ✅ | ✅ | ||||||||||
+| japaneast | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||
+| norwayeast | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||||
+| southafricanorth | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||||||
+| southcentralus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||||
+| southindia | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||
+| swedencentral | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| switzerlandnorth | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||
+| uksouth | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||
+| westeurope | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |||||||
+| westus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||||||
+| westus3 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+## Non-OpenAI models
+
+In addition to Azure OpenAI models, you can use models sold directly by Azure. These models offer specialized capabilities for specific use cases, such as deterministic reasoning or high-throughput generation.
+
+**Models sold directly by Azure:**
+
+**MAI-DS-R1**: Deterministic, precision-focused reasoning.**grok-4**: Frontier-scale reasoning for complex, multiple-step problem solving.**grok-4-fast-reasoning**: Accelerated agentic reasoning optimized for workflow automation.**grok-4-fast-non-reasoning**: High-throughput, low-latency generation and system routing.**grok-3**: Strong reasoning for complex, system-level workflows.**grok-3-mini**: Lightweight model optimized for interactive, high-volume use cases.**Llama-3.3-70B-Instruct**: Versatile model for enterprise Q&A, decision support, and system orchestration.**Llama-4-Maverick-17B-128E-Instruct-FP8**: FP8-optimized model that delivers fast, cost-efficient inference.**DeepSeek-V3-0324**: Multimodal understanding across text and images.**DeepSeek-V3.1**: Enhanced multimodal reasoning and grounded retrieval.**DeepSeek-R1-0528**: Advanced long-form and multiple-step reasoning.**gpt-oss-120b**: Open-ecosystem model that supports transparency and reproducibility.
+
+## View all agent-supported models in the Foundry portal
+
+To see a full list of the supported models in the Foundry portal:
+
+- Sign in to
+[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**.Sign in to[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. - Go to the
+**Model catalog**. - Filter the models by
+**Capabilities**and select**Agent supported**.
+
+- Sign in to
+[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**.Sign in to[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. - Select
+**Discover**in the upper-right navigation, then**Models**in the left pane. - Open the
+**Capabilities**dropdown and select the**Agent supported**filter.
+
+## Verify model support
+
+Model availability can change over time.
+
+- To verify what you can deploy for your project and region, use the Foundry portal model experience described in the previous section.
+- If you use provisioned throughput, make sure you have provisioned throughput units (PTUs) available in the target region. For background, see
+[Provisioned throughput](../../openai/concepts/provisioned-throughput?view=foundry-classic).
+
+## Troubleshooting
+
+### A model or version isn't available in your region
+
+- Confirm you selected the right tab for your deployment type.
+- Try a different region that supports the model and version.
+- If you're using gpt-5 models, make sure your subscription has access. Some models require registration.
+
+### File search isn't available
+
+- File search isn't available in Italy North and Brazil South. Choose a supported region, or use a different tool.
+
+### Provisioned throughput deployment fails
+
+- Confirm you have enough PTUs available in the region.
+- Review
+[Provisioned throughput](../../openai/concepts/provisioned-throughput?view=foundry-classic)and[Spillover traffic management](../../openai/how-to/spillover-traffic-management?view=foundry-classic).
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog -->
 
 # Discover and manage tools in the Foundry tool catalog (preview)
@@ -3147,6 +3051,141 @@ Use these checks to resolve common issues:
 ## Related content
 
 [Create a private tool catalog](../how-to/private-tool-catalog?view=foundry)[Connect to Model Context Protocol servers](../how-to/tools/model-context-protocol?view=foundry)[Build and register a Model Context Protocol (MCP) server](../../mcp/build-your-own-mcp-server?view=foundry)[Foundry MCP Server best practices and security guidance](../../mcp/security-best-practices?view=foundry)[Get started with Foundry MCP Server (preview) using Visual Studio Code](../../mcp/get-started?view=foundry)[Bring your remote, official MCP server to all Foundry customers](https://forms.office.com/r/EEvMNceMRU)
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/development-lifecycle -->
+
+# Agent development lifecycle
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+The agent development lifecycle in Microsoft Foundry spans from initial creation through production monitoring. Following this lifecycle helps you build reliable agents, catch issues early, and ship with confidence. Use the Foundry portal or code to build, customize, and test your agent's behavior. Then iterate with tracing, evaluation, and monitoring to improve quality and reliability. When you're ready, publish your agent as an agent application to share it and integrate it into your apps.
+
+This article is for developers who want to build, test, and ship production-ready agents.
+
+## Prerequisites
+
+- A
+[Microsoft Foundry project](../../how-to/create-projects?view=foundry) - Familiarity with the
+[Agents playground](../../concepts/concept-playgrounds?view=foundry) - For code development: Familiarity with the
+[development environment setup](../../how-to/develop/install-cli-sdk?view=foundry)
+
+## Lifecycle at a glance
+
+Use this lifecycle as a practical checklist while you build and ship an agent.
+
+**Choose an agent type**: Start with a prompt-based agent, a workflow, or a hosted agent.**Create your agent and start testing**: Iterate in the playground or in code.**Add tools and data**: Attach tools for retrieval and actions, and validate the configuration before you save.**Save changes as versions**: Capture meaningful milestones and compare versions.**Debug with tracing**: Use tracing to confirm tool calls, latency, and end-to-end behavior. For details, see[Agent tracing overview](../../observability/concepts/trace-agent-concept?view=foundry).**Evaluate quality and safety**: Run repeatable evaluations to catch regressions before publishing. For conceptual guidance, see[Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators?view=foundry).**Publish and integrate**: Publish a stable endpoint and integrate it into your application. For steps, see[Publish and share agents in Microsoft Foundry](../how-to/publish-agent?view=foundry).**Monitor and iterate**: Monitor performance and quality in production, then update and republish as needed. For guidance, see[Monitor quality and safety](../../how-to/monitor-quality-safety?view=foundry).
+
+## Agent types in Microsoft Foundry
+
+There are three types of agents:
+
+**Prompt-based**: A prompt-based agent is a declaratively defined single agent that combines model configuration, instructions, tools, and natural language prompts to drive behavior. Extend it by attaching tools for knowledge and memory. Edit, version, test, evaluate, monitor, and publish prompt-based agents from the[Agents playground](../../concepts/concept-playgrounds?view=foundry)in the Foundry portal.**Workflow**: Use workflows to build a more advanced workflow that orchestrates a sequence of actions or coordinates multiple agents. Workflows have their own interface in the portal, but the same lifecycle applies. For details, see[Build a workflow in Microsoft Foundry](workflow?view=foundry).**Hosted (preview)**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see[What are hosted agents?](hosted-agents?view=foundry)
+
+Create prompt-based agents and workflows in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../quickstarts/get-started-code?view=foundry).
+
+## Creating a prompt-based agent
+
+If you already know what kind of agent you want to create, name it and then start configuring its model instructions and tools.
+
+Note
+
+After you name your agent, you can't change the name. In code, you refer to your agent by `<agent_name>:<version>`
+
+.
+
+## Develop agents in code
+
+If you prefer to work in code, use supported ways to bring your agent code into a development environment from which you can test locally and then deploy to Azure.
+
+From the **Code** tab in the agent playground's chat pane, you can take a code snippet that references your agent to a dedicated Visual Studio Code for the Web cloud environment. The snippet comes preconfigured with the packages and extensions that you need, along with instructions to efficiently develop and deploy your Foundry agent to Azure. You can also copy the code snippet directly to your preferred development environment. For details, see the [playground documentation](../../concepts/concept-playgrounds?view=foundry#open-in-vs-code-capability).
+
+## Core capabilities for the agent development lifecycle
+
+The agent building experience offers integrated experiences for each core step of the agent development lifecycle. Use these core capabilities as you develop your production-ready agent application. Each capability has in-depth documentation where you can learn more.
+
+### Save changes as versions
+
+After you create the first version of a prompt-based agent or a workflow, save subsequent changes as new versions. You can test unsaved changes in the agent playground. But if you want to view conversation history, monitor your agent's performance, or run full evaluations, you need to save your changes.
+
+Agent versioning provides the following capabilities for managing agent configurations and iterations. This system ensures that all changes are tracked, testable, and comparable across versions.
+
+**Version immutability**: Each version of an agent is immutable after you save it. Any modifications to an existing version require saving and creating a new version. This requirement helps ensure version integrity and prevents accidental overwrites.**Draft state management**: You can test agents in an unsaved state for experimentation. You lose unsaved changes if you leave the Foundry portal, so save frequently to preserve important modifications.**Version control operations**: You can direct requests to specific agent versions to enable controlled deployment and rollback capabilities.**Version history navigation**: Access the version history for any agent, go to any specific version, and perform the following comparisons:Comparison type Description Agent setup Compare configuration settings between versions using the version dropdown list Chat output Analyze response differences between agent versions using identical inputs YAML definition Review differences in agent definitions
+
+### Add tools
+
+Make your agent more powerful by giving it knowledge (specific files or indexes) or by allowing it to take actions (calling external APIs). Tools are available for most use cases, from simple file uploads to custom Model Context Protocol (MCP) server connections. For more complicated tools, you might need to configure authentication or add connections as part of attaching them to an agent.
+
+To save an agent with a tool attached, you must successfully configure the tool. Reuse configured tools across agents. For information about available tools, see the [tools catalog](tool-catalog?view=foundry).
+
+### Debug and validate by using tracing (preview)
+
+As you add tools and iterate on prompts, use tracing to validate end-to-end behavior:
+
+- Confirm whether the agent called the tools you expected.
+- Inspect tool inputs and outputs.
+- Identify latency hotspots across model and tool calls.
+
+For more information, see [Agent tracing overview](../../observability/concepts/trace-agent-concept?view=foundry).
+
+### Evaluate quality and safety (preview)
+
+Before you publish your agent (and after any meaningful change), run evaluations to catch regressions and measure quality consistently across versions.
+
+- For the key evaluation dimensions for agents, see
+[Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators?view=foundry). - For a code-first workflow you can automate, see
+[Evaluate your AI agents locally](../../how-to/develop/agent-evaluate-sdk?view=foundry).
+
+### Monitor after publishing
+
+After you publish an agent application, treat it like production software:
+
+- Monitor quality and safety signals.
+- Review traces when behavior changes.
+- Update and republish when you fix issues or make improvements.
+
+For guidance, see [Monitor quality and safety](../../how-to/monitor-quality-safety?view=foundry).
+
+### Plan for identity and permissions
+
+Tools and downstream resources often require authentication. When you publish an agent, its identity and permission model can change. Make sure your published agent has only the access it needs.
+
+For details, see [Agent identity concepts in Microsoft Foundry](agent-identity?view=foundry).
+
+### Security and access
+
+Treat your agent configuration like application code. Protect secrets and permissions throughout the lifecycle:
+
+- Use least privilege and role assignments instead of embedding keys. For more information, see
+[Role-based access control in Foundry portal](../../concepts/rbac-foundry?view=foundry). - Store secrets in a managed secret store and reference them through connections instead of hardcoding them in code, configuration files, or prompts. For guidance, see
+[Set up a Key Vault connection](../../how-to/set-up-key-vault-connection?view=foundry). - Before publishing, confirm that the agent identity and tool connections in the published agent application have only the access they need. For details, see
+[Agent identity concepts in Microsoft Foundry](agent-identity?view=foundry).
+
+### Publish your agent or workflow
+
+After you create an agent or workflow version that you're happy with, [publish it as an agent application](../how-to/publish-agent?view=foundry). You get a stable endpoint that you can open and test in the browser, share with others, or embed in your existing applications. You and your collaborators can validate performance and identify what needs refinement. Make any necessary updates and republish a new version at any time.
+
+Important
+
+Permissions assigned to the project identity don't automatically transfer to the published agent. After publishing, reassign the necessary privileges to the agent application's identity.
+
+## Common agent development pitfalls
+
+**Unsaved changes are temporary**: If you want to compare versions, view history, or run full evaluations, save your changes as a version.**Tools must be configured before saving**: If a tool requires authentication or a connection, complete setup before you save.**Publishing can require permission updates**: After publishing, recheck resource access for the published agent identity and remove any access the agent no longer needs.
+
+## Related content
+
+**Learn more about agent types:**
+
+**Configure and extend agents:**
+
+**Publish and monitor agents:**
+
+**Debug and evaluate:**
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-best-practice -->
@@ -3353,9 +3392,9 @@ Workflows enable you to build intelligent automation systems that seamlessly ble
 [Create projects](../../how-to/create-projects?view=foundry). - Access to create and run workflows in your Foundry project. For more information, see
 [Azure role-based access control (RBAC) in Foundry](../../concepts/rbac-foundry?view=foundry).
 
-## When to use workflows
+## Decide when to use workflows
 
-Use workflows when you want to:
+Workflows are ideal for scenarios where you need to:
 
 - Orchestrate multiple agents in a repeatable process.
 - Add branching logic (for example, if/else) and variable handling without writing code.
@@ -3365,9 +3404,9 @@ If you want to edit workflow YAML in Visual Studio Code or run workflows in a lo
 
 [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code?view=foundry)[Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code?view=foundry)
 
-## Workflow concepts
+## Understand workflow patterns
 
-To create a workflow in Foundry, you can begin with a blank workflow or select one of the templates of predefined orchestration patterns:
+Foundry provides templates for common orchestration patterns. Start with a blank workflow or select a template:
 
 | Pattern | Description | Typical use case |
 |---|---|---|
@@ -3379,7 +3418,7 @@ For more information, see [Microsoft Agent Framework workflow orchestrations](/e
 
 ## Create a workflow
 
-The following steps show you how to create a sequential type of workflow as an example:
+This procedure shows how to create a sequential workflow. The same general steps apply to other workflow types.
 
 -
 Sign in to
@@ -3390,13 +3429,13 @@ Sign in to
 
 **Create new workflow**>**Sequential**.Assign an agent to the agent nodes by selecting each agent node in the workflow and either selecting the desired agent or creating a new one. For more information, see
 
-[Add agents to your workflow](#add-agents-to-your-workflow)later in this article.Select
+[Add agents](#add-agents)later in this article.Select
 
 **Save**in the visualizer to save the changes.Important
 
-Workflows aren't saved automatically. Select
+Foundry doesn't save workflows automatically. Select
 
-**Save**every time you want to save changes to your workflow.Select
+**Save**after every change to preserve your work.Select
 
 **Run Workflow**.Interact with the workflow in the chat window.
 
@@ -3411,19 +3450,21 @@ After you select **Run Workflow**, verify that:
 - You see the expected responses in the chat window.
 - Any variables you save (for example, JSON output from an agent node) contain the values you expect.
 
-## Add nodes to your workflow
+## Add nodes
 
-Nodes define the building blocks of your workflow. Common node types include:
+Nodes are the building blocks of your workflow. Each node performs a specific action in sequence.
+
+Common node types include:
 
 **Agent**: Invoke an agent.**Logic**: Use*if/else*,*go to*, or*for each*.**Data transformation**: Set a variable or parse a value.**Basic chat**: Send a message or ask a question to an agent.
 
-When you select a prebuilt workflow, a workflow of nodes appears in the builder. Each node corresponds to a specific action or component, and it performs a step in sequence. You can modify the order of the nodes by selecting the three dots on a node and then selecting **move**. You can add new nodes by selecting the plus (**+**) icon in the workspace.
+When you select a prebuilt workflow, the builder displays the nodes in sequence. To reorder nodes, select the three dots on a node and then select **move**. To add nodes, select the plus (**+**) icon in the workspace.
 
-## Add agents to your workflow
+## Add agents
 
-You can add any Foundry agent from your project to the workflow. Agent nodes also allow you to create new agents and give them customized capabilities by configuring their model, prompt, and tools.
+Add any Foundry agent from your project to the workflow. Agent nodes also let you create new agents with customized capabilities by configuring their model, prompt, and tools.
 
-For advanced options and comprehensive information about agent creation, go to the **Foundry Agent** tab in the Foundry portal.
+For advanced agent creation options, go to the **Foundry Agent** tab in the Foundry portal.
 
 ### Add an existing agent
 
@@ -3454,11 +3495,11 @@ Select
 
 **Save**.
 
-### Configure an output response format for invoking an agent
+### Configure an output response format
 
-Create an
+To configure an agent to return structured JSON output:
 
-**Invoke agent**node.In the
+In the
 
 **Invoke agent**configuration window, select**Create a new agent**.Configure the agent to send output as a JSON schema:
 
@@ -3522,15 +3563,15 @@ Select
 
 **Create new variable**. Choose a variable name, and then select**Done**.
 
-## Use additional features
+## Configure additional features
 
-**YAML visualizer view**: When you set the**YAML Visualizer View**toggle to**On**, the workflow is stored in a YAML file. You can modify it in the visualizer and the YAML view. Saving creates a new version, and you have access to the version history.The visualizer and the YAML are editable. Any changes to the YAML file are reflected in the visualizer.
+**YAML visualizer view**: Set the**YAML Visualizer View**toggle to**On**to store the workflow as a YAML file. Edit in either the visualizer or the YAML view. Saving creates a new version with full version history.Both the visualizer and YAML are editable. Changes to the YAML file appear immediately in the visualizer.
 
-**Versioning**: Each time you save your workflow, a new, unchangeable version is created. To view the version history or delete older versions, open the**Version**dropdown list to the left of the**Save**button.**Notes on your workflow visualizer**: You can add notes on the workflow visualizer to add more context or information for your workflow. In the upper-left corner of the workflow visualizer, select**Add note**.
+**Versioning**: Each save creates a new, unchangeable version. To view version history or delete older versions, open the**Version**dropdown list to the left of the**Save**button.**Notes**: Add notes to the workflow visualizer for extra context. In the upper-left corner of the visualizer, select**Add note**.
 
-## Create expressions by using Power Fx
+## Create expressions with Power Fx
 
-Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to create complex logic that allows your agents to manipulate data. For instance, a Power Fx formula can set the value of a variable, parse a string, or use an expression in a condition. For more information, see the [Power Fx overview](/en-us/power-platform/power-fx/overview) and [formula reference](/en-us/power-platform/power-fx/formula-reference-copilot-studio).
+Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to create complex logic that lets your agents manipulate data. For example, a Power Fx formula can set a variable value, parse a string, or evaluate a condition. For more information, see the [Power Fx overview](/en-us/power-platform/power-fx/overview) and [formula reference](/en-us/power-platform/power-fx/formula-reference-copilot-studio).
 
 ### Use variables in a formula
 
@@ -3604,18 +3645,9 @@ The following table lists the data types and the format of their corresponding l
 
 The following table lists the Power Fx formulas that you can use with each data type.
 
-| Type | Power Fx formulas |
-|---|---|
-| String | `[Text function][1]` `[Concat and Concatenate functions][2]` `[Len function][3]` `[Lower, Upper, and Proper functions][4]` `[IsMatch, Match, and MatchAll functions][5]` `[EndsWith and StartsWith functions][6]` `[Find function][7]` `[Replace and Substitute function][8]` |
-| Boolean | `[Boolean function][9]` `[And, Or, and Not functions][10]` `[If and Switch functions][11]` |
-| Number | `[Decimal, Float, and Value functions][12]` `[Int, Round, RoundDown, RoundUp, and Trunc functions][13]` |
-| Record and table | `[Concat and Concatenate functions][14]` `[Count, CountA, CountIf, and CountRows functions][15]` `[ForAll function][16]` `[First, FirstN, Index, Last, and LastN functions][17]` `[Filter, Search, and LookUp functions][18]` `[JSON function][19]` `[ParseJSON function][20]` |
-| Date and time | `[Date, DateTime, and Time functions][21]` `[DateValue, TimeValue, and DateTimeValue functions][22]` `[Day, Month, Year, Hour, Minute, Second, and Weekday functions][23]` `[Now, Today, IsToday, UTCNow, UTCToday, IsUTCToday functions][24]` `[DateAdd, DateDiff, and TimeZoneOffset functions][25]` `[Text function][26]` |
-| Blank | `[Blank, Coalesce, IsBlank, and IsEmpty functions][27]` `[Error, IfError, IsError, IsBlankOrError functions][28]` |
+### Set a variable with Power Fx
 
-### Use Power Fx to set a variable
-
-In this example, a Power Fx expression stores and outputs the customer's name in capital letters:
+This example shows how to store and output a customer's name in capital letters:
 
 Create a workflow and add an
 
@@ -3632,9 +3664,9 @@ Create a workflow and add an
 **Preview**.On the preview pane, send a message to the agent to invoke the workflow.
 
 
-## Use Power Fx to create if/else flows
+## Create if/else flows with Power Fx
 
-In this example, you add an if/else flow and build a condition by using system variables.
+This example shows how to add an if/else flow and build a condition with system variables.
 
 Create a workflow and add an
 
@@ -3652,9 +3684,25 @@ in the**Condition**box to build a condition statement for each if/else branch.Se
 
 ## Troubleshooting
 
-- If you don't see
-**Workflows**or you can't create or edit workflows, confirm your project access and permissions. See[Azure role-based access control (RBAC) in Foundry](../../concepts/rbac-foundry?view=foundry). - If your changes don't appear, confirm you selected
-**Save**in the visualizer. - If a workflow run doesn't produce the output you expect, verify that each agent node has an agent assigned and that any saved outputs (for example, JSON schema outputs) are valid.
+| Issue | Solution |
+|---|---|
+Workflows option not visible or can't create/edit workflows |
+Confirm you have the Contributor role or higher on your project. See
+|
+| Changes don't appear after editing | Select Save in the visualizer. Foundry doesn't save changes automatically. |
+| Workflow run produces unexpected output | Verify each agent node has an agent assigned. Check that saved outputs (JSON schema) are valid. |
+| Power Fx formula error: "Name isn't valid" | Add the correct scope prefix. Use `System.` for system variables and `Local.` for local variables. |
+| Power Fx formula error: "Type mismatch" | Verify the variable type matches the expected input. Use conversion functions like `Text()` or `Value()` if needed. |
+| Workflow times out | Break complex workflows into smaller segments. Check that external services respond within expected timeframes. |
+
+## Clean up resources
+
+To delete a workflow you no longer need:
+
+- Open the workflow in the Foundry portal.
+- Select the
+**Version**dropdown list to the left of the**Save**button. - Select
+**Delete**for the version you want to remove.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/capability-hosts -->
@@ -3689,12 +3737,14 @@ Capability hosts are sub-resources that you configure at both the Microsoft Foun
 
 - A
 [Microsoft Foundry project](../../how-to/create-projects?view=foundry-classic) - If you use your own resources for agent data (standard agent setup), create the required Azure resources and connections:
-- Permissions to create the resources and, for standard agent setup, assign access to the required Azure resources. For details, see
+- Required permissions:
+**Contributor**role on the Foundry account to create capability hosts**User Access Administrator**or**Owner**role to assign access to Azure resources (for standard agent setup)- For details, see
 [Required permissions](../environment-setup?view=foundry-classic#required-permissions)and[Role-based access control (RBAC) in Microsoft Foundry](../../concepts/rbac-foundry?view=foundry-classic).
+
 
 ## Why use capability hosts?
 
-Capability hosts allow you to **bring your own Azure resources** instead of using the default Microsoft-managed platform resources. This gives you:
+Capability hosts let you **bring your own Azure resources** instead of using the default Microsoft-managed platform resources. This gives you:
 
 **Data sovereignty**- Keep all agent data within your Azure subscription.**Security control**- Use your own storage accounts, databases, and search services.**Compliance**- Meet specific regulatory or organizational requirements.
 
@@ -3704,7 +3754,7 @@ Creating capability hosts isn't required. If you want agents to use your own Azu
 
 ### Default behavior (Microsoft-managed resources)
 
-If you don't create an account-level and project-level capability host, the Agent Service automatically uses Microsoft-managed Azure resources for:
+If you don't create capability hosts, Agent Service automatically uses Microsoft-managed Azure resources for:
 
 - Thread storage (conversation history, agent definitions)
 - File storage (uploaded documents)
@@ -3712,7 +3762,7 @@ If you don't create an account-level and project-level capability host, the Agen
 
 ### Bring-your-own resources
 
-When you create capability hosts at both the account and project levels, agent data is stored and processed using your Azure resources in your subscription. This configuration is called **standard agent setup**. For network-secured standard agent setup, deploy all related resources in the same region as your virtual network (VNet). For guidance, see [Create a new network-secured environment with user-managed identity](../how-to/virtual-networks?view=foundry-classic).
+When you create capability hosts at both the account and project levels, your Azure resources store and process agent data. This is **standard agent setup**. For network-secured standard agent setup, deploy all related resources in the same region as your virtual network (VNet). For guidance, see [Create a new network-secured environment with user-managed identity](../how-to/virtual-networks?view=foundry-classic).
 
 To learn more about standard agent setup, see [Built-in enterprise readiness with standard agent setup](standard-agent-setup?view=foundry-classic).
 
@@ -3730,7 +3780,7 @@ Capability hosts follow a hierarchy where more specific configurations override 
 
 When creating capability hosts, be aware of these important constraints to avoid conflicts:
 
-**One capability host per scope**: Each account and each project can only have one active capability host. Attempting to create a second capability host with a different name at the same scope will result in a 409 conflict.**Configuration updates are not supported**: If you need to change configuration, you must delete the existing capability host and recreate it.
+**One capability host per scope**: Each account and each project can have only one active capability host. If you try to create a second capability host with a different name at the same scope, you get a 409 conflict.**You can't update configurations**: If you need to change configuration, delete the existing capability host and recreate it.
 
 ## Create connections for capability hosts
 
@@ -3743,6 +3793,8 @@ If you want to use model deployments from your own Azure OpenAI resource, also c
 To add connections in the Foundry portal, see [Add a new connection to your project](../../how-to/connections-add?view=foundry-classic).
 
 ## Configure capability hosts
+
+Currently, you manage capability hosts using the REST API. SDK support for capability host management isn't available.
 
 ### Required properties (project capability host)
 
@@ -3823,7 +3875,7 @@ All Foundry projects will inherit these settings. Then override specific setting
 
 ## Verify your configuration
 
-Use these steps to confirm that capability hosts are configured the way you expect:
+Use these steps to confirm that capability hosts are configured correctly:
 
 Get the account capability host and confirm it exists.
 
@@ -3832,6 +3884,12 @@ Get the account capability host and confirm it exists.
 Get the project capability host and confirm it references the expected connection names.
 
 `GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts?api-version=2025-06-01`
+
+Test your configuration by creating a test agent and running a conversation. Confirm that:
+
+- Conversation threads appear in your Azure Cosmos DB
+- Uploaded files appear in your Azure Storage account
+- Vector data appears in your Azure AI Search index
 
 If you update connections or want to change where data is stored, delete and recreate the capability hosts with the updated configuration.
 
@@ -3973,12 +4031,9 @@ Since updates aren't supported, follow this sequence for configuration changes:
 - Wait for deletion to complete
 - Create a new capability host with the desired configuration
 
-## Next steps
+## Common scenarios
 
-- Learn about
-[standard agent setup](standard-agent-setup?view=foundry-classic). - Set up your account and project:
-[Set up your environment](../environment-setup?view=foundry-classic). - Add and manage connections:
-[Add a new connection to your project](../../how-to/connections-add?view=foundry-classic).
+**Development and testing**: Use Microsoft-managed resources. No capability host configuration needed.**Production with compliance requirements**: Create capability hosts with your own Azure Cosmos DB, Storage, and AI Search.**Shared resources across projects**: Configure account-level defaults, then override at the project level as needed.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/agent-identity -->
@@ -4278,7 +4333,7 @@ Hosted Agents are supported in the following regions:
 
 Treat a hosted agent like production application code.
 
-**Don't put secrets in container images or environment variables**. Use managed identities and connections, and store secrets in a managed secret store. For guidance, see[Set up a Key Vault connection](../../how-to/set-up-key-vault-connection?view=foundry).**Use least privilege**. Grant only the permissions your agent needs. For identity concepts, see[Agent identity concepts in Microsoft Foundry](agent-identity?view=foundry).**Be careful with non-Microsoft tools and servers**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. Review data sharing, retention, and location policies for any non-Microsoft service you connect.
+**Don't put secrets in container images or environment variables**. Use managed identities and connections, and store secrets in a managed secret store. For guidance, see[Set up a Key Vault connection](../../how-to/set-up-key-vault-connection?view=foundry).**Be careful with non-Microsoft tools and servers**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. Review data sharing, retention, and location policies for any non-Microsoft service you connect.
 
 ## Understand key concepts
 
@@ -4352,15 +4407,64 @@ If you use Agent Service to host agents that interact with non-Microsoft servers
 
 Before you deploy to Microsoft Foundry, build and test your agent locally:
 
-**Run your agent locally**: Use the hosting adapter to start a local web server that automatically exposes your agent as a REST API.**Test by using REST calls**: The local server runs on`localhost:8088`
+**Run your agent locally**: Use the hosting adapter to`azure-ai-agentserver-*`
 
-and accepts standard HTTP requests.**Build the container image**: Create a container image from your source files by using an`azure-ai-agentserver-*`
+package to wrap your agent code and start a local web server that automatically exposes your agent as a REST API.**Test by using REST calls**: The local server runs on`localhost:8088`
 
-package to wrap your agent code.**Use the Azure Developer CLI**: Use`azd`
+and accepts standard HTTP requests.**Build the container image**: Create a container image from your source code.**Use the Azure Developer CLI**: Use`azd`
 
 to streamline the packaging and deployment process.
 
-### Local testing by using the REST API
+### Wrap your agent code with the hosting adapter and test locally
+
+**Sample agent authored using Microsoft Agent Framework**
+
+```
+import os
+from datetime import datetime
+from zoneinfo import ZoneInfo
+from dotenv import load_dotenv
+load_dotenv(override=True)
+from agent_framework import ai_function, ChatAgent
+from agent_framework.azure import AzureAIAgentClient
+from azure.ai.agentserver.agentframework import from_agent_framework
+from azure.identity import DefaultAzureCredential
+# Configure these for your Azure AI Foundry project
+PROJECT_ENDPOINT = os.getenv("PROJECT_ENDPOINT") # e.g., "https://<resource>.services.ai.azure.com/api/projects/<project>"
+MODEL_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME", "gpt-4.1") # Your model deployment name
+@ai_function
+def get_local_date_time(iana_timezone: str) -> str:
+"""
+Get the current date and time for a given timezone.
+This is a LOCAL Python function that runs on the server - demonstrating how code-based agents
+can execute custom logic that prompt agents cannot access.
+Args:
+iana_timezone: The IANA timezone string (e.g., "America/Los_Angeles", "America/New_York", "Europe/London")
+Returns:
+The current date and time in the specified timezone.
+"""
+try:
+tz = ZoneInfo(iana_timezone)
+current_time = datetime.now(tz)
+return f"The current date and time in {iana_timezone} is {current_time.strftime('%A, %B %d, %Y at %I:%M %p %Z')}"
+except Exception as e:
+return f"Error: Unable to get time for timezone '{iana_timezone}'. {str(e)}"
+# Create the agent with a local Python tool
+agent = ChatAgent(
+chat_client=AzureAIAgentClient(
+project_endpoint=PROJECT_ENDPOINT,
+model_deployment_name=MODEL_DEPLOYMENT_NAME,
+credential=DefaultAzureCredential(),
+),
+instructions="You are a helpful assistant that can tell users the current date and time in any location. When a user asks about the time in a city or location, use the get_local_date_time tool with the appropriate IANA timezone string for that location.",
+tools=[get_local_date_time],
+)
+if __name__ == "__main__":
+from_agent_framework(agent).run()
+```
+
+
+Refer to the [samples repo](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agent) for code samples in LangGraph and custom code.
 
 When you run your agent locally by using the hosting adapter, it automatically starts a web server on `localhost:8088`
 
@@ -4391,6 +4495,10 @@ This local testing approach lets you:
 - Verify API compatibility with the Foundry Responses API.
 
 ## Create a hosted agent
+
+### Create a hosted agent using VS Code Foundry extension
+
+You can use the [Foundry extension for Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code?view=foundry&preserve-view=true) to create hosted agents.
 
 ### Create a hosted agent by using the Azure Developer CLI
 
@@ -4466,7 +4574,9 @@ This command abstracts the underlying execution of the commands
 
 . It also creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent,`azd`
 
-creates a new version of the same agent. To learn more about how you can do non-versioned updates, along with starting, stopping, and deleting your hosted agent deployments and versions, see the[management section](#manage-hosted-agents)of this article.
+creates a new version of the same agent. For more information, see the[Azure CLI documentation](/en-us/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension).
+
+To learn more about how you can do non-versioned updates, along with starting, stopping, and deleting your hosted agent deployments and versions, see the [management section](#manage-hosted-agents) of this article.
 
 Make sure you have RBAC enabled so that `azd`
 
@@ -4638,6 +4748,15 @@ environment_variables={
 }
 )
 )
+# Print confirmation
+print(f"Agent created: {agent.name} (id: {agent.id}, version: {agent.version})")
+```
+
+
+Expected output:
+
+```
+Agent created: my-agent (id: agent_abc123, version: 1)
 ```
 
 
@@ -5028,7 +5147,8 @@ AGENT_NAME = "your-agent-name"
 AGENT_VERSION = "1" # Optional: specify version, or use latest
 # Initialize the client and retrieve the agent
 client = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
-agent = client.agents.retrieve(agent_name=AGENT_NAME)
+agent = client.agents.get(agent_name=AGENT_NAME)
+print(f"Agent retrieved: {agent.name} (version: {agent.versions.latest.version})")
 # Get the OpenAI client and send a message
 openai_client = client.get_openai_client()
 response = openai_client.responses.create(
@@ -5036,9 +5156,18 @@ input=[{"role": "user", "content": "Hello! What can you help me with?"}],
 extra_body={"agent": AgentReference(name=agent.name, version=AGENT_VERSION).as_dict()}
 )
 print(f"Agent response: {response.output_text}")
-Reference: [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true)
 ```
 
+
+Expected output:
+
+```
+Agent retrieved: your-agent-name (version: 1)
+Agent response: Hello! I'm your hosted agent. I can help you with...
+```
+
+
+For more information, see [Azure AI Projects SDK for Python](/en-us/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true).
 
 ### Use tools with hosted agents
 
@@ -5187,7 +5316,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 - Conversation coherence and context retention
 - Response time and efficiency metrics
 
-**Agent-specific evaluation**: Evaluate hosted agents by using the Azure AI Evaluation SDK with built-in evaluators that are designed for agentic workflows. The SDK provides specialized evaluators for measuring agent performance across key dimensions like intent resolution, task adherence, and tool usage accuracy.
+**Agent-specific evaluation**: Evaluate hosted agents by using the Foundry SDK with built-in evaluators that are designed for agentic workflows. The SDK provides specialized evaluators for measuring agent performance across key dimensions like intent resolution, task adherence, and tool usage accuracy.
 
 ### Testing workflows for hosted agents
 
@@ -5207,7 +5336,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 - Tool usage scenarios.
 - Performance stress tests.
 
-**Supported evaluation metrics**: The Azure AI Evaluation SDK provides the following evaluators for agent workflows:
+**Supported evaluation metrics**: The Foundry SDK provides the following evaluators for agent workflows:
 
 **Intent Resolution**: Measures how well the agent identifies and understands user requests.**Task Adherence**: Evaluates whether the agent's responses adhere to assigned tasks and system instructions.**Tool Call Accuracy**: Assesses whether the agent makes correct function tool calls for user requests.**Additional Quality Metrics**: Enables the use of relevance, coherence, and fluency with agent messages.
 
@@ -5219,7 +5348,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 
 **Use iterative evaluation**: Regularly evaluate agent versions during development to catch problems early and measure improvements.
 
-For more information about evaluating agents, see [Evaluate your AI agents locally](../../how-to/develop/agent-evaluate-sdk?view=foundry) and [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators?view=foundry).
+For more information about evaluating agents, see [Evaluate your AI agents](../../how-to/develop/agent-evaluate-sdk?view=foundry) and [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators?view=foundry).
 
 ## Publish hosted agents to channels
 
@@ -5276,6 +5405,25 @@ If your agent deployment fails, view error logs by selecting **View deployment l
 400 | Correct invalid request fields. |
 `UserError` (generic) |
 400 | Inspect the message and fix the configuration. |
+
+### Troubleshoot runtime issues
+
+If your hosted agent deploys successfully but doesn't respond as expected, check these common issues:
+
+| Symptom | Possible cause | Solution |
+|---|---|---|
+| Agent doesn't respond | Container is still starting | Wait for the agent status to show Started. Check the log stream for startup progress. |
+| Slow response times | Insufficient resource allocation | Increase CPU or memory allocation in the agent definition. |
+| Timeout errors | Long-running operations | Increase timeout settings in your agent code. Consider breaking operations into smaller steps. |
+| Intermittent failures | Replica scaling issues | Check that `min_replicas` is set appropriately for your workload. |
+| Tool calls failing | Missing connection configuration | Verify that tool connections are properly configured and the managed identity has access. |
+| Model errors | Invalid model deployment name | Verify that `MODEL_NAME` environment variable matches an available model deployment. |
+
+To debug runtime issues:
+
+- Use the
+[log stream API](#view-container-log-stream)to view container logs in real time. - Check the
+**Traces**tab in the Foundry portal playground for detailed request and response information. - Verify environment variables are set correctly in your agent definition.
 
 ## Understand preview details
 
@@ -7301,308 +7449,6 @@ section of the Microsoft Foundry extension tree view. - Select the deployed agen
 For more information about publishing hosted agents, see [Publish and share agents in Microsoft Foundry](publish-agent?view=foundry).
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/mcp-authentication -->
-
-# Set up authentication for Model Context Protocol (MCP) tools (preview)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. This article helps you choose an authentication method and configure it for MCP tools in Foundry Agent Service.
-
-Note
-
-If you don't already have an account with the MCP server publisher, create one through the publisher's website.
-
-## Prerequisites
-
-Before you begin, you need:
-
-- Access to the
-[Foundry portal](https://ai.azure.com/?cid=learnDocs)and a project. If you don't have one, see[Create projects in Foundry](../../how-to/create-projects?view=foundry). - Permissions to create project connections and configure agents. For details, see
-[Role-based access control in the Foundry portal](../../concepts/rbac-foundry?view=foundry). - The remote MCP server endpoint URL you want to connect to.
-- Credentials for your selected authentication method:
-- Key-based authentication: an API key, personal access token (PAT), or other token.
-- Microsoft Entra authentication: role assignments for the agent identity or project managed identity on the underlying service.
-- OAuth identity passthrough: managed OAuth configuration or an OAuth app registration (custom OAuth).
-
-
-## Choose an authentication method
-
-In general, two authentication scenarios exist:
-
-**Shared authentication**: Every user of the agent uses the same identity to authenticate to the MCP server. User context doesn't persist.**Individual authentication**: Each user authenticates with their own account so their user context persists.
-
-Use the following guidance to choose a method:
-
-| Your goal | Recommended method |
-|---|---|
-| Use one shared identity for all users | Key-based authentication or Microsoft Entra authentication |
-| Preserve each user's identity and permissions | OAuth identity passthrough |
-| Avoid managing secrets when the underlying service supports Microsoft Entra | Microsoft Entra authentication |
-| Connect to an MCP server that doesn't require auth | Unauthenticated access |
-
-## Supported authentication methods
-
-| Method | Description | User context persists |
-|---|---|---|
-| Key-based | Provide an API key or access token to authenticate with the MCP server. | No |
-| Microsoft Entra - agent identity | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
-| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
-| OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the MCP server. | Yes |
-| Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
-
-## Key-based authentication
-
-Note
-
-People who have access to the project can access an API key stored in a project connection. Store only shared secrets in a project connection. For user-specific access, use OAuth identity passthrough.
-
-Pass an API key, a personal access token (PAT), or other credentials to MCP servers that support key-based authentication. For improved security, store shared credentials in a project connection instead of passing them at runtime.
-
-When you connect an MCP server to an agent in the Foundry portal, Foundry creates a project connection for you. Provide the credential name and credential value. For example, if you're connecting to the GitHub MCP server, you might provide:
-
-- Credential name:
-`Authorization`
-
-- Credential value:
-`Bearer <your-personal-access-token>`
-
-
-When the agent invokes the MCP server, Agent Service retrieves the credentials from the project connection and passes them to the MCP server.
-
-For security:
-
-- Use least-privilege credentials where possible.
-- Rotate tokens regularly.
-- Restrict access to projects that contain shared secrets.
-
-## Microsoft Entra authentication
-
-Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens.
-
-### Agent identity
-
-Use your agent identity to authenticate with MCP servers that support agent identity authentication. If you create your agent by using Agent Service, you automatically assign an agent identity to it.
-
-Before publishing, all agents in your Foundry project share the same agent identity. After you publish an agent, the agent gets a unique agent identity.
-
-Make sure the agent identity has the required role assignments on the underlying service that powers the MCP server.
-
-When the agent invokes the MCP server, Agent Service uses the available agent identity to request an authorization token and passes it to the MCP server.
-
-### Foundry project managed identity
-
-Use your Foundry project's managed identity to authenticate with MCP servers that support managed identity authentication.
-
-Make sure the project managed identity has the required role assignments on the underlying service that powers the MCP server.
-
-When the agent invokes the MCP server, Agent Service uses the project's managed identity to request an authorization token and passes it to the MCP server.
-
-## OAuth identity passthrough
-
-Note
-
-To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
-
-OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
-
-Use [OAuth identity](/en-us/entra/architecture/auth-oauth2) passthrough to prompt users interacting with your agent to sign in to the MCP server and its underlying service. Agent Service securely stores the user's credentials and uses them only within the context of the agent communicating with the MCP server.
-
-When you use OAuth identity passthrough, Agent Service generates a consent link the first time a particular user needs to authorize access. After the user signs in and consents, the agent can discover and invoke tools on the MCP server with that user's credentials.
-
-Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**.
-
-- With managed OAuth, Microsoft or the MCP server publisher manages the OAuth app.
-- With custom OAuth, you bring your own OAuth app registration.
-
-Note
-
-If you use custom OAuth, you get a redirect URL. Add the redirect URL to your OAuth app so Agent Service can complete the flow.
-
-When you set up **custom OAuth**, provide the following information:
-
-- client ID: required
-- client secret: optional (depends on your OAuth app)
-- auth URL: required
-- refresh URL: required
-- token URL: required
-- scopes: optional
-
-### Bring your own Microsoft Entra app registration
-
-Note
-
-Agent 365 MCP servers are only available to [Frontier tenants](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
-
-To use identity passthrough with Microsoft services, bring your own [Microsoft Entra app registration](/en-us/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you control what permissions you grant.
-
-The following steps use the Agent 365 MCP server as an example:
-
-Follow the
-
-[app registration guide](/en-us/entra/identity-platform/quickstart-register-app)to create a Microsoft Entra app and get the client ID and client secret.Grant
-
-[scoped permissions](/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis)to your Microsoft Entra app.For Agent 365 MCP servers, go to
-
-**Manage**>**API Permissions**and search for**Agent 365 Tools**. If you can't find it, search for`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1`
-
-. Assign the permissions you need and grant admin consent for your tenant.Here are the permissions for each MCP server:
-
-- Microsoft Outlook Mail MCP Server (Frontier):
-`McpServers.Mail.All`
-
-- Microsoft Outlook Calendar MCP Server (Frontier):
-`McpServers.Calendar.All`
-
-- Microsoft Teams MCP Server (Frontier):
-`McpServers.Teams.All`
-
-- Microsoft 365 User Profile MCP Server (Frontier):
-`McpServers.Me.All`
-
-- Microsoft SharePoint and OneDrive MCP Server (Frontier):
-`McpServers.OneDriveSharepoint.All`
-
-- Microsoft SharePoint Lists MCP Server (Frontier):
-`McpServers.SharepointLists.All`
-
-- Microsoft Word MCP Server (Frontier):
-`McpServers.Word.All`
-
-- Microsoft 365 Copilot (Search) MCP Server (Frontier):
-`McpServers.CopilotMCP.All`
-
-- Microsoft 365 Admin Center MCP Server (Frontier):
-`McpServers.M365Admin.All`
-
-- Microsoft Dataverse MCP Server (Frontier):
-`McpServers.Dataverse.All`
-
-
-- Microsoft Outlook Mail MCP Server (Frontier):
-Go back to
-
-[Foundry portal](https://ai.azure.com/build/tools)and configure your MCP server. Connect a tool, go to**Custom**, and then select**MCP**. Provide a name and MCP server endpoint, and then select**OAuth Identity Passthrough**:- client ID and client secret
-- token URL:
-`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
-
-- auth URL:
-`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize`
-
-- refresh URL:
-`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
-
-- scopes:
-`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above}`
-
-
-After you complete the configuration, you get a
-
-[redirect URL](/en-us/entra/identity-platform/how-to-add-redirect-uri)to add to your Microsoft Entra app.
-
-## Unauthenticated access
-
-Use unauthenticated access only when the MCP server doesn't require authentication.
-
-## Set up authentication for an MCP server
-
-Identify the remote MCP server you want to connect to.
-
-Create or select a project connection that stores the MCP server endpoint, authentication type, and any required credentials.
-
-If you connect the MCP server in the Foundry portal, Foundry creates the project connection for you.
-
-Create or update an agent with an
-
-`mcp`
-
-tool with the following information:`server_url`
-
-: The URL of the MCP server. For example,`https://api.githubcopilot.com/mcp/`
-
-.`server_label`
-
-: A unique identifier of this MCP server to the agent. For example,`github`
-
-.`require_approval`
-
-: Optionally determine whether approval is required. Supported values are:`always`
-
-: A developer needs to provide approval for every call. If you don't provide a value, this value is the default.`never`
-
-: No approval is required.`{"never":[<tool_name_1>, <tool_name_2>]}`
-
-: You provide a list of tools that don't require approval.`{"always":[<tool_name_1>, <tool_name_2>]}`
-
-: You provide a list of tools that require approval.
-
-`project_connection_id`
-
-: The connection name that stores the MCP server endpoint, authentication selection, and relevant information. If you provide different endpoints in the connection versus`server_url`
-
-, the endpoint in the connection is used.
-
-Run the agent.
-
-If the model tries to invoke a tool in your MCP server with approval required or the user needs to sign in for OAuth identity passthrough, review the response output:
-
-- Consent link:
-`oauth_consent_request`
-
-- Approval request:
-`mcp_approval_request`
-
-
-After the user signs in or you approve the call, submit another response to continue.
-
-- Consent link:
-
-## Validate
-
-- Trigger an MCP tool call from your agent.
-- Confirm the tool call completes successfully.
-- If you're using OAuth identity passthrough, confirm a new user gets a consent link and that subsequent tool calls succeed after the user consents.
-
-## Troubleshooting
-
-| Issue | Cause | Resolution |
-|---|---|---|
-You don't get an `oauth_consent_request` when you expect one |
-The MCP tool isn't configured for OAuth identity passthrough, or the tool call didn't execute | Confirm the project connection is configured for OAuth identity passthrough, and make sure your prompt causes the agent to invoke the MCP tool. |
-| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the Azure AI User role (or higher) on the project. |
-| Key-based authentication fails | Invalid or expired key or token, or the MCP server expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the MCP server documentation. |
-| Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
-| Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling |
-Update `require_approval` to match your approval requirements. |
-
-## Host a local MCP server
-
-The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/en-us/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following points when attempting to host local MCP servers in the cloud:
-
-| Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
-|---|---|---|
-Transport |
-HTTP POST/GET endpoints required. | HTTP streamable required. |
-Code changes |
-The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
-Authentication |
-Custom authentication implementation required. | Use
-Azure Functions requires a key by default, but you can
-|
-
-**Language stack****Container requirements****Dependencies****State****UVX/NPX**`npx`
-
-start commands not supported.
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/connected-agents -->
 
 # Build collaborative, multi-agent systems with Connected Agents
@@ -7799,6 +7645,331 @@ After testing your connected agents, you can publish them to Azure for productio
 . No code changes are needed.**Identity management**: Published connected agents receive their own Agent Identity. Reconfigure permissions for any Azure resources that your connected agents access, as the shared development identity permissions don't transfer.
 
 For complete publishing instructions, including how to publish agents through the portal or REST API, authentication configuration, and consuming published agents, see [Publish and share agents in Microsoft Foundry](publish-agent?view=foundry-classic).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/mcp-authentication -->
+
+# Set up authentication for Model Context Protocol (MCP) tools (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. This article helps you choose an authentication method and configure it for MCP tools in Foundry Agent Service.
+
+Note
+
+If you don't already have an account with the MCP server publisher, create one through the publisher's website.
+
+## Prerequisites
+
+Before you begin, you need:
+
+- Access to the
+[Foundry portal](https://ai.azure.com/?cid=learnDocs)and a project. If you don't have one, see[Create projects in Foundry](../../how-to/create-projects?view=foundry). - Permissions to create project connections and configure agents. For details, see
+[Role-based access control in the Foundry portal](../../concepts/rbac-foundry?view=foundry). - The remote MCP server endpoint URL you want to connect to.
+- Credentials for your selected authentication method:
+- Key-based authentication: an API key, personal access token (PAT), or other token.
+- Microsoft Entra authentication: role assignments for the agent identity or project managed identity on the underlying service.
+- OAuth identity passthrough: managed OAuth configuration or an OAuth app registration (custom OAuth).
+
+
+## Choose an authentication method
+
+In general, two authentication scenarios exist:
+
+**Shared authentication**: Every user of the agent uses the same identity to authenticate to the MCP server. User context doesn't persist.**Individual authentication**: Each user authenticates with their own account so their user context persists.
+
+Use the following guidance to choose a method:
+
+| Your goal | Recommended method |
+|---|---|
+| Use one shared identity for all users | Key-based authentication or Microsoft Entra authentication |
+| Preserve each user's identity and permissions | OAuth identity passthrough |
+| Avoid managing secrets when the underlying service supports Microsoft Entra | Microsoft Entra authentication |
+| Connect to an MCP server that doesn't require auth | Unauthenticated access |
+
+## Supported authentication methods
+
+| Method | Description | User context persists |
+|---|---|---|
+| Key-based | Provide an API key or access token to authenticate with the MCP server. | No |
+| Microsoft Entra - agent identity | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the MCP server. | Yes |
+| Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
+
+## Key-based authentication
+
+Note
+
+People who have access to the project can access an API key stored in a project connection. Store only shared secrets in a project connection. For user-specific access, use OAuth identity passthrough.
+
+Pass an API key, a personal access token (PAT), or other credentials to MCP servers that support key-based authentication. For improved security, store shared credentials in a project connection instead of passing them at runtime.
+
+When you connect an MCP server to an agent in the Foundry portal, Foundry creates a project connection for you. Provide the credential name and credential value. For example, if you're connecting to the GitHub MCP server, you might provide:
+
+- Credential name:
+`Authorization`
+
+- Credential value:
+`Bearer <your-personal-access-token>`
+
+
+When the agent invokes the MCP server, Agent Service retrieves the credentials from the project connection and passes them to the MCP server.
+
+For security:
+
+- Use least-privilege credentials where possible.
+- Rotate tokens regularly.
+- Restrict access to projects that contain shared secrets.
+
+## Microsoft Entra authentication
+
+Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens.
+
+### Agent identity
+
+Use your agent identity to authenticate with MCP servers that support agent identity authentication. If you create your agent by using Agent Service, you automatically assign an agent identity to it.
+
+Before publishing, all agents in your Foundry project share the same agent identity. After you publish an agent, the agent gets a unique agent identity.
+
+Make sure the agent identity has the required role assignments on the underlying service that powers the MCP server.
+
+When the agent invokes the MCP server, Agent Service uses the available agent identity to request an authorization token and passes it to the MCP server.
+
+### Foundry project managed identity
+
+Use your Foundry project's managed identity to authenticate with MCP servers that support managed identity authentication.
+
+Make sure the project managed identity has the required role assignments on the underlying service that powers the MCP server.
+
+When the agent invokes the MCP server, Agent Service uses the project's managed identity to request an authorization token and passes it to the MCP server.
+
+## OAuth identity passthrough
+
+Note
+
+To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
+
+OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
+
+Use [OAuth identity](/en-us/entra/architecture/auth-oauth2) passthrough to prompt users interacting with your agent to sign in to the MCP server and its underlying service. Agent Service securely stores the user's credentials and uses them only within the context of the agent communicating with the MCP server.
+
+When you use OAuth identity passthrough, Agent Service generates a consent link the first time a particular user needs to authorize access. After the user signs in and consents, the agent can discover and invoke tools on the MCP server with that user's credentials.
+
+Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**.
+
+- With managed OAuth, Microsoft or the MCP server publisher manages the OAuth app.
+- With custom OAuth, you bring your own OAuth app registration.
+
+Note
+
+If you use custom OAuth, you get a redirect URL. Add the redirect URL to your OAuth app so Agent Service can complete the flow.
+
+When you set up **custom OAuth**, provide the following information:
+
+- client ID: required
+- client secret: optional (depends on your OAuth app)
+- auth URL: required
+- refresh URL: required (If you don't have a separate refresh URL, you can use token URL instead.)
+- token URL: required
+- scopes: optional
+
+### Flow using OAuth Identity Passthrough
+
+The scope of OAuth is per tool(connection) name per Foundry project, which means, each new user using a new tool(connection) in this Foundry project will be prompted to provide consent.
+
+When a user is firstly trying to use a new tool in this Foundry project, the response output will share the consent link in
+
+`response.output_item`
+
+. You can find the consent link in item.type`oauth_consent_request`
+
+, under`consent_link`
+
+. You need to surface this consent link to user.`"type":"response.output_item.done", "sequence_number":7, "output_index":1, "item":{ "type":"oauth_consent_request", "id":"oauthreq_10b0f026610e2b76006981547b53d48190840179e52f39a0aa", "created_by":{}, "consent_link":"https://logic-swedencentral-001.consent.azure-apihub.net/login?data=xxxx" }`
+
+The user will be prompted to log in and give consent after reviewing the access needed. After giving consent successfully, user should see a dialog like this:
+
+After the user has closed the dialog, you need to submit another response with the previous response id
+
+`# Requires: azure-ai-projects >= 1.0.0 from azure.ai.projects import AIProjectClient from azure.identity import DefaultAzureCredential # Submit another response after user consent response = client.responses.create( previous_response_id="YOUR_PREVIOUS_RESPONSE_ID", input=user_input, extra_body={ "agent": {"name": agent.name, "type": "agent_reference"}, "tool_choice": "required", "stream": True }, )`
+
+
+Once the user has signed in and given consent once, they don't need to give consent in the future.
+
+### Bring your own Microsoft Entra app registration
+
+Note
+
+Agent 365 MCP servers are only available to [Frontier tenants](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
+
+To use identity passthrough with Microsoft services, bring your own [Microsoft Entra app registration](/en-us/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you control what permissions you grant.
+
+The following steps use the Agent 365 MCP server as an example:
+
+Follow the
+
+[app registration guide](/en-us/entra/identity-platform/quickstart-register-app)to create a Microsoft Entra app and get the client ID and client secret.Grant
+
+[scoped permissions](/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis)to your Microsoft Entra app.For Agent 365 MCP servers, go to
+
+**Manage**>**API Permissions**and search for**Agent 365 Tools**. If you can't find it, search for`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1`
+
+. Assign the permissions you need and grant admin consent for your tenant.Here are the permissions for each MCP server:
+
+- Microsoft Outlook Mail MCP Server (Frontier):
+`McpServers.Mail.All`
+
+- Microsoft Outlook Calendar MCP Server (Frontier):
+`McpServers.Calendar.All`
+
+- Microsoft Teams MCP Server (Frontier):
+`McpServers.Teams.All`
+
+- Microsoft 365 User Profile MCP Server (Frontier):
+`McpServers.Me.All`
+
+- Microsoft SharePoint and OneDrive MCP Server (Frontier):
+`McpServers.OneDriveSharepoint.All`
+
+- Microsoft SharePoint Lists MCP Server (Frontier):
+`McpServers.SharepointLists.All`
+
+- Microsoft Word MCP Server (Frontier):
+`McpServers.Word.All`
+
+- Microsoft 365 Copilot (Search) MCP Server (Frontier):
+`McpServers.CopilotMCP.All`
+
+- Microsoft 365 Admin Center MCP Server (Frontier):
+`McpServers.M365Admin.All`
+
+- Microsoft Dataverse MCP Server (Frontier):
+`McpServers.Dataverse.All`
+
+
+- Microsoft Outlook Mail MCP Server (Frontier):
+Go back to
+
+[Foundry portal](https://ai.azure.com/build/tools)and configure your MCP server. Connect a tool, go to**Custom**, and then select**MCP**. Provide a name and MCP server endpoint, and then select**OAuth Identity Passthrough**:- client ID and client secret
+- token URL:
+`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+
+- auth URL:
+`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize`
+
+- refresh URL:
+`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+
+- scopes:
+`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above}`
+
+
+After you complete the configuration, you get a
+
+[redirect URL](/en-us/entra/identity-platform/how-to-add-redirect-uri)to add to your Microsoft Entra app.
+
+## Unauthenticated access
+
+Use unauthenticated access only when the MCP server doesn't require authentication.
+
+## Set up authentication for an MCP server
+
+Identify the remote MCP server you want to connect to.
+
+Create or select a project connection that stores the MCP server endpoint, authentication type, and any required credentials.
+
+If you connect the MCP server in the Foundry portal, Foundry creates the project connection for you.
+
+Create or update an agent with an
+
+`mcp`
+
+tool with the following information:`server_url`
+
+: The URL of the MCP server. For example,`https://api.githubcopilot.com/mcp/`
+
+.`server_label`
+
+: A unique identifier of this MCP server to the agent. For example,`github`
+
+.`require_approval`
+
+: Optionally determine whether approval is required. Supported values are:`always`
+
+: A developer needs to provide approval for every call. If you don't provide a value, this value is the default.`never`
+
+: No approval is required.`{"never":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that don't require approval.`{"always":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that require approval.
+
+`project_connection_id`
+
+: The connection name that stores the MCP server endpoint, authentication selection, and relevant information. If you provide different endpoints in the connection versus`server_url`
+
+, the endpoint in the connection is used.
+
+Run the agent.
+
+If the model tries to invoke a tool in your MCP server with approval required or the user needs to sign in for OAuth identity passthrough, review the response output:
+
+- Consent link:
+`oauth_consent_request`
+
+- Approval request:
+`mcp_approval_request`
+
+
+After the user signs in or you approve the call, submit another response to continue.
+
+- Consent link:
+
+## Validate
+
+- Trigger an MCP tool call from your agent.
+- Confirm the tool call completes successfully.
+- If you're using OAuth identity passthrough, confirm a new user gets a consent link and that subsequent tool calls succeed after the user consents.
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+You don't get an `oauth_consent_request` when you expect one |
+The MCP tool isn't configured for OAuth identity passthrough, or the tool call didn't execute | Confirm the project connection is configured for OAuth identity passthrough, and make sure your prompt causes the agent to invoke the MCP tool. |
+| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the Azure AI User role (or higher) on the project. |
+| Key-based authentication fails | Invalid or expired key or token, or the MCP server expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the MCP server documentation. |
+| Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
+| Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling |
+Update `require_approval` to match your approval requirements. |
+
+## Host a local MCP server
+
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/en-us/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following points when attempting to host local MCP servers in the cloud:
+
+| Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+|---|---|---|
+Transport |
+HTTP POST/GET endpoints required. | HTTP streamable required (responses must support chunked transfer encoding for SSE-style streaming). |
+Code changes |
+The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
+Authentication |
+Custom authentication implementation required. | Use
+Azure Functions requires a key by default, but you can
+|
+
+**Language stack****Container requirements****Dependencies****State****UVX/NPX**`npx`
+
+start commands not supported.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/memory-usage -->
@@ -10162,6 +10333,7 @@ The file search tool is currently unavailable in the following regions:
 
 - Italy north
 - Brazil south
+- West Europe
 
 | Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 |---|---|---|---|---|---|---|---|
@@ -11293,7 +11465,9 @@ Access to this page requires authorization. You can try [changing directories].
 
 Note
 
-This document refers to the classic version of the agents API.
+- This document refers to the classic version of the agents API.
+- We recommend customers to start with new
+[Web Search tool (preview)](../tools/web-search?view=foundry-classic)with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more[here](../tools/web-overview?view=foundry-classic)
 
 **Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be used or not. If so, it uses Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.
 
@@ -11351,17 +11525,16 @@ Create an Azure AI Agent by following the steps in the
 
 [quickstart](../../quickstart?view=foundry-classic).Create a Grounding with Bing Search resource. You need to have
 
-**Owner**or `**Contributor**role in your subscription or resource group to create it.- You can create one in the
-[Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
+**Owner**or `**Contributor**role in your subscription or resource group to create it.You can create one in the
 
-- You can also create one through code-first experience. If so, you need to manually
+[Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.You can also create one through code-first experience. If so, you need to manually
+
 [register](/en-us/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider)Bing Search as an Azure resource provider. You must have permission to perform the`/register/action`
 
 operation for the resource provider. The permission is included in the**Contributor**and**Owner**roles.
 
 `az provider register --namespace 'Microsoft.Bing'`
 
-- You can create one in the
 After you have created a Grounding with Bing Search resource, you can find it in
 
 [Azure portal](https://portal.azure.com/#home). Navigate to the resource group you've created the resource in, search for the Grounding with Bing Search resource you have created.
@@ -12619,7 +12792,9 @@ Access to this page requires authorization. You can try [changing directories].
 
 Note
 
-This article refers to the classic version of the agents API.
+- This document refers to the classic version of the agents API.
+- We recommend customers to start with new
+[Web Search tool (preview)](../tools/web-search?view=foundry-classic)with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more[here](../tools/web-overview?view=foundry-classic)
 
 Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
 
@@ -15739,160 +15914,6 @@ Then, you can add it to your connection. Make sure you have selected the
 [How to use the SharePoint tool](sharepoint-samples?view=foundry-classic)- Reference articles for content retrieval used by the tool:
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/custom-code-interpreter -->
-
-# Custom code interpreter tool for agents (preview)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-By using a custom code interpreter for your agent, you can customize the resources, available Python packages, and [Azure Container Apps environment](/en-us/azure/container-apps/environment) that the agent uses to run the Python code it writes. The code interpreter container exposes a Model Context Protocol (MCP) server.
-
-Use a custom code interpreter when you need more control over the runtime than the built-in [Code Interpreter tool for agents](code-interpreter?view=foundry) provides.
-
-For more information about MCP and how agents connect to MCP tools, see [Connect to Model Context Protocol servers (preview)](model-context-protocol?view=foundry).
-
-## Usage support
-
-This article uses the Azure CLI and a runnable sample project.
-
-For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
-
-## Prerequisites
-
-To use the preview feature, you need the following prerequisites:
-
-- The
-[Azure CLI](/en-us/cli/azure/install-azure-cli). - Optionally install
-`uv`
-
-as an alternative to`pip`
-
-.`uv`
-
-is a fast package and project manager for Python projects. You can install it by following the instructions at[Installing uv](https://docs.astral.sh/uv/getting-started/installation/)in the official documentation. - An Azure subscription and resource group with the following permissions:
-- The latest prerelease package. See the
-[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true)for details.
-
-## Before you begin
-
-This procedure provisions Azure infrastructure, including Azure Container Apps resources. Review Azure cost and governance requirements for your organization before you deploy.
-
-## Custom code interpreter example
-
-The following console commands and code samples show how to create an agent that uses a custom code interpreter MCP server.
-
-### Enable MCP server for dynamic sessions
-
-To enable the preview feature, run the following commands.
-
-```
-az feature register --namespace Microsoft.App --name SessionPoolsSupportMCP
-az provider register -n Microsoft.App
-```
-
-
-### Get the sample code
-
-Clone the [sample code in the GitHub repo](https://github.com/azure-ai-foundry/foundry-samples) and navigate to the `samples/python/hosted-agents/code-interpreter-custom`
-
-folder in your terminal.
-
-### Provision the infrastructure
-
-To provision the infrastructure, run the following command by using the Azure CLI (`az`
-
-):
-
-```
-az deployment group create \
---name custom-code-interpreter \
---subscription <your_subscription> \
---resource-group <your_resource_group> \
---template-file ./infra.bicep
-```
-
-
-Note
-
-This process can take a while. Allocating the dynamic session pool can take up to one hour, depending on the number of standby instances you request.
-
-### Use the custom code interpreter in an agent
-
-Copy the `.env.sample`
-
-file from the repository to `.env`
-
-and fill in the values with the output from the preceding deployment. You can find this output in the Azure portal under the resource group.
-
-Install the Python dependencies by using `uv sync`
-
-or `pip install`
-
-. Finally, run `./main.py`
-
-.
-
-## Verify your setup
-
-After you provision the infrastructure and run the sample:
-
-- Confirm the Azure deployment completes successfully.
-- Confirm the sample can connect by using the values in your
-`.env`
-
-file. - In Microsoft Foundry, verify your agent calls the tool by using tracing. For more information, see
-[Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
-
-## Troubleshooting
-
-### Feature registration is still pending
-
-If `az feature register`
-
-returns a `Registering`
-
-state, wait for the registration to complete and then run `az provider register -n Microsoft.App`
-
-again.
-
-### Deployment fails
-
-If `az deployment group create`
-
-fails:
-
-- Confirm you have the required role assignments in the target subscription and resource group.
-- Confirm the resource group exists and the selected region supports the deployed resources.
-
-### The agent doesn't call the tool
-
-Use tracing in Microsoft Foundry to confirm whether a tool call occurred. For guidance on validating tool invocation, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
-
-## Limitations
-
-The APIs don't directly support file input or output, or the use of file stores. To get data in and out, you must use URLs, such as data URLs for small files and Azure Blob Service shared access signature (SAS) URLs for large files.
-
-## Security
-
-If you use SAS URLs to pass data in or out of the runtime:
-
-- Use short-lived SAS tokens.
-- Don't log SAS URLs or store them in source control.
-- Scope permissions to the minimum required (for example, read-only or write-only).
-
-## Clean up
-
-To stop billing for provisioned resources, delete the resources created by the sample deployment. If you used a dedicated resource group for this article, delete the resource group.
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/browser-automation -->
 
 # Browser Automation (preview)
@@ -15975,6 +15996,126 @@ Review the [transparency note](/en-us/azure/ai-foundry/responsible-ai/agents/tra
 Review the [responsible AI considerations](/en-us/azure/ai-foundry/responsible-ai/agents/transparency-note#considerations-when-choosing-a-use-case) when using this tool.
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/web-overview -->
+
+# Web grounding tools overview
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Large language models work with a knowledge cutoff. They can't access new information beyond a fixed point in time. By connecting with web grounding tools, your agents can incorporate real-time public web data when generating responses. For example, you can ask questions such as "what is the top AI news today" and receive current, cited answers.
+
+## How web grounding works
+
+The grounding process involves several key steps:
+
+**Query formulation**: The agent identifies information gaps and constructs search queries based on the user's input.**Search execution**: The grounding tool submits queries to Bing and retrieves results.**Information synthesis**: The agent processes search results and integrates findings into responses.**Source attribution**: The agent provides transparency by citing search sources with URLs.
+
+## Prerequisites
+
+Before using any web grounding tool, ensure you have:
+
+- A
+[basic or standard agent environment](../../environment-setup?view=foundry). - The latest prerelease SDK package. See the
+[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true)for installation steps. - An Azure OpenAI model deployment in your Foundry project.
+
+Important
+
+- Web Search (preview) uses Grounding with Bing Search and Grounding with Bing Custom Search are
+[First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services)with[terms for online services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS). They're governed by the[Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise)and the[Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). - The Microsoft
+[Data Protection Addendum](https://aka.ms/dpa)doesn't apply to data sent to Grounding with Bing Search or Grounding with Bing Custom Search. When you use these services, your data flows outside the Azure compliance and Geo boundary. This also means use of these services waives all elevated Government Community Cloud security and compliance commitments, including data sovereignty and screened/citizenship-based support, as applicable. - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See pricing for
+[details](https://www.microsoft.com/bing/apis/grounding-pricing). - See the management section for information about how Azure admins can manage access to use of Grounding with Bing Search and Grounding with Bing Custom Search.
+
+## Determine the best tool for your use cases
+
+### Use case 1: grounding from general web indexed by Bing
+
+|
+|---|
+
+[Grounding with Bing Search](bing-tools?view=foundry)
+
+**Stage****Grounding with Bing resource****Supported parameters**`user_location`
+
+: Provides geo‑relevant results-
+
+`search_context_size`
+
+: low/medium/high (default: medium)Learn more
+
+[here](web-search?view=foundry#optional-parameters-for-general-web-search)`count`
+
+: the maximum of results returned by Bing -
+
+`freshness`
+
+: specifies the period for the search results-
+
+`market`
+
+: specifies the region for the search results -
+
+`set_lang`
+
+: specifies the language for the search results Learn more
+
+[here](bing-tools?view=foundry#optional-parameters)**Supported models**### Use case 2: grounding from specific domains you defined
+
+|
+|---|
+
+**Stage****Pre-defined domains**`custom_search_configuration`
+
+to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance)**Other parameters**`count`
+
+: the maximum number of results returned by Bing -
+
+`freshness`
+
+: specifies the period for the search results-
+
+`market`
+
+: specifies the region for the search results -
+
+`set_lang`
+
+: specifies the language for the search results Learn more
+
+[here](bing-tools?view=foundry#optional-parameters)**Supported models**## Common questions
+
+### Which tool should I use if I'm just getting started?
+
+Use [Web Search (preview)](web-search?view=foundry). It requires no additional Azure resources, handles Bing resource management automatically, and provides geo-relevant results with the `user_location`
+
+parameter.
+
+### Can I use web grounding tools with network-secured Foundry projects?
+
+Web grounding tools don't respect VPN or private endpoints. They act as public endpoints. Consider this security implication when using network-secured Foundry with these tools.
+
+### How do I restrict search results to specific websites?
+
+Use [Grounding with Bing Custom Search (preview)](bing-tools?view=foundry). This tool lets you define an allow-list or block-list of domains, so search results come only from sources you approve.
+
+### Are there additional costs for web grounding?
+
+Yes. Web Search (preview), Grounding with Bing Search and Grounding with Bing Custom Search (preview) incur costs beyond standard Azure OpenAI usage. See [pricing details](https://www.microsoft.com/bing/apis/grounding-pricing).
+
+## Troubleshooting
+
+| Issue | Likely cause | Resolution |
+|---|---|---|
+| Agent doesn't use web grounding | Tool not configured or model doesn't support the tool. | Verify the tool is added to your agent definition. Use `tool_choice="required"` to force tool use. Check that your model deployment supports the tool. |
+| No citations in response | The model generated a response without using search results. | Add explicit instructions to always cite sources. Use `tool_choice="required"` to ensure tool invocation. |
+| Search results aren't relevant | Query formulation didn't capture user intent. | Improve agent instructions to guide query construction. For Bing tools, adjust `market` and `set_lang` parameters. |
+| Tool blocked by administrator | Your organization disabled web grounding tools. | Contact your Azure administrator to enable access. See
+|
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/sharepoint-samples -->
 
 # How to use the SharePoint tool
@@ -15996,6 +16137,14 @@ This article describes the Microsoft SharePoint tool for Foundry Agent Service. 
 Use this article to find step-by-step instructions and code samples for using the SharePoint tool in Agent Service.
 
 ## Prerequisites
+
+The
+
+`azure-ai-agents`
+
+package version**1.2.0b1 or later**. The`SharepointTool`
+
+class is only available in beta versions of the package. Install with:`pip install --pre azure-ai-agents`
 
 Your Microsoft Foundry Project endpoint.
 
@@ -17582,6 +17731,7 @@ The file search tool is currently unavailable in the following regions:
 
 - Italy north
 - Brazil south
+- West Europe
 
 | Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 |---|---|---|---|---|---|---|---|
@@ -18074,6 +18224,252 @@ curl --request GET \
 --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
 -H "Authorization: Bearer $AGENT_TOKEN"
 ```
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/custom-code-interpreter -->
+
+# Custom code interpreter tool for agents (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+By using a custom code interpreter for your agent, you can customize the resources, available Python packages, and [Azure Container Apps environment](/en-us/azure/container-apps/environment) that the agent uses to run the Python code it writes. The code interpreter container exposes a Model Context Protocol (MCP) server.
+
+Use a custom code interpreter when you need more control over the runtime than the built-in [Code Interpreter tool for agents](code-interpreter?view=foundry) provides.
+
+For more information about MCP and how agents connect to MCP tools, see [Connect to Model Context Protocol servers (preview)](model-context-protocol?view=foundry).
+
+## Usage support
+
+This article uses the Azure CLI and a runnable sample project.
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---|---|---|---|---|---|---|---|
+| ✔️ | ✔️ | - | - | - | ✔️ | - | ✔️ |
+
+For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
+
+## Prerequisites
+
+To use the preview feature, you need the following prerequisites:
+
+- The
+[Azure CLI](/en-us/cli/azure/install-azure-cli). - Optionally install
+`uv`
+
+as an alternative to`pip`
+
+.`uv`
+
+is a fast package and project manager for Python projects. You can install it by following the instructions at[Installing uv](https://docs.astral.sh/uv/getting-started/installation/)in the official documentation. - An Azure subscription and resource group with the following permissions:
+- The latest prerelease package. See the
+[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true)for details.
+
+### Environment variables
+
+Set these environment variables after provisioning the infrastructure:
+
+| Variable | Description |
+|---|---|
+`FOUNDRY_PROJECT_ENDPOINT` |
+Your Foundry project endpoint URL. |
+`FOUNDRY_MODEL_DEPLOYMENT_NAME` |
+Your model deployment name (for example, `gpt-4o` ). |
+`MCP_SERVER_URL` |
+The MCP server endpoint from your Azure Container Apps deployment. |
+`MCP_PROJECT_CONNECTION_ID` |
+Your project connection ID for the custom code interpreter. |
+
+## Before you begin
+
+This procedure provisions Azure infrastructure, including Azure Container Apps resources. Review Azure cost and governance requirements for your organization before you deploy.
+
+## Custom code interpreter example
+
+The following console commands and code samples show how to create an agent that uses a custom code interpreter MCP server.
+
+### Enable MCP server for dynamic sessions
+
+To enable the preview feature, run the following commands.
+
+```
+az feature register --namespace Microsoft.App --name SessionPoolsSupportMCP
+az provider register -n Microsoft.App
+```
+
+
+### Get the sample code
+
+Clone the [sample code in the GitHub repo](https://github.com/azure-ai-foundry/foundry-samples) and navigate to the `samples/python/hosted-agents/code-interpreter-custom`
+
+folder in your terminal.
+
+### Provision the infrastructure
+
+To provision the infrastructure, run the following command by using the Azure CLI (`az`
+
+):
+
+```
+az deployment group create \
+--name custom-code-interpreter \
+--subscription <your_subscription> \
+--resource-group <your_resource_group> \
+--template-file ./infra.bicep
+```
+
+
+Note
+
+This process can take a while. Allocating the dynamic session pool can take up to one hour, depending on the number of standby instances you request.
+
+### Use the custom code interpreter in an agent
+
+Copy the `.env.sample`
+
+file from the repository to `.env`
+
+and fill in the values with the output from the preceding deployment. You can find this output in the Azure portal under the resource group.
+
+Install the Python dependencies by using `uv sync`
+
+or `pip install`
+
+. Finally, run `./main.py`
+
+.
+
+### Quick verification
+
+Before running the full sample, verify your authentication and project connection:
+
+```
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from dotenv import load_dotenv
+load_dotenv()
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+print("Connected to project.")
+# List connections to verify MCP connection exists
+connections = project_client.connections.list()
+for conn in connections:
+print(f" Connection: {conn.name} (type: {conn.type})")
+```
+
+
+If this code runs without errors, your credentials and project endpoint are configured correctly.
+
+### Code example
+
+The following Python sample shows how to create an agent with a custom code interpreter MCP tool:
+
+```
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, MCPTool
+load_dotenv()
+project_client = AIProjectClient(
+endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+credential=DefaultAzureCredential(),
+)
+with project_client:
+openai_client = project_client.get_openai_client()
+# Configure the custom code interpreter MCP tool
+custom_code_interpreter = MCPTool(
+server_label="custom-code-interpreter",
+server_url=os.environ["MCP_SERVER_URL"],
+project_connection_id=os.environ.get("MCP_PROJECT_CONNECTION_ID"),
+)
+agent = project_client.agents.create_version(
+agent_name="CustomCodeInterpreterAgent",
+definition=PromptAgentDefinition(
+model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+instructions="You are a helpful assistant that can run Python code to analyze data and solve problems.",
+tools=[custom_code_interpreter],
+),
+description="Agent with custom code interpreter for data analysis.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+# Test the agent with a simple calculation
+response = openai_client.responses.create(
+input="Calculate the factorial of 10 using Python.",
+extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+print(f"Response: {response.output_text}")
+# Clean up
+project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
+```
+
+
+### Expected output
+
+When you run the sample, you see output similar to:
+
+```
+Agent created (id: agent-xxxxxxxxxxxx, name: CustomCodeInterpreterAgent, version: 1)
+Response: The factorial of 10 is 3,628,800. I calculated this using Python's math.factorial() function.
+Agent deleted
+```
+
+
+## Verify your setup
+
+After you provision the infrastructure and run the sample:
+
+- Confirm the Azure deployment completes successfully.
+- Confirm the sample can connect by using the values in your
+`.env`
+
+file. - In Microsoft Foundry, verify your agent calls the tool by using tracing. For more information, see
+[Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
+
+## Troubleshooting
+
+| Issue | Likely cause | Resolution |
+|---|---|---|
+| Feature registration is still pending | The `az feature register` command returns `Registering` state. |
+Wait for registration to complete (can take 15-30 minutes). Check status with `az feature show --namespace Microsoft.App --name SessionPoolsSupportMCP` . Then run `az provider register -n Microsoft.App` again. |
+| Deployment fails with permission error | Missing required role assignments. | Confirm you have Azure AI Owner and Container Apps ManagedEnvironment Contributor roles on the subscription or resource group. |
+| Deployment fails with region error | The selected region doesn't support Azure Container Apps Dynamic Sessions. | Try a different region. See
+|
+
+`MCP_SERVER_URL`
+
+matches your deployed Container Apps endpoint. See [Best practices](../../concepts/tool-best-practice?view=foundry).`standbyInstanceCount`
+
+in your Bicep template if needed.`.env`
+
+file. Verify the `MCP_PROJECT_CONNECTION_ID`
+
+format.## Limitations
+
+The APIs don't directly support file input or output, or the use of file stores. To get data in and out, you must use URLs, such as data URLs for small files and Azure Blob Service shared access signature (SAS) URLs for large files.
+
+## Security
+
+If you use SAS URLs to pass data in or out of the runtime:
+
+- Use short-lived SAS tokens.
+- Don't log SAS URLs or store them in source control.
+- Scope permissions to the minimum required (for example, read-only or write-only).
+
+## Clean up
+
+To stop billing for provisioned resources, delete the resources created by the sample deployment. If you used a dedicated resource group for this article, delete the resource group.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/overview -->
@@ -18713,7 +19109,9 @@ Access to this page requires authorization. You can try [changing directories].
 
 Note
 
-This document refers to the classic version of the agents API.
+- This document refers to the classic version of the agents API.
+- We recommend customers to start with new
+[Web Search tool (preview)](../tools/web-search?view=foundry-classic)with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more[here](../tools/web-overview?view=foundry-classic)
 
 **Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be used or not. If so, it uses Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.
 
@@ -18771,17 +19169,16 @@ Create an Azure AI Agent by following the steps in the
 
 [quickstart](../../quickstart?view=foundry-classic).Create a Grounding with Bing Search resource. You need to have
 
-**Owner**or `**Contributor**role in your subscription or resource group to create it.- You can create one in the
-[Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
+**Owner**or `**Contributor**role in your subscription or resource group to create it.You can create one in the
 
-- You can also create one through code-first experience. If so, you need to manually
+[Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.You can also create one through code-first experience. If so, you need to manually
+
 [register](/en-us/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider)Bing Search as an Azure resource provider. You must have permission to perform the`/register/action`
 
 operation for the resource provider. The permission is included in the**Contributor**and**Owner**roles.
 
 `az provider register --namespace 'Microsoft.Bing'`
 
-- You can create one in the
 After you have created a Grounding with Bing Search resource, you can find it in
 
 [Azure portal](https://portal.azure.com/#home). Navigate to the resource group you've created the resource in, search for the Grounding with Bing Search resource you have created.
@@ -19307,11 +19704,11 @@ You can configure web search behavior when you create your agent.
 
 | Issue | Cause | Resolution |
 |---|---|---|
-| Web search isn’t used and no citations appear | The model didn’t determine that web search was needed, or the prompt didn’t request current information | Update your instructions to explicitly allow web search for up-to-date questions, and ask a query that requires current information. |
+| Web search isn't used and no citations appear | Model didn't determine web search was needed | Update your instructions to explicitly allow web search for up-to-date questions, and ask a query that requires current information. |
 | Requests fail after enabling web search | Web search is disabled at the subscription level | Ask an admin to enable web search. See
 |
 
-## Administrator control for the web search tool
+[tool best practices](../../concepts/tool-best-practice?view=foundry).## Administrator control for the web search tool
 
 You can enable or disable the web search tool in Foundry Agent Service at the subscription level by using Azure CLI. This setting applies to all accounts within the specified subscription.
 
@@ -20295,22 +20692,13 @@ item, the request might not be routed to image generation. Review the troublesho
 
 ## Troubleshooting
 
-Use these checks to unblock common configuration issues:
-
-- Verify both deployments exist in the same Foundry project: your orchestrator model (for example,
-`gpt-4o`
-
-) and`gpt-image-1`
-
-. - Verify the header
-`x-ms-oai-image-generation-deployment`
-
-is present on the Responses request and that its value matches your image generation deployment name. - Verify
-`FOUNDRY_MODEL_DEPLOYMENT_NAME`
-
-is set to your orchestrator deployment name, not the image generation deployment. - If your prompt doesn’t produce an image, check whether content filtering blocked the request. See
-[Content filter](../../../openai/concepts/content-filter?view=foundry). - If the tool isn't available in your region or with your orchestrator model, see
-[Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice?view=foundry).
+| Issue | Cause | Resolution |
+|---|---|---|
+| Image generation fails | Missing deployment | Verify both the orchestrator model (for example, `gpt-4o` ) and `gpt-image-1` deployments exist in the same Foundry project. |
+| Image generation fails | Missing or incorrect header | Verify the header `x-ms-oai-image-generation-deployment` is present on the Responses request and matches your image generation deployment name. |
+| Agent uses wrong deployment | Environment variable misconfiguration | Confirm `FOUNDRY_MODEL_DEPLOYMENT_NAME` is set to your orchestrator deployment name, not the image generation deployment. |
+| Prompt doesn't produce an image | Content filtering blocked the request | Check content filtering logs. See
+|
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval -->
@@ -21172,7 +21560,9 @@ Access to this page requires authorization. You can try [changing directories].
 
 Note
 
-This article refers to the classic version of the agents API.
+- This document refers to the classic version of the agents API.
+- We recommend customers to start with new
+[Web Search tool (preview)](../tools/web-search?view=foundry-classic)with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more[here](../tools/web-overview?view=foundry-classic)
 
 Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
 
@@ -22487,19 +22877,13 @@ For details about supported authentication approaches, see [Agent2Agent (A2A) au
 
 ### Get the connection identifier for code
 
-Depending on the SDK sample you follow, use either:
+The connection name (`A2A_PROJECT_CONNECTION_NAME`
 
-- The connection name (
-`A2A_PROJECT_CONNECTION_NAME`
-
-), and resolve it to a connection ID in code. - The connection resource ID (
-`A2A_PROJECT_CONNECTION_ID`
-
-). If you create the connection by using the REST API, you already know the resource ID because it's part of the request URL.
+), and resolve it to a connection ID in code.
 
 ## Quick verification
 
-Before you troubleshoot A2A-specific issues, verify you can authenticate and connect to your Foundry project.
+Before you run the full sample, verify your A2A connection exists:
 
 ```
 import os
@@ -22512,12 +22896,23 @@ DefaultAzureCredential() as credential,
 AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
 print("Connected to project.")
+# Verify A2A connection exists
+connection_name = os.environ.get("A2A_PROJECT_CONNECTION_NAME")
+if connection_name:
+try:
+conn = project_client.connections.get(connection_name)
+print(f"A2A connection verified: {conn.name}")
+except Exception as e:
+print(f"A2A connection '{connection_name}' not found: {e}")
+else:
+# List available connections to help find the right one
+print("A2A_PROJECT_CONNECTION_NAME not set. Available connections:")
+for conn in project_client.connections.list():
+print(f" - {conn.name}")
 ```
 
 
-If this code runs without errors, your credentials and `FOUNDRY_PROJECT_ENDPOINT`
-
-are configured correctly.
+If this code runs without errors, your credentials and A2A connection are configured correctly.
 
 ## Code example
 
@@ -22945,32 +23340,16 @@ console.error("The sample encountered an error:", err);
 
 ## Troubleshooting
 
-- The agent doesn't invoke the A2A tool:
-- Confirm your agent definition includes the A2A tool and you configured the connection.
-- If you're using responses, confirm you're not forcing a different tool and that your prompt requires calling the remote agent.
-
-- Authentication failures (401 or 403):
-- Confirm the connection's authentication type matches your endpoint requirements.
-- For key-based auth, confirm the credential name matches what the endpoint expects, such as
-`x-api-key`
-
-or`Authorization`
-
-.
-
-- The SDK sample can't find the connection:
-- Confirm
-`A2A_PROJECT_CONNECTION_NAME`
-
-matches the connection name you created in Foundry. - If you're using
-`A2A_PROJECT_CONNECTION_ID`
-
-, confirm it's a full resource ID in the format shown in[Prerequisites](#prerequisites).
-
-- Confirm
-- Network or TLS errors:
-- Confirm the endpoint is publicly reachable from your environment and uses a valid TLS certificate.
-
+| Issue | Cause | Resolution |
+|---|---|---|
+| Agent doesn't invoke the A2A tool | Agent definition doesn't include A2A tool configuration | Confirm your agent definition includes the A2A tool and that you configured the connection. If you're using responses, confirm you're not forcing a different tool. |
+| Agent doesn't invoke the A2A tool | Prompt doesn't require remote agent | Update your prompt to require calling the remote agent, or remove conflicting tool choice settings. |
+| Authentication failures (401 or 403) | Connection authentication type mismatch | Confirm the connection's authentication type matches your endpoint requirements. For key-based auth, confirm the credential name matches what the endpoint expects (`x-api-key` or `Authorization` ). |
+| SDK sample can't find the connection | Environment variable mismatch | Confirm `A2A_PROJECT_CONNECTION_NAME` matches the connection name in Foundry. |
+| Network or TLS errors | Endpoint unreachable or invalid certificate | Confirm the endpoint is publicly reachable and uses a valid TLS certificate. Check firewall rules and proxy settings. |
+| Remote agent returns unexpected response | Response format incompatibility | Confirm the remote agent follows A2A protocol specifications. Check that response content types match expected formats. |
+| Connection timeout | Remote agent slow to respond | Increase timeout settings or verify the remote agent's performance. Consider implementing retry logic with exponential backoff. |
+| Missing A2A tool in response | Tool not enabled for the agent | Recreate the agent with the A2A tool explicitly enabled, and verify the connection is active and properly configured. |
 
 ## Considerations for using non-Microsoft services and servers
 
@@ -23800,7 +24179,41 @@ Note
 
 . - If you're using the Python or C# sample, you can provide the connection name and retrieve the connection ID with the SDK.
 
-## Use agents with Azure AI Search tool
+### Quick verification
+
+Before running the full sample, verify your Azure AI Search connection exists:
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+load_dotenv()
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+print("Connected to project.")
+# Verify Azure AI Search connection exists
+connection_name = os.environ.get("AZURE_AI_SEARCH_CONNECTION_NAME")
+if connection_name:
+try:
+conn = project_client.connections.get(connection_name)
+print(f"Azure AI Search connection verified: {conn.name}")
+print(f"Connection ID: {conn.id}")
+except Exception as e:
+print(f"Azure AI Search connection '{connection_name}' not found: {e}")
+else:
+# List available connections to help find the right one
+print("AZURE_AI_SEARCH_CONNECTION_NAME not set. Available connections:")
+for conn in project_client.connections.list():
+print(f" - {conn.name}")
+```
+
+
+If this code runs without errors, your credentials and Azure AI Search connection are configured correctly.
+
+### Full sample
 
 ```
 import os
@@ -23889,9 +24302,41 @@ print("Agent deleted")
 
 The agent queries the search index and returns a response with inline citations. Console output shows the agent ID, streaming delta updates as the response generates, URL citations with start and end indices, and the final complete response text. The agent is then successfully deleted.
 
-The following sample code shows synchronous examples of how to use the Azure AI Search tool in [Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI) to query an index. For asynchronous C# examples, see the [GitHub repo](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI).
+### Quick verification
 
-## Use agents with Azure AI Search tool
+Before running the full sample, verify your Azure AI Search connection exists:
+
+```
+using Azure.AI.Projects;
+using Azure.Identity;
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Verify Azure AI Search connection exists
+try
+{
+AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+Console.WriteLine($"Azure AI Search connection verified: {conn.Name}");
+Console.WriteLine($"Connection ID: {conn.Id}");
+}
+catch (Exception ex)
+{
+Console.WriteLine($"Azure AI Search connection '{aiSearchConnectionName}' not found: {ex.Message}");
+// List available connections
+Console.WriteLine("Available connections:");
+foreach (var conn in projectClient.Connections.GetConnections())
+{
+Console.WriteLine($" - {conn.Name}");
+}
+}
+```
+
+
+If this code runs without errors, your credentials and Azure AI Search connection are configured correctly.
+
+### Full sample
+
+The following sample code shows synchronous examples of how to use the Azure AI Search tool in [Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI) to query an index. For asynchronous C# examples, see the [GitHub repo](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI).
 
 This example shows how to use the Azure AI Search tool with agents to query an index.
 
@@ -24095,7 +24540,39 @@ curl --request POST \
 
 The API returns a JSON response containing the agent's answer about mental health services from the Premera index. The response includes citations and references to the indexed documents used to generate the answer.
 
-## Use agents with Azure AI Search tool
+### Quick verification
+
+Before running the full sample, verify your Azure AI Search connection exists:
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const aiSearchConnectionName = process.env["AZURE_AI_SEARCH_CONNECTION_NAME"] || "<ai search connection name>";
+async function verifyConnection(): Promise<void> {
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+console.log("Connected to project.");
+try {
+const conn = await project.connections.get(aiSearchConnectionName);
+console.log(`Azure AI Search connection verified: ${conn.name}`);
+console.log(`Connection ID: ${conn.id}`);
+} catch (error) {
+console.log(`Azure AI Search connection '${aiSearchConnectionName}' not found: ${error}`);
+// List available connections
+console.log("Available connections:");
+for await (const conn of project.connections.list()) {
+console.log(` - ${conn.name}`);
+}
+}
+}
+verifyConnection().catch(console.error);
+```
+
+
+If this code runs without errors, your credentials and Azure AI Search connection are configured correctly.
+
+### Full sample
 
 This sample demonstrates how to create an AI agent with Azure AI Search capabilities by using the `AzureAISearchAgentTool`
 
@@ -24109,12 +24586,15 @@ import "dotenv/config";
 // Load environment variables
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const aiSearchConnectionId =
-process.env["AZURE_AI_SEARCH_CONNECTION_ID"] || "<ai search project connection id>";
+const aiSearchConnectionName =
+process.env["AZURE_AI_SEARCH_CONNECTION_NAME"] || "<ai search connection name>";
 const aiSearchIndexName = process.env["AI_SEARCH_INDEX_NAME"] || "<ai search index name>";
 export async function main(): Promise<void> {
 const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
 const openAIClient = await project.getOpenAIClient();
+// Get connection ID from connection name
+const aiSearchConnection = await project.connections.get(aiSearchConnectionName);
+console.log(`Azure AI Search connection ID: ${aiSearchConnection.id}`);
 console.log("Creating agent with Azure AI Search tool...");
 // Define Azure AI Search tool that searches indexed content
 const agent = await project.agents.createVersion("MyAISearchAgent", {
@@ -24128,7 +24608,7 @@ type: "azure_ai_search",
 azure_ai_search: {
 indexes: [
 {
-project_connection_id: aiSearchConnectionId,
+project_connection_id: aiSearchConnection.id,
 index_name: aiSearchIndexName,
 query_type: "simple",
 },
@@ -24341,27 +24821,17 @@ Console.WriteLine(connection.Id);
 
 ## Troubleshooting
 
-### The response has no citations
-
-- Confirm your agent instructions request citations.
-- If you're streaming, confirm you receive
-`url_citation`
-
-annotations.
-
-### The tool can't access the index (401/403)
-
-- If you use keyless authentication, confirm the managed identity for your Foundry project has the
-**Search Index Data Contributor**and**Search Service Contributor**roles on the Azure AI Search resource. - If you use key-based authentication, confirm the API key is correct and enabled.
-- For role guidance, see
-[Azure role-based access control in Foundry](../../../concepts/rbac-foundry?view=foundry).
-
-### The tool returns "index not found"
-
-- Confirm
-`AI_SEARCH_INDEX_NAME`
-
-matches the index name in your Azure AI Search resource. - Confirm the project connection points to the Azure AI Search resource that contains the index.
+| Issue | Cause | Resolution |
+|---|---|---|
+| Response has no citations | Agent instructions don't request citations | Update your agent instructions to explicitly request citations in responses. |
+| Response has no citations (streaming) | Annotations not captured | Confirm you receive `url_citation` annotations when streaming. Check your stream processing logic. |
+| Tool can't access the index (401/403) | Missing RBAC roles (keyless auth) | Assign the Search Index Data Contributor and Search Service Contributor roles to the Foundry project's managed identity. See
+|
+| Tool can't access the index (401/403) | Invalid or disabled API key | Confirm the API key is correct and enabled in the Azure AI Search resource. |
+| Tool returns "index not found" | Index name mismatch | Confirm `AI_SEARCH_INDEX_NAME` matches the exact index name in your Azure AI Search resource (case-sensitive). |
+| Tool returns "index not found" | Wrong connection endpoint | Confirm the project connection points to the Azure AI Search resource that contains the index. |
+| Search returns no results | Query doesn't match indexed content | Verify the index contains the expected data. Use Azure AI Search's test query feature to validate. |
+| Slow search performance | Index not optimized | Review index configuration, consider adding semantic ranking, or optimize the index schema. |
 
 ## Related content
 
@@ -25486,12 +25956,17 @@ Before you begin, make sure you have:
 
 
 - Python:
-- Environment variables set:
-`AZURE_AI_PROJECT_ENDPOINT`
 
-: Your Foundry project endpoint URL.`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+### Environment variables
 
-: Your deployed model name.
+| Variable | Description |
+|---|---|
+`AZURE_AI_PROJECT_ENDPOINT` |
+Your Foundry project endpoint URL (not the external OpenAPI service endpoint). |
+`AZURE_AI_MODEL_DEPLOYMENT_NAME` |
+Your deployed model name. |
+`OPENAPI_PROJECT_CONNECTION_NAME` |
+(For API key auth) Your project connection name for the OpenAPI service. |
 
 - OpenAPI 3.0 specification file that meets these requirements:
 - Each function must have an
@@ -26683,41 +27158,20 @@ When you finish the setup, you can continue by using the tool through the Foundr
 
 ## Troubleshooting
 
-### API key isn't included in requests
-
-- Verify your OpenAPI spec includes both
-`components.securitySchemes`
-
-and a top-level`security`
-
-section that references the scheme. - Verify the scheme
-`name`
-
-(for example,`x-api-key`
-
-) matches the key name stored in your project connection. - Remove any API key parameter from the OpenAPI spec if you expect the tool to inject the key from the project connection.
-
-### The agent doesn't call the tool
-
-- Force tool usage in your client when you're validating connectivity.
-- TypeScript: set
-`tool_choice: "required"`
-
-. - C#: set
-`ToolChoice = ResponseToolChoice.CreateRequiredChoice()`
-
-.
-
-- TypeScript: set
-- Make sure your OpenAPI spec uses descriptive
-`operationId`
-
-values so the model can choose the right operation.
-
-### Authentication fails for managed identity
-
-- Confirm that system-assigned managed identity is enabled for your Foundry resource.
-- Confirm the managed identity has the required role on the target resource.
+| Issue | Likely cause | Resolution |
+|---|---|---|
+| API key isn't included in requests. | OpenAPI spec missing `securitySchemes` or `security` sections. |
+Verify your OpenAPI spec includes both `components.securitySchemes` and a top-level `security` section. Ensure the scheme `name` matches the key name in your project connection. |
+| Agent doesn't call the OpenAPI tool. | Tool choice not set or `operationId` not descriptive. |
+Use `tool_choice="required"` to force tool invocation. Ensure `operationId` values are descriptive so the model can choose the right operation. |
+| Authentication fails for managed identity. | Managed identity not enabled or missing role assignment. | Enable system-assigned managed identity on your Foundry resource. Assign the required role (Reader or higher) on the target service. |
+| Request fails with 400 Bad Request. | OpenAPI spec doesn't match actual API. | Validate your OpenAPI spec against the actual API. Check parameter names, types, and required fields. |
+| Request fails with 401 Unauthorized. | API key or token invalid or expired. | Regenerate the API key/token and update your project connection. Verify the connection ID is correct. |
+| Tool returns unexpected response format. | Response schema not defined in OpenAPI spec. | Add response schemas to your OpenAPI spec for better model understanding. |
+`operationId` validation error. |
+Invalid characters in `operationId` . |
+Use only letters, `-` , and `_` in `operationId` values. Remove numbers and special characters. |
+| Connection not found error. | Connection name or ID mismatch. | Verify `OPENAPI_PROJECT_CONNECTION_NAME` matches the connection name in your Foundry project. |
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/bing-tools -->
@@ -26743,6 +27197,11 @@ Important
 [Data Protection Addendum](https://aka.ms/dpa)doesn't apply to data sent to Grounding with Bing Search or Grounding with Bing Custom Search. When you use these services, your data flows outside the Azure compliance and Geo boundary. This also means use of these services waives all elevated Government Community Cloud security and compliance commitments, including data sovereignty and screened/citizenship-based support, as applicable. - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See pricing for
 [details](https://www.microsoft.com/bing/apis/grounding-pricing). - See the
 [manage section](#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search)for information about how Azure admins can manage access to use of Grounding with Bing Search and Grounding with Bing Custom Search.
+
+Note
+
+- We recommend customers to start with
+[web search tool(preview)](web-search?view=foundry). You can learn more about the difference between web search vs Grounding with Bing (custom) search in[web grounding overview](web-overview?view=foundry)
 
 ### Usage support
 
@@ -26848,9 +27307,45 @@ Note
 
 .
 
+### Quick verification
+
+Before running the full samples, verify your Bing connection exists:
+
+```
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+load_dotenv()
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+print("Connected to project.")
+# Verify Bing connection exists
+connection_name = os.environ.get("BING_PROJECT_CONNECTION_NAME")
+if connection_name:
+try:
+conn = project_client.connections.get(connection_name)
+print(f"Bing connection verified: {conn.name}")
+print(f"Connection ID: {conn.id}")
+except Exception as e:
+print(f"Bing connection '{connection_name}' not found: {e}")
+else:
+# List available connections to help find the right one
+print("BING_PROJECT_CONNECTION_NAME not set. Available connections:")
+for conn in project_client.connections.list():
+print(f" - {conn.name}")
+```
+
+
+If this code runs without errors, your credentials and Bing connection are configured correctly.
+
+### Full samples
+
 The following examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries.
 
-### Grounding with Bing Search
+#### Grounding with Bing Search
 
 ```
 import os
@@ -26864,14 +27359,16 @@ BingGroundingSearchToolParameters,
 BingGroundingSearchConfiguration,
 )
 load_dotenv()
-project_client = AIProjectClient(
-endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-credential=DefaultAzureCredential(),
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+project_client.get_openai_client() as openai_client,
+):
+# Get connection ID from connection name
+bing_connection = project_client.connections.get(
+os.environ["BING_PROJECT_CONNECTION_NAME"],
 )
-openai_client = project_client.get_openai_client()
-with project_client:
-connection_id = os.environ["BING_PROJECT_CONNECTION_ID"]
-print(f"Grounding with Bing Search connection ID: {connection_id}")
+print(f"Grounding with Bing Search connection ID: {bing_connection.id}")
 agent = project_client.agents.create_version(
 agent_name="MyAgent",
 definition=PromptAgentDefinition(
@@ -26882,7 +27379,7 @@ BingGroundingAgentTool(
 bing_grounding=BingGroundingSearchToolParameters(
 search_configurations=[
 BingGroundingSearchConfiguration(
-project_connection_id=connection_id
+project_connection_id=bing_connection.id
 )
 ]
 )
@@ -26973,25 +27470,26 @@ BingCustomSearchToolParameters,
 BingCustomSearchConfiguration,
 )
 load_dotenv()
-project_client = AIProjectClient(
-endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-credential=DefaultAzureCredential(),
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+project_client.get_openai_client() as openai_client,
+):
+# Get connection ID from connection name
+bing_custom_connection = project_client.connections.get(
+os.environ["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME"],
 )
-# Get the OpenAI client for responses and conversations
-openai_client = project_client.get_openai_client()
-connection_id = os.environ["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID"]
-print(f"Grounding with Bing Custom Search connection ID: {connection_id}")
+print(f"Grounding with Bing Custom Search connection ID: {bing_custom_connection.id}")
 bing_custom_search_tool = BingCustomSearchAgentTool(
 bing_custom_search_preview=BingCustomSearchToolParameters(
 search_configurations=[
 BingCustomSearchConfiguration(
-project_connection_id=connection_id,
+project_connection_id=bing_custom_connection.id,
 instance_name=os.environ["BING_CUSTOM_SEARCH_INSTANCE_NAME"],
 )
 ]
 )
 )
-with project_client:
 agent = project_client.agents.create_version(
 agent_name="MyAgent",
 definition=PromptAgentDefinition(
@@ -27081,24 +27579,60 @@ Full response: Microsoft Foundry Agent Service enables you to build...
 ```
 
 
+### Quick verification
+
+Before running the full samples, verify your Bing connection exists:
+
+```
+using Azure.AI.Projects;
+using Azure.Identity;
+var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
+var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_NAME");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Verify Bing connection exists
+try
+{
+AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: bingConnectionName);
+Console.WriteLine($"Bing connection verified: {conn.Name}");
+Console.WriteLine($"Connection ID: {conn.Id}");
+}
+catch (Exception ex)
+{
+Console.WriteLine($"Bing connection '{bingConnectionName}' not found: {ex.Message}");
+// List available connections
+Console.WriteLine("Available connections:");
+foreach (var conn in projectClient.Connections.GetConnections())
+{
+Console.WriteLine($" - {conn.Name}");
+}
+}
+```
+
+
+If this code runs without errors, your credentials and Bing connection are configured correctly.
+
+### Full samples
+
 The following C# examples demonstrate how to create an agent with Grounding with Bing Search tool, and how to use the agent to respond to user queries. These examples use synchronous calls for simplicity. For asynchronous examples, see the [agent tools C# samples](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples).
 
 To enable your Agent to use Bing search API, use `BingGroundingAgentTool`
 
 .
 
-## Grounding with Bing Search
+#### Grounding with Bing Search
 
 ```
 // Read the environment variables, which will be used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
-var bingProjectConnectionId = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_ID");
+var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_NAME");
 // Create an instance of AIProjectClient.
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Get connection ID from connection name
+AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: bingConnectionName);
 // Create the agent version with Bing grounding tool
 BingGroundingAgentTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
-searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingProjectConnectionId)]
+searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
 )
 );
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
@@ -27178,12 +27712,14 @@ Euler's identity is considered one of the most elegant equations in mathematics.
 // Read the environment variables, which will be used in the next steps
 var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
-var bingProjectConnectionId = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_ID");
+var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_NAME");
 // Create an instance of AIProjectClient
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Get connection ID from connection name
+AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: bingConnectionName);
 // Create the agent version with Bing grounding tool
 BingGroundingAgentTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
-searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingProjectConnectionId)]
+searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
 )
 );
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
@@ -27422,9 +27958,43 @@ JSON response with:
 
 : Array of URL citations from your configured domains
 
+### Quick verification
+
+Before running the full samples, verify your Bing connection exists:
+
+```
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const bingConnectionName = process.env["BING_PROJECT_CONNECTION_NAME"] || "<bing connection name>";
+async function verifyConnection(): Promise<void> {
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+console.log("Connected to project.");
+try {
+const conn = await project.connections.get(bingConnectionName);
+console.log(`Bing connection verified: ${conn.name}`);
+console.log(`Connection ID: ${conn.id}`);
+} catch (error) {
+console.log(`Bing connection '${bingConnectionName}' not found: ${error}`);
+// List available connections
+console.log("Available connections:");
+for await (const conn of project.connections.list()) {
+console.log(` - ${conn.name}`);
+}
+}
+}
+verifyConnection().catch(console.error);
+```
+
+
+If this code runs without errors, your credentials and Bing connection are configured correctly.
+
+### Full samples
+
 The following TypeScript examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries. For JavaScript examples, see the [agent tools JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools) in the Azure SDK for JavaScript repository on GitHub.
 
-### Grounding with Bing Search
+#### Grounding with Bing Search
 
 ```
 import { DefaultAzureCredential } from "@azure/identity";
@@ -27433,11 +28003,14 @@ import "dotenv/config";
 const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName =
 process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const bingProjectConnectionId =
-process.env["BING_PROJECT_CONNECTION_ID"] || "<bing project connection id>";
+const bingConnectionName =
+process.env["BING_PROJECT_CONNECTION_NAME"] || "<bing connection name>";
 export async function main(): Promise<void> {
 const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
 const openAIClient = await project.getOpenAIClient();
+// Get connection ID from connection name
+const bingConnection = await project.connections.get(bingConnectionName);
+console.log(`Bing connection ID: ${bingConnection.id}`);
 console.log("Creating agent with Bing grounding tool...");
 const agent = await project.agents.createVersion("MyBingGroundingAgent", {
 kind: "prompt",
@@ -27449,7 +28022,7 @@ type: "bing_grounding",
 bing_grounding: {
 search_configurations: [
 {
-project_connection_id: bingProjectConnectionId,
+project_connection_id: bingConnection.id,
 },
 ],
 },
@@ -27565,14 +28138,17 @@ import "dotenv/config";
 const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName =
 process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const bingCustomSearchProjectConnectionId =
-process.env["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID"] ||
-"<bing custom search project connection id>";
+const bingCustomSearchConnectionName =
+process.env["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME"] ||
+"<bing custom search connection name>";
 const bingCustomSearchInstanceName =
 process.env["BING_CUSTOM_SEARCH_INSTANCE_NAME"] || "<bing custom search instance name>";
 export async function main(): Promise<void> {
 const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
 const openAIClient = await project.getOpenAIClient();
+// Get connection ID from connection name
+const bingCustomConnection = await project.connections.get(bingCustomSearchConnectionName);
+console.log(`Bing Custom Search connection ID: ${bingCustomConnection.id}`);
 console.log("Creating agent with Bing Custom Search tool...");
 const agent = await project.agents.createVersion("MyAgent", {
 kind: "prompt",
@@ -27585,7 +28161,7 @@ type: "bing_custom_search_preview",
 bing_custom_search_preview: {
 search_configurations: [
 {
-project_connection_id: bingCustomSearchProjectConnectionId,
+project_connection_id: bingCustomConnection.id,
 instance_name: bingCustomSearchInstanceName,
 },
 ],
