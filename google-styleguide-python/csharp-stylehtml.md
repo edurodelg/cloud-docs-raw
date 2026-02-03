@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/csharp-style.html
-fetched_at: 2026-02-02T16:05:04.422395
+fetched_at: 2026-02-04T00:26:25.867027
 ---
 
 # styleguide

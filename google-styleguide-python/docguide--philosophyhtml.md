@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/docguide/philosophy.html
-fetched_at: 2026-02-02T16:05:41.521969
+fetched_at: 2026-02-04T00:27:06.137892
 ---
 
 # styleguide

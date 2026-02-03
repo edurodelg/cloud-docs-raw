@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/cppguide.html
-fetched_at: 2026-02-02T16:05:02.432678
+fetched_at: 2026-02-04T00:26:23.883735
 ---
 
 # Google C++ Style Guide

@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/pyguide.html
-fetched_at: 2026-02-02T16:04:47.195682
+fetched_at: 2026-02-04T00:26:12.780721
 ---
 
 # styleguide
