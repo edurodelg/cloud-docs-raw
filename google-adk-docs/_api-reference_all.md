@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-02T16:04:42.359259
+merged_at: 2026-02-04T00:26:07.901237
 merged_files: 7
 ---
 
@@ -212,7 +212,7 @@ Options
 
 Starts a FastAPI server for agents.
 
-AGENTS_DIR: The directory of agents, where each sub-directory is a single agent, containing at least __init__.py and agent.py files.
+AGENTS_DIR: The directory of agents, where each subdirectory is a single agent, containing at least __init__.py and agent.py files.
 
 Example:
 
@@ -226,6 +226,16 @@ adk api_server [OPTIONS] [AGENTS_DIR]
 ```
 
 Options
+
+-
+--enable_features <enable_features>
+[¶](#cmdoption-adk-api_server-enable_features) Optional. Comma-separated list of feature names to enable. This provides an alternative to environment variables for enabling experimental features. Example: –enable_features=JSON_SCHEMA_FOR_FUNC_DECL,PROGRESSIVE_SSE_STREAMING
+
+
+-
+--disable_features <disable_features>
+[¶](#cmdoption-adk-api_server-disable_features) Optional. Comma-separated list of feature names to disable. This provides an alternative to environment variables for disabling features. Example: –disable_features=JSON_SCHEMA_FOR_FUNC_DECL,PROGRESSIVE_SSE_STREAMING
+
 
 -
 --host <host>
@@ -242,8 +252,9 @@ Options
 
 -
 --allow_origins <allow_origins>
-[¶](#cmdoption-adk-api_server-allow_origins) Optional. Any additional origins to allow for CORS.
+[¶](#cmdoption-adk-api_server-allow_origins) Optional. Origins to allow for CORS. Can be literal origins (e.g., ‘
 
+[https://example.com](https://example.com)’) or regex patterns prefixed with ‘regex:’ (e.g., ‘regex:https://.*.example.com’).
 
 -
 -v, --verbose
@@ -271,7 +282,7 @@ DEBUG | INFO | WARNING | ERROR | CRITICAL
 
 -
 --otel_to_cloud
-[¶](#cmdoption-adk-api_server-otel_to_cloud) EXPERIMENTAL Optional. Whether to write OTel data to Google Cloud Observability services - Cloud Trace and Cloud Logging.
+[¶](#cmdoption-adk-api_server-otel_to_cloud) Optional. Whether to write OTel data to Google Cloud Observability services - Cloud Trace and Cloud Logging.
 
 - Default:
 `False`
@@ -315,22 +326,34 @@ DEBUG | INFO | WARNING | ERROR | CRITICAL
 
 -
 --session_service_uri <session_service_uri>
-[¶](#cmdoption-adk-api_server-session_service_uri) Optional. The URI of the session service. - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
+[¶](#cmdoption-adk-api_server-session_service_uri) Optional. The URI of the session service. If set, ADK uses this service.
+
+If unset, ADK chooses a default session service (see –use_local_storage). - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
 
 sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
 
-Use ‘sqlite://<path_to_sqlite_file>’ to connect to an aio-sqlite based session service, which is good for local development.
+Use ‘memory://’ to run with the in-memory session service.
 
-Use ‘postgresql://<user>:<password>@<host>:<port>/<database_name>’ to connect to a PostgreSQL DB.
+Use ‘sqlite://<path_to_sqlite_file>’ to connect to a SQLite DB.
 
 See
 
-[https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls](https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls)for more details on other database URIs supported by SQLAlchemy.
+[https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls](https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls)for supported database URIs.
 
 
 -
 --artifact_service_uri <artifact_service_uri>
-[¶](#cmdoption-adk-api_server-artifact_service_uri) Optional. The URI of the artifact service, supported URIs: gs://<bucket name> for GCS artifact service.
+[¶](#cmdoption-adk-api_server-artifact_service_uri) Optional. The URI of the artifact service. If set, ADK uses this service.
+
+If unset, ADK chooses a default artifact service (see –use_local_storage). - Use ‘gs://<bucket_name>’ to connect to the GCS artifact service. - Use ‘memory://’ to force the in-memory artifact service. - Use ‘file://<path>’ to store artifacts in a custom local directory.
+
+
+-
+--use_local_storage, --no_use_local_storage
+[¶](#cmdoption-adk-api_server-use_local_storage) Optional. Whether to use local .adk storage when –session_service_uri and –artifact_service_uri are unset. Cannot be combined with explicit service URIs. When the agents directory isn’t writable (common in Cloud Run/Kubernetes), ADK falls back to in-memory unless overridden by ADK_FORCE_LOCAL_STORAGE=1 or ADK_DISABLE_LOCAL_STORAGE=1.
+
+- Default:
+`True`
 
 
 -
@@ -338,6 +361,8 @@ See
 [¶](#cmdoption-adk-api_server-memory_service_uri) Optional. The URI of the memory service. - Use ‘rag://<rag_corpus_id>’ to connect to Vertex AI Rag Memory Service. - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
 
 sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
+
+Use ‘memory://’ to force the in-memory memory service.
 
 
 -
@@ -508,7 +533,7 @@ Example:
 
 # With Google Cloud Project and Region adk deploy agent_engine –project=[project] –region=[region]
 
-–staging_bucket=[staging_bucket] –display_name=[app_name] my_agent
+–display_name=[app_name] my_agent
 
 
 Usage
@@ -536,7 +561,7 @@ Options
 
 -
 --staging_bucket <staging_bucket>
-[¶](#cmdoption-adk-deploy-agent_engine-staging_bucket) Optional. GCS bucket for staging the deployment artifacts. It will be ignored if api_key is set.
+[¶](#cmdoption-adk-deploy-agent_engine-staging_bucket) Deprecated. This argument is no longer required or used.
 
 
 -
@@ -547,6 +572,11 @@ Options
 -
 --trace_to_cloud, --no-trace_to_cloud
 [¶](#cmdoption-adk-deploy-agent_engine-trace_to_cloud) Optional. Whether to enable Cloud Trace for Agent Engine.
+
+
+-
+--otel_to_cloud
+[¶](#cmdoption-adk-deploy-agent_engine-otel_to_cloud) Optional. Whether to enable OpenTelemetry for Agent Engine.
 
 
 -
@@ -666,6 +696,14 @@ Options
 
 
 -
+--otel_to_cloud
+[¶](#cmdoption-adk-deploy-cloud_run-otel_to_cloud) Optional. Whether to enable OpenTelemetry for Agent Engine.
+
+- Default:
+`False`
+
+
+-
 --with_ui
 [¶](#cmdoption-adk-deploy-cloud_run-with_ui) Optional. Deploy ADK Web UI if set. (default: deploy ADK API server only)
 
@@ -699,7 +737,7 @@ DEBUG | INFO | WARNING | ERROR | CRITICAL
 [¶](#cmdoption-adk-deploy-cloud_run-adk_version) Optional. The ADK version used in Cloud Run deployment. (default: the version in the dev environment)
 
 - Default:
-`'1.19.0'`
+`'1.23.0'`
 
 
 -
@@ -712,27 +750,40 @@ DEBUG | INFO | WARNING | ERROR | CRITICAL
 
 -
 --allow_origins <allow_origins>
-[¶](#cmdoption-adk-deploy-cloud_run-allow_origins) Optional. Any additional origins to allow for CORS.
+[¶](#cmdoption-adk-deploy-cloud_run-allow_origins) Optional. Origins to allow for CORS. Can be literal origins (e.g., ‘
 
+[https://example.com](https://example.com)’) or regex patterns prefixed with ‘regex:’ (e.g., ‘regex:https://.*.example.com’).
 
 -
 --session_service_uri <session_service_uri>
-[¶](#cmdoption-adk-deploy-cloud_run-session_service_uri) Optional. The URI of the session service. - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
+[¶](#cmdoption-adk-deploy-cloud_run-session_service_uri) Optional. The URI of the session service. If set, ADK uses this service.
+
+If unset, ADK chooses a default session service (see –use_local_storage). - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
 
 sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
 
-Use ‘sqlite://<path_to_sqlite_file>’ to connect to an aio-sqlite based session service, which is good for local development.
+Use ‘memory://’ to run with the in-memory session service.
 
-Use ‘postgresql://<user>:<password>@<host>:<port>/<database_name>’ to connect to a PostgreSQL DB.
+Use ‘sqlite://<path_to_sqlite_file>’ to connect to a SQLite DB.
 
 See
 
-[https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls](https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls)for more details on other database URIs supported by SQLAlchemy.
+[https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls](https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls)for supported database URIs.
 
 
 -
 --artifact_service_uri <artifact_service_uri>
-[¶](#cmdoption-adk-deploy-cloud_run-artifact_service_uri) Optional. The URI of the artifact service, supported URIs: gs://<bucket name> for GCS artifact service.
+[¶](#cmdoption-adk-deploy-cloud_run-artifact_service_uri) Optional. The URI of the artifact service. If set, ADK uses this service.
+
+If unset, ADK chooses a default artifact service (see –use_local_storage). - Use ‘gs://<bucket_name>’ to connect to the GCS artifact service. - Use ‘memory://’ to force the in-memory artifact service. - Use ‘file://<path>’ to store artifacts in a custom local directory.
+
+
+-
+--use_local_storage, --no_use_local_storage
+[¶](#cmdoption-adk-deploy-cloud_run-use_local_storage) Optional. Whether to use local .adk storage when –session_service_uri and –artifact_service_uri are unset. Cannot be combined with explicit service URIs. When the agents directory isn’t writable (common in Cloud Run/Kubernetes), ADK falls back to in-memory unless overridden by ADK_FORCE_LOCAL_STORAGE=1 or ADK_DISABLE_LOCAL_STORAGE=1.
+
+- Default:
+`False`
 
 
 -
@@ -740,6 +791,8 @@ See
 [¶](#cmdoption-adk-deploy-cloud_run-memory_service_uri) Optional. The URI of the memory service. - Use ‘rag://<rag_corpus_id>’ to connect to Vertex AI Rag Memory Service. - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
 
 sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
+
+Use ‘memory://’ to force the in-memory memory service.
 
 
 -
@@ -819,6 +872,14 @@ Options
 
 
 -
+--otel_to_cloud
+[¶](#cmdoption-adk-deploy-gke-otel_to_cloud) Optional. Whether to enable OpenTelemetry for GKE.
+
+- Default:
+`False`
+
+
+-
 --with_ui
 [¶](#cmdoption-adk-deploy-gke-with_ui) Optional. Deploy ADK Web UI if set. (default: deploy ADK API server only)
 
@@ -844,27 +905,39 @@ DEBUG | INFO | WARNING | ERROR | CRITICAL
 [¶](#cmdoption-adk-deploy-gke-adk_version) Optional. The ADK version used in GKE deployment. (default: the version in the dev environment)
 
 - Default:
-`'1.19.0'`
+`'1.23.0'`
 
 
 -
 --session_service_uri <session_service_uri>
-[¶](#cmdoption-adk-deploy-gke-session_service_uri) Optional. The URI of the session service. - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
+[¶](#cmdoption-adk-deploy-gke-session_service_uri) Optional. The URI of the session service. If set, ADK uses this service.
+
+If unset, ADK chooses a default session service (see –use_local_storage). - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
 
 sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
 
-Use ‘sqlite://<path_to_sqlite_file>’ to connect to an aio-sqlite based session service, which is good for local development.
+Use ‘memory://’ to run with the in-memory session service.
 
-Use ‘postgresql://<user>:<password>@<host>:<port>/<database_name>’ to connect to a PostgreSQL DB.
+Use ‘sqlite://<path_to_sqlite_file>’ to connect to a SQLite DB.
 
 See
 
-[https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls](https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls)for more details on other database URIs supported by SQLAlchemy.
+[https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls](https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls)for supported database URIs.
 
 
 -
 --artifact_service_uri <artifact_service_uri>
-[¶](#cmdoption-adk-deploy-gke-artifact_service_uri) Optional. The URI of the artifact service, supported URIs: gs://<bucket name> for GCS artifact service.
+[¶](#cmdoption-adk-deploy-gke-artifact_service_uri) Optional. The URI of the artifact service. If set, ADK uses this service.
+
+If unset, ADK chooses a default artifact service (see –use_local_storage). - Use ‘gs://<bucket_name>’ to connect to the GCS artifact service. - Use ‘memory://’ to force the in-memory artifact service. - Use ‘file://<path>’ to store artifacts in a custom local directory.
+
+
+-
+--use_local_storage, --no_use_local_storage
+[¶](#cmdoption-adk-deploy-gke-use_local_storage) Optional. Whether to use local .adk storage when –session_service_uri and –artifact_service_uri are unset. Cannot be combined with explicit service URIs. When the agents directory isn’t writable (common in Cloud Run/Kubernetes), ADK falls back to in-memory unless overridden by ADK_FORCE_LOCAL_STORAGE=1 or ADK_DISABLE_LOCAL_STORAGE=1.
+
+- Default:
+`False`
 
 
 -
@@ -872,6 +945,8 @@ See
 [¶](#cmdoption-adk-deploy-gke-memory_service_uri) Optional. The URI of the memory service. - Use ‘rag://<rag_corpus_id>’ to connect to Vertex AI Rag Memory Service. - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
 
 sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
+
+Use ‘memory://’ to force the in-memory memory service.
 
 
 Arguments
@@ -926,6 +1001,16 @@ adk eval [OPTIONS] AGENT_MODULE_FILE_PATH [EVAL_SET_FILE_PATH_OR_ID]...
 ```
 
 Options
+
+-
+--enable_features <enable_features>
+[¶](#cmdoption-adk-eval-enable_features) Optional. Comma-separated list of feature names to enable. This provides an alternative to environment variables for enabling experimental features. Example: –enable_features=JSON_SCHEMA_FOR_FUNC_DECL,PROGRESSIVE_SSE_STREAMING
+
+
+-
+--disable_features <disable_features>
+[¶](#cmdoption-adk-eval-disable_features) Optional. Comma-separated list of feature names to disable. This provides an alternative to environment variables for disabling features. Example: –disable_features=JSON_SCHEMA_FOR_FUNC_DECL,PROGRESSIVE_SSE_STREAMING
+
 
 -
 --config_file_path <config_file_path>
@@ -1061,6 +1146,44 @@ EVAL_SET_ID
 [¶](#cmdoption-adk-eval_set-create-arg-EVAL_SET_ID) Required argument
 
 
+### migrate[¶](#adk-migrate)
+
+ADK migration commands.
+
+Usage
+
+```
+adk migrate [OPTIONS] COMMAND [ARGS]...
+```
+
+#### session[¶](#adk-migrate-session)
+
+Migrates a session database to the latest schema version.
+
+Usage
+
+```
+adk migrate session [OPTIONS]
+```
+
+Options
+
+-
+--source_db_url <source_db_url>
+[¶](#cmdoption-adk-migrate-session-source_db_url) **Required**SQLAlchemy URL of source database in database session service, e.g. sqlite:///source.db.
+
+-
+--dest_db_url <dest_db_url>
+[¶](#cmdoption-adk-migrate-session-dest_db_url) **Required**SQLAlchemy URL of destination database in database session service, e.g. sqlite:///dest.db.
+
+-
+--log_level <log_level>
+[¶](#cmdoption-adk-migrate-session-log_level) Optional. Set the logging level
+
+- Options:
+DEBUG | INFO | WARNING | ERROR | CRITICAL
+
+
 ### run[¶](#adk-run)
 
 Runs an interactive CLI for a certain agent.
@@ -1079,6 +1202,57 @@ adk run [OPTIONS] AGENT
 ```
 
 Options
+
+-
+--enable_features <enable_features>
+[¶](#cmdoption-adk-run-enable_features) Optional. Comma-separated list of feature names to enable. This provides an alternative to environment variables for enabling experimental features. Example: –enable_features=JSON_SCHEMA_FOR_FUNC_DECL,PROGRESSIVE_SSE_STREAMING
+
+
+-
+--disable_features <disable_features>
+[¶](#cmdoption-adk-run-disable_features) Optional. Comma-separated list of feature names to disable. This provides an alternative to environment variables for disabling features. Example: –disable_features=JSON_SCHEMA_FOR_FUNC_DECL,PROGRESSIVE_SSE_STREAMING
+
+
+-
+--session_service_uri <session_service_uri>
+[¶](#cmdoption-adk-run-session_service_uri) Optional. The URI of the session service. If set, ADK uses this service.
+
+If unset, ADK chooses a default session service (see –use_local_storage). - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
+
+sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
+
+Use ‘memory://’ to run with the in-memory session service.
+
+Use ‘sqlite://<path_to_sqlite_file>’ to connect to a SQLite DB.
+
+See
+
+[https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls](https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls)for supported database URIs.
+
+
+-
+--artifact_service_uri <artifact_service_uri>
+[¶](#cmdoption-adk-run-artifact_service_uri) Optional. The URI of the artifact service. If set, ADK uses this service.
+
+If unset, ADK chooses a default artifact service (see –use_local_storage). - Use ‘gs://<bucket_name>’ to connect to the GCS artifact service. - Use ‘memory://’ to force the in-memory artifact service. - Use ‘file://<path>’ to store artifacts in a custom local directory.
+
+
+-
+--use_local_storage, --no_use_local_storage
+[¶](#cmdoption-adk-run-use_local_storage) Optional. Whether to use local .adk storage when –session_service_uri and –artifact_service_uri are unset. Cannot be combined with explicit service URIs. When the agents directory isn’t writable (common in Cloud Run/Kubernetes), ADK falls back to in-memory unless overridden by ADK_FORCE_LOCAL_STORAGE=1 or ADK_DISABLE_LOCAL_STORAGE=1.
+
+- Default:
+`True`
+
+
+-
+--memory_service_uri <memory_service_uri>
+[¶](#cmdoption-adk-run-memory_service_uri) Optional. The URI of the memory service. - Use ‘rag://<rag_corpus_id>’ to connect to Vertex AI Rag Memory Service. - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
+
+sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
+
+Use ‘memory://’ to force the in-memory memory service.
+
 
 -
 --save_session
@@ -1114,7 +1288,7 @@ AGENT
 
 Starts a FastAPI server with Web UI for agents.
 
-AGENTS_DIR: The directory of agents, where each sub-directory is a single agent, containing at least __init__.py and agent.py files.
+AGENTS_DIR: The directory of agents, where each subdirectory is a single agent, containing at least __init__.py and agent.py files.
 
 Example:
 
@@ -1128,6 +1302,16 @@ adk web [OPTIONS] [AGENTS_DIR]
 ```
 
 Options
+
+-
+--enable_features <enable_features>
+[¶](#cmdoption-adk-web-enable_features) Optional. Comma-separated list of feature names to enable. This provides an alternative to environment variables for enabling experimental features. Example: –enable_features=JSON_SCHEMA_FOR_FUNC_DECL,PROGRESSIVE_SSE_STREAMING
+
+
+-
+--disable_features <disable_features>
+[¶](#cmdoption-adk-web-disable_features) Optional. Comma-separated list of feature names to disable. This provides an alternative to environment variables for disabling features. Example: –disable_features=JSON_SCHEMA_FOR_FUNC_DECL,PROGRESSIVE_SSE_STREAMING
+
 
 -
 --host <host>
@@ -1144,8 +1328,9 @@ Options
 
 -
 --allow_origins <allow_origins>
-[¶](#cmdoption-adk-web-allow_origins) Optional. Any additional origins to allow for CORS.
+[¶](#cmdoption-adk-web-allow_origins) Optional. Origins to allow for CORS. Can be literal origins (e.g., ‘
 
+[https://example.com](https://example.com)’) or regex patterns prefixed with ‘regex:’ (e.g., ‘regex:https://.*.example.com’).
 
 -
 -v, --verbose
@@ -1173,7 +1358,7 @@ DEBUG | INFO | WARNING | ERROR | CRITICAL
 
 -
 --otel_to_cloud
-[¶](#cmdoption-adk-web-otel_to_cloud) EXPERIMENTAL Optional. Whether to write OTel data to Google Cloud Observability services - Cloud Trace and Cloud Logging.
+[¶](#cmdoption-adk-web-otel_to_cloud) Optional. Whether to write OTel data to Google Cloud Observability services - Cloud Trace and Cloud Logging.
 
 - Default:
 `False`
@@ -1227,22 +1412,34 @@ DEBUG | INFO | WARNING | ERROR | CRITICAL
 
 -
 --session_service_uri <session_service_uri>
-[¶](#cmdoption-adk-web-session_service_uri) Optional. The URI of the session service. - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
+[¶](#cmdoption-adk-web-session_service_uri) Optional. The URI of the session service. If set, ADK uses this service.
+
+If unset, ADK chooses a default session service (see –use_local_storage). - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
 
 sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
 
-Use ‘sqlite://<path_to_sqlite_file>’ to connect to an aio-sqlite based session service, which is good for local development.
+Use ‘memory://’ to run with the in-memory session service.
 
-Use ‘postgresql://<user>:<password>@<host>:<port>/<database_name>’ to connect to a PostgreSQL DB.
+Use ‘sqlite://<path_to_sqlite_file>’ to connect to a SQLite DB.
 
 See
 
-[https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls](https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls)for more details on other database URIs supported by SQLAlchemy.
+[https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls](https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls)for supported database URIs.
 
 
 -
 --artifact_service_uri <artifact_service_uri>
-[¶](#cmdoption-adk-web-artifact_service_uri) Optional. The URI of the artifact service, supported URIs: gs://<bucket name> for GCS artifact service.
+[¶](#cmdoption-adk-web-artifact_service_uri) Optional. The URI of the artifact service. If set, ADK uses this service.
+
+If unset, ADK chooses a default artifact service (see –use_local_storage). - Use ‘gs://<bucket_name>’ to connect to the GCS artifact service. - Use ‘memory://’ to force the in-memory artifact service. - Use ‘file://<path>’ to store artifacts in a custom local directory.
+
+
+-
+--use_local_storage, --no_use_local_storage
+[¶](#cmdoption-adk-web-use_local_storage) Optional. Whether to use local .adk storage when –session_service_uri and –artifact_service_uri are unset. Cannot be combined with explicit service URIs. When the agents directory isn’t writable (common in Cloud Run/Kubernetes), ADK falls back to in-memory unless overridden by ADK_FORCE_LOCAL_STORAGE=1 or ADK_DISABLE_LOCAL_STORAGE=1.
+
+- Default:
+`True`
 
 
 -
@@ -1250,6 +1447,8 @@ See
 [¶](#cmdoption-adk-web-memory_service_uri) Optional. The URI of the memory service. - Use ‘rag://<rag_corpus_id>’ to connect to Vertex AI Rag Memory Service. - Use ‘agentengine://<agent_engine>’ to connect to Agent Engine
 
 sessions. <agent_engine> can either be the full qualified resource name ‘projects/abc/locations/us-central1/reasoningEngines/123’ or the resource id ‘123’.
+
+Use ‘memory://’ to force the in-memory memory service.
 
 
 -

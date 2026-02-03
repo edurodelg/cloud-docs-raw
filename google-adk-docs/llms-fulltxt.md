@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/llms-full.txt
-fetched_at: 2026-02-02T15:49:59.047282
+fetched_at: 2026-02-04T00:11:07.376085
 ---
 
 # Agent Development Kit
@@ -9053,22 +9053,11 @@ LoopAgent(sub_agents=[WriterAgent, CriticAgent], max_iterations=5)
 In this setup, the `LoopAgent` would manage the iterative process. The `CriticAgent` could be **designed to return a "STOP" signal when the document reaches a satisfactory quality level**, preventing further iterations. Alternatively, the `max iterations` parameter could be used to limit the process to a fixed number of cycles, or external logic could be implemented to make stop decisions. The **loop would run at most five times**, ensuring the iterative refinement doesn't continue indefinitely.
 Full Code
 ````py
-# Part of agent.py --> Follow https://google.github.io/adk-docs/get-started/quickstart/ to learn the setup
-import asyncio
-import os
 from google.adk.agents import LoopAgent, LlmAgent, SequentialAgent
-from google.genai import types
-from google.adk.runners import InMemoryRunner
-from google.adk.agents.invocation_context import InvocationContext
 from google.adk.tools.tool_context import ToolContext
-from typing import AsyncGenerator, Optional
-from google.adk.events import Event, EventActions
+from google.adk.agents.callback_context import CallbackContext
 # --- Constants ---
-APP_NAME = "doc_writing_app_v3" # New App Name
-USER_ID = "dev_user_01"
-SESSION_ID_BASE = "loop_exit_tool_session" # New Base Session ID
-GEMINI_MODEL = "gemini-2.0-flash"
-STATE_INITIAL_TOPIC = "initial_topic"
+GEMINI_MODEL = "gemini-2.5-flash"
 # --- State Keys ---
 STATE_CURRENT_DOC = "current_document"
 STATE_CRITICISM = "criticism"
@@ -9082,16 +9071,20 @@ tool_context.actions.escalate = True
 tool_context.actions.skip_summarization = True
 # Return empty dict as tools should typically return JSON-serializable output
 return {}
+# --- Before Agent Callback ---
+def update_initial_topic_state(callback_context: CallbackContext):
+"""Ensure 'initial_topic' is set in state before pipeline starts."""
+callback_context.state['initial_topic'] = callback_context.state.get('initial_topic', 'a robot developing unexpected emotions')
 # --- Agent Definitions ---
 # STEP 1: Initial Writer Agent (Runs ONCE at the beginning)
 initial_writer_agent = LlmAgent(
 name="InitialWriterAgent",
 model=GEMINI_MODEL,
 include_contents='none',
-# MODIFIED Instruction: Ask for a slightly more developed start
-instruction=f"""You are a Creative Writing Assistant tasked with starting a story.
-Write the *first draft* of a short story (aim for 2-4 sentences).
-Base the content *only* on the topic provided below. Try to introduce a specific element (like a character, a setting detail, or a starting action) to make it engaging.
+instruction=f"""
+You are a Creative Writing Assistant tasked with starting a story.
+Write a *very basic* first draft of a short story (just 1-2 simple sentences).
+Keep it plain and minimal - do NOT add descriptive language yet.
 Topic: {{initial_topic}}
 Output *only* the story/document text. Do not add introductions or explanations.
 """,
@@ -9103,19 +9096,21 @@ critic_agent_in_loop = LlmAgent(
 name="CriticAgent",
 model=GEMINI_MODEL,
 include_contents='none',
-# MODIFIED Instruction: More nuanced completion criteria, look for clear improvement paths.
-instruction=f"""You are a Constructive Critic AI reviewing a short document draft (typically 2-6 sentences). Your goal is balanced feedback.
+instruction=f"""
+You are a Constructive Critic AI reviewing a short story draft.
 **Document to Review:**
 ```
 {{current_document}}
 ```
+**Completion Criteria (ALL must be met):**
+1. At least 4 sentences long
+2. Has a clear beginning, middle, and end
+3. Includes at least one descriptive detail (sensory or emotional)
 **Task:**
-Review the document for clarity, engagement, and basic coherence according to the initial topic (if known).
-IF you identify 1-2 *clear and actionable* ways the document could be improved to better capture the topic or enhance reader engagement (e.g., "Needs a stronger opening sentence", "Clarify the character's goal"):
-Provide these specific suggestions concisely. Output *only* the critique text.
-ELSE IF the document is coherent, addresses the topic adequately for its length, and has no glaring errors or obvious omissions:
-Respond *exactly* with the phrase "{COMPLETION_PHRASE}" and nothing else. It doesn't need to be perfect, just functionally complete for this stage. Avoid suggesting purely subjective stylistic preferences if the core is sound.
-Do not add explanations. Output only the critique OR the exact completion phrase.
+Check the document against the criteria above.
+IF any criteria is NOT met, provide specific feedback on what to add or improve.
+Output *only* the critique text.
+IF ALL criteria are met, respond *exactly* with: "{COMPLETION_PHRASE}"
 """,
 description="Reviews the current draft, providing critique if clear improvements are needed, otherwise signals completion.",
 output_key=STATE_CRITICISM
@@ -9126,7 +9121,8 @@ name="RefinerAgent",
 model=GEMINI_MODEL,
 # Relies solely on state via placeholders
 include_contents='none',
-instruction=f"""You are a Creative Writing Assistant refining a document based on feedback OR exiting the process.
+instruction=f"""
+You are a Creative Writing Assistant refining a document based on feedback OR exiting the process.
 **Current Document:**
 ```
 {{current_document}}
@@ -9163,6 +9159,7 @@ sub_agents=[
 initial_writer_agent, # Run first to create initial doc
 refinement_loop # Then run the critique/refine loop
 ],
+before_agent_callback=update_initial_topic_state, # set initial topic in state
 description="Writes an initial document and then iteratively refines it with critique using an exit tool."
 )
 ````
@@ -9559,13 +9556,19 @@ ParallelAgent(sub_agents=[ResearcherAgent1, ResearcherAgent2, ResearcherAgent3])
 These research tasks are independent. Using a `ParallelAgent` allows them to run concurrently, potentially reducing the total research time significantly compared to running them sequentially. The results from each agent would be collected separately after they finish.
 Full Code
 ```py
-# Part of agent.py --> Follow https://google.github.io/adk-docs/get-started/quickstart/ to learn the setup
+from google.adk.agents.parallel_agent import ParallelAgent
+from google.adk.agents.llm_agent import LlmAgent
+from google.adk.agents.sequential_agent import SequentialAgent
+from google.adk.tools import google_search
+# --- Constants ---
+GEMINI_MODEL = "gemini-2.5-flash"
 # --- 1. Define Researcher Sub-Agents (to run in parallel) ---
 # Researcher 1: Renewable Energy
 researcher_agent_1 = LlmAgent(
 name="RenewableEnergyResearcher",
 model=GEMINI_MODEL,
-instruction="""You are an AI Research Assistant specializing in energy.
+instruction="""
+You are an AI Research Assistant specializing in energy.
 Research the latest advancements in 'renewable energy sources'.
 Use the Google Search tool provided.
 Summarize your key findings concisely (1-2 sentences).
@@ -9580,7 +9583,8 @@ output_key="renewable_energy_result"
 researcher_agent_2 = LlmAgent(
 name="EVResearcher",
 model=GEMINI_MODEL,
-instruction="""You are an AI Research Assistant specializing in transportation.
+instruction="""
+You are an AI Research Assistant specializing in transportation.
 Research the latest developments in 'electric vehicle technology'.
 Use the Google Search tool provided.
 Summarize your key findings concisely (1-2 sentences).
@@ -9595,7 +9599,8 @@ output_key="ev_technology_result"
 researcher_agent_3 = LlmAgent(
 name="CarbonCaptureResearcher",
 model=GEMINI_MODEL,
-instruction="""You are an AI Research Assistant specializing in climate solutions.
+instruction="""
+You are an AI Research Assistant specializing in climate solutions.
 Research the current state of 'carbon capture methods'.
 Use the Google Search tool provided.
 Summarize your key findings concisely (1-2 sentences).
@@ -9620,7 +9625,8 @@ description="Runs multiple research agents in parallel to gather information."
 merger_agent = LlmAgent(
 name="SynthesisAgent",
 model=GEMINI_MODEL, # Or potentially a more powerful model if needed for synthesis
-instruction="""You are an AI Assistant responsible for combining research findings into a structured report.
+instruction="""
+You are an AI Assistant responsible for combining research findings into a structured report.
 Your primary task is to synthesize the following research summaries, clearly attributing findings to their source areas. Structure your response using headings for each topic. Ensure the report is coherent and integrates the key points smoothly.
 **Crucially: Your entire response MUST be grounded *exclusively* on the information provided in the 'Input Summaries' below. Do NOT add any external knowledge, facts, or details not present in these specific summaries.**
 **Input Summaries:**
@@ -10037,29 +10043,32 @@ Shared Invocation Context
 The `SequentialAgent` passes the same `InvocationContext` to each of its sub-agents. This means they all share the same session state, including the temporary (`temp:`) namespace, making it easy to pass data between steps within a single turn.
 Code
 ````py
-# Part of agent.py --> Follow https://google.github.io/adk-docs/get-started/quickstart/ to learn the setup
+from google.adk.agents.sequential_agent import SequentialAgent
+from google.adk.agents.llm_agent import LlmAgent
+# --- Constants ---
+GEMINI_MODEL = "gemini-2.5-flash"
 # --- 1. Define Sub-Agents for Each Pipeline Stage ---
 # Code Writer Agent
 # Takes the initial specification (from user query) and writes code.
 code_writer_agent = LlmAgent(
 name="CodeWriterAgent",
 model=GEMINI_MODEL,
-# Change 3: Improved instruction
-instruction="""You are a Python Code Generator.
+instruction="""
+You are a Python Code Generator.
 Based *only* on the user's request, write Python code that fulfills the requirement.
 Output *only* the complete Python code block, enclosed in triple backticks (```python ... ```).
 Do not add any other text before or after the code block.
 """,
 description="Writes initial Python code based on a specification.",
-output_key="generated_code" # Stores output in state['generated_code']
+output_key="generated_code"
 )
 # Code Reviewer Agent
 # Takes the code generated by the previous agent (read from state) and provides feedback.
 code_reviewer_agent = LlmAgent(
 name="CodeReviewerAgent",
 model=GEMINI_MODEL,
-# Change 3: Improved instruction, correctly using state key injection
-instruction="""You are an expert Python Code Reviewer.
+instruction="""
+You are an expert Python Code Reviewer.
 Your task is to provide constructive feedback on the provided code.
 **Code to Review:**
 ```python
@@ -10077,27 +10086,40 @@ If the code is excellent and requires no changes, simply state: "No major issues
 Output *only* the review comments or the "No major issues" statement.
 """,
 description="Reviews code and provides feedback.",
-output_key="review_comments", # Stores output in state['review_comments']
+output_key="review_comments"
 )
 # Code Refactorer Agent
 # Takes the original code and the review comments (read from state) and refactors the code.
 code_refactorer_agent = LlmAgent(
 name="CodeRefactorerAgent",
 model=GEMINI_MODEL,
-# Change 3: Improved instruction, correctly using state key injection
-instruction="""You are a Python Code Refactoring AI.
+instruction="""
+You are a Python Code Refactoring AI.
 Your goal is to improve the given Python code based on the provided review comments.
 **Original Code:**
 ```python
 {generated_code}
-````
-**Review Comments:** {review_comments}
-**Task:** Carefully apply the suggestions from the review comments to refactor the original code. If the review comments state "No major issues found," return the original code unchanged. Ensure the final code is complete, functional, and includes necessary imports and docstrings.
-**Output:** Output *only* the final, refactored Python code block, enclosed in triple backticks (`python ... `). Do not add any other text before or after the code block. """, description="Refactors code based on review comments.", output_key="refactored_code", # Stores output in state['refactored_code'] )
+```
+**Review Comments:**
+{review_comments}
+**Task:**
+Carefully apply the suggestions from the review comments to refactor the original code.
+If the review comments state "No major issues found," return the original code unchanged.
+Ensure the final code is complete, functional, and includes necessary imports and docstrings.
+**Output:**
+Output *only* the final, refactored Python code block, enclosed in triple backticks (```python ... ```).
+Do not add any other text before or after the code block.
+""",
+description="Refactors code based on review comments.",
+output_key="refactored_code"
+)
 # --- 2. Create the SequentialAgent ---
 # This agent orchestrates the pipeline by running the sub_agents in order.
-code_pipeline_agent = SequentialAgent( name="CodePipelineAgent", sub_agents=[code_writer_agent, code_reviewer_agent, code_refactorer_agent], description="Executes a sequence of code writing, reviewing, and refactoring.", # The agents will run in the order provided: Writer -> Reviewer -> Refactorer )
-# For ADK tools compatibility, the root agent must be named `root_agent`
+code_pipeline_agent = SequentialAgent(
+name="CodePipelineAgent",
+sub_agents=[code_writer_agent, code_reviewer_agent, code_refactorer_agent],
+description="Executes a sequence of code writing, reviewing, and refactoring.",
+)
 root_agent = code_pipeline_agent
 ````
 ```typescript
@@ -10173,7 +10195,7 @@ subAgents: [codeWriterAgent, codeReviewerAgent, codeRefactorerAgent],
 description: "Executes a sequence of code writing, reviewing, and refactoring.",
 // The agents will run in the order provided: Writer -> Reviewer -> Refactorer
 });
-````
+```
 ```go
 model, err := gemini.NewModel(ctx, modelName, &genai.ClientConfig{})
 if err != nil {
@@ -10364,11 +10386,11 @@ System.out.println(event.stringifyContent());
 }
 }
 ````
-# Tools for Agents
-Check out the following pre-built tools that you can use with ADK agents:
-### Gemini tools
-### Google Cloud tools
-### Third-party tools
+# Tools and Integrations for Agents
+Check out the following pre-built tools and integrations that you can use with ADK agents:
+### Gemini
+### Google Cloud
+### Third-party
 ## Use pre-built tools with ADK agents
 Follow these general steps to include tools in your ADK agents:
 1. **Import:** Import the desired tool from the tools module. This is `agents.tools` in Python, `@google/adk` in TypeScript, `google.golang.org/adk/tool` in Go, or `com.google.adk.tools` in Java.
@@ -12241,7 +12263,7 @@ Toolbox has a variety of features to make developing Gen AI tools for databases.
 - [Authenticated Parameters](https://googleapis.github.io/genai-toolbox/resources/tools/#authenticated-parameters): bind tool inputs to values from OIDC tokens automatically, making it easy to run sensitive queries without potentially leaking data
 - [Authorized Invocations:](https://googleapis.github.io/genai-toolbox/resources/tools/#authorized-invocations) restrict access to use a tool based on the users Auth token
 - [OpenTelemetry](https://googleapis.github.io/genai-toolbox/how-to/export_telemetry/): get metrics and tracing from Toolbox with OpenTelemetry
-# Pub/Sub tool for ADK
+# Pub/Sub Tools for ADK
 Supported in ADKPython v1.22.0
 The `PubSubToolset` allows agents to interact with [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) service to publish, pull, and acknowledge messages.
 ## Prerequisites
@@ -12649,41 +12671,55 @@ else:
 raise e
 ```
 # Third-Party Tools
-Check out the following third-party tools that you can use with ADK agents:
+Check out the following third-party tools and integrations you can use with ADK agents:
 # Build chat experiences with AG-UI and CopilotKit
-As an agent builder, you want users to interact with your agents through a rich and responsive interface. Building UIs from scratch requires a lot of effort, especially to support streaming events and client state. That's exactly what [AG-UI](https://docs.ag-ui.com/) was designed for - rich user experiences directly connected to an agent.
+Turn your ADK agents into full-featured applications with rich, responsive UIs. [AG-UI](https://docs.ag-ui.com/) is an open protocol that handles streaming events, client state, and bi-directional communication between your agents and users.
 [AG-UI](https://github.com/ag-ui-protocol/ag-ui) provides a consistent interface to empower rich clients across technology stacks, from mobile to the web and even the command line. There are a number of different clients that support AG-UI:
 - [CopilotKit](https://copilotkit.ai) provides tooling and components to tightly integrate your agent with web applications
 - Clients for [Kotlin](https://github.com/ag-ui-protocol/ag-ui/tree/main/sdks/community/kotlin), [Java](https://github.com/ag-ui-protocol/ag-ui/tree/main/sdks/community/java), [Go](https://github.com/ag-ui-protocol/ag-ui/tree/main/sdks/community/go/example/client), and [CLI implementations](https://github.com/ag-ui-protocol/ag-ui/tree/main/apps/client-cli-example/src) in TypeScript
 This tutorial uses CopilotKit to create a sample app backed by an ADK agent that demonstrates some of the features supported by AG-UI.
 ## Quickstart
 To get started, let's create a sample application with an ADK agent and a simple web client:
-```text
-npx create-ag-ui-app@latest --adk
+1. Create the app:
+```bash
+npx copilotkit@latest create -f adk
 ```
+1. Set your Google API key:
+```bash
+export GOOGLE_API_KEY="your-api-key"
+```
+1. Install dependencies and run:
+```bash
+npm install && npm run dev
+```
+This starts two servers:
+- **http://localhost:3000** - The web UI (open this in your browser)
+- **http://localhost:8000** - The ADK agent API (backend only)
+Open in your browser to chat with your agent.
+## Features
 ### Chat
 Chat is a familiar interface for exposing your agent, and AG-UI handles streaming messages between your users and agents:
 src/app/page.tsx
 ```tsx
 ```
 Learn more about the chat UI [in the CopilotKit docs](https://docs.copilotkit.ai/adk/agentic-chat-ui).
-### Tool Based Generative UI (Rendering Tools)
+### Generative UI
 AG-UI lets you share tool information with a Generative UI so that it can be displayed to users:
 src/app/page.tsx
 ```tsx
-useCopilotAction({
+useRenderToolCall(
+{
 name: "get_weather",
 description: "Get the weather for a given location.",
-available: "disabled",
-parameters: [
-{ name: "location", type: "string", required: true },
-],
+parameters: [{ name: "location", type: "string", required: true }],
 render: ({ args }) => {
-return
+return ;
 },
-});
+},
+[themeColor],
+);
 ```
-Learn more about the Tool-based Generative UI [in the CopilotKit docs](https://docs.copilotkit.ai/adk/generative-ui/tool-based).
+Learn more about Generative UI [in the CopilotKit docs](https://docs.copilotkit.ai/adk/generative-ui).
 ### Shared State
 ADK agents can be stateful, and synchronizing that state between your agents and your UIs enables powerful and fluid user experiences. State can be synchronized both ways so agents are automatically aware of changes made by your user or other parts of your application:
 src/app/page.tsx
@@ -12692,20 +12728,16 @@ const { state, setState } = useCoAgent({
 name: "my_agent",
 initialState: {
 proverbs: [
-"CopilotKit may be new, but its the best thing since sliced bread.",
+"A journey of a thousand miles begins with a single step.",
 ],
 },
 })
 ```
 Learn more about shared state [in the CopilotKit docs](https://docs.copilotkit.ai/adk/shared-state).
-### Try it out!
-```text
-npm install && npm run dev
-```
 ## Resources
 To see what other features you can build into your UI with AG-UI, refer to the CopilotKit docs:
 - [Agentic Generative UI](https://docs.copilotkit.ai/adk/generative-ui/agentic)
-- [Human in the Loop](https://docs.copilotkit.ai/adk/human-in-the-loop/agent)
+- [Human in the Loop](https://docs.copilotkit.ai/adk/human-in-the-loop)
 - [Frontend Actions](https://docs.copilotkit.ai/adk/frontend-actions)
 Or try them out in the [AG-UI Dojo](https://dojo.ag-ui.com).
 # Asana
@@ -31234,86 +31266,4 @@ tool_name = tool.name
 print(f"[Callback] After tool call for tool '{tool_name}' in agent '{agent_name}'")
 print(f"[Callback] Args used: {args}")
 print(f"[Callback] Original tool_response: {tool_response}")
-# Default structure for function tool results is {"result": }
-original_result_value = tool_response.get("result", "")
-# original_result_value = tool_response
-# --- Modification Example ---
-# If the tool was 'get_capital_city' and result is 'Washington, D.C.'
-if tool_name == 'get_capital_city' and original_result_value == "Washington, D.C.":
-print("[Callback] Detected 'Washington, D.C.'. Modifying tool response.")
-# IMPORTANT: Create a new dictionary or modify a copy
-modified_response = deepcopy(tool_response)
-modified_response["result"] = f"{original_result_value} (Note: This is the capital of the USA)."
-modified_response["note_added_by_callback"] = True # Add extra info if needed
-print(f"[Callback] Modified tool_response: {modified_response}")
-return modified_response # Return the modified dictionary
-print("[Callback] Passing original tool response through.")
-# Return None to use the original tool_response
-return None
-# Create LlmAgent and Assign Callback
-my_llm_agent = LlmAgent(
-name="AfterToolCallbackAgent",
-model=GEMINI_2_FLASH,
-instruction="You are an agent that finds capital cities using the get_capital_city tool. Report the result clearly.",
-description="An LLM agent demonstrating after_tool_callback",
-tools=[capital_tool], # Add the tool
-after_tool_callback=simple_after_tool_modifier # Assign the callback
-)
-APP_NAME = "guardrail_app"
-USER_ID = "user_1"
-SESSION_ID = "session_001"
-# Session and Runner
-async def setup_session_and_runner():
-session_service = InMemorySessionService()
-session = await session_service.create_session(app_name=APP_NAME, user_id=USER_ID, session_id=SESSION_ID)
-runner = Runner(agent=my_llm_agent, app_name=APP_NAME, session_service=session_service)
-return session, runner
-# Agent Interaction
-async def call_agent_async(query):
-content = types.Content(role='user', parts=[types.Part(text=query)])
-session, runner = await setup_session_and_runner()
-events = runner.run_async(user_id=USER_ID, session_id=SESSION_ID, new_message=content)
-async for event in events:
-if event.is_final_response():
-final_response = event.content.parts[0].text
-print("Agent Response: ", final_response)
-# Note: In Colab, you can directly use 'await' at the top level.
-# If running this code as a standalone Python script, you'll need to use asyncio.run() or manage the event loop.
-await call_agent_async("united states")
-```
-```typescript
-/**
-* Copyright 2025 Google LLC
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-import {
-LlmAgent,
-InMemoryRunner,
-FunctionTool,
-isFinalResponse,
-ToolContext,
-BaseTool,
-} from "@google/adk";
-import { createUserContent } from "@google/genai";
-import { z } from "zod";
-const MODEL_NAME = "gemini-2.5-flash";
-const APP_NAME = "after_tool_callback_app";
-const USER_ID = "test_user_after_tool";
-const SESSION_ID = "session_001";
-// --- Define a Simple Tool Function ---
-const CountryInput = z.object({
-country: z.string().describe("The country to get the capital for."),
-});
-async function getCapitalCity(
-params: z.infer
+# Default structure for function tool results is {"result":

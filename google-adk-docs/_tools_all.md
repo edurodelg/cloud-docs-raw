@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-02T16:04:42.281997
+merged_at: 2026-02-04T00:26:07.885101
 merged_files: 9
 ---
 
@@ -220,20 +220,13 @@ LlmAgent.builder()
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/ -->
 
-# Tools for Agents¶
+# Tools and Integrations for Agents¶
 
-# Tools for Agents[¶](#tools-for-agents)
+# Tools and Integrations for Agents[¶](#tools-and-integrations-for-agents)
 
-Check out the following pre-built tools that you can use with ADK agents:
+Check out the following pre-built tools and integrations that you can use with ADK agents:
 
-### Gemini tools[¶](#gemini-tools)
-
-[
-](/adk-docs/tools/gemini-api/google-search/)
-
-### Google Search
-
-Perform web searches using Google Search with Gemini
+### Gemini[¶](#gemini)
 
 [
 ](/adk-docs/tools/gemini-api/code-execution/)
@@ -249,14 +242,14 @@ Execute code and debug using Gemini models
 
 Operate computer user interfaces using Gemini models
 
-### Google Cloud tools[¶](#google-cloud-tools)
-
 [
-](/adk-docs/tools/google-cloud/apigee-api-hub/)
+](/adk-docs/tools/gemini-api/google-search/)
 
-### Apigee API Hub
+### Google Search
 
-Turn any documented API from Apigee API hub into a tool
+Perform web searches using Google Search with Gemini
+
+### Google Cloud[¶](#google-cloud)
 
 [
 ](/adk-docs/tools/google-cloud/api-registry/)
@@ -266,18 +259,18 @@ Turn any documented API from Apigee API hub into a tool
 Dynamically connect with Google Cloud services as MCP tools
 
 [
+](/adk-docs/tools/google-cloud/apigee-api-hub/)
+
+### Apigee API Hub
+
+Turn any documented API from Apigee API hub into a tool
+
+[
 ](/adk-docs/tools/google-cloud/application-integration/)
 
 ### Application Integration
 
 Link your agents to enterprise apps using Integration Connectors
-
-[
-](/adk-docs/observability/bigquery-agent-analytics/)
-
-### BigQuery Agent Analytics
-
-Analyze and debug agent behavior at scale
 
 [
 ](/adk-docs/tools/google-cloud/bigquery/)
@@ -294,6 +287,27 @@ Connect with BigQuery to retrieve data and perform analysis
 Interact with Bigtable to retrieve data and execute SQL
 
 [
+](/adk-docs/tools/google-cloud/code-exec-agent-engine/)
+
+### Code Execution Tool with Agent Engine
+
+Run AI-generated code in a secure and scalable GKE environment
+
+[
+](/adk-docs/tools/google-cloud/data-agent/)
+
+### Data Agents
+
+Analyze data with AI-powered agents
+
+[
+](/adk-docs/tools/google-cloud/express-mode/)
+
+### Vertex AI express mode
+
+Try development with Vertex AI services at no cost
+
+[
 ](/adk-docs/tools/google-cloud/gke-code-executor/)
 
 ### GKE Code Executor
@@ -301,18 +315,25 @@ Interact with Bigtable to retrieve data and execute SQL
 Run AI-generated code in a secure and scalable GKE environment
 
 [
-](/adk-docs/tools/google-cloud/spanner/)
-
-### Spanner Tools
-
-Interact with Spanner to retrieve data, search, and execute SQL
-
-[
 ](/adk-docs/tools/google-cloud/mcp-toolbox-for-databases/)
 
 ### MCP Toolbox for Databases
 
 Connect over 30 different data sources to your agents
+
+[
+](/adk-docs/tools/google-cloud/pubsub/)
+
+### Pub/Sub Tools
+
+Publish, pull, and acknowledge messages from Google Cloud Pub/Sub
+
+[
+](/adk-docs/tools/google-cloud/spanner/)
+
+### Spanner Tools
+
+Interact with Spanner to retrieve data, search, and execute SQL
 
 [
 ](/adk-docs/tools/google-cloud/vertex-ai-rag-engine/)
@@ -328,7 +349,14 @@ Perform private data retrieval using Vertex AI RAG Engine
 
 Search across your private, configured data stores in Vertex AI Search
 
-### Third-party tools[¶](#third-party-tools)
+### Third-party[¶](#third-party)
+
+[
+](/adk-docs/tools/third-party/ag-ui/)
+
+### AG-UI
+
+Build interactive chat UIs with streaming, state sync, and agentic actions
 
 [
 ](/adk-docs/tools/third-party/asana/)
@@ -422,18 +450,18 @@ Trigger automated workflows, connect apps, and process data
 Search workspaces, create pages, and manage tasks and databases
 
 [
-](/adk-docs/tools/third-party/postman/)
-
-### Postman
-
-Manage API collections, workspaces, and generate client code
-
-[
 ](/adk-docs/tools/third-party/paypal/)
 
 ### Paypal
 
 Manage payments, send invoices, and handle subscriptions
+
+[
+](/adk-docs/tools/third-party/postman/)
+
+### Postman
+
+Manage API collections, workspaces, and generate client code
 
 [
 ](/adk-docs/tools/third-party/qdrant/)
@@ -486,7 +514,7 @@ If the above tools don't meet your needs, you can build tools for your ADK workf
 
 # Gemini API tools¶
 
-Gemini API tools¶ Check out the following Gemini tools that you can use with ADK agents: Google Search Perform web searches using Google Search with Gemini Code Execution Execute code and debug using Gemini models Computer Use Operate computer user interfaces using Gemini models
+Gemini API tools¶ Check out the following Gemini tools that you can use with ADK agents: Code Execution Execute code and debug using Gemini models Computer Use Operate computer user interfaces using Gemini models Google Search Perform web searches using Google Search with Gemini
 
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/gemini-api/computer-use/ -->
@@ -1114,7 +1142,14 @@ verifies code in secure sandboxes, check out
 
 # Third-Party Tools[¶](#third-party-tools)
 
-Check out the following third-party tools that you can use with ADK agents:
+Check out the following third-party tools and integrations you can use with ADK agents:
+
+[
+](/adk-docs/tools/third-party/ag-ui/)
+
+### AG-UI
+
+Build interactive chat UIs with streaming, state sync, and agentic actions
 
 [
 ](/adk-docs/tools/third-party/asana/)
@@ -1208,18 +1243,18 @@ Trigger automated workflows, connect apps, and process data
 Search workspaces, create pages, and manage tasks and databases
 
 [
-](/adk-docs/tools/third-party/postman/)
-
-### Postman
-
-Manage API collections, workspaces, and generate client code
-
-[
 ](/adk-docs/tools/third-party/paypal/)
 
 ### Paypal
 
 Manage payments, send invoices, and handle subscriptions
+
+[
+](/adk-docs/tools/third-party/postman/)
+
+### Postman
+
+Manage API collections, workspaces, and generate client code
 
 [
 ](/adk-docs/tools/third-party/qdrant/)
@@ -1448,11 +1483,10 @@ Directory to store generated audio files | No |
 
 # Build chat experiences with AG-UI and CopilotKit[¶](#build-chat-experiences-with-ag-ui-and-copilotkit)
 
-As an agent builder, you want users to interact with your agents through a rich
-and responsive interface. Building UIs from scratch requires a lot of effort,
-especially to support streaming events and client state. That's exactly what
-[AG-UI](https://docs.ag-ui.com/) was designed for - rich user experiences
-directly connected to an agent.
+Turn your ADK agents into full-featured applications with rich, responsive UIs.
+[AG-UI](https://docs.ag-ui.com/) is an open protocol that handles streaming
+events, client state, and bi-directional communication between your agents and
+users.
 
 [AG-UI](https://github.com/ag-ui-protocol/ag-ui) provides a consistent interface
 to empower rich clients across technology stacks, from mobile to the web and
@@ -1467,6 +1501,25 @@ This tutorial uses CopilotKit to create a sample app backed by an ADK agent that
 ## Quickstart[¶](#quickstart)
 
 To get started, let's create a sample application with an ADK agent and a simple web client:
+
+-
+Create the app:
+
+-
+Set your Google API key:
+
+-
+Install dependencies and run:
+
+
+This starts two servers:
+
+**http://localhost:3000**- The web UI (open this in your browser)**http://localhost:8000**- The ADK agent API (backend only)
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to chat with
+your agent.
+
+## Features[¶](#features)
 
 ### Chat[¶](#chat)
 
@@ -1485,25 +1538,25 @@ initial: "👋 Hi, there! You're chatting with an agent. This agent comes with a
 Learn more about the chat UI
 [in the CopilotKit docs](https://docs.copilotkit.ai/adk/agentic-chat-ui).
 
-### Tool Based Generative UI (Rendering Tools)[¶](#tool-based-generative-ui-rendering-tools)
+### Generative UI[¶](#generative-ui)
 
 AG-UI lets you share tool information with a Generative UI so that it can be displayed to users:
 
-useCopilotAction({
+useRenderToolCall(
+{
 name: "get_weather",
 description: "Get the weather for a given location.",
-available: "disabled",
-parameters: [
-{ name: "location", type: "string", required: true },
-],
+parameters: [{ name: "location", type: "string", required: true }],
 render: ({ args }) => {
-return <WeatherCard location={args.location} themeColor={themeColor} />
+return <WeatherCard location={args.location} themeColor={themeColor} />;
 },
-});
+},
+[themeColor],
+);
 
 
-Learn more about the Tool-based Generative UI
-[in the CopilotKit docs](https://docs.copilotkit.ai/adk/generative-ui/tool-based).
+Learn more about Generative UI
+[in the CopilotKit docs](https://docs.copilotkit.ai/adk/generative-ui).
 
 ### Shared State[¶](#shared-state)
 
@@ -1513,7 +1566,7 @@ const { state, setState } = useCoAgent<AgentState>({
 name: "my_agent",
 initialState: {
 proverbs: [
-"CopilotKit may be new, but its the best thing since sliced bread.",
+"A journey of a thousand miles begins with a single step.",
 ],
 },
 })
@@ -1521,8 +1574,6 @@ proverbs: [
 
 Learn more about shared state
 [in the CopilotKit docs](https://docs.copilotkit.ai/adk/shared-state).
-
-### Try it out![¶](#try-it-out)
 
 ## Resources[¶](#resources)
 
@@ -3934,101 +3985,6 @@ specific tool identifiers.
 <!-- Source: N/A -->
 
 ---
-<!-- Source: https://google.github.io/adk-docs/tools/google-cloud/ -->
-
-# Google Cloud Tools¶
-
-# Google Cloud Tools[¶](#google-cloud-tools)
-
-Google Cloud tools make it easier to connect your agents to Google Cloud’s products and services. With just a few lines of code you can use these tools to connect your agents with:
-
-**Any custom APIs**that developers host in Apigee.**100s**of**prebuilt connectors**to enterprise systems such as Salesforce, Workday, and SAP.**Automation workflows**built using application integration.**Databases**such as Spanner, AlloyDB, Postgres and more using the MCP Toolbox for databases.
-
-[
-](/adk-docs/tools/google-cloud/apigee-api-hub/)
-
-### Apigee API Hub
-
-Turn any documented API from Apigee API hub into a tool
-
-[
-](/adk-docs/tools/google-cloud/api-registry/)
-
-### API Registry
-
-Dynamically connect with Google Cloud services as MCP tools
-
-[
-](/adk-docs/tools/google-cloud/application-integration/)
-
-### Application Integration
-
-Link your agents to enterprise apps using Integration Connectors
-
-[
-](/adk-docs/observability/bigquery-agent-analytics/)
-
-### BigQuery Agent Analytics
-
-Analyze and debug agent behavior at scale
-
-[
-](/adk-docs/tools/google-cloud/bigquery/)
-
-### BigQuery Tools
-
-Connect with BigQuery to retrieve data and perform analysis
-
-[
-](/adk-docs/tools/google-cloud/bigtable/)
-
-### Bigtable Tools
-
-Interact with Bigtable to retrieve data and execute SQL
-
-[
-](/adk-docs/tools/google-cloud/gke-code-executor/)
-
-### GKE Code Executor
-
-Run AI-generated code in a secure and scalable GKE environment
-
-[
-](/adk-docs/tools/google-cloud/spanner/)
-
-### Spanner Tools
-
-Interact with Spanner to retrieve data, search, and execute SQL
-
-[
-](/adk-docs/tools/google-cloud/mcp-toolbox-for-databases/)
-
-### MCP Toolbox for Databases
-
-Connect over 30 different data sources to your agents
-
-[
-](/adk-docs/tools/google-cloud/vertex-ai-rag-engine/)
-
-### Vertex AI RAG Engine
-
-Perform private data retrieval using Vertex AI RAG Engine
-
-[
-](/adk-docs/tools/google-cloud/vertex-ai-search/)
-
-### Vertex AI Search
-
-Search across your private, configured data stores in Vertex AI Search
-
-[
-](/adk-docs/tools/google-cloud/pubsub/)
-
-### Pub/Sub Tools
-
-Publish, pull, and acknowledge messages from Google Cloud Pub/Sub
-
----
 <!-- Source: https://google.github.io/adk-docs/tools/google-cloud/vertex-ai-rag-engine/ -->
 
 # Vertex AI RAG Engine tool for ADK¶
@@ -4096,6 +4052,115 @@ tools=[
 ask_vertex_retrieval,
 ]
 )
+
+---
+<!-- Source: https://google.github.io/adk-docs/tools/google-cloud/ -->
+
+# Google Cloud Tools¶
+
+# Google Cloud Tools[¶](#google-cloud-tools)
+
+Google Cloud tools make it easier to connect your agents to Google Cloud’s products and services. With just a few lines of code you can use these tools to connect your agents with:
+
+**Any custom APIs**that developers host in Apigee.**100s**of**prebuilt connectors**to enterprise systems such as Salesforce, Workday, and SAP.**Automation workflows**built using application integration.**Databases**such as Spanner, AlloyDB, Postgres and more using the MCP Toolbox for databases.
+
+[
+](/adk-docs/tools/google-cloud/api-registry/)
+
+### API Registry
+
+Dynamically connect with Google Cloud services as MCP tools
+
+[
+](/adk-docs/tools/google-cloud/apigee-api-hub/)
+
+### Apigee API Hub
+
+Turn any documented API from Apigee API hub into a tool
+
+[
+](/adk-docs/tools/google-cloud/application-integration/)
+
+### Application Integration
+
+Link your agents to enterprise apps using Integration Connectors
+
+[
+](/adk-docs/tools/google-cloud/bigquery/)
+
+### BigQuery Tools
+
+Connect with BigQuery to retrieve data and perform analysis
+
+[
+](/adk-docs/tools/google-cloud/bigtable/)
+
+### Bigtable Tools
+
+Interact with Bigtable to retrieve data and execute SQL
+
+[
+](/adk-docs/tools/google-cloud/code-exec-agent-engine/)
+
+### Code Execution Tool with Agent Engine
+
+Run AI-generated code in a secure and scalable GKE environment
+
+[
+](/adk-docs/tools/google-cloud/data-agent/)
+
+### Data Agents
+
+Analyze data with AI-powered agents
+
+[
+](/adk-docs/tools/google-cloud/express-mode/)
+
+### Vertex AI express mode
+
+Try development with Vertex AI services at no cost
+
+[
+](/adk-docs/tools/google-cloud/gke-code-executor/)
+
+### GKE Code Executor
+
+Run AI-generated code in a secure and scalable GKE environment
+
+[
+](/adk-docs/tools/google-cloud/mcp-toolbox-for-databases/)
+
+### MCP Toolbox for Databases
+
+Connect over 30 different data sources to your agents
+
+[
+](/adk-docs/tools/google-cloud/pubsub/)
+
+### Pub/Sub Tools
+
+Publish, pull, and acknowledge messages from Google Cloud Pub/Sub
+
+[
+](/adk-docs/tools/google-cloud/spanner/)
+
+### Spanner Tools
+
+Interact with Spanner to retrieve data, search, and execute SQL
+
+[
+](/adk-docs/tools/google-cloud/vertex-ai-rag-engine/)
+
+### Vertex AI RAG Engine
+
+Perform private data retrieval using Vertex AI RAG Engine
+
+[
+](/adk-docs/tools/google-cloud/vertex-ai-search/)
+
+### Vertex AI Search
+
+Search across your private, configured data stores in Vertex AI Search
 
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/google-cloud/apigee-api-hub/ -->
@@ -4909,9 +4974,9 @@ call_agent("List the top 5 rows in <TABLE_NAME>")
 ---
 <!-- Source: https://google.github.io/adk-docs/tools/google-cloud/pubsub/ -->
 
-# Pub/Sub tool for ADK¶
+# Pub/Sub Tools for ADK¶
 
-# Pub/Sub tool for ADK[¶](#pubsub-tool-for-adk)
+# Pub/Sub Tools for ADK[¶](#pubsub-tools-for-adk)
 
 Supported in ADKPython v1.22.0
 
