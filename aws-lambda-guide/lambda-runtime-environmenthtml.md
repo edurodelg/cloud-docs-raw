@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html
-fetched_at: 2026-02-02T15:44:56.692128
+fetched_at: 2026-02-04T00:06:00.823089
 ---
 
 # Understanding the Lambda execution environment lifecycle

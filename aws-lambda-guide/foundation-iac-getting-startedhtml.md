@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/foundation-iac-getting-started.html
-fetched_at: 2026-02-02T15:45:54.321824
+fetched_at: 2026-02-04T00:07:01.451030
 ---
 
 # Using Lambda functions in AWS SAM and Infrastructure Composer

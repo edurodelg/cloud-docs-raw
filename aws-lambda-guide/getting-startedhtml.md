@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html
-fetched_at: 2026-02-02T15:45:08.700737
+fetched_at: 2026-02-04T00:06:15.855283
 ---
 
 # Create your first Lambda function

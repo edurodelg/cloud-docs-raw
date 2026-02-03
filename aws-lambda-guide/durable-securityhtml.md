@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-security.html
-fetched_at: 2026-02-02T15:46:49.320701
+fetched_at: 2026-02-04T00:07:56.000368
 ---
 
 # Security and permissions for Lambda durable functions
