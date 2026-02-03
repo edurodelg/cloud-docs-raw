@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/bigquery/latest/summary_method
-fetched_at: 2026-02-02T16:08:38.205371
+fetched_at: 2026-02-04T00:30:35.675671
 ---
 
 # Package Methods (3.40.0)
