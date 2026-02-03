@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-tools-commands.html
-fetched_at: 2026-02-02T15:49:18.918490
+fetched_at: 2026-02-04T00:10:30.113864
 ---
 
 # Amazon EC2 AMI tools reference

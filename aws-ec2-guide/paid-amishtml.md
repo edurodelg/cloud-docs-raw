@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/paid-amis.html
-fetched_at: 2026-02-02T15:48:30.135353
+fetched_at: 2026-02-04T00:09:40.386664
 ---
 
 # Paid AMIs in the AWS Marketplace for Amazon EC2 instances

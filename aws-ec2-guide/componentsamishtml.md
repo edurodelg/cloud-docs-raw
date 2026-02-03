@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html
-fetched_at: 2026-02-02T15:48:03.956135
+fetched_at: 2026-02-04T00:09:15.424908
 ---
 
 # AMI types and characteristics in Amazon EC2

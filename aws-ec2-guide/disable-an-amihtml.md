@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/disable-an-ami.html
-fetched_at: 2026-02-02T15:50:48.700752
+fetched_at: 2026-02-04T00:12:00.048106
 ---
 
 # Disable an Amazon EC2 AMI
