@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.ReadData.Scan.html
-fetched_at: 2026-02-02T15:57:11.139298
+fetched_at: 2026-02-04T00:18:18.156917
 ---
 
 # Differences in scanning a table

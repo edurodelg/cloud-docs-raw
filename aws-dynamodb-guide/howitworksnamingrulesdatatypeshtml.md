@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html
-fetched_at: 2026-02-02T15:56:10.738145
+fetched_at: 2026-02-04T00:17:18.163294
 ---
 
 # Supported data types and naming rules

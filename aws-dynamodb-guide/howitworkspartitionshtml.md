@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.Partitions.html
-fetched_at: 2026-02-02T15:56:20.918718
+fetched_at: 2026-02-04T00:17:28.112346
 ---
 
 # Partitions and data distribution in DynamoDB

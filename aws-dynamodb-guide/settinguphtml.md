@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SettingUp.html
-fetched_at: 2026-02-02T15:54:35.831696
+fetched_at: 2026-02-04T00:15:43.373752
 ---
 
 # Setting up DynamoDB
