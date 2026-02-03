@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration-speed-comparison.html
-fetched_at: 2026-02-02T15:53:21.990978
+fetched_at: 2026-02-04T00:14:33.811163
 ---
 
 # Using the Amazon S3 Transfer Acceleration

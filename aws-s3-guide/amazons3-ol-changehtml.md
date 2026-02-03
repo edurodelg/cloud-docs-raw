@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazons3-ol-change.html
-fetched_at: 2026-02-02T15:51:01.821975
+fetched_at: 2026-02-04T00:12:13.574946
 ---
 
 # Amazon S3 Object Lambda availability change

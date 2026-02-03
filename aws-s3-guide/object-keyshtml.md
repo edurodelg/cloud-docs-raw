@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html
-fetched_at: 2026-02-02T15:53:57.106299
+fetched_at: 2026-02-04T00:15:08.947566
 ---
 
 # Naming Amazon S3 objects
