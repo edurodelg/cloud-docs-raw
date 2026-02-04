@@ -4,8 +4,8 @@
 
 ### Documentación técnica de servicios cloud en formato Markdown
 
-[![Actualizado](https://img.shields.io/badge/Actualizado-2026-02-04%2000:44%20UTC-blue)]()
-[![Archivos](https://img.shields.io/badge/Archivos-546-green)]()
+[![Actualizado](https://img.shields.io/badge/Actualizado-2026-02-04%2008:15%20UTC-blue)]()
+[![Archivos](https://img.shields.io/badge/Archivos-544-green)]()
 [![Fuentes](https://img.shields.io/badge/Fuentes-13-orange)]()
 
 *Listo para usar con NotebookLM, RAG, LLMs y más*
@@ -42,11 +42,11 @@ Este repositorio contiene **documentación técnica oficial** de servicios cloud
 | [gcp-bigquery-python](./gcp-bigquery-python/) | 50 | [Docs](https://cloud.google.com/python/docs/reference/bigquery/latest) |
 | [gcp-cloud-run-python](./gcp-cloud-run-python/) | 37 | [Docs](https://cloud.google.com/python/docs/reference/run/latest) |
 | [gcp-storage-python](./gcp-storage-python/) | 48 | [Docs](https://cloud.google.com/python/docs/reference/storage/latest) |
-| [gcp-vertex-ai-python](./gcp-vertex-ai-python/) | 43 | [Docs](https://cloud.google.com/python/docs/reference/aiplatform/latest) |
+| [gcp-vertex-ai-python](./gcp-vertex-ai-python/) | 41 | [Docs](https://cloud.google.com/python/docs/reference/aiplatform/latest) |
 | [google-adk-docs](./google-adk-docs/) | 46 | [Docs](https://google.github.io/adk-docs/) |
 | [google-styleguide-python](./google-styleguide-python/) | 29 | [Docs](https://google.github.io/styleguide/pyguide.html) |
 
-> **Total:** 546 archivos Markdown
+> **Total:** 544 archivos Markdown
 
 ---
 
