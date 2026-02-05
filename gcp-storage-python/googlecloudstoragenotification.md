@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.notification
-fetched_at: 2026-02-04T00:29:37.963956
+fetched_at: 2026-02-05T08:38:40.157887
 ---
 
 # Module notification (3.8.0)

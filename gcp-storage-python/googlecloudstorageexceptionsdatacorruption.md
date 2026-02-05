@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.exceptions.DataCorruption
-fetched_at: 2026-02-04T00:29:13.293447
+fetched_at: 2026-02-05T08:38:19.597888
 ---
 
 # Class DataCorruption (3.8.0)

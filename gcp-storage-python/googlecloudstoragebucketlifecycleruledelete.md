@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.bucket.LifecycleRuleDelete
-fetched_at: 2026-02-04T00:28:49.704832
+fetched_at: 2026-02-05T08:38:02.158229
 ---
 
 # Class LifecycleRuleDelete (3.8.0)

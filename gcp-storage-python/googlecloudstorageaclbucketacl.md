@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.acl.BucketACL
-fetched_at: 2026-02-04T00:28:05.225214
+fetched_at: 2026-02-05T08:37:26.343246
 ---
 
 # Class BucketACL (3.8.0)

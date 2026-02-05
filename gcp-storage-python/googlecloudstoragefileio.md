@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.fileio
-fetched_at: 2026-02-04T00:29:19.391936
+fetched_at: 2026-02-05T08:38:24.665980
 ---
 
 # Module fileio (3.8.0)

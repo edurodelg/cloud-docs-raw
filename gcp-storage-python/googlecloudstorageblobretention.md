@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.blob.Retention
-fetched_at: 2026-02-04T00:28:29.274975
+fetched_at: 2026-02-05T08:37:46.524747
 ---
 
 # Class Retention (3.8.0)
