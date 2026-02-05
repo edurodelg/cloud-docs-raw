@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-04T00:26:07.930749
+merged_at: 2026-02-05T08:35:39.053743
 merged_files: 7
 ---
 
@@ -5808,8 +5808,8 @@ escalation_tool = FunctionTool(func=check_and_transfer)
 main_agent = Agent(
 model='gemini-2.0-flash',
 name='main_agent',
-instruction="""You are the first point of contact for customer support of an analytics tool. Answer general queries. If the user indicates urgency, use the 'check_and_transfer' tool.""",
-tools=[check_and_transfer]
+instruction="""You are the first point of contact for customer support of an analytics tool. Answer general queries. If the user indicates urgency, use the 'escalation_tool' tool.""",
+tools=[escalation_tool]
 )
 support_agent = Agent(
 model='gemini-2.0-flash',

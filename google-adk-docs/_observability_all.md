@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-04T00:26:07.875071
+merged_at: 2026-02-05T08:35:38.995857
 merged_files: 10
 ---
 
@@ -1483,6 +1483,8 @@ types, refer to the [Event types and payloads](#event-types) section.
 - **`log_multi_modal_content`** (`bool`, default: `True`): Whether to log detailed content parts (including GCS references).
 - **`queue_max_size`** (`int`, default: `10000`): The maximum number of events to hold in the in-memory queue before dropping new events.
 - **`retry_config`** (`RetryConfig`, default: `RetryConfig()`): Configuration for retrying failed BigQuery writes (attributes: `max_retries`, `initial_delay`, `multiplier`, `max_delay`).
+- **`log_session_metadata`** (`bool`, default: `True`): If True, logs metadata from the `session` object (e.g., `session.metadata`) into the `attributes` column.
+- **`custom_tags`** (`Dict[str, Any]`, default: `{}`): A dictionary of static tags (e.g., `{"env": "prod", "version": "1.0"}`) to be included in the `attributes` column for every event.
 The following code sample shows how to define a configuration for the
 BigQuery Agent Analytics plugin:
 ```python
@@ -1550,7 +1552,7 @@ part_index INT64,
 part_attributes STRING,
 storage_mode STRING
 >> OPTIONS(description="Detailed content parts for multi-modal data."),
-attributes JSON OPTIONS(description="Arbitrary key-value pairs for additional metadata (e.g., 'root_agent_name', 'model_version', 'usage_metadata')."),
+attributes JSON OPTIONS(description="Arbitrary key-value pairs for additional metadata (e.g., 'root_agent_name', 'model_version', 'usage_metadata', 'session_metadata', 'custom_tags')."),
 latency_ms JSON OPTIONS(description="Latency measurements (e.g., total_ms)."),
 status STRING OPTIONS(description="The outcome of the event, typically 'OK' or 'ERROR'."),
 error_message STRING OPTIONS(description="Populated if an error occurs."),
@@ -1628,6 +1630,20 @@ TOOL_ERROR |
 { "tool": "...", "args": {...} } |
 {} |
 {"tool": "list_datasets", "args": {}} |
+
+#### State Management[¶](#state-management)
+
+These events track changes to the agent's state, typically triggered by tools.
+
+Event Type |
+Content (JSON) Structure |
+Attributes (JSON) |
+Example Content |
+|---|---|---|---|
+STATE_DELTA |
+{ "state_delta": {...} } |
+{} |
+{"state_delta": {"order_id": "123", "status": "confirmed"}} |
 
 #### Agent lifecycle & Generic Events[¶](#agent-lifecycle-generic-events)
 

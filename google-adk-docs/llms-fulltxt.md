@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/llms-full.txt
-fetched_at: 2026-02-04T00:11:07.376085
+fetched_at: 2026-02-05T08:20:47.365158
 ---
 
 # Agent Development Kit
@@ -15288,8 +15288,8 @@ escalation_tool = FunctionTool(func=check_and_transfer)
 main_agent = Agent(
 model='gemini-2.0-flash',
 name='main_agent',
-instruction="""You are the first point of contact for customer support of an analytics tool. Answer general queries. If the user indicates urgency, use the 'check_and_transfer' tool.""",
-tools=[check_and_transfer]
+instruction="""You are the first point of contact for customer support of an analytics tool. Answer general queries. If the user indicates urgency, use the 'escalation_tool' tool.""",
+tools=[escalation_tool]
 )
 support_agent = Agent(
 model='gemini-2.0-flash',
@@ -21791,6 +21791,16 @@ $AGENT_PATH
 - `--with_ui`: (Optional) If included, deploys the ADK dev UI alongside the agent API server. By default, only the API server is deployed.
 - `--temp_folder TEXT`: (Optional) Specifies a directory for storing intermediate files generated during the deployment process. Defaults to a timestamped folder in the system's temporary directory. *(Note: This option is generally not needed unless troubleshooting issues).*
 - `--help`: Show the help message and exit.
+##### Passing gcloud CLI Arguments
+To pass specific gcloud flags through the `adk deploy cloud_run` command, use the double-dash separator (`--`) after the ADK arguments. Any flags (except ADK-managed) following the `--` will be passed directly to the underlying gcloud command.
+###### Syntax Example:
+```bash
+adk deploy cloud_run [ADK_FLAGS] -- [GCLOUD_FLAGS]
+```
+###### Example:
+```bash
+adk deploy cloud_run --project=[PROJECT_ID] --region=[REGION] path/to/my_agent -- --no-allow-unauthenticated --min-instances=2
+```
 ##### Authenticated access
 During the deployment process, you might be prompted: `Allow unauthenticated invocations to [your-service-name] (y/N)?`.
 - Enter `y` to allow public access to your agent's API endpoint without authentication.
@@ -23283,6 +23293,8 @@ types, refer to the [Event types and payloads](#event-types) section.
 - **`log_multi_modal_content`** (`bool`, default: `True`): Whether to log detailed content parts (including GCS references).
 - **`queue_max_size`** (`int`, default: `10000`): The maximum number of events to hold in the in-memory queue before dropping new events.
 - **`retry_config`** (`RetryConfig`, default: `RetryConfig()`): Configuration for retrying failed BigQuery writes (attributes: `max_retries`, `initial_delay`, `multiplier`, `max_delay`).
+- **`log_session_metadata`** (`bool`, default: `True`): If True, logs metadata from the `session` object (e.g., `session.metadata`) into the `attributes` column.
+- **`custom_tags`** (`Dict[str, Any]`, default: `{}`): A dictionary of static tags (e.g., `{"env": "prod", "version": "1.0"}`) to be included in the `attributes` column for every event.
 The following code sample shows how to define a configuration for the
 BigQuery Agent Analytics plugin:
 ```python
@@ -23338,7 +23350,7 @@ part_index INT64,
 part_attributes STRING,
 storage_mode STRING
 >> OPTIONS(description="Detailed content parts for multi-modal data."),
-attributes JSON OPTIONS(description="Arbitrary key-value pairs for additional metadata (e.g., 'root_agent_name', 'model_version', 'usage_metadata')."),
+attributes JSON OPTIONS(description="Arbitrary key-value pairs for additional metadata (e.g., 'root_agent_name', 'model_version', 'usage_metadata', 'session_metadata', 'custom_tags')."),
 latency_ms JSON OPTIONS(description="Latency measurements (e.g., total_ms)."),
 status STRING OPTIONS(description="The outcome of the event, typically 'OK' or 'ERROR'."),
 error_message STRING OPTIONS(description="Populated if an error occurs."),
@@ -23366,6 +23378,11 @@ These events track the execution of tools by the agent.
 | `TOOL_STARTING` | `{ "tool": "...", "args": {...} }` | `{}` | `{"tool": "list_datasets", "args": {"project_id": "my-project"}}` |
 | `TOOL_COMPLETED` | `{ "tool": "...", "result": "..." }` | `{}` | `{"tool": "list_datasets", "result": ["ds1", "ds2"]}` |
 | `TOOL_ERROR` | `{ "tool": "...", "args": {...} }` | `{}` | `{"tool": "list_datasets", "args": {}}` |
+#### State Management
+These events track changes to the agent's state, typically triggered by tools.
+| **Event Type** | **Content (JSON) Structure** | **Attributes (JSON)** | **Example Content** |
+| -------------- | ---------------------------- | --------------------- | ------------------------------------------------------------- |
+| `STATE_DELTA` | `{ "state_delta": {...} }` | `{}` | `{"state_delta": {"order_id": "123", "status": "confirmed"}}` |
 #### Agent lifecycle & Generic Events
 | **Event Type** | **Content (JSON) Structure** |
 | ----------------------- | -------------------------------------------- |

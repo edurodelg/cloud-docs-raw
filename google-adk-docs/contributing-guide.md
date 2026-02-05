@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/contributing-guide/
-fetched_at: 2026-02-04T00:10:56.582194
+fetched_at: 2026-02-05T08:20:35.445792
 ---
 
 # Contributing Guide

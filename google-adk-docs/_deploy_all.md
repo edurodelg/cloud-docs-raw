@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-04T00:26:07.945874
+merged_at: 2026-02-05T08:35:39.066829
 merged_files: 4
 ---
 
@@ -893,6 +893,23 @@ is`./capital_agent`
 
 : Show the help message and exit.
 
+##### Passing gcloud CLI Arguments[¶](#passing-gcloud-cli-arguments)
+
+To pass specific gcloud flags through the `adk deploy cloud_run`
+
+command, use the double-dash separator (`--`
+
+) after the ADK arguments. Any flags (except ADK-managed) following the `--`
+
+will be passed directly to the underlying gcloud command.
+
+###### Syntax Example:[¶](#syntax-example)
+
+###### Example:[¶](#example)
+
+adk deploy cloud_run --project=[PROJECT_ID] --region=[REGION] path/to/my_agent -- --no-allow-unauthenticated --min-instances=2
+
+
 ##### Authenticated access[¶](#authenticated-access)
 
 During the deployment process, you might be prompted: `Allow unauthenticated invocations to [your-service-name] (y/N)?`
@@ -955,7 +972,7 @@ This file sets up the FastAPI application using
 
 `get_fast_api_app()`
 
-from ADK:main.py[import os](#__codelineno-8-1)[import uvicorn](#__codelineno-8-3)[from fastapi import FastAPI](#__codelineno-8-4)[from google.adk.cli.fast_api import get_fast_api_app](#__codelineno-8-5)[# Get the directory where main.py is located](#__codelineno-8-7)[AGENT_DIR = os.path.dirname(os.path.abspath(__file__))](#__codelineno-8-8)[# Example session service URI (e.g., SQLite)](#__codelineno-8-9)[# Note: Use 'sqlite+aiosqlite' instead of 'sqlite' because DatabaseSessionService requires an async driver](#__codelineno-8-10)[SESSION_SERVICE_URI = "sqlite+aiosqlite:///./sessions.db"](#__codelineno-8-11)[# Example allowed origins for CORS](#__codelineno-8-12)[ALLOWED_ORIGINS = ["http://localhost", "http://localhost:8080", "*"]](#__codelineno-8-13)[# Set web=True if you intend to serve a web interface, False otherwise](#__codelineno-8-14)[SERVE_WEB_INTERFACE = True](#__codelineno-8-15)[# Call the function to get the FastAPI app instance](#__codelineno-8-17)[# Ensure the agent directory name ('capital_agent') matches your agent folder](#__codelineno-8-18)[app: FastAPI = get_fast_api_app(](#__codelineno-8-19)[agents_dir=AGENT_DIR,](#__codelineno-8-20)[session_service_uri=SESSION_SERVICE_URI,](#__codelineno-8-21)[allow_origins=ALLOWED_ORIGINS,](#__codelineno-8-22)[web=SERVE_WEB_INTERFACE,](#__codelineno-8-23)[)](#__codelineno-8-24)[# You can add more FastAPI routes or configurations below if needed](#__codelineno-8-26)[# Example:](#__codelineno-8-27)[# @app.get("/hello")](#__codelineno-8-28)[# async def read_root():](#__codelineno-8-29)[# return {"Hello": "World"}](#__codelineno-8-30)[if __name__ == "__main__":](#__codelineno-8-32)[# Use the PORT environment variable provided by Cloud Run, defaulting to 8080](#__codelineno-8-33)[uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))](#__codelineno-8-34)*Note: We specify*`agent_dir`
+from ADK:main.py[import os](#__codelineno-10-1)[import uvicorn](#__codelineno-10-3)[from fastapi import FastAPI](#__codelineno-10-4)[from google.adk.cli.fast_api import get_fast_api_app](#__codelineno-10-5)[# Get the directory where main.py is located](#__codelineno-10-7)[AGENT_DIR = os.path.dirname(os.path.abspath(__file__))](#__codelineno-10-8)[# Example session service URI (e.g., SQLite)](#__codelineno-10-9)[# Note: Use 'sqlite+aiosqlite' instead of 'sqlite' because DatabaseSessionService requires an async driver](#__codelineno-10-10)[SESSION_SERVICE_URI = "sqlite+aiosqlite:///./sessions.db"](#__codelineno-10-11)[# Example allowed origins for CORS](#__codelineno-10-12)[ALLOWED_ORIGINS = ["http://localhost", "http://localhost:8080", "*"]](#__codelineno-10-13)[# Set web=True if you intend to serve a web interface, False otherwise](#__codelineno-10-14)[SERVE_WEB_INTERFACE = True](#__codelineno-10-15)[# Call the function to get the FastAPI app instance](#__codelineno-10-17)[# Ensure the agent directory name ('capital_agent') matches your agent folder](#__codelineno-10-18)[app: FastAPI = get_fast_api_app(](#__codelineno-10-19)[agents_dir=AGENT_DIR,](#__codelineno-10-20)[session_service_uri=SESSION_SERVICE_URI,](#__codelineno-10-21)[allow_origins=ALLOWED_ORIGINS,](#__codelineno-10-22)[web=SERVE_WEB_INTERFACE,](#__codelineno-10-23)[)](#__codelineno-10-24)[# You can add more FastAPI routes or configurations below if needed](#__codelineno-10-26)[# Example:](#__codelineno-10-27)[# @app.get("/hello")](#__codelineno-10-28)[# async def read_root():](#__codelineno-10-29)[# return {"Hello": "World"}](#__codelineno-10-30)[if __name__ == "__main__":](#__codelineno-10-32)[# Use the PORT environment variable provided by Cloud Run, defaulting to 8080](#__codelineno-10-33)[uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))](#__codelineno-10-34)*Note: We specify*`agent_dir`
 
 to the directory`main.py`
 
@@ -967,7 +984,7 @@ List the necessary Python packages:
 -
 Define the container image:
 
-Dockerfile[FROM python:3.13-slim](#__codelineno-10-1)[WORKDIR /app](#__codelineno-10-2)[COPY requirements.txt .](#__codelineno-10-4)[RUN pip install --no-cache-dir -r requirements.txt](#__codelineno-10-5)[RUN adduser --disabled-password --gecos "" myuser && \](#__codelineno-10-7)[chown -R myuser:myuser /app](#__codelineno-10-8)[COPY . .](#__codelineno-10-10)[USER myuser](#__codelineno-10-12)[ENV PATH="/home/myuser/.local/bin:$PATH"](#__codelineno-10-14)[CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port $PORT"]](#__codelineno-10-16)
+Dockerfile[FROM python:3.13-slim](#__codelineno-12-1)[WORKDIR /app](#__codelineno-12-2)[COPY requirements.txt .](#__codelineno-12-4)[RUN pip install --no-cache-dir -r requirements.txt](#__codelineno-12-5)[RUN adduser --disabled-password --gecos "" myuser && \](#__codelineno-12-7)[chown -R myuser:myuser /app](#__codelineno-12-8)[COPY . .](#__codelineno-12-10)[USER myuser](#__codelineno-12-12)[ENV PATH="/home/myuser/.local/bin:$PATH"](#__codelineno-12-14)[CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port $PORT"]](#__codelineno-12-16)
 
 #### Defining Multiple Agents[¶](#defining-multiple-agents)
 
@@ -1260,10 +1277,10 @@ example in the[examples](https://github.com/google/adk-docs/blob/main/examples/j
 -
 Add the following dependencies and plugin to the pom.xml file.
 
-pom.xml[<dependencies>](#__codelineno-17-1)[<dependency>](#__codelineno-17-2)[<groupId>com.google.adk</groupId>](#__codelineno-17-3)[<artifactId>google-adk</artifactId>](#__codelineno-17-4)[<version>0.5.0</version>](#__codelineno-17-5)[</dependency>](#__codelineno-17-6)[<dependency>](#__codelineno-17-7)[<groupId>com.google.adk</groupId>](#__codelineno-17-8)[<artifactId>google-adk-dev</artifactId>](#__codelineno-17-9)[<version>0.5.0</version>](#__codelineno-17-10)[</dependency>](#__codelineno-17-11)[</dependencies>](#__codelineno-17-12)[<plugin>](#__codelineno-17-14)[<groupId>org.codehaus.mojo</groupId>](#__codelineno-17-15)[<artifactId>exec-maven-plugin</artifactId>](#__codelineno-17-16)[<version>3.2.0</version>](#__codelineno-17-17)[<configuration>](#__codelineno-17-18)[<mainClass>com.google.adk.web.AdkWebServer</mainClass>](#__codelineno-17-19)[<classpathScope>compile</classpathScope>](#__codelineno-17-20)[</configuration>](#__codelineno-17-21)[</plugin>](#__codelineno-17-22) -
+pom.xml[<dependencies>](#__codelineno-19-1)[<dependency>](#__codelineno-19-2)[<groupId>com.google.adk</groupId>](#__codelineno-19-3)[<artifactId>google-adk</artifactId>](#__codelineno-19-4)[<version>0.5.0</version>](#__codelineno-19-5)[</dependency>](#__codelineno-19-6)[<dependency>](#__codelineno-19-7)[<groupId>com.google.adk</groupId>](#__codelineno-19-8)[<artifactId>google-adk-dev</artifactId>](#__codelineno-19-9)[<version>0.5.0</version>](#__codelineno-19-10)[</dependency>](#__codelineno-19-11)[</dependencies>](#__codelineno-19-12)[<plugin>](#__codelineno-19-14)[<groupId>org.codehaus.mojo</groupId>](#__codelineno-19-15)[<artifactId>exec-maven-plugin</artifactId>](#__codelineno-19-16)[<version>3.2.0</version>](#__codelineno-19-17)[<configuration>](#__codelineno-19-18)[<mainClass>com.google.adk.web.AdkWebServer</mainClass>](#__codelineno-19-19)[<classpathScope>compile</classpathScope>](#__codelineno-19-20)[</configuration>](#__codelineno-19-21)[</plugin>](#__codelineno-19-22) -
 Define the container image:
 
-Dockerfile[# Use an official Maven image with a JDK. Choose a version appropriate for your project.](#__codelineno-18-1)[FROM maven:3.8-openjdk-17 AS builder](#__codelineno-18-2)[WORKDIR /app](#__codelineno-18-4)[COPY pom.xml .](#__codelineno-18-6)[RUN mvn dependency:go-offline -B](#__codelineno-18-7)[COPY src ./src](#__codelineno-18-9)[# Expose the port your application will listen on.](#__codelineno-18-11)[# Cloud Run will set the PORT environment variable, which your app should use.](#__codelineno-18-12)[EXPOSE 8080](#__codelineno-18-13)[# The command to run your application.](#__codelineno-18-15)[# Use a shell so ${PORT} expands and quote exec.args so agent source-dir is passed correctly.](#__codelineno-18-16)[ENTRYPOINT ["sh", "-c", "mvn compile exec:java \](#__codelineno-18-17)[-Dexec.mainClass=com.google.adk.web.AdkWebServer \](#__codelineno-18-18)[-Dexec.classpathScope=compile \](#__codelineno-18-19)[-Dexec.args='--server.port=${PORT:-8080} --adk.agents.source-dir=target'"]](#__codelineno-18-20)
+Dockerfile[# Use an official Maven image with a JDK. Choose a version appropriate for your project.](#__codelineno-20-1)[FROM maven:3.8-openjdk-17 AS builder](#__codelineno-20-2)[WORKDIR /app](#__codelineno-20-4)[COPY pom.xml .](#__codelineno-20-6)[RUN mvn dependency:go-offline -B](#__codelineno-20-7)[COPY src ./src](#__codelineno-20-9)[# Expose the port your application will listen on.](#__codelineno-20-11)[# Cloud Run will set the PORT environment variable, which your app should use.](#__codelineno-20-12)[EXPOSE 8080](#__codelineno-20-13)[# The command to run your application.](#__codelineno-20-15)[# Use a shell so ${PORT} expands and quote exec.args so agent source-dir is passed correctly.](#__codelineno-20-16)[ENTRYPOINT ["sh", "-c", "mvn compile exec:java \](#__codelineno-20-17)[-Dexec.mainClass=com.google.adk.web.AdkWebServer \](#__codelineno-20-18)[-Dexec.classpathScope=compile \](#__codelineno-20-19)[-Dexec.args='--server.port=${PORT:-8080} --adk.agents.source-dir=target'"]](#__codelineno-20-20)
 
 #### Deploy using `gcloud`
 

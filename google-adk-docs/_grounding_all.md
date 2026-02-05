@@ -1,15 +1,58 @@
 ---
-merged_at: 2026-02-04T00:26:07.970994
-merged_files: 2
+merged_at: 2026-02-05T08:35:39.080822
+merged_files: 3
 ---
 
+
+---
+<!-- Source: https://google.github.io/adk-docs/grounding/ -->
+
+# Grounding agents with data¶
+
+# Grounding agents with data[¶](#grounding-agents-with-data)
+
+Grounding is the process that connects your AI agents to external information sources, allowing them to generate more accurate, current, and verifiable responses. By grounding agent responses in authoritative data, you can reduce hallucinations and provide users with answers backed by reliable sources.
+
+ADK supports multiple grounding approaches:
+
+**Google Search Grounding**: Connect agents to real-time web information for queries requiring current data like news, weather, or facts that may have changed since the model's training.**Vertex AI Search Grounding**: Connect agents to your organization's private documents and enterprise data for queries requiring proprietary information.**Agentic RAG**: Build agents that reason about how to search, constructing queries and filters dynamically using Vector Search 2.0, Vertex AI RAG Engine, or other retrieval systems.
+
+-
+**Google Search Grounding**
+
+Enable your agents to access real-time, authoritative information from the web. Learn how to set up Google Search grounding, understand the data flow, interpret grounded responses, and display citations to users.
+
+-
+**Vertex AI Search Grounding**
+
+Connect your agents to indexed enterprise documents and private data repositories. Learn how to configure Vertex AI Search datastores, ground responses in your organization's knowledge base, and provide source attribution.
+
+-
+**Blog post: 10-minute Agentic RAG with Vector Search 2.0 and ADK**
+
+Learn how to build an Agentic RAG system that goes beyond simple retrieve-then-generate patterns. This article walks through building a travel agent that parses user intent, constructs metadata filters, and searches 2,000 London Airbnb listings using hybrid search with Vector Search 2.0 and ADK.
+
+-
+**Vector Search 2.0 Travel Agent Notebook**
+
+A hands-on Jupyter notebook companion to the Agentic RAG blog post. Build an end-to-end travel agent using real Airbnb data, auto-embeddings, hybrid search with RRF ranking, and ADK tool integration.
+
+-
+**Deep Search Agent**
+
+A production-ready fullstack research agent that transforms topics into comprehensive reports with citations. Features a two-phase workflow with human-in-the-loop plan approval, iterative search refinement, and multi-agent architecture for planning, researching, critiquing, and composing.
+
+-
+**RAG Agent**
+
+A document Q&A agent powered by Vertex AI RAG Engine. Upload documents and ask questions to receive accurate answers with citations formatted as URLs pointing to source materials.
 
 ---
 <!-- Source: https://google.github.io/adk-docs/grounding/google_search_grounding/ -->
 
-# Understanding Google Search Grounding¶
+# Google Search Grounding for agents¶
 
-# Understanding Google Search Grounding[¶](#understanding-google-search-grounding)
+# Google Search Grounding for agents[¶](#google-search-grounding-for-agents)
 
 [Google Search Grounding tool](/adk-docs/tools/gemini-api/google-search/) is a powerful feature in the Agent Development Kit (ADK) that enables AI agents to access real-time, authoritative information from the web. By connecting your agents to Google Search, you can provide users with up-to-date answers backed by reliable sources.
 
@@ -269,9 +312,9 @@ The grounding process seamlessly connects user queries to Google's vast search i
 ---
 <!-- Source: https://google.github.io/adk-docs/grounding/vertex_ai_search_grounding/ -->
 
-# Understanding Vertex AI Search Grounding¶
+# Vertex AI Search Grounding for agents¶
 
-# Understanding Vertex AI Search Grounding[¶](#understanding-vertex-ai-search-grounding)
+# Vertex AI Search Grounding for agents[¶](#vertex-ai-search-grounding-for-agents)
 
 [Vertex AI Search](/adk-docs/tools/google-cloud/vertex-ai-search/) is a powerful tool for the Agent Development Kit (ADK) that enables AI agents to access information from your private enterprise documents and data repositories. By connecting your agents to indexed enterprise content, you can provide users with answers grounded in your organization's knowledge base.
 
