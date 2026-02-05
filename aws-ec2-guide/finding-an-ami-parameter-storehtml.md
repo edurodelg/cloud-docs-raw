@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami-parameter-store.html
-fetched_at: 2026-02-04T00:09:35.448278
+fetched_at: 2026-02-05T08:19:23.658375
 ---
 
 # Reference the latest AMIs using Systems Manager public parameters

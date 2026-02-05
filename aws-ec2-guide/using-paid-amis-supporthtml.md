@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-paid-amis-support.html
-fetched_at: 2026-02-04T00:10:00.018849
+fetched_at: 2026-02-05T08:19:48.551144
 ---
 
 # Use paid support for supported AWS Marketplace

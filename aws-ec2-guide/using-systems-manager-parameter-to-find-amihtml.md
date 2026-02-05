@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-systems-manager-parameter-to-find-AMI.html
-fetched_at: 2026-02-04T00:09:30.542438
+fetched_at: 2026-02-05T08:19:19.657044
 ---
 
 # Reference AMIs using Systems Manager parameters

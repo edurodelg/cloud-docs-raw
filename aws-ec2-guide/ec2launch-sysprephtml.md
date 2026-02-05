@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2launch-sysprep.html
-fetched_at: 2026-02-04T00:10:51.388160
+fetched_at: 2026-02-05T08:20:38.465544
 ---
 
 # Create an AMI using Windows Sysprep with EC2Launch

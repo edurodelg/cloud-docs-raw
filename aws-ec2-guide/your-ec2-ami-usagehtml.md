@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/your-ec2-ami-usage.html
-fetched_at: 2026-02-04T00:11:39.990076
+fetched_at: 2026-02-05T08:21:28.398587
 ---
 
 # View your AMI usage

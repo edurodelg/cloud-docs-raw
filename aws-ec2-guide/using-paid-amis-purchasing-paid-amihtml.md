@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-paid-amis-purchasing-paid-ami.html
-fetched_at: 2026-02-04T00:09:50.462658
+fetched_at: 2026-02-05T08:19:38.423889
 ---
 
 # Purchase a paid AMI in the AWS Marketplace

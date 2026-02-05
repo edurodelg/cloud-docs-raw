@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-product-code.html
-fetched_at: 2026-02-04T00:09:55.224020
+fetched_at: 2026-02-05T08:19:43.437969
 ---
 
 # Retrieve the AWS Marketplace product code from your instance
