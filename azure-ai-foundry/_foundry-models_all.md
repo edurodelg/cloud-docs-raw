@@ -1,8 +1,65 @@
 ---
-merged_at: 2026-02-04T00:35:27.776402
+merged_at: 2026-02-05T08:42:07.243378
 merged_files: 4
 ---
 
+
+---
+<!-- Source: N/A -->
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/supported-languages -->
+
+# Supported programming languages for Azure AI Inference SDK
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Important
+
+If you're currently using an Azure AI Inference beta SDK with Microsoft Foundry Models or Azure OpenAI service, we strongly recommend that you transition to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1), which uses an OpenAI stable SDK.
+
+For more information on how to migrate to the OpenAI/v1 API by using an SDK in your programming language of choice, see [Migrate from Azure AI Inference SDK to OpenAI SDK](../how-to/model-inference-to-openai-migration?view=foundry-classic).
+
+All models deployed to Microsoft Foundry Models support the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
+
+To use these SDKs, connect them to the [Azure AI model inference URI](concepts/endpoints?view=foundry-classic) (usually in the form `https://<resource-name>.services.ai.azure.com/models`
+
+).
+
+## Azure AI Inference package
+
+The Azure AI Inference package allows you to consume all models deployed to the Foundry resource and easily switch the model deployment from one to another. The Azure AI Inference package is part of the Microsoft Foundry SDK.
+
+| Language | Documentation | Package | Examples |
+|---|---|---|---|
+| C# |
+|
+
+[azure-ai-inference (NuGet)](https://www.nuget.org/packages/Azure.AI.Inference/)[C# examples](https://aka.ms/azsdk/azure-ai-inference/csharp/samples)[Reference](https://aka.ms/azsdk/azure-ai-inference/java/reference)[azure-ai-inference (Maven)](https://central.sonatype.com/artifact/com.azure/azure-ai-inference/)[Java examples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples)[Reference](/en-us/javascript/api/@azure-rest/ai-inference)[@azure/ai-inference (npm)](https://www.npmjs.com/package/@azure/ai-inference)[JavaScript examples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)[Reference](https://aka.ms/azsdk/azure-ai-inference/python/reference)[azure-ai-inference (PyPi)](https://pypi.org/project/azure-ai-inference/)[Python examples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-inference/samples)## Integrations
+
+| Framework | Language | Documentation | Package | Examples |
+|---|---|---|---|---|
+| LangChain | Python |
+|
+
+[langchain-azure-ai (PyPi)](https://pypi.org/project/langchain-azure-ai/)[Python examples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/langchain)[Reference](https://aka.ms/azsdk/azure-ai-inference/python/reference)[llama-index-llms-azure-inference (PyPi)](https://pypi.org/project/llama-index-llms-azure-inference/)[llama-index-embeddings-azure-inference (PyPi)](https://pypi.org/project/llama-index-embeddings-azure-inference/)[Python examples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/llama-index)[Reference](/en-us/semantic-kernel/overview)[semantic-kernel[azure] (PyPi)](https://pypi.org/project/semantic-kernel/)[Python examples](../../ai-studio/how-to/develop/semantic-kernel?view=foundry-classic)[Reference](https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.models.azure.html#autogen_ext.models.azure.AzureAIChatCompletionClient)[autogen-ext[azure] (PyPi)](https://pypi.org/project/autogen-ext/)[Quickstart](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/quickstart.html)## Limitations
+
+Foundry doesn't support the Cohere SDK or the Mistral SDK.
+
+## Next step
+
+- To see what models are currently supported, see
+[Foundry Models and capabilities](concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/quotas-limits -->
@@ -131,7 +188,7 @@ You can modify the [reasoning effort](../openai/how-to/reasoning?view=foundry-cl
 ## Next steps
 
 - Learn more about the
-[models available in Foundry Models](../model-inference/concepts/models?view=foundry-classic)
+[models available in Foundry Models](concepts/models-sold-directly-by-azure?view=foundry-classic)
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/tutorials/get-started-deepseek-r1 -->
@@ -211,7 +268,7 @@ Use the search box on the screen to search for the
 
 **DeepSeek-R1**from the list and select**Deploy**. The wizard asks to create a new project.Select the dropdown in the "Advanced options" section of the wizard to see details about settings and other defaults created alongside the project. These defaults are selected for optimal functionality and include:
 
-Property Description Resource group The main container for all the resources in Azure. This container helps you organize resources that work together. It also helps you have a scope for the costs associated with the entire project. Region The region of the resources that you're creating. Foundry resource The resource enabling access to the flagship models in the Foundry model catalog. In this tutorial, a new account is created, but Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Foundry resources to consume models, see [Connect your AI project](../../model-inference/how-to/configure-project-connection?view=foundry-classic).Select
+Property Description Resource group The main container for all the resources in Azure. This container helps you organize resources that work together. It also helps you have a scope for the costs associated with the entire project. Region The region of the resources that you're creating. Foundry resource The resource enabling access to the flagship models in the Foundry model catalog. In this tutorial, a new account is created, but Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Foundry resources to consume models, see [Connect your AI project](../how-to/configure-project-connection?view=foundry-classic).Select
 
 **Create**to create the Foundry project alongside the other defaults. Wait until the project creation is complete. This process takes a few minutes.
 
@@ -317,7 +374,7 @@ print(response.model_dump_json(indent=2))
 
 [OpenAI Python client](https://github.com/openai/openai-python)[OpenAI JavaScript client](https://github.com/openai/openai-node)[OpenAI .NET client](https://github.com/openai/openai-dotnet)[DefaultAzureCredential class](/en-us/dotnet/api/azure.identity.defaultazurecredential)[Chat completions API reference](../../openai/latest?view=foundry-classic#create-chat-completion)[Azure Identity library overview](/en-us/dotnet/api/overview/azure/identity-readme)
 
-Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../../model-inference/quotas-limits?view=foundry-classic) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits?view=foundry-classic#request-increases-to-the-default-limits).
+Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../quotas-limits?view=foundry-classic) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits?view=foundry-classic#request-increases-to-the-default-limits).
 
 ## About reasoning models
 
@@ -360,7 +417,7 @@ print("\tCompletion tokens:", response.usage.completion_tokens)
 
 
 ```
-Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries or regions have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country/region. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
 Answer: The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
 Model: DeepSeek-R1
 Usage:
@@ -616,54 +673,89 @@ Access to this page requires authorization. You can try [signing in](#) or [chan
 
 Access to this page requires authorization. You can try [changing directories].
 
-Microsoft Foundry makes models available by using the model deployment concept in Foundry Services (formerly known as Azure AI Services). Model deployments are also Azure resources and, when created, give access to a given model under certain configurations. Such a configuration includes the infrastructure required to process the requests.
+When you deploy a model in Microsoft Foundry, you choose a deployment type that determines:
 
-Foundry models provide customers with hosting structure choices that fit their business and usage patterns. Those options are translated to different deployments types (or SKUs) that are available at model deployment time in the Foundry resource.
+**Where your data is processed**(global, data zone, or single region)**How you pay**(pay-per-token or reserved capacity)**Performance characteristics**(latency variance, throughput limits)
 
-The service offers two main types of deployments: *standard* and *provisioned*. For a given deployment type, customers can align their workloads with their data-processing requirements. They can choose an Azure geography (`Standard`
+The service offers two main categories: *standard* (pay-per-token) and *provisioned* (reserved capacity). Within each category, you can choose global, data zone, or regional processing based on your compliance requirements.
 
-or `Provisioned-Managed`
+Important
 
-), a Microsoft-specified data zone (`DataZone- Standard`
+**Data residency for all deployment types**: Data stored at rest remains in the designated Azure geography. However, inferencing data is processed as follows:
 
-or `DataZone Provisioned-Managed`
+**Global**types: May be processed in any Azure region**DataZone**types: Processed only within the Microsoft-specified data zone (US or EU)**Standard/Regional**types: Processed in the deployment region
 
-), or a global (`Global-Standard`
+## Deployment type comparison
 
-or `Global Provisioned-Managed`
+| Deployment type | SKU code | Data processing | Billing | Best for |
+|---|---|---|---|---|
+|
 
-) processing option.
+`GlobalStandard`
 
-For fine-tuned models, an additional `Developer`
+[Global Provisioned](#global-provisioned)`GlobalProvisionedManaged`
 
-deployment type provides a cost-efficient means of custom model evaluation, but without data residency.
+[Global Batch](#global-batch)`GlobalBatch`
 
-All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. As part of your solution design, you need to make key decisions in two categories:
+[Data Zone Standard](#data-zone-standard)`DataZoneStandard`
 
-- Data-processing location
-- Call volume
+[Data Zone Provisioned](#data-zone-provisioned)`DataZoneProvisionedManaged`
 
-## Foundry deployment data processing locations
+[Data Zone Batch](#data-zone-batch)`DataZoneBatch`
 
-For standard deployments, there are three deployment-type options to choose from: global, data zone, and Azure geography. For provisioned deployments, there are two deployment-type options to choose from: global and Azure geography. We recommend Global Standard as a starting point.
+[Standard](#standard)`Standard`
 
-### Global deployments
+[Regional Provisioned](#regional-provisioned)`ProvisionedManaged`
 
-Global deployments use the global infrastructure of Azure to dynamically route customer traffic to the datacenter with the best availability for the customer's inference requests. This means that global offers the highest initial throughput limits and best model availability, but still provides our uptime SLA and low latency. For high-volume workloads above the specified usage tiers on Standard and Global Standard, you might experience increased latency variation. For customers that require the lower latency variance at large workload usage, we recommend using our provisioned deployment types.
-
-Our global deployments are the first location for all new models and features. Depending on call volume, customers with large volume and low latency variance requirements should consider our provisioned deployment types.
-
-### Data Zone deployments
-
-For any deployment type labeled **Global**, prompts and responses might be processed in any geography where the relevant Foundry model is deployed. Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic#foundry-models-sold-directly-by-azure).
-
-For any deployment type labeled as **DataZone**, prompts and responses might be processed in any geography within the specified data zone, as defined by Microsoft. If you create a **DataZone** deployment in a Foundry resource located in the United States, prompts and responses might be processed anywhere within the United States. If you create a **DataZone** deployment in a Foundry resource located in a European Union member nation, prompts and responses might be processed in that or any other European Union member nation.
-
-For both **Global** and **DataZone** deployment types, any data stored at rest, such as uploaded data, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a **Global** or **DataZone** deployment type in a Foundry resource; Azure data processing and compliance commitments remain applicable.
+[Developer](#developer-for-fine-tuned-models)`DeveloperTier`
 
 Note
 
-With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic that is initially routed to this region is affected. To learn more, consult the [business continuity and disaster recovery guide](../../openai/how-to/business-continuity-disaster-recovery?view=foundry-classic).
+Not all models support all deployment types. Check [Foundry Models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic) for model availability by deployment type and region.
+
+Tip
+
+For detailed pricing, see [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+
+## Choose the right deployment type
+
+Use the following criteria to select a deployment type:
+
+### By data residency requirement
+
+**No restrictions**: Use Global Standard or Global Provisioned**EU data zone**: Use DataZone Standard or DataZone Provisioned in an EU region**US data zone**: Use DataZone Standard or DataZone Provisioned in a US region**Single region only**: Use Standard or Regional Provisioned
+
+### By workload pattern
+
+**Variable, bursty traffic**: Use Standard or Global Standard (pay-per-token)**Consistent high volume**: Use Provisioned types (reserved capacity)**Large batch jobs (not time-sensitive)**: Use Global Batch or DataZone Batch (50% cost savings)**Fine-tuned model evaluation**: Use Developer (no SLA, lowest cost)
+
+### By latency requirement
+
+**Low latency variance required**: Use Provisioned types**Latency variance acceptable**: Use Standard types
+
+## Data processing locations
+
+For standard deployments, there are three options: global, data zone, and Azure geography. For provisioned deployments, there are two options: global and Azure geography. Global Standard is a common starting point for most workloads.
+
+### Global deployments
+
+Global deployments use Azure's global infrastructure to dynamically route traffic to available datacenters. Global deployments offer the highest initial throughput limits and broadest model availability.
+
+For high-volume workloads, you might experience increased latency variation. If you require lower latency variance at scale, use provisioned deployment types.
+
+Global deployments receive new models and features first.
+
+### Data Zone deployments
+
+For **Global** deployment types, prompts and responses might be processed in any geography where the model is deployed. For **DataZone** deployment types, prompts and responses are processed only within the specified data zone:
+
+**United States**: Data processed anywhere within the US**European Union**: Data processed within any EU member nation
+
+Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic#foundry-models-sold-directly-by-azure).
+
+Note
+
+With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [business continuity and disaster recovery guide](../../openai/how-to/business-continuity-disaster-recovery?view=foundry-classic).
 
 ## Global Standard
 
@@ -671,15 +763,11 @@ With Global Standard and Data Zone Standard deployment types, if the primary reg
 `GlobalStandard`
 
 
-Important
+Global Standard deployments use Azure's global infrastructure to dynamically route traffic to available datacenters. This deployment type provides the highest default quota and eliminates the need to load balance across multiple resources.
 
-Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../quotas-limits?view=foundry-classic). For applications that require lower latency variance at large workload usage, consider provisioned throughput.
 
-Global deployments are available in the same Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Standard provides the highest default quota and eliminates the need to load balance across multiple resources.
-
-Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../quotas-limits?view=foundry-classic). For applications that require lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
-
-Global standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing?view=foundry-classic).
+Global Standard supports priority processing for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing?view=foundry-classic).
 
 ## Global Provisioned
 
@@ -687,11 +775,7 @@ Global standard deployment supports use of priority processing for reliable, hig
 `GlobalProvisionedManaged`
 
 
-Important
-
-Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
-
-Global deployments are available in the same Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure global infrastructure.
+Global Provisioned deployments use Azure's global infrastructure to dynamically route traffic to available datacenters. This deployment type provides reserved model processing capacity for predictable throughput, combining global routing with guaranteed capacity.
 
 ## Global Batch
 
@@ -699,15 +783,11 @@ Global deployments are available in the same Foundry resources as non-global dep
 `GlobalBatch`
 
 
-Important
+[Global Batch](../../openai/how-to/batch?view=foundry-classic) handles large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at [50% less cost than Global Standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online workloads.
 
-Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+Common use cases:
 
-[Global Batch](../../openai/how-to/batch?view=foundry-classic) is designed to efficiently handle large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at [50% less cost than Global Standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online workloads.
-
-Key use cases include:
-
-**Large-scale data processing**: Quickly analyze extensive datasets in parallel.**Content generation**: Create large volumes of text, such as product descriptions or articles.**Document review and summarization**: Automate the review and summarization of lengthy documents.**Customer support automation**: Handle numerous queries simultaneously for faster responses.**Data extraction and analysis**: Extract and analyze information from vast amounts of unstructured data.**Natural language processing (NLP) tasks**: Perform tasks like sentiment analysis or translation on large datasets.**Marketing and personalization**: Generate personalized content and recommendations at scale.
+**Large-scale data processing**: Analyze datasets in parallel.**Content generation**: Create large volumes of text, such as product descriptions or articles.**Document review and summarization**: Process and summarize lengthy documents.**Customer support automation**: Handle numerous queries simultaneously.**Data extraction and analysis**: Extract and analyze information from large amounts of unstructured data.**Natural language processing (NLP) tasks**: Perform sentiment analysis or translation on large datasets.
 
 ## Data Zone Standard
 
@@ -715,15 +795,11 @@ Key use cases include:
 `DataZoneStandard`
 
 
-Important
+Data Zone Standard deployments dynamically route traffic to datacenters within the Microsoft-defined data zone (US or EU). This deployment type provides higher default quotas than geography-based deployment types while keeping data within the specified zone.
 
-Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits?view=foundry-classic). For workloads that require low latency variance at large volume, consider provisioned deployment types.
 
-Data Zone Standard deployments are available in the same Foundry resource as all other Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-defined data zone with the best availability for each request. Data Zone Standard provides higher default quotas than our Azure geography-based deployment types.
-
-Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits?view=foundry-classic). For workloads that require low latency variance at large volume, we recommend using the provisioned deployment offerings.
-
-Data zone standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing?view=foundry-classic).
+Data Zone Standard supports priority processing for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing?view=foundry-classic).
 
 ## Data Zone Provisioned
 
@@ -731,11 +807,7 @@ Data zone standard deployment supports use of priority processing for reliable, 
 `DataZoneProvisionedManaged`
 
 
-Important
-
-Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
-
-Data Zone Provisioned deployments are available in the same Foundry resource as all other Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-specified data zone with the best availability for each request. Data Zone Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure infrastructure within the Microsoft-specified data zone.
+Data Zone Provisioned deployments dynamically route traffic within the Microsoft-specified data zone (US or EU) while providing reserved model processing capacity. This deployment type combines data zone compliance with high and predictable throughput.
 
 ## Data Zone Batch
 
@@ -743,11 +815,7 @@ Data Zone Provisioned deployments are available in the same Foundry resource as 
 `DataZoneBatch`
 
 
-Important
-
-Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
-
-Data Zone Batch deployments provide all the same functionality as [Global Batch deployments](../../openai/how-to/batch?view=foundry-classic). However, they allow you to use the global infrastructure of Azure to dynamically route traffic to only datacenters within the Microsoft-defined data zone with the best availability for each request.
+Data Zone Batch deployments provide the same functionality as [Global Batch](../../openai/how-to/batch?view=foundry-classic), including 50% cost savings and 24-hour turnaround. Traffic is routed only to datacenters within the Microsoft-defined data zone (US or EU).
 
 ## Standard
 
@@ -755,9 +823,9 @@ Data Zone Batch deployments provide all the same functionality as [Global Batch 
 `Standard`
 
 
-Standard deployments provide a pay-per-call billing model on the chosen model. This model can be a fast way to get started, because you pay only for what you consume. Models available in each region and throughput might be limited.
+Standard deployments use pay-per-call billing. You pay only for what you consume. Models available in each region and throughput might be limited.
 
-Standard deployments are optimized for low-to-medium volume workloads with high burstiness. Customers with high consistent volume might experience greater latency variability.
+Standard deployments are suited for low-to-medium volume workloads with high burstiness. Customers with high consistent volume might experience greater latency variability.
 
 ## Regional Provisioned
 
@@ -767,13 +835,32 @@ Standard deployments are optimized for low-to-medium volume workloads with high 
 
 Regional Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units, which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of provisioned throughput units to deploy, and provides different amounts of throughput per provisioned throughput unit. Learn more in the [article about provisioned throughput concepts](../../openai/concepts/provisioned-throughput?view=foundry-classic).
 
-### Disable access to global deployments in your subscription
+## Developer (for fine-tuned models)
 
-Azure Policy helps to enforce organizational standards and to assess compliance at scale. Through its compliance dashboard, it provides an aggregated view to evaluate the overall state of the environment, with the ability to drill down to per-resource, per-policy granularity. It also helps to bring your resources to compliance through bulk remediation for existing resources and automatic remediation for new resources. [Learn more about Azure Policy and specific built-in controls for Foundry Tools](../../../ai-services/security-controls-policy?view=foundry-classic).
+- SKU name in code:
+`DeveloperTier`
 
-You can use the following policy to disable access to any Foundry deployment type. To disable access to a specific deployment type, replace `GlobalStandard`
 
-with the SKU name for the deployment type that you want to disable access to.
+The Developer deployment type is designed for fine-tuned model evaluation only. It provides cost-efficient testing of custom models but doesn't include data residency guarantees or an SLA. To learn more about using the Developer deployment type, see the [fine-tuning guide](../../openai/how-to/fine-tune-test?view=foundry-classic).
+
+## Troubleshooting deployment issues
+
+Common issues when creating or using deployments:
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| Deployment type unavailable | Model doesn't support the selected type | Check
+|
+
+For quota limits by deployment type, see [Foundry Models quotas and limits](../quotas-limits?view=foundry-classic).
+
+## Restrict deployment types with Azure Policy
+
+Azure Policy helps enforce organizational standards and assess compliance at scale. Through its compliance dashboard, you can evaluate the overall state of the environment and drill down to per-resource, per-policy granularity. Azure Policy also supports bulk remediation for existing resources and automatic remediation for new resources. [Learn more about Azure Policy and specific built-in controls for Foundry Tools](../../../ai-services/security-controls-policy?view=foundry-classic).
+
+Use the following policy to disable access to a specific Foundry deployment type. Replace `GlobalStandard`
+
+with the SKU name for the deployment type you want to restrict.
 
 ```
 {
@@ -796,26 +883,10 @@ with the SKU name for the deployment type that you want to disable access to.
 ```
 
 
-## Developer (for fine-tuned models)
-
-- SKU name in code:
-`DeveloperTier`
-
-
-Important
-
-Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
-
-Fine-tuned models support a `Developer`
-
-deployment designed to support custom model evaluation. It doesn't offer data residency guarantees or an SLA. To learn more about using the `Developer`
-
-deployment type, see the [fine-tuning guide](../../openai/how-to/fine-tune-test?view=foundry-classic).
-
 ## Deploy models
 
 
-To learn about creating resources and deploying models, refer to the [Resource creation guide](../../openai/how-to/create-resource?view=foundry-classic).
+To learn about creating resources and deploying models, see [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models?view=foundry-classic) and [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../openai/how-to/create-resource?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-from-partners -->
@@ -1746,7 +1817,7 @@ ChatCompletionsClient client = new ChatCompletionsClientBuilder()
 
 Explore our [samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/java/reference) to get yourself started.
 
-Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Chat completions](../../model-inference/reference/reference-model-inference-chat-completions?view=foundry-classic) details how to use the route `/chat/completions`
+Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Chat completions](/en-us/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions) details how to use the route `/chat/completions`
 
 to generate predictions based on chat-formatted instructions. Notice that the path `/models`
 
@@ -2823,7 +2894,7 @@ Disables the filter functionality, so content will not be blocked, but annotatio
 
 1 For Azure OpenAI models, only customers who have been approved for modified content filtering have full content filtering control and can turn off content filters. Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified content filters via this form: [Azure Government - Request Modified Content Filtering for Azure OpenAI in Foundry Models](https://aka.ms/AOAIGovModifyContentFilter).
 
-Content filtering configurations are created within a resource in Foundry portal, and can be associated with Deployments. Learn how to [configure a content filter](../../model-inference/how-to/configure-content-filters?view=foundry-classic)
+Content filtering configurations are created within a resource in Foundry portal, and can be associated with Deployments. Learn how to [configure a content filter](../how-to/configure-content-filters?view=foundry-classic)
 
 ## Scenario details
 
@@ -3189,7 +3260,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 , `gpt-5.2-chat`
 
-(**Preview**)[GPT-5.1 series](../../openai/concepts/models?view=foundry-classic#gpt-51)**NEW**`gpt-5.1`
+(**Preview**)[GPT-5.1 series](models-sold-directly-by-azure?view=foundry-classic#gpt-51)**NEW**`gpt-5.1`
 
 , `gpt-5.1-chat`
 
@@ -3197,9 +3268,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 , `gpt-5.1-codex-mini`
 
-[Sora](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models)**NEW**sora-2[GPT-5 series](../../openai/concepts/models?view=foundry-classic#gpt-5)[gpt-oss](../../openai/concepts/models?view=foundry-classic#gpt-oss)[codex-mini](../../openai/concepts/models?view=foundry-classic#o-series-models)[GPT-4.1 series](../../openai/concepts/models?view=foundry-classic#gpt-41-series)[computer-use-preview](../../openai/concepts/models?view=foundry-classic#computer-use-preview)[o-series models](../../openai/concepts/models?view=foundry-classic#o-series-models)[Reasoning models](../../openai/how-to/reasoning?view=foundry-classic)with advanced problem solving and increased focus and capability.[GPT-4o, GPT-4o mini, and GPT-4 Turbo](../../openai/concepts/models?view=foundry-classic#gpt-4o-and-gpt-4-turbo)[Embeddings](../../openai/concepts/models?view=foundry-classic#embeddings)[Image generation](../../openai/concepts/models?view=foundry-classic#image-generation-models)`Video generation`
+[Sora](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models)**NEW**sora-2[GPT-5 series](models-sold-directly-by-azure?view=foundry-classic#gpt-5)[gpt-oss](models-sold-directly-by-azure?view=foundry-classic#gpt-oss)[codex-mini](models-sold-directly-by-azure?view=foundry-classic#o-series-models)[GPT-4.1 series](models-sold-directly-by-azure?view=foundry-classic#gpt-41-series)[computer-use-preview](models-sold-directly-by-azure?view=foundry-classic#computer-use-preview)[o-series models](models-sold-directly-by-azure?view=foundry-classic#o-series-models)[Reasoning models](../../openai/how-to/reasoning?view=foundry-classic)with advanced problem solving and increased focus and capability.[GPT-4o, GPT-4o mini, and GPT-4 Turbo](models-sold-directly-by-azure?view=foundry-classic#gpt-4o-and-gpt-4-turbo)[Embeddings](models-sold-directly-by-azure?view=foundry-classic#embeddings)[Image generation](models-sold-directly-by-azure?view=foundry-classic#image-generation-models)`Video generation`
 
-[Audio](../../openai/concepts/models?view=foundry-classic#audio-models)*speech in, speech out*conversational interactions or audio generation.## GPT-5.2
+[Audio](models-sold-directly-by-azure?view=foundry-classic#audio-models)*speech in, speech out*conversational interactions or audio generation.## GPT-5.2
 
 ### Region availability
 
@@ -5325,7 +5396,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 , `gpt-5.2-chat`
 
-(**Preview**)[GPT-5.1 series](../../openai/concepts/models?view=foundry-classic#gpt-51)**NEW**`gpt-5.1`
+(**Preview**)[GPT-5.1 series](models-sold-directly-by-azure?view=foundry-classic#gpt-51)**NEW**`gpt-5.1`
 
 , `gpt-5.1-chat`
 
@@ -5333,9 +5404,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 , `gpt-5.1-codex-mini`
 
-[Sora](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models)**NEW**sora-2[GPT-5 series](../../openai/concepts/models?view=foundry-classic#gpt-5)[gpt-oss](../../openai/concepts/models?view=foundry-classic#gpt-oss)[codex-mini](../../openai/concepts/models?view=foundry-classic#o-series-models)[GPT-4.1 series](../../openai/concepts/models?view=foundry-classic#gpt-41-series)[computer-use-preview](../../openai/concepts/models?view=foundry-classic#computer-use-preview)[o-series models](../../openai/concepts/models?view=foundry-classic#o-series-models)[Reasoning models](../../openai/how-to/reasoning?view=foundry-classic)with advanced problem solving and increased focus and capability.[GPT-4o, GPT-4o mini, and GPT-4 Turbo](../../openai/concepts/models?view=foundry-classic#gpt-4o-and-gpt-4-turbo)[Embeddings](../../openai/concepts/models?view=foundry-classic#embeddings)[Image generation](../../openai/concepts/models?view=foundry-classic#image-generation-models)`Video generation`
+[Sora](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models)**NEW**sora-2[GPT-5 series](models-sold-directly-by-azure?view=foundry-classic#gpt-5)[gpt-oss](models-sold-directly-by-azure?view=foundry-classic#gpt-oss)[codex-mini](models-sold-directly-by-azure?view=foundry-classic#o-series-models)[GPT-4.1 series](models-sold-directly-by-azure?view=foundry-classic#gpt-41-series)[computer-use-preview](models-sold-directly-by-azure?view=foundry-classic#computer-use-preview)[o-series models](models-sold-directly-by-azure?view=foundry-classic#o-series-models)[Reasoning models](../../openai/how-to/reasoning?view=foundry-classic)with advanced problem solving and increased focus and capability.[GPT-4o, GPT-4o mini, and GPT-4 Turbo](models-sold-directly-by-azure?view=foundry-classic#gpt-4o-and-gpt-4-turbo)[Embeddings](models-sold-directly-by-azure?view=foundry-classic#embeddings)[Image generation](models-sold-directly-by-azure?view=foundry-classic#image-generation-models)`Video generation`
 
-[Audio](../../openai/concepts/models?view=foundry-classic#audio-models)*speech in, speech out*conversational interactions or audio generation.## GPT-5.2
+[Audio](models-sold-directly-by-azure?view=foundry-classic#audio-models)*speech in, speech out*conversational interactions or audio generation.## GPT-5.2
 
 ### Region availability
 
@@ -7399,9 +7470,9 @@ When deploying third-party models, ensure you have the following permissions in 
 `Microsoft.SaaS/resources/write`
 
 
-## Country availability
+## Country/region availability
 
-Users can access models from partners and community with pay-as-you-go billing only if their Azure subscription belongs to a billing account in a country or region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](../../how-to/deploy-models-serverless-availability?view=foundry-classic).
+Users can access models from partners and community with pay-as-you-go billing only if their Azure subscription belongs to a billing account in a country/region or region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](../../how-to/deploy-models-serverless-availability?view=foundry-classic).
 
 ## Troubleshooting
 
@@ -7409,7 +7480,7 @@ Use the following troubleshooting guide to find and solve errors when deploying 
 
 | Error | Description |
 |---|---|
-| This offer is not made available by the provider in the country where your account and Azure Subscription are registered. | The model provider didn't make the specific model SKU available in the country where you registered your subscription. Each model provider decides which countries to make the offer available in, and availability can vary by model SKU. You need to deploy the model to a subscription with billing in a supported country. See the list of countries at
+| This offer is not made available by the provider in the country/region where your account and Azure Subscription are registered. | The model provider didn't make the specific model SKU available in the country/region where you registered your subscription. Each model provider decides which countries/regions to make the offer available in, and availability can vary by model SKU. You need to deploy the model to a subscription with billing in a supported country/region. See the list of countries/regions at
 |
 
 ---
@@ -7490,7 +7561,7 @@ Important
 
 Unlike GitHub Models where all the models are already configured, the Foundry Tools resource allows you to control which models are available in your endpoint and under which configuration. Add as many models as you plan to use before indicating them in the `model`
 
-parameter. Learn how to [add more models](../../model-inference/how-to/create-model-deployments?view=foundry-classic) to your resource.
+parameter. Learn how to [add more models](create-model-deployments?view=foundry-classic) to your resource.
 
 ## Explore additional features
 
@@ -7768,7 +7839,7 @@ This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?
 
 🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
 
-When you deploy models in Microsoft Foundry or Azure OpenAI, you might need Azure Policy to control which [deployment types](../../model-inference/concepts/deployment-types?view=foundry-classic) are available to users or which specific models they can deploy. This article shows you how to create a custom Azure Policy definition that denies non-approved model deployments.
+When you deploy models in Microsoft Foundry or Azure OpenAI, you might need Azure Policy to control which [deployment types](../concepts/deployment-types?view=foundry-classic) are available to users or which specific models they can deploy. This article shows you how to create a custom Azure Policy definition that denies non-approved model deployments.
 
 Tip
 
@@ -7914,317 +7985,6 @@ To update an existing policy assignment with new models, follow these steps:
 ## Best practices
 
 **Granular scoping**: Assign policies at the appropriate scope to balance control and flexibility. For example, apply at the subscription level to control all resources in the subscription, or apply at the resource group level to control resources in a specific group.**Policy naming**: Use a consistent naming convention for policy assignments to make it easier to identify the purpose of the policy. Include information such as the purpose and scope in the name.**Documentation**: Keep records of policy assignments and configurations for auditing purposes. Document any changes made to the policy over time.**Regular reviews**: Periodically review policy assignments to ensure they align with your organization's requirements.**Testing**: Test policies in a nonproduction environment before applying them to production resources.**Communication**: Make sure developers are aware of the policies in place and understand the implications for their work.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/use-chat-completions -->
-
-# Azure OpenAI in Microsoft Foundry Models API lifecycle
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-This article is to help you understand the support lifecycle for Azure OpenAI APIs.
-
-Note
-
-New API response objects may be added to the API response at any time. We recommend you only parse the response objects you require.
-
-## API evolution
-
-Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI.
-
-Starting in August 2025, you can now opt in to our next generation v1 Azure OpenAI APIs which add support for:
-
-- Ongoing access to the latest features with no need to specify new
-`api-version`
-
-'s each month. - Faster API release cycle with new features launching more frequently.
-- OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
-- OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
-- Make chat completions calls with models from other providers like DeepSeek and Grok which support the v1 chat completions syntax.
-
-Access to new API calls that are still in preview will be controlled by passing feature specific preview headers allowing you to opt in to the features you want, without having to swap API versions. Alternatively, some features will indicate preview status through their API path and don't require an additional header.
-
-Examples:
-
-`/openai/v1/evals`
-
-is in preview and requires passing an`"aoai-evals":"preview"`
-
-header.`/openai/v1/fine_tuning/alpha/graders/`
-
-is in preview and requires no custom header due to the presence of`alpha`
-
-in the API path.
-
-For the initial v1 Generally Available (GA) API launch we're only supporting a subset of the inference and authoring API capabilities. All GA features are supported for use in production. We'll be rapidly adding support for more capabilities soon.
-
-## Code changes
-
-### v1 API
-
-**API Key**:
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
-)
-response = client.responses.create(
-model="gpt-4.1-nano", # Replace with your model deployment name
-input="This is a test.",
-)
-print(response.model_dump_json(indent=2))
-```
-
-
-`OpenAI()`
-
-client is used instead of`AzureOpenAI()`
-
-.`base_url`
-
-passes the Azure OpenAI endpoint and`/openai/v1`
-
-is appended to the endpoint address.`api-version`
-
-is no longer a required parameter with the v1 GA API.
-
-**API Key** with environment variables set for `OPENAI_BASE_URL`
-
-and `OPENAI_API_KEY`
-
-:
-
-```
-client = OpenAI()
-```
-
-
-**Microsoft Entra ID**:
-
-Important
-
-Handling automatic token refresh was previously handled through use of the `AzureOpenAI()`
-
-client. The v1 API removes this dependency, by adding automatic token refresh support to the `OpenAI()`
-
-client.
-
-```
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-token_provider = get_bearer_token_provider(
-DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key = token_provider
-)
-response = client.responses.create(
-model="gpt-4.1-nano",
-input= "This is a test"
-)
-print(response.model_dump_json(indent=2))
-```
-
-
-`base_url`
-
-passes the Azure OpenAI endpoint and`/openai/v1`
-
-is appended to the endpoint address.`api_key`
-
-parameter is set to`token_provider`
-
-, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
-
-## Model support
-
-For Azure OpenAI models we recommend using the [Responses API](supported-languages?view=foundry-classic), however, the v1 API also allows you to make chat completions calls with models from other providers like DeepSeek and Grok which support the OpenAI v1 chat completions syntax.
-
-`base_url`
-
-will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`
-
-and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/`
-
-formats.
-
-Note
-
-Responses API also works with Foundry Models sold directly by Azure, such as Microsoft AI, DeepSeek, and Grok models. To learn how to use the Responses API with these models, see [How to generate text responses with Microsoft Foundry Models](../foundry-models/how-to/generate-responses?view=foundry-classic).
-
-```
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-token_provider = get_bearer_token_provider(
-DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=token_provider,
-)
-completion = client.chat.completions.create(
-model="MAI-DS-R1", # Replace with your model deployment name.
-messages=[
-{"role": "system", "content": "You are a helpful assistant."},
-{"role": "user", "content": "Tell me about the attention is all you need paper"}
-]
-)
-#print(completion.choices[0].message)
-print(completion.model_dump_json(indent=2))
-```
-
-
-## v1 API support
-
-### Status
-
-Generally Available features are supported for use in production.
-
-| API Path | Status |
-|---|---|
-`/openai/v1/chat/completions` |
-Generally Available |
-`/openai/v1/embeddings` |
-Generally Available |
-`/openai/v1/evals` |
-Preview |
-`/openai/v1/files` |
-Generally Available |
-`/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` |
-Preview |
-`/openai/v1/fine_tuning/alpha/graders/` |
-Preview |
-`/openai/v1/fine_tuning/` |
-Generally Available |
-`/openai/v1/models` |
-Generally Available |
-`/openai/v1/responses` |
-Generally Available |
-`/openai/v1/vector_stores` |
-Generally Available |
-
-### Preview headers
-
-| API Path | Header |
-|---|---|
-`/openai/v1/evals` |
-`"aoai-evals":"preview"` |
-`/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` |
-`"aoai-copy-ft-checkpoints" : "preview"` |
-
-## Changes between v1 preview release and 2025-04-01-preview
-
-[v1 preview API](#api-evolution)[Video generation support](concepts/video-generation?view=foundry-classic)**NEW**Responses API features:- Remote Model Context Protocol (MCP) servers tool integration
-- Support for asynchronous background tasks
-- Encrypted reasoning items
-- Image generation
-
-
-## Changes between 2025-04-01-preview and 2025-03-01-preview
-
-## Changes between 2025-03-01-preview and 2025-02-01-preview
-
-[Responses API](how-to/responses?view=foundry-classic)- Computer use
-
-## Changes between 2025-02-01-preview and 2025-01-01-preview
-
-- Stored completions (distillation API support).
-
-## Changes between 2025-01-01-preview and 2024-12-01-preview
-
-`prediction`
-
-parameter added for[predicted outputs](how-to/predicted-outputs?view=foundry-classic)support.`gpt-4o-audio-preview`
-
-[model support](audio-completions-quickstart?view=foundry-classic).
-
-## Changes between 2024-12-01-preview and 2024-10-01-preview
-
-`store`
-
-, and`metadata`
-
-parameters added for stored completions support.`reasoning_effort`
-
-added for latest[reasoning models](how-to/reasoning?view=foundry-classic).`user_security_context`
-
-added for[Microsoft Defender for Cloud integration](https://aka.ms/TP4AI/Documentation/EndUserContext).
-
-## Changes between 2024-09-01-preview and 2024-08-01-preview
-
-`max_completion_tokens`
-
-added to support`o1-preview`
-
-and`o1-mini`
-
-models.`max_tokens`
-
-doesn't work with the**o1 series**models.`parallel_tool_calls`
-
-added.`completion_tokens_details`
-
-&`reasoning_tokens`
-
-added.`stream_options`
-
-&`include_usage`
-
-added.
-
-## Changes between 2024-07-01-preview and 2024-08-01-preview API specification
-
-[Structured outputs support](how-to/structured-outputs?view=foundry-classic).- Large file upload API added.
-- On your data changes:
-- Mongo DB integration.
-`role_information`
-
-parameter removed.added to citation object.`rerank_score`
-
-- AML datasource removed.
-- AI Search vectorization integration improvements.
-
-
-## Changes between 2024-5-01-preview and 2024-07-01-preview API specification
-
-[Batch API support added](how-to/batch?view=foundry-classic)[Vector store chunking strategy parameters](/en-us/azure/ai-foundry/openai/reference-preview?#request-body-17)`max_num_results`
-
-that the file search tool should output.
-
-## Changes between 2024-04-01-preview and 2024-05-01-preview API specification
-
-- Assistants v2 support -
-[File search tool and vector storage](https://go.microsoft.com/fwlink/?linkid=2272425) - Fine-tuning
-[checkpoints](https://github.com/Azure/azure-rest-api-specs/blob/9583ed6c26ce1f10bbea92346e28a46394a784b4/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-05-01-preview/azureopenai.json#L586),[seed](https://github.com/Azure/azure-rest-api-specs/blob/9583ed6c26ce1f10bbea92346e28a46394a784b4/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-05-01-preview/azureopenai.json#L1574),[events](https://github.com/Azure/azure-rest-api-specs/blob/9583ed6c26ce1f10bbea92346e28a46394a784b4/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-05-01-preview/azureopenai.json#L529) - On your data updates
-- DALL-E 2 now supports model deployment and can be used with the latest preview API.
-- Content filtering updates
-
-## Changes between 2024-03-01-preview and 2024-04-01-preview API specification
-
-**Breaking Change**: Enhancements parameters removed. This impacts the`gpt-4`
-
-**Version:**`vision-preview`
-
-model.[timestamp_granularities](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5217)parameter added.object added.`audioWord`
-
-- Additional TTS
-.`response_formats: wav & pcm`
-
-
-## Known issues
-
-- The
-`2025-04-01-preview`
-
-Azure OpenAI spec uses OpenAPI 3.1, is a known issue that this is currently not fully supported by[Azure API Management](/en-us/azure/api-management/api-management-key-concepts)
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models -->
@@ -8405,6 +8165,224 @@ When you reach your quota limit, you can only create new deployments of that mod
 For more information about quota, see [Microsoft Foundry Models quotas and limits](../quotas-limits?view=foundry-classic) and [Manage Azure OpenAI quota](../../openai/how-to/quota?view=foundry-classic&tabs=rest).
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/quickstart-ai-project -->
+
+# Configure your AI project to use Microsoft Foundry Models
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+If you already have an AI project in Microsoft Foundry, the model catalog deploys models from partner model providers as stand-alone endpoints in your project by default. Each model deployment has its own set of URI and credentials to access it. On the other hand, Azure OpenAI models are deployed to the Foundry resource or to the Azure OpenAI in Foundry Models resource.
+
+Important
+
+If you're currently using an Azure AI Inference beta SDK with Microsoft Foundry Models or Azure OpenAI service, we strongly recommend that you transition to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1), which uses an OpenAI stable SDK.
+
+For more information on how to migrate to the OpenAI/v1 API by using an SDK in your programming language of choice, see [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration?view=foundry-classic).
+
+You can change this behavior and deploy both types of models to Foundry resources. Once configured, *deployments of models as serverless API deployments happen to the connected Foundry resource* instead to the project itself, giving you a single set of endpoint and credentials to access all the models deployed in Foundry. You can manage models from Azure OpenAI and partner model providers in the same way.
+
+Additionally, deploying models to Foundry Models brings the extra benefits of:
+
+[Routing capability](../concepts/endpoints?view=foundry-classic)[Custom content filters](../concepts/content-filter?view=foundry-classic)- Global capacity deployment type
+[Key-less authentication with Microsoft Entra ID](configure-entra-id?view=foundry-classic)
+
+In this article, you learn how to configure your project to use Foundry Models deployments.
+
+## Prerequisites
+
+To complete this tutorial, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. To learn more, see[Upgrade from GitHub Models to Foundry Models](quickstart-github-models?view=foundry-classic).A Foundry resource. For more information, see
+
+[Create your first Foundry resource](../../../ai-services/multi-service-resource?view=foundry-classic).A Foundry project and hub. For more information, see
+
+[How to create and manage a Foundry hub](../../how-to/create-azure-ai-resource?view=foundry-classic).Tip
+
+When your AI hub is provisioned, a Foundry resource is created with it and the two resources are connected. To see which resource is connected to your project, go to the
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs)>**Management center**>**Connected resources**, and find the connections of type**Foundry Tools**.
+
+## Configure the project to use Foundry Models
+
+To configure the project to use the Foundry Models capability in Foundry, follow these steps:
+
+In the landing page of your project, select
+
+**Management center**at the bottom of the sidebar menu. Identify the Foundry resource connected to your project.If no resource is listed, your AI hub doesn't have a Foundry resource connected to it. Create a new connection.
+
+Select
+
+**+New connection**, then choose**Microsoft Foundry**from the tiles.In the window, look for an existing resource in your subscription and then select
+
+**Add connection**.The new connection is added to your hub.
+
+
+Return to the project's landing page.
+
+Under
+
+**Included capabilities**, ensure you select**Azure AI Inference**. The**Azure AI model inference endpoint**URI is displayed along with the credentials to get access to it.Tip
+
+Each Foundry resource has a single
+
+**Azure AI model inference endpoint**that can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. To learn how the endpoint works, see[Azure OpenAI inference endpoint](../concepts/endpoints?view=foundry-classic).Take note of the endpoint URL and credentials.
+
+
+### Create the model deployment in Foundry Models
+
+For each model you want to deploy under Foundry Models, follow these steps:
+
+Go to the
+
+**Model catalog**in[Foundry portal](https://ai.azure.com/explore/models).Scroll to the model you're interested in and select it.
+
+You can review the details of the model in the model card.
+
+Select
+
+**Use this model**.For model providers that require more contract terms, you're asked to accept those terms by selecting
+
+**Agree and proceed**.You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the
+
+`model`
+
+parameter for request to route to this particular model deployment. It allows you to configure specific names for your models when you attach specific configurations. For instance,`o1-preview-safe`
+
+for a model with a strict content filter.We automatically select a Foundry connection depending on your project because you turned on the feature
+
+**Deploy models to Azure AI model inference service**. Select**Customize**to change the connection based on your needs. If you're deploying under the**serverless API**deployment type, the models need to be available in the region of the Foundry resource.Select
+
+**Deploy**.Once the deployment finishes, you see the endpoint URL and credentials to get access to the model. Notice that now the provided URL and credentials are the same as displayed in the landing page of the project for the
+
+**Foundry Models endpoint**.You can view all the models available under the resource by going to
+
+**Models + endpoints**section and locating the group for the connection to your resource:
+
+### Upgrade your code with the new endpoint
+
+Once your Foundry resource is configured, you can start consuming it from your code. You need the endpoint URL and key for it, which can be found in the **Overview** section:
+
+You can use any of the supported SDKs to get predictions out from the endpoint. The following SDKs are officially supported:
+
+- OpenAI SDK
+- Azure OpenAI SDK
+- Azure AI Inference package
+- Azure AI Projects package
+
+For more information and examples, see [Supported programming languages for Azure AI Inference SDK](../supported-languages?view=foundry-classic). The following example shows how to use the Azure AI Inference package with the newly deployed model:
+
+Install the package `azure-ai-inference`
+
+using your package manager, like pip:
+
+```
+pip install azure-ai-inference
+```
+
+
+Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
+
+```
+import os
+from azure.ai.inference import ChatCompletionsClient
+from azure.core.credentials import AzureKeyCredential
+client = ChatCompletionsClient(
+endpoint="https://<resource>.services.ai.azure.com/models",
+credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
+)
+```
+
+
+Explore our [samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-inference/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/python/reference) to get yourself started.
+
+Generate your first chat completion:
+
+```
+from azure.ai.inference.models import SystemMessage, UserMessage
+response = client.complete(
+messages=[
+SystemMessage(content="You are a helpful assistant."),
+UserMessage(content="Explain Riemann's conjecture in 1 paragraph"),
+],
+model="mistral-large"
+)
+print(response.choices[0].message.content)
+```
+
+
+Use the parameter `model="<deployment-name>`
+
+to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. To learn how Foundry Models routes deployments, see [Routing](../concepts/endpoints?view=foundry-classic).
+
+## Move from serverless API deployments to Foundry Models
+
+Although you configured the project to use Foundry Models, existing model deployments continue to exist within the project as serverless API deployments. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that references previous model deployments. To start moving the model deployments, we recommend the following workflow:
+
+Recreate the model deployment in Foundry Models. This model deployment is accessible under the
+
+**Foundry Models endpoint**.Upgrade your code to use the new endpoint.
+
+Clean up the project by removing the serverless API deployment.
+
+
+### Upgrade your code with the new endpoint
+
+Once the models are deployed under Foundry, you can upgrade your code to use the Foundry Models endpoint. The main difference between how serverless API deployments and Foundry Models work resides in the endpoint URL and model parameter. While serverless API deployments have a set of URI and key per each model deployment, Foundry Models has only one for all of them.
+
+The following table summarizes the changes you have to introduce:
+
+| Property | serverless API deployments | Foundry Models |
+|---|---|---|
+| Endpoint | `https://<endpoint-name>.<region>.inference.ai.azure.com` |
+`https://<ai-resource>.services.ai.azure.com/models` |
+| Credentials | One per model/endpoint. | One per Foundry resource. You can use Microsoft Entra ID too. |
+| Model parameter | None. | Required. Use the name of the model deployment. |
+
+### Clean-up existing serverless API deployments from your project
+
+After you refactored your code, you might want to delete the existing serverless API deployments inside of the project (if any).
+
+For each model deployed as serverless API deployments, follow these steps:
+
+Go to the
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs).Select
+
+**Models + endpoints**, then choose the**Service endpoints**tab.Identify the endpoints of type
+
+**serverless API deployment**and select the one you want to delete.Select the option
+
+**Delete**.Warning
+
+This operation can't be reverted. Ensure that the endpoint isn't currently used by any other user or piece of code.
+
+Confirm the operation by selecting
+
+**Delete**.If you created a
+
+**serverless API deployment connection**to this endpoint from other projects, such connections aren't removed and continue to point to the inexistent endpoint. Delete any of those connections for avoiding errors.
+
+## Limitations
+
+Consider the following limitations when configuring your project to use Foundry Models:
+
+- Only models that support serverless API deployments are available for deployment to Foundry Models. Models requiring compute quota from your subscription (managed compute), including custom models, can only be deployed within a given project as Managed Online Endpoints and continue to be accessible using their own set of endpoint URI and credentials.
+- Models available as both serverless API deployments and managed compute offerings are, by default, deployed to Foundry Models in Foundry resources. Foundry portal doesn't offer a way to deploy them to Managed Online Endpoints. You have to turn off the feature mentioned at
+[Configure the project to use Foundry Models](#configure-the-project-to-use-foundry-models)or use the Azure CLI/Azure ML SDK/ARM templates to perform the deployment.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/create-model-deployments -->
 
 # Deploy models using Azure CLI and Bicep
@@ -8544,7 +8522,7 @@ To make requests to the Foundry Models endpoint, append the route `models`
 
 . For example: `https://<resource>.services.ai.azure.com/models`
 
-. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
+. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](/en-us/rest/api/aifoundry/modelinference/).
 
 **Inference keys**
 
@@ -8669,7 +8647,7 @@ To make requests to the Foundry Models endpoint, append the route `models`
 
 . For example: `https://<resource>.services.ai.azure.com/models`
 
-. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
+. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](/en-us/rest/api/aifoundry/modelinference/).
 
 **Inference keys**
 
@@ -8709,7 +8687,7 @@ Tip
 
 If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this article,
 
-[migrate your serverless API endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project?view=foundry-classic). At least one model deployment.
+[migrate your serverless API endpoints to Foundry Models](quickstart-ai-project?view=foundry-classic). At least one model deployment.
 
 Access to diagnostic information for the resource.
 
@@ -8979,11 +8957,11 @@ Set the values of the client ID, tenant ID, and client secret of the Microsoft E
 **Run a basic code sample**to complete the following tasks:- Create a client with the Anthropic SDK, using Microsoft Entra ID authentication.
 - Make a basic call to the Messages API. The call is synchronous.
 
-`from anthropic import AnthropicFoundry from azure.identity import DefaultAzureCredential, get_bearer_token_provider baseURL = "https://<resource-name>.services.ai.azure.com/anthropic" # Your base URL. Replace <resource-name> with your resource name deploymentName = "claude-sonnet-4-5" # Replace with your deployment name # Create token provider for Entra ID authentication tokenProvider = get_bearer_token_provider( DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default" ) # Create client with Entra ID authentication client = AnthropicFoundry( azure_ad_token_provider=tokenProvider, base_url=baseURL ) # Send request message = client.messages.create( model=deploymentName, messages=[ {"role": "user", "content": "What is the capital of France?"} ], max_tokens=1024, ) print(message.content)`
+`from anthropic import AnthropicFoundry from azure.identity import DefaultAzureCredential, get_bearer_token_provider baseURL = "https://<resource-name>.services.ai.azure.com/anthropic" # Your base URL. Replace <resource-name> with your resource name deploymentName = "claude-sonnet-4-5" # Replace with your deployment name # Create token provider for Entra ID authentication tokenProvider = get_bearer_token_provider( DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default" ) # Create client with Entra ID authentication client = AnthropicFoundry( azure_ad_token_provider=tokenProvider, base_url=baseURL ) # Send request message = client.messages.create( model=deploymentName, messages=[ {"role": "user", "content": "What is the capital/major city of France?"} ], max_tokens=1024, ) print(message.content)`
 
 **Expected output:**A JSON response with the model's text completion in`message.content`
 
-, such as`"The capital of France is Paris."`
+, such as`"The capital/major city of France is Paris."`
 
 **Reference:**[Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks),[DefaultAzureCredential](/en-us/python/api/azure-identity/azure.identity.defaultazurecredential)
 
@@ -8996,11 +8974,11 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
 **Run a basic code sample**to complete the following tasks:- Create a client with the Anthropic SDK by passing your API key to the SDK's configuration. This authentication method lets you interact seamlessly with the service.
 - Make a basic call to the Messages API. The call is synchronous.
 
-`from anthropic import AnthropicFoundry baseURL = "https://<resource-name>.services.ai.azure.com/anthropic" # Your base URL. Replace <resource-name> with your resource name deploymentName = "claude-sonnet-4-5" # Replace with your deployment name apiKey = "YOUR_API_KEY" # Replace YOUR_API_KEY with your API key # Create client with API key authentication client = AnthropicFoundry( api_key=apiKey, base_url=baseURL ) # Send request message = client.messages.create( model=deploymentName, messages=[ {"role": "user", "content": "What is the capital of France?"} ], max_tokens=1024, ) print(message.content)`
+`from anthropic import AnthropicFoundry baseURL = "https://<resource-name>.services.ai.azure.com/anthropic" # Your base URL. Replace <resource-name> with your resource name deploymentName = "claude-sonnet-4-5" # Replace with your deployment name apiKey = "YOUR_API_KEY" # Replace YOUR_API_KEY with your API key # Create client with API key authentication client = AnthropicFoundry( api_key=apiKey, base_url=baseURL ) # Send request message = client.messages.create( model=deploymentName, messages=[ {"role": "user", "content": "What is the capital/major city of France?"} ], max_tokens=1024, ) print(message.content)`
 
 **Expected output:**A JSON response with the model's text completion in`message.content`
 
-, such as`"The capital of France is Paris."`
+, such as`"The capital/major city of France is Paris."`
 
 **Reference:**[Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks)
 
@@ -9434,6 +9412,669 @@ To address potential harms that are relevant for a specific model, application, 
 For recommendations and best practices on Responsible AI for Azure OpenAI, grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), see the [Responsible AI Overview for Azure OpenAI](/en-us/azure/ai-foundry/responsible-ai/openai/overview).
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/use-image-embeddings -->
+
+# How to generate image embeddings with Microsoft Foundry Models
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article explains how to use image embeddings API with Microsoft Foundry Models.
+
+## Prerequisites
+
+To use embedding models in your application, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read[Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models?view=foundry-classic)if that's your case.A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see
+
+[Create a project for Foundry (Foundry projects)](../../how-to/create-projects?view=foundry-classic).The endpoint's URL.
+
+The endpoint's key (if you choose to use API key for authentication).
+
+
+Install the
+
+[Azure AI inference package for Python](https://aka.ms/azsdk/azure-ai-inference/python/reference)with the following command:`pip install -U azure-ai-inference`
+
+
+An image embeddings model deployment. If you don't have one, read
+
+[Add and configure Foundry Models](create-model-deployments?view=foundry-classic)to add an embeddings model to your resource.- This example uses
+`Cohere-embed-v3-english`
+
+from Cohere.
+
+- This example uses
+
+## Use image embeddings
+
+First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+
+```
+import os
+from azure.ai.inference import ImageEmbeddingsClient
+from azure.core.credentials import AzureKeyCredential
+client = ImageEmbeddingsClient(
+endpoint="https://<resource>.services.ai.azure.com/models",
+credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
+model="Cohere-embed-v3-english"
+)
+```
+
+
+If you configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+```
+import os
+from azure.ai.inference import ImageEmbeddingsClient
+from azure.identity import DefaultAzureCredential
+client = ImageEmbeddingsClient(
+endpoint="https://<resource>.services.ai.azure.com/models",
+credential=DefaultAzureCredential(),
+model="Cohere-embed-v3-english"
+)
+```
+
+
+### Create embeddings
+
+To create image embeddings, you need to pass the image data as part of your request. Image data should be in PNG format and encoded as base64.
+
+```
+from azure.ai.inference.models import ImageEmbeddingInput
+image_input= ImageEmbeddingInput.load(image_file="sample1.png", image_format="png")
+response = client.embed(
+input=[ image_input ],
+)
+```
+
+
+Tip
+
+When creating a request, take into account the token's input limit for the model. If you need to embed larger portions of text, you would need a chunking strategy.
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+import numpy as np
+for embed in response.data:
+print("Embedding of size:", np.asarray(embed.embedding).shape)
+print("Model:", response.model)
+print("Usage:", response.usage)
+```
+
+
+Important
+
+Computing embeddings in batches may not be supported for all the models. For example, for `Cohere-embed-v3-english`
+
+model, you need to send one image at a time.
+
+#### Embedding images and text pairs
+
+Some models can generate embeddings from images and text pairs. In this case, you can use the `image`
+
+and `text`
+
+fields in the request to pass the image and text to the model. The following example shows how to create embeddings for images and text pairs:
+
+```
+text_image_input= ImageEmbeddingInput.load(image_file="sample1.png", image_format="png")
+text_image_input.text = "A cute baby sea otter"
+response = client.embed(
+input=[ text_image_input ],
+)
+```
+
+
+#### Create different types of embeddings
+
+Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns.
+
+The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database:
+
+```
+from azure.ai.inference.models import EmbeddingInputType
+response = client.embed(
+input=[ image_input ],
+input_type=EmbeddingInputType.DOCUMENT,
+)
+```
+
+
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance.
+
+```
+from azure.ai.inference.models import EmbeddingInputType
+response = client.embed(
+input=[ image_input ],
+input_type=EmbeddingInputType.QUERY,
+)
+```
+
+
+Notice that not all the embedding models support indicating the input type in the request and on those cases a 422 error is returned.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article explains how to use image embeddings API with Microsoft Foundry Models.
+
+## Prerequisites
+
+To use embedding models in your application, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read[Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models?view=foundry-classic)if that's your case.A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see
+
+[Create a project for Foundry (Foundry projects)](../../how-to/create-projects?view=foundry-classic).The endpoint's URL.
+
+The endpoint's key (if you choose to use API key for authentication).
+
+
+Install the
+
+[Azure Inference library for JavaScript](https://aka.ms/azsdk/azure-ai-inference/javascript/reference)with the following command:`npm install @azure-rest/ai-inference npm install @azure/core-auth npm install @azure/identity`
+
+If you are using Node.js, you can configure the dependencies in
+
+**package.json**:**package.json**`{ "name": "main_app", "version": "1.0.0", "description": "", "main": "app.js", "type": "module", "dependencies": { "@azure-rest/ai-inference": "1.0.0-beta.6", "@azure/core-auth": "1.9.0", "@azure/core-sse": "2.2.0", "@azure/identity": "4.8.0" } }`
+
+Import the following:
+
+`import ModelClient from "@azure-rest/ai-inference"; import { isUnexpected } from "@azure-rest/ai-inference"; import { createSseStream } from "@azure/core-sse"; import { AzureKeyCredential } from "@azure/core-auth"; import { DefaultAzureCredential } from "@azure/identity";`
+
+
+An image embeddings model deployment. If you don't have one read
+
+[Add and configure Foundry Models](create-model-deployments?view=foundry-classic)to add an embeddings model to your resource.- This example uses
+`Cohere-embed-v3-english`
+
+from Cohere.
+
+- This example uses
+
+## Use image embeddings
+
+First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+
+```
+const client = ModelClient(
+"https://<resource>.services.ai.azure.com/models",
+new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
+);
+```
+
+
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+```
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
+const client = ModelClient(
+"https://<resource>.services.ai.azure.com/models",
+new DefaultAzureCredential()
+clientOptions,
+);
+```
+
+
+### Create embeddings
+
+To create image embeddings, you need to pass the image data as part of your request. Image data should be in PNG format and encoded as base64.
+
+```
+var image_path = "sample1.png";
+var image_data = fs.readFileSync(image_path);
+var image_data_base64 = Buffer.from(image_data).toString("base64");
+var response = await client.path("/images/embeddings").post({
+body: {
+input: [ { image: image_data_base64 } ],
+model: "Cohere-embed-v3-english",
+}
+});
+```
+
+
+Tip
+
+When creating a request, take into account the token's input limit for the model. If you need to embed larger portions of text, you would need a chunking strategy.
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+if (isUnexpected(response)) {
+throw response.body.error;
+}
+console.log(response.embedding);
+console.log(response.body.model);
+console.log(response.body.usage);
+```
+
+
+Important
+
+Computing embeddings in batches may not be supported for all the models. For example, for `Cohere-embed-v3-english`
+
+model, you need to send one image at a time.
+
+#### Embedding images and text pairs
+
+Some models can generate embeddings from images and text pairs. In this case, you can use the `image`
+
+and `text`
+
+fields in the request to pass the image and text to the model. The following example shows how to create embeddings for images and text pairs:
+
+```
+var image_path = "sample1.png";
+var image_data = fs.readFileSync(image_path);
+var image_data_base64 = Buffer.from(image_data).toString("base64");
+var response = await client.path("/images/embeddings").post({
+body: {
+input: [
+{
+text: "A cute baby sea otter",
+image: image_data_base64
+}
+],
+model: "Cohere-embed-v3-english",
+}
+});
+```
+
+
+#### Create different types of embeddings
+
+Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns.
+
+The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database:
+
+```
+var response = await client.path("/images/embeddings").post({
+body: {
+input: [ { image: image_data_base64 } ],
+input_type: "document",
+model: "Cohere-embed-v3-english",
+}
+});
+```
+
+
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance.
+
+```
+var response = await client.path("/images/embeddings").post({
+body: {
+input: [ { image: image_data_base64 } ],
+input_type: "query",
+model: "Cohere-embed-v3-english",
+}
+});
+```
+
+
+Notice that not all the embedding models support indicating the input type in the request and on those cases a 422 error is returned.
+
+Note
+
+Using image embeddings is only supported using Python, JavaScript, C#, or REST requests.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article explains how to use image embeddings API with Microsoft Foundry Models.
+
+## Prerequisites
+
+To use embedding models in your application, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read[Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models?view=foundry-classic)if that's your case.A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see
+
+[Create a project for Foundry (Foundry projects)](../../how-to/create-projects?view=foundry-classic).The endpoint's URL.
+
+The endpoint's key (if you choose to use API key for authentication).
+
+
+Install the
+
+[Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/python/reference)with the following command:`dotnet add package Azure.AI.Inference --prerelease`
+
+If you are using Entra ID, you also need the following package:
+
+`dotnet add package Azure.Identity`
+
+
+An image embeddings model deployment. If you don't have one, read
+
+[Add and configure Foundry Models](create-model-deployments?view=foundry-classic)to add an embeddings model to your resource.- This example uses
+`Cohere-embed-v3-english`
+
+from Cohere.
+
+- This example uses
+
+## Use image embeddings
+
+First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+
+```
+ImageEmbeddingsClient client = new ImageEmbeddingsClient(
+new Uri("https://<resource>.services.ai.azure.com/models"),
+new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
+);
+```
+
+
+If you configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client. Notice that `includeInteractiveCredentials`
+
+is set to `true`
+
+only for demonstration purposes so authentication can happen using the web browser. For production workloads, you should remove the parameter.
+
+```
+TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+ImageEmbeddingsClient client = new ImageEmbeddingsClient(
+new Uri("https://<resource>.services.ai.azure.com/models"),
+credential,
+clientOptions
+);
+```
+
+
+### Create embeddings
+
+To create image embeddings, you need to pass the image data as part of your request. Image data should be in PNG format and encoded as base64.
+
+```
+List<ImageEmbeddingInput> input = new List<ImageEmbeddingInput>
+{
+ImageEmbeddingInput.Load(imageFilePath:"sampleImage.png", imageFormat:"png")
+};
+var requestOptions = new ImageEmbeddingsOptions()
+{
+Input = input,
+Model = "Cohere-embed-v3-english"
+};
+Response<EmbeddingsResult> response = client.Embed(requestOptions);
+```
+
+
+Tip
+
+When creating a request, take into account the token's input limit for the model. If you need to embed larger portions of text, you would need a chunking strategy.
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+foreach (EmbeddingItem item in response.Value.Data)
+{
+List<float> embedding = item.Embedding.ToObjectFromJson<List<float>>();
+Console.WriteLine($"Index: {item.Index}, Embedding: <{string.Join(", ", embedding)}>");
+}
+```
+
+
+Important
+
+Computing embeddings in batches might not be supported for all the models. For example, for `Cohere-embed-v3-english`
+
+model, you need to send one image at a time.
+
+#### Embedding images and text pairs
+
+Some models can generate embeddings from images and text pairs. In this case, you can use the `image`
+
+and `text`
+
+fields in the request to pass the image and text to the model. The following example shows how to create embeddings for images and text pairs:
+
+```
+var image_input = ImageEmbeddingInput.Load(imageFilePath:"sampleImage.png", imageFormat:"png")
+image_input.text = "A cute baby sea otter"
+var requestOptions = new ImageEmbeddingsOptions()
+{
+Input = new List<ImageEmbeddingInput>
+{
+image_input
+},
+Model = "Cohere-embed-v3-english"
+};
+Response<EmbeddingsResult> response = client.Embed(requestOptions);
+```
+
+
+#### Create different types of embeddings
+
+Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns.
+
+The following example shows how to create embeddings for a document that will be stored in a vector database:
+
+```
+var requestOptions = new EmbeddingsOptions()
+{
+Input = image_input,
+InputType = EmbeddingInputType.DOCUMENT,
+Model = "Cohere-embed-v3-english"
+};
+Response<EmbeddingsResult> response = client.Embed(requestOptions);
+```
+
+
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance.
+
+```
+var requestOptions = new EmbeddingsOptions()
+{
+Input = image_input,
+InputType = EmbeddingInputType.QUERY,
+Model = "Cohere-embed-v3-english"
+};
+Response<EmbeddingsResult> response = client.Embed(requestOptions);
+```
+
+
+Notice that not all the embedding models support indicating the input type in the request and on those cases a 422 error is returned.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article explains how to use image embeddings API with Microsoft Foundry Models.
+
+## Prerequisites
+
+To use embedding models in your application, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read[Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models?view=foundry-classic)if that's your case.A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see
+
+[Create a project for Foundry (Foundry projects)](../../how-to/create-projects?view=foundry-classic).The endpoint's URL.
+
+The endpoint's key (if you choose to use API key for authentication).
+
+
+An image embeddings model deployment. If you don't have one read
+
+[Add and configure Foundry Models](create-model-deployments?view=foundry-classic)to add an embeddings model to your resource.- This example uses
+`Cohere-embed-v3-english`
+
+from Cohere.
+
+- This example uses
+
+## Use image embeddings
+
+To use the text embeddings, use the route `/images/embeddings`
+
+appended to your base URL along with your credential indicated in `api-key`
+
+. `Authorization`
+
+header is also supported with the format `Bearer <key>`
+
+.
+
+```
+POST https://<resource>.services.ai.azure.com/models/images/embeddings?api-version=2024-05-01-preview
+Content-Type: application/json
+api-key: <key>
+```
+
+
+If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization`
+
+header with the format `Bearer <token>`
+
+. Use scope `https://cognitiveservices.azure.com/.default`
+
+.
+
+```
+POST https://<resource>.services.ai.azure.com/models/images/embeddings?api-version=2024-05-01-preview
+Content-Type: application/json
+Authorization: Bearer <token>
+```
+
+
+Using Microsoft Entra ID may require additional configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](configure-entra-id?view=foundry-classic).
+
+### Create embeddings
+
+To create image embeddings, you need to pass the image data as part of your request. Image data should be in PNG format and encoded as base64.
+
+```
+{
+"model": "Cohere-embed-v3-english",
+"input": [
+{
+"image": "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+}
+]
+}
+```
+
+
+Tip
+
+When creating a request, take into account the token's input limit for the model. If you need to embed larger portions of text, you would need a chunking strategy.
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+{
+"id": "0ab1234c-d5e6-7fgh-i890-j1234k123456",
+"object": "list",
+"data": [
+{
+"index": 0,
+"object": "embedding",
+"embedding": [
+0.017196655,
+// ...
+-0.000687122,
+-0.025054932,
+-0.015777588
+]
+}
+],
+"model": "Cohere-embed-v3-english",
+"usage": {
+"prompt_tokens": 9,
+"completion_tokens": 0,
+"total_tokens": 9
+}
+}
+```
+
+
+Important
+
+Computing embeddings in batches may not be supported for all the models. For example, for `Cohere-embed-v3-english`
+
+model, you need to send one image at a time.
+
+#### Embedding images and text pairs
+
+Some models can generate embeddings from images and text pairs. In this case, you can use the `image`
+
+and `text`
+
+fields in the request to pass the image and text to the model. The following example shows how to create embeddings for images and text pairs:
+
+```
+{
+"model": "Cohere-embed-v3-english",
+"input": [
+{
+"image": "data:image/png;base64,iVBORw0KGgoAAAANSUh...",
+"text": "A photo of a cat"
+}
+]
+}
+```
+
+
+#### Create different types of embeddings
+
+Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns.
+
+The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database:
+
+```
+{
+"model": "Cohere-embed-v3-english",
+"input": [
+{
+"image": "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+}
+],
+"input_type": "document"
+}
+```
+
+
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance.
+
+```
+{
+"model": "Cohere-embed-v3-english",
+"input": [
+{
+"image": "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+}
+],
+"input_type": "query"
+}
+```
+
+
+Notice that not all the embedding models support indicating the input type in the request and on those cases a 422 error is returned.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/inference -->
 
 # Endpoints for Microsoft Foundry Models
@@ -9570,7 +10211,7 @@ ChatCompletionsClient client = new ChatCompletionsClientBuilder()
 
 Explore our [samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/java/reference) to get yourself started.
 
-Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Chat completions](../../model-inference/reference/reference-model-inference-chat-completions?view=foundry-classic) details how to use the route `/chat/completions`
+Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Chat completions](/en-us/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions) details how to use the route `/chat/completions`
 
 to generate predictions based on chat-formatted instructions. Notice that the path `/models`
 
@@ -10509,6 +11150,871 @@ Run the deployment:
 `RESOURCE_GROUP="<resource-group-name>" az deployment group create \ --resource-group $RESOURCE_GROUP \ --template-file deploy.bicep`
 
 The template outputs the Microsoft Foundry Models endpoint that you can use to consume any of the model deployments you have created.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/use-embeddings -->
+
+# How to generate embeddings with Microsoft Foundry Models
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Important
+
+If you're currently using an Azure AI Inference beta SDK with Microsoft Foundry Models or Azure OpenAI service, we strongly recommend that you transition to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1), which uses an OpenAI stable SDK.
+
+For more information on how to migrate to the OpenAI/v1 API by using an SDK in your programming language of choice, see [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration?view=foundry-classic).
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article explains how to use embeddings API with models deployed in Microsoft Foundry Models.
+
+## Prerequisites
+
+To use embedding models in your application, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read[Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models?view=foundry-classic)if that's your case.A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see
+
+[Create a project for Foundry (Foundry projects)](../../how-to/create-projects?view=foundry-classic).The endpoint's URL.
+
+The endpoint's key (if you choose to use API key for authentication).
+
+
+Install the
+
+[Azure AI inference package for Python](https://aka.ms/azsdk/azure-ai-inference/python/reference)with the following command:`pip install -U azure-ai-inference`
+
+
+- An embeddings model deployment. If you don't have one read
+[Add and configure Foundry Models](create-model-deployments?view=foundry-classic)to add an embeddings model to your resource.
+
+## Use embeddings
+
+First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+
+```
+import os
+from azure.ai.inference import EmbeddingsClient
+from azure.core.credentials import AzureKeyCredential
+model = EmbeddingsClient(
+endpoint="https://<resource>.services.ai.azure.com/models",
+credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
+model="text-embedding-3-small"
+)
+```
+
+
+If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+```
+import os
+from azure.ai.inference import EmbeddingsClient
+from azure.identity import DefaultAzureCredential
+model = EmbeddingsClient(
+endpoint="https://<resource>.services.ai.azure.com/models",
+credential=DefaultAzureCredential(),
+model="text-embedding-3-small"
+)
+```
+
+
+### Create embeddings
+
+Create an embedding request to see the output of the model.
+
+```
+response = model.embed(
+input=["The ultimate answer to the question of life"],
+)
+```
+
+
+Tip
+
+When creating a request, take into account the token's input limit for the model. If you need to embed larger portions of text, you would need a chunking strategy.
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+import numpy as np
+for embed in response.data:
+print("Embedding of size:", np.asarray(embed.embedding).shape)
+print("Model:", response.model)
+print("Usage:", response.usage)
+```
+
+
+It can be useful to compute embeddings in input batches. The parameter `inputs`
+
+can be a list of strings, where each string is a different input. In turn the response is a list of embeddings, where each embedding corresponds to the input in the same position.
+
+```
+response = model.embed(
+input=[
+"The ultimate answer to the question of life",
+"The largest planet in our solar system is Jupiter",
+],
+)
+```
+
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+import numpy as np
+for embed in response.data:
+print("Embedding of size:", np.asarray(embed.embedding).shape)
+print("Model:", response.model)
+print("Usage:", response.usage)
+```
+
+
+Tip
+
+When creating batches of request, take into account the batch limit for each of the models. Most models have a 1024 batch limit.
+
+#### Specify embeddings dimensions
+
+You can specify the number of dimensions for the embeddings. The following example code shows how to create embeddings with 1024 dimensions. Notice that not all the embedding models support indicating the number of dimensions in the request and on those cases a 422 error is returned.
+
+```
+response = model.embed(
+input=["The ultimate answer to the question of life"],
+dimensions=1024,
+)
+```
+
+
+#### Create different types of embeddings
+
+Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns.
+
+The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database:
+
+```
+from azure.ai.inference.models import EmbeddingInputType
+response = model.embed(
+input=["The answer to the ultimate question of life, the universe, and everything is 42"],
+input_type=EmbeddingInputType.DOCUMENT,
+)
+```
+
+
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance.
+
+```
+from azure.ai.inference.models import EmbeddingInputType
+response = model.embed(
+input=["What's the ultimate meaning of life?"],
+input_type=EmbeddingInputType.QUERY,
+)
+```
+
+
+Notice that not all the embedding models support indicating the input type in the request and on those cases a 422 error is returned. By default, embeddings of type `Text`
+
+are returned.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article explains how to use embeddings API with models deployed in Microsoft Foundry Models.
+
+## Prerequisites
+
+To use embedding models in your application, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read[Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models?view=foundry-classic)if that's your case.A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see
+
+[Create a project for Foundry (Foundry projects)](../../how-to/create-projects?view=foundry-classic).The endpoint's URL.
+
+The endpoint's key (if you choose to use API key for authentication).
+
+
+Install the
+
+[Azure Inference library for JavaScript](https://aka.ms/azsdk/azure-ai-inference/javascript/reference)with the following command:`npm install @azure-rest/ai-inference npm install @azure/core-auth npm install @azure/identity`
+
+If you are using Node.js, you can configure the dependencies in
+
+**package.json**:**package.json**`{ "name": "main_app", "version": "1.0.0", "description": "", "main": "app.js", "type": "module", "dependencies": { "@azure-rest/ai-inference": "1.0.0-beta.6", "@azure/core-auth": "1.9.0", "@azure/core-sse": "2.2.0", "@azure/identity": "4.8.0" } }`
+
+Import the following:
+
+`import ModelClient from "@azure-rest/ai-inference"; import { isUnexpected } from "@azure-rest/ai-inference"; import { createSseStream } from "@azure/core-sse"; import { AzureKeyCredential } from "@azure/core-auth"; import { DefaultAzureCredential } from "@azure/identity";`
+
+
+- An embeddings model deployment. If you don't have one read
+[Add and configure Foundry Models](create-model-deployments?view=foundry-classic)to add an embeddings model to your resource.
+
+## Use embeddings
+
+First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+
+```
+const client = ModelClient(
+"https://<resource>.services.ai.azure.com/models",
+new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
+);
+```
+
+
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+```
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
+const client = ModelClient(
+"https://<resource>.services.ai.azure.com/models",
+new DefaultAzureCredential()
+clientOptions,
+);
+```
+
+
+### Create embeddings
+
+Create an embedding request to see the output of the model.
+
+```
+var response = await client.path("/embeddings").post({
+body: {
+model: "text-embedding-3-small",
+input: ["The ultimate answer to the question of life"],
+}
+});
+```
+
+
+Tip
+
+When creating a request, take into account the token's input limit for the model. If you need to embed larger portions of text, you would need a chunking strategy.
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+if (isUnexpected(response)) {
+throw response.body.error;
+}
+console.log(response.embedding);
+console.log(response.body.model);
+console.log(response.body.usage);
+```
+
+
+It can be useful to compute embeddings in input batches. The parameter `inputs`
+
+can be a list of strings, where each string is a different input. In turn the response is a list of embeddings, where each embedding corresponds to the input in the same position.
+
+```
+var response = await client.path("/embeddings").post({
+body: {
+model: "text-embedding-3-small",
+input: [
+"The ultimate answer to the question of life",
+"The largest planet in our solar system is Jupiter",
+],
+}
+});
+```
+
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+if (isUnexpected(response)) {
+throw response.body.error;
+}
+console.log(response.embedding);
+console.log(response.body.model);
+console.log(response.body.usage);
+```
+
+
+Tip
+
+When creating batches of request, take into account the batch limit for each of the models. Most models have a 1024 batch limit.
+
+#### Specify embeddings dimensions
+
+You can specify the number of dimensions for the embeddings. The following example code shows how to create embeddings with 1024 dimensions. Notice that not all the embedding models support indicating the number of dimensions in the request and on those cases a 422 error is returned.
+
+```
+var response = await client.path("/embeddings").post({
+body: {
+model: "text-embedding-3-small",
+input: ["The ultimate answer to the question of life"],
+dimensions: 1024,
+}
+});
+```
+
+
+#### Create different types of embeddings
+
+Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns.
+
+The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database:
+
+```
+var response = await client.path("/embeddings").post({
+body: {
+model: "text-embedding-3-small",
+input: ["The answer to the ultimate question of life, the universe, and everything is 42"],
+input_type: "document",
+}
+});
+```
+
+
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance.
+
+```
+var response = await client.path("/embeddings").post({
+body: {
+model: "text-embedding-3-small",
+input: ["What's the ultimate meaning of life?"],
+input_type: "query",
+}
+});
+```
+
+
+Notice that not all the embedding models support indicating the input type in the request and on those cases a 422 error is returned. By default, embeddings of type `Text`
+
+are returned.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article explains how to use embeddings API with models deployed in Microsoft Foundry Models.
+
+## Prerequisites
+
+To use embedding models in your application, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read[Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models?view=foundry-classic)if that's your case.A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see
+
+[Create a project for Foundry (Foundry projects)](../../how-to/create-projects?view=foundry-classic).The endpoint's URL.
+
+The endpoint's key (if you choose to use API key for authentication).
+
+
+Add the
+
+[Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/java/reference)to your project:`<dependency> <groupId>com.azure</groupId> <artifactId>azure-ai-inference</artifactId> <version>1.0.0-beta.4</version> </dependency>`
+
+If you are using Entra ID, you also need the following package:
+
+`<dependency> <groupId>com.azure</groupId> <artifactId>azure-identity</artifactId> <version>1.15.3</version> </dependency>`
+
+Import the following namespace:
+
+`package com.azure.ai.inference.usage; import com.azure.ai.inference.EmbeddingsClient; import com.azure.ai.inference.EmbeddingsClientBuilder; import com.azure.ai.inference.ChatCompletionsClient; import com.azure.ai.inference.ChatCompletionsClientBuilder; import com.azure.ai.inference.models.EmbeddingsResult; import com.azure.ai.inference.models.EmbeddingItem; import com.azure.ai.inference.models.ChatCompletions; import com.azure.core.credential.AzureKeyCredential; import com.azure.core.util.Configuration; import java.util.ArrayList; import java.util.List;`
+
+
+Import the following namespace:
+
+`package com.azure.ai.inference.usage; import com.azure.ai.inference.EmbeddingsClient; import com.azure.ai.inference.EmbeddingsClientBuilder; import com.azure.ai.inference.models.EmbeddingsResult; import com.azure.ai.inference.models.EmbeddingItem; import com.azure.core.credential.AzureKeyCredential; import com.azure.core.util.Configuration; import java.util.ArrayList; import java.util.List;`
+
+An embeddings model deployment. If you don't have one read
+
+[Add and configure Foundry Models](create-model-deployments?view=foundry-classic)to add an embeddings model to your resource.
+
+## Use embeddings
+
+First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+
+```
+EmbeddingsClient client = new EmbeddingsClient(
+URI.create(System.getProperty("AZURE_INFERENCE_ENDPOINT")),
+new AzureKeyCredential(System.getProperty("AZURE_INFERENCE_CREDENTIAL")),
+"text-embedding-3-small"
+);
+```
+
+
+If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+```
+client = new EmbeddingsClient(
+URI.create(System.getProperty("AZURE_INFERENCE_ENDPOINT")),
+new DefaultAzureCredential(),
+"text-embedding-3-small"
+);
+```
+
+
+### Create embeddings
+
+Create an embedding request to see the output of the model.
+
+```
+EmbeddingsOptions requestOptions = new EmbeddingsOptions()
+.setInput(Arrays.asList("The ultimate answer to the question of life"));
+Response<EmbeddingsResult> response = client.embed(requestOptions);
+```
+
+
+Tip
+
+When creating a request, take into account the token's input limit for the model. If you need to embed larger portions of text, you would need a chunking strategy.
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+System.out.println("Embedding: " + response.getValue().getData());
+System.out.println("Model: " + response.getValue().getModel());
+System.out.println("Usage:");
+System.out.println("\tPrompt tokens: " + response.getValue().getUsage().getPromptTokens());
+System.out.println("\tTotal tokens: " + response.getValue().getUsage().getTotalTokens());
+```
+
+
+It can be useful to compute embeddings in input batches. The parameter `inputs`
+
+can be a list of strings, where each string is a different input. In turn the response is a list of embeddings, where each embedding corresponds to the input in the same position.
+
+```
+requestOptions = new EmbeddingsOptions()
+.setInput(Arrays.asList(
+"The ultimate answer to the question of life",
+"The largest planet in our solar system is Jupiter"
+));
+response = client.embed(requestOptions);
+```
+
+
+The response is as follows, where you can see the model's usage statistics:
+
+Tip
+
+When creating batches of request, take into account the batch limit for each of the models. Most models have a 1024 batch limit.
+
+#### Specify embeddings dimensions
+
+You can specify the number of dimensions for the embeddings. The following example code shows how to create embeddings with 1024 dimensions. Notice that not all the embedding models support indicating the number of dimensions in the request and on those cases a 422 error is returned.
+
+#### Create different types of embeddings
+
+Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns.
+
+The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database:
+
+```
+List<String> input = Arrays.asList("The answer to the ultimate question of life, the universe, and everything is 42");
+requestOptions = new EmbeddingsOptions(input, EmbeddingInputType.DOCUMENT);
+response = client.embed(requestOptions);
+```
+
+
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance.
+
+```
+input = Arrays.asList("What's the ultimate meaning of life?");
+requestOptions = new EmbeddingsOptions(input, EmbeddingInputType.QUERY);
+response = client.embed(requestOptions);
+```
+
+
+Notice that not all the embedding models support indicating the input type in the request and on those cases a 422 error is returned. By default, embeddings of type `Text`
+
+are returned.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article explains how to use embeddings API with models deployed in Microsoft Foundry Models.
+
+## Prerequisites
+
+To use embedding models in your application, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read[Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models?view=foundry-classic)if that's your case.A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see
+
+[Create a project for Foundry (Foundry projects)](../../how-to/create-projects?view=foundry-classic).The endpoint's URL.
+
+The endpoint's key (if you choose to use API key for authentication).
+
+
+Install the
+
+[Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/python/reference)with the following command:`dotnet add package Azure.AI.Inference --prerelease`
+
+If you are using Entra ID, you also need the following package:
+
+`dotnet add package Azure.Identity`
+
+
+- An embeddings model deployment. If you don't have one read
+[Add and configure Foundry Models](create-model-deployments?view=foundry-classic)to add an embeddings model to your resource.
+
+## Use embeddings
+
+First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+
+```
+EmbeddingsClient client = new EmbeddingsClient(
+new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
+new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
+);
+```
+
+
+If you configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client. Note that here `includeInteractiveCredentials`
+
+is set to `true`
+
+only for demonstration purposes so authentication can happen using the web browser. On production workloads, you should remove such parameter.
+
+```
+TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+client = new EmbeddingsClient(
+new Uri("https://<resource>.services.ai.azure.com/models"),
+credential,
+clientOptions,
+);
+```
+
+
+### Create embeddings
+
+Create an embedding request to see the output of the model.
+
+```
+EmbeddingsOptions requestOptions = new EmbeddingsOptions()
+{
+Input = {
+"The ultimate answer to the question of life"
+},
+Model = "text-embedding-3-small"
+};
+Response<EmbeddingsResult> response = client.Embed(requestOptions);
+```
+
+
+Tip
+
+When creating a request, take into account the token's input limit for the model. If you need to embed larger portions of text, you would need a chunking strategy.
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+Console.WriteLine($"Embedding: {response.Value.Data}");
+Console.WriteLine($"Model: {response.Value.Model}");
+Console.WriteLine("Usage:");
+Console.WriteLine($"\tPrompt tokens: {response.Value.Usage.PromptTokens}");
+Console.WriteLine($"\tTotal tokens: {response.Value.Usage.TotalTokens}");
+```
+
+
+It can be useful to compute embeddings in input batches. The parameter `inputs`
+
+can be a list of strings, where each string is a different input. In turn the response is a list of embeddings, where each embedding corresponds to the input in the same position.
+
+```
+EmbeddingsOptions requestOptions = new EmbeddingsOptions()
+{
+Input = {
+"The ultimate answer to the question of life",
+"The largest planet in our solar system is Jupiter"
+},
+Model = "text-embedding-3-small"
+};
+Response<EmbeddingsResult> response = client.Embed(requestOptions);
+```
+
+
+The response is as follows, where you can see the model's usage statistics:
+
+Tip
+
+When creating batches of request, take into account the batch limit for each of the models. Most models have a 1024 batch limit.
+
+#### Specify embeddings dimensions
+
+You can specify the number of dimensions for the embeddings. The following example code shows how to create embeddings with 1024 dimensions. Notice that not all the embedding models support indicating the number of dimensions in the request and on those cases a 422 error is returned.
+
+#### Create different types of embeddings
+
+Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns.
+
+The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database:
+
+```
+var input = new List<string> {
+"The answer to the ultimate question of life, the universe, and everything is 42"
+};
+var requestOptions = new EmbeddingsOptions()
+{
+Input = input,
+InputType = EmbeddingInputType.DOCUMENT,
+Model = "text-embedding-3-small"
+};
+Response<EmbeddingsResult> response = client.Embed(requestOptions);
+```
+
+
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance.
+
+```
+var input = new List<string> {
+"What's the ultimate meaning of life?"
+};
+var requestOptions = new EmbeddingsOptions()
+{
+Input = input,
+InputType = EmbeddingInputType.QUERY,
+Model = "text-embedding-3-small"
+};
+Response<EmbeddingsResult> response = client.Embed(requestOptions);
+```
+
+
+Notice that not all the embedding models support indicating the input type in the request and on those cases a 422 error is returned. By default, embeddings of type `Text`
+
+are returned.
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+This article explains how to use embeddings API with models deployed in Microsoft Foundry Models.
+
+## Prerequisites
+
+To use embedding models in your application, you need:
+
+An Azure subscription. If you're using
+
+[GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read[Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models?view=foundry-classic)if that's your case.A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see
+
+[Create a project for Foundry (Foundry projects)](../../how-to/create-projects?view=foundry-classic).The endpoint's URL.
+
+The endpoint's key (if you choose to use API key for authentication).
+
+
+- An embeddings model deployment. If you don't have one read
+[Add and configure Foundry Models](create-model-deployments?view=foundry-classic)to add an embeddings model to your resource.
+
+## Use embeddings
+
+To use the text embeddings, use the route `/embeddings`
+
+appended to the base URL along with your credential indicated in `api-key`
+
+. `Authorization`
+
+header is also supported with the format `Bearer <key>`
+
+.
+
+```
+POST https://<resource>.services.ai.azure.com/models/embeddings?api-version=2024-05-01-preview
+Content-Type: application/json
+api-key: <key>
+```
+
+
+If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization`
+
+header with the format `Bearer <token>`
+
+. Use scope `https://cognitiveservices.azure.com/.default`
+
+.
+
+```
+POST https://<resource>.services.ai.azure.com/models/embeddings?api-version=2024-05-01-preview
+Content-Type: application/json
+Authorization: Bearer <token>
+```
+
+
+Using Microsoft Entra ID may require additional configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](configure-entra-id?view=foundry-classic).
+
+### Create embeddings
+
+Create an embedding request to see the output of the model.
+
+```
+{
+"model": "text-embedding-3-small",
+"input": [
+"The ultimate answer to the question of life"
+]
+}
+```
+
+
+Tip
+
+When creating a request, take into account the token's input limit for the model. If you need to embed larger portions of text, you would need a chunking strategy.
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+{
+"id": "0ab1234c-d5e6-7fgh-i890-j1234k123456",
+"object": "list",
+"data": [
+{
+"index": 0,
+"object": "embedding",
+"embedding": [
+0.017196655,
+// ...
+-0.000687122,
+-0.025054932,
+-0.015777588
+]
+}
+],
+"model": "text-embedding-3-small",
+"usage": {
+"prompt_tokens": 9,
+"completion_tokens": 0,
+"total_tokens": 9
+}
+}
+```
+
+
+It can be useful to compute embeddings in input batches. The parameter `inputs`
+
+can be a list of strings, where each string is a different input. In turn the response is a list of embeddings, where each embedding corresponds to the input in the same position.
+
+```
+{
+"model": "text-embedding-3-small",
+"input": [
+"The ultimate answer to the question of life",
+"The largest planet in our solar system is Jupiter"
+]
+}
+```
+
+
+The response is as follows, where you can see the model's usage statistics:
+
+```
+{
+"id": "0ab1234c-d5e6-7fgh-i890-j1234k123456",
+"object": "list",
+"data": [
+{
+"index": 0,
+"object": "embedding",
+"embedding": [
+0.017196655,
+// ...
+-0.000687122,
+-0.025054932,
+-0.015777588
+]
+},
+{
+"index": 1,
+"object": "embedding",
+"embedding": [
+0.017196655,
+// ...
+-0.000687122,
+-0.025054932,
+-0.015777588
+]
+}
+],
+"model": "text-embedding-3-small",
+"usage": {
+"prompt_tokens": 19,
+"completion_tokens": 0,
+"total_tokens": 19
+}
+}
+```
+
+
+Tip
+
+When creating batches of request, take into account the batch limit for each of the models. Most models have a 1024 batch limit.
+
+#### Specify embeddings dimensions
+
+You can specify the number of dimensions for the embeddings. The following example code shows how to create embeddings with 1024 dimensions. Notice that not all the embedding models support indicating the number of dimensions in the request and on those cases a 422 error is returned.
+
+```
+{
+"model": "text-embedding-3-small",
+"input": [
+"The ultimate answer to the question of life"
+],
+"dimensions": 1024
+}
+```
+
+
+#### Create different types of embeddings
+
+Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns.
+
+The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database. Since `text-embedding-3-small`
+
+doesn't support this capability, we are using an embedding model from Cohere in the following example:
+
+```
+{
+"model": "cohere-embed-v3-english",
+"input": [
+"The answer to the ultimate question of life, the universe, and everything is 42"
+],
+"input_type": "document"
+}
+```
+
+
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance. Since `text-embedding-3-small`
+
+doesn't support this capability, we are using an embedding model from Cohere in the following example:
+
+```
+{
+"model": "cohere-embed-v3-english",
+"input": [
+"What's the ultimate meaning of life?"
+],
+"input_type": "query"
+}
+```
+
+
+Notice that not all the embedding models support indicating the input type in the request and on those cases a 422 error is returned. By default, embeddings of type `Text`
+
+are returned.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/configure-entra-id -->
@@ -11493,7 +12999,7 @@ In general, reasoning models don't support the following parameters you can find
 `top_p`
 
 
-Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models?view=foundry-classic) details page to understand each model's support.
+Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models-sold-directly-by-azure?view=foundry-classic) details page to understand each model's support.
 
 ### Apply Guardrails and controls
 
@@ -11773,7 +13279,7 @@ In general, reasoning models don't support the following parameters you can find
 `top_p`
 
 
-Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models?view=foundry-classic) details page to understand each model's support.
+Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models-sold-directly-by-azure?view=foundry-classic) details page to understand each model's support.
 
 ### Apply Guardrails and controls
 
@@ -12063,7 +13569,7 @@ In general, reasoning models don't support the following parameters you can find
 `top_p`
 
 
-Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models?view=foundry-classic) details page to understand each model's support.
+Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models-sold-directly-by-azure?view=foundry-classic) details page to understand each model's support.
 
 Important
 
@@ -12316,7 +13822,7 @@ In general, reasoning models don't support the following parameters you can find
 `top_p`
 
 
-Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models?view=foundry-classic) details page to understand each model's support.
+Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models-sold-directly-by-azure?view=foundry-classic) details page to understand each model's support.
 
 ### Apply Guardrails and controls
 
@@ -12592,7 +14098,7 @@ In general, reasoning models don't support the following parameters you can find
 `top_p`
 
 
-Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models?view=foundry-classic) details page to understand each model's support.
+Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../concepts/models-sold-directly-by-azure?view=foundry-classic) details page to understand each model's support.
 
 ### Apply Guardrails and controls
 

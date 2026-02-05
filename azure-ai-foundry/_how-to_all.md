@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-04T00:35:27.824742
+merged_at: 2026-02-05T08:42:07.288944
 merged_files: 3
 ---
 
@@ -1773,7 +1773,7 @@ In this article, you learn to enable tracing, collect aggregated metrics, and co
 
 Note
 
-For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](../online-evaluation?view=foundry-classic).
+For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](../monitor-applications?view=foundry-classic).
 
 ## Prerequisites
 
@@ -2344,350 +2344,6 @@ Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/
 Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/agent-redteam-sample) in our GitHub samples.
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/vscode -->
-
-# Work with the Microsoft Foundry for Visual Studio Code extension (Preview)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-[Microsoft Foundry](/en-us/azure/ai-foundry/what-is-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
-
-With Foundry, you can:
-
-Deploy the latest language models from Microsoft, OpenAI, Meta, DeepSeek, and more using the robust model catalog
-
-Test the deployed models in a model playground
-
-Quickly get started with developing generative AI applications using a collection of Azure curated code templates
-
-Configure and deploy agents with Foundry Agent Service
-
-
-With the Foundry for Visual Studio Code extension, you can accomplish much of this workflow directly from Visual Studio Code. It also comes with other features, such as code templates, playgrounds, and integration with other VS Code extensions and features.
-
-This article shows you how to quickly get started using the features of the Foundry for Visual Studio Code extension.
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-## Prerequisites
-
-Before using the Foundry for Visual Studio Code extension, you must:
-
-Download, install, and configure Visual Studio Code. More information:
-
-[Download Visual Studio Code](https://code.visualstudio.com/Download)Your subscription needs to be below your
-
-[quota limit](../quota?view=foundry-classic)to[deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a[deployed chat model](../deploy-models-openai?view=foundry-classic).Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see
-
-[Role-based access control for Foundry](/en-us/azure/ai-foundry/concepts/rbac-foundry).
-
-## Installation
-
-After you install Visual Studio Code, you need to install the Foundry for Visual Studio Code extension.
-
-To install the Foundry for Visual Studio Code extension, either use the Visual Studio Code Marketplace or install it directly from within Visual Studio Code.
-
-### Install from the Visual Studio Code Marketplace
-
-To install the Foundry for Visual Studio Code extension from the Visual Studio Code Marketplace, follow these steps:
-
-- Open the
-[Foundry for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). - Select the
-**Install**button. - Follow the prompts to install the extension in Visual Studio Code.
-- After installation, open Visual Studio Code and verify the extension is installed successfully from the status messages.
-- The extension should now be visible in the primary navigation bar on the left side of Visual Studio Code.
-
-### Install from within Visual Studio Code
-
-To install the Foundry for Visual Studio Code extension in Visual Studio Code, follow these steps:
-
-Open Visual Studio Code.
-
-Select
-
-**Extensions**from the left pane.Select the
-
-**Settings**icon from the top-right on the extensions pane.Search for and select
-
-**Foundry**.Select
-
-**Install**.Verify the extension is installed successfully from the status messages.
-
-
-## Get started
-
-Get started with the Foundry extension by using the following steps.
-
-Note
-
-For a full list of features available in the extension, use the Command Palette. Select `F1` to open the command palette and search **Foundry**. The following screenshot shows some of the actions for Foundry.
-[
-](../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png?view=foundry-classic#lightbox)
-
-### Sign in to your resources
-
-Sign in to your Azure subscription to access your resources with the following steps:
-
-Select the Azure Icon on the VS Code Navbar.
-
-Sign in by selecting the
-
-`Sign in to Azure...`
-
-item in the**Azure Resources**view.Under the "Resources" section, select your Azure Subscription and Resource Group.
-
-Select
-
-**Foundry**and right-click your project.Select
-
-**Open in Foundry Extension**.
-
-### Explore the Foundry Extension
-
-The Foundry Extension opens in its own view, with the Foundry Icon now displayed on the VS Code Navbar. The extension has three main sections: **Resources**, **Tools**, and **Help and Feedback**.
-
-
-**Resources**: This section contains the resources you have access to in your Foundry project. The**Resources**section is the main view for interacting with your Foundry Services. It contains the following subsections:**Models**: This section contains the models you can use to build and deploy your AI applications. The**Models**view is where you can find your deployed models in your Foundry project.**Declarative Agents**: This section contains your deployed declarative agents in your Foundry project.**Hosted Agents (Preview)**: This section contains your deployed hosted agents in your Foundry project.**Assets**: This section contains the assets you have in your Foundry project.- Connections: This subsection contains the connections you have in your Foundry project. for example, Bing Grounding connections.
-- Vector Stores: This subsection contains the vector stores you have in your Foundry project.
-
-**Classic**: This section contains the agents built in your classic Foundry projects.
-
-**Tools**: This section contains the tools you can use to build and deploy your AI applications. The**Tools**view is where you can find the tools available to deploy and then work with your deployed models and agents. It contains the following subsections:**Model Catalog**: The link to the model catalog you can use to discover and deploy models.**Model Playground**: The link to the model playground for interacting with your deployed models in your Foundry project.**Remote Agent Playground**: The link to the agent playground for interacting with your deployed remote agents in your Foundry project.**Local Agent Playground**: The link to the agent playground for interacting with your deployed local agents in your Foundry project.**Local Visualizer**: The link to the local visualizer to visualize the interactions between agents and how they collaborate in your Foundry project.**Deploy Hosted Agents**: The link to deploy a new hosted agent using a dockerfile in your Foundry project.
-
-**Help and Feedback**: This section contains links to the Foundry documentation, feedback, support, and the Microsoft Privacy Statement. It contains the following subsections:**Documentation**: The link to the Foundry Extension documentation.**GitHub**: The link to the Foundry extension GitHub repository.**Microsoft Privacy Statement**: The link to the Microsoft Privacy Statement.**Join the Foundry Community: Discord + Forum**: The link to the Foundry community Discord server.
-
-
-Note
-
-To learn more about working with Agents in the Foundry Extension, see the [Work with Agent Service in Visual Studio Code](vs-code-agents?view=foundry-classic) article.
-
-## Create a project
-
-You can create a new Foundry project from the Foundry Extension view with the following steps:
-
-Select the
-
-**plus**icon next to**Resources**in the**Resources**section of the Foundry Extension view.You can either create a new resource group or select an existing one.
-
-To create a new resource group:
-
-In the top center, select
-
-**Create new resource group**and press Enter.In the top center, enter the Azure Resource Group name to use in the
-
-**Enter new resource group**textbox and press Enter.In the top center, select the location you want to use from the list of available locations and press Enter.
-
-
-To use an existing resource group:
-
-- In the top center, select the resource group you want to use from the list of available resource groups and press Enter.
-
-In the top center, enter the Foundry Project name to use in the
-
-**Enter project name**textbox and press Enter.
-
-After project deployment, a popup appears with the message **Project deployed successfully**.
-
-To deploy a model to the newly created project, select the **Deploy a model** button in the popup.
-This action opens the **Model Catalog** page in the Foundry Extension view to select the desired model to [deploy.](#deploy-a-model-from-the-model-catalog)
-
-### The default Foundry Project
-
-When you open a project in the Foundry Extension, that project is set as your default project.
-
-Switch your default project by following these steps:
-
-Right-click on the Foundry Project and select the
-
-**Switch Default Project in Azure Extension**option.In the top center, select the Foundry Project you want to use from the list of available projects and press Enter.
-
-
-Your selected project will now display **Default** after the project name.
-
-Tip
-
-Right-click on your project name to access the project endpoint and/or the project API key.
-
-## Work with models
-
-The Foundry for Visual Studio Code extension enables you to create, interact with, and deploy Large Language Models from within Visual Studio Code.
-
-### Explore all models with the model catalog
-
-The [model catalog](/en-us/azure/ai-foundry/how-to/model-catalog-overview) in Foundry portal is the hub to discover and use a wide range of models for building generative AI applications.
-
-Access the model catalog from several different ways:
-
-- The
-**Foundry: Open Model Catalog**command palette command. - Select the
-**plus**icon next to**Models**in the**Resources**section of the Foundry Extension view. - Select the
-**Model Catalog**link in the**Tools**section of the Foundry Extension view.
-
-#### Open the model catalog from the command palette
-
-Access the model catalog from the command palette to explore and deploy a curated selection of models available in Foundry, right from inside VS Code.
-
-Select
-
-`F1`to open the command palette.Enter
-
-**Foundry: Open Model Catalog**and press Enter.The
-
-**Model Catalog**page is displayed.Filter the
-
-**Model Catalog**by`Hosted by`
-
-,`Publisher`
-
-,`Feature`
-
-and/or`Model type`
-
-using the dropdowns at the top-left of the page. Select`Fine-Tuning Support`
-
-using the toggle button to filter models that support fine-tuning.Search for a specific model using the search bar at the top-center of the page.
-
-
-#### Open the model catalog from the Resources section
-
-The **Model Catalog** is also available in the **Resources** section of the Foundry Extension view.
-
-In the Foundry Extension view, select the **plus** icon next to **Models** to open the Model Catalog.
-
-Tip
-
-You can also right-click on **Models** and select the **Deploy new AI model** option to open the Model Catalog to start the deployment process.
-
-#### Open the model catalog from the Tools section
-
-The **Model Catalog** is also available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Catalog** link to open the Model Catalog.
-
-### Deploy a model from the model catalog
-
-Deploy a selected model in the model catalog using the following steps:
-
-Select the
-
-**Deploy**button immediately following the selected model name.The
-
-**Model deployment**page is displayed.Enter the model deployment name to use in the
-
-**Enter deployment name**textbox and press Enter.Select the deployment type to use in the
-
-**Deployment type**dropdown and press Enter.Select the model version to use in the
-
-**Model version**dropdown and press Enter.(Optional) Select the tokens per minute to use in the
-
-**Tokens per minute**slider and press Enter.In the bottom-left corner, select the
-
-**Deploy in Foundry**button to deploy the model.A confirmation dialog box appears. Select the
-
-**Deploy**button to deploy the model to your project.After a successful deployment, your model will be listed by deployment name with your other deployed models under the
-
-**Models**section in your project.
-
-### View deployed models
-
-In the Azure Resources Extension view, select the **caret** icon in front of the **Models** section to view the list of deployed models.
-
-The expanded **Models** section displays the list of deployed models.
-
-#### View model card information
-
-Selecting a deployed model opens up a panel that provides some basic information:
-
-- Deployment Info: This section contains the information about the model:
-- Name
-- Provisioning state
-- Deployment type
-- Rate limit information
-- Version info
-- Model name
-- Model version
-
-- Endpoint info: This section contains the Target URI link, authentication type, and key.
-- Useful links: This section contains the code sample repository and tutorial links to get started with AI application development.
-
-#### Update a model
-
-To update the model card information, select the **Edit** button on the top-right of the model card.
-
-Update the desired editable fields such as rate limit directly within VS Code.
-
-To save the changes, select the **Save** button on the top-right of the model card.
-
-### Explore the model sample code
-
-Create a sample code file using the following steps.
-
-Right-click on your deployed model and select the
-
-**Open code file**option.In the top center, select your preferred SDK to use in the
-
-**Choose preferred SDK**dropdown and press Enter.In the top center, select your preferred language to use in the
-
-**Choose language**dropdown and press Enter.In the top center, select your preferred authentication method to use in the
-
-**Choose authentication method**dropdown and press Enter.A sample code file is generated and opened in a new tab in VS Code.
-
-
-#### Sample code file
-
-This Python sample code file demonstrates a basic call to the responses API. The call is synchronous:
-
-### Interact with models using a model playground
-
-Chat interactively with the model, change settings, and system instructions using the **Model Playground**.
-
-The **Model Playground** is available in the **Tools** section of the Foundry Extension view. Double-click on the **Model Playground** link to open the Model Playground.
-
-You can also open the model playground using the following steps:
-
-Right-click on your deployed model and select the
-
-**Open in playground**option.The
-
-**Playground**page is displayed.Type your prompt and see the outputs.
-
-Additionally, you can use
-
-**View code**in the top-right corner to see details about how to access the model deployment programmatically.Select the
-
-**History**link at the top-left of the playground to view the chat history.
-
-## Cleanup resources
-
-The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
-
-### Delete your models
-
-In the VS Code navbar, refresh the
-
-**Foundry Extension**. In the**Resources**section, expand the**Models**subsection to display the list of deployed models.Right-click on your deployed model to delete and select the
-
-**Delete**option.
-
-### Delete your tools
-
-Delete the connected tool with the following steps:
-
-- Open the Azure portal
-- Select the Azure Resource Group containing the tool.
-- Select the
-**Delete**button.
-
-## Next steps
-
-- Learn about
-[working with the Agent Service](vs-code-agents?view=foundry-classic)using this Visual Studio Code extension.
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/get-started-projects-vs-code -->
 
 # Work with the Microsoft Foundry for Visual Studio Code extension (Preview)
@@ -2727,7 +2383,7 @@ Download, install, and configure Visual Studio Code. More information:
 
 [Download Visual Studio Code](https://code.visualstudio.com/Download)Your subscription needs to be below your
 
-[quota limit](../quota?view=foundry-classic)to[deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a[deployed chat model](../deploy-models-openai?view=foundry-classic).Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see
+[quota limit](../quota?view=foundry-classic)to[deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a[deployed chat model](../../foundry-models/how-to/deploy-foundry-models?view=foundry-classic).Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see
 
 [Role-based access control for Foundry](/en-us/azure/ai-foundry/concepts/rbac-foundry).
 
@@ -4419,7 +4075,7 @@ relevance_eval(query=query, response=response)
 To run batch evaluations by using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run a cloud evaluation](cloud-evaluation?view=foundry-classic#uploading-evaluation-data), represent the dataset in JSONL format. The previous single-turn data, which is a query-and-response pair, is equivalent to a line of a dataset like the following example, which shows three lines:
 
 ```
-{"query":"What is the capital of France?","response":"Paris."}
+{"query":"What is the capital/major city of France?","response":"Paris."}
 {"query":"What atoms compose water?","response":"Hydrogen and oxygen."}
 {"query":"What color is my shirt?","response":"Blue."}
 ```
@@ -4801,11 +4457,11 @@ and row-level data and metrics. See the following example output:
 ```
 {'metrics': {'answer_length.value': 49.333333333333336,
 'groundedness.gpt_groundeness': 5.0, 'groundedness.groundeness': 5.0},
-'rows': [{'inputs.response': 'Paris is the capital of France.',
-'inputs.context': 'Paris has been the capital of France since '
+'rows': [{'inputs.response': 'Paris is the capital/major city of France.',
+'inputs.context': 'Paris has been the capital/major city of France since '
 'the 10th century and is known for its '
 'cultural and historical landmarks.',
-'inputs.query': 'What is the capital of France?',
+'inputs.query': 'What is the capital/major city of France?',
 'outputs.answer_length.value': 31,
 'outputs.groundeness.groundeness': 5,
 'outputs.groundeness.gpt_groundeness': 5,
@@ -4852,9 +4508,9 @@ requires data in the following format with the required input fields. See the [p
 
 ```
 {
-"query":"What is the capital of France?",
+"query":"What is the capital/major city of France?",
 "context":"France is in Europe",
-"response":"Paris is the capital of France.",
+"response":"Paris is the capital/major city of France.",
 "ground_truth": "Paris"
 }
 ```
@@ -4956,7 +4612,7 @@ Here's the content in `"data.jsonl"`
 
 ```
 {"query":"When was United States found ?", "response":"1776"}
-{"query":"What is the capital of France?", "response":"Paris"}
+{"query":"What is the capital/major city of France?", "response":"Paris"}
 {"query":"Who is the best tennis player of all time ?", "response":"Roger Federer"}
 ```
 
@@ -4984,7 +4640,7 @@ evaluator_config={
 
 ## Related content
 
-[Azure AI Evaluation client library for Python](https://aka.ms/azureaieval-python-ref)[Troubleshoot AI Evaluation SDK Issues](https://aka.ms/azureaieval-tsg)[Observability in generative AI](../../concepts/evaluation-metrics-built-in?view=foundry-classic)[Run evaluations in the cloud by using the Microsoft Foundry SDK](cloud-evaluation?view=foundry-classic)[Generate synthetic and simulated data for evaluation](simulator-interaction-data?view=foundry-classic)[See evaluation results in the Foundry portal](../evaluate-results?view=foundry-classic)[Get started with Foundry](../../quickstarts/get-started-code?view=foundry-classic)[Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
+[Azure AI Evaluation client library for Python](https://aka.ms/azureaieval-python-ref)[Troubleshoot AI Evaluation SDK Issues](https://aka.ms/azureaieval-tsg)[Observability in generative AI](../../concepts/observability?view=foundry-classic)[Run evaluations in the cloud by using the Microsoft Foundry SDK](cloud-evaluation?view=foundry-classic)[Generate synthetic and simulated data for evaluation](simulator-interaction-data?view=foundry-classic)[See evaluation results in the Foundry portal](../evaluate-results?view=foundry-classic)[Get started with Foundry](../../quickstarts/get-started-code?view=foundry-classic)[Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/sdk-overview -->
@@ -5371,7 +5027,7 @@ Console.WriteLine(response.GetOutputText());
 
 ### What you can do with the Foundry SDK
 
-[Access Foundry Models](../../quickstarts/get-started-code?view=foundry-classic), including Azure OpenAI[Use the Foundry Agent Service](../../../ai-services/agents/quickstart?view=foundry-classic&context=/azure/ai-foundry/context/context)[Run cloud evaluations](cloud-evaluation?view=foundry-classic)[Enable app tracing](../../concepts/trace?view=foundry-classic)[Fine-tune a model](/en-us/azure/ai-foundry/openai/how-to/fine-tuning?view=foundry&tabs=azure-openai&pivots=programming-language-python&preserve-view=true)- Get endpoints and keys for Foundry Tools, local orchestration, and more
+[Access Foundry Models](../../quickstarts/get-started-code?view=foundry-classic), including Azure OpenAI[Use the Foundry Agent Service](../../../ai-services/agents/quickstart?view=foundry-classic&context=/azure/ai-foundry/context/context)[Run cloud evaluations](cloud-evaluation?view=foundry-classic)[Enable app tracing](trace-application?view=foundry-classic)[Fine-tune a model](/en-us/azure/ai-foundry/openai/how-to/fine-tuning?view=foundry&tabs=azure-openai&pivots=programming-language-python&preserve-view=true)- Get endpoints and keys for Foundry Tools, local orchestration, and more
 
 ## OpenAI SDK
 
@@ -8413,7 +8069,7 @@ Try a sample for each of these evaluators in the [sample repository](https://git
 
 ## Related content
 
-[Azure AI Evaluation Python SDK client reference documentation](https://aka.ms/azureaieval-python-ref)[Azure AI Evaluation SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)[Learn about the evaluation metrics](../../concepts/evaluation-metrics-built-in?view=foundry-classic)[Evaluate Generative AI applications remotely on the cloud](cloud-evaluation?view=foundry-classic)[Learn about simulating test datasets for evaluation](simulator-interaction-data?view=foundry-classic)[View evaluation results in a Foundry project](../evaluate-results?view=foundry-classic)[Get started building a chat app using the Microsoft Foundry SDK](../../quickstarts/get-started-code?view=foundry-classic)[Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
+[Azure AI Evaluation Python SDK client reference documentation](https://aka.ms/azureaieval-python-ref)[Azure AI Evaluation SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)[Learn about the evaluation metrics](../../concepts/observability?view=foundry-classic)[Evaluate Generative AI applications remotely on the cloud](cloud-evaluation?view=foundry-classic)[Learn about simulating test datasets for evaluation](simulator-interaction-data?view=foundry-classic)[View evaluation results in a Foundry project](../evaluate-results?view=foundry-classic)[Get started building a chat app using the Microsoft Foundry SDK](../../quickstarts/get-started-code?view=foundry-classic)[Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
 
 ---
 <!-- Source: N/A -->
@@ -9605,102 +9261,6 @@ To update an existing policy assignment with new models, follow these steps:
 | Changes don't take effect immediately | Policy evaluation can take up to 30 minutes. To force evaluation, use `az policy state trigger-scan` . |
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/online-evaluation -->
-
-# Monitor your generative AI applications (preview)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-Monitoring your generative AI applications is important because of the complexity and rapid evolution of the AI industry. By using observability integrated with Azure Monitor Application Insights, you can continuously monitor your deployed AI applications to ensure that they're performant, safe, and produce high-quality results in production. In addition to the continuous monitoring capabilities, the Foundry Observability dashboard also provides [continuous evaluation capabilities for Agents](continuous-evaluation-agents?view=foundry-classic) with visibility into critical quality and safety metrics.
-
-Note
-
-You must use a **Foundry project** for this feature. A **hub-based project** isn't supported. See [How do I know which type of project I have?](../what-is-foundry?view=foundry-classic#how-do-i-know-which-type-of-project-i-have) and [Create a Foundry project](create-projects?view=foundry-classic&pivots=%22fdp-project%22). To migrate your hub-based project to a Foundry project, see [Migrate from hub-based to Foundry projects](migrate-project?view=foundry-classic).
-
-## How to enable monitoring
-
-To use monitoring capabilities in Microsoft Foundry, connect an Application Insights resource to your Foundry project.
-
-- Navigate to
-**Monitoring**in the left navigation pane of the Foundry portal. - Select the
-**Application analytics**tab. - Create a new Application Insights resource if you don't already have one.
-- Connect the resource to your Foundry project.
-
-### Collect production data for monitoring
-
-Start collecting telemetry for your application that you can monitor in the built-in views. To do this, follow these recommendations:
-
-Instrument traces to capture detailed telemetry data from your application. This data provides insights into the performance, latency, and behavior of your application in production.
-
-Use
-
-[continuous evaluations](continuous-evaluation-agents?view=foundry-classic)to help monitor the quality and safety of your agent in production by assessing its outputs against predefined metrics and thresholds.
-
-## Viewing monitoring results
-
-In Foundry portal, the **Application analytics** dashboard view uses signals from [Azure Monitor Application Insights](/en-us/azure/azure-monitor/app/overview-dashboard), querying it through [Azure Workbooks](/en-us/azure/azure-monitor/visualize/workbooks-overview) and creating visualizations.
-
-These views bring key metrics - token consumption, latency, exceptions, response quality - into a single pane that provides transparency to teams. They help teams track operational health and quality, understand trends, and continuously assess to improve their application.
-
-Follow these steps to access and utilize the built-in monitoring view in your Foundry Project:
-
-- Go to your Foundry Project in the Foundry portal.
-- Select
-**Monitoring**from the left navigation pane. - Under the
-**Application analytics**tab, review the overview of your application's health. - Use filters to specify a time range, application, and model to extract detailed insights.
-- If you notice problems, such as declining quality metrics, go to
-**Tracing**to[debug problems in your application](develop/trace-application?view=foundry-classic). - To further customize your monitoring experience and use advanced capabilities in Azure Monitor, select
-**View in Azure Monitor Application Insights**.
-
-Note
-
-When you share this workbook with your team members, they must have at least the **Reader** role to the connected Application Insights resource to view the displayed information.
-
-## Customize and share your dashboard
-
-Application Insights is a powerful tool for application performance monitoring (APM) that provides insights into the health and performance of your applications.
-
-You can open the **Application analytics** dashboard in Azure Monitor Application Insights workbooks gallery by selecting the **View in Azure Monitor Application Insights** link at the end of the page.
-
-This dashboard is opened as an editable workbook where you can customize the workbook and save according to your needs.
-
-Modify elements as needed for your use case. Select
-
-**...**on an element to edit, add, move, resize, clone, or remove. For example, you can add a tile by using KQL to track a custom attribute you're collecting and that isn't shown in the built-in view.Save your latest changes and create different views as needed by selecting
-
-**Save**.
-
-## Explore and analyze with Kusto Query Language (KQL)
-
-[KQL (Kusto Query Language)](/en-us/kusto/query/) is a powerful query language you can use in Azure to explore, analyze, and visualize large volumes of telemetry and log data.
-
-In the **Application analytics** dashboard view, you can **Open query link** by selecting the icon in the upper right for a particular tile or chart.
-
-When you select that icon, you can view and run the same KQL queries that power your monitoring view. You can also deep dive into the related data.
-
-## Set up Azure Alerts
-
-You can define Azure Alert rules based on the previous KQL queries to proactively detect problems with your post-production operations. Select **...** to view more options like **New alert rule**.
-
-Selecting the **New alert rule** button opens a wizard to create an alert rule on the related signal.
-
-To learn more about setting up and managing Azure Alerts to proactively address problems, see [Alerts in Azure Monitor](/en-us/azure/azure-monitor/alerts/alerts-overview).
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-applications -->
 
 # Monitor your generative AI applications (preview)
@@ -9967,7 +9527,7 @@ When you deploy models in Foundry, the following types of data are processed to 
 
 ## Generation of inferencing outputs with managed compute
 
-Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Foundry portal](model-catalog-overview?view=foundry-classic).
+Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Foundry portal](../concepts/foundry-models-overview?view=foundry-classic).
 
 You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
@@ -9991,7 +9551,7 @@ As explained during the deployment process for serverless API deployment, Micros
 
 ## Fine-tuning a model for serverless API deployment
 
-If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections?view=foundry-classic#connections-to-datastores) to fine-tune the model. Then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
+If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](connections-add?view=foundry-classic) to fine-tune the model. Then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
 
 - It's available exclusively for your use.
 - You can use double
@@ -11638,7 +11198,7 @@ Important
 
 Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-You need a compute session to run [prompt flows](prompt-flow?view=foundry-classic). Use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to create and manage prompt flow compute sessions.
+You need a compute session to run [prompt flows](../concepts/prompt-flow?view=foundry-classic). Use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to create and manage prompt flow compute sessions.
 
 A prompt flow compute session has computing resources that are required for the application to run, including a Docker image that contains all necessary dependency packages. In addition to flow execution, Foundry uses the compute session to ensure the accuracy and functionality of the tools incorporated within the flow when you make updates to the prompt or code content.
 
@@ -11960,9 +11520,9 @@ Note
 
 This document refers to the [Microsoft Foundry (new)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
 
-This article shows you how to streamline model selection in the Microsoft Foundry [model catalog](model-catalog-overview?view=foundry-classic) by comparing models in the model leaderboards (preview) available in Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application.
+This article shows you how to streamline model selection in the Microsoft Foundry [model catalog](../concepts/foundry-models-overview?view=foundry-classic) by comparing models in the model leaderboards (preview) available in Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application.
 
-This article shows you how to streamline model selection in the Microsoft Foundry [model catalog](model-catalog-overview?view=foundry-classic) by using the model leaderboards (preview) and side-by-side comparison features in Microsoft Foundry portal. These features enable you to understand model performance through comprehensive leaderboards and direct comparisons, helping you make informed decisions about which models best meet your specific use case or application requirements.
+This article shows you how to streamline model selection in the Microsoft Foundry [model catalog](../concepts/foundry-models-overview?view=foundry-classic) by using the model leaderboards (preview) and side-by-side comparison features in Microsoft Foundry portal. These features enable you to understand model performance through comprehensive leaderboards and direct comparisons, helping you make informed decisions about which models best meet your specific use case or application requirements.
 
 You can analyze and compare models using:
 
@@ -12315,184 +11875,6 @@ For cleanup, if you automate resource deletion by using templates, follow the cr
 - Delete the Azure Key Vault connection.
 - Delete all Foundry projects.
 - Delete the Foundry resource.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/deploy-models-openai -->
-
-# Deploy Microsoft Foundry Models in the Foundry portal
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
-
-Note
-
-This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-In this article, you learn how to use the Foundry portal to deploy a Foundry Model in a Foundry resource for use in performing inferencing tasks. Foundry Models include models such as Azure OpenAI models, Meta Llama models, and more. Once you deploy a Foundry Model, you can interact with it by using the Foundry Playground and inference it by using code.
-
-This article uses a Foundry Model from partners and community `Llama-3.2-90B-Vision-Instruct`
-
-for illustration. Models from partners and community require that you subscribe to Azure Marketplace before deployment. On the other hand, Foundry Models sold directly by Azure, such as Azure Open AI in Foundry Models, don't have this requirement. For more information about Foundry Models, including the regions where they're available for deployment, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure?view=foundry-classic) and [Foundry Models from partners and community](../concepts/models-from-partners?view=foundry-classic).
-
-## Prerequisites
-
-To complete this article, you need:
-
-An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a
-
-[paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go)to begin. If you're using[GitHub Models](https://docs.github.com/en/github-models/), you can[upgrade to Foundry Models](quickstart-github-models?view=foundry-classic)and create an Azure subscription in the process.Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-
-A
-
-[Microsoft Foundry project](../../how-to/create-projects?view=foundry-classic). This kind of project is managed under a Foundry resource.[Foundry Models from partners and community](../concepts/models-from-partners?view=foundry-classic)require access to**Azure Marketplace**to create subscriptions. Ensure you have the[permissions required to subscribe to model offerings](configure-marketplace?view=foundry-classic).[Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure?view=foundry-classic)don't have this requirement.
-
-## Deploy a model
-
-Deploy a model by following these steps in the Foundry portal:
-
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**.Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**.Go to the
-
-**Model catalog**section in the Foundry portal.Select a model and review its details in the model card. This article uses
-
-`Llama-3.2-90B-Vision-Instruct`
-
-for illustration.Select
-
-**Use this model**.For
-
-[Foundry Models from partners and community](../concepts/models-from-partners?view=foundry-classic), you need to subscribe to Azure Marketplace. This requirement applies to`Llama-3.2-90B-Vision-Instruct`
-
-, for example. Read the terms of use and select**Agree and Proceed**to accept the terms.Note
-
-For
-
-[Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure?view=foundry-classic), such as the Azure OpenAI model`gpt-4o-mini`
-
-, you don't subscribe to Azure Marketplace.Configure the deployment settings. By default, the deployment receives the name of the model you're deploying, but you can modify the name as needed before deploying the model. Later during inferencing, the deployment name is used in the
-
-`model`
-
-parameter to route requests to this particular model deployment. This convention allows you to configure specific names for your model deployments.Tip
-
-Each model supports different deployment types, providing different data residency or throughput guarantees. See
-
-[deployment types](../concepts/deployment-types?view=foundry-classic)for more details. In this example, the model supports the Global Standard deployment type.The Foundry portal automatically selects the Foundry resource associated with your project as the
-
-**Connected AI resource**. Select**Customize**to change the connection if needed. If you're deploying under the**Serverless API**deployment type, the project and resource must be in one of the supported regions of deployment for the model.Select
-
-**Deploy**. The model's deployment details page opens up while the deployment is being created.When the deployment completes, the model is ready for use. You can also use the
-
-[Foundry Playgrounds](../../concepts/concept-playgrounds?view=foundry-classic)to interactively test the model.
-
-Deploy a model by following these steps in the Foundry portal:
-
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**.Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**.From the Foundry portal homepage, select
-
-**Discover**in the upper-right navigation, then**Models**in the left pane.Select a model and review its details in the model card. This article uses
-
-`Llama-3.2-90B-Vision-Instruct`
-
-for illustration.Select
-
-**Deploy**>**Custom settings**to customize your deployment. Alternatively, you can use the default deployment settings by selecting**Deploy**>**Default settings**.For
-
-[Foundry Models from partners and community](../concepts/models-from-partners?view=foundry-classic), you need to subscribe to Azure Marketplace. This requirement applies to`Llama-3.2-90B-Vision-Instruct`
-
-, for example. Read the terms of use and select**Agree and Proceed**to accept the terms.Note
-
-For
-
-[Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure?view=foundry-classic), such as the Azure OpenAI model`gpt-4o-mini`
-
-, you don't subscribe to Azure Marketplace.Configure the deployment settings. By default, the deployment receives the name of the model you're deploying, but you can modify the name as needed before deploying the model. Later during inferencing, the deployment name is used in the
-
-`model`
-
-parameter to route requests to this particular model deployment. This convention allows you to configure specific names for your model deployments. Select**Deploy**to create your deployment.Tip
-
-Each model supports different deployment types, providing different data residency or throughput guarantees. See
-
-[deployment types](../concepts/deployment-types?view=foundry-classic)for more details. In this example, the model supports the Global Standard deployment type.The Foundry portal automatically deploys your model in the Foundry resource associated with your project. Your project and resource must be in one of the supported regions of deployment for the model.
-
-Select
-
-**Deploy**. When the deployment completes, you land on the[Foundry Playgrounds](../../concepts/concept-playgrounds?view=foundry-classic)where you can interactively test the model.
-
-## Manage models
-
-You can manage the existing model deployments in the resource by using the Foundry portal.
-
-Go to the
-
-**Models + Endpoints**section in[Foundry portal](https://ai.azure.com/?cid=learnDocs).The portal groups and displays model deployments per resource. Select the
-
-**Llama-3.2-90B-Vision-Instruct**model deployment from the section for your Foundry resource. This action opens the model's deployment page.
-
-You can manage the existing model deployments in the resource by using the Foundry portal.
-
-Select
-
-**Build**in the upper-right navigation.Select
-
-**Models**in the left pane to see the list of deployments in the resource.
-
-## Test the deployment in the playground
-
-You can interact with the new model in the Foundry portal by using the playground. The playground is a web-based interface that lets you interact with the model in real-time. Use the playground to test the model with different prompts and see the model's responses.
-
-You can interact with the new model in the Foundry portal by using the playground. The playground is a web-based interface that lets you interact with the model in real-time. Use the playground to test the model with different prompts and see the model's responses.
-
-From the list of deployments, select the
-
-**Llama-3.2-90B-Vision-Instruct**deployment to open up the playground page.Type your prompt and see the outputs.
-
-Select the
-
-**Code**tab to see details about how to access the model deployment programmatically.
-
-## Inference the model with code
-
-To perform inferencing on the deployed model with code samples, see the following examples:
-
-To use the
-
-**Responses API with Foundry Models sold directly by Azure**, such as Microsoft AI, DeepSeek, and Grok models, see[How to generate text responses with Microsoft Foundry Models](generate-responses?view=foundry-classic).To use the
-
-**Responses API with OpenAI models**, see[Getting started with the responses API](../../openai/how-to/responses?view=foundry-classic#getting-started-with-the-responses-api).To use the
-
-**Chat completions API with models sold by partners**, such as the Llama model deployed in this article, see[Model support for chat completions](../../openai/api-version-lifecycle?view=foundry-classic#model-support).
-
-## Regional availability and quota limits of a model
-
-For Foundry Models, the default quota varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI in Microsoft Foundry Models quotas and limits](../../openai/quotas-limits?view=foundry-classic) and [Microsoft Foundry Models quotas and limits](../quotas-limits?view=foundry-classic).
-
-## Quota for deploying and inferencing a model
-
-For Foundry Models, deploying and inferencing consume quota that Azure assigns to your subscription on a per-region, per-model basis in units of Tokens-per-Minute (TPM). When you sign up for Foundry, you receive default quota for most of the available models. Then, you assign TPM to each deployment as you create it, which reduces the available quota for that model. You can continue to create deployments and assign them TPMs until you reach your quota limit.
-
-When you reach your quota limit, you can only create new deployments of that model if you:
-
-- Request more quota by submitting a
-[quota increase form](https://aka.ms/oai/stuquotarequest). - Adjust the allocated quota on other model deployments in the Foundry portal, to free up tokens for new deployments.
-
-For more information about quota, see [Microsoft Foundry Models quotas and limits](../quotas-limits?view=foundry-classic) and [Manage Azure OpenAI quota](../../openai/how-to/quota?view=foundry-classic&tabs=rest).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/troubleshoot-secure-connection-project -->
@@ -13501,394 +12883,6 @@ If you encounter problems during failover, check the following configurations:
 - To learn about secure infrastructure deployments in Foundry, see
 [Create a secure hub](create-secure-ai-hub?view=foundry-classic). - Review the
 [Azure service-level agreements](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1).
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/deploy-models-llama -->
-
-# Serverless API inference examples for Foundry Models
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-The Foundry model catalog offers a large selection of Microsoft Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists inference examples for serverless API deployments.
-
-Important
-
-Models that are in preview are marked as *preview* on their model cards in the model catalog.
-
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic). You can find more details about individual models by reviewing their model cards in the [model catalog for Foundry portal](https://ai.azure.com/explore/models).
-
-## Cohere
-
-The Cohere family of models includes various models optimized for different use cases, including rerank, chat completions, and embeddings models.
-
-#### Inference examples: Cohere command and embed
-
-The following table provides links to examples of how to use Cohere models.
-
-| Description | Language | Sample |
-|---|---|---|
-| Web requests | Bash |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)[Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)[Link](https://aka.ms/samples/cohere-command/openaisdk)[Link](https://aka.ms/samples/cohere/langchain)[Command](https://aka.ms/samples/cohere-python-sdk)[Embed](https://aka.ms/samples/cohere-embed/cohere-python-sdk)[Link](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/litellm.ipynb)#### Retrieval Augmented Generation (RAG) and tool use samples: Cohere command and embed
-
-| Description | Packages | Sample |
-|---|---|---|
-| Create a local Facebook AI similarity search (FAISS) vector index, using Cohere embeddings - Langchain | `langchain` , `langchain_cohere` |
-|
-
-`langchain`
-
-, `langchain_cohere`
-
-[command_faiss_langchain.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/command_faiss_langchain.ipynb)`langchain`
-
-, `langchain_cohere`
-
-[cohere-aisearch-langchain-rag.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/cohere-aisearch-langchain-rag.ipynb)`cohere`
-
-, `azure_search_documents`
-
-[cohere-aisearch-rag.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/cohere-aisearch-rag.ipynb)`cohere`
-
-, `langchain`
-
-, `langchain_cohere`
-
-[command_tools-langchain.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/command_tools-langchain.ipynb)### Cohere rerank
-
-To perform inferencing with Cohere rerank models, you're required to use Cohere's custom rerank APIs. For more information on the Cohere rerank model and its capabilities, see [Cohere rerank](../foundry-models/concepts/models?view=foundry-classic#cohere-rerank).
-
-#### Pricing for Cohere rerank models
-
-*Queries*, not to be confused with a user's query, is a pricing meter that refers to the cost associated with the tokens used as input for inference of a Cohere Rerank model. Cohere counts a single search unit as a query with up to 100 documents to be ranked. Documents longer than 500 tokens (for Cohere-rerank-v3.5) or longer than 4096 tokens (for Cohere-rerank-v3-English and Cohere-rerank-v3-multilingual) when including the length of the search query are split up into multiple chunks, where each chunk counts as a single document.
-
-See the [Cohere model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere).
-
-## Core42
-
-The following table provides links to examples of how to use Jais models.
-
-| Description | Language | Sample |
-|---|---|---|
-| Azure AI Inference package for C# | C# |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)## DeepSeek
-
-DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, DeepSeek-V3-0324, a Mixture-of-Experts (MoE) language model, and more.
-
-The following table provides links to examples of how to use DeepSeek models.
-
-| Description | Language | Sample |
-|---|---|---|
-| Azure AI Inference package for Python | Python |
-|
-
-[Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/csharp/samples)[Link](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples)## Meta
-
-Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range is scale to include:
-
-- Small language models (SLMs) like 1B and 3B Base and Instruct models for on-device and edge inferencing
-- Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
-- High-performant models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
-- High-performant natively multimodal models, Llama 4 Scout and Llama 4 Maverick, leverage a mixture-of-experts architecture to offer industry-leading performance in text and image understanding.
-
-The following table provides links to examples of how to use Meta Llama models.
-
-| Description | Language | Sample |
-|---|---|---|
-| CURL request | Bash |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)[Link](https://github.com/Azure/azureml-examples/blob/main/sdk/typescript/README.md)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)[Link](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests)[Link](https://aka.ms/meta-llama-3.1-405B-instruct-openai)[Link](https://aka.ms/meta-llama-3.1-405B-instruct-langchain)[Link](https://aka.ms/meta-llama-3.1-405B-instruct-litellm)## Microsoft
-
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
-
-The following table provides links to examples of how to use Microsoft models.
-
-| Description | Language | Sample |
-|---|---|---|
-| Azure AI Inference package for C# | C# |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)[Link](https://aka.ms/azureai/langchain)[Link](https://aka.ms/azureai/llamaindex)See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
-
-## Mistral AI
-
-Mistral AI offers two categories of models, namely:
-
-*Premium models*: These include Mistral Large, Mistral Small, Mistral-OCR-2503, Mistral Medium 3 (25.05), and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.*Open models*: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01(that are available to download and run on self-hosted managed endpoints).
-
-The following table provides links to examples of how to use Mistral models.
-
-| Description | Language | Sample |
-|---|---|---|
-| CURL request | Bash |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)[Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)[Link](https://aka.ms/mistral-large/webrequests-sample)[Mistral - OpenAI SDK sample](https://aka.ms/mistral-large/openaisdk)[Mistral - LangChain sample](https://aka.ms/mistral-large/langchain-sample)[Mistral - Mistral AI sample](https://aka.ms/mistral-large/mistralai-sample)[Mistral - LiteLLM sample](https://aka.ms/mistral-large/litellm-sample)## Nixtla
-
-Nixtla's TimeGEN-1 is a generative pre-trained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
-
-To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API. For more information on the TimeGEN-1 model and its capabilities, see [Nixtla](../foundry-models/concepts/models?view=foundry-classic#nixtla).
-
-#### Estimate the number of tokens needed
-
-Before you create a TimeGEN-1 deployment, it's useful to estimate the number of tokens that you plan to consume and be billed for. One token corresponds to one data point in your input dataset or output dataset.
-
-Suppose you have the following input time series dataset:
-
-| Unique_id | Timestamp | Target Variable | Exogenous Variable 1 | Exogenous Variable 2 |
-|---|---|---|---|---|
-| BE | 2016-10-22 00:00:00 | 70.00 | 49593.0 | 57253.0 |
-| BE | 2016-10-22 01:00:00 | 37.10 | 46073.0 | 51887.0 |
-
-To determine the number of tokens, multiply the number of rows (in this example, two) and the number of columns used for forecasting—not counting the unique_id and timestamp columns (in this example, three) to get a total of six tokens.
-
-Given the following output dataset:
-
-| Unique_id | Timestamp | Forecasted Target Variable |
-|---|---|---|
-| BE | 2016-10-22 02:00:00 | 46.57 |
-| BE | 2016-10-22 03:00:00 | 48.57 |
-
-You can also determine the number of tokens by counting the number of data points returned after data forecasting. In this example, the number of tokens is two.
-
-#### Estimate pricing based on tokens
-
-There are four pricing meters that determine the price you pay. These meters are as follows:
-
-| Pricing Meter | Description |
-|---|---|
-| paygo-inference-input-tokens | Costs associated with the tokens used as input for inference when finetune_steps = 0 |
-| paygo-inference-output-tokens | Costs associated with the tokens used as output for inference when finetune_steps = 0 |
-| paygo-finetuned-model-inference-input-tokens | Costs associated with the tokens used as input for inference when finetune_steps > 0 |
-| paygo-finetuned-model-inference-output-tokens | Costs associated with the tokens used as output for inference when finetune_steps > 0 |
-
-See the [Nixtla model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Nixtla).
-
-## Stability AI
-
-Stability AI models deployed via serverless API deployment implement the Model Inference API on the route `/image/generations`
-
-.
-For examples of how to use Stability AI models, see the following examples:
-
-[Use OpenAI SDK with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)[Use Requests library with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_requests_library.ipynb)[Use Requests library with Stable Diffusion 3.5 Large for image to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Image_to_Image.ipynb)[Example of a fully encoded image generation response](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Sample_image_generation_response.txt)
-
-## Gretel Navigator
-
-Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than 10 industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
-
-| Description | Language | Sample |
-|---|---|---|
-| Azure AI Inference package for JavaScript | JavaScript |
-|
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/deploy-models-mistral -->
-
-# Serverless API inference examples for Foundry Models
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-The Foundry model catalog offers a large selection of Microsoft Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists inference examples for serverless API deployments.
-
-Important
-
-Models that are in preview are marked as *preview* on their model cards in the model catalog.
-
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic). You can find more details about individual models by reviewing their model cards in the [model catalog for Foundry portal](https://ai.azure.com/explore/models).
-
-## Cohere
-
-The Cohere family of models includes various models optimized for different use cases, including rerank, chat completions, and embeddings models.
-
-#### Inference examples: Cohere command and embed
-
-The following table provides links to examples of how to use Cohere models.
-
-| Description | Language | Sample |
-|---|---|---|
-| Web requests | Bash |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)[Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)[Link](https://aka.ms/samples/cohere-command/openaisdk)[Link](https://aka.ms/samples/cohere/langchain)[Command](https://aka.ms/samples/cohere-python-sdk)[Embed](https://aka.ms/samples/cohere-embed/cohere-python-sdk)[Link](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/litellm.ipynb)#### Retrieval Augmented Generation (RAG) and tool use samples: Cohere command and embed
-
-| Description | Packages | Sample |
-|---|---|---|
-| Create a local Facebook AI similarity search (FAISS) vector index, using Cohere embeddings - Langchain | `langchain` , `langchain_cohere` |
-|
-
-`langchain`
-
-, `langchain_cohere`
-
-[command_faiss_langchain.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/command_faiss_langchain.ipynb)`langchain`
-
-, `langchain_cohere`
-
-[cohere-aisearch-langchain-rag.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/cohere-aisearch-langchain-rag.ipynb)`cohere`
-
-, `azure_search_documents`
-
-[cohere-aisearch-rag.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/cohere-aisearch-rag.ipynb)`cohere`
-
-, `langchain`
-
-, `langchain_cohere`
-
-[command_tools-langchain.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/command_tools-langchain.ipynb)### Cohere rerank
-
-To perform inferencing with Cohere rerank models, you're required to use Cohere's custom rerank APIs. For more information on the Cohere rerank model and its capabilities, see [Cohere rerank](../foundry-models/concepts/models?view=foundry-classic#cohere-rerank).
-
-#### Pricing for Cohere rerank models
-
-*Queries*, not to be confused with a user's query, is a pricing meter that refers to the cost associated with the tokens used as input for inference of a Cohere Rerank model. Cohere counts a single search unit as a query with up to 100 documents to be ranked. Documents longer than 500 tokens (for Cohere-rerank-v3.5) or longer than 4096 tokens (for Cohere-rerank-v3-English and Cohere-rerank-v3-multilingual) when including the length of the search query are split up into multiple chunks, where each chunk counts as a single document.
-
-See the [Cohere model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere).
-
-## Core42
-
-The following table provides links to examples of how to use Jais models.
-
-| Description | Language | Sample |
-|---|---|---|
-| Azure AI Inference package for C# | C# |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)## DeepSeek
-
-DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, DeepSeek-V3-0324, a Mixture-of-Experts (MoE) language model, and more.
-
-The following table provides links to examples of how to use DeepSeek models.
-
-| Description | Language | Sample |
-|---|---|---|
-| Azure AI Inference package for Python | Python |
-|
-
-[Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/csharp/samples)[Link](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples)## Meta
-
-Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range is scale to include:
-
-- Small language models (SLMs) like 1B and 3B Base and Instruct models for on-device and edge inferencing
-- Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
-- High-performant models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
-- High-performant natively multimodal models, Llama 4 Scout and Llama 4 Maverick, leverage a mixture-of-experts architecture to offer industry-leading performance in text and image understanding.
-
-The following table provides links to examples of how to use Meta Llama models.
-
-| Description | Language | Sample |
-|---|---|---|
-| CURL request | Bash |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)[Link](https://github.com/Azure/azureml-examples/blob/main/sdk/typescript/README.md)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)[Link](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests)[Link](https://aka.ms/meta-llama-3.1-405B-instruct-openai)[Link](https://aka.ms/meta-llama-3.1-405B-instruct-langchain)[Link](https://aka.ms/meta-llama-3.1-405B-instruct-litellm)## Microsoft
-
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
-
-The following table provides links to examples of how to use Microsoft models.
-
-| Description | Language | Sample |
-|---|---|---|
-| Azure AI Inference package for C# | C# |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)[Link](https://aka.ms/azureai/langchain)[Link](https://aka.ms/azureai/llamaindex)See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
-
-## Mistral AI
-
-Mistral AI offers two categories of models, namely:
-
-*Premium models*: These include Mistral Large, Mistral Small, Mistral-OCR-2503, Mistral Medium 3 (25.05), and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.*Open models*: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01(that are available to download and run on self-hosted managed endpoints).
-
-The following table provides links to examples of how to use Mistral models.
-
-| Description | Language | Sample |
-|---|---|---|
-| CURL request | Bash |
-|
-
-[Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)[Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)[Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)[Link](https://aka.ms/mistral-large/webrequests-sample)[Mistral - OpenAI SDK sample](https://aka.ms/mistral-large/openaisdk)[Mistral - LangChain sample](https://aka.ms/mistral-large/langchain-sample)[Mistral - Mistral AI sample](https://aka.ms/mistral-large/mistralai-sample)[Mistral - LiteLLM sample](https://aka.ms/mistral-large/litellm-sample)## Nixtla
-
-Nixtla's TimeGEN-1 is a generative pre-trained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
-
-To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API. For more information on the TimeGEN-1 model and its capabilities, see [Nixtla](../foundry-models/concepts/models?view=foundry-classic#nixtla).
-
-#### Estimate the number of tokens needed
-
-Before you create a TimeGEN-1 deployment, it's useful to estimate the number of tokens that you plan to consume and be billed for. One token corresponds to one data point in your input dataset or output dataset.
-
-Suppose you have the following input time series dataset:
-
-| Unique_id | Timestamp | Target Variable | Exogenous Variable 1 | Exogenous Variable 2 |
-|---|---|---|---|---|
-| BE | 2016-10-22 00:00:00 | 70.00 | 49593.0 | 57253.0 |
-| BE | 2016-10-22 01:00:00 | 37.10 | 46073.0 | 51887.0 |
-
-To determine the number of tokens, multiply the number of rows (in this example, two) and the number of columns used for forecasting—not counting the unique_id and timestamp columns (in this example, three) to get a total of six tokens.
-
-Given the following output dataset:
-
-| Unique_id | Timestamp | Forecasted Target Variable |
-|---|---|---|
-| BE | 2016-10-22 02:00:00 | 46.57 |
-| BE | 2016-10-22 03:00:00 | 48.57 |
-
-You can also determine the number of tokens by counting the number of data points returned after data forecasting. In this example, the number of tokens is two.
-
-#### Estimate pricing based on tokens
-
-There are four pricing meters that determine the price you pay. These meters are as follows:
-
-| Pricing Meter | Description |
-|---|---|
-| paygo-inference-input-tokens | Costs associated with the tokens used as input for inference when finetune_steps = 0 |
-| paygo-inference-output-tokens | Costs associated with the tokens used as output for inference when finetune_steps = 0 |
-| paygo-finetuned-model-inference-input-tokens | Costs associated with the tokens used as input for inference when finetune_steps > 0 |
-| paygo-finetuned-model-inference-output-tokens | Costs associated with the tokens used as output for inference when finetune_steps > 0 |
-
-See the [Nixtla model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Nixtla).
-
-## Stability AI
-
-Stability AI models deployed via serverless API deployment implement the Model Inference API on the route `/image/generations`
-
-.
-For examples of how to use Stability AI models, see the following examples:
-
-[Use OpenAI SDK with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)[Use Requests library with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_requests_library.ipynb)[Use Requests library with Stable Diffusion 3.5 Large for image to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Image_to_Image.ipynb)[Example of a fully encoded image generation response](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Sample_image_generation_response.txt)
-
-## Gretel Navigator
-
-Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than 10 industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
-
-| Description | Language | Sample |
-|---|---|---|
-| Azure AI Inference package for JavaScript | JavaScript |
-|
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/flow-tune-prompts-using-variants -->
@@ -16334,7 +15328,7 @@ An Azure subscription with a valid payment method. Free or trial Azure subscript
 
 [Create a project](hub-create-projects?view=foundry-classic).Foundry
 
-[Models from Partners and Community](../model-inference/concepts/models?view=foundry-classic#models-from-partners-and-community)require access to Azure Marketplace, while Foundry[Models Sold Directly by Azure](../model-inference/concepts/models?view=foundry-classic#models-sold-directly-by-azure)don't have this requirement. Ensure your Azure subscription has the permissions required to subscribe to model offerings in Azure Marketplace. For more information, see[Enable Azure Marketplace purchases](/en-us/azure/cost-management-billing/manage/enable-marketplace-purchases).Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the
+[Models from Partners and Community](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)require access to Azure Marketplace, while Foundry[Models Sold Directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)don't have this requirement. Ensure your Azure subscription has the permissions required to subscribe to model offerings in Azure Marketplace. For more information, see[Enable Azure Marketplace purchases](/en-us/azure/cost-management-billing/manage/enable-marketplace-purchases).Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the
 
 **Azure AI Developer role**on the resource group. For more information, see[Role-based access control in Foundry portal](../concepts/rbac-foundry?view=foundry-classic).Virtual machine (VM) quota in your Azure subscription for the specific VM SKUs needed to run your model. Each deployment consumes VM core quota on a per-region basis. For more information, see
 
@@ -16584,7 +15578,7 @@ When you create resources for a hub, resources for other Azure services are also
 |---|---|
 |
 
-[Foundry hubs](../concepts/ai-resources?view=foundry-classic).[Azure AI Search](https://azure.microsoft.com/pricing/details/search/)[vector search index](index-add?view=foundry-classic).[Azure Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/)[prompt flow](prompt-flow?view=foundry-classic)via Foundry.When you create a compute instance, the virtual machine (VM) stays on so it's available for your work.
+[Foundry hubs](../concepts/ai-resources?view=foundry-classic).[Azure AI Search](https://azure.microsoft.com/pricing/details/search/)[vector search index](index-add?view=foundry-classic).[Azure Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/)[prompt flow](../concepts/prompt-flow?view=foundry-classic)via Foundry.When you create a compute instance, the virtual machine (VM) stays on so it's available for your work.
 
 Enable idle shutdown to save on cost when the VM is idle for a specified time period.
 
@@ -18286,7 +17280,7 @@ Monitoring applications that you deploy to production is an essential part of th
 
 Note
 
-For an improved way to perform continuous monitoring of deployed applications, other than prompt flow, consider using [Azure AI online evaluations](online-evaluation?view=foundry-classic).
+For an improved way to perform continuous monitoring of deployed applications, other than prompt flow, consider using [Azure AI online evaluations](monitor-applications?view=foundry-classic).
 
 By using Azure AI monitoring for generative AI applications, you can monitor your applications in production for token usage, generation quality, and operational metrics.
 
@@ -19246,7 +18240,7 @@ Evaluation configuration file:
 
 : a set of queries and ground truth. Ground-truth is optional and only required for a subset of evaluators. (See which[evaluator requires ground-truth](develop/evaluate-sdk?view=foundry-classic#data-requirements-for-built-in-evaluators)).Here's a sample of the dataset:
 
-`[ { "query": "Tell me about Tokyo?", "ground-truth": "Tokyo is the capital of Japan and the largest city in the country. It is located on the eastern coast of Honshu, the largest of Japan's four main islands. Tokyo is the political, economic, and cultural center of Japan and is one of the world's most populous cities. It is also one of the world's most important financial centers and is home to the Tokyo Stock Exchange." }, { "query": "Where is Italy?", "ground-truth": "Italy is a country in southern Europe, located on the Italian Peninsula and the two largest islands in the Mediterranean Sea, Sicily and Sardinia. It is a unitary parliamentary republic with its capital in Rome, the largest city in Italy. Other major cities include Milan, Naples, Turin, and Palermo." }, { "query": "Where is Papua New Guinea?", "ground-truth": "Papua New Guinea is an island country that lies in the south-western Pacific. It includes the eastern half of New Guinea and many small offshore islands. Its neighbours include Indonesia to the west, Australia to the south and Solomon Islands to the south-east." } ]`
+`[ { "query": "Tell me about Tokyo?", "ground-truth": "Tokyo is the capital/major city of Japan and the largest city in the country/region. It is located on the eastern coast of Honshu, the largest of Japan's four main islands. Tokyo is the political, economic, and cultural center of Japan and is one of the world's most populous cities. It is also one of the world's most important financial centers and is home to the Tokyo Stock Exchange." }, { "query": "Where is Italy?", "ground-truth": "Italy is a country/region in southern Europe, located on the Italian Peninsula and the two largest islands in the Mediterranean Sea, Sicily and Sardinia. It is a unitary parliamentary republic with its capital/major city in Rome, the largest city in Italy. Other major cities include Milan, Naples, Turin, and Palermo." }, { "query": "Where is Papua New Guinea?", "ground-truth": "Papua New Guinea is an island country/region that lies in the south-western Pacific. It includes the eastern half of New Guinea and many small offshore islands. Its neighbours include Indonesia to the west, Australia to the south and Solomon Islands to the south-east." } ]`
 
 `evaluators`
 
@@ -19579,7 +18573,7 @@ Although serverless API deployment is one option for deploying Foundry Models, w
 
 Note
 
-We recommend that you deploy Microsoft Foundry Models to **Foundry resources** so that you can consume your deployments in the resource via a single endpoint with the same authentication and schema to generate inference. The endpoint follows the [Azure AI Model Inference API](/en-us/rest/api/aifoundry/modelinference/) which all the Foundry Models support. To learn how to deploy a Foundry Model to the Foundry resources, see [Add and configure models to Foundry Models](../model-inference/how-to/create-model-deployments?view=foundry-classic).
+We recommend that you deploy Microsoft Foundry Models to **Foundry resources** so that you can consume your deployments in the resource via a single endpoint with the same authentication and schema to generate inference. The endpoint follows the [Azure AI Model Inference API](/en-us/rest/api/aifoundry/modelinference/) which all the Foundry Models support. To learn how to deploy a Foundry Model to the Foundry resources, see [Add and configure models to Foundry Models](../foundry-models/how-to/create-model-deployments?view=foundry-classic).
 
 ## Prerequisites
 
@@ -19591,7 +18585,7 @@ An Azure subscription with a valid payment method. Free or trial Azure subscript
 
 **Deploy models to Foundry resources**(preview) feature is turned off in the Foundry portal. When this feature is on, serverless API deployments aren't available from the portal.Foundry
 
-[Models from Partners and Community](../model-inference/concepts/models?view=foundry-classic#models-from-partners-and-community)require access to Azure Marketplace, while Foundry[Models Sold Directly by Azure](../model-inference/concepts/models?view=foundry-classic#models-sold-directly-by-azure)don't have this requirement. Ensure you have the permissions required to subscribe to model offerings in Azure Marketplace.Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the
+[Models from Partners and Community](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)require access to Azure Marketplace, while Foundry[Models Sold Directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)don't have this requirement. Ensure you have the permissions required to subscribe to model offerings in Azure Marketplace.Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the
 
 **Azure AI Developer role**on the resource group. For more information on permissions, see[Role-based access control in Foundry portal](../concepts/rbac-foundry?view=foundry-classic).
 
@@ -19904,7 +18898,7 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 You can find pricing information for
 
-[Models Sold Directly by Azure](../model-inference/concepts/models?view=foundry-classic#models-sold-directly-by-azure), on the*Pricing and terms*tab of the*Serverless API deployment*window.[Models from Partners and Community](../model-inference/concepts/models?view=foundry-classic#models-from-partners-and-community)are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see[Monitor costs for models offered through Azure Marketplace](costs-plan-manage?view=foundry-classic#monitor-costs-for-models-offered-through-the-azure-marketplace).
+[Models Sold Directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic), on the*Pricing and terms*tab of the*Serverless API deployment*window.[Models from Partners and Community](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see[Monitor costs for models offered through Azure Marketplace](costs-plan-manage?view=foundry-classic#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 ## Permissions required to subscribe to model offerings
 

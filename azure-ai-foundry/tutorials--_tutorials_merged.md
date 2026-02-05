@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-04T00:35:27.617244
+merged_at: 2026-02-05T08:42:06.987915
 merged_files: 6
 ---
 
@@ -468,7 +468,7 @@ You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`
 
 ). Deploy these models in your Foundry project by using this set of steps for each model.
 
-These steps deploy a model to a real-time endpoint from the Foundry portal [model catalog](../how-to/model-catalog-overview?view=foundry-classic):
+These steps deploy a model to a real-time endpoint from the Foundry portal [model catalog](../concepts/foundry-models-overview?view=foundry-classic):
 
 Tip
 
@@ -796,7 +796,7 @@ This article provides legacy support for hub-based projects. It will not work fo
 
 A
 
-[deployed Azure OpenAI](../how-to/deploy-models-openai?view=foundry-classic)chat model. Finish the[Foundry playground quickstart](../quickstarts/get-started-playground?view=foundry-classic)to create this resource if you don't have one.A Search service connection to index the sample product data. If you don't have one, follow the steps to
+[deployed Azure OpenAI](../foundry-models/how-to/deploy-foundry-models?view=foundry-classic)chat model. Finish the[Foundry playground quickstart](../quickstarts/get-started-playground?view=foundry-classic)to create this resource if you don't have one.A Search service connection to index the sample product data. If you don't have one, follow the steps to
 
 [create](copilot-sdk-create-resources?view=foundry-classic#create-an-azure-ai-search-service)and[connect](copilot-sdk-create-resources?view=foundry-classic#connect-the-azure-ai-search-to-your-project)a search service.A local copy of product data. The
 

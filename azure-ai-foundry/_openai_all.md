@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-04T00:35:27.678200
+merged_at: 2026-02-05T08:42:07.044078
 merged_files: 6
 ---
 
@@ -27,7 +27,7 @@ Tokens per minute (TPM) and requests per minute (RPM) limits are defined *per re
 
 For example, if the `gpt-4.1`
 
-Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](concepts/models?view=foundry-classic) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
+Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
 
 ## Quotas and limits reference
 
@@ -42,7 +42,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |
 | Default Sora quota limits | 60 requests per minute. |
-| Default Sora 2 quota limits | 2 parallel tasks |
+| Default Sora 2 quota limits | 2 job requests1 per minute |
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
 | Maximum prompt tokens per request | Varies per model. For more information, see
 |
@@ -75,7 +75,9 @@ default maximum tokensIncrease the
 
 parameter value to avoid truncated responses. `GPT-4o`
 
-maximum tokens defaults to 4,096.11 Our current APIs allow up to 10 custom headers, which are passed through the pipeline and returned. Some customers now exceed this header count, which results in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. In future API versions, we won't pass through custom headers. We recommend that customers don't depend on custom headers in future system architectures.
+maximum tokens defaults to 4,096.21 The Sora 2 RPM quota only counts video job requests. Other types of requests are not rate-limited.
+
+2 Our current APIs allow up to 10 custom headers, which are passed through the pipeline and returned. Some customers now exceed this header count, which results in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. In future API versions, we won't pass through custom headers. We recommend that customers don't depend on custom headers in future system architectures.
 
 Note
 
@@ -678,7 +680,7 @@ print(json.dumps(model_capacity, indent=2))
 
 - Explore how to
 [manage quota](how-to/quota?view=foundry-classic)for your Azure OpenAI deployments. - Learn more about the
-[underlying models that power Azure OpenAI](concepts/models?view=foundry-classic).
+[underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ---
 <!-- Source: N/A -->
@@ -1941,7 +1943,7 @@ In this tutorial, you learn how to:
 
 - An Azure subscription -
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) - A Microsoft Foundry or Azure OpenAI resource with the
-**text-embedding-ada-002 (Version 2)**model deployed. This model is currently only available in[certain regions](../concepts/models?view=foundry-classic#model-summary-table-and-region-availability). [Python 3.10 or later version](https://www.python.org/)- The following Python libraries:
+**text-embedding-ada-002 (Version 2)**model deployed. This model is currently only available in[certain regions](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#model-summary-table-and-region-availability). [Python 3.10 or later version](https://www.python.org/)- The following Python libraries:
 `openai`
 
 ,`num2words`
@@ -2327,7 +2329,7 @@ In this tutorial you learn how to:
 ,`numpy`
 
 . [Jupyter Notebooks](https://jupyter.org/)- An Azure OpenAI resource in a
-[region where](../concepts/models?view=foundry-classic). If you don't have a resource the process of creating one is documented in our resource`gpt-4o-mini-2024-07-18`
+[region where](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic). If you don't have a resource the process of creating one is documented in our resource`gpt-4o-mini-2024-07-18`
 
 fine-tuning is available[deployment guide](../how-to/create-resource?view=foundry-classic). - Fine-tuning access requires
 **Azure AI User**role. - If you don't already have access to view quota and deploy models in
@@ -2389,7 +2391,7 @@ Fine-tuning `gpt-4o-mini-2024-07-18`
 requires a specially formatted JSONL training file. OpenAI provides the following example in their documentation:
 
 ```
-{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already."}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital/major city of France?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already."}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?"}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters."}]}
 ```
@@ -2398,7 +2400,7 @@ requires a specially formatted JSONL training file. OpenAI provides the followin
 For this example we modify this slightly by changing to:
 
 ```
-{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already."}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital/major city of France?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already."}]}
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?"}]}
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters."}]}
 ```
@@ -2996,7 +2998,7 @@ After you deploy a customized model, if at any time the deployment remains inact
 
 The deletion of an inactive deployment doesn't delete or affect the underlying customized model. The customized model can be redeployed at any time.
 
-As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](../how-to/manage-costs?view=foundry-classic#fine-tuned-models).
+As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](../../concepts/manage-costs?view=foundry-classic#fine-tuned-models).
 
 ```
 # Deploy fine-tuned model
@@ -3076,7 +3078,7 @@ In order to successfully access fine-tuning you need **Azure AI User** role assi
 
 - Learn more about
 [fine-tuning in Azure OpenAI](../how-to/fine-tuning?view=foundry-classic) - Learn more about the
-[underlying models that power Azure OpenAI](../concepts/models?view=foundry-classic#fine-tuning-models).
+[underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#fine-tuning-models).
 
 ---
 <!-- Source: N/A -->
@@ -3242,79 +3244,6 @@ Verifying that an image has Content Credentials. There are two recommended ways 
 **Content Authenticity Initiative (CAI) open-source tools**: The CAI provides multiple open-source tools that validate and display C2PA Content Credentials. Find the tool right for your application and[get started here](https://opensource.contentauthenticity.org/).
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/gpt-with-vision -->
-
-# Vision-enabled chat model concepts
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
-
-Note
-
-This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](models?view=foundry-classic).
-
-To try out vision-enabled chat models, see the [quickstart](/en-us/azure/ai-foundry/openai/gpt-v-quickstart).
-
-## Vision-enabled chats
-
-The vision-enabled models answer general questions about what's present in the images you upload.
-
-## Input limitations
-
-This section describes the limitations of vision-enabled chat models.
-
-### Image support
-
-**Maximum input image size**: The maximum size for input images is restricted to 50 MB.**Low resolution accuracy**: When images are analyzed using the "low resolution" setting, it allows for faster responses and uses fewer input tokens for certain use cases. However, this could impact the accuracy of object and text recognition within the image.**Image chat restriction**: When you upload images in[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)or the API, there is a limit of 10 images per chat call.
-
-## Special pricing information
-
-Important
-
-Pricing details are subject to change in the future.
-
-Vision-enabled models accrue charges like other Azure OpenAI chat models. You pay a per-token rate for the prompts and completions, detailed on the [Pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). The base charges and additional features are outlined here:
-
-Base Pricing for GPT-4 Turbo with Vision is:
-
-- Input: $0.01 per 1000 tokens
-- Output: $0.03 per 1000 tokens
-
-See the [Tokens section of the overview](/en-us/azure/ai-foundry/openai/overview#tokens) for information on how text and images translate to tokens.
-
-### Example image price calculation
-
-Important
-
-The following content is an example only, and prices are subject to change in the future.
-
-For a typical use case, take an image with both visible objects and text and a 100-token prompt input. When the service processes the prompt, it generates 100 tokens of output. In the image, both text and objects can be detected. The price of this transaction would be:
-
-| Item | Detail | Cost |
-|---|---|---|
-| Text prompt input | 100 text tokens | $0.001 |
-| Example image input (see
-|
-
-**Total****$0.00955**## Related content
-
-- Get started using vision-enabled models by following the
-[quickstart](/en-us/azure/ai-foundry/openai/gpt-v-quickstart). - For a more in-depth look at the APIs, follow the
-[how-to guide](../how-to/gpt-with-vision?view=foundry-classic). - See the
-[completions and embeddings API reference](../reference?view=foundry-classic)
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/legacy-models -->
 
 # Azure OpenAI in Microsoft Foundry Models retired models
@@ -3416,6 +3345,79 @@ July 6, 2023 | June 14, 2024 | text-embedding-3-small |
 July 6, 2023 | June 14, 2024 | text-embedding-3-small |
 `code-search-babbage-text-001` |
 July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/gpt-with-vision -->
+
+# Vision-enabled chat model concepts
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
+
+To try out vision-enabled chat models, see the [quickstart](/en-us/azure/ai-foundry/openai/gpt-v-quickstart).
+
+## Vision-enabled chats
+
+The vision-enabled models answer general questions about what's present in the images you upload.
+
+## Input limitations
+
+This section describes the limitations of vision-enabled chat models.
+
+### Image support
+
+**Maximum input image size**: The maximum size for input images is restricted to 50 MB.**Low resolution accuracy**: When images are analyzed using the "low resolution" setting, it allows for faster responses and uses fewer input tokens for certain use cases. However, this could impact the accuracy of object and text recognition within the image.**Image chat restriction**: When you upload images in[Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)or the API, there is a limit of 10 images per chat call.
+
+## Special pricing information
+
+Important
+
+Pricing details are subject to change in the future.
+
+Vision-enabled models accrue charges like other Azure OpenAI chat models. You pay a per-token rate for the prompts and completions, detailed on the [Pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). The base charges and additional features are outlined here:
+
+Base Pricing for GPT-4 Turbo with Vision is:
+
+- Input: $0.01 per 1000 tokens
+- Output: $0.03 per 1000 tokens
+
+See the [Tokens section of the overview](/en-us/azure/ai-foundry/openai/overview#tokens) for information on how text and images translate to tokens.
+
+### Example image price calculation
+
+Important
+
+The following content is an example only, and prices are subject to change in the future.
+
+For a typical use case, take an image with both visible objects and text and a 100-token prompt input. When the service processes the prompt, it generates 100 tokens of output. In the image, both text and objects can be detected. The price of this transaction would be:
+
+| Item | Detail | Cost |
+|---|---|---|
+| Text prompt input | 100 text tokens | $0.001 |
+| Example image input (see
+|
+
+**Total****$0.00955**## Related content
+
+- Get started using vision-enabled models by following the
+[quickstart](/en-us/azure/ai-foundry/openai/gpt-v-quickstart). - For a more in-depth look at the APIs, follow the
+[how-to guide](../how-to/gpt-with-vision?view=foundry-classic). - See the
+[completions and embeddings API reference](../reference?view=foundry-classic)
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/prompt-transformation -->
@@ -3538,7 +3540,7 @@ Azure works closely with OpenAI to release new model versions. When a new versio
 As a customer of Azure OpenAI models, you might notice some changes in the model behavior and compatibility after a version upgrade. These changes might affect your applications and workflows that rely on the models. Here are some tips to help you prepare for version upgrades:
 
 - Read
-[what’s new](../whats-new?view=foundry-classic)and[models](models?view=foundry-classic)to understand the changes and new features. - Read the documentation on
+[what’s new](../whats-new?view=foundry-classic)and[models](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)to understand the changes and new features. - Read the documentation on
 [model deployments](../how-to/create-resource?view=foundry-classic)and[version upgrades](../how-to/working-with-models?view=foundry-classic)to understand how to work with model versions. - Test your applications and workflows with the new model version after release.
 - Update your code and configuration to use the new features and capabilities of the new model version.
 
@@ -3917,7 +3919,7 @@ When abuse monitoring is modified and human review is not performed, detection o
 ## Next steps
 
 - Learn more about the
-[underlying models that power Azure OpenAI](models?view=foundry-classic). - Learn more about understanding and mitigating risks associated with your application:
+[underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic). - Learn more about understanding and mitigating risks associated with your application:
 [Overview of Responsible AI practices for Azure OpenAI models](/en-us/azure/ai-foundry/responsible-ai/openai/overview). - Learn more about how data is processed in content filtering and abuse monitoring:
 [Data, privacy, and security for Azure OpenAI](/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy#preventing-abuse-and-harmful-content-generation).
 
@@ -4280,7 +4282,7 @@ The [Microsoft Foundry Agent Service](../../agents/overview?view=foundry-classic
 Assistants, a feature of Azure OpenAI in Microsoft Foundry Models, is designed to make it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
 
 - Assistants can call Azure OpenAI’s
-[models](models?view=foundry-classic)with specific instructions to tune their personality and capabilities. - Assistants can access
+[models](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)with specific instructions to tune their personality and capabilities. - Assistants can access
 **multiple tools in parallel**. These can be both Azure OpenAI-hosted tools like[code interpreter](../how-to/code-interpreter?view=foundry-classic)and[file search](../how-to/file-search?view=foundry-classic), or tools you build, host, and access through[function calling](../how-to/function-calling?view=foundry-classic). - Assistants can access
 **persistent Threads**. Threads simplify AI application development by storing message history and truncating it when the conversation gets too long for the model's context length. You create a Thread once, and append Messages to it as your users reply. - Assistants can access files in several formats. Either as part of their creation or as part of Threads between Assistants and users. When using tools, Assistants can also create files (such as images or spreadsheets) and cite files they reference in the Messages they create.
 
@@ -4306,14 +4308,14 @@ For information on using assistants, see the following reference documentation.
 
 ## Available models
 
-To see a list of Azure OpenAI models that you can use with assistants, see the [Models](models?view=foundry-classic#assistants-preview) article.
+To see a list of Azure OpenAI models that you can use with assistants, see the [Models](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#assistants-preview) article.
 
 ## Assistants playground
 
 Before using assistants, you need:
 
 - A
-[compatible model](models?view=foundry-classic#assistants-preview)deployed. For more information about model deployment, see the[resource deployment guide](../how-to/create-resource?view=foundry-classic). - A
+[compatible model](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#assistants-preview)deployed. For more information about model deployment, see the[resource deployment guide](../how-to/create-resource?view=foundry-classic). - A
 [Foundry project](../../how-to/create-projects?view=foundry-classic)in Foundry portal.
 
 ## Assistants components
@@ -5458,7 +5460,7 @@ Azure OpenAI includes a content filtering system that works alongside core model
 
 Important
 
-The content filtering system applies to all [Models sold directly by Azure](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai), except for prompts and completions processed by the audio models such as Whisper. For more information, see [Audio models in Azure OpenAI](models?view=foundry-classic&tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
+The content filtering system applies to all [Models sold directly by Azure](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai), except for prompts and completions processed by the audio models such as Whisper. For more information, see [Audio models in Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=standard-audio).
 
 In addition to the content filtering system, Azure OpenAI performs monitoring to detect content and behaviors that suggest use of the service in a manner that might violate applicable product terms. For more information about understanding and mitigating risks associated with your application, see the [Transparency Note for Azure OpenAI](/en-us/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=text). For more information about how data is processed for content filtering and abuse monitoring, see [Data, privacy, and security for Azure OpenAI](/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy#preventing-abuse-and-harmful-content-generation).
 
@@ -5783,7 +5785,7 @@ to see if a completion is filtered. - Check that there's no error object in the
 
 - Learn about the
 [content filtering categories and severity levels](content-filter-severity-levels?view=foundry-classic). - Learn more about the
-[underlying models that power Azure OpenAI](models?view=foundry-classic). - Apply for modified content filters via
+[underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic). - Apply for modified content filters via
 [this form](https://ncv.microsoft.com/uEfCgnITdR). - Azure OpenAI content filtering is powered by
 [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety). - Learn more about understanding and mitigating risks associated with your application:
 [Overview of Responsible AI practices for Azure OpenAI models](/en-us/azure/ai-foundry/responsible-ai/openai/overview). - Learn more about how data is processed in connection with content filtering and abuse monitoring:
@@ -6130,7 +6132,7 @@ Make sure prompts, reference images, and transcripts respect these rules to avoi
 
 Note
 
-We are allowing face uploads on a case-by-case basis for managed customers. See [Request Access to the Sora Human Uploads in the Azure OpenAI Models](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOUxNWjBVTjRRSDZVMjVEWUdNRzFEVVFOUCQlQCN0PWcu).
+We are allowing face uploads on a case-by-case basis for Enterprise Agreement customers. See [Request Access to the Sora Human Uploads in the Azure OpenAI Models](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOUxNWjBVTjRRSDZVMjVEWUdNRzFEVVFOUCQlQCN0PWcu).
 
 ## Sora 1 vs. Sora 2
 
@@ -6402,7 +6404,7 @@ Sora might have difficulty with complex physics, causal relationships (for examp
 
 - Please see Sora 2 API details above
 - Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
-- You can have two video creation jobs running at the same time. You must wait for one of the jobs to finish before you can create another.
+- You can create two video job requests per minute. The Sora 2 quota only counts video job requests: other types of requests are not rate-limited.
 
 ### Sora 1 Technical limitations
 
@@ -7592,7 +7594,7 @@ Supports all models, both old and new.
 
 Important
 
-More latest models are available in provisioned offering with Hourly/Reservation payment model. Check the list [ here](models?view=foundry-classic#global-standard-model-availability) for the availabilityModels that aren't in the above
+More latest models are available in provisioned offering with Hourly/Reservation payment model. Check the list [ here](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability) for the availabilityModels that aren't in the above
 
 [aren't deployable on Azure OpenAI resources that have active commitments. To deploy models newer models, you must either:](provisioned-migration?view=foundry-classic#supported-models-on-commitment-payment-model)
 
@@ -7975,7 +7977,7 @@ Azure OpenAI On Your Data provides the following search types you can use when y
 
 [Vector search](/en-us/azure/search/vector-search-overview)using the`text-embedding-ada-002`
 
-[embedding](understand-embeddings?view=foundry-classic)model, available in[selected regions](models?view=foundry-classic#embeddings-models)To enable vector search, you need an existing embedding model deployed in your Azure OpenAI resource. Select your embedding deployment when connecting your data, then select one of the vector search types under
+[embedding](understand-embeddings?view=foundry-classic)model, available in[selected regions](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#embeddings-models)To enable vector search, you need an existing embedding model deployed in your Azure OpenAI resource. Select your embedding deployment when connecting your data, then select one of the vector search types under
 
 **Data management**. If you're using Azure AI Search as a data source, make sure you have a vector column in the index.
 
@@ -8297,7 +8299,7 @@ The estimates also depend on the nature of the documents and questions being ask
 | GPT-4o | 4000 |
 | GPT-4o-mini | 4000 |
 
-The table above shows the maximum number of tokens that can be used for the [system message](#system-message). To see the maximum tokens for the model response, see the [models article](models?view=foundry-classic#gpt-4-and-gpt-4-turbo-models). Additionally, the following also consume tokens:
+The table above shows the maximum number of tokens that can be used for the [system message](#system-message). To see the maximum tokens for the model response, see the [models article](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#gpt-4-and-gpt-4-turbo-models). Additionally, the following also consume tokens:
 
 The meta prompt: if you limit responses from the model to the grounding data content (
 
@@ -8790,7 +8792,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 , `gpt-5.2-chat`
 
-(**Preview**)[GPT-5.1 series](../../openai/concepts/models?view=foundry-classic#gpt-51)**NEW**`gpt-5.1`
+(**Preview**)[GPT-5.1 series](models-sold-directly-by-azure?view=foundry-classic#gpt-51)**NEW**`gpt-5.1`
 
 , `gpt-5.1-chat`
 
@@ -8798,9 +8800,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 , `gpt-5.1-codex-mini`
 
-[Sora](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models)**NEW**sora-2[GPT-5 series](../../openai/concepts/models?view=foundry-classic#gpt-5)[gpt-oss](../../openai/concepts/models?view=foundry-classic#gpt-oss)[codex-mini](../../openai/concepts/models?view=foundry-classic#o-series-models)[GPT-4.1 series](../../openai/concepts/models?view=foundry-classic#gpt-41-series)[computer-use-preview](../../openai/concepts/models?view=foundry-classic#computer-use-preview)[o-series models](../../openai/concepts/models?view=foundry-classic#o-series-models)[Reasoning models](../../openai/how-to/reasoning?view=foundry-classic)with advanced problem solving and increased focus and capability.[GPT-4o, GPT-4o mini, and GPT-4 Turbo](../../openai/concepts/models?view=foundry-classic#gpt-4o-and-gpt-4-turbo)[Embeddings](../../openai/concepts/models?view=foundry-classic#embeddings)[Image generation](../../openai/concepts/models?view=foundry-classic#image-generation-models)`Video generation`
+[Sora](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models)**NEW**sora-2[GPT-5 series](models-sold-directly-by-azure?view=foundry-classic#gpt-5)[gpt-oss](models-sold-directly-by-azure?view=foundry-classic#gpt-oss)[codex-mini](models-sold-directly-by-azure?view=foundry-classic#o-series-models)[GPT-4.1 series](models-sold-directly-by-azure?view=foundry-classic#gpt-41-series)[computer-use-preview](models-sold-directly-by-azure?view=foundry-classic#computer-use-preview)[o-series models](models-sold-directly-by-azure?view=foundry-classic#o-series-models)[Reasoning models](../../openai/how-to/reasoning?view=foundry-classic)with advanced problem solving and increased focus and capability.[GPT-4o, GPT-4o mini, and GPT-4 Turbo](models-sold-directly-by-azure?view=foundry-classic#gpt-4o-and-gpt-4-turbo)[Embeddings](models-sold-directly-by-azure?view=foundry-classic#embeddings)[Image generation](models-sold-directly-by-azure?view=foundry-classic#image-generation-models)`Video generation`
 
-[Audio](../../openai/concepts/models?view=foundry-classic#audio-models)*speech in, speech out*conversational interactions or audio generation.## GPT-5.2
+[Audio](models-sold-directly-by-azure?view=foundry-classic#audio-models)*speech in, speech out*conversational interactions or audio generation.## GPT-5.2
 
 ### Region availability
 
@@ -11185,7 +11187,7 @@ Weights & Biases (W&B) is a powerful AI developer platform that enables machine 
 ## Prerequisites
 
 - An Azure OpenAI resource. For more information, see
-[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). The resource should be in a[region that supports fine-tuning](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models). - Ensure all team members who need to fine-tune models have
+[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). The resource should be in a[region that supports fine-tuning](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models). - Ensure all team members who need to fine-tune models have
 **Azure AI User**access assigned for the new Azure OpenAI resource. - A
 [Weights & Biases](https://wandb.ai)account and API key. [Azure Key Vault](https://portal.azure.com/#create/Microsoft.KeyVault). For more information on creating a key vault, see the[Azure Key Vault quickstart](/en-us/azure/key-vault/general/quick-create-portal).
 
@@ -11366,7 +11368,7 @@ The Assistants API supports function calling, which allows you to describe the s
 
 ### Supported models
 
-The [models page](../concepts/models?view=foundry-classic#assistants-preview) contains the most up-to-date information on regions/models where Assistants are supported.
+The [models page](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#assistants-preview) contains the most up-to-date information on regions/models where Assistants are supported.
 
 To use all features of function calling including parallel functions, you need to use a model that was released after November 6th 2023.
 
@@ -11669,7 +11671,7 @@ format:
 
 ,`gpt-4.1-mini-2025-04-14`
 
-supports direct preference optimization in its respective fine-tuning regions. Latest region availability is updated in the[models page](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models)
+supports direct preference optimization in its respective fine-tuning regions. Latest region availability is updated in the[models page](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models)
 
 Users can use preference fine tuning with base models as well as models that have already been fine-tuned using supervised fine-tuning as long as they are of a supported model/version.
 
@@ -11710,7 +11712,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs'
 
 - Explore the fine-tuning capabilities in the
 [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune?view=foundry-classic). - Review fine-tuning
-[model regional availability](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models) - Learn more about
+[model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models) - Learn more about
 [Azure OpenAI quotas](../quotas-limits?view=foundry-classic)
 
 ---
@@ -11744,7 +11746,7 @@ Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/de
 
 ### Supported models
 
-The [models page](../concepts/models?view=foundry-classic#assistants-preview) contains the most up-to-date information on regions/models where Assistants and code interpreter are supported.
+The [models page](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#assistants-preview) contains the most up-to-date information on regions/models where Assistants and code interpreter are supported.
 
 We recommend using assistants with the latest models to take advantage of the new features, larger context windows, and more up-to-date training data.
 
@@ -11965,7 +11967,7 @@ model in a supported region as described in the[supported models](#supported-mod
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in the [East US 2 and Sweden Central regions](../concepts/models?view=foundry-classic#global-standard-model-availability).
+The GPT real-time models are available for global deployments in the [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).
 
 `gpt-4o-mini-realtime-preview`
 
@@ -11989,7 +11991,7 @@ The GPT real-time models are available for global deployments in the [East US 2 
 
 )
 
-For more information about supported models, see the [models and versions documentation](../concepts/models?view=foundry-classic#audio-models).
+For more information about supported models, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#audio-models).
 
 ## Connection and authentication
 
@@ -12789,7 +12791,7 @@ You set the value using the format shown in this example:
 ```
 
 
-For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../overview?view=foundry-classic#image-input-tokens)
+For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)
 
 ## Output
 
@@ -13131,7 +13133,7 @@ training file would be a single line:
 
 [Function calling fine-tuning scenarios](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/fine-tuning-with-function-calling-on-azure-openai-service/ba-p/4065968).- Explore the fine-tuning capabilities in the
 [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune?view=foundry-classic). - Review fine-tuning
-[model regional availability](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
+[model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/network -->
@@ -14568,7 +14570,7 @@ SIP is a protocol used to make phone calls over the internet. With SIP and the R
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models?view=foundry-classic#global-standard-model-availability).
+The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).
 
 `gpt-4o-mini-realtime-preview`
 
@@ -14703,7 +14705,7 @@ The endpoint returns 200 OK once the SIP leg is ringing and the real-time sessio
 
 ### Reject the call
 
-Use the Reject call endpoint to decline an invite when you don't want to handle the incoming call (for example, from an unsupported country code.) To control the response sent back to the carrier, supply an optional SIP status code along with the required call_id path parameter. The example here shows a request sending 486, which indicates the system is too busy to take the call.
+Use the Reject call endpoint to decline an invite when you don't want to handle the incoming call (for example, from an unsupported country/region code.) To control the response sent back to the carrier, supply an optional SIP status code along with the required call_id path parameter. The example here shows a request sending 486, which indicates the system is too busy to take the call.
 
 ```
 curl -X POST "https://<your azure resource name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/reject" \
@@ -15579,7 +15581,7 @@ Important
 
 ### Supported regions
 
-File search is available in [regions](../concepts/models?view=foundry-classic#assistants-preview) that support Assistants.
+File search is available in [regions](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#assistants-preview) that support Assistants.
 
 ### API Version
 
@@ -16512,7 +16514,7 @@ There are several factors that you can control to improve per-call latency of yo
 
 ### Model selection
 
-Latency varies based on what model you're using. For an identical request, expect that different models have different latencies for the chat completions call. If your use case requires the lowest latency models with the fastest response times, we recommend the latest [GPT-4o mini model](../concepts/models?view=foundry-classic).
+Latency varies based on what model you're using. For an identical request, expect that different models have different latencies for the chat completions call. If your use case requires the lowest latency models with the fastest response times, we recommend the latest [GPT-4o mini model](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ### Generation size and Max tokens
 
@@ -16606,7 +16608,7 @@ You can learn more about [Monitoring Azure OpenAI](monitor-openai?view=foundry-c
 
 ## Summary
 
-**Model latency**: If model latency is important to you, we recommend trying out the[GPT-4o mini model](../concepts/models?view=foundry-classic).**Lower max tokens**: OpenAI has found that even in cases where the total number of tokens generated is similar the request with the higher value set for the max token parameter will have more latency.**Lower total tokens generated**: The fewer tokens generated the faster the overall response will be. Remember this is like having a for loop with`n tokens = n iterations`
+**Model latency**: If model latency is important to you, we recommend trying out the[GPT-4o mini model](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).**Lower max tokens**: OpenAI has found that even in cases where the total number of tokens generated is similar the request with the higher value set for the max token parameter will have more latency.**Lower total tokens generated**: The fewer tokens generated the faster the overall response will be. Remember this is like having a for loop with`n tokens = n iterations`
 
 . Lower the number of tokens generated and overall response time will improve accordingly.**Streaming**: Enabling streaming can be useful in managing user expectations in certain situations by allowing the user to see the model response as it is being generated rather than having to wait until the last token is ready.**Content Filtering**improves safety, but it also impacts latency. Evaluate if any of your workloads would benefit from[modified content filtering policies](content-filters?view=foundry-classic).
 
@@ -17237,7 +17239,7 @@ The following is a sample request body. You specify a number of options, defined
 
 Tip
 
-For image generation token costs, see [Image tokens](../overview?view=foundry-classic#image-generation-tokens).
+For image generation token costs, see [Image tokens](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ### Output
 
@@ -18592,7 +18594,7 @@ Access to this page requires authorization. You can try [signing in](#) or [chan
 
 Access to this page requires authorization. You can try [changing directories].
 
-Azure OpenAI in Microsoft Foundry Models is powered by a diverse set of models with different capabilities and price points. [Model availability varies by region](../concepts/models?view=foundry-classic).
+Azure OpenAI in Microsoft Foundry Models is powered by a diverse set of models with different capabilities and price points. [Model availability varies by region](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 You can get a list of models that are available for both inference and fine-tuning by your Azure OpenAI resource by using the [Models List API](/en-us/rest/api/azureopenai/models/list).
 
@@ -18988,7 +18990,7 @@ All other model classes have a common max TPM value.
 
 Note
 
-Quota Tokens-Per-Minute (TPM) allocation isn't related to the max input token limit of a model. Model input token limits are defined in the [models table](../concepts/models?view=foundry-classic) and aren't impacted by changes made to TPM.
+Quota Tokens-Per-Minute (TPM) allocation isn't related to the max input token limit of a model. Model input token limits are defined in the [models table](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) and aren't impacted by changes made to TPM.
 
 ## View and request quota
 
@@ -19441,7 +19443,7 @@ and `gpt-4-32k`
 
 are 8,192 and 32,768, respectively. These limits include the token count from both the message list sent and the model response. The number of tokens in the messages list combined with the value of the `max_tokens`
 
-parameter must stay under these limits or you receive an error. Consult the [models page](../concepts/models?view=foundry-classic) for each model's token limits/context windows.
+parameter must stay under these limits or you receive an error. Consult the [models page](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) for each model's token limits/context windows.
 
 It's your responsibility to ensure that the prompt and completion fall within the token limit. For longer conversations, you need to keep track of the token count and only send the model a prompt that falls within the limit. Alternatively, with the [responses API](responses?view=foundry-classic) you can have the API handle truncation/management of the conversation history for you.
 
@@ -19723,7 +19725,7 @@ Capacity availability for model deployments is dynamic and changes frequently ac
 
 ## Make your first inferencing calls
 
-The inferencing code for provisioned deployments is the same a standard deployment type. The following code snippet shows a chat completions call to a GPT-4 model. For your first time using these models programmatically, we recommend starting with our [quickstart guide](../chatgpt-quickstart?view=foundry-classic). Our recommendation is to use the OpenAI library with version 1.0 or greater since this includes retry logic within the library.
+The inferencing code for provisioned deployments is the same a standard deployment type. The following code snippet shows a chat completions call to a GPT-4 model. For your first time using these models programmatically, we recommend starting with our [quickstart guide](responses?view=foundry-classic). Our recommendation is to use the OpenAI library with version 1.0 or greater since this includes retry logic within the library.
 
 ```
 import os
@@ -19841,446 +19843,6 @@ We recommend the following workflow:
 - For more information on cloud application best practices, check out
 [Best practices in cloud applications](/en-us/azure/architecture/best-practices/index-best-practices) - For more information on provisioned deployments, check out
 [What is provisioned throughput?](../concepts/provisioned-throughput?view=foundry-classic) - For more information on retry logic within each SDK, check out:
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/fine-tuning-deploy -->
-
-# Deploy a fine-tuned model for inferencing
-
-Once your model is fine-tuned, you can deploy the model and can use it in your own application.
-
-When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Microsoft Foundry at no cost until you're ready to use them.
-
-Azure OpenAI provides choices of deployment types for fine-tuned models on the hosting structure that fits different business and usage patterns: **Standard**, **Global Standard** (preview) and **Provisioned Throughput** (preview). Learn more about [deployment types for fine-tuned models](#deployment-types) and the [concepts of all deployment types](../../foundry-models/concepts/deployment-types?view=foundry-classic).
-
-## Deploy your fine-tuned model
-
-[!IMPROTANT]
-To deploy models, you need to be assigned as `Azure AI owner`
-
-role or any role with `Microsfot.CognitiveServices/accounts/deployments/write" action.
-
-
-To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
-
-The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model.
-
-[
-](../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png?view=foundry-classic#lightbox)
-
-You can monitor the progress of your deployment on the **Deployments** pane in Foundry portal.
-
-The UI does not support cross region deployment, while Python SDK or REST supports.
-
-```
-import json
-import os
-import requests
-token = os.getenv("<TOKEN>")
-subscription = "<YOUR_SUBSCRIPTION_ID>"
-resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
-resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
-model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
-deploy_params = {'api-version': "2024-10-21"}
-deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
-deploy_data = {
-"sku": {"name": "standard", "capacity": 1},
-"properties": {
-"model": {
-"format": "OpenAI",
-"name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83
-"version": "1"
-}
-}
-}
-deploy_data = json.dumps(deploy_data)
-request_url = f'https://management.azure.com/subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{resource_name}/deployments/{model_deployment_name}'
-print('Creating a new deployment...')
-r = requests.put(request_url, params=deploy_params, headers=deploy_headers, data=deploy_data)
-print(r)
-print(r.reason)
-print(r.json())
-```
-
-
-| variable |
-Definition |
-| token |
-There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run `az account get-access-token` . You can use this token as your temporary authorization token for API testing. We recommend storing this in a new environment variable. |
-| subscription |
-The subscription ID for the associated Azure OpenAI resource. |
-| resource_group |
-The resource group name for your Azure OpenAI resource. |
-| resource_name |
-The Azure OpenAI resource name. |
-| model_deployment_name |
-The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model |
-Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83` . You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
-
-### Cross region deployment
-
-Fine-tuning supports deploying a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription/region.
-
-The only limitations are that the new region must also support fine-tuning and when deploying cross subscription the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
-
-Below is an example of deploying a model that was fine-tuned in one subscription/region to another.
-
-```
-import json
-import os
-import requests
-token= os.getenv("<TOKEN>")
-subscription = "<DESTINATION_SUBSCRIPTION_ID>"
-resource_group = "<DESTINATION_RESOURCE_GROUP_NAME>"
-resource_name = "<DESTINATION_AZURE_OPENAI_RESOURCE_NAME>"
-source_subscription = "<SOURCE_SUBSCRIPTION_ID>"
-source_resource_group = "<SOURCE_RESOURCE_GROUP>"
-source_resource = "<SOURCE_RESOURCE>"
-source = f'/subscriptions/{source_subscription}/resourceGroups/{source_resource_group}/providers/Microsoft.CognitiveServices/accounts/{source_resource}'
-model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
-deploy_params = {'api-version': "2024-10-21"}
-deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
-deploy_data = {
-"sku": {"name": "standard", "capacity": 1},
-"properties": {
-"model": {
-"format": "OpenAI",
-"name": <"FINE_TUNED_MODEL_NAME">, # This value will look like gpt-4.1-mini-2025-04-14.ft-0ab3f80e4f2242929258fff45b56a9ce
-"version": "1",
-"source": source
-}
-}
-}
-deploy_data = json.dumps(deploy_data)
-request_url = f'https://management.azure.com/subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{resource_name}/deployments/{model_deployment_name}'
-print('Creating a new deployment...')
-r = requests.put(request_url, params=deploy_params, headers=deploy_headers, data=deploy_data)
-print(r)
-print(r.reason)
-print(r.json())
-```
-
-
-To deploy between the same subscription, but different regions you would just have subscription and resource groups be identical for both source and destination variables and only the source and destination resource names would need to be unique.
-
-### Cross tenant deployment
-
-The account used to generate access tokens with `az account get-access-token --tenant`
-
-should have Cognitive Services OpenAI Contributor permissions to both the source and destination Azure OpenAI resources. You will need to generate two different tokens, one for the source tenant and one for the destination tenant.
-
-```
-import requests
-subscription = "DESTINATION-SUBSCRIPTION-ID"
-resource_group = "DESTINATION-RESOURCE-GROUP"
-resource_name = "DESTINATION-AZURE-OPENAI-RESOURCE-NAME"
-model_deployment_name = "DESTINATION-MODEL-DEPLOYMENT-NAME"
-fine_tuned_model = "gpt-4o-mini-2024-07-18.ft-f8838e7c6d4a4cbe882a002815758510" #source fine-tuned model id example id provided
-source_subscription_id = "SOURCE-SUBSCRIPTION-ID"
-source_resource_group = "SOURCE-RESOURCE-GROUP"
-source_account = "SOURCE-AZURE-OPENAI-RESOURCE-NAME"
-dest_token = "DESTINATION-ACCESS-TOKEN" # az account get-access-token --tenant DESTINATION-TENANT-ID
-source_token = "SOURCE-ACCESS-TOKEN" # az account get-access-token --tenant SOURCE-TENANT-ID
-headers = {
-"Authorization": f"Bearer {dest_token}",
-"x-ms-authorization-auxiliary": f"Bearer {source_token}",
-"Content-Type": "application/json"
-}
-url = f"https://management.azure.com/subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{resource_name}/deployments/{model_deployment_name}?api-version=2024-10-01"
-payload = {
-"sku": {
-"name": "standard",
-"capacity": 1
-},
-"properties": {
-"model": {
-"format": "OpenAI",
-"name": fine_tuned_model,
-"version": "1",
-"sourceAccount": f"/subscriptions/{source_subscription_id}/resourceGroups/{source_resource_group}/providers/Microsoft.CognitiveServices/accounts/{source_account}"
-}
-}
-}
-response = requests.put(url, headers=headers, json=payload)
-# Check response
-print(f"Status Code: {response.status_code}")
-print(f"Response: {response.json()}")
-```
-
-
-The following example shows how to use the REST API to create a model deployment for your customized model. The REST API generates a name for the deployment of your customized model.
-
-```
-curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
--H "Authorization: Bearer <TOKEN>" \
--H "Content-Type: application/json" \
--d '{
-"sku": {"name": "standard", "capacity": 1},
-"properties": {
-"model": {
-"format": "OpenAI",
-"name": "<FINE_TUNED_MODEL>",
-"version": "1"
-}
-}
-}'
-```
-
-
-| variable |
-Definition |
-| token |
-There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run `az account get-access-token` . You can use this token as your temporary authorization token for API testing. We recommend storing this in a new environment variable. |
-| subscription |
-The subscription ID for the associated Azure OpenAI resource. |
-| resource_group |
-The resource group name for your Azure OpenAI resource. |
-| resource_name |
-The Azure OpenAI resource name. |
-| model_deployment_name |
-The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model |
-Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83` . You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
-
-### Cross region deployment
-
-Fine-tuning supports deploying a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription/region.
-
-The only limitations are that the new region must also support fine-tuning and when deploying cross subscription the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
-
-Below is an example of deploying a model that was fine-tuned in one subscription/region to another.
-
-```
-curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
--H "Authorization: Bearer <TOKEN>" \
--H "Content-Type: application/json" \
--d '{
-"sku": {"name": "standard", "capacity": 1},
-"properties": {
-"model": {
-"format": "OpenAI",
-"name": "<FINE_TUNED_MODEL>",
-"version": "1",
-"source": "/subscriptions/{sourceSubscriptionID}/resourceGroups/{sourceResourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{sourceAccount}"
-}
-}
-}'
-```
-
-
-To deploy between the same subscription, but different regions, you would just have subscription and resource groups be identical for both source and destination variables and only the source and destination resource names would need to be unique.
-
-### Cross tenant deployment
-
-The account used to generate access tokens with `az account get-access-token --tenant`
-
-should have Cognitive Services OpenAI Contributor permissions to both the source and destination Azure OpenAI resources. You will need to generate two different tokens, one for the source tenant and one for the destination tenant.
-
-```
-curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-01" \
--H "Authorization: Bearer <DESTINATION TOKEN>" \
--H "x-ms-authorization-auxiliary: Bearer <SOURCE TOKEN>" \
--H "Content-Type: application/json" \
--d '{
-"sku": {"name": "standard", "capacity": 1},
-"properties": {
-"model": {
-"format": "OpenAI",
-"name": "<FINE_TUNED_MODEL>",
-"version": "1",
-"sourceAccount": "/subscriptions/{sourceSubscriptionID}/resourceGroups/{sourceResourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{sourceAccount}"
-}
-}
-}'
-```
-
-
-The following example shows how to use the Azure CLI to deploy your customized model. With the Azure CLI, you must specify a name for the deployment of your customized model. For more information about how to use the Azure CLI to deploy customized models, see `az cognitiveservices account deployment`
-
-.
-
-To run this Azure CLI command in a console window, you must replace the following *<placeholders>* with the corresponding values for your customized model:
-
-| Placeholder |
-Value |
-*<YOUR_AZURE_SUBSCRIPTION>* |
-The name or ID of your Azure subscription. |
-*<YOUR_RESOURCE_GROUP>* |
-The name of your Azure resource group. |
-*<YOUR_RESOURCE_NAME>* |
-The name of your Azure OpenAI resource. |
-*<YOUR_DEPLOYMENT_NAME>* |
-The name you want to use for your model deployment. |
-*<YOUR_FINE_TUNED_MODEL_ID>* |
-The name of your customized model. |
-
-```
-az cognitiveservices account deployment create
---resource-group <YOUR_RESOURCE_GROUP>
---name <YOUR_RESOURCE_NAME>
---deployment-name <YOUR_DEPLOYMENT_NAME>
---model-name <YOUR_FINE_TUNED_MODEL_ID>
---model-version "1"
---model-format OpenAI
---sku-capacity "1"
---sku-name "Standard"
-```
-
-
-Important
-
-After you deploy a customized model, if at any time the deployment remains inactive for more than 15 days, the deployment is deleted. The deployment of a customized model is *inactive* if the model was deployed more than 15 days ago and no chat completions or response API calls were made to it during a continuous 15-day period.
-
-The deletion of an inactive deployment doesn't delete or affect the underlying customized model. The customized model can be redeployed at any time.
-
-As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](manage-costs?view=foundry-classic#fine-tuned-models).
-
-## Use your deployed fine-tuned model
-
-After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature`
-
-and `max_tokens`
-
-, as you can with other deployed models.
-
-[
-](../media/quickstarts/playground-load-new.png?view=foundry-classic#lightbox)
-
-```
-import os
-from openai import AzureOpenAI
-client = AzureOpenAI(
-azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
-api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-api_version="2024-02-01"
-)
-response = client.chat.completions.create(
-model="gpt-4.1-mini-ft", # model = "Custom deployment name you chose for your fine-tuning model"
-messages=[
-{"role": "system", "content": "You are a helpful assistant."},
-{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-{"role": "user", "content": "Do other Azure services support this too?"}
-]
-)
-print(response.choices[0].message.content)
-```
-
-
-```
-curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completions?api-version=2024-10-21 \
--H "Content-Type: application/json" \
--H "api-key: $AZURE_OPENAI_API_KEY" \
--d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure services support this too?"}]}'
-```
-
-
-### Prompt caching
-
-Azure OpenAI fine-tuning supports prompt caching with select models. Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. To learn more about prompt caching, see [getting started with prompt caching](prompt-caching?view=foundry-classic).
-
-## Deployment Types
-
-Azure OpenAI fine-tuning supports the following deployment types.
-
-### Standard
-
-[Standard deployments](../../foundry-models/concepts/deployment-types?view=foundry-classic) provide a pay-per-token billing model with data residency confined to the deployed region.
-
-| Models |
-East US2 |
-North Central US |
-Sweden Central |
-| o4-mini |
-✅ |
-|
-✅ |
-| GPT-4.1 |
-|
-✅ |
-✅ |
-| GPT-4.1-mini |
-|
-✅ |
-✅ |
-| GPT-4.1-nano |
-|
-✅ |
-✅ |
-| GPT-4o |
-✅ |
-|
-✅ |
-| GPT-4o-mini |
-|
-✅ |
-✅ |
-
-### Global Standard
-
-[Global standard](../../foundry-models/concepts/deployment-types?view=foundry-classic) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
-
-Global standard deployments are available from all Azure OpenAI regions for the following models:
-
-- o4-mini
-- GPT-4.1
-- GPT-4.1-mini
-- GPT-4.1-nano
-- GPT-4o
-- GPT-4o-mini
-
-[
-](../media/fine-tuning/global-standard.png?view=foundry-classic#lightbox)
-
-### Developer Tier
-
-[Developer](../../foundry-models/concepts/deployment-types?view=foundry-classic) fine-tuned deployments offer a similar experience as [Global Standard](#global-standard) without an hourly hosting fee, but do not offer an availability SLA. Developer deployments are designed for model candidate evaluation and not for production use.
-
-Developer deployments are available from all Azure OpenAI regions for the following models:
-
-- GPT-4.1
-- GPT-4.1-mini
-- GPT-4.1-nano
-- o4-mini
-
-### Provisioned Throughput
-
-| Models |
-North Central US |
-Sweden Central |
-| GPT-4.1 |
-|
-✅ |
-| GPT-4o |
-✅ |
-✅ |
-| GPT-4o-mini |
-✅ |
-✅ |
-
-[Provisioned throughput](../../foundry-models/concepts/deployment-types?view=foundry-classic) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput?view=foundry-classic) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
-
-## Clean up your deployment
-
-To delete a deployment, use the [Deployments - Delete REST API](/en-us/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true) and send an HTTP DELETE to the deployment resource. Like with creating deployments, you must include the following parameters:
-
-- Azure subscription ID
-- Azure resource group name
-- Azure OpenAI resource name
-- Name of the deployment to delete
-
-Below is the REST API example to delete a deployment:
-
-```
-curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
--H "Authorization: Bearer <TOKEN>"
-```
-
-
-You can also delete a deployment in Foundry portal, or use [Azure CLI](/en-us/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
-
-## Next steps
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/migration-javascript -->
@@ -20984,6 +20546,811 @@ from `@azure/openai@2.0.0-beta.1`
 which will merge Azure-specific definitions into existing types. Examples in [the Migration examples](#migration-examples) section show how to do this.
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/fine-tuning-deploy -->
+
+# Deploy a fine-tuned model for inferencing
+
+Once your model is fine-tuned, you can deploy the model and can use it in your own application.
+
+When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Microsoft Foundry at no cost until you're ready to use them.
+
+Azure OpenAI provides choices of deployment types for fine-tuned models on the hosting structure that fits different business and usage patterns: **Standard**, **Global Standard** (preview) and **Provisioned Throughput** (preview). Learn more about [deployment types for fine-tuned models](#deployment-types) and the [concepts of all deployment types](../../foundry-models/concepts/deployment-types?view=foundry-classic).
+
+## Deploy your fine-tuned model
+
+[!IMPROTANT]
+To deploy models, you need to be assigned as `Azure AI owner`
+
+role or any role with `Microsfot.CognitiveServices/accounts/deployments/write" action.
+
+
+To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
+
+The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model.
+
+[
+](../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png?view=foundry-classic#lightbox)
+
+You can monitor the progress of your deployment on the **Deployments** pane in Foundry portal.
+
+The UI does not support cross region deployment, while Python SDK or REST supports.
+
+```
+import json
+import os
+import requests
+token = os.getenv("<TOKEN>")
+subscription = "<YOUR_SUBSCRIPTION_ID>"
+resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
+resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
+model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
+deploy_params = {'api-version': "2024-10-21"}
+deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
+deploy_data = {
+"sku": {"name": "standard", "capacity": 1},
+"properties": {
+"model": {
+"format": "OpenAI",
+"name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83
+"version": "1"
+}
+}
+}
+deploy_data = json.dumps(deploy_data)
+request_url = f'https://management.azure.com/subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{resource_name}/deployments/{model_deployment_name}'
+print('Creating a new deployment...')
+r = requests.put(request_url, params=deploy_params, headers=deploy_headers, data=deploy_data)
+print(r)
+print(r.reason)
+print(r.json())
+```
+
+
+| variable |
+Definition |
+| token |
+There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run `az account get-access-token` . You can use this token as your temporary authorization token for API testing. We recommend storing this in a new environment variable. |
+| subscription |
+The subscription ID for the associated Azure OpenAI resource. |
+| resource_group |
+The resource group name for your Azure OpenAI resource. |
+| resource_name |
+The Azure OpenAI resource name. |
+| model_deployment_name |
+The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
+| fine_tuned_model |
+Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83` . You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+
+### Cross region deployment
+
+Fine-tuning supports deploying a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription/region.
+
+The only limitations are that the new region must also support fine-tuning and when deploying cross subscription the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
+
+Below is an example of deploying a model that was fine-tuned in one subscription/region to another.
+
+```
+import json
+import os
+import requests
+token= os.getenv("<TOKEN>")
+subscription = "<DESTINATION_SUBSCRIPTION_ID>"
+resource_group = "<DESTINATION_RESOURCE_GROUP_NAME>"
+resource_name = "<DESTINATION_AZURE_OPENAI_RESOURCE_NAME>"
+source_subscription = "<SOURCE_SUBSCRIPTION_ID>"
+source_resource_group = "<SOURCE_RESOURCE_GROUP>"
+source_resource = "<SOURCE_RESOURCE>"
+source = f'/subscriptions/{source_subscription}/resourceGroups/{source_resource_group}/providers/Microsoft.CognitiveServices/accounts/{source_resource}'
+model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
+deploy_params = {'api-version': "2024-10-21"}
+deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
+deploy_data = {
+"sku": {"name": "standard", "capacity": 1},
+"properties": {
+"model": {
+"format": "OpenAI",
+"name": <"FINE_TUNED_MODEL_NAME">, # This value will look like gpt-4.1-mini-2025-04-14.ft-0ab3f80e4f2242929258fff45b56a9ce
+"version": "1",
+"source": source
+}
+}
+}
+deploy_data = json.dumps(deploy_data)
+request_url = f'https://management.azure.com/subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{resource_name}/deployments/{model_deployment_name}'
+print('Creating a new deployment...')
+r = requests.put(request_url, params=deploy_params, headers=deploy_headers, data=deploy_data)
+print(r)
+print(r.reason)
+print(r.json())
+```
+
+
+To deploy between the same subscription, but different regions you would just have subscription and resource groups be identical for both source and destination variables and only the source and destination resource names would need to be unique.
+
+### Cross tenant deployment
+
+The account used to generate access tokens with `az account get-access-token --tenant`
+
+should have Cognitive Services OpenAI Contributor permissions to both the source and destination Azure OpenAI resources. You will need to generate two different tokens, one for the source tenant and one for the destination tenant.
+
+```
+import requests
+subscription = "DESTINATION-SUBSCRIPTION-ID"
+resource_group = "DESTINATION-RESOURCE-GROUP"
+resource_name = "DESTINATION-AZURE-OPENAI-RESOURCE-NAME"
+model_deployment_name = "DESTINATION-MODEL-DEPLOYMENT-NAME"
+fine_tuned_model = "gpt-4o-mini-2024-07-18.ft-f8838e7c6d4a4cbe882a002815758510" #source fine-tuned model id example id provided
+source_subscription_id = "SOURCE-SUBSCRIPTION-ID"
+source_resource_group = "SOURCE-RESOURCE-GROUP"
+source_account = "SOURCE-AZURE-OPENAI-RESOURCE-NAME"
+dest_token = "DESTINATION-ACCESS-TOKEN" # az account get-access-token --tenant DESTINATION-TENANT-ID
+source_token = "SOURCE-ACCESS-TOKEN" # az account get-access-token --tenant SOURCE-TENANT-ID
+headers = {
+"Authorization": f"Bearer {dest_token}",
+"x-ms-authorization-auxiliary": f"Bearer {source_token}",
+"Content-Type": "application/json"
+}
+url = f"https://management.azure.com/subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{resource_name}/deployments/{model_deployment_name}?api-version=2024-10-01"
+payload = {
+"sku": {
+"name": "standard",
+"capacity": 1
+},
+"properties": {
+"model": {
+"format": "OpenAI",
+"name": fine_tuned_model,
+"version": "1",
+"sourceAccount": f"/subscriptions/{source_subscription_id}/resourceGroups/{source_resource_group}/providers/Microsoft.CognitiveServices/accounts/{source_account}"
+}
+}
+}
+response = requests.put(url, headers=headers, json=payload)
+# Check response
+print(f"Status Code: {response.status_code}")
+print(f"Response: {response.json()}")
+```
+
+
+The following example shows how to use the REST API to create a model deployment for your customized model. The REST API generates a name for the deployment of your customized model.
+
+```
+curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
+-H "Authorization: Bearer <TOKEN>" \
+-H "Content-Type: application/json" \
+-d '{
+"sku": {"name": "standard", "capacity": 1},
+"properties": {
+"model": {
+"format": "OpenAI",
+"name": "<FINE_TUNED_MODEL>",
+"version": "1"
+}
+}
+}'
+```
+
+
+| variable |
+Definition |
+| token |
+There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run `az account get-access-token` . You can use this token as your temporary authorization token for API testing. We recommend storing this in a new environment variable. |
+| subscription |
+The subscription ID for the associated Azure OpenAI resource. |
+| resource_group |
+The resource group name for your Azure OpenAI resource. |
+| resource_name |
+The Azure OpenAI resource name. |
+| model_deployment_name |
+The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
+| fine_tuned_model |
+Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83` . You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+
+### Cross region deployment
+
+Fine-tuning supports deploying a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription/region.
+
+The only limitations are that the new region must also support fine-tuning and when deploying cross subscription the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
+
+Below is an example of deploying a model that was fine-tuned in one subscription/region to another.
+
+```
+curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
+-H "Authorization: Bearer <TOKEN>" \
+-H "Content-Type: application/json" \
+-d '{
+"sku": {"name": "standard", "capacity": 1},
+"properties": {
+"model": {
+"format": "OpenAI",
+"name": "<FINE_TUNED_MODEL>",
+"version": "1",
+"source": "/subscriptions/{sourceSubscriptionID}/resourceGroups/{sourceResourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{sourceAccount}"
+}
+}
+}'
+```
+
+
+To deploy between the same subscription, but different regions, you would just have subscription and resource groups be identical for both source and destination variables and only the source and destination resource names would need to be unique.
+
+### Cross tenant deployment
+
+The account used to generate access tokens with `az account get-access-token --tenant`
+
+should have Cognitive Services OpenAI Contributor permissions to both the source and destination Azure OpenAI resources. You will need to generate two different tokens, one for the source tenant and one for the destination tenant.
+
+```
+curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-01" \
+-H "Authorization: Bearer <DESTINATION TOKEN>" \
+-H "x-ms-authorization-auxiliary: Bearer <SOURCE TOKEN>" \
+-H "Content-Type: application/json" \
+-d '{
+"sku": {"name": "standard", "capacity": 1},
+"properties": {
+"model": {
+"format": "OpenAI",
+"name": "<FINE_TUNED_MODEL>",
+"version": "1",
+"sourceAccount": "/subscriptions/{sourceSubscriptionID}/resourceGroups/{sourceResourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{sourceAccount}"
+}
+}
+}'
+```
+
+
+The following example shows how to use the Azure CLI to deploy your customized model. With the Azure CLI, you must specify a name for the deployment of your customized model. For more information about how to use the Azure CLI to deploy customized models, see `az cognitiveservices account deployment`
+
+.
+
+To run this Azure CLI command in a console window, you must replace the following *<placeholders>* with the corresponding values for your customized model:
+
+| Placeholder |
+Value |
+*<YOUR_AZURE_SUBSCRIPTION>* |
+The name or ID of your Azure subscription. |
+*<YOUR_RESOURCE_GROUP>* |
+The name of your Azure resource group. |
+*<YOUR_RESOURCE_NAME>* |
+The name of your Azure OpenAI resource. |
+*<YOUR_DEPLOYMENT_NAME>* |
+The name you want to use for your model deployment. |
+*<YOUR_FINE_TUNED_MODEL_ID>* |
+The name of your customized model. |
+
+```
+az cognitiveservices account deployment create
+--resource-group <YOUR_RESOURCE_GROUP>
+--name <YOUR_RESOURCE_NAME>
+--deployment-name <YOUR_DEPLOYMENT_NAME>
+--model-name <YOUR_FINE_TUNED_MODEL_ID>
+--model-version "1"
+--model-format OpenAI
+--sku-capacity "1"
+--sku-name "Standard"
+```
+
+
+Important
+
+After you deploy a customized model, if at any time the deployment remains inactive for more than 15 days, the deployment is deleted. The deployment of a customized model is *inactive* if the model was deployed more than 15 days ago and no chat completions or response API calls were made to it during a continuous 15-day period.
+
+The deletion of an inactive deployment doesn't delete or affect the underlying customized model. The customized model can be redeployed at any time.
+
+As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](../../concepts/manage-costs?view=foundry-classic#fine-tuned-models).
+
+## Use your deployed fine-tuned model
+
+After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature`
+
+and `max_tokens`
+
+, as you can with other deployed models.
+
+[
+](../media/quickstarts/playground-load-new.png?view=foundry-classic#lightbox)
+
+```
+import os
+from openai import AzureOpenAI
+client = AzureOpenAI(
+azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
+api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+api_version="2024-02-01"
+)
+response = client.chat.completions.create(
+model="gpt-4.1-mini-ft", # model = "Custom deployment name you chose for your fine-tuning model"
+messages=[
+{"role": "system", "content": "You are a helpful assistant."},
+{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
+{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
+{"role": "user", "content": "Do other Azure services support this too?"}
+]
+)
+print(response.choices[0].message.content)
+```
+
+
+```
+curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completions?api-version=2024-10-21 \
+-H "Content-Type: application/json" \
+-H "api-key: $AZURE_OPENAI_API_KEY" \
+-d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure services support this too?"}]}'
+```
+
+
+### Prompt caching
+
+Azure OpenAI fine-tuning supports prompt caching with select models. Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. To learn more about prompt caching, see [getting started with prompt caching](prompt-caching?view=foundry-classic).
+
+## Deployment Types
+
+Azure OpenAI fine-tuning supports the following deployment types.
+
+### Standard
+
+[Standard deployments](../../foundry-models/concepts/deployment-types?view=foundry-classic) provide a pay-per-token billing model with data residency confined to the deployed region.
+
+| Models |
+East US2 |
+North Central US |
+Sweden Central |
+| o4-mini |
+✅ |
+|
+✅ |
+| GPT-4.1 |
+|
+✅ |
+✅ |
+| GPT-4.1-mini |
+|
+✅ |
+✅ |
+| GPT-4.1-nano |
+|
+✅ |
+✅ |
+| GPT-4o |
+✅ |
+|
+✅ |
+| GPT-4o-mini |
+|
+✅ |
+✅ |
+
+### Global Standard
+
+[Global standard](../../foundry-models/concepts/deployment-types?view=foundry-classic) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
+
+Global standard deployments are available from all Azure OpenAI regions for the following models:
+
+- o4-mini
+- GPT-4.1
+- GPT-4.1-mini
+- GPT-4.1-nano
+- GPT-4o
+- GPT-4o-mini
+
+[
+](../media/fine-tuning/global-standard.png?view=foundry-classic#lightbox)
+
+### Developer Tier
+
+[Developer](../../foundry-models/concepts/deployment-types?view=foundry-classic) fine-tuned deployments offer a similar experience as [Global Standard](#global-standard) without an hourly hosting fee, but do not offer an availability SLA. Developer deployments are designed for model candidate evaluation and not for production use.
+
+Developer deployments are available from all Azure OpenAI regions for the following models:
+
+- GPT-4.1
+- GPT-4.1-mini
+- GPT-4.1-nano
+- o4-mini
+
+### Provisioned Throughput
+
+| Models |
+North Central US |
+Sweden Central |
+| GPT-4.1 |
+|
+✅ |
+| GPT-4o |
+✅ |
+✅ |
+| GPT-4o-mini |
+✅ |
+✅ |
+
+[Provisioned throughput](../../foundry-models/concepts/deployment-types?view=foundry-classic) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput?view=foundry-classic) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
+
+## Clean up your deployment
+
+To delete a deployment, use the [Deployments - Delete REST API](/en-us/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true) and send an HTTP DELETE to the deployment resource. Like with creating deployments, you must include the following parameters:
+
+- Azure subscription ID
+- Azure resource group name
+- Azure OpenAI resource name
+- Name of the deployment to delete
+
+Below is the REST API example to delete a deployment:
+
+```
+curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
+-H "Authorization: Bearer <TOKEN>"
+```
+
+
+You can also delete a deployment in Foundry portal, or use [Azure CLI](/en-us/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
+
+## Next steps
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/on-your-data-configuration -->
+
+# Network and access configuration for Azure OpenAI On Your Data
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Use this article to learn how to configure networking and access when using Azure OpenAI On Your Data with Microsoft Entra ID role-based access control, virtual networks, and private endpoints.
+
+## Data ingestion architecture
+
+When you use Azure OpenAI On Your Data to ingest data from Azure blob storage, local files or URLs into Azure AI Search, the following process is used to process the data.
+
+- Steps 1 and 2 are only used for file upload.
+- Downloading URLs to your blob storage is not illustrated in this diagram. After web pages are downloaded from the internet and uploaded to blob storage, steps 3 onward are the same.
+- One indexer, one index, and one data source in the Azure AI Search resource is created using prebuilt skills and
+[integrated vectorization](/en-us/azure/search/vector-search-integrated-vectorization). - Azure AI Search handles the extraction, chunking, and vectorization of chunked documents through integrated vectorization. If a scheduling interval is specified, the indexer will run accordingly.
+
+For the managed identities used in service calls, only system assigned managed identities are supported. User assigned managed identities aren't supported.
+
+## Inference architecture
+
+When you send API calls to chat with an Azure OpenAI model on your data, the service needs to retrieve the index fields during inference to perform fields mapping. Therefore the service requires the Azure OpenAI identity to have the `Search Service Contributor`
+
+role for the search service even during inference.
+
+If an embedding dependency is provided in the inference request, Azure OpenAI will vectorize the rewritten query, and both query and vector are sent to Azure AI Search for vector search.
+
+## Document-level access control
+
+Note
+
+Document-level access control is supported for Azure AI search only.
+
+Azure OpenAI On Your Data lets you restrict the documents that can be used in responses for different users with Azure AI Search [security filters](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad). When you enable document level access, Azure AI Search will trim the search results based on user Microsoft Entra group membership specified in the filter. You can only enable document-level access on existing Azure AI Search indexes. To enable document-level access:
+
+To register your application and create users and groups, follow the steps in the
+
+[Azure AI Search documentation](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad).[Index your documents with their permitted groups](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad#index-document-with-their-permitted-groups). Be sure that your new[security fields](/en-us/azure/search/search-security-trimming-for-azure-search#create-security-field)have the schema:`{"name": "group_ids", "type": "Collection(Edm.String)", "filterable": true }`
+
+`group_ids`
+
+is the default field name. If you use a different field name like`my_group_ids`
+
+, you can map the field in[index field mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping).Make sure each sensitive document in the index has this security field value set to the permitted groups of the document.
+
+In the
+
+[Microsoft Foundry portal](https://ai.azure.com/portal), add your data source. In the[index field mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping)section, you can map zero or one value to the**permitted groups**field, as long as the schema is compatible. If the**permitted groups**field isn't mapped, document level access is disabled.
+
+**Foundry portal**
+
+Once the Azure AI Search index is connected, your responses in the studio have document access based on the Microsoft Entra permissions of the logged in user.
+
+**API**
+
+When using the API, pass the `filter`
+
+parameter in each API request. For example:
+
+Important
+
+Use API keys with caution. Don't include the API key directly in your code, and never post it publicly. If you use an API key, store it securely in Azure Key Vault. For more information about using API keys securely in your apps, see [API keys with Azure Key Vault](/en-us/azure/key-vault/general/apps-api-keys-secrets).
+
+For more information about AI services security, see [Authenticate requests to Azure AI services](/en-us/azure/ai-services/authentication).
+
+For more information about security, see [Authenticate requests](/en-us/azure/ai-services/authentication).
+
+```
+{
+"messages": [
+{
+"role": "user",
+"content": "who is my manager?"
+}
+],
+"data_sources": [
+{
+"type": "azure_search",
+"parameters": {
+"endpoint": "<AZURE_AI_SEARCH_ENDPOINT>",
+"key": "<AZURE_AI_SEARCH_API_KEY>",
+"index_name": "<AZURE_AI_SEARCH_INDEX>",
+"filter": "my_group_ids/any(g:search.in(g, 'group_id1, group_id2'))"
+}
+}
+]
+}
+```
+
+
+`my_group_ids`
+
+is the field name that you selected for**Permitted groups**during[fields mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping).`group_id1, group_id2`
+
+are groups attributed to the logged in user. The client application can retrieve and cache users' groups using the[Microsoft Graph API](/en-us/graph/api/user-list-transitivememberof).
+
+## Resource configuration
+
+Use the following sections to configure your resources for optimal secure usage. Even if you plan to only secure part of your resources, you still need to follow all the steps.
+
+This article describes network settings related to disabling public network for Azure OpenAI resources, Azure AI search resources, and storage accounts. Using selected networks with IP rules is not supported, because the services' IP addresses are dynamic.
+
+## Create resource group
+
+Create a resource group, so you can organize all the relevant resources. The resources in the resource group include but are not limited to:
+
+- One Virtual network
+- Three key services: one Azure OpenAI, one Azure AI Search, one Storage Account
+- Three Private endpoints, each is linked to one key service
+- Three Network interfaces, each is associated with one private endpoint
+- One Virtual network gateway, for the access from on-premises client machines
+- One Web App with virtual network integrated
+- One Private DNS zone, so the Web App finds the IP of your Azure OpenAI
+
+## Create virtual network
+
+The virtual network has three subnets.
+
+- The first subnet is used for the virtual network gateway.
+- The second subnet is used for the private endpoints for the three key services.
+- The third subnet is empty, and used for Web App outbound virtual network integration.
+
+## Configure Azure OpenAI
+
+### Enabled custom subdomain
+
+The [custom subdomain](/en-us/azure/ai-services/cognitive-services-custom-subdomains) is required for Microsoft Entra ID based authentication, and private DNS zone. If the Azure OpenAI resource is created using ARM template, the custom subdomain must be specified explicitly.
+
+### Enable managed identity
+
+To allow your Azure AI Search and Storage Account to recognize your Azure OpenAI in Foundry Models via Microsoft Entra ID authentication, you need to assign a managed identity for your Azure OpenAI in Foundry Models. The easiest way is to toggle on system assigned managed identity on Azure portal.
+[
+](../media/use-your-data/openai-managed-identity.png?view=foundry-classic#lightbox)
+
+To set the managed identities via the management API, see [the management API reference documentation](/en-us/rest/api/aiservices/accountmanagement/accounts/update#identity).
+
+```
+"identity": {
+"principalId": "<YOUR-PRINCIPAL-ID>",
+"tenantId": "<YOUR-TENNANT-ID>",
+"type": "SystemAssigned, UserAssigned",
+"userAssignedIdentities": {
+"/subscriptions/<YOUR-SUBSCIRPTION-ID>/resourceGroups/my-resource-group",
+"principalId": "<YOUR-PRINCIPAL-ID>",
+"clientId": "<YOUR-CLIENT-ID>"
+}
+}
+```
+
+
+### Enable trusted service
+
+To allow your Azure AI Search to call your Azure OpenAI `embedding model, while Azure OpenAI has no public network access, you need to set up Azure OpenAI to bypass Azure AI Search as a trusted service based on managed identity. Azure OpenAI identifies the traffic from your Azure AI Search by verifying the claims in the JSON Web Token (JWT). Azure AI Search must use the system assigned managed identity authentication to call the embedding endpoint.
+
+Set `networkAcls.bypass`
+
+as `AzureServices`
+
+from the management API. For more information, see [Virtual networks article](/en-us/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#grant-access-to-trusted-azure-services-for-azure-openai).
+
+This step can be skipped only if you have a [shared private link](#create-shared-private-link) for your Azure AI Search resource.
+
+### Disable public network access
+
+You can disable public network access of your Azure OpenAI resource in the Azure portal.
+
+To allow access to your Azure OpenAI from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#use-private-endpoints) that connect to your Azure OpenAI resource.
+
+## Configure Azure AI Search
+
+You can use basic pricing tier and higher for the search resource. It's not necessary, but if you use the S2 pricing tier, [advanced options](#create-shared-private-link) are available.
+
+### Enable managed identity
+
+To allow your other resources to recognize the Azure AI Search using Microsoft Entra ID authentication, you need to assign a managed identity for your Azure AI Search. The easiest way is to toggle on the system assigned managed identity in the Azure portal.
+
+### Enable role-based access control
+
+As Azure OpenAI uses managed identity to access Azure AI Search, you need to enable role-based access control in your Azure AI Search. To do it on Azure portal, select **Both** or **Role-based access control** in the **Keys** tab in the Azure portal.
+
+For more information, see the [Azure AI Search RBAC article](/en-us/azure/search/search-security-enable-roles).
+
+### Disable public network access
+
+You can disable public network access of your Azure AI Search resource in the Azure portal.
+
+To allow access to your Azure AI Search resource from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/search/service-create-private-endpoint) that connect to your Azure AI Search resource.
+
+### Enable trusted service
+
+You can enable trusted service of your search resource from Azure portal.
+
+Go to your search resource's network tab. With the public network access set to **disabled**, select **Allow Azure services on the trusted services list to access this search service.**
+
+You can also use the REST API to enable trusted service. This example uses the Azure CLI and the `jq`
+
+tool.
+
+```
+rid=/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/providers/Microsoft.Search/searchServices/<YOUR-RESOURCE-NAME>
+apiVersion=2024-03-01-Preview
+#store the resource properties in a variable
+az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" > search.json
+#replace bypass with AzureServices using jq
+jq '.properties.networkRuleSet.bypass = "AzureServices"' search.json > search_updated.json
+#apply the updated properties to the resource
+az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" \
+--method PUT \
+--body @search_updated.json
+```
+
+
+### Create shared private link
+
+Tip
+
+If you are using a basic or standard pricing tier, or if it is your first time to setup all of your resources securely, you should skip this advanced topic.
+
+This section is only applicable for S2 pricing tier search resource, because it requires [private endpoint support for indexers with a skill set](/en-us/azure/search/search-limits-quotas-capacity#shared-private-link-resource-limits).
+
+To create shared private link from your search resource connecting to your Azure OpenAI resource, see the [search documentation](/en-us/azure/search/search-indexer-howto-access-private). Select **Resource type** as `Microsoft.CognitiveServices/accounts`
+
+and **Group ID** as `openai_account`
+
+.
+
+With shared the private link, [step 8](#data-ingestion-architecture) of the data ingestion architecture diagram is changed from **bypass trusted service** to **shared private link**.
+
+## Configure Storage Account
+
+### Enable trusted service
+
+To allow access to your Storage Account from Azure OpenAI and Azure AI Search, you need to set up Storage Account to bypass your Azure OpenAI and Azure AI Search as [trusted services based on managed identity](/en-us/azure/storage/common/storage-network-security?tabs=azure-portal#trusted-access-based-on-a-managed-identity).
+
+In the Azure portal, navigate to your storage account networking tab, choose "Selected networks", and then select **Allow Azure services on the trusted services list to access this storage account** and click Save.
+
+### Disable public network access
+
+You can disable public network access of your Storage Account in the Azure portal.
+
+To allow access to your Storage Account from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/storage/common/storage-private-endpoints) that connect to your blob storage.
+
+## Role assignments
+
+So far you have already setup each resource work independently. Next you need to allow the services to authorize each other.
+
+| Role | Assignee | Resource | Description |
+|---|---|---|---|
+`Search Index Data Reader` |
+Azure OpenAI | Azure AI Search | Inference service queries the data from the index. |
+`Search Service Contributor` |
+Azure OpenAI | Azure AI Search | Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
+`Storage Blob Data Contributor` |
+Azure OpenAI | Storage Account | Reads from the input container, and writes the preprocessed result to the output container. |
+`Cognitive Services OpenAI Contributor` |
+Azure AI Search | Azure OpenAI, Microsoft Foundry Project | Allows the Azure AI Search resource access to the Azure OpenAI embedding endpoint. This role must be assigned on both the Azure OpenAI resource and the Microsoft Foundry project. |
+`Storage Blob Data Reader` |
+Azure AI Search | Storage Account | Reads document blobs and chunk blobs. |
+`Reader` |
+Foundry Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within a Foundry Project. |
+`Cognitive Services OpenAI User` |
+Web app | Azure OpenAI | Inference. |
+
+In the above table, the `Assignee`
+
+means the system assigned managed identity of that resource.
+
+The admin needs to have the `Owner`
+
+role on these resources to add role assignments.
+
+See the [Azure RBAC documentation](/en-us/azure/role-based-access-control/role-assignments-portal) for instructions on setting these roles in the Azure portal. You can use the [available script on GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/main/scripts/role_assignment.sh) to add the role assignments programmatically.
+
+To enable the developers to use these resources to build applications, the admin needs to add the developers' identity with the following role assignments to the resources.
+
+| Role | Resource | Description |
+|---|---|---|
+`Cognitive Services OpenAI Contributor` |
+Azure OpenAI | Call public ingestion API from
+`Contributor` role is not enough, because if you only have `Contributor` role, you cannot call data plane API via Microsoft Entra ID authentication, and Microsoft Entra ID authentication is required in the secure setup described in this article. |
+
+`Contributor`
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs).`Contributor`
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs).`Contributor`
+
+`Role Based Access Control Administrator`
+
+## Configure gateway and client
+
+To access the Azure OpenAI from your on-premises client machines, one of the approaches is to configure Azure VPN Gateway and Azure VPN Client.
+
+Follow [this guideline](/en-us/azure/vpn-gateway/tutorial-create-gateway-portal#VNetGateway) to create virtual network gateway for your virtual network.
+
+Follow [this guideline](/en-us/azure/vpn-gateway/openvpn-azure-ad-tenant#enable-authentication) to add point-to-site configuration, and enable Microsoft Entra ID based authentication. Download the Azure VPN Client profile configuration package, unzip, and import the `AzureVPN/azurevpnconfig.xml`
+
+file to your Azure VPN client.
+
+Configure your local machine `hosts`
+
+file to point your resources host names to the private IPs in your virtual network. The `hosts`
+
+file is located at `C:\Windows\System32\drivers\etc`
+
+for Windows, and at `/etc/hosts`
+
+on Linux. Example:
+
+```
+10.0.0.5 contoso.openai.azure.com
+10.0.0.6 contoso.search.windows.net
+10.0.0.7 contoso.blob.core.windows.net
+```
+
+
+## Foundry portal
+
+You should be able to use all [Foundry portal](https://ai.azure.com/?cid=learnDocs) features, including both ingestion and inference, from your on-premises client machines.
+
+## Web app
+
+The web app communicates with your Azure OpenAI resource. Since your Azure OpenAI resource has public network disabled, the web app needs to be set up to use the private endpoint in your virtual network to access your Azure OpenAI resource.
+
+The web app needs to resolve your Azure OpenAI host name to the private IP of the private endpoint for Azure OpenAI. So, you need to configure the private DNS zone for your virtual network first.
+
+[Create private DNS zone](/en-us/azure/dns/private-dns-getstarted-portal#create-a-private-dns-zone)in your resource group.[Add a DNS record](/en-us/azure/dns/private-dns-getstarted-portal#create-an-additional-dns-record). The IP is the private IP of the private endpoint for your Azure OpenAI resource, and you can get the IP address from the network interface associated with the private endpoint for your Azure OpenAI.[Link the private DNS zone to your virtual network](/en-us/azure/dns/private-dns-getstarted-portal#link-the-virtual-network)so the web app integrated in this virtual network can use this private DNS zone.
+
+When deploying the web app from [Foundry portal](https://ai.azure.com/?cid=learnDocs), select the same location with the virtual network, and select a proper SKU, so it can support the [virtual network integration feature](/en-us/azure/app-service/overview-vnet-integration).
+
+After the web app is deployed, from the Azure portal networking tab, configure the web app outbound traffic virtual network integration, choose the third subnet that you reserved for web app.
+
+## Using the API
+
+Make sure your sign-in credential has `Cognitive Services OpenAI Contributor`
+
+role on your Azure OpenAI resource, and run `az login`
+
+first.
+
+### Ingestion API
+
+See the [ingestion API reference article](/en-us/rest/api/azureopenai/ingestion-jobs?context=/azure/ai-foundry/openai/context/context) for details on the request and response objects used by the ingestion API.
+
+### Inference API
+
+See the [inference API reference article](../references/on-your-data?view=foundry-classic) for details on the request and response objects used by the inference API.
+
+## Use Microsoft Defender for Cloud
+
+You can now integrate [Microsoft Defender for Cloud](/en-us/azure/defender-for-cloud/defender-for-cloud-introduction) (preview) with your Azure resources to protect your applications. Microsoft Defender for Cloud protects your applications with [threat protection for AI workloads](/en-us/azure/defender-for-cloud/ai-threat-protection) , providing teams with evidence-based security alerts enriched with Microsoft threat intelligence signals and enables teams to strengthen their [security posture](/en-us/azure/defender-for-cloud/ai-security-posture) with integrated security best-practice recommendations.
+
+Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EXzLewuFRArQPJzR1tntlURThQR0hYU1MyRVRNODNMV1hBOUEzVlk3NC4u) to apply for access.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/reasoning -->
 
 # Azure OpenAI reasoning models
@@ -21387,41 +21754,41 @@ East US2 & Sweden Central (Global Standard) | Request access:
 
 `gpt-5.2`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5.1-codex-max`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5.1-codex-max`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5.1`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5.1`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5.1-chat`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5.1-chat`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)`gpt-5.1-codex`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)`gpt-5.1-codex`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5.1-codex-mini`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5.1-codex-mini`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)`gpt-5-pro`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)`gpt-5-pro`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5-codex`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5-codex`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5-mini`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.`gpt-5-mini`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)`gpt-5-nano`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)`gpt-5-nano`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)`o3-pro`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)`o3-pro`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/o3access). If you already have access to a limited access model no request is required.`codex-mini`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/o3access). If you already have access to a limited access model no request is required.`codex-mini`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)`o4-mini`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)`o4-mini`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)Request access:
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)Request access:
 
 [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)`o3`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/o3access)`o3-mini`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability)[Limited access model application](https://aka.ms/oai/o3access)`o3-mini`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability).`o1`
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).`o1`
 
-[Model availability](../concepts/models?view=foundry-classic#global-standard-model-availability).## API & feature support
+[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).## API & feature support
 
 Feature |
 gpt-5.2-codex |
@@ -21440,7 +21807,7 @@ gpt-5-nano, 2025-08-07 |
 API Version |
 |
 
-[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[Developer Messages](#developer-messages)[Structured Outputs](structured-outputs?view=foundry-classic)[Context Window](../concepts/models?view=foundry-classic#o-series-models)Input: 272,000
+[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[v1](../api-version-lifecycle?view=foundry-classic#api-evolution)[Developer Messages](#developer-messages)[Structured Outputs](structured-outputs?view=foundry-classic)[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#o-series-models)Input: 272,000
 
 Output: 128,000
 
@@ -21635,371 +22002,6 @@ to the beginning of your developer message, you can experiment with adding a mor
 Depending on your expected output you may need to customize your initial developer message further to target your specific use case.
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/on-your-data-configuration -->
-
-# Network and access configuration for Azure OpenAI On Your Data
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-Use this article to learn how to configure networking and access when using Azure OpenAI On Your Data with Microsoft Entra ID role-based access control, virtual networks, and private endpoints.
-
-## Data ingestion architecture
-
-When you use Azure OpenAI On Your Data to ingest data from Azure blob storage, local files or URLs into Azure AI Search, the following process is used to process the data.
-
-- Steps 1 and 2 are only used for file upload.
-- Downloading URLs to your blob storage is not illustrated in this diagram. After web pages are downloaded from the internet and uploaded to blob storage, steps 3 onward are the same.
-- One indexer, one index, and one data source in the Azure AI Search resource is created using prebuilt skills and
-[integrated vectorization](/en-us/azure/search/vector-search-integrated-vectorization). - Azure AI Search handles the extraction, chunking, and vectorization of chunked documents through integrated vectorization. If a scheduling interval is specified, the indexer will run accordingly.
-
-For the managed identities used in service calls, only system assigned managed identities are supported. User assigned managed identities aren't supported.
-
-## Inference architecture
-
-When you send API calls to chat with an Azure OpenAI model on your data, the service needs to retrieve the index fields during inference to perform fields mapping. Therefore the service requires the Azure OpenAI identity to have the `Search Service Contributor`
-
-role for the search service even during inference.
-
-If an embedding dependency is provided in the inference request, Azure OpenAI will vectorize the rewritten query, and both query and vector are sent to Azure AI Search for vector search.
-
-## Document-level access control
-
-Note
-
-Document-level access control is supported for Azure AI search only.
-
-Azure OpenAI On Your Data lets you restrict the documents that can be used in responses for different users with Azure AI Search [security filters](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad). When you enable document level access, Azure AI Search will trim the search results based on user Microsoft Entra group membership specified in the filter. You can only enable document-level access on existing Azure AI Search indexes. To enable document-level access:
-
-To register your application and create users and groups, follow the steps in the
-
-[Azure AI Search documentation](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad).[Index your documents with their permitted groups](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad#index-document-with-their-permitted-groups). Be sure that your new[security fields](/en-us/azure/search/search-security-trimming-for-azure-search#create-security-field)have the schema:`{"name": "group_ids", "type": "Collection(Edm.String)", "filterable": true }`
-
-`group_ids`
-
-is the default field name. If you use a different field name like`my_group_ids`
-
-, you can map the field in[index field mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping).Make sure each sensitive document in the index has this security field value set to the permitted groups of the document.
-
-In the
-
-[Microsoft Foundry portal](https://ai.azure.com/portal), add your data source. In the[index field mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping)section, you can map zero or one value to the**permitted groups**field, as long as the schema is compatible. If the**permitted groups**field isn't mapped, document level access is disabled.
-
-**Foundry portal**
-
-Once the Azure AI Search index is connected, your responses in the studio have document access based on the Microsoft Entra permissions of the logged in user.
-
-**API**
-
-When using the API, pass the `filter`
-
-parameter in each API request. For example:
-
-Important
-
-Use API keys with caution. Don't include the API key directly in your code, and never post it publicly. If you use an API key, store it securely in Azure Key Vault. For more information about using API keys securely in your apps, see [API keys with Azure Key Vault](/en-us/azure/key-vault/general/apps-api-keys-secrets).
-
-For more information about AI services security, see [Authenticate requests to Azure AI services](/en-us/azure/ai-services/authentication).
-
-For more information about security, see [Authenticate requests](/en-us/azure/ai-services/authentication).
-
-```
-{
-"messages": [
-{
-"role": "user",
-"content": "who is my manager?"
-}
-],
-"data_sources": [
-{
-"type": "azure_search",
-"parameters": {
-"endpoint": "<AZURE_AI_SEARCH_ENDPOINT>",
-"key": "<AZURE_AI_SEARCH_API_KEY>",
-"index_name": "<AZURE_AI_SEARCH_INDEX>",
-"filter": "my_group_ids/any(g:search.in(g, 'group_id1, group_id2'))"
-}
-}
-]
-}
-```
-
-
-`my_group_ids`
-
-is the field name that you selected for**Permitted groups**during[fields mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping).`group_id1, group_id2`
-
-are groups attributed to the logged in user. The client application can retrieve and cache users' groups using the[Microsoft Graph API](/en-us/graph/api/user-list-transitivememberof).
-
-## Resource configuration
-
-Use the following sections to configure your resources for optimal secure usage. Even if you plan to only secure part of your resources, you still need to follow all the steps.
-
-This article describes network settings related to disabling public network for Azure OpenAI resources, Azure AI search resources, and storage accounts. Using selected networks with IP rules is not supported, because the services' IP addresses are dynamic.
-
-## Create resource group
-
-Create a resource group, so you can organize all the relevant resources. The resources in the resource group include but are not limited to:
-
-- One Virtual network
-- Three key services: one Azure OpenAI, one Azure AI Search, one Storage Account
-- Three Private endpoints, each is linked to one key service
-- Three Network interfaces, each is associated with one private endpoint
-- One Virtual network gateway, for the access from on-premises client machines
-- One Web App with virtual network integrated
-- One Private DNS zone, so the Web App finds the IP of your Azure OpenAI
-
-## Create virtual network
-
-The virtual network has three subnets.
-
-- The first subnet is used for the virtual network gateway.
-- The second subnet is used for the private endpoints for the three key services.
-- The third subnet is empty, and used for Web App outbound virtual network integration.
-
-## Configure Azure OpenAI
-
-### Enabled custom subdomain
-
-The [custom subdomain](/en-us/azure/ai-services/cognitive-services-custom-subdomains) is required for Microsoft Entra ID based authentication, and private DNS zone. If the Azure OpenAI resource is created using ARM template, the custom subdomain must be specified explicitly.
-
-### Enable managed identity
-
-To allow your Azure AI Search and Storage Account to recognize your Azure OpenAI in Foundry Models via Microsoft Entra ID authentication, you need to assign a managed identity for your Azure OpenAI in Foundry Models. The easiest way is to toggle on system assigned managed identity on Azure portal.
-[
-](../media/use-your-data/openai-managed-identity.png?view=foundry-classic#lightbox)
-
-To set the managed identities via the management API, see [the management API reference documentation](/en-us/rest/api/aiservices/accountmanagement/accounts/update#identity).
-
-```
-"identity": {
-"principalId": "<YOUR-PRINCIPAL-ID>",
-"tenantId": "<YOUR-TENNANT-ID>",
-"type": "SystemAssigned, UserAssigned",
-"userAssignedIdentities": {
-"/subscriptions/<YOUR-SUBSCIRPTION-ID>/resourceGroups/my-resource-group",
-"principalId": "<YOUR-PRINCIPAL-ID>",
-"clientId": "<YOUR-CLIENT-ID>"
-}
-}
-```
-
-
-### Enable trusted service
-
-To allow your Azure AI Search to call your Azure OpenAI `embedding model, while Azure OpenAI has no public network access, you need to set up Azure OpenAI to bypass Azure AI Search as a trusted service based on managed identity. Azure OpenAI identifies the traffic from your Azure AI Search by verifying the claims in the JSON Web Token (JWT). Azure AI Search must use the system assigned managed identity authentication to call the embedding endpoint.
-
-Set `networkAcls.bypass`
-
-as `AzureServices`
-
-from the management API. For more information, see [Virtual networks article](/en-us/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#grant-access-to-trusted-azure-services-for-azure-openai).
-
-This step can be skipped only if you have a [shared private link](#create-shared-private-link) for your Azure AI Search resource.
-
-### Disable public network access
-
-You can disable public network access of your Azure OpenAI resource in the Azure portal.
-
-To allow access to your Azure OpenAI from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#use-private-endpoints) that connect to your Azure OpenAI resource.
-
-## Configure Azure AI Search
-
-You can use basic pricing tier and higher for the search resource. It's not necessary, but if you use the S2 pricing tier, [advanced options](#create-shared-private-link) are available.
-
-### Enable managed identity
-
-To allow your other resources to recognize the Azure AI Search using Microsoft Entra ID authentication, you need to assign a managed identity for your Azure AI Search. The easiest way is to toggle on the system assigned managed identity in the Azure portal.
-
-### Enable role-based access control
-
-As Azure OpenAI uses managed identity to access Azure AI Search, you need to enable role-based access control in your Azure AI Search. To do it on Azure portal, select **Both** or **Role-based access control** in the **Keys** tab in the Azure portal.
-
-For more information, see the [Azure AI Search RBAC article](/en-us/azure/search/search-security-enable-roles).
-
-### Disable public network access
-
-You can disable public network access of your Azure AI Search resource in the Azure portal.
-
-To allow access to your Azure AI Search resource from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/search/service-create-private-endpoint) that connect to your Azure AI Search resource.
-
-### Enable trusted service
-
-You can enable trusted service of your search resource from Azure portal.
-
-Go to your search resource's network tab. With the public network access set to **disabled**, select **Allow Azure services on the trusted services list to access this search service.**
-
-You can also use the REST API to enable trusted service. This example uses the Azure CLI and the `jq`
-
-tool.
-
-```
-rid=/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/providers/Microsoft.Search/searchServices/<YOUR-RESOURCE-NAME>
-apiVersion=2024-03-01-Preview
-#store the resource properties in a variable
-az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" > search.json
-#replace bypass with AzureServices using jq
-jq '.properties.networkRuleSet.bypass = "AzureServices"' search.json > search_updated.json
-#apply the updated properties to the resource
-az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" \
---method PUT \
---body @search_updated.json
-```
-
-
-### Create shared private link
-
-Tip
-
-If you are using a basic or standard pricing tier, or if it is your first time to setup all of your resources securely, you should skip this advanced topic.
-
-This section is only applicable for S2 pricing tier search resource, because it requires [private endpoint support for indexers with a skill set](/en-us/azure/search/search-limits-quotas-capacity#shared-private-link-resource-limits).
-
-To create shared private link from your search resource connecting to your Azure OpenAI resource, see the [search documentation](/en-us/azure/search/search-indexer-howto-access-private). Select **Resource type** as `Microsoft.CognitiveServices/accounts`
-
-and **Group ID** as `openai_account`
-
-.
-
-With shared the private link, [step 8](#data-ingestion-architecture) of the data ingestion architecture diagram is changed from **bypass trusted service** to **shared private link**.
-
-## Configure Storage Account
-
-### Enable trusted service
-
-To allow access to your Storage Account from Azure OpenAI and Azure AI Search, you need to set up Storage Account to bypass your Azure OpenAI and Azure AI Search as [trusted services based on managed identity](/en-us/azure/storage/common/storage-network-security?tabs=azure-portal#trusted-access-based-on-a-managed-identity).
-
-In the Azure portal, navigate to your storage account networking tab, choose "Selected networks", and then select **Allow Azure services on the trusted services list to access this storage account** and click Save.
-
-### Disable public network access
-
-You can disable public network access of your Storage Account in the Azure portal.
-
-To allow access to your Storage Account from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/storage/common/storage-private-endpoints) that connect to your blob storage.
-
-## Role assignments
-
-So far you have already setup each resource work independently. Next you need to allow the services to authorize each other.
-
-| Role | Assignee | Resource | Description |
-|---|---|---|---|
-`Search Index Data Reader` |
-Azure OpenAI | Azure AI Search | Inference service queries the data from the index. |
-`Search Service Contributor` |
-Azure OpenAI | Azure AI Search | Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
-`Storage Blob Data Contributor` |
-Azure OpenAI | Storage Account | Reads from the input container, and writes the preprocessed result to the output container. |
-`Cognitive Services OpenAI Contributor` |
-Azure AI Search | Azure OpenAI, Microsoft Foundry Project | Allows the Azure AI Search resource access to the Azure OpenAI embedding endpoint. This role must be assigned on both the Azure OpenAI resource and the Microsoft Foundry project. |
-`Storage Blob Data Reader` |
-Azure AI Search | Storage Account | Reads document blobs and chunk blobs. |
-`Reader` |
-Foundry Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within a Foundry Project. |
-`Cognitive Services OpenAI User` |
-Web app | Azure OpenAI | Inference. |
-
-In the above table, the `Assignee`
-
-means the system assigned managed identity of that resource.
-
-The admin needs to have the `Owner`
-
-role on these resources to add role assignments.
-
-See the [Azure RBAC documentation](/en-us/azure/role-based-access-control/role-assignments-portal) for instructions on setting these roles in the Azure portal. You can use the [available script on GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/main/scripts/role_assignment.sh) to add the role assignments programmatically.
-
-To enable the developers to use these resources to build applications, the admin needs to add the developers' identity with the following role assignments to the resources.
-
-| Role | Resource | Description |
-|---|---|---|
-`Cognitive Services OpenAI Contributor` |
-Azure OpenAI | Call public ingestion API from
-`Contributor` role is not enough, because if you only have `Contributor` role, you cannot call data plane API via Microsoft Entra ID authentication, and Microsoft Entra ID authentication is required in the secure setup described in this article. |
-
-`Contributor`
-
-[Foundry portal](https://ai.azure.com/?cid=learnDocs).`Contributor`
-
-[Foundry portal](https://ai.azure.com/?cid=learnDocs).`Contributor`
-
-`Role Based Access Control Administrator`
-
-## Configure gateway and client
-
-To access the Azure OpenAI from your on-premises client machines, one of the approaches is to configure Azure VPN Gateway and Azure VPN Client.
-
-Follow [this guideline](/en-us/azure/vpn-gateway/tutorial-create-gateway-portal#VNetGateway) to create virtual network gateway for your virtual network.
-
-Follow [this guideline](/en-us/azure/vpn-gateway/openvpn-azure-ad-tenant#enable-authentication) to add point-to-site configuration, and enable Microsoft Entra ID based authentication. Download the Azure VPN Client profile configuration package, unzip, and import the `AzureVPN/azurevpnconfig.xml`
-
-file to your Azure VPN client.
-
-Configure your local machine `hosts`
-
-file to point your resources host names to the private IPs in your virtual network. The `hosts`
-
-file is located at `C:\Windows\System32\drivers\etc`
-
-for Windows, and at `/etc/hosts`
-
-on Linux. Example:
-
-```
-10.0.0.5 contoso.openai.azure.com
-10.0.0.6 contoso.search.windows.net
-10.0.0.7 contoso.blob.core.windows.net
-```
-
-
-## Foundry portal
-
-You should be able to use all [Foundry portal](https://ai.azure.com/?cid=learnDocs) features, including both ingestion and inference, from your on-premises client machines.
-
-## Web app
-
-The web app communicates with your Azure OpenAI resource. Since your Azure OpenAI resource has public network disabled, the web app needs to be set up to use the private endpoint in your virtual network to access your Azure OpenAI resource.
-
-The web app needs to resolve your Azure OpenAI host name to the private IP of the private endpoint for Azure OpenAI. So, you need to configure the private DNS zone for your virtual network first.
-
-[Create private DNS zone](/en-us/azure/dns/private-dns-getstarted-portal#create-a-private-dns-zone)in your resource group.[Add a DNS record](/en-us/azure/dns/private-dns-getstarted-portal#create-an-additional-dns-record). The IP is the private IP of the private endpoint for your Azure OpenAI resource, and you can get the IP address from the network interface associated with the private endpoint for your Azure OpenAI.[Link the private DNS zone to your virtual network](/en-us/azure/dns/private-dns-getstarted-portal#link-the-virtual-network)so the web app integrated in this virtual network can use this private DNS zone.
-
-When deploying the web app from [Foundry portal](https://ai.azure.com/?cid=learnDocs), select the same location with the virtual network, and select a proper SKU, so it can support the [virtual network integration feature](/en-us/azure/app-service/overview-vnet-integration).
-
-After the web app is deployed, from the Azure portal networking tab, configure the web app outbound traffic virtual network integration, choose the third subnet that you reserved for web app.
-
-## Using the API
-
-Make sure your sign-in credential has `Cognitive Services OpenAI Contributor`
-
-role on your Azure OpenAI resource, and run `az login`
-
-first.
-
-### Ingestion API
-
-See the [ingestion API reference article](/en-us/rest/api/azureopenai/ingestion-jobs?context=/azure/ai-foundry/openai/context/context) for details on the request and response objects used by the ingestion API.
-
-### Inference API
-
-See the [inference API reference article](../references/on-your-data?view=foundry-classic) for details on the request and response objects used by the inference API.
-
-## Use Microsoft Defender for Cloud
-
-You can now integrate [Microsoft Defender for Cloud](/en-us/azure/defender-for-cloud/defender-for-cloud-introduction) (preview) with your Azure resources to protect your applications. Microsoft Defender for Cloud protects your applications with [threat protection for AI workloads](/en-us/azure/defender-for-cloud/ai-threat-protection) , providing teams with evidence-based security alerts enriched with Microsoft threat intelligence signals and enables teams to strengthen their [security posture](/en-us/azure/defender-for-cloud/ai-security-posture) with integrated security best-practice recommendations.
-
-Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EXzLewuFRArQPJzR1tntlURThQR0hYU1MyRVRNODNMV1hBOUEzVlk3NC4u) to apply for access.
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/create-resource -->
 
 # Create and deploy an Azure OpenAI in Microsoft Foundry Models resource
@@ -22120,7 +22122,7 @@ At this step you might be offered to upgrade your Azure OpenAI resource to Found
 
 **+ Deploy model**>**Deploy base model**to open the deployment window.Select the desired model and then select
 
-**Confirm**. For a list of available models per region, see[Model summary table and region availability](../concepts/models?view=foundry-classic#model-summary-table-and-region-availability).In the next window configure the following fields:
+**Confirm**. For a list of available models per region, see[Model summary table and region availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#model-summary-table-and-region-availability).In the next window configure the following fields:
 
 Field Description **Deployment name**Choose a name carefully. The deployment name is used in your code to call the model by using the client libraries and the REST APIs. **Deployment type****Standard**,**Global-Batch**,**Global-Standard**,**Provisioned-Managed**. Learn more about[deployment type options](../../foundry-models/concepts/deployment-types?view=foundry-classic).**Deployment details**(Optional)You can set optional advanced settings, as needed for your resource.
 
@@ -22420,7 +22422,7 @@ Remove-AzCognitiveServicesAccount -Name MyOpenAIResource -ResourceGroupName OAIR
 ## Next steps
 
 [Get started with the Azure OpenAI security building block](/en-us/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=python)- Learn more about the
-[Azure OpenAI models](../concepts/models?view=foundry-classic). - For information on pricing visit the
+[Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic). - For information on pricing visit the
 [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
 
 ---
@@ -23049,7 +23051,7 @@ Tool/function descriptions are currently limited to 1,024 characters with Azure 
 
 ## Next steps
 
-[Learn more about Azure OpenAI](../overview?view=foundry-classic).- For more examples on working with functions, check out the
+[Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).- For more examples on working with functions, check out the
 [Azure OpenAI Samples GitHub repository](https://aka.ms/oai/functions-samples)
 
 ---
@@ -23326,386 +23328,6 @@ For more information on Azure Advisor, see [Azure Advisor overview](/en-us/azure
 [Understand log searches in Azure Monitor logs](/en-us/azure/azure-monitor/logs/log-query-overview)about logs.
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/manage-costs -->
-
-# Plan and manage costs for Microsoft Foundry
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
-
-Note
-
-This document refers to the [Microsoft Foundry (new)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-This article shows you how to estimate expenses before deployment, track spending in real time, and set up alerts to avoid budget surprises.
-
-## Prerequisites
-
-Before you begin, ensure you have:
-
-**Azure subscription:**An active Azure subscription with the resources you want to monitor.**Role-based access control (RBAC):**One or both of the following roles at the subscription or resource group scope:– View costs and usage data.**Cost Management Reader**– View Foundry resource data and costs.**AI User**
-
-**Supported Azure account type:**One of the[supported account types for Cost Management](/en-us/azure/cost-management-billing/costs/understand-cost-mgt-data).
-
-If you need to grant these roles to team members, see [Assign access to Cost Management data](/en-us/azure/cost-management-billing/costs/assign-access-acm-data) and [Foundry RBAC roles](rbac-foundry?view=foundry-classic).
-
-Note
-
-Foundry doesn't have a dedicated page in the Azure pricing calculator because Foundry is composed of several optional Azure services. This article shows how to use the calculator to estimate costs for these services.
-
-## Estimate costs before using Foundry
-
-Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you add Foundry resources.
-
-- Go to the
-[Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/). - Search for and select a product, such as Azure Speech in Foundry or Azure Language in Foundry.
-- Select additional products to estimate costs for multiple services. For example, add Azure AI Search to include potential search costs.
-- As you add resources to your project, return to the calculator and update estimates.
-
-**Reference:** [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/)
-
-## Costs associated with Foundry
-
-When you create a Foundry resource, you pay for the Azure services you use, such as Azure OpenAI, Azure Speech in Foundry, Content Safety, Azure Vision in Foundry, Azure Document Intelligence, and Azure Language in Foundry. Costs vary by service and feature. For details, see the [Foundry Tools pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/).
-
-## Understand billing models for Foundry
-
-Foundry resources run on Azure infrastructure and accrue costs when deployed. When you create or use Foundry resources, you're charged based on the services you use.
-
-Two billing models are available:
-
-**Pay-as-you-go (Serverless API):**You're billed according to your usage of each Azure service.**Commitment tiers:**You commit to using service features for a fixed fee, providing predictable costs. For details, see[Commitment tier pricing](/en-us/azure/ai-services/commitment-tier).
-
-Note
-
-If you use the resource above the quota provided by the commitment plan, you pay for the extra usage as described in the overage amount in the Azure portal when you buy a commitment plan.
-
-## Understand the billing model for Foundry Models
-
-### Token-based pricing
-
-Language and vision models process inputs by breaking them down into tokens. Each token is roughly four characters of text; image and audio content are also converted to tokens for billing. You're charged per 1,000 tokens (input and output combined). Token pricing varies by model series and deployment type. For the latest rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
-
-### Models sold directly by Azure
-
-Models sold directly by Azure (including Azure OpenAI) appear as billing meters under each Foundry resource. Microsoft handles billing directly; you see separate meters for each model's input and output usage.
-
-### Models from partners and community
-
-Third-party provider models (such as Cohere) are billed via Azure Marketplace. These entries appear at the resource group level (not the Foundry resource level) under **Marketplace** > **Service Name** *SaaS*, with separate meters for inputs and outputs.
-
-Important
-
-All models, whether Microsoft-sold or third-party, are hosted in Azure cloud with no external service interaction. Billing location differences affect cost analysis but not actual charges.
-
-### Fine-tuned models
-
-Azure OpenAI fine-tuned models are charged in three ways:
-
-**Training:**Charged per token in your training file.**Hosting:**Hourly cost per deployed model (applies even if the model is unused).**Inference:**Per 1,000 tokens (input and output) when the model is called.
-
-Monitor hosted fine-tuned model costs closely to avoid unexpected charges. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
-
-Important
-
-Inactive deployments (unused for 15 consecutive days) are deleted automatically. This deletion doesn't affect the underlying model; you can redeploy it at any time. However, deployed fine-tuned models incur hourly hosting costs even if inactive, so remove unused deployments promptly to control costs.
-
-### HTTP Error response code and billing status
-
-If the service performs processing, you're charged even if the status code isn't successful (not 200). For example, a 400 error due to a content filter or input limit, or a 408 error due to a timeout.
-
-If the service doesn't perform processing, you aren't charged. For example, a 401 error due to authentication or a 429 error due to exceeding the rate limit.
-
-## Monitor costs
-
-Track your Foundry spending using cost analysis tools. You can view costs by day, month, or year, compare against budgets, and identify spending trends.
-
-Access cost information from the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) portal or the [Azure portal](https://portal.azure.com/).
-
-Access cost information from the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) portal or the [Azure portal](https://portal.azure.com/).
-
-**Reference:** [Cost analysis](/en-us/azure/cost-management-billing/costs/quick-acm-cost-analysis)
-
-Important
-
-Your Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
-
-### Configure permissions to view costs
-
-To view Foundry costs, ensure you have the [AI User role](rbac-foundry?view=foundry-classic#built-in-roles) and [Cost Management Reader role](/en-us/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group or subscription level.
-
-Or you can create the following custom rules:
-
-`Microsoft.Consumption/*/read`
-
-`Microsoft.CostManagement/*/read`
-
-`Microsoft.Resources/subscriptions/read`
-
-`Microsoft.CognitiveServices/accounts/AIServices/usage/read`
-
-
-Note
-
-You need the **Owner** role at the subscription or resource group scope to create custom roles in that scope.
-
-To create a custom role, use one of the following articles:
-
-For more information about custom roles, see [Azure custom roles](/en-us/azure/role-based-access-control/custom-roles).
-
-To create a custom role, construct a role definition JSON file that specifies the permission and scope for the role. The following example defines a custom Foundry Cost Reader role scoped at a specific resource level:
-
-```
-{
-"Name": "Foundry Cost Reader",
-"IsCustom": true,
-"Description": "Can see cost metrics in Foundry",
-"Actions": [
-"Microsoft.Consumption/*/read",
-"Microsoft.CostManagement/*/read",
-"Microsoft.Resources/subscriptions/read",
-"Microsoft.CognitiveServices/accounts/AIServices/usage/read"
-],
-"NotActions": [],
-"DataActions": [],
-"NotDataActions": [],
-"AssignableScopes": [
-"/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<foundryResourceName>"
-]
-}
-```
-
-
-Replace `<subscriptionId>`
-
-, `<resourceGroupName>`
-
-, and `<foundryResourceName>`
-
-with your actual values.
-
-## Monitor in Foundry portal
-
-- Sign in to
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**.Sign in to[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. - Use the sections below to monitor costs.
-
-Note
-
-Estimates do not reflect discounts or contracted pricing that may appear on your final bill. Estimates cover standard deployment costs only, not [provisioned throughput](../openai/concepts/provisioned-throughput?view=foundry-classic).
-
-### Agent costs
-
-- Select
-**Operate**in the upper-right navigation. - Select
-**Overview**in the left pane. - At the top of the page, select the subscription, one or more projects, and a date range.
-- The
-**Estimated cost**tile shows estimates of all the agents for the selected project(s) for the selected dates. These estimates do not currently include prompt agent and non-Foundry agent costs.
-
-For individual agent estimates:
-
-- Select
-**Assets**in the left pane. - Select the
-**Agents**tab. - The
-**Estimated costs**column shows monthly estimates based on agent configuration and usage patterns.
-
-**Reference:** [Agent concepts](../agents/concepts/development-lifecycle?view=foundry-classic)
-
-To view detailed agent costs:
-
-- Select
-**Build**in the upper-right navigation. - Select
-**Agents**in the left pane. - Select an agent.
-- Select the
-**Monitor**tab. - Set the date range in the upper-right corner.
-- View token costs and usage metrics for the selected range.
-
-**Reference:** [Monitor agent metrics](../agents/how-to/metrics?view=foundry-classic)
-
-### Model deployment costs
-
-- Select
-**Build**in the upper-right navigation. - Select
-**Models**in the left pane. - Select a model.
-- Select the
-**Monitor**tab. - Set the date range in the upper-right corner. You see total cost and an estimated cost chart for the selected range.
-
-**Reference:** [Monitor models](../foundry-models/how-to/monitor-models?view=foundry-classic)
-
-When you select **View More Details** or **Azure Cost Management**, you're directed to the Azure portal's **Cost Management** section. Note: Azure portal costs show aggregated charges for the entire Cognitive Services account, not individual models. Costs display in USD only.
-
-Note
-
-Token and request charts can sometimes show lower values than the **Estimated cost** view because late‑arrival usage events may not be included in those charts. If there’s a mismatch, rely on **Estimated cost** as the most accurate view, and note that your **Azure Cost Management invoice** remains the final source of truth.
-
-## Monitor in Azure portal
-
-Sign in to the
-
-[Azure portal](https://portal.azure.com/).View costs for your resource group or individual Foundry resource.
-
-Tip
-
-To open your Resource group:
-
-- Sign in to
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**.Sign in to[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. - Select your project, then select
-**Management center**from the left menu. - Under the
-**Resource**heading, select**Overview**. - Under the
-**Resource properties**, select the link to open it directly in the Azure portal.
-
-Tip
-
-To open your Foundry resource in Azure portal:
-
-- Sign in to
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**.Sign in to[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. - Select
-**Operate**from the upper-right navigation. - Select
-**Admin**. - Select the link for the parent resource in the second column.
-- Select
-**Manage this resource in the Azure portal**under the**View resource**heading in the upper-right.
-
-In the Azure portal, select
-
-**Cost analysis**under**Cost Management**(for your resource group or Foundry resource).View the cost overview. Optionally, add filters (deployment tags, user-defined tags) to segment costs by model deployment:
-
-Select
-
-**Costs by resource**>**Resources**to see your Foundry resource cost split across model deployments:
-
-### Understand cost breakdown by meter
-
-Use the **Cost Analysis** tool to view costs grouped by billing meter:
-
-Sign in to the
-
-[Azure portal](https://portal.azure.com/)and select your resource group.Select
-
-**Cost analysis**under**Cost Management**.By default, cost analysis is scoped to the selected resource group.
-
-Important
-
-Scope
-
-*Cost Analysis*to the resource group where you deployed the Foundry resource. The cost meters associated with Models from Partners and Community display under the resource group instead of the Foundry resource.Modify
-
-**Group by**to**Meter**. You can now see that for this particular resource group, the source of the costs comes from different model series.
-
-#### Models sold directly by Azure
-
-Models sold directly by Azure (including Azure OpenAI) are charged directly. They appear as billing meters under each Foundry resource. Microsoft handles this billing directly. When you inspect your bill, you see billing meters that account for inputs and outputs for each consumed model.
-
-#### Models from partners and community
-
-Models provided by third-party providers, like Cohere, are billed using Azure Marketplace. As opposite to Microsoft billing meters, those entries are associated with the resource group where your Foundry is deployed instead of to the Foundry resource itself. Given model providers charge you directly, you see entries under the category **Marketplace** and **Service Name** *SaaS* accounting for inputs and outputs for each consumed model.
-
-Important
-
-This distinction between Models Sold Directly by Azure (including Azure OpenAI) and Models from Partners and Community only affects how the model is made available to you and how you are charged. In all cases, models are hosted within Azure cloud and there's no interaction with external services or providers.
-
-### Monitor costs by resource
-
-You can get more detailed billing information by grouping costs by resource:
-
-In
-
-**Cost Analysis**, select**View**>**Cost by resource**.Now you can see the resources generating each of the billing meters. To understand the breakdown of what makes up that cost, it can help to modify
-
-**Group by**to**Meter**and switching the chart type to**Line**.Azure OpenAI models and Microsoft models are displayed as meters under each Foundry Tool resource.
-
-Some providers' models are displayed as meters under Global resources. The word
-
-*Global***isn't**related to the SKU of the model deployment (for instance,*Global standard*). If you have multiple Foundry Tool resources, your bill contains one entry**for each model for each Foundry Tool resource**. The resource meters have the format*[model-name]-[GUID]*where*[GUID]*is an identifier unique an associated with a given Foundry Tools resource. You notice billing meters accounting for inputs and outputs for each model you consumed.
-
-It's important to understand scope when you evaluate costs associated with Foundry Tools. If your resources are part of the same resource group, you can scope Cost Analysis at that level to understand the effect on costs. If your resources are spread across multiple resource groups, you can scope to the subscription level.
-
-When scoped at a higher level, you often need to add more filters to focus on Azure OpenAI usage. When scoped at the subscription level, you see many other resources that you might not care about in the context of Azure OpenAI cost management. When you scope at the subscription level, navigate to the full **Cost analysis tool** under the **Cost Management** service.
-
-Here's an example of how to use the **Cost analysis tool** to see your accumulated costs for a subscription or resource group:
-
-- Search for
-*Cost Management*in the top Azure search bar to navigate to the full service experience, which includes more options such as creating budgets. - If necessary, select
-**change**if the**Scope:**isn't pointing to the resource group or subscription you want to analyze. - On the left, select
-**Reporting + analytics**>**Cost analysis**. - On the
-**All views**tab, select**Accumulated costs**.
-
-The cost analysis dashboard shows the accumulated costs that are analyzed depending on what you specified for **Scope**.
-
-If you try to add a filter by service, you can't find Azure OpenAI in the list. This situation occurs because Azure OpenAI has commonality with a subset of Foundry Tools where the service level filter is **Cognitive Services**. If you want to see all Azure OpenAI resources across a subscription without any other type of Foundry Tool resources, instead scope to **Service tier: Azure OpenAI**:
-
-### Monitor costs for models in Azure Marketplace
-
-Azure Marketplace offers serverless API deployments. Model publishers might apply different costs depending on the offering. Each project in the Foundry portal has its own subscription with the offering, which you can use to monitor the costs and consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
-
-Sign in to the
-
-[Azure portal](https://portal.azure.com/)On the left pane, select
-
-**Cost Management + Billing**and then select**Cost Management**.On the left pane, under the section for
-
-**Reporting + analytics**, select**Cost Analysis**.Select a view such as
-
-**Resources**. The cost associated with each resource is displayed.On the
-
-**Type**column, select the filter icon to filter all the resources of type**microsoft.saas/resources**. This type corresponds to resources created from offers available in Azure Marketplace. For convenience, you can filter by resource types containing the string**SaaS**.One resource is displayed for each model offer per project. Naming of those resources is [Model offer name]-[GUID].
-
-Select to expand the resource details to get access to each of the costs meters associated with the resource.
-
-**Tier**represents the offering.**Product**is the specific product inside the offering.
-
-Some model providers might use the same name for both.
-
-Tip
-
-Remember that one resource is created per project, for each plan that your project subscribes to.
-
-When you expand the details, costs are reported per each of the meters associated with the offering. Each meter might track different sources of costs like inferencing, or fine tuning. The following meters are displayed (when some cost is associated with them):
-
-**Meter****Group****Description**paygo-inference-input-tokens Base model Costs associated with the tokens used as input for inference of a base model. paygo-inference-output-tokens Base model Costs associated with the tokens generated as output for the inference of base model. paygo-finetuned-model-inference-hosting Fine-tuned model Costs associated with the hosting of an inference endpoint for a fine-tuned model. This value isn't the cost of hosting the model, but the cost of having an endpoint serving it. paygo-finetuned-model-inference-input-tokens Fine-tuned model Costs associated with the tokens used as input for inference of a fine tuned model. paygo-finetuned-model-inference-output-tokens Fine-tuned model Costs associated with the tokens generated as output for the inference of a fine tuned model.
-
-## Create budgets
-
-**Prevent cost overruns with automated alerts.** [Create budgets](/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets) that track your spending limits and [set up alerts](/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) to notify you when costs approach or exceed thresholds.
-
-**Best practice:** Create budgets and alerts for Azure subscriptions and resource groups as part of an overall cost monitoring strategy.
-
-Create budgets with filters for specific resources or services in Azure if you want more granularity in your monitoring. Filters help ensure that you don't accidentally create new resources that cost more money. For more about filter options when you create a budget, see [Group and filter options](/en-us/azure/cost-management-billing/costs/group-filter).
-
-Important
-
-While OpenAI has an option for hard limits that prevent you from going over your budget, Azure OpenAI doesn't currently provide this functionality. You can start automation from action groups as part of your budget notifications to take more advanced actions, but this functionality requires additional custom development.
-
-## Export cost data
-
-You can [export your cost data](/en-us/azure/cost-management-billing/costs/tutorial-export-acm-data) to a storage account. Exporting data is helpful when you or others need to do additional data analysis for costs. For example, finance teams can analyze the data by using Excel or Power BI. You can export your costs on a daily, weekly, or monthly schedule and set a custom date range. Exporting cost data is the recommended way to retrieve cost datasets.
-
-## Other costs that might accrue
-
-Enabling capabilities such as sending data to Azure Monitor Logs and alerting incur extra costs for those services. These costs are visible under those other services and at the subscription level, but aren't visible when scoped just to your Foundry resource.
-
-### Using Azure Prepayment
-
-You can pay for Models Sold Directly by Azure charges with your Azure Prepayment (previously called monetary commitment) credit. However, you can't use Azure Prepayment credit to pay for charges for other provider models because they're billed through Azure Marketplace.
-
-For more information, see [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
-
-## Related content
-
-[Foundry status dashboard](../foundry-status-dashboard-documentation?view=foundry-classic)- Learn
-[how to optimize your cloud investment with cost management](/en-us/azure/cost-management-billing/costs/cost-mgt-best-practices). - Learn more about managing costs with
-[cost analysis](/en-us/azure/cost-management-billing/costs/quick-acm-cost-analysis). - Learn about how to
-[prevent unexpected costs](/en-us/azure/cost-management-billing/understand/analyze-unexpected-charges). - Take the
-[Cost Management](/en-us/training/paths/control-spending-manage-bills)guided learning course.
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/realtime-audio -->
 
 # Use the GPT Realtime API for speech and audio
@@ -23734,7 +23356,7 @@ You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input t
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models?view=foundry-classic#global-standard-model-availability).
+The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).
 
 `gpt-4o-mini-realtime-preview`
 
@@ -23762,7 +23384,7 @@ You should use API version `2025-04-01-preview`
 
 in the URL for the Realtime API.
 
-See the [models and versions documentation](../concepts/models?view=foundry-classic#audio-models) for more information.
+See the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#audio-models) for more information.
 
 ## Get started
 
@@ -23906,7 +23528,7 @@ In the same [ response.create](../realtime-audio-reference?view=foundry-classic#
 "topic": "world_capitals"
 },
 "modalities": ["text"],
-"prompt": "What is the capital of France?"
+"prompt": "What is the capital/major city of France?"
 }
 }
 ```
@@ -23942,7 +23564,7 @@ array can contain new inputs or references to existing conversation items.
 "response": {
 "conversation": "none",
 "modalities": ["text"],
-"prompt": "What is the capital of France?",
+"prompt": "What is the capital/major city of France?",
 "input": [
 {
 "type": "item_reference",
@@ -23954,7 +23576,7 @@ array can contain new inputs or references to existing conversation items.
 "content": [
 {
 "type": "input_text",
-"text": "The capital of France is Paris."
+"text": "The capital/major city of France is Paris."
 },
 ],
 },
@@ -26215,7 +25837,7 @@ Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to
 
 ### Region, model, and API support
 
-The [models page](../concepts/models?view=foundry-classic#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported. Assistants can be used in version `2024-02-15-preview`
+The [models page](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported. Assistants can be used in version `2024-02-15-preview`
 
 and later of the Azure OpenAI inference [preview API](../reference-preview?view=foundry-classic#api-specs). A full list of previous API versions can be found on [GitHub](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview).
 
@@ -28425,7 +28047,7 @@ The responses API is currently available in the following regions:
 
 )
 
-Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models?view=foundry-classic) for model region availability.
+Not every model is available in the regions supported by the responses API. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) for model region availability.
 
 Note
 
@@ -30188,7 +29810,7 @@ WebSockets aren't recommended for real-time audio streaming because they have hi
 
 ## Supported models
 
-You can access the GPT real-time models for global deployments in the [East US 2 and Sweden Central regions](../concepts/models?view=foundry-classic#global-standard-model-availability).
+You can access the GPT real-time models for global deployments in the [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).
 
 `gpt-4o-mini-realtime-preview`
 
@@ -30206,7 +29828,7 @@ You should use API version `2025-08-28`
 
 in the URL for the Realtime API. The API version is included in the sessions URL.
 
-For more information about supported models, see the [models and versions documentation](../concepts/models?view=foundry-classic#audio-models).
+For more information about supported models, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#audio-models).
 
 Important
 
@@ -32947,7 +32569,7 @@ After you deploy a customized model, if at any time the deployment remains inact
 
 The deletion of an inactive deployment doesn't delete or affect the underlying customized model. The customized model can be redeployed at any time.
 
-As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](manage-costs?view=foundry-classic#fine-tuned-models).
+As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](../../concepts/manage-costs?view=foundry-classic#fine-tuned-models).
 
 You can delete the deployment for your fine-tuned model on the **Build** > **Models** page in the Foundry portal.
 
@@ -32980,7 +32602,7 @@ You can't delete a fine-tuned model if it has an existing deployment. You must [
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`
 
@@ -33040,7 +32662,7 @@ or `1`
 .
 
 ```
-{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital/major city of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "William Shakespeare", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
 ```
@@ -33112,7 +32734,7 @@ print(response.model_dump_json(indent=2))
 
 Note
 
-We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models) that supports Standard-tier training.
+We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models) that supports Standard-tier training.
 
 You can also pass additional optional parameters, like hyperparameters, to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
 
@@ -33384,7 +33006,7 @@ After you deploy a customized model, if at any time the deployment remains inact
 
 The deletion of an inactive deployment doesn't delete or affect the underlying customized model. The customized model can be redeployed at any time.
 
-As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](manage-costs?view=foundry-classic#fine-tuned-models).
+As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](../../concepts/manage-costs?view=foundry-classic#fine-tuned-models).
 
 You can use either of these methods to delete the deployment for your customized model:
 
@@ -33433,7 +33055,7 @@ openai.File.delete(sid = id)
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`
 
@@ -33493,7 +33115,7 @@ or `1`
 .
 
 ```
-{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital/major city of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "William Shakespeare", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
 ```
@@ -33559,7 +33181,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
 ```
 
 
-If you're fine-tuning a model that supports [global training](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models), you can specify the training type by using the `extra_body`
+If you're fine-tuning a model that supports [global training](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models), you can specify the training type by using the `extra_body`
 
 named argument and using `api-version=2025-04-01-preview`
 
@@ -33901,13 +33523,13 @@ Items marked (preview) in this article are currently in public preview. This pre
 - Read the
 [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations?view=foundry-classic). - You need an Azure subscription.
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - You need an Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. For the list of available models by region and supported functionality, check the
-[model summary table and region availability](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models). For more information, see[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). - Fine-tuning requires the
+[model summary table and region availability](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models). For more information, see[Create a resource and deploy a model with Azure OpenAI](create-resource?view=foundry-classic). - Fine-tuning requires the
 **Azure AI Owner**role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them. - If you don't already have access to view quotas and deploy models in the Foundry portal, you need
 [more permissions](role-based-access-control?view=foundry-classic).
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`
 
@@ -33972,7 +33594,7 @@ or `1`
 .
 
 ```
-{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital/major city of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "William Shakespeare", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
 ```
@@ -34023,7 +33645,7 @@ The Standard tier provides dedicated capacity for fine-tuning with predictable p
 
 #### Global Standard training tier
 
-The Global Training tier expands the reach of model customization with the [more affordable](https://aka.ms/aoai-pricing) pricing of other Global offerings. It doesn't offer [data residency](https://aka.ms/data-residency). If you need data residency, see the [list of available regions](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models) for your chosen model.
+The Global Training tier expands the reach of model customization with the [more affordable](https://aka.ms/aoai-pricing) pricing of other Global offerings. It doesn't offer [data residency](https://aka.ms/data-residency). If you need data residency, see the [list of available regions](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models) for your chosen model.
 
 Your training data and the resulting model weights might be copied to another Azure region.
 
@@ -34200,7 +33822,7 @@ After you deploy a customized model, if at any time the deployment remains inact
 
 The deletion of an inactive deployment doesn't delete or affect the underlying customized model. The customized model can be redeployed at any time.
 
-As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](manage-costs?view=foundry-classic#fine-tuned-models).
+As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](../../concepts/manage-costs?view=foundry-classic#fine-tuned-models).
 
 You can delete the deployment for your custom model on the **Deployments** pane in the Foundry portal. Select the deployment to delete, and then select **Delete**.
 
@@ -34237,7 +33859,7 @@ You can optionally delete training and validation files that you uploaded for tr
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`
 
@@ -34297,7 +33919,7 @@ or `1`
 .
 
 ```
-{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital/major city of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "William Shakespeare", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
 ```
@@ -34369,7 +33991,7 @@ print(response.model_dump_json(indent=2))
 
 Note
 
-We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models) that supports Standard-tier training.
+We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models) that supports Standard-tier training.
 
 You can also pass additional optional parameters, like hyperparameters, to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
 
@@ -34641,7 +34263,7 @@ After you deploy a customized model, if at any time the deployment remains inact
 
 The deletion of an inactive deployment doesn't delete or affect the underlying customized model. The customized model can be redeployed at any time.
 
-As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](manage-costs?view=foundry-classic#fine-tuned-models).
+As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](../../concepts/manage-costs?view=foundry-classic#fine-tuned-models).
 
 You can use either of these methods to delete the deployment for your customized model:
 
@@ -34690,7 +34312,7 @@ openai.File.delete(sid = id)
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`
 
@@ -34750,7 +34372,7 @@ or `1`
 .
 
 ```
-{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital/major city of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "William Shakespeare", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
 ```
@@ -34816,7 +34438,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
 ```
 
 
-If you're fine-tuning a model that supports [global training](../concepts/models?view=foundry-classic&pivots=azure-openai#fine-tuning-models), you can specify the training type by using the `extra_body`
+If you're fine-tuning a model that supports [global training](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai#fine-tuning-models), you can specify the training type by using the `extra_body`
 
 named argument and using `api-version=2025-04-01-preview`
 
@@ -35184,17 +34806,11 @@ Access to this page requires authorization. You can try [signing in](#) or [chan
 
 Access to this page requires authorization. You can try [changing directories].
 
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI itself in [Azure OpenAI documentation](/en-us/azure/ai-foundry/openai/).
 
 ## Azure OpenAI models
 
-Learn more about the different capabilities of each model in [Azure OpenAI models](concepts/models?view=foundry-classic). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](how-to/business-continuity-disaster-recovery?view=foundry-classic), take careful note of the deployment types, regions, and model availability as not all model/type combinations are available in both regions.
+Learn more about the different capabilities of each model in [Azure OpenAI models](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](how-to/business-continuity-disaster-recovery?view=foundry-classic), take careful note of the deployment types, regions, and model availability as not all model/type combinations are available in both regions.
 
 The following sections show model availability by region and deployment type. Models and versions not listed are not currently available in Azure Government. For general limits, quotas, and other details refer to [Azure OpenAI quotas and limits](/en-us/azure/ai-foundry/openai/quotas-limits/).
 
@@ -35238,6 +34854,17 @@ gpt-35-turbo, 0125 |
 | usgovarizona | - | ✅ | ✅ | - | ✅ |
 | usgovvirginia | - | ✅ | ✅ | - | ✅ |
 | USGov DataZone | ✅ | ✅ | - | ✅ | - |
+
+### Model Capabilities
+
+Not all model capabilities are deployed to Azure Government. General information can be found at [Foundry Models sold directly by Azure](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure). The following shows any relevant differences in Azure Government.
+
+| Model ID | Context window |
+|---|---|
+`gpt-4.1` (2025-04-14) |
+- 1,047,576 (not offered) - 128,000 (standard & provisioned managed deployments) |
+`gpt-4.1-mini` (2025-04-14) |
+- 1,047,576 (not offered) - 128,000 (standard & provisioned managed deployments) |
 
 ### Model Retirements
 
@@ -36169,7 +35796,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 To learn more, see the[getting started with reasoning models page](how-to/reasoning?view=foundry-classic).`gpt-5-chat`
 
-is now available. To learn more, see the[models page](concepts/models?view=foundry-classic)`gpt-5`
+is now available. To learn more, see the[models page](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)`gpt-5`
 
 is now available for[Provisioned Throughput Units (PTU)](how-to/provisioned-throughput-onboarding?view=foundry-classic#how-much-throughput-per-ptu-you-get-for-each-model).`gpt-5-mini`
 
@@ -36258,7 +35885,7 @@ models are now available. These are the latest reasoning models from Azure OpenA
 
 ### GPT-4.1 released
 
-GPT 4.1 and GPT 4.1-nano are now available. These are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](concepts/models?view=foundry-classic#gpt-41-series).
+GPT 4.1 and GPT 4.1-nano are now available. These are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#gpt-41-series).
 
 ### gpt-4o audio models released
 
@@ -36284,7 +35911,7 @@ model for text to speech generation via the`/audio`
 
 API.
 
-For more information about available models, see the [models and versions documentation](concepts/models?view=foundry-classic#audio-models).
+For more information about available models, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#audio-models).
 
 ## March 2025
 
@@ -36300,7 +35927,7 @@ Request access: `computer-use-preview`
 
 limited access model application
 
-For more information on model capabilities, and region availability see the [models documentation](concepts/models?view=foundry-classic#computer-use-preview).
+For more information on model capabilities, and region availability see the [models documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#computer-use-preview).
 
 [Playwright integration demo code](how-to/responses?view=foundry-classic#computer-use).
 
@@ -36318,7 +35945,7 @@ In addition to the deployment-level content filtering configuration, we now also
 
 The latest GPT model that excels at diverse text and image tasks is now available on Azure OpenAI.
 
-For more information on model capabilities, and region availability see the [models documentation](concepts/models?view=foundry-classic).
+For more information on model capabilities, and region availability see the [models documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ### Stored completions API
 
@@ -36346,7 +35973,7 @@ The `gpt-4o-mini-realtime-preview`
 
 ) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](realtime-audio-quickstart?view=foundry-classic).
 
-For more information about available models, see the [models and versions documentation](concepts/models?view=foundry-classic#audio-models).
+For more information about available models, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#audio-models).
 
 ## January 2025
 
@@ -36362,7 +35989,7 @@ For more information about available models, see the [models and versions docume
 
 The `gpt-4o-audio-preview`
 
-model is now available for global deployments in [East US 2 and Sweden Central regions](concepts/models?view=foundry-classic#global-standard-model-availability). Use the `gpt-4o-audio-preview`
+model is now available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability). Use the `gpt-4o-audio-preview`
 
 model for audio generation.
 
@@ -36382,7 +36009,7 @@ The [Realtime API](realtime-audio-quickstart?view=foundry-classic) uses the same
 
 The `gpt-4o-realtime-preview`
 
-model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](concepts/models?view=foundry-classic#global-standard-model-availability). Use the `gpt-4o-realtime-preview`
+model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability). Use the `gpt-4o-realtime-preview`
 
 version 2024-12-17 model instead of the `gpt-4o-realtime-preview`
 
@@ -36448,7 +36075,7 @@ East US2 (Global Standard) Sweden Central (Global Standard) |
 
 model.
 
-For fine-tuning model region availability, see the [models page](concepts/models?view=foundry-classic#fine-tuning-models).
+For fine-tuning model region availability, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#fine-tuning-models).
 
 ### Stored completions & distillation
 
@@ -36482,7 +36109,7 @@ For more information, see the [deployment types guide](https://aka.ms/aoai/docs/
 
 ## Next steps
 
-Learn more about the [underlying models that power Azure OpenAI](concepts/models?view=foundry-classic).
+Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/quotas-limits -->
@@ -36507,7 +36134,7 @@ Tokens per minute (TPM) and requests per minute (RPM) limits are defined *per re
 
 For example, if the `gpt-4.1`
 
-Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](concepts/models?view=foundry-classic) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
+Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
 
 ## Quotas and limits reference
 
@@ -36522,7 +36149,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |
 | Default Sora quota limits | 60 requests per minute. |
-| Default Sora 2 quota limits | 2 parallel tasks |
+| Default Sora 2 quota limits | 2 job requests1 per minute |
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
 | Maximum prompt tokens per request | Varies per model. For more information, see
 |
@@ -36555,7 +36182,9 @@ default maximum tokensIncrease the
 
 parameter value to avoid truncated responses. `GPT-4o`
 
-maximum tokens defaults to 4,096.11 Our current APIs allow up to 10 custom headers, which are passed through the pipeline and returned. Some customers now exceed this header count, which results in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. In future API versions, we won't pass through custom headers. We recommend that customers don't depend on custom headers in future system architectures.
+maximum tokens defaults to 4,096.21 The Sora 2 RPM quota only counts video job requests. Other types of requests are not rate-limited.
+
+2 Our current APIs allow up to 10 custom headers, which are passed through the pipeline and returned. Some customers now exceed this header count, which results in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. In future API versions, we won't pass through custom headers. We recommend that customers don't depend on custom headers in future system architectures.
 
 Note
 
@@ -37158,7 +36787,7 @@ print(json.dumps(model_capacity, indent=2))
 
 - Explore how to
 [manage quota](how-to/quota?view=foundry-classic)for your Azure OpenAI deployments. - Learn more about the
-[underlying models that power Azure OpenAI](concepts/models?view=foundry-classic).
+[underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/supported-languages -->
@@ -38225,7 +37854,7 @@ Example prompts:
 
 ### I asked the model when its knowledge cutoff is and it gave me a different answer than what is on the Azure OpenAI model's page. Why does this happen?
 
-This is expected behavior. The models aren't able to answer questions about themselves. If you want to know when the knowledge cutoff for the model's training data is, consult the [models page](concepts/models?view=foundry-classic).
+This is expected behavior. The models aren't able to answer questions about themselves. If you want to know when the knowledge cutoff for the model's training data is, consult the [models page](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ### I asked the model a question about something that happened recently before the knowledge cutoff and it got the answer wrong. Why does this happen?
 
@@ -38239,7 +37868,7 @@ Asking the model about something that changed more recently like "Who is the pri
 
 step down as prime minister?" Tends to yield an accurate response which demonstrates training data knowledge going to at least January of 2023.
 
-So while it is possible to probe the model with questions to guess its training data knowledge cutoff, the [model's page](concepts/models?view=foundry-classic) is the best place to check a model's knowledge cutoff.
+So while it is possible to probe the model with questions to guess its training data knowledge cutoff, the [model's page](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) is the best place to check a model's knowledge cutoff.
 
 ### Where do I access pricing information for legacy models, which are no longer available for new deployments?
 
@@ -38322,11 +37951,11 @@ You can learn about all the support options for Azure OpenAI in the [support and
 
 ### What models are available?
 
-Consult the Azure OpenAI [model availability guide](concepts/models?view=foundry-classic#model-summary-table-and-region-availability).
+Consult the Azure OpenAI [model availability guide](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ### Where can I find out what region a model is available in?
 
-Consult the Azure OpenAI [model availability guide](concepts/models?view=foundry-classic#model-summary-table-and-region-availability) for region availability.
+Consult the Azure OpenAI [model availability guide](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) for region availability.
 
 ### What are the SLAs (Service Level Agreements) in Azure OpenAI?
 
@@ -38354,7 +37983,7 @@ There are currently two different REST APIs that allow model deployment. For the
 
 ### Can I use quota to increase the max token limit of a model?
 
-No, quota Tokens-Per-Minute (TPM) allocation isn't related to the max input token limit of a model. Model input token limits are defined in the [models table](concepts/models?view=foundry-classic) and aren't impacted by changes made to TPM.
+No, quota Tokens-Per-Minute (TPM) allocation isn't related to the max input token limit of a model. Model input token limits are defined in the [models table](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) and aren't impacted by changes made to TPM.
 
 ## GPT-4 Turbo with Vision
 
@@ -38372,7 +38001,7 @@ No, we'll delete the image for you automatically after it has been processed by 
 
 ### How do the rate limits for GPT-4 Turbo with Vision work?
 
-We process images at the token level, so each image we process counts towards your tokens per minute (TPM) limit. See the [Image tokens section](overview?view=foundry-classic#tokens) of the Overview for details on the formula used to determine token count per image.
+We process images at the token level, so each image we process counts towards your tokens per minute (TPM) limit. See the [Image tokens section](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) of the Overview for details on the formula used to determine token count per image.
 
 ### Can GPT-4 Turbo with Vision understand image metadata?
 
@@ -38497,7 +38126,7 @@ See [Using your data](concepts/use-your-data?view=foundry-classic#data-formats-a
 
 ### Is responsible AI supported by Azure OpenAI on your data?
 
-Yes, [Azure OpenAI on your data](concepts/use-your-data?view=foundry-classic) is part of Azure OpenAI and works with the [models](concepts/models?view=foundry-classic) available in Azure OpenAI. The [content filtering](concepts/content-filter?view=foundry-classic) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/en-us/azure/ai-foundry/responsible-ai/openai/overview) for extra guidance on using Azure OpenAI on your data responsibly.
+Yes, [Azure OpenAI on your data](concepts/use-your-data?view=foundry-classic) is part of Azure OpenAI and works with the [models](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) available in Azure OpenAI. The [content filtering](concepts/content-filter?view=foundry-classic) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/en-us/azure/ai-foundry/responsible-ai/openai/overview) for extra guidance on using Azure OpenAI on your data responsibly.
 
 ### Is there a token limit on the system message?
 
@@ -38651,7 +38280,7 @@ Use this article to get started using the Azure OpenAI REST APIs to deploy and u
 ,`json`
 
 . - An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled model deployed. See
-[Model availability](concepts/models?view=foundry-classic)for available regions. For more information about resource creation, see the[resource deployment guide](/en-us/azure/ai-foundry/openai/how-to/create-resource).
+[Model availability](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)for available regions. For more information about resource creation, see the[resource deployment guide](/en-us/azure/ai-foundry/openai/how-to/create-resource).
 
 Note
 
@@ -38712,7 +38341,7 @@ Use this article to get started using the Azure OpenAI Python SDK to deploy and 
 
 - An Azure subscription.
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). [Python 3.8 or later version](https://www.python.org/).- An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled chat model deployed. See
-[Model availability](concepts/models?view=foundry-classic)for available regions. For more information about resource creation, see the[resource deployment guide](/en-us/azure/ai-foundry/openai/how-to/create-resource).
+[Model availability](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)for available regions. For more information about resource creation, see the[resource deployment guide](/en-us/azure/ai-foundry/openai/how-to/create-resource).
 
 ### Microsoft Entra ID prerequisites
 
@@ -39037,7 +38666,7 @@ Use this article to get started using the Azure OpenAI .NET SDK to deploy and us
 
 - An Azure subscription. You can
 [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). [The .NET 8.0 SDK](https://dotnet.microsoft.com/download)- An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled chat model deployed. See
-[Model availability](concepts/models?view=foundry-classic)for available regions. For more information about resource creation, see the[resource deployment guide](/en-us/azure/ai-foundry/openai/how-to/create-resource).
+[Model availability](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic)for available regions. For more information about resource creation, see the[resource deployment guide](/en-us/azure/ai-foundry/openai/how-to/create-resource).
 
 ### Microsoft Entra ID prerequisites
 
@@ -39128,1305 +38757,6 @@ variable. The assistant will analyze the image and provide a detailed descriptio
 ## Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/quickstart -->
-
-# Azure OpenAI Responses API
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-The Responses API is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview`
-
-model which powers the [Computer use](computer-use?view=foundry-classic) capability.
-
-## Getting started with the responses API
-
-To access the responses API commands, you need to upgrade your version of the OpenAI library.
-
-```
-pip install --upgrade openai
-```
-
-
-## Generate a text response
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-)
-response = client.responses.create(
-model="gpt-4.1-nano", # Replace with your model deployment name
-input="This is a test.",
-)
-print(response.model_dump_json(indent=2))
-```
-
-
-Important
-
-Use API keys with caution. Don't include the API key directly in your code, and never post it publicly. If you use an API key, store it securely in Azure Key Vault. For more information about using API keys securely in your apps, see [API keys with Azure Key Vault](/en-us/azure/key-vault/general/apps-api-keys-secrets).
-
-For more information about AI services security, see [Authenticate requests to Azure AI services](/en-us/azure/ai-services/authentication).
-
-## Retrieve a response
-
-To retrieve a response from a previous call to the responses API.
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-)
-response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-```
-
-
-Important
-
-Use API keys with caution. Don't include the API key directly in your code, and never post it publicly. If you use an API key, store it securely in Azure Key Vault. For more information about using API keys securely in your apps, see [API keys with Azure Key Vault](/en-us/azure/key-vault/general/apps-api-keys-secrets).
-
-For more information about AI services security, see [Authenticate requests to Azure AI services](/en-us/azure/ai-services/authentication).
-
-## Delete response
-
-By default response data is retained for 30 days. To delete a response, you can use `response.delete ("{response_id}")`
-
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.delete("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-print(response)
-```
-
-
-## Chaining responses together
-
-You can chain responses together by passing the `response.id`
-
-from the previous response to the `previous_response_id`
-
-parameter.
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-model="gpt-4o", # replace with your model deployment name
-input="Define and explain the concept of catastrophic forgetting?"
-)
-second_response = client.responses.create(
-model="gpt-4o", # replace with your model deployment name
-previous_response_id=response.id,
-input=[{"role": "user", "content": "Explain this at a level that could be understood by a college freshman"}]
-)
-print(second_response.model_dump_json(indent=2))
-```
-
-
-Note from the output that even though we never shared the first input question with the `second_response`
-
-API call, by passing the `previous_response_id`
-
-the model has full context of previous question and response to answer the new question.
-
-**Output:**
-
-```
-{
-"id": "resp_67cbc9705fc08190bbe455c5ba3d6daf",
-"created_at": 1741408624.0,
-"error": null,
-"incomplete_details": null,
-"instructions": null,
-"metadata": {},
-"model": "gpt-4o-2024-08-06",
-"object": "response",
-"output": [
-{
-"id": "msg_67cbc970fd0881908353a4298996b3f6",
-"content": [
-{
-"annotations": [],
-"text": "Sure! Imagine you are studying for exams in different subjects like math, history, and biology. You spend a lot of time studying math first and get really good at it. But then, you switch to studying history. If you spend all your time and focus on history, you might forget some of the math concepts you learned earlier because your brain fills up with all the new history facts. \n\nIn the world of artificial intelligence (AI) and machine learning, a similar thing can happen with computers. We use special programs called neural networks to help computers learn things, sort of like how our brain works. But when a neural network learns a new task, it can forget what it learned before. This is what we call \"catastrophic forgetting.\"\n\nSo, if a neural network learned how to recognize cats in pictures, and then you teach it how to recognize dogs, it might get really good at recognizing dogs but suddenly become worse at recognizing cats. This happens because the process of learning new information can overwrite or mess with the old information in its \"memory.\"\n\nScientists and engineers are working on ways to help computers remember everything they learn, even as they keep learning new things, just like students have to remember math, history, and biology all at the same time for their exams. They use different techniques to make sure the neural network doesn’t forget the important stuff it learned before, even when it gets new information.",
-"type": "output_text"
-}
-],
-"role": "assistant",
-"status": null,
-"type": "message"
-}
-],
-"parallel_tool_calls": null,
-"temperature": 1.0,
-"tool_choice": null,
-"tools": [],
-"top_p": 1.0,
-"max_output_tokens": null,
-"previous_response_id": "resp_67cbc96babbc8190b0f69aedc655f173",
-"reasoning": null,
-"status": "completed",
-"text": null,
-"truncation": null,
-"usage": {
-"input_tokens": 405,
-"output_tokens": 285,
-"output_tokens_details": {
-"reasoning_tokens": 0
-},
-"total_tokens": 690
-},
-"user": null,
-"reasoning_effort": null
-}
-```
-
-
-### Chaining responses manually
-
-Alternatively you can manually chain responses together using the method below:
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-inputs = [{"type": "message", "role": "user", "content": "Define and explain the concept of catastrophic forgetting?"}]
-response = client.responses.create(
-model="gpt-4o", # replace with your model deployment name
-input=inputs
-)
-inputs += response.output
-inputs.append({"role": "user", "type": "message", "content": "Explain this at a level that could be understood by a college freshman"})
-second_response = client.responses.create(
-model="gpt-4o",
-input=inputs
-)
-print(second_response.model_dump_json(indent=2))
-```
-
-
-## Streaming
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-input = "This is a test",
-model = "o4-mini", # replace with model deployment name
-stream = True
-)
-for event in response:
-if event.type == 'response.output_text.delta':
-print(event.delta, end='')
-```
-
-
-## Function calling
-
-The responses API supports function calling.
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-model="gpt-4o", # replace with your model deployment name
-tools=[
-{
-"type": "function",
-"name": "get_weather",
-"description": "Get the weather for a location",
-"parameters": {
-"type": "object",
-"properties": {
-"location": {"type": "string"},
-},
-"required": ["location"],
-},
-}
-],
-input=[{"role": "user", "content": "What's the weather in San Francisco?"}],
-)
-print(response.model_dump_json(indent=2))
-# To provide output to tools, add a response for each tool call to an array passed
-# to the next response as `input`
-input = []
-for output in response.output:
-if output.type == "function_call":
-match output.name:
-case "get_weather":
-input.append(
-{
-"type": "function_call_output",
-"call_id": output.call_id,
-"output": '{"temperature": "70 degrees"}',
-}
-)
-case _:
-raise ValueError(f"Unknown function call: {output.name}")
-second_response = client.responses.create(
-model="gpt-4o",
-previous_response_id=response.id,
-input=input
-)
-print(second_response.model_dump_json(indent=2))
-```
-
-
-## Code Interpreter
-
-The Code Interpreter tool enables models to write and execute Python code in a secure, sandboxed environment. It supports a range of advanced tasks, including:
-
-- Processing files with varied data formats and structures
-- Generating files that include data and visualizations (for example, graphs)
-- Iteratively writing and running code to solve problems—models can debug and retry code until successful
-- Enhancing visual reasoning in supported models (for example, o3, o4-mini) by enabling image transformations such as cropping, zooming, and rotation
-- This tool is especially useful for scenarios involving data analysis, mathematical computation, and code generation.
-
-```
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--d '{
-"model": "gpt-4.1",
-"tools": [
-{ "type": "code_interpreter", "container": {"type": "auto"} }
-],
-"instructions": "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question.",
-"input": "I need to solve the equation 3x + 11 = 14. Can you help me?"
-}'
-```
-
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-instructions = "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question."
-response = client.responses.create(
-model="gpt-4.1",
-tools=[
-{
-"type": "code_interpreter",
-"container": {"type": "auto"}
-}
-],
-instructions=instructions,
-input="I need to solve the equation 3x + 11 = 14. Can you help me?",
-)
-print(response.output)
-```
-
-
-### Containers
-
-Important
-
-Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 20 minutes.
-
-The Code Interpreter tool requires a container—a fully sandboxed virtual machine where the model can execute Python code. Containers can include uploaded files or files generated during execution.
-
-To create a container, specify `"container": { "type": "auto", "file_ids": ["file-1", "file-2"] }`
-
-in the tool configuration when creating a new Response object. This automatically creates a new container or reuses an active one from a previous code_interpreter_call in the model’s context. The `code_interpreter_call`
-
-in the output of the APIwill contain the `container_id`
-
-that was generated. This container expires if it is not used for 20 minutes.
-
-### File inputs and outputs
-
-When running Code Interpreter, the model can create its own files. For example, if you ask it to construct a plot, or create a CSV, it creates these images directly on your container. It will cite these files in the annotations of its next message.
-
-Any files in the model input get automatically uploaded to the container. You do not have to explicitly upload it to the container.
-
-### Supported Files
-
-| File format | MIME type |
-|---|---|
-`.c` |
-text/x-c |
-`.cs` |
-text/x-csharp |
-`.cpp` |
-text/x-c++ |
-`.csv` |
-text/csv |
-`.doc` |
-application/msword |
-`.docx` |
-application/vnd.openxmlformats-officedocument.wordprocessingml.document |
-`.html` |
-text/html |
-`.java` |
-text/x-java |
-`.json` |
-application/json |
-`.md` |
-text/markdown |
-`.pdf` |
-application/pdf |
-`.php` |
-text/x-php |
-`.pptx` |
-application/vnd.openxmlformats-officedocument.presentationml.presentation |
-`.py` |
-text/x-python |
-`.py` |
-text/x-script.python |
-`.rb` |
-text/x-ruby |
-`.tex` |
-text/x-tex |
-`.txt` |
-text/plain |
-`.css` |
-text/css |
-`.js` |
-text/JavaScript |
-`.sh` |
-application/x-sh |
-`.ts` |
-application/TypeScript |
-`.csv` |
-application/csv |
-`.jpeg` |
-image/jpeg |
-`.jpg` |
-image/jpeg |
-`.gif` |
-image/gif |
-`.pkl` |
-application/octet-stream |
-`.png` |
-image/png |
-`.tar` |
-application/x-tar |
-`.xlsx` |
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet |
-`.xml` |
-application/xml or "text/xml" |
-`.zip` |
-application/zip |
-
-## List input items
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.input_items.list("resp_67d856fcfba0819081fd3cffee2aa1c0")
-print(response.model_dump_json(indent=2))
-```
-
-
-**Output:**
-
-```
-{
-"data": [
-{
-"id": "msg_67d856fcfc1c8190ad3102fc01994c5f",
-"content": [
-{
-"text": "This is a test.",
-"type": "input_text"
-}
-],
-"role": "user",
-"status": "completed",
-"type": "message"
-}
-],
-"has_more": false,
-"object": "list",
-"first_id": "msg_67d856fcfc1c8190ad3102fc01994c5f",
-"last_id": "msg_67d856fcfc1c8190ad3102fc01994c5f"
-}
-```
-
-
-## Image input
-
-For vision-enabled models, images in PNG (.png), JPEG (.jpeg and .jpg), WEBP (.webp) are supported.
-
-### Image url
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-model="gpt-4o",
-input=[
-{
-"role": "user",
-"content": [
-{ "type": "input_text", "text": "what is in this image?" },
-{
-"type": "input_image",
-"image_url": "<image_URL>"
-}
-]
-}
-]
-)
-print(response)
-```
-
-
-### Base64 encoded image
-
-```
-import base64
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-def encode_image(image_path):
-with open(image_path, "rb") as image_file:
-return base64.b64encode(image_file.read()).decode("utf-8")
-# Path to your image
-image_path = "path_to_your_image.jpg"
-# Getting the Base64 string
-base64_image = encode_image(image_path)
-response = client.responses.create(
-model="gpt-4o",
-input=[
-{
-"role": "user",
-"content": [
-{ "type": "input_text", "text": "what is in this image?" },
-{
-"type": "input_image",
-"image_url": f"data:image/jpeg;base64,{base64_image}"
-}
-]
-}
-]
-)
-print(response)
-```
-
-
-## File input
-
-Models with vision capabilities support PDF input. PDF files can be provided either as Base64-encoded data or as file IDs. To help models interpret PDF content, both the extracted text and an image of each page are included in the model’s context. This is useful when key information is conveyed through diagrams or non-textual content.
-
-Note
-
-All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
-
-In a single API request, the size of content uploaded across multiple inputs (files) should be within the model's context length.
-
-Only models that support both text and image inputs can accept PDF files as input.
-
-A
-
-`purpose`
-
-of`user_data`
-
-is currently not supported. As a temporary workaround you will need to set purpose to`assistants`
-
-.
-
-### Convert PDF to Base64 and analyze
-
-```
-import base64
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-with open("PDF-FILE-NAME.pdf", "rb") as f: # assumes PDF is in the same directory as the executing script
-data = f.read()
-base64_string = base64.b64encode(data).decode("utf-8")
-response = client.responses.create(
-model="gpt-4o-mini", # model deployment name
-input=[
-{
-"role": "user",
-"content": [
-{
-"type": "input_file",
-"filename": "PDF-FILE-NAME.pdf",
-"file_data": f"data:application/pdf;base64,{base64_string}",
-},
-{
-"type": "input_text",
-"text": "Summarize this PDF",
-},
-],
-},
-]
-)
-print(response.output_text)
-```
-
-
-### Upload PDF and analyze
-
-Upload the PDF file. A `purpose`
-
-of `user_data`
-
-is currently not supported. As a workaround you will need to set purpose to `assistants`
-
-.
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-# Upload a file with a purpose of "assistants"
-file = client.files.create(
-file=open("nucleus_sampling.pdf", "rb"), # This assumes a .pdf file in the same directory as the executing script
-purpose="assistants"
-)
-print(file.model_dump_json(indent=2))
-file_id = file.id
-```
-
-
-**Output:**
-
-```
-{
-"id": "assistant-KaVLJQTiWEvdz8yJQHHkqJ",
-"bytes": 4691115,
-"created_at": 1752174469,
-"filename": "nucleus_sampling.pdf",
-"object": "file",
-"purpose": "assistants",
-"status": "processed",
-"expires_at": null,
-"status_details": null
-}
-```
-
-
-You will then take the value of the `id`
-
-and pass that to a model for processing under `file_id`
-
-:
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-model="gpt-4o-mini",
-input=[
-{
-"role": "user",
-"content": [
-{
-"type": "input_file",
-"file_id":"assistant-KaVLJQTiWEvdz8yJQHHkqJ"
-},
-{
-"type": "input_text",
-"text": "Summarize this PDF",
-},
-],
-},
-]
-)
-print(response.output_text)
-```
-
-
-```
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--F purpose="assistants" \
--F file="@your_file.pdf" \
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--d '{
-"model": "gpt-4.1",
-"input": [
-{
-"role": "user",
-"content": [
-{
-"type": "input_file",
-"file_id": "assistant-123456789"
-},
-{
-"type": "input_text",
-"text": "ASK SOME QUESTION RELATED TO UPLOADED PDF"
-}
-]
-}
-]
-}'
-```
-
-
-## Using remote MCP servers
-
-You can extend the capabilities of your model by connecting it to tools hosted on remote Model Context Protocol (MCP) servers. These servers are maintained by developers and organizations and expose tools that can be accessed by MCP-compatible clients, such as the Responses API.
-
-[Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
-
-The following example demonstrates how to use the fictitious MCP server to query information about the Azure REST API. This allows the model to retrieve and reason over repository content in real time.
-
-```
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--d '{
-"model": "gpt-4.1",
-"tools": [
-{
-"type": "mcp",
-"server_label": "github",
-"server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-"require_approval": "never"
-}
-],
-"input": "What is this repo in 100 words?"
-}'
-```
-
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-model="gpt-4.1", # replace with your model deployment name
-tools=[
-{
-"type": "mcp",
-"server_label": "github",
-"server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-"require_approval": "never"
-},
-],
-input="What transport protocols are supported in the 2025-03-26 version of the MCP spec?",
-)
-print(response.output_text)
-```
-
-
-The MCP tool works only in the Responses API, and is available across all newer models (gpt-4o, gpt-4.1, and our reasoning models). When you're using the MCP tool, you only pay for tokens used when importing tool definitions or making tool calls—there are no additional fees involved.
-
-### Approvals
-
-By default, the Responses API requires explicit approval before any data is shared with a remote MCP server. This approval step helps ensure transparency and gives you control over what information is sent externally.
-
-We recommend reviewing all data being shared with remote MCP servers and optionally logging it for auditing purposes.
-
-When an approval is required, the model returns a `mcp_approval_request`
-
-item in the response output. This object contains the details of the pending request and allows you to inspect or modify the data before proceeding.
-
-```
-{
-"id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828",
-"type": "mcp_approval_request",
-"arguments": {},
-"name": "fetch_azure_rest_api_docs",
-"server_label": "github"
-}
-```
-
-
-To proceed with the remote MCP call, you must respond to the approval request by creating a new response object that includes an mcp_approval_response item. This object confirms your intent to allow the model to send the specified data to the remote MCP server.
-
-```
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--d '{
-"model": "gpt-4.1",
-"tools": [
-{
-"type": "mcp",
-"server_label": "github",
-"server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-"require_approval": "never"
-}
-],
-"previous_response_id": "resp_682f750c5f9c8198aee5b480980b5cf60351aee697a7cd77",
-"input": [{
-"type": "mcp_approval_response",
-"approve": true,
-"approval_request_id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828"
-}]
-}'
-```
-
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-model="gpt-4.1", # replace with your model deployment name
-tools=[
-{
-"type": "mcp",
-"server_label": "github",
-"server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-"require_approval": "never"
-},
-],
-previous_response_id="resp_682f750c5f9c8198aee5b480980b5cf60351aee697a7cd77",
-input=[{
-"type": "mcp_approval_response",
-"approve": True,
-"approval_request_id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828"
-}],
-)
-```
-
-
-### Authentication
-
-Important
-
-- The MCP client within the Responses API requires TLS 1.2 or greater.
-- mutual TLS (mTLS) is currently not supported.
-[Azure service tags](/en-us/azure/virtual-network/service-tags-overview)are currently not supported for MCP client traffic.
-
-Unlike the GitHub MCP server, most remote MCP servers require authentication. The MCP tool in the Responses API supports custom headers, allowing you to securely connect to these servers using the authentication scheme they require.
-
-You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization`
-
-header.
-
-```
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--d '{
-"model": "gpt-4.1",
-"input": "What is this repo in 100 words?"
-"tools": [
-{
-"type": "mcp",
-"server_label": "github",
-"server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-"headers": {
-"Authorization": "Bearer $YOUR_API_KEY"
-}
-]
-}'
-```
-
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-model="gpt-4.1",
-input="What is this repo in 100 words?",
-tools=[
-{
-"type": "mcp",
-"server_label": "github",
-"server_url": "https://gitmcp.io/Azure/azure-rest-api-specs",
-"headers": {
-"Authorization": "Bearer $YOUR_API_KEY"
-}
-]
-)
-print(response.output_text)
-```
-
-
-## Background tasks
-
-Background mode allows you to run long-running tasks asynchronously using models like o3 and o1-pro. This is especially useful for complex reasoning tasks that can take several minutes to complete, such as those handled by agents like Codex or Deep Research.
-
-By enabling background mode, you can avoid timeouts and maintain reliability during extended operations. When a request is sent with `"background": true`
-
-, the task is processed asynchronously, and you can poll for its status over time.
-
-To start a background task, set the background parameter to true in your request:
-
-```
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--d '{
-"model": "o3",
-"input": "Write me a very long story",
-"background": true
-}'
-```
-
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-model = "o3",
-input = "Write me a very long story",
-background = True
-)
-print(response.status)
-```
-
-
-Use the `GET`
-
-endpoint to check the status of a background response. Continue polling while the status is queued or in_progress. Once the response reaches a final (terminal) state, it will be available for retrieval.
-
-```
-curl GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890 \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
-```
-
-
-```
-from time import sleep
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.create(
-model = "o3",
-input = "Write me a very long story",
-background = True
-)
-while response.status in {"queued", "in_progress"}:
-print(f"Current status: {response.status}")
-sleep(2)
-response = client.responses.retrieve(response.id)
-print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
-```
-
-
-You can cancel an in-progress background task using the `cancel`
-
-endpoint. Canceling is idempotent—subsequent calls will return the final response object.
-
-```
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
-```
-
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-response = client.responses.cancel("resp_1234567890")
-print(response.status)
-```
-
-
-### Stream a background response
-
-To stream a background response, set both `background`
-
-and `stream`
-
-to true. This is useful if you want to resume streaming later in case of a dropped connection. Use the sequence_number from each event to track your position.
-
-```
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--d '{
-"model": "o3",
-"input": "Write me a very long story",
-"background": true,
-"stream": true
-}'
-```
-
-
-```
-import os
-from openai import OpenAI
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=os.getenv("AZURE_OPENAI_API_KEY")
-)
-# Fire off an async response but also start streaming immediately
-stream = client.responses.create(
-model="o3",
-input="Write me a very long story",
-background=True,
-stream=True,
-)
-cursor = None
-for event in stream:
-print(event)
-cursor = event["sequence_number"]
-```
-
-
-Note
-
-Background responses currently have a higher time-to-first-token latency than synchronous responses. Improvements are underway to reduce this gap.
-
-### Limitations
-
-- Background mode requires
-`store=true`
-
-. Stateless requests are not supported. - You can only resume streaming if the original request included
-`stream=true`
-
-. - To cancel a synchronous response, terminate the connection directly.
-
-### Resume streaming from a specific point
-
-```
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?stream=true&starting_after=42 \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
-```
-
-
-## Encrypted Reasoning Items
-
-When using the Responses API in stateless mode — either by setting `store`
-
-to false or when your organization is enrolled in zero data retention — you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your API requests.
-
-To retain reasoning items across turns, add `reasoning.encrypted_content`
-
-to the `include`
-
-parameter in your request. This ensures that the response includes an encrypted version of the reasoning trace, which can be passed along in future requests.
-
-```
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--d '{
-"model": "o4-mini",
-"reasoning": {"effort": "medium"},
-"input": "What is the weather like today?",
-"tools": [<YOUR_FUNCTION GOES HERE>],
-"include": ["reasoning.encrypted_content"]
-}'
-```
-
-
-## Image generation (preview)
-
-The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images.
-
-Compared to the standalone Image API, the Responses API offers several advantages:
-
-**Streaming**: Display partial image outputs during generation to improve perceived latency.**Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
-
-Note
-
-The image generation tool in the Responses API is only supported by the `gpt-image-1`
-
--series models. You can however call this model from this list of supported models - `gpt-4o`
-
-, `gpt-4o-mini`
-
-, `gpt-4.1`
-
-, `gpt-4.1-mini`
-
-, `gpt-4.1-nano`
-
-, `o3`
-
-, `gpt-5`
-
-and `gpt-5.1`
-
-series models.
-
-The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](dall-e?view=foundry-classic) directly outside of the Responses API.
-
-Use the Responses API if you want to build conversational image experiences with GPT Image.
-
-```
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-token_provider = get_bearer_token_provider(
-DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-client = OpenAI(
-base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-api_key=token_provider,
-default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1.5", "api_version":"preview"}
-)
-response = client.responses.create(
-model="o3",
-input="Generate an image of gray tabby cat hugging an otter with an orange scarf",
-tools=[{"type": "image_generation"}],
-)
-# Save the image to a file
-image_data = [
-output.result
-for output in response.output
-if output.type == "image_generation_call"
-]
-if image_data:
-image_base64 = image_data[0]
-with open("otter.png", "wb") as f:
-f.write(base64.b64decode(image_base64))
-```
-
-
-## Reasoning models
-
-For examples of how to use reasoning models with the responses API see the [reasoning models guide](reasoning?view=foundry-classic#reasoning-summary).
-
-## Computer use
-
-Computer use with Playwright has moved to the [dedicated computer use model guide](computer-use?view=foundry-classic#playwright-integration)
-
-## Responses API
-
-### API support
-
-### Region Availability
-
-The responses API is currently available in the following regions:
-
-- australiaeast
-- brazilsouth
-- canadacentral
-- canadaeast
-- eastus
-- eastus2
-- francecentral
-- germanywestcentral
-- italynorth
-- japaneast
-- koreacentral
-- northcentralus
-- norwayeast
-- polandcentral
-- southafricanorth
-- southcentralus
-- southeastasia
-- southindia
-- spaincentral
-- swedencentral
-- switzerlandnorth
-- uaenorth
-- uksouth
-- westus
-- westus3
-
-### Model support
-
-`gpt-5.2-codex`
-
-(Version:`2026-01-14`
-
-)`gpt-5.2`
-
-(Version:`2025-12-11`
-
-)`gpt-5.2-chat`
-
-(Version:`2025-12-11`
-
-)`gpt-5.1-codex-max`
-
-(Version:`2025-12-04`
-
-)`gpt-5.1`
-
-(Version:`2025-11-13`
-
-)`gpt-5.1-chat`
-
-(Version:`2025-11-13`
-
-)`gpt-5.1-codex`
-
-(Version:`2025-11-13`
-
-)`gpt-5.1-codex-mini`
-
-(Version:`2025-11-13`
-
-)`gpt-5-pro`
-
-(Version:`2025-10-06`
-
-)`gpt-5-codex`
-
-(Version:`2025-09-11`
-
-)`gpt-5`
-
-(Version:`2025-08-07`
-
-)`gpt-5-mini`
-
-(Version:`2025-08-07`
-
-)`gpt-5-nano`
-
-(Version:`2025-08-07`
-
-)`gpt-5-chat`
-
-(Version:`2025-08-07`
-
-)`gpt-5-chat`
-
-(Version:`2025-10-03`
-
-)`gpt-5-codex`
-
-(Version:`2025-09-15`
-
-)`gpt-4o`
-
-(Versions:`2024-11-20`
-
-,`2024-08-06`
-
-,`2024-05-13`
-
-)`gpt-4o-mini`
-
-(Version:`2024-07-18`
-
-)`computer-use-preview`
-
-`gpt-4.1`
-
-(Version:`2025-04-14`
-
-)`gpt-4.1-nano`
-
-(Version:`2025-04-14`
-
-)`gpt-4.1-mini`
-
-(Version:`2025-04-14`
-
-)`gpt-image-1`
-
-(Version:`2025-04-15`
-
-)`gpt-image-1-mini`
-
-(Version:`2025-10-06`
-
-)`gpt-image-1.5`
-
-(Version:`2025-12-16`
-
-)`o1`
-
-(Version:`2024-12-17`
-
-)`o3-mini`
-
-(Version:`2025-01-31`
-
-)`o3`
-
-(Version:`2025-04-16`
-
-)`o4-mini`
-
-(Version:`2025-04-16`
-
-)
-
-Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models?view=foundry-classic) for model region availability.
-
-Note
-
-Not currently supported:
-
-- Compaction with
-`/responses/compact`
-
-- Image generation using multi-turn editing and streaming.
-- Images can't be uploaded as a file and then referenced as input.
-
-There's a known issue with the following:
-
-- PDF as an input file
-[is now supported](#file-input), but setting file upload purpose to`user_data`
-
-is not currently supported. - Performance issues when background mode is used with streaming. The issue is expected to be resolved soon.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/chatgpt-quickstart -->
@@ -41708,7 +40038,7 @@ The responses API is currently available in the following regions:
 
 )
 
-Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models?view=foundry-classic) for model region availability.
+Not every model is available in the regions supported by the responses API. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic) for model region availability.
 
 Note
 
@@ -41786,7 +40116,7 @@ The GPT real-time models are available for global deployments.
 
 For more information, see the [models and versions documentation](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#audio-models).
 
-For more information, see the [models and versions documentation](concepts/models?view=foundry-classic#audio-models).
+For more information, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#audio-models).
 
 ## API support
 
@@ -41806,7 +40136,7 @@ parameter, which is required for Preview endpoint format only. See detailed info
 
 - An Azure subscription -
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) [Node.js LTS or ESM support.](https://nodejs.org/)- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the
-[models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
+[models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
 `gpt-realtime`
 
 model with your Azure OpenAI resource. For more information, see[Create a resource and deploy a model with Azure OpenAI](how-to/create-resource?view=foundry-classic).
@@ -42016,7 +40346,7 @@ The sample completed successfully.
 
 - An Azure subscription.
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). [Python 3.8 or later version](https://www.python.org/). We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the[VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter)for the easiest way of installing Python on your operating system.- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the
-[models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
+[models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
 `gpt-realtime`
 
 ,`gpt-realtime-mini`
@@ -42196,7 +40526,7 @@ Conversation ended.
 
 - An Azure subscription -
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) [Node.js LTS or ESM support.](https://nodejs.org/)[TypeScript](https://www.typescriptlang.org/download/)installed globally.- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the
-[models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
+[models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
 `gpt-realtime`
 
 model with your Azure OpenAI resource. For more information, see[Create a resource and deploy a model with Azure OpenAI](how-to/create-resource?view=foundry-classic).
@@ -44362,7 +42692,7 @@ version: `2024-12-17`
 
 supports audio generation.
 
-For more information about region availability, see the [models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability).
+For more information about region availability, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).
 
 Currently the following voices are supported for audio out: Alloy, Echo, and Shimmer.
 
@@ -44468,7 +42798,7 @@ version: `2024-12-17`
 
 supports audio generation.
 
-For more information about region availability, see the [models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability).
+For more information about region availability, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).
 
 Currently the following voices are supported for audio out: Alloy, Echo, and Shimmer.
 
@@ -44488,7 +42818,7 @@ Support for audio completions was first added in API version `2025-01-01-preview
 
 - An Azure subscription -
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) [Node.js LTS or ESM support.](https://nodejs.org/)- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the
-[models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
+[models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
 `gpt-4o-mini-audio-preview`
 
 model with your Azure OpenAI resource. For more information, see[Create a resource and deploy a model with Azure OpenAI](how-to/create-resource?view=foundry-classic).
@@ -44652,7 +42982,7 @@ version: `2024-12-17`
 
 supports audio generation.
 
-For more information about region availability, see the [models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability).
+For more information about region availability, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).
 
 Currently the following voices are supported for audio out: Alloy, Echo, and Shimmer.
 
@@ -44674,7 +43004,7 @@ Use this guide to get started generating audio with the Azure OpenAI SDK for Pyt
 
 - An Azure subscription.
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). [Python 3.8 or later version](https://www.python.org/). We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the[VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter)for the easiest way of installing Python on your operating system.- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the
-[models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
+[models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
 `gpt-4o-mini-audio-preview`
 
 model with your Azure OpenAI resource. For more information, see[Create a resource and deploy a model with Azure OpenAI](how-to/create-resource?view=foundry-classic).
@@ -44828,7 +43158,7 @@ version: `2024-12-17`
 
 supports audio generation.
 
-For more information about region availability, see the [models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability).
+For more information about region availability, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).
 
 Currently the following voices are supported for audio out: Alloy, Echo, and Shimmer.
 
@@ -44848,7 +43178,7 @@ Support for audio completions was first added in API version `2025-01-01-preview
 
 - An Azure subscription.
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). [Python 3.8 or later version](https://www.python.org/). We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the[VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter)for the easiest way of installing Python on your operating system.- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the
-[models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
+[models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
 `gpt-4o-mini-audio-preview`
 
 model with your Azure OpenAI resource. For more information, see[Create a resource and deploy a model with Azure OpenAI](how-to/create-resource?view=foundry-classic).
@@ -45004,7 +43334,7 @@ version: `2024-12-17`
 
 supports audio generation.
 
-For more information about region availability, see the [models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability).
+For more information about region availability, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability).
 
 Currently the following voices are supported for audio out: Alloy, Echo, and Shimmer.
 
@@ -45024,7 +43354,7 @@ Support for audio completions was first added in API version `2025-01-01-preview
 
 - An Azure subscription -
 [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) [Node.js LTS or ESM support.](https://nodejs.org/)[TypeScript](https://www.typescriptlang.org/download/)installed globally.- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the
-[models and versions documentation](concepts/models?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
+[models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic#global-standard-model-availability). - Then, you need to deploy a
 `gpt-4o-mini-audio-preview`
 
 model with your Azure OpenAI resource. For more information, see[Create a resource and deploy a model with Azure OpenAI](how-to/create-resource?view=foundry-classic).
@@ -47721,7 +46051,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 , `gpt-5.2-chat`
 
-(**Preview**)[GPT-5.1 series](../../openai/concepts/models?view=foundry-classic#gpt-51)**NEW**`gpt-5.1`
+(**Preview**)[GPT-5.1 series](models-sold-directly-by-azure?view=foundry-classic#gpt-51)**NEW**`gpt-5.1`
 
 , `gpt-5.1-chat`
 
@@ -47729,9 +46059,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 , `gpt-5.1-codex-mini`
 
-[Sora](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models)**NEW**sora-2[GPT-5 series](../../openai/concepts/models?view=foundry-classic#gpt-5)[gpt-oss](../../openai/concepts/models?view=foundry-classic#gpt-oss)[codex-mini](../../openai/concepts/models?view=foundry-classic#o-series-models)[GPT-4.1 series](../../openai/concepts/models?view=foundry-classic#gpt-41-series)[computer-use-preview](../../openai/concepts/models?view=foundry-classic#computer-use-preview)[o-series models](../../openai/concepts/models?view=foundry-classic#o-series-models)[Reasoning models](../../openai/how-to/reasoning?view=foundry-classic)with advanced problem solving and increased focus and capability.[GPT-4o, GPT-4o mini, and GPT-4 Turbo](../../openai/concepts/models?view=foundry-classic#gpt-4o-and-gpt-4-turbo)[Embeddings](../../openai/concepts/models?view=foundry-classic#embeddings)[Image generation](../../openai/concepts/models?view=foundry-classic#image-generation-models)`Video generation`
+[Sora](/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models)**NEW**sora-2[GPT-5 series](models-sold-directly-by-azure?view=foundry-classic#gpt-5)[gpt-oss](models-sold-directly-by-azure?view=foundry-classic#gpt-oss)[codex-mini](models-sold-directly-by-azure?view=foundry-classic#o-series-models)[GPT-4.1 series](models-sold-directly-by-azure?view=foundry-classic#gpt-41-series)[computer-use-preview](models-sold-directly-by-azure?view=foundry-classic#computer-use-preview)[o-series models](models-sold-directly-by-azure?view=foundry-classic#o-series-models)[Reasoning models](../../openai/how-to/reasoning?view=foundry-classic)with advanced problem solving and increased focus and capability.[GPT-4o, GPT-4o mini, and GPT-4 Turbo](models-sold-directly-by-azure?view=foundry-classic#gpt-4o-and-gpt-4-turbo)[Embeddings](models-sold-directly-by-azure?view=foundry-classic#embeddings)[Image generation](models-sold-directly-by-azure?view=foundry-classic#image-generation-models)`Video generation`
 
-[Audio](../../openai/concepts/models?view=foundry-classic#audio-models)*speech in, speech out*conversational interactions or audio generation.## GPT-5.2
+[Audio](models-sold-directly-by-azure?view=foundry-classic#audio-models)*speech in, speech out*conversational interactions or audio generation.## GPT-5.2
 
 ### Region availability
 
@@ -49794,7 +48124,7 @@ Azure OpenAI provides two methods for authentication. You can use either API Key
 
 **API Key authentication**: For this type of authentication, all API requests must include the API Key in the`api-key`
 
-HTTP header. The[Quickstart](chatgpt-quickstart?view=foundry-classic)provides guidance for how to make calls with this type of authentication.**Microsoft Entra ID authentication**: You can authenticate an API call using a Microsoft Entra token. Authentication tokens are included in a request as the`Authorization`
+HTTP header. The[Quickstart](how-to/responses?view=foundry-classic)provides guidance for how to make calls with this type of authentication.**Microsoft Entra ID authentication**: You can authenticate an API call using a Microsoft Entra token. Authentication tokens are included in a request as the`Authorization`
 
 header. The token provided must be preceded by`Bearer`
 
@@ -52207,7 +50537,7 @@ Is not currently part of the latest Azure OpenAI GA version of the Azure OpenAI 
 ## Next steps
 
 Learn about [Models, and fine-tuning with the REST API](/en-us/rest/api/azureopenai/fine-tuning).
-Learn more about the [underlying models that power Azure OpenAI](concepts/models?view=foundry-classic).
+Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/use-your-data-quickstart -->
@@ -53874,7 +52204,7 @@ Azure OpenAI provides two methods for authentication. You can use either API Key
 
 **API Key authentication**: For this type of authentication, all API requests must include the API Key in the`api-key`
 
-HTTP header. The[Quickstart](chatgpt-quickstart?view=foundry-classic)provides guidance for how to make calls with this type of authentication.**Microsoft Entra ID authentication**: You can authenticate an API call using a Microsoft Entra token. Authentication tokens are included in a request as the`Authorization`
+HTTP header. The[Quickstart](how-to/responses?view=foundry-classic)provides guidance for how to make calls with this type of authentication.**Microsoft Entra ID authentication**: You can authenticate an API call using a Microsoft Entra token. Authentication tokens are included in a request as the`Authorization`
 
 header. The token provided must be preceded by`Bearer`
 
@@ -60722,7 +59052,7 @@ Connection id to the embedding model
 ## Next steps
 
 Learn about [Models, and fine-tuning with the REST API](/en-us/rest/api/azureopenai/fine-tuning).
-Learn more about the [underlying models that power Azure OpenAI](concepts/models?view=foundry-classic).
+Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/reference-preview -->
@@ -60773,7 +59103,7 @@ Azure OpenAI provides two methods for authentication. You can use either API Key
 
 **API Key authentication**: For this type of authentication, all API requests must include the API Key in the`api-key`
 
-HTTP header. The[Quickstart](chatgpt-quickstart?view=foundry-classic)provides guidance for how to make calls with this type of authentication.**Microsoft Entra ID authentication**: You can authenticate an API call using a Microsoft Entra token. Authentication tokens are included in a request as the`Authorization`
+HTTP header. The[Quickstart](how-to/responses?view=foundry-classic)provides guidance for how to make calls with this type of authentication.**Microsoft Entra ID authentication**: You can authenticate an API call using a Microsoft Entra token. Authentication tokens are included in a request as the`Authorization`
 
 header. The token provided must be preceded by`Bearer`
 
@@ -72307,7 +70637,7 @@ Occurs when a stream ends.
 ## Next steps
 
 Learn about [Models, and fine-tuning with the REST API](/en-us/rest/api/azureopenai/fine-tuning).
-Learn more about the [underlying models that power Azure OpenAI](concepts/models?view=foundry-classic).
+Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/latest -->
@@ -94992,4 +93322,4 @@ Yes |
 ## Next steps
 
 Learn about [Models, and fine-tuning with the REST API](/en-us/rest/api/azureopenai/fine-tuning).
-Learn more about the [underlying models that power Azure OpenAI](concepts/models?view=foundry-classic).
+Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
