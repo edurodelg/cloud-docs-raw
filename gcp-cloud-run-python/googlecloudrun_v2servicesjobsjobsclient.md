@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsClient
-fetched_at: 2026-02-04T00:19:58.222957
+fetched_at: 2026-02-05T08:29:50.369980
 ---
 
 # Class JobsClient (0.15.0)
