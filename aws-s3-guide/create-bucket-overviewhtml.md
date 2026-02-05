@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html
-fetched_at: 2026-02-04T00:13:07.824231
+fetched_at: 2026-02-05T08:22:51.930154
 ---
 
 # Creating a general purpose bucket

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint.html
-fetched_at: 2026-02-04T00:13:28.716431
+fetched_at: 2026-02-05T08:23:16.575474
 ---
 
 # Mount an Amazon S3 bucket as a local file system
