@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-04T00:44:41.089297
+merged_at: 2026-02-05T08:51:00.326055
 merged_files: 2
 ---
 
@@ -11201,7 +11201,7 @@ Set assignee as admin of the Azure SQL database:
 
 Connect to the SQL database created previously using tools such as
 
-[Azure Data Studio](/en-us/azure-data-studio/download-azure-data-studio)or[SQL Management Server Studio](/en-us/ssms/download-sql-server-management-studio-ssms). Or you can run the following[SQLCMD](/en-us/sql/tools/sqlcmd/sqlcmd-utility)command to connect:`sqlcmd -S <SQL_SERVER_NAME>.database.windows.net -d <DATABASE_NAME> -U <someone@example.com> -P "ACCOUNT_PASSWORD" -G -l 30`
+[SQL Management Server Studio](/en-us/ssms/download-sql-server-management-studio-ssms)or[Visual Studio Code](/en-us/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code). Or you can run the following[SQLCMD](/en-us/sql/tools/sqlcmd/sqlcmd-utility)command to connect:`sqlcmd -S <SQL_SERVER_NAME>.database.windows.net -d <DATABASE_NAME> -U <someone@example.com> -P "ACCOUNT_PASSWORD" -G -l 30`
 
 Grant your identity
 
