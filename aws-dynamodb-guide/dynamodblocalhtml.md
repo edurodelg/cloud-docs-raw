@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
-fetched_at: 2026-02-04T00:15:52.980312
+fetched_at: 2026-02-05T08:25:40.125212
 ---
 
 # Setting up DynamoDB local (downloadable version)

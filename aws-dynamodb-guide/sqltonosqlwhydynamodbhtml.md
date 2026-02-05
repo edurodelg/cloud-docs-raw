@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.WhyDynamoDB.html
-fetched_at: 2026-02-04T00:17:38.098311
+fetched_at: 2026-02-05T08:27:25.204579
 ---
 
 # Choosing between relational (SQL) and

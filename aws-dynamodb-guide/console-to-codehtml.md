@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/console-to-code.html
-fetched_at: 2026-02-04T00:16:53.032892
+fetched_at: 2026-02-05T08:26:40.444176
 ---
 
 # Generate infrastructure code for Amazon DynamoDB using Console-to-Code
