@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-execution-sdk.html
-fetched_at: 2026-02-04T00:08:01.062155
+fetched_at: 2026-02-05T08:17:50.832688
 ---
 
 # Durable execution SDK

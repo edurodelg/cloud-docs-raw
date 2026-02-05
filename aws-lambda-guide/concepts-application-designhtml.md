@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/concepts-application-design.html
-fetched_at: 2026-02-04T00:06:10.901112
+fetched_at: 2026-02-05T08:15:59.808199
 ---
 
 # Designing Lambda applications

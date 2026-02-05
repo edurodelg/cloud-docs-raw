@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/scheduled-task-app.html
-fetched_at: 2026-02-04T00:06:30.974493
+fetched_at: 2026-02-05T08:16:21.314793
 ---
 
 # Create an app to perform scheduled database maintenance
