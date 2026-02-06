@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/display-ami-root-device-type.html
-fetched_at: 2026-02-05T08:19:08.356306
+fetched_at: 2026-02-06T16:37:58.948343
 ---
 
 # Identify the root volume type determined by your

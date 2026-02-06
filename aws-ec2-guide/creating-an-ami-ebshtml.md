@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html
-fetched_at: 2026-02-05T08:20:03.714476
+fetched_at: 2026-02-06T16:38:53.737526
 ---
 
 # Create an Amazon EBS-backed AMI

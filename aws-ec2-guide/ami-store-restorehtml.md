@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html
-fetched_at: 2026-02-05T08:21:08.162461
+fetched_at: 2026-02-06T16:39:53.075453
 ---
 
 # Store and restore an AMI using S3

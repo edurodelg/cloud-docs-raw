@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html
-fetched_at: 2026-02-05T08:20:08.499737
+fetched_at: 2026-02-06T16:38:58.201905
 ---
 
 # Create an Amazon S3-backed AMI
