@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-examples.html
-fetched_at: 2026-02-05T08:17:39.848817
+fetched_at: 2026-02-06T16:36:30.064626
 ---
 
 # Examples and use cases

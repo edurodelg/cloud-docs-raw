@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/concepts-event-driven-architectures.html
-fetched_at: 2026-02-05T08:15:54.856338
+fetched_at: 2026-02-06T16:34:43.953586
 ---
 
 # Creating event-driven architectures with Lambda

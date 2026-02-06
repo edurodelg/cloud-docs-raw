@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-step-functions.html
-fetched_at: 2026-02-05T08:17:35.084552
+fetched_at: 2026-02-06T16:36:24.110828
 ---
 
 # Durable functions or Step Functions

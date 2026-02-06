@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/deploying-github-actions.html
-fetched_at: 2026-02-05T08:16:39.761375
+fetched_at: 2026-02-06T16:35:28.917689
 ---
 
 # Using GitHub Actions to deploy Lambda functions

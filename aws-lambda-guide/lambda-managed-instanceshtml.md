@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/lambda-managed-instances.html
-fetched_at: 2026-02-05T08:18:34.860983
+fetched_at: 2026-02-06T16:37:24.287184
 ---
 
 # Lambda Managed Instances

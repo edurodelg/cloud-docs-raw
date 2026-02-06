@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-monitoring.html
-fetched_at: 2026-02-05T08:18:24.908159
+fetched_at: 2026-02-06T16:37:14.184262
 ---
 
 # Monitoring durable functions
