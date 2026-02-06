@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.API.html
-fetched_at: 2026-02-05T08:27:00.276881
+fetched_at: 2026-02-06T16:45:51.690055
 ---
 
 # DynamoDB API

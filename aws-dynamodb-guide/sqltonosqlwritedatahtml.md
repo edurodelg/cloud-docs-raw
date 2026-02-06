@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.WriteData.html
-fetched_at: 2026-02-05T08:27:45.084887
+fetched_at: 2026-02-06T16:46:36.449071
 ---
 
 # Differences between a relational (SQL) database

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-2.html
-fetched_at: 2026-02-05T08:26:10.425645
+fetched_at: 2026-02-06T16:45:01.904098
 ---
 
 # Step 2: Write data to a DynamoDB table

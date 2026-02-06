@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.html
-fetched_at: 2026-02-05T08:26:45.381139
+fetched_at: 2026-02-06T16:45:36.676147
 ---
 
 # Amazon DynamoDB: How it works

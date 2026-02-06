@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.TableClasses.html
-fetched_at: 2026-02-05T08:27:10.415635
+fetched_at: 2026-02-06T16:46:01.864773
 ---
 
 # DynamoDB table classes
