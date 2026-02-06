@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.client
-fetched_at: 2026-02-05T08:38:09.022154
+fetched_at: 2026-02-06T16:56:57.817067
 ---
 
 # Module client (3.8.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.fileio.BlobWriter
-fetched_at: 2026-02-05T08:38:29.673348
+fetched_at: 2026-02-06T16:57:18.800684
 ---
 
 # Class BlobWriter (3.8.0)

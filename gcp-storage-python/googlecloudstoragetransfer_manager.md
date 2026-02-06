@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.transfer_manager
-fetched_at: 2026-02-05T08:38:50.692408
+fetched_at: 2026-02-06T16:57:38.200561
 ---
 
 # Module transfer_manager (3.8.0)

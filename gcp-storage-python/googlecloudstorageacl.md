@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.acl
-fetched_at: 2026-02-05T08:37:21.778578
+fetched_at: 2026-02-06T16:56:06.674909
 ---
 
 # Module acl (3.8.0)

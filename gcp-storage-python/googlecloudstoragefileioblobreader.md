@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.fileio.BlobReader
-fetched_at: 2026-02-05T08:38:27.035543
+fetched_at: 2026-02-06T16:57:16.531653
 ---
 
 # Class BlobReader (3.8.0)

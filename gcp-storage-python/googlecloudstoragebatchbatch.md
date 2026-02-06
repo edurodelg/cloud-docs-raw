@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.batch.Batch
-fetched_at: 2026-02-05T08:37:36.146733
+fetched_at: 2026-02-06T16:56:21.183766
 ---
 
 # Class Batch (3.8.0)
