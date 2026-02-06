@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.services.ServicesAsyncClient
-fetched_at: 2026-02-05T08:30:24.416148
+fetched_at: 2026-02-06T16:49:12.274297
 ---
 
 # Class ServicesAsyncClient (0.15.0)
