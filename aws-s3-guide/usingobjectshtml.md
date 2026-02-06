@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingObjects.html
-fetched_at: 2026-02-05T08:24:51.726466
+fetched_at: 2026-02-06T16:43:42.645628
 ---
 
 # Amazon S3 objects overview
