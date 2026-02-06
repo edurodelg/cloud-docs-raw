@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-05T08:42:07.288944
+merged_at: 2026-02-06T17:00:26.446769
 merged_files: 3
 ---
 
@@ -2003,9 +2003,6 @@ If this is your first time running evaluations and logging it to your Microsoft 
 - If you connected your storage account with Microsoft Entra ID, make sure to give managed identity
 **Storage Blob Data Owner**permissions to both your account and the Foundry project resource in the Azure portal.
 
-- A Foundry project. For more information, see
-[Create a Foundry project](/en-us/azure/ai-foundry/how-to/create-projects).
-
 ## Getting started
 
 First, install Microsoft Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
@@ -2019,10 +2016,6 @@ pip install azure-ai-projects==1.1.0b3 azure-identity
 pip install azure-ai-projects>=2.0.0b1 azure-identity
 ```
 
-
-Note
-
-For more detailed information, see the [REST API Reference Documentation](/en-us/rest/api/aifoundry/aiprojects/red-teams).
 
 Then, set your environment variables for your Microsoft Foundry resources
 
@@ -2336,12 +2329,6 @@ Or by attack complexity classification:
 Drilling down further into the data tab provides a row-level view of each attack-response pair. This information offers deeper insights into system issues and behaviors. For each attack-response pair, you can see more information, such as whether or not the attack was successful, what attack strategy was used, and its attack complexity. A human in the loop reviewer can provide human feedback by selecting the thumbs up or thumbs down icon.
 
 To view each conversation, select **View more** to see the full conversation for more detailed analysis of the AI system's response.
-
-## Related content
-
-Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/airedteamingagent-sample) in our GitHub samples.
-
-Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/agent-redteam-sample) in our GitHub samples.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/get-started-projects-vs-code -->
@@ -3335,16 +3322,17 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 ## Prerequisites
 
-- Microsoft Foundry project in the same supported
-[regions](../../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#foundry-project-configuration-and-region-support)as risk and safety evaluators. If you don't have a project, create one. See[Create a project for Foundry](../create-projects?view=foundry-classic&tabs=ai-studio). - Azure OpenAI deployment with GPT model supporting
-`chat completion`
+- A
+[Foundry project](../create-projects?view=foundry-classic). - An Azure OpenAI deployment with a GPT model that supports chat completion (for example,
+`gpt-4`
 
-, such as`gpt-4`
+or`gpt-5-chat`
 
-. - Sign in to your Azure subscription by running
-`az login`
+).
 
-.
+Note
+
+Some evaluation features have regional restrictions. See [supported regions](../../concepts/evaluation-evaluators/risk-safety-evaluators?view=foundry-classic#foundry-project-configuration-and-region-support) for details.
 
 If this is your first time running evaluations and logging it to your Microsoft Foundry project, you might need to do a few additional steps:
 
@@ -3359,11 +3347,7 @@ Install the Microsoft Foundry SDK project client to run evaluations in the cloud
 
 `pip install azure-ai-projects azure-identity`
 
-Note
-
-For more information, see
-
-[REST API Reference Documentation](/en-us/rest/api/aifoundry/aiprojects/evaluations).Set environment variables for your Foundry resources:
+Set environment variables for your Foundry resources:
 
 `import os # Required environment variables: endpoint = os.environ["PROJECT_ENDPOINT"] # https://<account>.services.ai.azure.com/api/projects/<project> model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com model_api_key = os.environ["MODEL_API_KEY"] model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # E.g. gpt-4o-mini # Optional: Reuse an existing dataset. dataset_name = os.environ.get("DATASET_NAME", "dataset-test") dataset_version = os.environ.get("DATASET_VERSION", "1.0")`
 
@@ -3376,11 +3360,7 @@ Install the Microsoft Foundry SDK project client that runs the evaluations in th
 
 `pip install azure-ai-projects azure-identity`
 
-Note
-
-For more information, see
-
-[REST API Reference Documentation](/en-us/rest/api/aifoundry/aiprojects/evaluations).Set your environment variables for your Foundry resources:
+Set your environment variables for your Foundry resources:
 
 `import os # Azure AI Project endpoint # Example: https://<account_name>.services.ai.azure.com/api/projects/<project_name> endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"] # Model deployment name # Example: gpt-4o-mini model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "") # Dataset details dataset_name = os.environ.get("DATASET_NAME", "") dataset_version = os.environ.get("DATASET_VERSION", "1")`
 
@@ -10234,10 +10214,12 @@ Pay-as-you-go billing is available only to users whose Azure subscription belong
 | Model | Offer Availability Region | Hub/Project Region for Deployment1 |
 Hub/Project Region for Fine tuning |
 |---|---|---|---|
-| Claude Haiku 4.5 (preview) |
+| Claude Opus 4.6 (preview) |
 except Belarus and Russia |
 
 Sweden Central
+
+[Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except***Belarus*and*Russia*Sweden Central
 
 [Microsoft Managed Countries/Regions](/en-us/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except***Belarus*and*Russia*Sweden Central
 

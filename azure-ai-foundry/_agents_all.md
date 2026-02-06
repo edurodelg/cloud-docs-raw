@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-05T08:42:07.252951
+merged_at: 2026-02-06T17:00:26.267022
 merged_files: 4
 ---
 
@@ -2563,180 +2563,6 @@ Key limits to keep in mind:
 [agent runtime components](runtime-components?view=foundry)
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/agent-to-agent-authentication -->
-
-# Agent2Agent (A2A) authentication
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Most Agent2Agent (A2A) endpoints require authentication to access the endpoint and its underlying service. Authentication ensures only authorized users can invoke your A2A tools in Microsoft Foundry Agent Service (Agent Service).
-
-In general, there are two authentication scenarios:
-
-**Shared authentication**: Every user of your agent uses the same identity to authenticate to the A2A endpoint. Individual user context doesn't persist. For example, if you build a chat agent to retrieve information from Azure Cosmos DB for your organization, you might want every user to access the same shared container without signing in.**Individual authentication**: Each user of your agent authenticates with their own account so their user context persists. For example, if you build a coding agent that retrieves commits and pull requests from GitHub, you might want each developer to sign in with their own GitHub account.
-
-## Prerequisites
-
-Before you choose an authentication method, you need:
-
-- Access to the
-[Foundry portal](https://ai.azure.com/?cid=learnDocs)and a project. If you don't have one, see[Create projects in Foundry](../../how-to/create-projects?view=foundry). - Permissions to create project connections and configure agents. For details, see
-[Role-based access control in the Foundry portal](../../concepts/rbac-foundry?view=foundry). - The A2A endpoint URL you want to connect to, and which authentication methods it supports.
-- Credentials for your selected authentication method:
-- Key-based: an API key, personal access token (PAT), or other token.
-- Microsoft Entra authentication: role assignments for the agent identity or project managed identity on the underlying service.
-- OAuth identity passthrough: a managed OAuth option from the endpoint publisher, or an OAuth app registration (custom OAuth).
-
-
-## Choose an authentication method
-
-Use the following guidance to choose a method:
-
-| Your goal | Recommended method |
-|---|---|
-| Use one shared identity for all users | Key-based authentication or Microsoft Entra authentication |
-| Preserve each user's identity and permissions | OAuth identity passthrough |
-| Avoid managing secrets when the underlying service supports Microsoft Entra | Microsoft Entra authentication |
-| Connect to an A2A endpoint that doesn't require auth | Unauthenticated access |
-
-## Supported authentication methods
-
-| Method | Description | User context persists |
-|---|---|---|
-| Key-based | Provide an API key or access token to authenticate with the A2A endpoint. | No |
-| Microsoft Entra - agent identity | Use the agent identity to authenticate with the A2A endpoint. Assign the required roles on the underlying service. | No |
-| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the A2A endpoint. Assign the required roles on the underlying service. | No |
-| OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the A2A endpoint. | Yes |
-| Unauthenticated access | Use this method only when the A2A endpoint doesn't require authentication. | No |
-
-## Key-based authentication
-
-Note
-
-People who have access to the project can access a secret stored in a project connection. Store only shared secrets in a project connection. For user-specific access, use OAuth identity passthrough.
-
-Pass an API key, a personal access token (PAT), or other credentials to A2A endpoints that support key-based authentication. For improved security, store shared credentials in a project connection instead of passing them at runtime.
-
-When you connect your A2A endpoint to an agent in the Foundry portal, Foundry creates a project connection for you. Provide the credential name and credential value. For example:
-
-- Credential name:
-`Authorization`
-
-- Credential value:
-`Bearer <your-token>`
-
-
-When the agent invokes the A2A endpoint, Agent Service retrieves the credentials from the project connection and passes them to the A2A endpoint.
-
-For security:
-
-- Use least-privilege credentials where possible.
-- Rotate tokens regularly.
-- Restrict access to projects that contain shared secrets.
-
-## Microsoft Entra authentication
-
-Use Microsoft Entra authentication when the A2A endpoint and its underlying service accept Microsoft Entra tokens.
-
-### Agent identity
-
-Use your agent identity to authenticate with A2A endpoints that support agent identity authentication. If you create your agent by using Agent Service, you automatically assign an agent identity to it.
-
-Before publishing, agents in the same project share a common identity. After you publish an agent, it gets a unique identity. For background and identity lifecycle details, see [Agent identity concepts in Microsoft Foundry](agent-identity?view=foundry).
-
-Make sure the agent identity has the required role assignments on the underlying service that powers the A2A endpoint.
-
-When the agent invokes the A2A endpoint, Agent Service uses the available agent identity to request an authorization token and passes it to the A2A endpoint.
-
-### Foundry project managed identity
-
-Use your Foundry project's managed identity to authenticate with A2A endpoints that support managed identity authentication.
-
-Make sure the project managed identity has the required role assignments on the underlying service that powers the A2A endpoint.
-
-When the agent invokes the A2A endpoint, Agent Service uses the project's managed identity to request an authorization token and passes it to the A2A endpoint.
-
-## OAuth identity passthrough
-
-Note
-
-To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
-
-OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft A2A endpoints and underlying services that are compliant with OAuth, including Microsoft Entra.
-
-Use OAuth identity passthrough to prompt users interacting with your agent to sign in to the A2A endpoint and its underlying service. Agent Service securely stores the user's credentials and uses them only within the context of the agent communicating with the A2A endpoint.
-
-OAuth doesn't grant unlimited access to a user's data. Part of the protocol is specifying what the A2A endpoint can access and what it can do. For more information, see the [Microsoft security](https://www.microsoft.com/security/business/security-101/what-is-oauth) documentation.
-
-When you use OAuth identity passthrough, the agent uses credentials from the user interacting with the agent to connect to the A2A endpoint. The first time a user interacts with the agent, Agent Service generates a consent link. After the user signs in and consents, the agent can discover and invoke tools on the A2A endpoint with that user's credentials.
-
-The user's OAuth credentials are stored securely and scoped to the specific user and the specific agent they interacted with. These credentials typically include a refresh token and an access token.
-
-An OAuth flow typically uses two tokens.
-
-**Access token**
-
-- Used to call APIs (for example Microsoft Graph, GitHub).
-- Short-lived by design. Usually minutes to an hour (commonly 1 hour).
-- Purpose: limit the damage if stolen.
-- When it expires, the OAuth app can use a refresh token (if available) to get a new one.
-
-**Refresh token**
-
-- Used only to get new access tokens.
-- Longer-lived. Can last hours, days, weeks, or even “until revoked” depending on server settings.
-- Can often be revoked by the user (for example, using account settings).
-- Some providers rotate refresh tokens each time they’re used (for extra security).
-
-Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**.
-
-- With managed OAuth, Microsoft or the A2A endpoint publisher manages the OAuth app.
-- With custom OAuth, you bring your own OAuth app registration.
-
-If you use custom OAuth, provide the required information, such as a client ID, client secret (if required), authorization URL, token URL, refresh URL, and requested scopes.
-
-Note
-
-If you use custom OAuth, you get a redirect URL. Add it to your OAuth app registration so Agent Service can complete the flow.
-
-## Unauthenticated access
-
-Use unauthenticated access only when the A2A endpoint doesn't require authentication.
-
-## Set up authentication for an A2A connection
-
-Identify the A2A endpoint you want to connect to and the authentication method it supports.
-
-Create or select a project connection that stores the A2A endpoint URL, authentication method, and any required credentials.
-
-- For general connection guidance, see
-[Add a new connection to your project](../../how-to/connections-add?view=foundry). - For A2A-specific connection configuration and end-to-end A2A tool setup, see
-[Add an A2A agent endpoint to Foundry Agent Service](../how-to/tools/agent-to-agent?view=foundry).
-
-- For general connection guidance, see
-Configure your agent to use the A2A tool and reference the project connection.
-
-
-## Validate
-
-- Trigger an A2A tool call from your agent.
-- Confirm the tool call completes successfully.
-- If you're using OAuth identity passthrough, confirm a new user gets a consent link and that subsequent calls succeed after the user consents.
-
-## Troubleshooting
-
-| Issue | Cause | Resolution |
-|---|---|---|
-| Key-based authentication fails | Invalid or expired token, or the endpoint expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the endpoint documentation. |
-| Microsoft Entra authentication fails | The identity doesn't have the required role assignments on the underlying service | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
-| Consent completes but tool calls still fail | The user doesn't have access in the underlying service | Confirm the user has access to the underlying service and has the Azure AI User role (or higher) on the project. |
-| You don't get a consent link when you expect one | OAuth identity passthrough isn't configured for the connection, or the agent didn't invoke the A2A tool | Confirm the project connection is configured for OAuth identity passthrough and trigger an A2A tool call again. |
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/model-region-support -->
 
 # Azure OpenAI models and regions for Foundry Agent Service
@@ -4208,6 +4034,236 @@ In this experience, you can enable built-in security controls, including:
 For more information about Microsoft Entra Agent ID features, see [Microsoft Entra documentation](/en-us/entra/fundamentals/what-is-entra).
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/agent-to-agent-authentication -->
+
+# Agent2Agent (A2A) authentication
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+The Agent2Agent (A2A) protocol enables your agents to invoke other agents. Most A2A endpoints require authentication to access the endpoint and its underlying service. Configuring authentication ensures that only authorized users can invoke your A2A tools in Foundry Agent Service.
+
+This article explains the authentication methods available for A2A connections and helps you choose the right approach for your scenario.
+
+## Authentication scenarios
+
+In general, there are two authentication scenarios:
+
+**Shared authentication**: Every user of your agent uses the same identity to authenticate to the A2A endpoint. Individual user context doesn't persist. This approach is ideal when all users should have the same level of access. For example, if you build a chat agent to retrieve information from Azure Cosmos DB for your organization, you might want every user to access the same shared container without requiring individual sign-in.**Individual authentication**: Each user of your agent authenticates with their own account, so their user context persists across interactions. This approach is essential when actions should be scoped to the user's permissions. For example, if you build a coding agent that retrieves commits and pull requests from GitHub, you want each developer to sign in with their own GitHub account so they only see repositories they have access to.
+
+## Prerequisites
+
+Before you choose an authentication method, you need:
+
+- Access to the
+[Foundry portal](https://ai.azure.com/?cid=learnDocs)and a project. If you don't have one, see[Create projects in Foundry](../../how-to/create-projects?view=foundry). - The
+**Azure AI User**role or higher on your project. This role grants permissions to create project connections and configure agents. For details, see[Role-based access control in the Foundry portal](../../concepts/rbac-foundry?view=foundry). - The A2A endpoint URL you want to connect to. Contact the endpoint publisher to confirm which authentication methods the endpoint supports.
+- Credentials for your selected authentication method:
+**Key-based**: An API key, personal access token (PAT), or other secret token from the endpoint publisher.**Microsoft Entra authentication**: Role assignments for the agent identity or project managed identity on the underlying service. The specific roles depend on the service (for example,**Cosmos DB Data Reader**for Azure Cosmos DB).
+
+
+## Choose an authentication method
+
+The authentication method you choose depends on whether you need shared or individual user context, and what authentication protocols the A2A endpoint supports.
+
+Use the following table to choose the right method for your scenario:
+
+| Your goal | Recommended method |
+|---|---|
+| Use one shared identity for all users | Key-based authentication or Microsoft Entra authentication |
+| Preserve each user's identity and permissions | OAuth identity passthrough |
+| Avoid managing secrets when the underlying service supports Microsoft Entra | Microsoft Entra authentication |
+| Connect to an A2A endpoint that doesn't require auth | Unauthenticated access |
+
+## Supported authentication methods
+
+The following table summarizes the authentication methods available for A2A connections:
+
+| Method | Description | User context persists |
+|---|---|---|
+| Key-based | Provide an API key or access token to authenticate with the A2A endpoint. Best for endpoints that use simple token-based authentication. | No |
+| Microsoft Entra ID - agent identity | Use the agent's managed identity to authenticate. Requires role assignments on the underlying service. Best for Azure services that support managed identities. | No |
+| Microsoft Entra ID - project managed identity | Use the project's managed identity to authenticate. Requires role assignments on the underlying service. Use this option when you want all agents in a project to share the same identity. | No |
+| OAuth identity passthrough | Prompt users to sign in and authorize access to the A2A endpoint. Required when you need per-user permissions. | Yes |
+| Unauthenticated access | No authentication required. Use this method only for A2A endpoints that are publicly accessible or don't require authentication. | No |
+
+## Key-based authentication
+
+Note
+
+Anyone with access to the project can access secrets stored in a project connection. Store only shared secrets in project connections. For user-specific access, use OAuth identity passthrough instead.
+
+Use key-based authentication when the A2A endpoint accepts an API key, a personal access token (PAT), or another secret credential. For improved security, store shared credentials in a project connection instead of passing them at runtime.
+
+When you connect your A2A endpoint to an agent in the Foundry portal, Foundry creates a project connection for you. Provide the credential name (the HTTP header name) and credential value (the header value). The format depends on what the endpoint expects.
+
+**Common credential formats:**
+
+| Endpoint type | Credential name | Credential value |
+|---|---|---|
+| Bearer token | `Authorization` |
+`Bearer <your-token>` |
+| API key in header | `x-api-key` |
+`<your-api-key>` |
+| Custom header | `<custom-header-name>` |
+`<your-secret-value>` |
+
+When the agent invokes the A2A endpoint, Agent Service retrieves the credentials from the project connection and includes them in the request headers.
+
+### Security best practices for key-based authentication
+
+**Use least-privilege credentials**: Request only the minimum permissions needed for the agent's tasks.**Rotate tokens regularly**: Set a reminder to regenerate tokens before they expire.**Restrict project access**: Limit who can access projects that contain shared secrets.**Audit credential usage**: Monitor project connection access in your Azure activity logs.
+
+## Microsoft Entra ID authentication
+
+Use Microsoft Entra ID authentication when the A2A endpoint and its underlying service accept Microsoft Entra ID tokens. This method eliminates the need to manage secrets because Azure handles token acquisition and renewal automatically.
+
+### Agent identity
+
+Use your agent's managed identity to authenticate with A2A endpoints that support Microsoft Entra ID authentication. When you create an agent in Agent Service, the agent automatically receives a managed identity.
+
+**Identity lifecycle:**
+
+**Before publishing**: All agents in the same project share a common identity. This simplifies development and testing.**After publishing**: Each published agent receives a unique identity. This provides isolation and enables granular access control.
+
+For more information about agent identity lifecycle, see [Agent identity concepts in Microsoft Foundry](agent-identity?view=foundry).
+
+**To configure agent identity authentication:**
+
+- Identify the underlying service that powers the A2A endpoint (for example, Azure Cosmos DB or Azure Storage).
+- Assign the required roles to the agent identity on that service. The specific roles depend on the service and the operations your agent needs to perform.
+- Configure the A2A connection to use agent identity authentication.
+
+When the agent invokes the A2A endpoint, Agent Service uses the agent identity to request an authorization token from Microsoft Entra ID and includes it in the request.
+
+### Foundry project managed identity
+
+Use your Foundry project's managed identity to authenticate with A2A endpoints. This option is useful when you want all agents in a project to share the same identity for accessing resources.
+
+**To configure project managed identity authentication:**
+
+- Identify the underlying service that powers the A2A endpoint.
+- Assign the required roles to the project's managed identity on that service.
+- Configure the A2A connection to use project managed identity authentication.
+
+When the agent invokes the A2A endpoint, Agent Service uses the project's managed identity to request an authorization token from Microsoft Entra ID and includes it in the request.
+
+## OAuth identity passthrough
+
+Note
+
+To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
+
+OAuth identity passthrough enables your agent to act on behalf of individual users. Use this method when actions should be scoped to each user's permissions, such as accessing their personal files, repositories, or other protected resources.
+
+OAuth identity passthrough works with Microsoft and non-Microsoft A2A endpoints that support OAuth 2.0, including services that use Microsoft Entra ID.
+
+### How OAuth identity passthrough works
+
+**First interaction**: When a user first interacts with your agent, Agent Service generates a consent link.**User consent**: The user opens the link, signs in to the underlying service, and authorizes the agent to access their data.**Token storage**: Agent Service securely stores the user's OAuth tokens (access token and refresh token). These tokens are scoped to that specific user and agent combination.**Subsequent requests**: When the agent invokes the A2A endpoint, Agent Service includes the user's access token in the request. If the access token expires, Agent Service uses the refresh token to obtain a new one.
+
+### OAuth token types
+
+OAuth uses two types of tokens:
+
+| Token type | Purpose | Lifetime |
+|---|---|---|
+Access token |
+Authorizes API calls to the underlying service | Short-lived (typically 1 hour) to limit exposure if compromised |
+Refresh token |
+Obtains new access tokens without requiring the user to sign in again | Longer-lived (hours to weeks, or until revoked) |
+
+OAuth scopes define what the agent can access and do on the user's behalf. The scopes are specified when you configure the connection and are presented to the user during the consent flow. For more information about OAuth, see the [Microsoft security documentation](https://www.microsoft.com/security/business/security-101/what-is-oauth).
+
+### Managed OAuth vs. custom OAuth
+
+Agent Service supports two OAuth configuration options:
+
+| Option | Description | When to use |
+|---|---|---|
+Managed OAuth |
+Microsoft or the A2A endpoint publisher manages the OAuth app registration. | Use when available. Simplifies setup and reduces configuration errors. |
+Custom OAuth |
+You provide your own OAuth app registration from Microsoft Entra ID or another identity provider. | Use when managed OAuth isn't available, or when you need custom scopes or branding. |
+
+**To configure custom OAuth**, provide the following information:
+
+**Client ID**: The application ID from your OAuth app registration.**Client secret**(if required): The secret associated with your app registration.**Authorization URL**: The endpoint where users authorize access.**Token URL**: The endpoint where Agent Service exchanges the authorization code for tokens.**Refresh URL**: The endpoint for refreshing expired access tokens.**Scopes**: The permissions your agent needs (for example,`repo`
+
+for GitHub or`Files.Read`
+
+for Microsoft Graph).
+
+Important
+
+If you use custom OAuth, you receive a redirect URL from Agent Service. Add this URL to your OAuth app registration's allowed redirect URIs so Agent Service can complete the authorization flow.
+
+## Unauthenticated access
+
+Use unauthenticated access only when the A2A endpoint is publicly accessible and doesn't require authentication. This option is rare in production scenarios but might be appropriate for:
+
+- Public APIs that don't require authentication
+- Internal development or testing endpoints
+- Endpoints protected by network-level security (such as private endpoints) instead of authentication
+
+## Set up authentication for an A2A connection
+
+Follow these steps to configure authentication for an A2A connection:
+
+**Identify the A2A endpoint and supported authentication methods**. Contact the endpoint publisher or check the endpoint documentation to determine which authentication methods are supported.**Gather the required credentials**based on your chosen authentication method:**Key-based**: Obtain the API key or token from the endpoint publisher.**Microsoft Entra ID**: Identify the required role assignments for the underlying service.**OAuth**: Determine whether managed OAuth is available, or gather your custom OAuth app registration details.
+
+**Create a project connection**in the Foundry portal. The connection stores the A2A endpoint URL, authentication method, and credentials.- For general connection guidance, see
+[Add a new connection to your project](../../how-to/connections-add?view=foundry). - For A2A-specific configuration, see
+[Add an A2A agent endpoint to Foundry Agent Service](../how-to/tools/agent-to-agent?view=foundry).
+
+- For general connection guidance, see
+**Configure role assignments**(Microsoft Entra ID authentication only). Assign the required roles to the agent identity or project managed identity on the underlying service.**Add the A2A tool to your agent**. Reference the project connection you created and configure which tools from the A2A endpoint your agent can invoke.
+
+## Validate authentication
+
+After you configure authentication, test the connection to confirm it works correctly.
+
+### Validate key-based or Microsoft Entra ID authentication
+
+- Open your agent in the Foundry portal.
+- Start a conversation and trigger an action that invokes the A2A tool.
+- Confirm the tool call completes successfully. If the call fails, check the error message and see
+[Troubleshooting](#troubleshooting).
+
+### Validate OAuth identity passthrough
+
+- Open your agent in the Foundry portal using a test user account that hasn't previously consented.
+- Start a conversation and trigger an action that invokes the A2A tool.
+- Confirm that a consent link appears in the agent's response.
+- Open the consent link and sign in with the test user's credentials.
+- Authorize the requested permissions.
+- Return to the agent and trigger the A2A tool again.
+- Confirm the tool call completes successfully using the test user's credentials.
+- (Optional) Test with another user account to confirm consent flows work for multiple users.
+
+## Troubleshooting
+
+Use the following table to diagnose and resolve common authentication issues:
+
+| Issue | Possible cause | Resolution |
+|---|---|---|
+| Key-based authentication fails with 401 Unauthorized | Invalid or expired token | Regenerate the token from the endpoint publisher and update the project connection. |
+| Key-based authentication fails with 400 Bad Request | Incorrect header name or value format | Check the endpoint documentation for the expected header format. Common formats include `Authorization: Bearer <token>` and `x-api-key: <key>` . |
+| Microsoft Entra ID authentication fails with 403 Forbidden | The identity doesn't have the required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service. Role assignment changes can take up to 10 minutes to propagate. |
+| Microsoft Entra ID authentication fails with 401 Unauthorized | The underlying service doesn't accept Microsoft Entra ID tokens, or the audience is incorrect | Confirm the underlying service supports Microsoft Entra ID authentication. Check that the A2A endpoint is configured to accept tokens for the correct audience. |
+| Consent completes but tool calls fail | The user doesn't have permissions in the underlying service | Confirm the user has the required permissions in the underlying service. Also confirm the user has at least the Azure AI User role on the Foundry project. |
+| No consent link appears for OAuth | OAuth identity passthrough isn't configured, or the agent didn't invoke the A2A tool | Verify the project connection is configured for OAuth identity passthrough. Trigger an action that invokes the A2A tool. |
+| Consent link appears but sign-in fails | Custom OAuth configuration is incorrect | For custom OAuth, verify the authorization URL, client ID, and redirect URL are correct. Confirm the redirect URL is added to your OAuth app registration. |
+| Refresh token expired | User hasn't interacted with the agent for an extended period | The user needs to go through the consent flow again. This is expected behavior for security. |
+
+## Related content
+
+[Add an A2A agent endpoint to Foundry Agent Service](../how-to/tools/agent-to-agent?view=foundry): Step-by-step guide to configure an A2A tool for your agent.[Agent identity concepts in Microsoft Foundry](agent-identity?view=foundry): Learn how agent identities work and their lifecycle.[Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry?view=foundry): Understand the roles and permissions available in Foundry.[Add a new connection to your project](../../how-to/connections-add?view=foundry): General guidance for creating project connections.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/hosted-agents -->
 
 # What are hosted agents?
@@ -4571,20 +4627,17 @@ This process might take up to 20 minutes to complete.
 
 When you create a hosted agent, the system registers the agent definition in Microsoft Foundry and tries to create a deployment for that agent version.
 
-### Prerequisites for deployment
+### Pre-deployment checklist
 
-Before you deploy a hosted agent, make sure that you have:
+Before creating a hosted agent, complete these steps **in order**:
 
-A container image hosted in
+**Ensure your access**: Ensure that you have access to assign roles in Azure Container Registry. You need at least User Access Administrator or Owner permissions on the container registry.**Install the Azure AI Projects SDK**: run the following command:`pip install --pre "azure-ai-projects>=2.0.0b3"`
 
-[Azure Container Registry](https://azure.microsoft.com/services/container-registry/).For more information, see
+**Create an Azure Container Registry**:[Create a private container registry](/en-us/azure/container-registry/container-registry-get-started-portal)**Build your Docker image with the correct platform**:[Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry)**Push your image to YOUR registry**:[Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry)Replace the sample URLs (`YOUR_ACR_NAME, YOUR_IMAGE_NAME`
 
-[Create a private container registry](/en-us/azure/container-registry/container-registry-get-started-portal).Access to assign roles in Azure Container Registry. You need at least User Access Administrator or Owner permissions on the container registry.
+,`YOUR_TAG`
 
-The Azure AI Projects SDK installed.
-
-`pip install azure-ai-projects`
-
+) with your actual values for your docker image and Azure Container Registry.**Configure Azure Container Registry permissions**:[Configure Azure Container Registry permissions](#configure-azure-container-registry-permissions)**Create capability host**:[Create an account-level capability host](#create-an-account-level-capability-host)
 
 ### Build and push your Docker image to Azure Container Registry
 
@@ -4592,19 +4645,23 @@ To build your agent as a Docker container and upload it to Azure Container Regis
 
 Build your Docker image locally:
 
-`docker build -t myagent:v1 .`
+Important
+
+**You MUST specify**Hosted agents run on Linux AMD64 infrastructure. Images built for other architectures (such as ARM64 on Apple Silicon Macs) will fail to start with container runtime errors.`--platform linux/amd64`
+
+when building your Docker image.`docker build --platform linux/amd64 -t <YOUR_IMAGE_NAME>:<YOUR_TAG> .`
 
 Sign in to Azure Container Registry:
 
-`az acr login --name myregistry`
+`az acr login --name <YOUR_ACR_NAME>`
 
 Tag your image for the registry:
 
-`docker tag myagent:v1 myregistry.azurecr.io/myagent:v1`
+`docker tag <YOUR_IMAGE_NAME>:<YOUR_TAG> <YOUR_ACR_NAME>.azurecr.io/<YOUR_IMAGE_NAME>:<YOUR_TAG>`
 
 Push the image to Azure Container Registry:
 
-`docker push myregistry.azurecr.io/myagent:v1`
+`docker push <YOUR_ACR_NAME>.azurecr.io/<YOUR_IMAGE_NAME>:<YOUR_TAG>`
 
 
 For detailed guidance on working with Docker images in Azure Container Registry, see [Push and pull Docker images](/en-us/azure/container-registry/container-registry-get-started-docker-cli).
@@ -6036,6 +6093,216 @@ To confirm your agent is published correctly:
 [Publish and share agents in Microsoft Foundry](publish-agent?view=foundry)— Learn about agent applications, identity, and other publishing options.[Publish an agent to Agent 365](agent-365?view=foundry)— Publish to Microsoft Agent 365 for enterprise-wide distribution.[Agent identity concepts in Microsoft Foundry](../concepts/agent-identity?view=foundry)— Understand how agent identity works after publishing.
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/how-to-monitor-agents-dashboard -->
+
+# Monitor agents with the Agent Monitoring Dashboard (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Use the Agent Monitoring Dashboard in Microsoft Foundry to track operational metrics and evaluation results for your agents. This dashboard helps you understand token usage, latency, success rates, and evaluation outcomes for production traffic.
+
+This article covers two approaches: viewing metrics in the Foundry portal and setting up continuous evaluation programmatically with the Python SDK.
+
+## Prerequisites
+
+- A
+[Foundry project](../../how-to/create-projects?view=foundry)with at least one[agent](../../agents/overview?view=foundry). - An
+[Application Insights resource](/en-us/azure/azure-monitor/app/app-insights-overview)connected to your project. - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select
+**Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the[Log Analytics Reader role](/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
+
+## Connect Application Insights
+
+The Agent Monitoring Dashboard reads telemetry from the Application Insights resource connected to your Foundry project. If you haven't connected Application Insights yet, follow the tracing setup steps and then return to this article.
+
+## View agent metrics
+
+To view metrics for an agent in the Foundry portal:
+
+-
+Sign in to
+
+[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. Navigate to the
+
+**Build**page using the top navigation and select the agent you'd like to view data for.Select the
+
+**Monitor**tab to view operational, evaluation, and red-teaming data for your agent.
+
+The dashboard is designed for quick insights and deep analysis of your agent's performance. It consists of two main areas:
+
+Summary cards at the top for high-level metrics.
+
+Charts and graphs below for granular details. These visualizations reflect data for the selected time range.
+
+
+## Understand the dashboard metrics
+
+Use these definitions to interpret the dashboard:
+
+**Token usage**: Token counts for agent traffic in the selected time range. High token usage might indicate verbose prompts or responses that could benefit from optimization.**Latency**: Response time for agent runs. Latency above 10 seconds might indicate model throttling, complex tool calls, or network issues.**Run success rate**: The percentage of runs that complete successfully. A rate below 95% warrants investigation into failed runs.**Evaluation metrics**: Scores produced by evaluators that run on sampled agent outputs. Scores vary by evaluator; review individual evaluator documentation for interpretation guidance.**Red teaming results**: Outcomes from scheduled red team scans, if enabled. Failed scans indicate potential security risks that require remediation.
+
+Note
+
+Monitoring data is stored in the connected Application Insights resource. Retention and billing follow your Application Insights configuration.
+
+## Configure settings
+
+Use the Monitor settings panel to configure telemetry, evaluations, and security checks for your agents. These settings control which charts the dashboard shows and which evaluations run.
+
+To access Monitor settings, select the gear icon on the **Monitor** tab. The following table describes each monitoring feature:
+
+| Setting | Purpose | Configuration Options |
+|---|---|---|
+Continuous evaluation |
+Runs evaluations on sampled agent responses. | Enable or disable Add evaluators Set the sample rate |
+Scheduled evaluations |
+Runs evaluations on a schedule to validate performance against benchmarks. | Enable or disable Select an evaluation template and run Set a schedule |
+Red team scans |
+Runs adversarial tests to detect risks such as data leakage or prohibited actions. | Enable or disable Select an evaluation template and run Set a schedule |
+Alerts |
+Detects performance anomalies, evaluation failures, and security risks. | Configure alerts for latency, token usage, evaluation scores, or red team findings |
+
+## Set up continuous evaluation (Python SDK)
+
+Use the Python SDK to set up continuous evaluation rules for agent responses. This section requires Python 3.9 or later.
+
+```
+pip install "azure-ai-projects>=2.0.0b1" python-dotenv
+```
+
+
+Set these environment variables with your own values:
+
+`AZURE_AI_PROJECT_ENDPOINT`
+
+: The Foundry project endpoint, as found on the project overview page in the Foundry portal.`AZURE_AI_AGENT_NAME`
+
+: The name of the agent to use for evaluation.`AZURE_AI_MODEL_DEPLOYMENT_NAME`
+
+: The deployment name of the model.
+
+### Assign permissions for continuous evaluation
+
+To enable continuous evaluation rules, assign the project managed identity the **Azure AI User** role.
+
+- In the Azure portal, open the resource for your Foundry project.
+- Select
+**Access control (IAM)**, and then select**Add**. - Create a role assignment for
+**Azure AI User**. - For the member, select your Foundry project's managed identity.
+
+### Create an agent
+
+```
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+PromptAgentDefinition,
+)
+load_dotenv()
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+with (
+DefaultAzureCredential() as credential,
+AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+project_client.get_openai_client() as openai_client,
+):
+agent = project_client.agents.create_version(
+agent_name=os.environ["AZURE_AI_AGENT_NAME"],
+definition=PromptAgentDefinition(
+model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+instructions="You are a helpful assistant that answers general questions",
+),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+
+
+References: [AIProjectClient](/en-us/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient), [DefaultAzureCredential](/en-us/python/api/azure-identity/azure.identity.defaultazurecredential)
+
+### Create a continuous evaluation rule
+
+Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [What are evaluators?](../../concepts/observability?view=foundry#what-are-evaluators).
+
+```
+from azure.ai.projects.models import (
+EvaluationRule,
+ContinuousEvaluationRuleAction,
+EvaluationRuleFilter,
+EvaluationRuleEventType,
+)
+data_source_config = {"type": "azure_ai_source", "scenario": "responses"}
+testing_criteria = [
+{"type": "azure_ai_evaluator", "name": "violence_detection", "evaluator_name": "builtin.violence"}
+]
+eval_object = openai_client.evals.create(
+name="Continuous Evaluation",
+data_source_config=data_source_config, # type: ignore
+testing_criteria=testing_criteria, # type: ignore
+)
+print(f"Evaluation created (id: {eval_object.id}, name: {eval_object.name})")
+continuous_eval_rule = project_client.evaluation_rules.create_or_update(
+id="my-continuous-eval-rule",
+evaluation_rule=EvaluationRule(
+display_name="My Continuous Eval Rule",
+description="An eval rule that runs on agent response completions",
+action=ContinuousEvaluationRuleAction(eval_id=eval_object.id, max_hourly_runs=100),
+event_type=EvaluationRuleEventType.RESPONSE_COMPLETED,
+filter=EvaluationRuleFilter(agent_name=agent.name),
+enabled=True,
+),
+)
+print(
+f"Continuous Evaluation Rule created (id: {continuous_eval_rule.id}, name: {continuous_eval_rule.display_name})"
+)
+```
+
+
+References: [EvaluationRuleEventType](/en-us/python/api/azure-ai-projects/azure.ai.projects.models.evaluationruleeventtype), [EvaluationRule](/en-us/python/api/azure-ai-projects/azure.ai.projects.models.evaluationrule)
+
+## Verify continuous evaluation results
+
+- Generate agent traffic (for example, run your app or test the agent in the portal).
+- In the Foundry portal, open the agent and select
+**Monitor**. - Review evaluation-related charts for the selected time range.
+
+If the setup is successful, the evaluation-related charts display scores for your selected time range, and the evaluation runs list shows entries with status **Completed**.
+
+You can also list recent evaluation runs and open the report URL:
+
+```
+eval_run_list = openai_client.evals.runs.list(
+eval_id=eval_object.id,
+order="desc",
+limit=10,
+)
+if len(eval_run_list.data) > 0 and eval_run_list.data[0].report_url:
+print(f"Report URL: {eval_run_list.data[0].report_url}")
+```
+
+
+## Full sample code
+
+To view the full sample code, see:
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| Dashboard charts are empty | No recent traffic, time range excludes data, or ingestion delay | Generate new agent traffic, expand the time range, and refresh after a few minutes. |
+| You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in Access control (IAM) for the connected resources. For log access, assign the
+|
+| Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the Azure AI User role. |
+| Evaluation runs are skipped | Hourly run limit reached | Increase `max_hourly_runs` in the evaluation rule configuration or wait for the next hour. The default limit is 100 runs per hour. |
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/use-your-own-resources -->
 
 # Use your own resources
@@ -6250,217 +6517,6 @@ In the standard agent template file, replace the following placeholders:
 
 - Learn about the different
 [tools](../concepts/tool-catalog?view=foundry-classic)agents can use.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/how-to-monitor-agents-dashboard -->
-
-# Monitor agents with the Agent Monitoring Dashboard (preview)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-Use the Agent Monitoring Dashboard in Microsoft Foundry to track operational metrics and evaluation results for your agents. This dashboard helps you understand token usage, latency, success rates, and evaluation outcomes for production traffic.
-
-This article covers two approaches: viewing metrics in the Foundry portal and setting up continuous evaluation programmatically with the Python SDK.
-
-## Prerequisites
-
-- A Foundry project. For more information, see
-[Create a Foundry project](../../how-to/create-projects?view=foundry). - At least one deployed agent in your Foundry project.
-- An
-[Application Insights resource](/en-us/azure/azure-monitor/app/app-insights-overview)connected to your project. - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select
-**Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the[Log Analytics Reader role](/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). - Python 3.9 or later (required for SDK-based setup).
-
-## Connect Application Insights
-
-The Agent Monitoring Dashboard reads telemetry from the Application Insights resource connected to your Foundry project. If you haven't connected Application Insights yet, follow the tracing setup steps and then return to this article.
-
-## View agent metrics
-
-To view metrics for an agent in the Foundry portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is on. These steps refer to**Foundry (new)**. Navigate to the
-
-**Build**page using the top navigation and select the agent you'd like to view data for.Select the
-
-**Monitor**tab to view operational, evaluation, and red-teaming data for your agent.
-
-The dashboard is designed for quick insights and deep analysis of your agent's performance. It consists of two main areas:
-
-Summary cards at the top for high-level metrics.
-
-Charts and graphs below for granular details. These visualizations reflect data for the selected time range.
-
-
-## Understand the dashboard metrics
-
-Use these definitions to interpret the dashboard:
-
-**Token usage**: Token counts for agent traffic in the selected time range. High token usage might indicate verbose prompts or responses that could benefit from optimization.**Latency**: Response time for agent runs. Latency above 10 seconds might indicate model throttling, complex tool calls, or network issues.**Run success rate**: The percentage of runs that complete successfully. A rate below 95% warrants investigation into failed runs.**Evaluation metrics**: Scores produced by evaluators that run on sampled agent outputs. Scores vary by evaluator; review individual evaluator documentation for interpretation guidance.**Red teaming results**: Outcomes from scheduled red team scans, if enabled. Failed scans indicate potential security risks that require remediation.
-
-Note
-
-Monitoring data is stored in the connected Application Insights resource. Retention and billing follow your Application Insights configuration.
-
-## Configure settings
-
-Use the Monitor settings panel to configure telemetry, evaluations, and security checks for your agents. These settings control which charts the dashboard shows and which evaluations run.
-
-To access Monitor settings, select the gear icon on the **Monitor** tab. The following table describes each monitoring feature:
-
-| Setting | Purpose | Configuration Options |
-|---|---|---|
-Continuous evaluation |
-Runs evaluations on sampled agent responses. | Enable or disable Add evaluators Set the sample rate |
-Scheduled evaluations |
-Runs evaluations on a schedule to validate performance against benchmarks. | Enable or disable Select an evaluation template and run Set a schedule |
-Red team scans |
-Runs adversarial tests to detect risks such as data leakage or prohibited actions. | Enable or disable Select an evaluation template and run Set a schedule |
-Alerts |
-Detects performance anomalies, evaluation failures, and security risks. | Configure alerts for latency, token usage, evaluation scores, or red team findings |
-
-## Set up continuous evaluation (Python SDK)
-
-Use the Python SDK to set up continuous evaluation rules for agent responses.
-
-```
-pip install "azure-ai-projects>=2.0.0b1" python-dotenv
-```
-
-
-Set these environment variables with your own values:
-
-`AZURE_AI_PROJECT_ENDPOINT`
-
-: The Foundry project endpoint, as found on the project overview page in the Foundry portal.`AZURE_AI_AGENT_NAME`
-
-: The name of the agent to use for evaluation.`AZURE_AI_MODEL_DEPLOYMENT_NAME`
-
-: The deployment name of the model.
-
-### Assign permissions for continuous evaluation
-
-To enable continuous evaluation rules, assign the project managed identity the **Azure AI User** role.
-
-- In the Azure portal, open the resource for your Foundry project.
-- Select
-**Access control (IAM)**, and then select**Add**. - Create a role assignment for
-**Azure AI User**. - For the member, select your Foundry project's managed identity.
-
-### Create an agent
-
-```
-import os
-from dotenv import load_dotenv
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import (
-PromptAgentDefinition,
-)
-load_dotenv()
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-with (
-DefaultAzureCredential() as credential,
-AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-project_client.get_openai_client() as openai_client,
-):
-agent = project_client.agents.create_version(
-agent_name=os.environ["AZURE_AI_AGENT_NAME"],
-definition=PromptAgentDefinition(
-model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
-instructions="You are a helpful assistant that answers general questions",
-),
-)
-print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
-```
-
-
-References: [AIProjectClient](/en-us/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient), [DefaultAzureCredential](/en-us/python/api/azure-identity/azure.identity.defaultazurecredential)
-
-### Create a continuous evaluation rule
-
-Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [What are evaluators?](../../concepts/observability?view=foundry#what-are-evaluators).
-
-```
-from azure.ai.projects.models import (
-EvaluationRule,
-ContinuousEvaluationRuleAction,
-EvaluationRuleFilter,
-EvaluationRuleEventType,
-)
-data_source_config = {"type": "azure_ai_source", "scenario": "responses"}
-testing_criteria = [
-{"type": "azure_ai_evaluator", "name": "violence_detection", "evaluator_name": "builtin.violence"}
-]
-eval_object = openai_client.evals.create(
-name="Continuous Evaluation",
-data_source_config=data_source_config, # type: ignore
-testing_criteria=testing_criteria, # type: ignore
-)
-print(f"Evaluation created (id: {eval_object.id}, name: {eval_object.name})")
-continuous_eval_rule = project_client.evaluation_rules.create_or_update(
-id="my-continuous-eval-rule",
-evaluation_rule=EvaluationRule(
-display_name="My Continuous Eval Rule",
-description="An eval rule that runs on agent response completions",
-action=ContinuousEvaluationRuleAction(eval_id=eval_object.id, max_hourly_runs=100),
-event_type=EvaluationRuleEventType.RESPONSE_COMPLETED,
-filter=EvaluationRuleFilter(agent_name=agent.name),
-enabled=True,
-),
-)
-print(
-f"Continuous Evaluation Rule created (id: {continuous_eval_rule.id}, name: {continuous_eval_rule.display_name})"
-)
-```
-
-
-References: [EvaluationRuleEventType](/en-us/python/api/azure-ai-projects/azure.ai.projects.models.evaluationruleeventtype), [EvaluationRule](/en-us/python/api/azure-ai-projects/azure.ai.projects.models.evaluationrule)
-
-## Verify continuous evaluation results
-
-- Generate agent traffic (for example, run your app or test the agent in the portal).
-- In the Foundry portal, open the agent and select
-**Monitor**. - Review evaluation-related charts for the selected time range.
-
-If the setup is successful, the evaluation-related charts display scores for your selected time range, and the evaluation runs list shows entries with status **Completed**.
-
-You can also list recent evaluation runs and open the report URL:
-
-```
-eval_run_list = openai_client.evals.runs.list(
-eval_id=eval_object.id,
-order="desc",
-limit=10,
-)
-if len(eval_run_list.data) > 0 and eval_run_list.data[0].report_url:
-print(f"Report URL: {eval_run_list.data[0].report_url}")
-```
-
-
-## Full sample code
-
-To view the full sample code, see:
-
-## Troubleshooting
-
-| Issue | Cause | Resolution |
-|---|---|---|
-| Dashboard charts are empty | No recent traffic, time range excludes data, or ingestion delay | Generate new agent traffic, expand the time range, and refresh after a few minutes. |
-| You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in Access control (IAM) for the connected resources. For log access, assign the
-|
-| Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the Azure AI User role. |
-| Evaluation runs are skipped | Hourly run limit reached | Increase `max_hourly_runs` in the evaluation rule configuration or wait for the next hour. The default limit is 100 runs per hour. |
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/metrics -->
@@ -8016,331 +8072,6 @@ includes`knowledge_base_retrieve`
 . - Update your agent instructions to explicitly require using the knowledge base and to return "I don't know" when retrieval doesn't contain the answer.
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/mcp-authentication -->
-
-# Set up authentication for Model Context Protocol (MCP) tools (preview)
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Important
-
-Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. This article helps you choose an authentication method and configure it for MCP tools in Foundry Agent Service.
-
-Note
-
-If you don't already have an account with the MCP server publisher, create one through the publisher's website.
-
-## Prerequisites
-
-Before you begin, you need:
-
-- Access to the
-[Foundry portal](https://ai.azure.com/?cid=learnDocs)and a project. If you don't have one, see[Create projects in Foundry](../../how-to/create-projects?view=foundry). - Permissions to create project connections and configure agents. For details, see
-[Role-based access control in the Foundry portal](../../concepts/rbac-foundry?view=foundry). - The remote MCP server endpoint URL you want to connect to.
-- Credentials for your selected authentication method:
-- Key-based authentication: an API key, personal access token (PAT), or other token.
-- Microsoft Entra authentication: role assignments for the agent identity or project managed identity on the underlying service.
-- OAuth identity passthrough: managed OAuth configuration or an OAuth app registration (custom OAuth).
-
-
-## Choose an authentication method
-
-In general, two authentication scenarios exist:
-
-**Shared authentication**: Every user of the agent uses the same identity to authenticate to the MCP server. User context doesn't persist.**Individual authentication**: Each user authenticates with their own account so their user context persists.
-
-Use the following guidance to choose a method:
-
-| Your goal | Recommended method |
-|---|---|
-| Use one shared identity for all users | Key-based authentication or Microsoft Entra authentication |
-| Preserve each user's identity and permissions | OAuth identity passthrough |
-| Avoid managing secrets when the underlying service supports Microsoft Entra | Microsoft Entra authentication |
-| Connect to an MCP server that doesn't require auth | Unauthenticated access |
-
-## Supported authentication methods
-
-| Method | Description | User context persists |
-|---|---|---|
-| Key-based | Provide an API key or access token to authenticate with the MCP server. | No |
-| Microsoft Entra - agent identity | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
-| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
-| OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the MCP server. | Yes |
-| Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
-
-## Key-based authentication
-
-Note
-
-People who have access to the project can access an API key stored in a project connection. Store only shared secrets in a project connection. For user-specific access, use OAuth identity passthrough.
-
-Pass an API key, a personal access token (PAT), or other credentials to MCP servers that support key-based authentication. For improved security, store shared credentials in a project connection instead of passing them at runtime.
-
-When you connect an MCP server to an agent in the Foundry portal, Foundry creates a project connection for you. Provide the credential name and credential value. For example, if you're connecting to the GitHub MCP server, you might provide:
-
-- Credential name:
-`Authorization`
-
-- Credential value:
-`Bearer <your-personal-access-token>`
-
-
-When the agent invokes the MCP server, Agent Service retrieves the credentials from the project connection and passes them to the MCP server.
-
-For security:
-
-- Use least-privilege credentials where possible.
-- Rotate tokens regularly.
-- Restrict access to projects that contain shared secrets.
-
-## Microsoft Entra authentication
-
-Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens.
-
-### Agent identity
-
-Use your agent identity to authenticate with MCP servers that support agent identity authentication. If you create your agent by using Agent Service, you automatically assign an agent identity to it.
-
-Before publishing, all agents in your Foundry project share the same agent identity. After you publish an agent, the agent gets a unique agent identity.
-
-Make sure the agent identity has the required role assignments on the underlying service that powers the MCP server.
-
-When the agent invokes the MCP server, Agent Service uses the available agent identity to request an authorization token and passes it to the MCP server.
-
-### Foundry project managed identity
-
-Use your Foundry project's managed identity to authenticate with MCP servers that support managed identity authentication.
-
-Make sure the project managed identity has the required role assignments on the underlying service that powers the MCP server.
-
-When the agent invokes the MCP server, Agent Service uses the project's managed identity to request an authorization token and passes it to the MCP server.
-
-## OAuth identity passthrough
-
-Note
-
-To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
-
-OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
-
-Use [OAuth identity](/en-us/entra/architecture/auth-oauth2) passthrough to prompt users interacting with your agent to sign in to the MCP server and its underlying service. Agent Service securely stores the user's credentials and uses them only within the context of the agent communicating with the MCP server.
-
-When you use OAuth identity passthrough, Agent Service generates a consent link the first time a particular user needs to authorize access. After the user signs in and consents, the agent can discover and invoke tools on the MCP server with that user's credentials.
-
-Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**.
-
-- With managed OAuth, Microsoft or the MCP server publisher manages the OAuth app.
-- With custom OAuth, you bring your own OAuth app registration.
-
-Note
-
-If you use custom OAuth, you get a redirect URL. Add the redirect URL to your OAuth app so Agent Service can complete the flow.
-
-When you set up **custom OAuth**, provide the following information:
-
-- client ID: required
-- client secret: optional (depends on your OAuth app)
-- auth URL: required
-- refresh URL: required (If you don't have a separate refresh URL, you can use token URL instead.)
-- token URL: required
-- scopes: optional
-
-### Flow using OAuth Identity Passthrough
-
-The scope of OAuth is per tool(connection) name per Foundry project, which means, each new user using a new tool(connection) in this Foundry project will be prompted to provide consent.
-
-When a user is firstly trying to use a new tool in this Foundry project, the response output will share the consent link in
-
-`response.output_item`
-
-. You can find the consent link in item.type`oauth_consent_request`
-
-, under`consent_link`
-
-. You need to surface this consent link to user.`"type":"response.output_item.done", "sequence_number":7, "output_index":1, "item":{ "type":"oauth_consent_request", "id":"oauthreq_10b0f026610e2b76006981547b53d48190840179e52f39a0aa", "created_by":{}, "consent_link":"https://logic-swedencentral-001.consent.azure-apihub.net/login?data=xxxx" }`
-
-The user will be prompted to log in and give consent after reviewing the access needed. After giving consent successfully, user should see a dialog like this:
-
-After the user has closed the dialog, you need to submit another response with the previous response id
-
-`# Requires: azure-ai-projects >= 1.0.0 from azure.ai.projects import AIProjectClient from azure.identity import DefaultAzureCredential # Submit another response after user consent response = client.responses.create( previous_response_id="YOUR_PREVIOUS_RESPONSE_ID", input=user_input, extra_body={ "agent": {"name": agent.name, "type": "agent_reference"}, "tool_choice": "required", "stream": True }, )`
-
-
-Once the user has signed in and given consent once, they don't need to give consent in the future.
-
-### Bring your own Microsoft Entra app registration
-
-Note
-
-Agent 365 MCP servers are only available to [Frontier tenants](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
-
-To use identity passthrough with Microsoft services, bring your own [Microsoft Entra app registration](/en-us/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you control what permissions you grant.
-
-The following steps use the Agent 365 MCP server as an example:
-
-Follow the
-
-[app registration guide](/en-us/entra/identity-platform/quickstart-register-app)to create a Microsoft Entra app and get the client ID and client secret.Grant
-
-[scoped permissions](/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis)to your Microsoft Entra app.For Agent 365 MCP servers, go to
-
-**Manage**>**API Permissions**and search for**Agent 365 Tools**. If you can't find it, search for`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1`
-
-. Assign the permissions you need and grant admin consent for your tenant.Here are the permissions for each MCP server:
-
-- Microsoft Outlook Mail MCP Server (Frontier):
-`McpServers.Mail.All`
-
-- Microsoft Outlook Calendar MCP Server (Frontier):
-`McpServers.Calendar.All`
-
-- Microsoft Teams MCP Server (Frontier):
-`McpServers.Teams.All`
-
-- Microsoft 365 User Profile MCP Server (Frontier):
-`McpServers.Me.All`
-
-- Microsoft SharePoint and OneDrive MCP Server (Frontier):
-`McpServers.OneDriveSharepoint.All`
-
-- Microsoft SharePoint Lists MCP Server (Frontier):
-`McpServers.SharepointLists.All`
-
-- Microsoft Word MCP Server (Frontier):
-`McpServers.Word.All`
-
-- Microsoft 365 Copilot (Search) MCP Server (Frontier):
-`McpServers.CopilotMCP.All`
-
-- Microsoft 365 Admin Center MCP Server (Frontier):
-`McpServers.M365Admin.All`
-
-- Microsoft Dataverse MCP Server (Frontier):
-`McpServers.Dataverse.All`
-
-
-- Microsoft Outlook Mail MCP Server (Frontier):
-Go back to
-
-[Foundry portal](https://ai.azure.com/build/tools)and configure your MCP server. Connect a tool, go to**Custom**, and then select**MCP**. Provide a name and MCP server endpoint, and then select**OAuth Identity Passthrough**:- client ID and client secret
-- token URL:
-`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
-
-- auth URL:
-`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize`
-
-- refresh URL:
-`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
-
-- scopes:
-`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above}`
-
-
-After you complete the configuration, you get a
-
-[redirect URL](/en-us/entra/identity-platform/how-to-add-redirect-uri)to add to your Microsoft Entra app.
-
-## Unauthenticated access
-
-Use unauthenticated access only when the MCP server doesn't require authentication.
-
-## Set up authentication for an MCP server
-
-Identify the remote MCP server you want to connect to.
-
-Create or select a project connection that stores the MCP server endpoint, authentication type, and any required credentials.
-
-If you connect the MCP server in the Foundry portal, Foundry creates the project connection for you.
-
-Create or update an agent with an
-
-`mcp`
-
-tool with the following information:`server_url`
-
-: The URL of the MCP server. For example,`https://api.githubcopilot.com/mcp/`
-
-.`server_label`
-
-: A unique identifier of this MCP server to the agent. For example,`github`
-
-.`require_approval`
-
-: Optionally determine whether approval is required. Supported values are:`always`
-
-: A developer needs to provide approval for every call. If you don't provide a value, this value is the default.`never`
-
-: No approval is required.`{"never":[<tool_name_1>, <tool_name_2>]}`
-
-: You provide a list of tools that don't require approval.`{"always":[<tool_name_1>, <tool_name_2>]}`
-
-: You provide a list of tools that require approval.
-
-`project_connection_id`
-
-: The connection name that stores the MCP server endpoint, authentication selection, and relevant information. If you provide different endpoints in the connection versus`server_url`
-
-, the endpoint in the connection is used.
-
-Run the agent.
-
-If the model tries to invoke a tool in your MCP server with approval required or the user needs to sign in for OAuth identity passthrough, review the response output:
-
-- Consent link:
-`oauth_consent_request`
-
-- Approval request:
-`mcp_approval_request`
-
-
-After the user signs in or you approve the call, submit another response to continue.
-
-- Consent link:
-
-## Validate
-
-- Trigger an MCP tool call from your agent.
-- Confirm the tool call completes successfully.
-- If you're using OAuth identity passthrough, confirm a new user gets a consent link and that subsequent tool calls succeed after the user consents.
-
-## Troubleshooting
-
-| Issue | Cause | Resolution |
-|---|---|---|
-You don't get an `oauth_consent_request` when you expect one |
-The MCP tool isn't configured for OAuth identity passthrough, or the tool call didn't execute | Confirm the project connection is configured for OAuth identity passthrough, and make sure your prompt causes the agent to invoke the MCP tool. |
-| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the Azure AI User role (or higher) on the project. |
-| Key-based authentication fails | Invalid or expired key or token, or the MCP server expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the MCP server documentation. |
-| Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
-| Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling |
-Update `require_approval` to match your approval requirements. |
-
-## Host a local MCP server
-
-The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/en-us/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following points when attempting to host local MCP servers in the cloud:
-
-| Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
-|---|---|---|
-Transport |
-HTTP POST/GET endpoints required. | HTTP streamable required (responses must support chunked transfer encoding for SSE-style streaming). |
-Code changes |
-The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
-Authentication |
-Custom authentication implementation required. | Use
-Azure Functions requires a key by default, but you can
-|
-
-**Language stack****Container requirements****Dependencies****State****UVX/NPX**`npx`
-
-start commands not supported.
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/memory-usage -->
 
 # Create and use memory in Foundry Agent Service (preview)
@@ -9041,6 +8772,368 @@ script in the secured standard template.
 ## Next steps
 
 You've now successfully configured a network-secure account and project, use the [quickstart](../quickstart?view=foundry-classic) to create your first agent.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/mcp-authentication -->
+
+# Set up authentication for Model Context Protocol (MCP) tools (preview)
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Important
+
+Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. Proper authentication ensures your agents can securely connect to MCP servers, invoke their tools, and access protected resources while maintaining appropriate access controls.
+
+In this article, you:
+
+- Choose an authentication method based on your security requirements
+- Configure key-based, Microsoft Entra, or OAuth authentication
+- Set up and validate your MCP server connection
+
+Note
+
+If you don't already have an account with the MCP server publisher, create one through the publisher's website.
+
+## Prerequisites
+
+Before you begin, you need:
+
+- Access to the
+[Foundry portal](https://ai.azure.com/?cid=learnDocs)and a project. If you don't have one, see[Create projects in Foundry](../../how-to/create-projects?view=foundry). - Permissions to create project connections and configure agents. For details, see
+[Role-based access control in the Foundry portal](../../concepts/rbac-foundry?view=foundry). - The remote MCP server endpoint URL you want to connect to.
+- Credentials for your selected authentication method:
+- Key-based authentication: an API key, personal access token (PAT), or other token.
+- Microsoft Entra authentication: role assignments for the agent identity or project managed identity on the underlying service.
+- OAuth identity passthrough: managed OAuth configuration or an OAuth app registration (custom OAuth).
+
+
+## Choose an authentication method
+
+In general, two authentication scenarios exist:
+
+**Shared authentication**: Every user of the agent uses the same identity to authenticate to the MCP server. User context doesn't persist.**Individual authentication**: Each user authenticates with their own account so their user context persists.
+
+Use the following guidance to choose a method:
+
+| Your goal | Recommended method |
+|---|---|
+| Use one shared identity for all users | Key-based authentication or Microsoft Entra authentication |
+| Preserve each user's identity and permissions | OAuth identity passthrough |
+| Avoid managing secrets when the underlying service supports Microsoft Entra | Microsoft Entra authentication |
+| Connect to an MCP server that doesn't require auth | Unauthenticated access |
+
+Tip
+
+When in doubt, start with Microsoft Entra authentication if the MCP server supports it. Microsoft Entra authentication eliminates the need to manage secrets and provides built-in token rotation.
+
+## Supported authentication methods
+
+| Method | Description | User context persists |
+|---|---|---|
+| Key-based | Provide an API key or access token to authenticate with the MCP server. | No |
+| Microsoft Entra - agent identity | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the MCP server. | Yes |
+| Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
+
+## Key-based authentication
+
+Use key-based authentication when the MCP server requires an API key, personal access token, or similar credential, and you don't need to preserve individual user context.
+
+Note
+
+People who have access to the project can access an API key stored in a project connection. Store only shared secrets in a project connection. For user-specific access, use OAuth identity passthrough.
+
+Pass an API key, a personal access token (PAT), or other credentials to MCP servers that support key-based authentication. For improved security, store shared credentials in a project connection instead of passing them at runtime.
+
+When you connect an MCP server to an agent in the Foundry portal, Foundry creates a project connection for you. Provide the credential name and credential value. For example, if you're connecting to the GitHub MCP server, you might provide:
+
+- Credential name:
+`Authorization`
+
+- Credential value:
+`Bearer <your-personal-access-token>`
+
+
+When the agent invokes the MCP server, Agent Service retrieves the credentials from the project connection and passes them to the MCP server.
+
+For security:
+
+- Use least-privilege credentials where possible.
+- Rotate tokens regularly.
+- Restrict access to projects that contain shared secrets.
+
+## Microsoft Entra authentication
+
+Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens. This method eliminates the need to manage secrets and provides automatic token rotation.
+
+### Use agent identity authentication
+
+Use agent identity when you want authentication scoped to a specific agent. This approach is ideal when you have multiple agents that need different levels of access to the same MCP server.
+
+Use your agent identity to authenticate with MCP servers that support agent identity authentication. If you create your agent by using Agent Service, you automatically assign an agent identity to it.
+
+Before publishing, all agents in your Foundry project share the same agent identity. After you publish an agent, the agent gets a unique agent identity.
+
+Make sure the agent identity has the required role assignments on the underlying service that powers the MCP server.
+
+When the agent invokes the MCP server, Agent Service uses the available agent identity to request an authorization token and passes it to the MCP server.
+
+### Use project managed identity authentication
+
+Use project managed identity when you want all agents in a project to share the same access level, or when the MCP server requires a managed identity rather than an agent identity.
+
+Use your Foundry project's managed identity to authenticate with MCP servers that support managed identity authentication.
+
+Make sure the project managed identity has the required role assignments on the underlying service that powers the MCP server.
+
+When the agent invokes the MCP server, Agent Service uses the project's managed identity to request an authorization token and passes it to the MCP server.
+
+## OAuth identity passthrough
+
+Note
+
+To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
+
+OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
+
+Use [OAuth identity](/en-us/entra/architecture/auth-oauth2) passthrough to prompt users interacting with your agent to sign in to the MCP server and its underlying service. Agent Service securely stores the user's credentials and uses them only within the context of the agent communicating with the MCP server.
+
+When you use OAuth identity passthrough, Agent Service generates a consent link the first time a particular user needs to authorize access. After the user signs in and consents, the agent can discover and invoke tools on the MCP server with that user's credentials.
+
+Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**.
+
+- With managed OAuth, Microsoft or the MCP server publisher manages the OAuth app.
+- With custom OAuth, you bring your own OAuth app registration.
+
+Note
+
+If you use custom OAuth, you receive a redirect URL after configuration. Add the redirect URL to your OAuth app so Agent Service can complete the flow.
+
+When you set up **custom OAuth**, provide the following information:
+
+- Client ID: required
+- Client secret: optional (depends on your OAuth app)
+- Auth URL: required
+- Refresh URL: required (if you don't have a separate refresh URL, you can use the token URL instead)
+- Token URL: required
+- Scopes: optional
+
+### Flow using OAuth identity passthrough
+
+The scope of OAuth is per tool (connection) name per Foundry project. Each new user using a new tool (connection) in a Foundry project is prompted to provide consent.
+
+When a user first tries to use a new tool in a Foundry project, the response output shares the consent link in
+
+`response.output_item`
+
+. You can find the consent link in item type`oauth_consent_request`
+
+, under`consent_link`
+
+. Surface this consent link to the user.`"type":"response.output_item.done", "sequence_number":7, "output_index":1, "item":{ "type":"oauth_consent_request", "id":"oauthreq_10b0f026610e2b76006981547b53d48190840179e52f39a0aa", "created_by":{}, "consent_link":"https://logic-swedencentral-001.consent.azure-apihub.net/login?data=xxxx" }`
+
+The user is prompted to sign in and give consent after reviewing the access needed. After giving consent successfully, the user sees a dialog like this example:
+
+After the user has closed the dialog, you need to submit another response with the previous response id
+
+`# Requires: azure-ai-projects >= 1.0.0 from azure.ai.projects import AIProjectClient from azure.identity import DefaultAzureCredential # Submit another response after user consent response = client.responses.create( previous_response_id="YOUR_PREVIOUS_RESPONSE_ID", input=user_input, extra_body={ "agent": {"name": agent.name, "type": "agent_reference"}, "tool_choice": "required", "stream": True }, )`
+
+
+Once the user has signed in and given consent once, they don't need to give consent in the future.
+
+Note
+
+If the user declines consent, the MCP tool call fails and returns an error. Your application should handle this case gracefully and inform the user that the tool requires authorization to function.
+
+### Bring your own Microsoft Entra app registration
+
+Note
+
+Agent 365 MCP servers are only available to [Frontier tenants](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
+
+To use identity passthrough with Microsoft services, bring your own [Microsoft Entra app registration](/en-us/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you control what permissions you grant.
+
+The following steps use the Agent 365 MCP server as an example:
+
+Follow the
+
+[app registration guide](/en-us/entra/identity-platform/quickstart-register-app)to create a Microsoft Entra app and get the client ID and client secret.Grant
+
+[scoped permissions](/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis)to your Microsoft Entra app.For Agent 365 MCP servers, go to
+
+**Manage**>**API Permissions**and search for**Agent 365 Tools**. If you can't find it, search for`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1`
+
+. Assign the permissions you need and grant admin consent for your tenant.Here are the permissions for each MCP server:
+
+- Microsoft Outlook Mail MCP Server (Frontier):
+`McpServers.Mail.All`
+
+- Microsoft Outlook Calendar MCP Server (Frontier):
+`McpServers.Calendar.All`
+
+- Microsoft Teams MCP Server (Frontier):
+`McpServers.Teams.All`
+
+- Microsoft 365 User Profile MCP Server (Frontier):
+`McpServers.Me.All`
+
+- Microsoft SharePoint and OneDrive MCP Server (Frontier):
+`McpServers.OneDriveSharepoint.All`
+
+- Microsoft SharePoint Lists MCP Server (Frontier):
+`McpServers.SharepointLists.All`
+
+- Microsoft Word MCP Server (Frontier):
+`McpServers.Word.All`
+
+- Microsoft 365 Copilot (Search) MCP Server (Frontier):
+`McpServers.CopilotMCP.All`
+
+- Microsoft 365 Admin Center MCP Server (Frontier):
+`McpServers.M365Admin.All`
+
+- Microsoft Dataverse MCP Server (Frontier):
+`McpServers.Dataverse.All`
+
+
+- Microsoft Outlook Mail MCP Server (Frontier):
+Go back to
+
+[Foundry portal](https://ai.azure.com/build/tools)and configure your MCP server. Connect a tool, go to**Custom**, and then select**MCP**. Provide a name and MCP server endpoint, and then select**OAuth Identity Passthrough**:- client ID and client secret
+- token URL:
+`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+
+- auth URL:
+`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize`
+
+- refresh URL:
+`https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+
+- scopes:
+`ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above}`
+
+
+After you complete the configuration, you receive a
+
+[redirect URL](/en-us/entra/identity-platform/how-to-add-redirect-uri). Add it to your Microsoft Entra app.
+
+## Unauthenticated access
+
+Use unauthenticated access only when the MCP server doesn't require authentication. This method is appropriate for public MCP servers that provide open access to their tools.
+
+Important
+
+Even when authentication isn't required, ensure you understand the MCP server's terms of service and rate limits before connecting.
+
+## Set up authentication for an MCP server
+
+Identify the remote MCP server you want to connect to.
+
+Create or select a project connection that stores the MCP server endpoint, authentication type, and any required credentials.
+
+If you connect the MCP server in the Foundry portal, the portal creates the project connection for you.
+
+Create or update an agent with an
+
+`mcp`
+
+tool with the following information:`server_url`
+
+: The URL of the MCP server. For example,`https://api.githubcopilot.com/mcp/`
+
+.`server_label`
+
+: A unique identifier of this MCP server to the agent. For example,`github`
+
+.`require_approval`
+
+: Optionally determine whether approval is required. Supported values are:`always`
+
+: A developer needs to provide approval for every call. If you don't provide a value, this value is the default.`never`
+
+: No approval is required.`{"never":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that don't require approval.`{"always":[<tool_name_1>, <tool_name_2>]}`
+
+: You provide a list of tools that require approval.
+
+`project_connection_id`
+
+: The connection name that stores the MCP server endpoint, authentication selection, and relevant information. If you provide different endpoints in the connection versus`server_url`
+
+, the endpoint in the connection is used.
+
+Run the agent.
+
+If the model tries to invoke a tool in your MCP server with approval required or the user needs to sign in for OAuth identity passthrough, review the response output:
+
+- Consent link:
+`oauth_consent_request`
+
+- Approval request:
+`mcp_approval_request`
+
+
+After the user signs in or you approve the call, submit another response to continue.
+
+- Consent link:
+
+## Validate
+
+After you configure authentication, verify the connection works correctly:
+
+- Trigger an MCP tool call from your agent by sending a prompt that causes the agent to use one of the MCP server's tools.
+- Confirm the tool call completes successfully. You should see the tool's output in the agent's response without authentication errors.
+- If you're using OAuth identity passthrough:
+- Confirm a new user receives a consent link (
+`oauth_consent_request`
+
+in the response). - After the user consents, confirm subsequent tool calls succeed without prompting for consent again.
+- Test with a different user to verify the per-user consent flow works correctly.
+
+- Confirm a new user receives a consent link (
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+You don't get an `oauth_consent_request` when you expect one |
+The MCP tool isn't configured for OAuth identity passthrough, or the tool call didn't execute | Confirm the project connection is configured for OAuth identity passthrough, and make sure your prompt causes the agent to invoke the MCP tool. |
+| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the Azure AI User role (or higher) on the project. |
+| Key-based authentication fails | Invalid or expired key or token, or the MCP server expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the MCP server documentation. |
+| Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
+| Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling |
+Update `require_approval` to match your approval requirements. |
+| MCP server returns "unauthorized" despite valid credentials | The credential header name or format doesn't match what the MCP server expects | Check the MCP server's documentation for the exact header name (for example, `Authorization` , `X-API-Key` , or `Api-Key` ) and value format (for example, `Bearer <token>` vs. just `<token>` ). |
+| OAuth tokens expire and tool calls fail after some time | The refresh token is invalid or the refresh URL is incorrect | Verify the refresh URL is correct. If you used the token URL as the refresh URL, confirm the OAuth provider supports token refresh at that endpoint. The user might need to consent again if refresh tokens are revoked. |
+
+## Host a local MCP server
+
+If you developed a custom MCP server or want to use an open-source MCP server that runs locally, you need to host it in the cloud before connecting it to Agent Service.
+
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/en-us/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following points when attempting to host local MCP servers in the cloud:
+
+| Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+|---|---|---|
+Transport |
+HTTP POST/GET endpoints required. | HTTP streamable required (responses must support chunked transfer encoding for SSE-style streaming). |
+Code changes |
+Container requires a rebuild. | Azure Functions-specific configuration files required in the root directory. |
+Authentication |
+Custom authentication implementation required. | Use
+Azure Functions requires a key by default, but you can
+|
+
+**Language stack****Container requirements****Dependencies****State****UVX/NPX**`npx`
+
+start commands aren't supported.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/publish-agent -->
@@ -22929,15 +23022,17 @@ Items marked (preview) in this article are currently in public preview. This pre
 
 Note
 
-See [best practices](../../concepts/tool-best-practice?view=foundry) for information on optimizing tool usage.
+For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice?view=foundry).
 
-You can extend the capabilities of your Microsoft Foundry agent by adding an Agent2Agent (A2A) agent endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A Tool enables agent-to-agent communication, making it easier to share context between Foundry agents and external agent endpoints through a standardized protocol. This guide shows you how to configure and use the A2A tool in your Foundry Agent Service.
+You can extend the capabilities of your Microsoft Foundry agent by adding an Agent2Agent (A2A) agent endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A tool enables agent-to-agent communication, making it easier to share context between Foundry agents and external agent endpoints through a standardized protocol. This guide shows you how to configure and use the A2A tool in your Foundry Agent Service.
 
 Connecting agents via the A2A tool versus a multi-agent workflow:
 
 **Using the A2A tool**: When Agent A calls Agent B through the A2A tool, Agent B's answer goes back to Agent A. Agent A then summarizes the answer and generates a response for the user. Agent A keeps control and continues to handle future user input.**Using a multi-agent workflow**: When Agent A calls Agent B through a workflow or other multi-agent orchestration, Agent B takes full responsibility for answering the user. Agent A is out of the loop. Agent B handles all subsequent user input. For more information, see[Build a workflow in Microsoft Foundry](../../concepts/workflow?view=foundry).
 
 ## Usage support
+
+The following table shows SDK and setup support. A checkmark (✔️) indicates support; a dash (-) indicates the feature isn't available.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 |---|---|---|---|---|---|---|---|
@@ -22968,11 +23063,7 @@ npm package
 
 : Your model deployment name.`A2A_PROJECT_CONNECTION_NAME`
 
-: Your A2A connection name (created in the Foundry portal).`A2A_PROJECT_CONNECTION_ID`
-
-: Your A2A connection resource ID (required for some SDKs). The format is`/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}`
-
-.`A2A_BASE_URI`
+: Your A2A connection name (created in the Foundry portal).`A2A_BASE_URI`
 
 (optional): The base URI for the A2A endpoint.
 
@@ -23000,13 +23091,21 @@ For details about supported authentication approaches, see [Agent2Agent (A2A) au
 
 ### Get the connection identifier for code
 
-The connection name (`A2A_PROJECT_CONNECTION_NAME`
+Store your connection name in the `A2A_PROJECT_CONNECTION_NAME`
 
-), and resolve it to a connection ID in code.
+environment variable. Your code uses this name to retrieve the full connection ID at runtime:
 
-## Quick verification
+**Python/C#/TypeScript**: Call`project.connections.get(connection_name)`
 
-Before you run the full sample, verify your A2A connection exists:
+to get the connection object, then access`connection.id`
+
+.**REST API**: Include the connection ID in the`project_connection_id`
+
+field of the A2A tool definition.
+
+## Verify your connection
+
+Before running the full sample, confirm your environment setup is correct. This verification script checks that your credentials work and the A2A connection exists in your project.
 
 ```
 import os
@@ -23163,7 +23262,11 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 ```
 
 
-## Create an A2A connection with the REST API
+### Expected output
+
+The console displays the agent's response text from the A2A endpoint. After completion, the agent version is deleted to clean up resources.
+
+## Create an A2A connection by using the REST API
 
 Use these examples to create a project connection that stores your authentication information.
 
@@ -23371,6 +23474,10 @@ curl --request POST \
 ```
 
 
+To delete an agent version, send a `DELETE`
+
+request to the same endpoint with the agent name and version.
+
 This sample demonstrates how to create an AI agent with A2A capabilities by using the `A2ATool`
 
 and the Azure AI Projects client. The agent can communicate with other agents and provide responses based on inter-agent interactions by using the A2A protocol.
@@ -23383,12 +23490,13 @@ import "dotenv/config";
 // Load environment variables
 const projectEndpoint = process.env.FOUNDRY_PROJECT_ENDPOINT || "<project endpoint>";
 const deploymentName = process.env.FOUNDRY_MODEL_DEPLOYMENT_NAME || "<model deployment name>";
-const a2aProjectConnectionId =
-process.env.A2A_PROJECT_CONNECTION_ID || "<a2a project connection id>";
+const a2aConnectionName = process.env.A2A_PROJECT_CONNECTION_NAME || "<a2a connection name>";
 export async function main(): Promise<void> {
 const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
 const openAIClient = await project.getOpenAIClient();
 console.log("Creating agent with A2A tool...");
+// Get the A2A connection by name to retrieve its ID
+const a2aConnection = await project.connections.get(a2aConnectionName);
 // Create the agent with A2A tool
 const agent = await project.agents.createVersion("MyA2AAgent", {
 kind: "prompt",
@@ -23398,7 +23506,7 @@ instructions: "You are a helpful assistant.",
 tools: [
 {
 type: "a2a_preview",
-project_connection_id: a2aProjectConnectionId,
+project_connection_id: a2aConnection.id,
 },
 ],
 });
@@ -23461,6 +23569,10 @@ console.error("The sample encountered an error:", err);
 ```
 
 
+### Expected output
+
+The console displays streamed response text as the A2A agent processes the request. You see the follow-up response ID, text deltas printed to stdout, and completion messages. The agent version is deleted after the interaction completes.
+
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
@@ -23474,7 +23586,7 @@ console.error("The sample encountered an error:", err);
 | Connection timeout | Remote agent slow to respond | Increase timeout settings or verify the remote agent's performance. Consider implementing retry logic with exponential backoff. |
 | Missing A2A tool in response | Tool not enabled for the agent | Recreate the agent with the A2A tool explicitly enabled, and verify the connection is active and properly configured. |
 
-## Considerations for using non-Microsoft services and servers
+## Considerations for using non-Microsoft services
 
 You're subject to the terms between you and the service provider when you use connected non-Microsoft services and servers ("non-Microsoft services"). Under your agreement governing use of Microsoft Online services, non-Microsoft services are non-Microsoft Products. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft services, or your application might receive data from the non-Microsoft services. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
 
@@ -26041,7 +26153,7 @@ T get();
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/openapi -->
 
-# Connect to an OpenAPI specification
+# Connect agents to OpenAPI tools
 
 Note
 
@@ -26049,15 +26161,15 @@ Access to this page requires authorization. You can try [signing in](#) or [chan
 
 Access to this page requires authorization. You can try [changing directories].
 
-Connect your Microsoft Foundry Agent Service to external APIs by using OpenAPI 3.0 tools with support for anonymous, API key, and managed identity authentication. This integration enables scalable interoperability with existing infrastructure and web services.
+Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifications. Agents that connect to OpenAPI tools can call external services, retrieve real-time data, and extend their capabilities beyond built-in functions.
 
-OpenAPI tools improve your agent's function calling capabilities by providing standardized, automated API integrations. [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication types with OpenAPI 3.0 tools: `anonymous`
+[OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication methods: `anonymous`
 
 , `API key`
 
 , and `managed identity`
 
-.
+. For help choosing an authentication method, see [Choose an authentication method](#choose-an-authentication-method).
 
 ### Usage support
 
@@ -26122,7 +26234,7 @@ The `AZURE_AI_PROJECT_ENDPOINT`
 
 value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
 
-## Limitations
+## Understand limitations
 
 - Your OpenAPI spec must include
 `operationId`
@@ -26145,7 +26257,7 @@ can include only letters,`-`
 Note
 
 - You need the latest prerelease package. See the
-[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true#get-ready-to-code)for details. - If you use API key for authentication, your connection ID should be in the format of
+[quickstart](../../../quickstarts/get-started-code?view=foundry&preserve-view=true)for details. - If you use API key for authentication, your connection ID should be in the format of
 `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
 
 .
@@ -27301,9 +27413,9 @@ Select
 When you finish the setup, you can continue by using the tool through the Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
 
 
-## Troubleshooting
+## Troubleshoot common errors
 
-| Issue | Likely cause | Resolution |
+| Symptom | Likely cause | Resolution |
 |---|---|---|
 | API key isn't included in requests. | OpenAPI spec missing `securitySchemes` or `security` sections. |
 Verify your OpenAPI spec includes both `components.securitySchemes` and a top-level `security` section. Ensure the scheme `name` matches the key name in your project connection. |
@@ -27317,6 +27429,16 @@ Use `tool_choice="required"` to force tool invocation. Ensure `operationId` valu
 Invalid characters in `operationId` . |
 Use only letters, `-` , and `_` in `operationId` values. Remove numbers and special characters. |
 | Connection not found error. | Connection name or ID mismatch. | Verify `OPENAPI_PROJECT_CONNECTION_NAME` matches the connection name in your Foundry project. |
+
+## Choose an authentication method
+
+The following table helps you choose the right authentication method for your OpenAPI tool:
+
+| Authentication method | Best for | Setup complexity |
+|---|---|---|
+| Anonymous | Public APIs with no authentication | Low |
+| API key | Third-party APIs with key-based access | Medium |
+| Managed identity | Azure services and Microsoft Entra ID-protected APIs | Medium-High |
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/bing-tools -->

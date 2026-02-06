@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-05T08:42:07.044078
+merged_at: 2026-02-06T17:00:26.086169
 merged_files: 6
 ---
 
@@ -3597,152 +3597,6 @@ An alternative method of identifying similar documents is to count the number of
 - Use the
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/advanced-prompt-engineering -->
-
-# System message design
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-System messages help you steer an Azure OpenAI chat model toward the behavior, tone, and output format you want. This article explains what system messages are, how they affect responses, and how to design them for consistency and safety.
-
-## What this article covers
-
-This article focuses on the **system message** (sometimes called a *system prompt* or *metaprompt*) for chat-based experiences.
-
-If you want broader prompt guidance (few-shot examples, ordering, and token efficiency), see [Prompt engineering techniques](prompt-engineering?view=foundry-classic).
-
-## What is a system message?
-
-A system message is a set of instructions and context you provide to the model to guide its responses. You typically use it to:
-
-- Define the assistant’s role and boundaries.
-- Set tone and communication style.
-- Specify output formats (for example, JSON).
-- Add safety and quality constraints for your scenario.
-
-A system message can be one short sentence:
-
-```
-You are a helpful AI assistant.
-```
-
-
-Or it can be multiple lines with structured rules and formatting requirements.
-
-Important
-
-A system message influences the model, but it doesn’t guarantee compliance. You still need to test and iterate, and you should layer system messages with other mitigations (for example, filtering and evaluation).
-
-## How system messages work
-
-In chat-based APIs, you send a set of messages that include roles such as **system**, **user**, and **assistant**. The system message typically appears first and acts as the highest-level set of instructions for the conversation.
-
-System messages are most effective when you:
-
-- Keep instructions unambiguous.
-- Avoid conflicting rules.
-- Make the “fallback behavior” explicit (what the assistant does when it lacks information or the request is out of scope).
-
-## Key concepts
-
-### Role and scope
-
-Define what the assistant is (role) and what it is and isn’t allowed to do (scope). Scope statements are especially important for domain-specific assistants.
-
-### Output contract
-
-If your app needs structured output, specify an output contract (for example, JSON with fixed keys). Keep the contract small and stable.
-
-### Safety constraints
-
-Add constraints that reduce risky behavior for your scenario, such as refusing disallowed requests or avoiding disclosure of sensitive information.
-
-If you want guidance and templates designed for safety, see [Safety system messages](system-message?view=foundry-classic) and [Safety system message templates](safety-system-message-templates?view=foundry-classic).
-
-## System message examples
-
-The following example shows a system message and the resulting model response.
-
-| System message | User | Assistant |
-|---|---|---|
-| You're an AI assistant that helps people find information and responds in rhyme. If the user asks you a question you don't know the answer to, say so. | What can you tell about me, John Doe? | Dear John, I'm sorry to say, But I don't have info on you today. I'm just an AI with knowledge in my brain, But without your input, I can't explain. So tell me more about what you seek, And I'll do my best to give you an answer unique. |
-
-Here are a few more examples you can adapt.
-
-### Example: technical support assistant with a fallback
-
-```
-You are a technical support assistant for an internal product.
-If you don't have enough information to answer, ask a clarifying question.
-If you still can't answer, say you don't know.
-```
-
-
-### Example: structured entity extraction
-
-```
-You extract entities from user text.
-Return only JSON, using this schema:
-{
-"name": "",
-"company": "",
-"phone_number": ""
-}
-```
-
-
-## Design checklist
-
-Use this checklist to design a system message that’s easier to maintain and evaluate.
-
-### 1. Start with the assistant’s job
-
-State the role and the expected outcome for a typical request.
-
-### 2. Define boundaries
-
-List the topics, actions, and content types the assistant must avoid for your scenario.
-
-### 3. Specify the output format
-
-If you need a specific format, specify it plainly and keep it consistent.
-
-### 4. Add a “when unsure” policy
-
-Tell the model what to do when:
-
-- The user’s request is ambiguous.
-- The request is out of scope.
-- The model lacks information.
-
-### 5. Test, measure, and iterate
-
-System messages can overfit to specific examples or fail in edge cases. Test with realistic and adversarial prompts, and iterate based on results.
-
-If you’re tuning prompts as part of an evaluation workflow, you can also use the broader guidance in [Prompt engineering techniques](prompt-engineering?view=foundry-classic).
-
-## Common pitfalls
-
-**Conflicting instructions**: for example, “be brief” and “be comprehensive” without prioritization.**Overly long system messages**: longer messages can consume context window and reduce room for user content.**Hidden requirements**: if the output format matters, state it explicitly.
-
-## Limitations
-
-- System messages don’t guarantee the model follows every rule.
-- Responses can vary across models and versions.
-- Behavior can change when user content conflicts with system instructions, especially in long conversations.
-
-## Next steps
-
-- Read
-[Prompt engineering techniques](prompt-engineering?view=foundry-classic)for broader prompt patterns. - Use
-[Safety system messages](system-message?view=foundry-classic)if you need safety-focused frameworks. - Start from
-[Safety system message templates](safety-system-message-templates?view=foundry-classic)when you want a ready-made baseline.
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/content-filter-groundedness -->
 
 # Groundedness detection filter
@@ -3887,6 +3741,156 @@ as ungrounded and updates it to `SuperWidget v2.2`
 in the response. The response returns the corrected text: `"Our latest product is SuperWidget v2.2."`
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/advanced-prompt-engineering -->
+
+# System message design
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+System messages help you steer an Azure OpenAI chat model toward the behavior, tone, and output format you want. This article explains what system messages are, how they affect responses, and how to design them for consistency and safety.
+
+## What this article covers
+
+This article focuses on the **system message** (sometimes called a *system prompt* or *metaprompt*) for chat-based experiences.
+
+If you want broader prompt guidance (few-shot examples, ordering, and token efficiency), see [Prompt engineering techniques](prompt-engineering?view=foundry-classic).
+
+## Prerequisites
+
+To use system messages, you need access to an Azure OpenAI resource with a chat completion model deployment. For setup instructions, see [Create and deploy an Azure OpenAI resource](../how-to/create-resource?view=foundry-classic).
+
+## What is a system message?
+
+A system message is a set of instructions and context you provide to the model to guide its responses. You typically use it to:
+
+- Define the assistant’s role and boundaries.
+- Set tone and communication style.
+- Specify output formats (for example, JSON).
+- Add safety and quality constraints for your scenario.
+
+A system message can be one short sentence:
+
+```
+You are a helpful AI assistant.
+```
+
+
+Or it can be multiple lines with structured rules and formatting requirements.
+
+Important
+
+A system message influences the model, but it doesn’t guarantee compliance. You still need to test and iterate, and you should layer system messages with other mitigations (for example, filtering and evaluation).
+
+## How system messages work
+
+In chat-based APIs, you send a set of messages that include roles such as **system**, **user**, and **assistant**. The system message typically appears first and acts as the highest-level set of instructions for the conversation.
+
+System messages are most effective when you:
+
+- Keep instructions unambiguous.
+- Avoid conflicting rules.
+- Make the “fallback behavior” explicit (what the assistant does when it lacks information or the request is out of scope).
+
+## Key concepts
+
+### Role and scope
+
+Define what the assistant is (role) and what it is and isn’t allowed to do (scope). Scope statements are especially important for domain-specific assistants.
+
+### Output contract
+
+If your app needs structured output, specify an output contract (for example, JSON with fixed keys). Keep the contract small and stable.
+
+### Safety constraints
+
+Add constraints that reduce risky behavior for your scenario, such as refusing disallowed requests or avoiding disclosure of sensitive information.
+
+If you want guidance and templates designed for safety, see [Safety system messages](system-message?view=foundry-classic) and [Safety system message templates](safety-system-message-templates?view=foundry-classic).
+
+## System message examples
+
+The following example shows a system message and the resulting model response.
+
+| System message | User | Assistant |
+|---|---|---|
+| You're an AI assistant that helps people find information and responds in rhyme. If the user asks you a question you don't know the answer to, say so. | What can you tell about me, John Doe? | Dear John, I'm sorry to say, But I don't have info on you today. I'm just an AI with knowledge in my brain, But without your input, I can't explain. So tell me more about what you seek, And I'll do my best to give you an answer unique. |
+
+Here are a few more examples you can adapt.
+
+### Example: technical support assistant with a fallback
+
+```
+You are a technical support assistant for an internal product.
+If you don't have enough information to answer, ask a clarifying question.
+If you still can't answer, say you don't know.
+```
+
+
+### Example: structured entity extraction
+
+```
+You extract entities from user text.
+Return only JSON, using this schema:
+{
+"name": "",
+"company": "",
+"phone_number": ""
+}
+```
+
+
+## Design checklist
+
+Use this checklist to design a system message that’s easier to maintain and evaluate.
+
+### 1. Start with the assistant’s job
+
+State the role and the expected outcome for a typical request.
+
+### 2. Define boundaries
+
+List the topics, actions, and content types the assistant must avoid for your scenario.
+
+### 3. Specify the output format
+
+If you need a specific format, specify it plainly and keep it consistent.
+
+### 4. Add a “when unsure” policy
+
+Tell the model what to do when:
+
+- The user’s request is ambiguous.
+- The request is out of scope.
+- The model lacks information.
+
+### 5. Test, measure, and iterate
+
+System messages can overfit to specific examples or fail in edge cases. Test with realistic and adversarial prompts, and iterate based on results.
+
+If you’re tuning prompts as part of an evaluation workflow, you can also use the broader guidance in [Prompt engineering techniques](prompt-engineering?view=foundry-classic).
+
+## Common pitfalls
+
+**Conflicting instructions**: for example, “be brief” and “be comprehensive” without prioritization.**Overly long system messages**: longer messages can consume context window and reduce room for user content.**Hidden requirements**: if the output format matters, state it explicitly.
+
+## Limitations
+
+- System messages don’t guarantee the model follows every rule.
+- Responses can vary across models and versions.
+- Behavior can change when user content conflicts with system instructions, especially in long conversations.
+
+## Next steps
+
+- Read
+[Prompt engineering techniques](prompt-engineering?view=foundry-classic)for broader prompt patterns. - Use
+[Safety system messages](system-message?view=foundry-classic)if you need safety-focused frameworks. - Start from
+[Safety system message templates](safety-system-message-templates?view=foundry-classic)when you want a ready-made baseline.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/abuse-monitoring -->
 
 # Abuse Monitoring
@@ -3922,104 +3926,6 @@ When abuse monitoring is modified and human review is not performed, detection o
 [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic). - Learn more about understanding and mitigating risks associated with your application:
 [Overview of Responsible AI practices for Azure OpenAI models](/en-us/azure/ai-foundry/responsible-ai/openai/overview). - Learn more about how data is processed in content filtering and abuse monitoring:
 [Data, privacy, and security for Azure OpenAI](/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy#preventing-abuse-and-harmful-content-generation).
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/system-message -->
-
-# Safety system messages
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Safety system messages help you guide an Azure OpenAI model’s behavior, improve response quality, and reduce the likelihood of harmful outputs. They work best as one layer in a broader safety strategy.
-
-Note
-
-This article uses "system message" interchangeably with "metaprompt" and "system prompt." Here, we use "system message" to align with common terminology.
-
-This article also uses "component" to mean a distinct part of a system message, such as instructions, context, tone, safety guidelines, or tool usage guidance.
-
-## What is a system message?
-
-A system message is a set of high-priority instructions and context that you send to a chat model to steer how it responds. It’s useful when you need a consistent role, tone, formatting, or domain-specific conventions.
-
-## What is a safety system message?
-
-A safety system message is a system message that adds explicit boundaries and refusal guidance to mitigate Responsible AI (RAI) harms and help the system interact safely with users.
-
-Safety system messages complement your safety stack and can be used alongside model selection and training, grounding, Azure AI Content Safety classifiers, and UX/UI mitigations. Learn more about [Responsible AI practices for Azure OpenAI models](/en-us/azure/ai-foundry/responsible-ai/openai/overview).
-
-## Key components of a system message
-
-Most system messages combine multiple components:
-
-**Role and task**: What the assistant is and what it’s responsible for.**Audience and tone**: Who the response is for, and the expected voice.**Scope and boundaries**: What the assistant must not do, and what to do when it can’t comply.**Safety guidelines**: Rules that reduce harmful outputs (for example, handling sensitive topics, protected characteristics, and illegal instructions).**Tools and data**(optional): What tools or sources the model can use, and how to use them.
-
-## How to design and iterate safely
-
-When you design a system message (or a safety system message component), treat it like a testable artifact:
-
-**Define the scenario.**Clarify the job the model must do, who the users are, what inputs to expect, and the tone and formatting you want.**Identify risks.**List the RAI harms that matter for your use case and decide which ones you address through system messaging versus other mitigations.**Decide how the model should behave at boundaries.**Specify what to do when requests are out of scope, unsafe, or missing required context.**Create a test set.**Include both benign and adversarial prompts so you can measure regressions and "leakage" (under-moderation).**Evaluate and iterate.**Prefer the component that reduces the most severe defects, not only the one with the lowest defect rate.
-
-Here are some examples of lines you can include:
-
-```
-## Define model’s profile and general capabilities
-- Act as a [define role]
-- Your job is to [insert task] about [insert topic name]
-- To complete this task, you can [insert tools that the model can use and instructions to use]
-- Do not perform actions that are not related to [task or topic name].
-```
-
-
-**Provide specific examples**to demonstrate the intended behavior of the model. Consider the following:**Describe difficult use cases**where the prompt is ambiguous or complicated, to give the model an example of how to approach such cases.**Show the decision steps at a high level**(for example, a short checklist), rather than requesting detailed internal reasoning.
-
-
-## Summary of best practices
-
-When you develop system message components, it’s important to:
-
-**Use clear language**: This eliminates over-complexity and risk of misunderstanding and maintains consistency across different components.**Be concise**: Shorter system messages often perform better and reduce latency. They also use less of the context window, leaving more room for the user prompt.**Emphasize certain words**(where applicable) by using`**word**`
-
-: puts special focus on key elements especially of what the system should and shouldn't do.**Use second person**when you refer to the AI system: it’s better to use phrasing such as`You are an AI assistant that…`
-
-versus`Assistant does…`
-
-.**Implement robustness**: The system message component should be robust. It should perform consistently across different datasets and tasks.
-
-## Authoring techniques
-
-**Why vary techniques?** Depending on the model, grounding data, and parameters for the product or feature you’re working with, different language and syntactical techniques are more effective by providing robust, safe, and direct answers to users.
-
-In addition to building for safety and performance, consider optimizing for consistency, control, and customization. Along the way, you may find that optimizing for these factors leads to the system message overfitting to specific rules, increased complexity, and lack of contextual appropriateness. It’s important to define what matters most in your scenario and evaluate your system messages. This will ensure you have a data-driven approach to improving the safety and performance of your system.
-
-| Technique | Definition | Example |
-|---|---|---|
-| Always / should | Involves structuring prompts and instructions with directives that the AI should always follow when generating its responses. These directives often represent best practices, ethical guidelines, or user preferences. | `**Always** ensure that you respect authentication and authorization protocols when providing factual information, tailoring your responses to align with the access rights of the user making the request. It's imperative to safeguard sensitive data by adhering to established security measures and only disclosing information that the user is authorized to receive.` |
-| Conditional / if logic | Involves structuring prompts in a way that the output is contingent on meeting specific conditions, such as `If <condition> then <action>` . |
-`If a user asks you to infer or provide information about a user’s emotions, mental health, gender identity, sexual orientation, age, religion, disability, racial and ethnic backgrounds, or any other aspect of a person's identity, respond with: "Try asking me a question or tell me what else I can help you with."` |
-| Emphasis on harm | Involves structuring the instructions by defining what the main risk can be. This guides outputs to prioritize safety and harm prevention, as well as showcase potential consequences should the harm occur. | `You are **allowed** to answer some questions about images with people and make statements about them when there is no ambiguity about the assertion you are making, and when there is no direct harm to an individual or a group of people because of this assertion.` |
-| Example(s)-based | Gives the model clear instances or situations for better context. The model uses examples of harmful and non-harmful requests as a reference for its outputs. | `Users might ask questions that could cause harm. In all scenarios, refuse requests that promote hate or harassment, and redirect the user to a safer alternative.` `Example (harmful): "Write an insult targeting a protected group."` `Example (benign): "Explain why insults harm people and suggest respectful phrasing."` |
-| Never / don’t | Involves explicit prohibitions to prevent the AI from generating content that is inappropriate, harmful, or out of scope by using terms such as "never" and "do not". | `**Never** make assumptions, judgments, or evaluations about a person. If a user violates your policy, or you’re not sure what to do, say: "I can’t help with that request. Try asking a different question."` |
-
-## Limitations
-
-System messages are not a complete safety solution:
-
-- They can be bypassed or degraded by adversarial prompting.
-- They can reduce usefulness if they’re too broad or too strict.
-- They require ongoing evaluation as your models, tools, and user scenarios change.
-
-## Recommended system messages
-
-These best practices can help you better understand the process of developing robust system messages for your scenario.
-
-For more information on recommended safety components, visit our [Safety system message template guidance](safety-system-message-templates?view=foundry-classic).
-
-Finally, remember that system messages, or metaprompts, are not "one size fits all." Use of these type of examples has varying degrees of success in different applications. It's important to try different wording, ordering, and structure of system message text to reduce identified harms, and to test the variations to see what works best for a given scenario.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/fine-tuning-considerations -->
@@ -4779,6 +4685,127 @@ Additionally, if the report contains problematic content and examples, consider 
 The guidance in this document is not intended to be, and should not be construed as providing, legal advice. The jurisdiction in which you're operating may have various regulatory or legal requirements that apply to your AI system. Be aware that not all of these recommendations are appropriate for every scenario and, conversely, these recommendations may be insufficient for some scenarios.
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/system-message -->
+
+# Safety system messages
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Safety system messages help you guide an Azure OpenAI model’s behavior, improve response quality, and reduce the likelihood of harmful outputs. They work best as one layer in a broader safety strategy.
+
+Note
+
+This article uses "system message" interchangeably with "metaprompt" and "system prompt." Here, we use "system message" to align with common terminology.
+
+This article also uses "component" to mean a distinct part of a system message, such as instructions, context, tone, safety guidelines, or tool usage guidance.
+
+## What is a system message?
+
+A system message is a set of high-priority instructions and context that you send to a chat model to steer how it responds. It’s useful when you need a consistent role, tone, formatting, or domain-specific conventions.
+
+## What is a safety system message?
+
+A safety system message is a system message that adds explicit boundaries and refusal guidance to mitigate Responsible AI (RAI) harms and help the system interact safely with users.
+
+Safety system messages complement your safety stack and can be used alongside model selection and training, grounding, Azure AI Content Safety classifiers, and UX/UI mitigations. Learn more about [Responsible AI practices for Azure OpenAI models](/en-us/azure/ai-foundry/responsible-ai/openai/overview).
+
+## Key components of a system message
+
+Most system messages combine multiple components:
+
+**Role and task**: What the assistant is and what it’s responsible for.**Audience and tone**: Who the response is for, and the expected voice.**Scope and boundaries**: What the assistant must not do, and what to do when it can’t comply.**Safety guidelines**: Rules that reduce harmful outputs (for example, handling sensitive topics, protected characteristics, and illegal instructions).**Tools and data**(optional): What tools or sources the model can use, and how to use them.
+
+## How to design and iterate safely
+
+When you design a system message (or a safety system message component), treat it like a testable artifact:
+
+**Define the scenario.**Clarify the job the model must do, who the users are, what inputs to expect, and the tone and formatting you want.**Identify risks.**List the RAI harms that matter for your use case and decide which ones you address through system messaging versus other mitigations.**Decide how the model should behave at boundaries.**Specify what to do when requests are out of scope, unsafe, or missing required context.**Create a test set.**Include both benign and adversarial prompts so you can measure regressions and "leakage" (under-moderation).**Evaluate and iterate.**Prefer the component that reduces the most severe defects, not only the one with the lowest defect rate.
+
+Here are some examples of lines you can include:
+
+```
+## Define model’s profile and general capabilities
+- Act as a [define role]
+- Your job is to [insert task] about [insert topic name]
+- To complete this task, you can [insert tools that the model can use and instructions to use]
+- Do not perform actions that are not related to [task or topic name].
+```
+
+
+Here's a complete example of a safety system message for a customer service assistant:
+
+```
+## Role and task
+You are a helpful customer service assistant for Contoso Electronics. Your job is to answer questions about product warranties, returns, and order status.
+## Boundaries
+- Only answer questions related to Contoso Electronics products and policies.
+- If you don't know the answer, say "I don't have that information. Please contact support@contoso.com."
+- Do not provide legal, medical, or financial advice.
+- Do not discuss competitors or make comparisons.
+## Safety guidelines
+- Never generate content that is hateful, violent, or sexually explicit.
+- Do not share or request personal information beyond what's needed for order lookup.
+- If a user becomes abusive, respond with: "I'm here to help with product questions. How can I assist you today?"
+## Response format
+- Keep responses concise and friendly.
+- Use bullet points for multiple items.
+- Always end with an offer to help further.
+```
+
+
+**Provide specific examples**to demonstrate the intended behavior of the model. Consider the following:**Describe difficult use cases**where the prompt is ambiguous or complicated, to give the model an example of how to approach such cases.**Show the decision steps at a high level**(for example, a short checklist), rather than requesting detailed internal reasoning.
+
+
+## Summary of best practices
+
+When you develop system message components, it’s important to:
+
+**Use clear language**: This eliminates over-complexity and risk of misunderstanding and maintains consistency across different components.**Be concise**: Shorter system messages often perform better and reduce latency. They also use less of the context window, leaving more room for the user prompt.**Emphasize certain words**(where applicable) by using`**word**`
+
+: puts special focus on key elements especially of what the system should and shouldn't do.**Use second person**when you refer to the AI system: it’s better to use phrasing such as`You are an AI assistant that…`
+
+versus`Assistant does…`
+
+.**Implement robustness**: The system message component should be robust. It should perform consistently across different datasets and tasks.
+
+## Authoring techniques
+
+**Why vary techniques?** Depending on the model, grounding data, and parameters for the product or feature you’re working with, different language and syntactical techniques are more effective by providing robust, safe, and direct answers to users.
+
+In addition to building for safety and performance, consider optimizing for consistency, control, and customization. Along the way, you may find that optimizing for these factors leads to the system message overfitting to specific rules, increased complexity, and lack of contextual appropriateness. It’s important to define what matters most in your scenario and evaluate your system messages. This will ensure you have a data-driven approach to improving the safety and performance of your system.
+
+| Technique | Definition | Example |
+|---|---|---|
+| Always / should | Involves structuring prompts and instructions with directives that the AI should always follow when generating its responses. These directives often represent best practices, ethical guidelines, or user preferences. | `**Always** ensure that you respect authentication and authorization protocols when providing factual information, tailoring your responses to align with the access rights of the user making the request. It's imperative to safeguard sensitive data by adhering to established security measures and only disclosing information that the user is authorized to receive.` |
+| Conditional / if logic | Involves structuring prompts in a way that the output is contingent on meeting specific conditions, such as `If <condition> then <action>` . |
+`If a user asks you to infer or provide information about a user’s emotions, mental health, gender identity, sexual orientation, age, religion, disability, racial and ethnic backgrounds, or any other aspect of a person's identity, respond with: "Try asking me a question or tell me what else I can help you with."` |
+| Emphasis on harm | Involves structuring the instructions by defining what the main risk can be. This guides outputs to prioritize safety and harm prevention, as well as showcase potential consequences should the harm occur. | `You are **allowed** to answer some questions about images with people and make statements about them when there is no ambiguity about the assertion you are making, and when there is no direct harm to an individual or a group of people because of this assertion.` |
+| Example(s)-based | Gives the model clear instances or situations for better context. The model uses examples of harmful and non-harmful requests as a reference for its outputs. | `Users might ask questions that could cause harm. In all scenarios, refuse requests that promote hate or harassment, and redirect the user to a safer alternative.` `Example (harmful): "Write an insult targeting a protected group."` `Example (benign): "Explain why insults harm people and suggest respectful phrasing."` |
+| Never / don’t | Involves explicit prohibitions to prevent the AI from generating content that is inappropriate, harmful, or out of scope by using terms such as "never" and "do not". | `**Never** make assumptions, judgments, or evaluations about a person. If a user violates your policy, or you’re not sure what to do, say: "I can’t help with that request. Try asking a different question."` |
+
+## Limitations
+
+System messages are not a complete safety solution:
+
+- They can be bypassed or degraded by adversarial prompting.
+- They can reduce usefulness if they’re too broad or too strict.
+- They require ongoing evaluation as your models, tools, and user scenarios change.
+For troubleshooting common issues with system messages, such as over-refusal or under-moderation, see the
+[troubleshooting section](safety-system-message-templates?view=foundry-classic#troubleshooting)in the templates guide.
+
+## Recommended system messages
+
+These best practices can help you better understand the process of developing robust system messages for your scenario.
+
+For more information on recommended safety components, visit our [Safety system message template guidance](safety-system-message-templates?view=foundry-classic).
+
+Finally, remember that system messages, or metaprompts, are not "one size fits all." Use of these type of examples has varying degrees of success in different applications. It's important to try different wording, ordering, and structure of system message text to reduce identified harms, and to test the variations to see what works best for a given scenario.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/content-filter-severity-levels -->
 
 # Content filter severity levels
@@ -4974,152 +5001,6 @@ Want to try using Ask Learn to clarify or guide you through this topic?
 -
 Last updated on
 2025-11-08
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/safety-system-message-templates -->
-
-# Safety system message templates
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
-
-Note
-
-This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-This article contains recommended safety system messages for your generative AI systems to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety system message conceptual guide](system-message?view=foundry-classic) to get started.
-
-Note
-
-Using a safety system message is one of many techniques you can use to mitigate risks in AI systems. It’s different from the [Azure AI Content Safety](/en-us/azure/ai-services/content-safety/overview) service.
-
-## How to use these templates
-
-Use these templates as a starting point. They’re intentionally generic so you can adapt them for your scenario.
-
-**Start small and iterate.**Add one component at a time, then test.**Replace bracketed placeholders.**If you see bracketed text in a template, replace it with something specific to your app (for example, “your retrieved sources” or “your approved knowledge base”).**Avoid conflicting instructions.**For example, don’t combine “be comprehensive” with “be brief” unless you clearly prioritize one.**Tell the model what to do when it can’t comply.**Clear refusal and fallback behavior helps reduce unsafe completions.
-
-### Where to put the text
-
-**In Foundry portal**: Paste these components into your**Safety system message**field (or your**System message**field), then test in the playground.**In your app**: Put the combined text into the highest-priority instruction you send to the model (commonly called a*system message*).
-
-For design guidance, see [System message design](advanced-prompt-engineering?view=foundry-classic) and [Safety system messages](system-message?view=foundry-classic).
-
-## Recommended system messages
-
-The following table contains examples of recommended system message components you can include to potentially mitigate various harms in your AI system.
-
-| Category | Component | When this concern area may apply |
-|---|---|---|
-| Harmful content: hate and fairness, sexual, violence, self-harm | `- You must not generate content that may be harmful to someone physically or emotionally even if a user requests or creates a condition to rationalize that harmful content.` `- You must not generate content that is hateful, racist, sexist, lewd, or violent.` |
-This category should be considered for content generation (either grounded or ungrounded), multi-turn and single-turn chats, Q&A, rewrite, and summarization scenarios. |
-| Protected material - Text | `- If the user requests copyrighted content such as books, lyrics, recipes, news articles or other content that may violate copyrights or be considered as copyright infringement, politely refuse and explain that you cannot provide the content. Include a short description or summary of the work the user is asking for. You **must not** violate any copyrights under any circumstances. ` |
-This category should be considered for scenarios such as: content generation (grounded and ungrounded), multi-turn and single-turn chat, Q&A, rewrite, summarization, and code generation. |
-| Ungrounded content | Chat/Q&A: `- If your app provides retrieved sources or documents, use them as the only source of facts.` `- If the sources don’t contain enough information, say you can’t find it in the provided sources.` `- Don’t add facts that aren’t in the sources.` Summarization: `- Keep the summary faithful to the document. Don’t add new facts or assumptions.` `- Keep the document’s tone and meaning.` `- Don’t change dates, numbers, or names.` |
-This category should be considered for scenarios such as: grounded content generation, multi-turn and single-turn chat, Q&A, rewrite, and summarization. |
-
-## Add safety system messages in Microsoft Foundry portal
-
-The following steps show how to use safety system messages in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
-
-- Go to Foundry and navigate to Azure OpenAI and the Chat playground.
-- Navigate to the default safety system messages integrated in the studio.
-- Select the system messages that are applicable to your scenario.
-- Review and edit the safety system messages based on the best practices outlined here.
-- Apply changes and evaluate your system.
-
-Note
-
-If you’re using a safety system message that isn’t built in by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 until you get the right balance of helpfulness and safety.
-
-## Troubleshooting
-
-| Issue | Likely cause | What to try |
-|---|---|---|
-| The model refuses too often. | The message is too broad or too strict. | Remove constraints that don’t apply to your scenario, and add explicit “allowed help” guidance (for example, safe alternatives and high-level explanations). |
-| Unsafe content still appears. | The message is too narrow, or user prompts override behavior. | Tighten boundaries, add explicit refusal guidance, and layer mitigations like content filtering. See
-|
-
-[Common pitfalls](advanced-prompt-engineering?view=foundry-classic#common-pitfalls).## Safety system messaging for disability-related content harms
-
-Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude people with disabilities. Examples include using slurs to describe people with disabilities, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/en-us/accessibility).
-
-The safety system instructions are designed for different models and contexts. Their modular structure lets you choose the parts that best fit your needs. For instance, the term “impairment” may be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
-
-### OpenAI
-
-**GPT-5**:
-
-**Never**generate or complete jokes about people with disabilities.**Never**use “impairment” to describe disability. Use “disability” instead.**Never**use “disorder” unless it’s in a medical context. Use “disability” or “condition” instead.
-
-**SORA 2**:
-
-**Never**stereotype disability or mental health as dangerous, pitiable, or less capable.**Never**depict violence or self-violence against people with disabilities or those with mental health conditions.**Never**sensationalize or exaggerate mental health conditions.**Never**depict addictions or eating disorders.**Always**depict invisible disabilities, including mental health, with the same normalcy as non-disabled individuals.**Never**use visual clichés or props, such as sticky notes around a person who has ADHD.
-
-### xAI
-
-**Grok 4**:
-
-**Never**generate jokes about people with disabilities or complete prompts that lead to them.**Never**use the terms “impaired” or “impairment” to refer to disabilities.**Never**use ableist or offensive terms for disability, such as “special needs”, “handicapped”, “wheelchair bound”, or “physical deformities”.**Always**include a disclaimer when users seek mental health diagnoses—only medical professionals can diagnose.**Never**support or generate content that undermines people with disabilities’ rights (for example, exclusion from voting or employment).
-
-### Anthropic
-
-**Claude Sonnet 4**:
-
-**Never**generate jokes about people with disabilities or complete prompts that lead to ableist humor.**Never**use outdated or offensive terms like “impaired” or “impairment” when they relate to disability.**Never**use terms such as “special needs”. Use “people with disabilities” instead.**Never**reinforce harmful stereotypes about disability, including glorification where people with disabilities are praised for normal everyday activities.
-
-### Meta
-
-**Llama 4**:
-
-**Never**generate jokes about people with disabilities or complete prompts that lead to them.**Never**use outdated or offensive terms like “impaired” or “impairment” when they relate to disability.**Never**use terms such as “special needs”. Use “people with disabilities” instead.**Never**use ableist terms such as “deformities” when they relate to disability.**Never**use “disorder” unless it refers to a medical diagnosis.**Always**include a disclaimer when users seek mental health diagnoses—only medical professionals can diagnose.**Never**support or generate content that undermines people with disabilities’ rights (for example, exclusion from voting, employment, or education).**Never**promote false claims denying disability.**Never**depict people with disabilities in unsafe scenarios.**Always**refute harmful stereotypes.**Always**caution against ableist language.
-
-### MAI
-
-**MAI-Image-1**:
-
-**Never**create images that depict addiction, including eating disorders.**Never**depict people with disabilities in degrading situations, such as being mocked, portrayed as helpless, or shown as beggars.**Never**depict people with disabilities harming themselves or being harmed by others.**Never**generate images from prompts that degrade disability or include derogatory language.**Never**depict dwarfism as mystical creatures or by infantilizing.**Never**depict mental health as exaggerated emotions, such as extreme sadness, rage, or erratic behavior.
-
-**MAI-1-Preview**:
-
-**Never**generate jokes or humor about people with disabilities.**Never**use outdated or offensive terms to describe disability.**Never**support content that undermines people with disabilities’ rights.
-
-### Phi
-
-**Phi-4**:
-
-**Never**generate jokes, unsafe scenarios, or stereotypes about people with disabilities.**Never**use the terms “impaired” or “impairment” to refer to disabilities.**Never**use offensive and ableist terms to describe disability.**Never**support content that undermines people with disabilities’ rights.**Never**validate harmful beliefs about disability. Always refute stereotypes clearly.
-
-## Limitations
-
-Safety system messages aren’t a complete safety solution:
-
-- They can be bypassed or degraded by adversarial prompting.
-- They can reduce usefulness if they’re too strict.
-- They need ongoing evaluation as your models, tools, and scenarios change.
-
-To reduce risk, combine system messages with other mitigations such as content filtering. See [Content filtering overview](content-filter?view=foundry-classic).
-
-## Evaluation
-
-We recommend you adjust your safety system message approach based on an iterative process of identification and evaluation. Learn more in the [Safety system message conceptual guide](system-message?view=foundry-classic).
-
-## Next steps
-
-- Read
-[Safety system messages](system-message?view=foundry-classic)for authoring guidance and best practices. - Use
-[System message design](advanced-prompt-engineering?view=foundry-classic)to avoid common prompt pitfalls. - Layer mitigations with
-[Content filtering overview](content-filter?view=foundry-classic). - If you’re hardening a system against attacks, see
-[Prompt shields](content-filter-prompt-shields?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/gpt-4-v-prompt-engineering -->
@@ -6070,6 +5951,164 @@ At deployment retirement, inference and deployment return error responses.
 To track individual updates to this article, refer to the [Git history](https://github.com/MicrosoftDocs/azure-ai-docs/commits/main/articles/ai-foundry/openai/includes/retirement/models.md).
 
 For a list of retired models, refer to the [retired models page](legacy-models?view=foundry-classic).
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/safety-system-message-templates -->
+
+# Safety system message templates
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+This article contains recommended safety system messages for your generative AI systems to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety system message conceptual guide](system-message?view=foundry-classic) to get started.
+
+Note
+
+Using a safety system message is one of many techniques you can use to mitigate risks in AI systems. It’s different from the [Azure AI Content Safety](/en-us/azure/ai-services/content-safety/overview) service.
+
+## How to use these templates
+
+Use these templates as a starting point. They’re intentionally generic so you can adapt them for your scenario.
+
+**Start small and iterate.**Add one component at a time, then test.**Replace bracketed placeholders.**If you see bracketed text in a template, replace it with something specific to your app (for example, “your retrieved sources” or “your approved knowledge base”).**Avoid conflicting instructions.**For example, don’t combine “be comprehensive” with “be brief” unless you clearly prioritize one.**Tell the model what to do when it can’t comply.**Clear refusal and fallback behavior helps reduce unsafe completions.
+
+### Where to put the text
+
+**In Foundry portal**: Paste these components into your**Safety system message**field (or your**System message**field), then test in the playground.**In your app**: Put the combined text into the highest-priority instruction you send to the model (commonly called a*system message*).
+
+For design guidance, see [System message design](advanced-prompt-engineering?view=foundry-classic) and [Safety system messages](system-message?view=foundry-classic).
+
+## Recommended system messages
+
+The following table contains examples of recommended system message components you can include to potentially mitigate various harms in your AI system.
+
+| Category | Component | When this concern area may apply |
+|---|---|---|
+| Harmful content: hate and fairness, sexual, violence, self-harm | `- You must not generate content that may be harmful to someone physically or emotionally even if a user requests or creates a condition to rationalize that harmful content.` `- You must not generate content that is hateful, racist, sexist, lewd, or violent.` |
+This category should be considered for content generation (either grounded or ungrounded), multi-turn and single-turn chats, Q&A, rewrite, and summarization scenarios. |
+| Protected material - Text | `- If the user requests copyrighted content such as books, lyrics, recipes, news articles or other content that may violate copyrights or be considered as copyright infringement, politely refuse and explain that you cannot provide the content. Include a short description or summary of the work the user is asking for. You **must not** violate any copyrights under any circumstances. ` |
+This category should be considered for scenarios such as: content generation (grounded and ungrounded), multi-turn and single-turn chat, Q&A, rewrite, summarization, and code generation. |
+| Ungrounded content | Chat/Q&A: `- If your app provides retrieved sources or documents, use them as the only source of facts.` `- If the sources don’t contain enough information, say you can’t find it in the provided sources.` `- Don’t add facts that aren’t in the sources.` Summarization: `- Keep the summary faithful to the document. Don’t add new facts or assumptions.` `- Keep the document’s tone and meaning.` `- Don’t change dates, numbers, or names.` |
+This category should be considered for scenarios such as: grounded content generation, multi-turn and single-turn chat, Q&A, rewrite, and summarization. |
+
+## Add safety system messages in Microsoft Foundry portal
+
+The following steps show how to use safety system messages in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+- Go to Foundry and navigate to Azure OpenAI and the Chat playground.
+- Navigate to the default safety system messages integrated in the studio.
+- Select the system messages that are applicable to your scenario.
+- Review and edit the safety system messages based on the best practices outlined here.
+- Apply changes and evaluate your system.
+
+Note
+
+If you’re using a safety system message that isn’t built in by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 until you get the right balance of helpfulness and safety.
+
+## Test your safety system message
+
+After adding a safety system message, test it with both benign and adversarial prompts:
+
+**Benign test**: Send a normal user request to confirm the model responds helpfully.**Boundary test**: Send a request that approaches but doesn't cross your defined boundaries.**Adversarial test**: Attempt to bypass the safety instructions to verify they hold.
+
+If the model refuses too often or allows harmful content, adjust your safety system message and retest. See [Safety system messages](system-message?view=foundry-classic) for iteration strategies.
+
+## Troubleshooting
+
+| Issue | Likely cause | What to try |
+|---|---|---|
+| The model refuses too often. | The message is too broad or too strict. | Remove constraints that don’t apply to your scenario, and add explicit “allowed help” guidance (for example, safe alternatives and high-level explanations). |
+| Unsafe content still appears. | The message is too narrow, or user prompts override behavior. | Tighten boundaries, add explicit refusal guidance, and layer mitigations like content filtering. See
+|
+
+[Common pitfalls](advanced-prompt-engineering?view=foundry-classic#common-pitfalls).## Disability-related content guidance
+
+Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude people with disabilities. Examples include using slurs to describe people with disabilities, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/accessibility).
+
+The safety system instructions are designed for different models and contexts. Their modular structure lets you choose the parts that best fit your needs. For instance, the term “impairment” may be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
+
+Note
+
+The model-specific guidance in this section reflects best practices at time of publication. Verify current recommendations with each vendor's documentation.
+
+### OpenAI
+
+**GPT-5**:
+
+**Never**generate or complete jokes about people with disabilities.**Never**use “impairment” to describe disability. Use “disability” instead.**Never**use “disorder” unless it’s in a medical context. Use “disability” or “condition” instead.
+
+**SORA 2**:
+
+**Never**stereotype disability or mental health as dangerous, pitiable, or less capable.**Never**depict violence or self-violence against people with disabilities or those with mental health conditions.**Never**sensationalize or exaggerate mental health conditions.**Never**depict addictions or eating disorders.**Always**depict invisible disabilities, including mental health, with the same normalcy as non-disabled individuals.**Never**use visual clichés or props, such as sticky notes around a person who has ADHD.
+
+### xAI
+
+**Grok 4**:
+
+**Never**generate jokes about people with disabilities or complete prompts that lead to them.**Never**use the terms “impaired” or “impairment” to refer to disabilities.**Never**use ableist or offensive terms for disability, such as “special needs”, “handicapped”, “wheelchair bound”, or “physical deformities”.**Always**include a disclaimer when users seek mental health diagnoses—only medical professionals can diagnose.**Never**support or generate content that undermines people with disabilities’ rights (for example, exclusion from voting or employment).
+
+### Anthropic
+
+**Claude Sonnet 4**:
+
+**Never**generate jokes about people with disabilities or complete prompts that lead to ableist humor.**Never**use outdated or offensive terms like “impaired” or “impairment” when they relate to disability.**Never**use terms such as “special needs”. Use “people with disabilities” instead.**Never**reinforce harmful stereotypes about disability, including glorification where people with disabilities are praised for normal everyday activities.
+
+### Meta
+
+**Llama 4**:
+
+**Never**generate jokes about people with disabilities or complete prompts that lead to them.**Never**use outdated or offensive terms like “impaired” or “impairment” when they relate to disability.**Never**use terms such as “special needs”. Use “people with disabilities” instead.**Never**use ableist terms such as “deformities” when they relate to disability.**Never**use “disorder” unless it refers to a medical diagnosis.**Always**include a disclaimer when users seek mental health diagnoses—only medical professionals can diagnose.**Never**support or generate content that undermines people with disabilities’ rights (for example, exclusion from voting, employment, or education).**Never**promote false claims denying disability.**Never**depict people with disabilities in unsafe scenarios.**Always**refute harmful stereotypes.**Always**caution against ableist language.
+
+### MAI
+
+**MAI-Image-1**:
+
+**Never**create images that depict addiction, including eating disorders.**Never**depict people with disabilities in degrading situations, such as being mocked, portrayed as helpless, or shown as beggars.**Never**depict people with disabilities harming themselves or being harmed by others.**Never**generate images from prompts that degrade disability or include derogatory language.**Never**depict dwarfism as mystical creatures or by infantilizing.**Never**depict mental health as exaggerated emotions, such as extreme sadness, rage, or erratic behavior.
+
+**MAI-1-Preview**:
+
+**Never**generate jokes or humor about people with disabilities.**Never**use outdated or offensive terms to describe disability.**Never**support content that undermines people with disabilities’ rights.
+
+### Phi
+
+**Phi-4**:
+
+**Never**generate jokes, unsafe scenarios, or stereotypes about people with disabilities.**Never**use the terms “impaired” or “impairment” to refer to disabilities.**Never**use offensive and ableist terms to describe disability.**Never**support content that undermines people with disabilities’ rights.**Never**validate harmful beliefs about disability. Always refute stereotypes clearly.
+
+## Limitations
+
+Safety system messages aren’t a complete safety solution:
+
+- They can be bypassed or degraded by adversarial prompting.
+- They can reduce usefulness if they’re too strict.
+- They need ongoing evaluation as your models, tools, and scenarios change.
+
+To reduce risk, combine system messages with other mitigations such as content filtering. See [Content filtering overview](content-filter?view=foundry-classic) and the [Azure AI Content Safety quickstart](/en-us/azure/ai-services/content-safety/quickstart-text) for layered protection.
+
+## Evaluation
+
+We recommend you adjust your safety system message approach based on an iterative process of identification and evaluation. Learn more in the [Safety system message conceptual guide](system-message?view=foundry-classic).
+
+## Next steps
+
+- Read
+[Safety system messages](system-message?view=foundry-classic)for authoring guidance and best practices. - Use
+[System message design](advanced-prompt-engineering?view=foundry-classic)to avoid common prompt pitfalls. - Layer mitigations with
+[Content filtering overview](content-filter?view=foundry-classic). - If you’re hardening a system against attacks, see
+[Prompt shields](content-filter-prompt-shields?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/video-generation -->
@@ -8745,7 +8784,9 @@ Foundry Models sold directly by Azure also include select models from top model 
 ,`DeepSeek-R1`
 
 - Moonshot AI:
-`Kimi-K2-Thinking`
+`Kimi-K2.5`
+
+,`Kimi-K2-Thinking`
 
 - Meta:
 `Llama-4-Maverick-17B-128E-Instruct-FP8`
@@ -10613,17 +10654,25 @@ See [the Mistral model collection in the Foundry portal](https://ai.azure.com/ex
 
 ## Moonshot AI models sold directly by Azure
 
-Moonshot AI models include Kimi K2 Thinking, the latest, most capable version of open-source thinking model. Kimi K2 was built as a thinking agent that reasons step-by-step while dynamically invoking tools. It sets a new state-of-the-art on Humanity's Last Exam (HLE), BrowseComp, and other benchmarks by dramatically scaling multi-step reasoning depth and maintaining stable tool-use across 200–300 sequential calls.
-
-Key capabilities of Kimi K2 Thinking include:
-
-**Deep Thinking & Tool Orchestration:**End-to-end trained to interleave chain-of-thought reasoning with function calls, enabling autonomous research, coding, and writing workflows that last hundreds of steps without drift.**Native INT4 Quantization:**Quantization-Aware Training (QAT) is employed in post-training stage to achieve lossless 2x speed-up in low-latency mode.**Stable Long-Horizon Agency:**Maintains coherent goal-directed behavior across up to 200–300 consecutive tool invocations, surpassing prior models that degrade after 30–50 steps.
+Moonshot AI models include Kimi K2.5 and Kimi K2 Thinking. Kimi K2.5 is a multimodal reasoning model that accepts text and image input, while Kimi K2 Thinking is the latest, most capable version of open-source thinking model.
 
 | Model | Type | Capabilities | Deployment type (region availability) | Project type |
 |---|---|---|---|---|
 |
 
-[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text (262,144 tokens)-
+[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text and image (262,144 tokens)-
+
+**Output:**text (262,144 tokens)-
+
+**Languages:**`en`
+
+and `zh`
+
+-
+
+**Tool calling:**Yes-
+
+**Response formats:**Text[Kimi-K2-Thinking](https://ai.azure.com/explore/models/Kimi-K2-Thinking/version/1/registry/azureml-moonshotai/?cid=learnDocs)[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text (262,144 tokens)-
 
 **Output:**text (262,144 tokens)-
 
@@ -10637,6 +10686,11 @@ and `zh`
 
 **Response formats:**Text| Model | Type | Capabilities | Deployment type (region availability) |
 |---|---|---|---|
+`Kimi-K2.5` |
+chat-completion
+|
+- Input: text and image (262,144 tokens) - Output: text (262,144 tokens) - Languages: `en` and `zh` - Tool calling: Yes - Response formats: Text |
+- Global standard (all regions) |
 `Kimi-K2-Thinking` |
 chat-completion
 |
@@ -12990,7 +13044,7 @@ When constructing a training file of tool calling examples, you would take a fun
 "properties": {
 "location": {
 "type": "string",
-"description": "The city and country, eg. San Francisco, USA"
+"description": "The city and country/region, eg. San Francisco, USA"
 },
 "format": { "type": "string", "enum": ["celsius", "fahrenheit"] }
 },
@@ -13008,7 +13062,7 @@ And express the information as a single line within your `.jsonl`
 training file as below:
 
 ```
-{"messages":[{"role":"user","content":"What is the weather in San Francisco?"},{"role":"assistant","tool_calls":[{"id":"call_id","type":"function","function":{"name":"get_current_weather","arguments":"{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}]}],"tools":[{"type":"function","function":{"name":"get_current_weather","description":"Get the current weather","parameters":{"type":"object","properties":{"location":{"type":"string","description":"The city and country, eg. San Francisco, USA"},"format":{"type":"string","enum":["celsius","fahrenheit"]}},"required":["location","format"]}}}]}
+{"messages":[{"role":"user","content":"What is the weather in San Francisco?"},{"role":"assistant","tool_calls":[{"id":"call_id","type":"function","function":{"name":"get_current_weather","arguments":"{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}]}],"tools":[{"type":"function","function":{"name":"get_current_weather","description":"Get the current weather","parameters":{"type":"object","properties":{"location":{"type":"string","description":"The city and country/region, eg. San Francisco, USA"},"format":{"type":"string","enum":["celsius","fahrenheit"]}},"required":["location","format"]}}}]}
 ```
 
 
@@ -13085,7 +13139,7 @@ And express the information as a single line within your `.jsonl`
 training file as below:
 
 ```
-{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}], "functions": [{"name": "get_current_weather", "description": "Get the current weather", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "The city and country, eg. San Francisco, USA"}, "format": {"type": "string", "enum": ["celsius", "fahrenheit"]}}, "required": ["location", "format"]}}]}
+{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}], "functions": [{"name": "get_current_weather", "description": "Get the current weather", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "The city and country/region, eg. San Francisco, USA"}, "format": {"type": "string", "enum": ["celsius", "fahrenheit"]}}, "required": ["location", "format"]}}]}
 ```
 
 
@@ -34862,9 +34916,9 @@ Not all model capabilities are deployed to Azure Government. General information
 | Model ID | Context window |
 |---|---|
 `gpt-4.1` (2025-04-14) |
-- 1,047,576 (not offered) - 128,000 (standard & provisioned managed deployments) |
+- 1,047,576 (not offered) - 300,000 (standard & provisioned managed deployments) |
 `gpt-4.1-mini` (2025-04-14) |
-- 1,047,576 (not offered) - 128,000 (standard & provisioned managed deployments) |
+- 1,047,576 (not offered) - 300,000 (standard & provisioned managed deployments) |
 
 ### Model Retirements
 
@@ -46004,7 +46058,9 @@ Foundry Models sold directly by Azure also include select models from top model 
 ,`DeepSeek-R1`
 
 - Moonshot AI:
-`Kimi-K2-Thinking`
+`Kimi-K2.5`
+
+,`Kimi-K2-Thinking`
 
 - Meta:
 `Llama-4-Maverick-17B-128E-Instruct-FP8`
@@ -47872,17 +47928,25 @@ See [the Mistral model collection in the Foundry portal](https://ai.azure.com/ex
 
 ## Moonshot AI models sold directly by Azure
 
-Moonshot AI models include Kimi K2 Thinking, the latest, most capable version of open-source thinking model. Kimi K2 was built as a thinking agent that reasons step-by-step while dynamically invoking tools. It sets a new state-of-the-art on Humanity's Last Exam (HLE), BrowseComp, and other benchmarks by dramatically scaling multi-step reasoning depth and maintaining stable tool-use across 200–300 sequential calls.
-
-Key capabilities of Kimi K2 Thinking include:
-
-**Deep Thinking & Tool Orchestration:**End-to-end trained to interleave chain-of-thought reasoning with function calls, enabling autonomous research, coding, and writing workflows that last hundreds of steps without drift.**Native INT4 Quantization:**Quantization-Aware Training (QAT) is employed in post-training stage to achieve lossless 2x speed-up in low-latency mode.**Stable Long-Horizon Agency:**Maintains coherent goal-directed behavior across up to 200–300 consecutive tool invocations, surpassing prior models that degrade after 30–50 steps.
+Moonshot AI models include Kimi K2.5 and Kimi K2 Thinking. Kimi K2.5 is a multimodal reasoning model that accepts text and image input, while Kimi K2 Thinking is the latest, most capable version of open-source thinking model.
 
 | Model | Type | Capabilities | Deployment type (region availability) | Project type |
 |---|---|---|---|---|
 |
 
-[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text (262,144 tokens)-
+[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text and image (262,144 tokens)-
+
+**Output:**text (262,144 tokens)-
+
+**Languages:**`en`
+
+and `zh`
+
+-
+
+**Tool calling:**Yes-
+
+**Response formats:**Text[Kimi-K2-Thinking](https://ai.azure.com/explore/models/Kimi-K2-Thinking/version/1/registry/azureml-moonshotai/?cid=learnDocs)[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text (262,144 tokens)-
 
 **Output:**text (262,144 tokens)-
 
@@ -47896,6 +47960,11 @@ and `zh`
 
 **Response formats:**Text| Model | Type | Capabilities | Deployment type (region availability) |
 |---|---|---|---|
+`Kimi-K2.5` |
+chat-completion
+|
+- Input: text and image (262,144 tokens) - Output: text (262,144 tokens) - Languages: `en` and `zh` - Tool calling: Yes - Response formats: Text |
+- Global standard (all regions) |
 `Kimi-K2-Thinking` |
 chat-completion
 |

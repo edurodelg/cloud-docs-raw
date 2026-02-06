@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-05T08:42:07.007033
+merged_at: 2026-02-06T17:00:26.047820
 merged_files: 4
 ---
 
@@ -566,7 +566,7 @@ If you prefer a CLI workflow to retrieve function access keys, see
 
 [Work with access keys in Azure Functions](/en-us/azure/azure-functions/function-keys-how-to?tabs=azure-cli#get-your-function-access-keys).- Remote MCP server endpoint:
 
-For detailed implementation guidance, see [Quickstart: Build a custom remote MCP server using Azure Functions](/en-us/azure/azure-functions/scenario-custom-remote-mcp-server?pivots=programming-language-python).
+For additional implementation details including advanced authentication patterns and troubleshooting, refer to the tutorial [Host an MCP server on Azure Functions](/en-us/azure/azure-functions/functions-mcp-tutorial?tabs=mcp-extension&pivots=programming-language-python).
 
 ## Secure your MCP server endpoint
 
@@ -593,25 +593,25 @@ Sign in to the
 
 The API Center name becomes your private tool catalog name in the registry filter. Choose an informative name that helps users identify your organization's tool catalog.
 
-Register your remote MCP server by adding it as an API:
+In the left navigation pane, expand
 
-a. In the left navigation pane, select
+**Inventory**and select**Assets**.Select
 
-**APIs**.b. Select
+**Register an asset**and choose**MCP server**.Provide the required information about your MCP server.
 
-**+ Add API**and provide the required information about your MCP server.c. Configure environments and deployments following the tutorial:
+Configure environments and deployments following the tutorial:
 
 [Add environments and deployments for APIs in Azure API Center](/en-us/azure/api-center/configure-environments-deployments).Configure authentication for your MCP server (optional):
 
-a. In the left navigation pane of your API Center resource, select
+In the left navigation pane of your API Center resource, select
 
-**Governance**>**Authorization**.b. Select
+**Governance**>**Authorization**.Select
 
-**Add configuration**.c. Choose the security scheme that matches your MCP server requirements:
+**Add configuration**.Choose the security scheme that matches your MCP server requirements:
 
 **API Key**: Developers provide the API key during tool configuration in Foundry**OAuth**: Configure OAuth 2.0 authentication parameters**HTTP**: Configure bearer token authorization
 
-d. Provide the required authentication details for your selected scheme.
+Provide the required authentication details for your selected scheme.
 
 Note
 
@@ -708,4 +708,4 @@ If you registered the server in Azure API Center, remove the API entry if you no
 
 ## Related content
 
-[Get started with Agent Service](../agents/quickstart?view=foundry)[Connect to Model Context Protocol servers (preview)](../agents/how-to/tools/model-context-protocol?view=foundry)[MCP server authentication](../agents/how-to/mcp-authentication?view=foundry)[Get started with Foundry MCP Server (preview) using Visual Studio Code](get-started?view=foundry)[Foundry MCP Server best practices and security guidance](security-best-practices?view=foundry)[Explore available tools and example prompts for Foundry MCP Server (preview)](available-tools?view=foundry)[Add environments and deployments in Azure API Center](/en-us/azure/api-center/configure-environments-deployments)[Azure Functions Python developer guide](/en-us/azure/azure-functions/functions-reference-python)
+[MCP server authentication](../agents/how-to/mcp-authentication?view=foundry)[Get started with Foundry MCP Server (preview) using Visual Studio Code](get-started?view=foundry)[Foundry MCP Server best practices and security guidance](security-best-practices?view=foundry)[Explore available tools and example prompts for Foundry MCP Server (preview)](available-tools?view=foundry)[Add environments and deployments in Azure API Center](/en-us/azure/api-center/configure-environments-deployments)[Azure Functions Python developer guide](/en-us/azure/azure-functions/functions-reference-python)

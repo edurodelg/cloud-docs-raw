@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-05T08:42:07.316984
+merged_at: 2026-02-06T17:00:26.543117
 merged_files: 2
 ---
 
@@ -144,12 +144,9 @@ This article describes the integrated user experience and system behavior for ge
 
 ## Prerequisites
 
-Before you begin:
-
-- You have access to the
-**Microsoft Foundry portal**. - You have one or more published agents.
-- You have access to
-**Ask AI**(the chat assistant).
+- A
+[Foundry project](../../how-to/create-projects?view=foundry)with one or more[published agents](../../agents/overview?view=foundry). - Access to
+**Ask AI**(the chat assistant) in the Foundry portal.
 
 ## Start a chat with Ask AI
 
@@ -205,13 +202,10 @@ This article describes the integrated user experience and system behavior when y
 
 ## Prerequisites
 
-Before you begin:
-
-- Have access to the
-**Microsoft Foundry portal**. - Have one or more deployed models or agents.
-- Have access to
-**Ask AI**(the chat assistant). - Have at least one evaluation dataset in CSV or JSONL format.
-- Have sufficient permission to deploy and evaluate.
+- A
+[Foundry project](../../how-to/create-projects?view=foundry)with one or more deployed models or[agents](../../agents/overview?view=foundry). - Access to
+**Ask AI**(the chat assistant) in the Foundry portal. - At least one
+[evaluation dataset](../../how-to/develop/cloud-evaluation?view=foundry)in CSV or JSONL format. - Sufficient permission to deploy and evaluate.
 
 ## Start a chat with Ask AI
 
@@ -264,11 +258,8 @@ In this article, you’ll learn how to set up human evaluation for your Foundry 
 
 ## Prerequisites
 
-Before you begin:
-
-- You have access to the
-**Microsoft Foundry portal**. - You have one or more agents built.
-- You have configured Application Insights for your project
+- A
+[Foundry project](../../how-to/create-projects?view=foundry)with one or more[agents](../../agents/overview?view=foundry). [Application Insights configured](trace-agent-setup?view=foundry)for your project.
 
 ## Create a human evaluation template
 
@@ -366,11 +357,9 @@ This article explains how to generate and interact with an evaluation cluster an
 
 ## Prerequisites
 
-Before you begin:
-
-- Make sure you have access to the
-**Microsoft Foundry portal**. - Ensure you have one or more deployed agents.
-- Verify that you have one or more evaluation runs in one evaluation.
+- A
+[Foundry project](../../how-to/create-projects?view=foundry). - One or more
+[completed evaluation runs](../../how-to/develop/cloud-evaluation?view=foundry).
 
 ## Generate an evaluation cluster analysis
 
@@ -491,8 +480,8 @@ Use tracing (preview) to debug your AI agents and monitor their behavior in prod
 
 ## Prerequisites
 
-- A Foundry project. For more information, see
-[Create a Foundry project](../../how-to/create-projects?view=foundry). - An
+- A
+[Foundry project](../../how-to/create-projects?view=foundry). - An
 [Azure Monitor Application Insights resource](/en-us/azure/azure-monitor/app/app-insights-overview)to store traces (create a new one or connect an existing one). - Access to the Application Insights resource connected to your project.
 
 ## Connect Application Insights to your Foundry project
@@ -651,11 +640,10 @@ This article covers two approaches: viewing metrics in the Foundry portal and se
 
 ## Prerequisites
 
-- A Foundry project. For more information, see
-[Create a Foundry project](../../how-to/create-projects?view=foundry). - At least one deployed agent in your Foundry project.
-- An
+- A
+[Foundry project](../../how-to/create-projects?view=foundry)with at least one[agent](../../agents/overview?view=foundry). - An
 [Application Insights resource](/en-us/azure/azure-monitor/app/app-insights-overview)connected to your project. - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select
-**Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the[Log Analytics Reader role](/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). - Python 3.9 or later (required for SDK-based setup).
+**Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the[Log Analytics Reader role](/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
 
 ## Connect Application Insights
 
@@ -710,7 +698,7 @@ Detects performance anomalies, evaluation failures, and security risks. | Config
 
 ## Set up continuous evaluation (Python SDK)
 
-Use the Python SDK to set up continuous evaluation rules for agent responses.
+Use the Python SDK to set up continuous evaluation rules for agent responses. This section requires Python 3.9 or later.
 
 ```
 pip install "azure-ai-projects>=2.0.0b1" python-dotenv
@@ -870,9 +858,8 @@ tracer for LangChain and LangGraph - Instrument the OpenAI Agents SDK with OpenT
 
 ## Prerequisites
 
-- A Foundry project. For more information, see
-[Create a Foundry project](../../how-to/create-projects?view=foundry). - Tracing connected to an Azure Monitor Application Insights resource. To set it up, see
-[Set up tracing in Microsoft Foundry](trace-agent-setup?view=foundry). - Contributor or higher role on the Application Insights resource for trace ingestion.
+- A
+[Foundry project](../../how-to/create-projects?view=foundry)with[tracing connected](trace-agent-setup?view=foundry)to Application Insights. - Contributor or higher role on the Application Insights resource for trace ingestion.
 - Access to the connected Application Insights resource for viewing traces. For log-based queries, you might also need access to the associated Log Analytics workspace.
 - Python 3.10 or later (required for all code samples in this article).
 - The

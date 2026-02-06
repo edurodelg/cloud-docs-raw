@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-05T08:42:07.243378
+merged_at: 2026-02-06T17:00:26.245458
 merged_files: 4
 ---
 
@@ -889,798 +889,6 @@ with the SKU name for the deployment type you want to restrict.
 To learn about creating resources and deploying models, see [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models?view=foundry-classic) and [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../openai/how-to/create-resource?view=foundry-classic).
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-from-partners -->
-
-# Foundry Models from partners and community
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
-
-Note
-
-This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
-Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors.
-The selection of models that you see in Foundry depends on the [kind of project](../../what-is-foundry?view=foundry-classic&preserve-view=true#types-of-projects) you use.
-To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview?view=foundry-classic#models-from-partners-and-community).
-
-Note
-
-For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic).
-
-For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/model-region-support?view=foundry-classic).
-
-## Anthropic
-
-Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
-
-To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude?view=foundry-classic).
-
-Important
-
-To use Claude models in Microsoft Foundry, you need a paid Azure subscription with a billing account in a [country or region](../../how-to/deploy-models-serverless-availability?view=foundry-classic#region-availability) where Anthropic offers the models for purchase. The following paid subscription types are currently restricted: Cloud Solution Providers (CSP), sponsored accounts with Azure credits, enterprise accounts in Singapore and South Korea, and Microsoft accounts.
-
-For a list of common subscription-related errors, see [Common error messages and solutions](/en-us/marketplace/purchase-saas-offer-in-azure-portal#common-error-messages-and-solutions).
-
-| Model | Type | Capabilities | Project type |
-|---|---|---|---|
-(Preview) |
-
-**Input:**text and image-
-
-**Output:**text (64,000 max tokens)-
-
-**Context window:**200,000-
-
-**Languages:**`en`
-
-, `fr`
-
-, `ar`
-
-, `zh`
-
-, `ja`
-
-, `ko`
-
-, `es`
-
-, `hi`
-
--
-
-**Tool calling:**Yes (file search and code execution)-
-
-**Response formats:**Text, JSON[claude-opus-4-1](https://aka.ms/claude-opus-4-1)**(Preview)****Input:**text, image, and code-
-
-**Output:**text (32,000 max tokens)-
-
-**Context window:**200,000-
-
-**Languages:**`en`
-
-, `fr`
-
-, `ar`
-
-, `zh`
-
-, `ja`
-
-, `ko`
-
-, `es`
-
-, `hi`
-
--
-
-**Tool calling:**Yes (file search and code execution)-
-
-**Response formats:**Text, JSON[claude-sonnet-4-5](https://aka.ms/claude-sonnet-4-5)**(Preview)****Input:**text, image, and code-
-
-**Output:**text (max 64,000 tokens)-
-
-**Context window:**200,000-
-
-**Languages:**`en`
-
-, `fr`
-
-, `ar`
-
-, `zh`
-
-, `ja`
-
-, `ko`
-
-, `es`
-
-, `hi`
-
--
-
-**Tool calling:**Yes (file search and code execution)-
-
-**Response formats:**Text, JSON[claude-opus-4-5](https://aka.ms/claude-opus-4-5)**(Preview)****Input:**text and image, and code-
-
-**Output:**text (64,000 max tokens)-
-
-**Context window:**200,000-
-
-**Languages:**`en`
-
-, `fr`
-
-, `ar`
-
-, `zh`
-
-, `ja`
-
-, `ko`
-
-, `es`
-
-, `hi`
-
--
-
-**Tool calling:**Yes (file search and code execution)-
-
-**Response formats:**Text, JSON| Model | Type | Capabilities |
-|---|---|---|
-`claude-haiku-4-5` (Preview) |
-Messages | - Input: text and image - Output: text (64,000 max tokens) - Context window: 200,000 - Languages: `en` , `fr` , `ar` , `zh` , `ja` , `ko` , `es` , `hi` - Tool calling: Yes (file search and code execution) - Response formats: Text, JSON |
-`claude-opus-4-1` (Preview) |
-Messages | - Input: text, image, and code - Output: text (32,000 max tokens) - Context window: 200,000 - Languages: `en` , `fr` , `ar` , `zh` , `ja` , `ko` , `es` , `hi` - Tool calling: Yes (file search and code execution) - Response formats: Text, JSON |
-`claude-sonnet-4-5` (Preview) |
-Messages | - Input: text, image, and code - Output: text (max 64,000 tokens) - Context window: 200,000 - Languages: `en` , `fr` , `ar` , `zh` , `ja` , `ko` , `es` , `hi` - Tool calling: Yes (file search and code execution) - Response formats: Text, JSON |
-`claude-opus-4-5` (Preview) |
-Messages | - Input: text and image, and code - Output: text (64,000 max tokens) - Context window: 200,000 - Languages: `en` , `fr` , `ar` , `zh` , `ja` , `ko` , `es` , `hi` - Tool calling: Yes (file search and code execution) - Response formats: Text, JSON |
-
-See [the Anthropic model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=anthropic/?cid=learnDocs).
-
-## Cohere
-
-The Cohere family of models includes various models optimized for different use cases, including chat completions and embeddings. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
-
-| Model | Type | Capabilities | Project type |
-|---|---|---|---|
-|
-
-**Input:**text (131,072 tokens)-
-
-**Output:**text (4,096 tokens)-
-
-**Languages:**`en`
-
-, `fr`
-
-, `es`
-
-, `it`
-
-, `de`
-
-, `pt-br`
-
-, `ja`
-
-, `ko`
-
-, `zh-cn`
-
-, and `ar`
-
--
-
-**Tool calling:**Yes-
-
-**Response formats:**Text, JSON[Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs)**Input:**text (131,072 tokens)-
-
-**Output:**text (4,096 tokens)-
-
-**Languages:**`en`
-
-, `fr`
-
-, `es`
-
-, `it`
-
-, `de`
-
-, `pt-br`
-
-, `ja`
-
-, `ko`
-
-, `zh-cn`
-
-, and `ar`
-
--
-
-**Tool calling:**Yes-
-
-**Response formats:**Text, JSON[Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere/?cid=learnDocs)**Input:**text and images (512 tokens)-
-
-**Output:**Vector (1024 dim.)-
-
-**Languages:**`en`
-
-[Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere/?cid=learnDocs)**Input:**text (512 tokens)-
-
-**Output:**Vector (1024 dim.)-
-
-**Languages:**`en`
-
-, `fr`
-
-, `es`
-
-, `it`
-
-, `de`
-
-, `pt-br`
-
-, `ja`
-
-, `ko`
-
-, `zh-cn`
-
-, and `ar`
-
-| Model | Type | Capabilities |
-|---|---|---|
-`Cohere-command-r-plus-08-2024` |
-chat-completion | - Input: text (131,072 tokens) - Output: text (4,096 tokens) - Languages: `en` , `fr` , `es` , `it` , `de` , `pt-br` , `ja` , `ko` , `zh-cn` , and `ar` - Tool calling: Yes - Response formats: Text, JSON |
-`Cohere-command-r-08-2024` |
-chat-completion | - Input: text (131,072 tokens) - Output: text (4,096 tokens) - Languages: `en` , `fr` , `es` , `it` , `de` , `pt-br` , `ja` , `ko` , `zh-cn` , and `ar` - Tool calling: Yes - Response formats: Text, JSON |
-`Cohere-embed-v3-english` |
-embeddings | - Input: text and images (512 tokens) - Output: Vector (1024 dim.) - Languages: `en` |
-`Cohere-embed-v3-multilingual` |
-embeddings | - Input: text (512 tokens) - Output: Vector (1024 dim.) - Languages: `en` , `fr` , `es` , `it` , `de` , `pt-br` , `ja` , `ko` , `zh-cn` , and `ar` |
-
-### Cohere rerank
-
-| Model | Type | Capabilities | API Reference | Project type |
-|---|---|---|---|---|
-|
-
-text classification
-
-**Input:**text-
-
-**Output:**text-
-
-**Languages:**English, Chinese, French, German, Indonesian, Italian, Portuguese, Russian, Spanish, Arabic, Dutch, Hindi, Japanese, Vietnamese[Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank)For more details on pricing for Cohere rerank models, see [Pricing for Cohere rerank models](../../concepts/models-inference-examples?view=foundry-classic#pricing-for-cohere-rerank-models).
-
-See [the Cohere model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere/?cid=learnDocs).
-
-## Meta
-
-Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range in scale to include:
-
-- Small language models (SLMs) like 1B and 3B Base and Instruct models for on-device and edge inferencing
-- Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
-- High-performance models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
-
-| Model | Type | Capabilities | Project type |
-|---|---|---|---|
-|
-
-**Input:**text and image (128,000 tokens)-
-
-**Output:**(8,192 tokens)-
-
-**Languages:**`en`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text[Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta/?cid=learnDocs)**Input:**text and image (128,000 tokens)-
-
-**Output:**(8,192 tokens)-
-
-**Languages:**`en`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text[Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta/?cid=learnDocs)**Input:**text (131,072 tokens)-
-
-**Output:**(8,192 tokens)-
-
-**Languages:**`en`
-
-, `de`
-
-, `fr`
-
-, `it`
-
-, `pt`
-
-, `hi`
-
-, `es`
-
-, and `th`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)**Input:**text (131,072 tokens)-
-
-**Output:**(8,192 tokens)-
-
-**Languages:**`en`
-
-, `de`
-
-, `fr`
-
-, `it`
-
-, `pt`
-
-, `hi`
-
-, `es`
-
-, and `th`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text[Llama-4-Scout-17B-16E-Instruct](https://aka.ms/aifoundry/landing/llama-4-scout-17b-16e-instruct)**Input:**text and image (128,000 tokens)-
-
-**Output:**text (8,192 tokens)-
-
-**Tool calling:**No-
-
-**Response formats:**Text| Model | Type | Capabilities |
-|---|---|---|
-`Llama-3.2-11B-Vision-Instruct` |
-chat-completion | - Input: text and image (128,000 tokens) - Output: (8,192 tokens) - Languages: `en` - Tool calling: No - Response formats: Text |
-`Llama-3.2-90B-Vision-Instruct` |
-chat-completion | - Input: text and image (128,000 tokens) - Output: (8,192 tokens) - Languages: `en` - Tool calling: No - Response formats: Text |
-`Meta-Llama-3.1-405B-Instruct` |
-chat-completion | - Input: text (131,072 tokens) - Output: (8,192 tokens) - Languages: `en` , `de` , `fr` , `it` , `pt` , `hi` , `es` , and `th` - Tool calling: No - Response formats: Text |
-`Meta-Llama-3.1-8B-Instruct` |
-chat-completion | - Input: text (131,072 tokens) - Output: (8,192 tokens) - Languages: `en` , `de` , `fr` , `it` , `pt` , `hi` , `es` , and `th` - Tool calling: No - Response formats: Text |
-`Llama-4-Scout-17B-16E-Instruct` |
-chat-completion | - Input: text and image (128,000 tokens) - Output: text (8,192 tokens) - Tool calling: No - Response formats: Text |
-
-See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available as [models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic&pivots=azure-direct-others).
-
-## Microsoft
-
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more.
-
-| Model | Type | Capabilities | Project type |
-|---|---|---|---|
-|
-
-**Input:**text (131,072 tokens)-
-
-**Output:**(4,096 tokens)-
-
-**Languages:**`ar`
-
-, `zh`
-
-, `cs`
-
-, `da`
-
-, `nl`
-
-, `en`
-
-, `fi`
-
-, `fr`
-
-, `de`
-
-, `he`
-
-, `hu`
-
-, `it`
-
-, `ja`
-
-, `ko`
-
-, `no`
-
-, `pl`
-
-, `pt`
-
-, `ru`
-
-, `es`
-
-, `sv`
-
-, `th`
-
-, `tr`
-
-, and `uk`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text[Phi-4-multimodal-instruct](https://ai.azure.com/explore/models/Phi-4-multimodal-instruct/version/1/registry/azureml/?cid=learnDocs)**Input:**text, images, and audio (131,072 tokens)-
-
-**Output:**(4,096 tokens)-
-
-**Languages:**`ar`
-
-, `zh`
-
-, `cs`
-
-, `da`
-
-, `nl`
-
-, `en`
-
-, `fi`
-
-, `fr`
-
-, `de`
-
-, `he`
-
-, `hu`
-
-, `it`
-
-, `ja`
-
-, `ko`
-
-, `no`
-
-, `pl`
-
-, `pt`
-
-, `ru`
-
-, `es`
-
-, `sv`
-
-, `th`
-
-, `tr`
-
-, and `uk`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text[Phi-4](https://ai.azure.com/explore/models/Phi-4/version/2/registry/azureml/?cid=learnDocs)**Input:**text (16,384 tokens)-
-
-**Output:**(16,384 tokens)-
-
-**Languages:**`en`
-
-, `ar`
-
-, `bn`
-
-, `cs`
-
-, `da`
-
-, `de`
-
-, `el`
-
-, `es`
-
-, `fa`
-
-, `fi`
-
-, `fr`
-
-, `gu`
-
-, `ha`
-
-, `he`
-
-, `hi`
-
-, `hu`
-
-, `id`
-
-, `it`
-
-, `ja`
-
-, `jv`
-
-, `kn`
-
-, `ko`
-
-, `ml`
-
-, `mr`
-
-, `nl`
-
-, `no`
-
-, `or`
-
-, `pa`
-
-, `pl`
-
-, `ps`
-
-, `pt`
-
-, `ro`
-
-, `ru`
-
-, `sv`
-
-, `sw`
-
-, `ta`
-
-, `te`
-
-, `th`
-
-, `tl`
-
-, `tr`
-
-, `uk`
-
-, `ur`
-
-, `vi`
-
-, `yo`
-
-, and `zh`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text[Phi-4-reasoning](https://ai.azure.com/explore/models/Phi-4-reasoning/version/1/registry/azureml/?cid=learnDocs)**Input:**text (32,768 tokens)-
-
-**Output:**text (32,768 tokens)-
-
-**Languages:**`en`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text[Phi-4-mini-reasoning](https://ai.azure.com/explore/models/Phi-4-mini-reasoning/version/1/registry/azureml/?cid=learnDocs)**Input:**text (128,000 tokens)-
-
-**Output:**text (128,000 tokens)-
-
-**Languages:**`en`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text| Model | Type | Capabilities |
-|---|---|---|
-`Phi-4-mini-instruct` |
-chat-completion | - Input: text (131,072 tokens) - Output: (4,096 tokens) - Languages: `ar` , `zh` , `cs` , `da` , `nl` , `en` , `fi` , `fr` , `de` , `he` , `hu` , `it` , `ja` , `ko` , `no` , `pl` , `pt` , `ru` , `es` , `sv` , `th` , `tr` , and `uk` - Tool calling: No - Response formats: Text |
-`Phi-4-multimodal-instruct` |
-chat-completion | - Input: text, images, and audio (131,072 tokens) - Output: (4,096 tokens) - Languages: `ar` , `zh` , `cs` , `da` , `nl` , `en` , `fi` , `fr` , `de` , `he` , `hu` , `it` , `ja` , `ko` , `no` , `pl` , `pt` , `ru` , `es` , `sv` , `th` , `tr` , and `uk` - Tool calling: No - Response formats: Text |
-`Phi-4` |
-chat-completion | - Input: text (16,384 tokens) - Output: (16,384 tokens) - Languages: `en` , `ar` , `bn` , `cs` , `da` , `de` , `el` , `es` , `fa` , `fi` , `fr` , `gu` , `ha` , `he` , `hi` , `hu` , `id` , `it` , `ja` , `jv` , `kn` , `ko` , `ml` , `mr` , `nl` , `no` , `or` , `pa` , `pl` , `ps` , `pt` , `ro` , `ru` , `sv` , `sw` , `ta` , `te` , `th` , `tl` , `tr` , `uk` , `ur` , `vi` , `yo` , and `zh` - Tool calling: No - Response formats: Text |
-`Phi-4-reasoning` |
-chat-completion with reasoning content | - Input: text (32,768 tokens) - Output: text (32,768 tokens) - Languages: `en` - Tool calling: No - Response formats: Text |
-`Phi-4-mini-reasoning` |
-chat-completion with reasoning content | - Input: text (128,000 tokens) - Output: text (128,000 tokens) - Languages: `en` - Tool calling: No - Response formats: Text |
-
-See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). Microsoft models are also available as [models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic&pivots=azure-direct-others).
-
-## Mistral AI
-
-Mistral AI offers two categories of models: premium models such as Mistral Large 2411 and Ministral 3B, and open models such as Mistral Nemo.
-
-| Model | Type | Capabilities | Project type |
-|---|---|---|---|
-|
-
-**Input:**text (262,144 tokens)-
-
-**Output:**text (4,096 tokens)-
-
-**Languages:**en-
-
-**Tool calling:**No-
-
-**Response formats:**Text[Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral/?cid=learnDocs)**Input:**text (131,072 tokens)-
-
-**Output:**text (4,096 tokens)-
-
-**Languages:**fr, de, es, it, and en-
-
-**Tool calling:**Yes-
-
-**Response formats:**Text, JSON[Mistral-small-2503](https://ai.azure.com/explore/models/Mistral-small-2503/version/1/registry/azureml-mistral/?cid=learnDocs)**Input:**text (32,768 tokens)-
-
-**Output:**text (4,096 tokens)-
-
-**Languages:**fr, de, es, it, and en-
-
-**Tool calling:**Yes-
-
-**Response formats:**Text, JSON[Mistral-medium-2505](https://aka.ms/aistudio/landing/mistral-medium-2505?cid=learnDocs)**Input:**text (128,000 tokens), image-
-
-**Output:**text (128,000 tokens)-
-
-**Tool calling:**No-
-
-**Response formats:**Text, JSON[mistralai-Mistral-7B-Instruct-v01](https://ai.azure.com/explore/models/mistralai-Mistral-7B-Instruct-v01/version/11/registry/azureml/?cid=learnDocs)**Input:**text-
-
-**Output:**text-
-
-**Languages:**en-
-
-**Response formats:**Text[mistralai-Mistral-7B-Instruct-v0-2](https://ai.azure.com/explore/models/mistralai-Mistral-7B-Instruct-v0-2/version/6/registry/azureml/?cid=learnDocs)**Input:**text-
-
-**Output:**text-
-
-**Languages:**en-
-
-**Response formats:**Text[mistralai-Mixtral-8x7B-Instruct-v01](https://ai.azure.com/explore/models/mistralai-Mixtral-8x7B-Instruct-v01/version/10/registry/azureml/?cid=learnDocs)**Input:**text-
-
-**Output:**text-
-
-**Languages:**en-
-
-**Response formats:**Text[mistralai-Mixtral-8x22B-Instruct-v0-1](https://ai.azure.com/explore/models/mistralai-Mixtral-8x22B-Instruct-v0-1/version/5/registry/azureml/?cid=learnDocs)**Input:**text (64,000 tokens)-
-
-**Output:**text (4,096 tokens)-
-
-**Languages:**fr, it, de, es, en-
-
-**Response formats:**Text| Model | Type | Capabilities |
-|---|---|---|
-`Codestral-2501` |
-chat-completion | - Input: text (262,144 tokens) - Output: text (4,096 tokens) - Languages: en - Tool calling: No - Response formats: Text |
-`Ministral-3B` |
-chat-completion | - Input: text (131,072 tokens) - Output: text (4,096 tokens) - Languages: fr, de, es, it, and en - Tool calling: Yes - Response formats: Text, JSON |
-`Mistral-small-2503` |
-chat-completion | - Input: text (32,768 tokens) - Output: text (4,096 tokens) - Languages: fr, de, es, it, and en - Tool calling: Yes - Response formats: Text, JSON |
-`Mistral-medium-2505` |
-chat-completion | - Input: text (128,000 tokens), image - Output: text (128,000 tokens) - Tool calling: No - Response formats: Text, JSON |
-
-See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs). Mistral models are also available as [models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic&pivots=azure-direct-others).
-
-## Nixtla
-
-Nixtla's TimeGEN-1 is a generative pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 produces accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
-
-To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
-
-| Model | Type | Capabilities | Inference API | Project type |
-|---|---|---|---|---|
-|
-
-**Input:**Time series data as JSON or dataframes (with support for multivariate input)-
-
-**Output:**Time series data as JSON-
-
-**Tool calling:**No-
-
-**Response formats:**JSON[Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast)For more details on pricing for Nixtla models, see [Nixtla](../../concepts/models-inference-examples?view=foundry-classic#nixtla).
-
-## NTT Data
-
-**tsuzumi** is an autoregressive language-optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
-
-| Model | Type | Capabilities | Project type |
-|---|---|---|---|
-|
-
-**Input:**text (8,192 tokens)-
-
-**Output:**text (8,192 tokens)-
-
-**Languages:**`en`
-
-and `jp`
-
--
-
-**Tool calling:**No-
-
-**Response formats:**Text## Stability AI
-
-The Stability AI collection of image generation models includes Stable Image Core, Stable Image Ultra, and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large accepts both image and text input.
-
-| Model | Type | Capabilities | Project type |
-|---|---|---|---|
-|
-
-**Input:**text and image (1,000 tokens and 1 image)-
-
-**Output:**One Image-
-
-**Tool calling:**No-
-
-**Response formats**: Image (PNG and JPG)[Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs)**Input:**text (1,000 tokens)-
-
-**Output:**One Image-
-
-**Tool calling:**No-
-
-**Response formats:**Image (PNG and JPG)[Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs)**Input:**text (1,000 tokens)-
-
-**Output:**One Image-
-
-**Tool calling:**No-
-
-**Response formats:**Image (PNG and JPG)| Model | Type | Capabilities |
-|---|---|---|
-`Stable Diffusion 3.5 Large` |
-Image generation | - Input: text and image (1,000 tokens and 1 image) - Output: One Image - Tool calling: No - Response formats: Image (PNG and JPG) |
-`Stable Image Core` |
-Image generation | - Input: text (1,000 tokens) - Output: One Image - Tool calling: No - Response formats: Image (PNG and JPG) |
-`Stable Image Ultra` |
-Image generation | - Input: text (1,000 tokens) - Output: One Image - Tool calling: No - Response formats: Image (PNG and JPG) |
-
-See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Stability+AI/?cid=learnDocs).
-
-## Open and custom models
-
-The model catalog offers a larger selection of models from a wider range of providers. For these models, you can't use the option for [standard deployment in Microsoft Foundry resources](../../concepts/deployments-overview?view=foundry-classic#standard-deployment-in-foundry-resources), where models are provided as APIs. Instead, to deploy these models, you might need to host them on your infrastructure, create an AI hub, and provide the underlying compute quota to host the models.
-
-Furthermore, these models can be open-access or IP protected. In both cases, you have to deploy them in managed compute offerings in Foundry. To get started, see [How-to: Deploy to Managed compute](../../how-to/deploy-models-managed?view=foundry-classic).
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/endpoints -->
 
 # Endpoints for Microsoft Foundry Models
@@ -2426,6 +1634,826 @@ This command outputs an access token that you can store in the `$AZURE_OPENAI_AU
 environment variable.
 
 Reference: [Chat Completions API](../../openai/latest?view=foundry-classic#create-chat-completion)
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-from-partners -->
+
+# Foundry Models from partners and community
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+Note
+
+This document refers to the [Microsoft Foundry (new)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
+Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors.
+The selection of models that you see in Foundry depends on the [kind of project](../../what-is-foundry?view=foundry-classic&preserve-view=true#types-of-projects) you use.
+To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview?view=foundry-classic#models-from-partners-and-community).
+
+Note
+
+For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic).
+
+For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/model-region-support?view=foundry-classic).
+
+## Anthropic
+
+Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
+
+To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude?view=foundry-classic).
+
+Important
+
+To use Claude models in Microsoft Foundry, you need a paid Azure subscription with a billing account in a [country or region](../../how-to/deploy-models-serverless-availability?view=foundry-classic#region-availability) where Anthropic offers the models for purchase. The following paid subscription types are currently restricted: Cloud Solution Providers (CSP), sponsored accounts with Azure credits, enterprise accounts in Singapore and South Korea, and Microsoft accounts.
+
+For a list of common subscription-related errors, see [Common error messages and solutions](/en-us/marketplace/purchase-saas-offer-in-azure-portal#common-error-messages-and-solutions).
+
+| Model | Type | Capabilities | Project type |
+|---|---|---|---|
+(Preview) |
+
+**Input:**text, image, and code-
+
+**Output:**text, image, and code (128,000 max tokens)-
+
+**Context window:**1,000,000,000 (beta)-
+
+**Languages:**`en`
+
+, `fr`
+
+, `ar`
+
+, `zh`
+
+, `ja`
+
+, `ko`
+
+, `es`
+
+, `hi`
+
+-
+
+**Tool calling:**Yes (file search and code execution)-
+
+**Response formats:**Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)[claude-opus-4-5](https://aka.ms/claude-opus-4-5)**(Preview)****Input:**text, image, and code-
+
+**Output:**text (64,000 max tokens)-
+
+**Context window:**200,000-
+
+**Languages:**`en`
+
+, `fr`
+
+, `ar`
+
+, `zh`
+
+, `ja`
+
+, `ko`
+
+, `es`
+
+, `hi`
+
+-
+
+**Tool calling:**Yes (file search and code execution)-
+
+**Response formats:**Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)[claude-opus-4-1](https://aka.ms/claude-opus-4-1)**(Preview)****Input:**text, image, and code-
+
+**Output:**text (32,000 max tokens)-
+
+**Context window:**200,000-
+
+**Languages:**`en`
+
+, `fr`
+
+, `ar`
+
+, `zh`
+
+, `ja`
+
+, `ko`
+
+, `es`
+
+, `hi`
+
+-
+
+**Tool calling:**Yes (file search and code execution)-
+
+**Response formats:**Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)[claude-sonnet-4-5](https://aka.ms/claude-sonnet-4-5)**(Preview)****Input:**text, image, and code-
+
+**Output:**text (64,000 max tokens)-
+
+**Context window:**200,000-
+
+**Languages:**`en`
+
+, `fr`
+
+, `ar`
+
+, `zh`
+
+, `ja`
+
+, `ko`
+
+, `es`
+
+, `hi`
+
+-
+
+**Tool calling:**Yes (file search and code execution)-
+
+**Response formats:**Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)[claude-haiku-4-5](https://aka.ms/claude-haiku-4-5)**(Preview)****Input:**text and image-
+
+**Output:**text (64,000 max tokens)-
+
+**Context window:**200,000-
+
+**Languages:**`en`
+
+, `fr`
+
+, `ar`
+
+, `zh`
+
+, `ja`
+
+, `ko`
+
+, `es`
+
+, `hi`
+
+-
+
+**Tool calling:**Yes (file search and code execution)-
+
+**Response formats:**Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)| Model | Type | Capabilities |
+|---|---|---|
+`claude-opus-4-6` (Preview) |
+Messages | - Input: text, image, and code - Output: text, image, and code (128,000 max tokens) - Context window: 1,000,000,000 (beta) - Languages: `en` , `fr` , `ar` , `zh` , `ja` , `ko` , `es` , `hi` - Tool calling: Yes (file search and code execution) - Response formats: Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
+`claude-opus-4-5` (Preview) |
+Messages | - Input: text, image, and code - Output: text (64,000 max tokens) - Context window: 200,000 - Languages: `en` , `fr` , `ar` , `zh` , `ja` , `ko` , `es` , `hi` - Tool calling: Yes (file search and code execution) - Response formats: Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
+`claude-opus-4-1` (Preview) |
+Messages | - Input: text, image, and code - Output: text (32,000 max tokens) - Context window: 200,000 - Languages: `en` , `fr` , `ar` , `zh` , `ja` , `ko` , `es` , `hi` - Tool calling: Yes (file search and code execution) - Response formats: Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
+`claude-sonnet-4-5` (Preview) |
+Messages | - Input: text, image, and code - Output: text (64,000 max tokens) - Context window: 200,000 - Languages: `en` , `fr` , `ar` , `zh` , `ja` , `ko` , `es` , `hi` - Tool calling: Yes (file search and code execution) - Response formats: Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
+`claude-haiku-4-5` (Preview) |
+Messages | - Input: text and image - Output: text (64,000 max tokens) - Context window: 200,000 - Languages: `en` , `fr` , `ar` , `zh` , `ja` , `ko` , `es` , `hi` - Tool calling: Yes (file search and code execution) - Response formats: Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |
+
+See [the Anthropic model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=anthropic/?cid=learnDocs).
+
+## Cohere
+
+The Cohere family of models includes various models optimized for different use cases, including chat completions and embeddings. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
+
+| Model | Type | Capabilities | Project type |
+|---|---|---|---|
+|
+
+**Input:**text (131,072 tokens)-
+
+**Output:**text (4,096 tokens)-
+
+**Languages:**`en`
+
+, `fr`
+
+, `es`
+
+, `it`
+
+, `de`
+
+, `pt-br`
+
+, `ja`
+
+, `ko`
+
+, `zh-cn`
+
+, and `ar`
+
+-
+
+**Tool calling:**Yes-
+
+**Response formats:**Text, JSON[Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs)**Input:**text (131,072 tokens)-
+
+**Output:**text (4,096 tokens)-
+
+**Languages:**`en`
+
+, `fr`
+
+, `es`
+
+, `it`
+
+, `de`
+
+, `pt-br`
+
+, `ja`
+
+, `ko`
+
+, `zh-cn`
+
+, and `ar`
+
+-
+
+**Tool calling:**Yes-
+
+**Response formats:**Text, JSON[Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere/?cid=learnDocs)**Input:**text and images (512 tokens)-
+
+**Output:**Vector (1024 dim.)-
+
+**Languages:**`en`
+
+[Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere/?cid=learnDocs)**Input:**text (512 tokens)-
+
+**Output:**Vector (1024 dim.)-
+
+**Languages:**`en`
+
+, `fr`
+
+, `es`
+
+, `it`
+
+, `de`
+
+, `pt-br`
+
+, `ja`
+
+, `ko`
+
+, `zh-cn`
+
+, and `ar`
+
+| Model | Type | Capabilities |
+|---|---|---|
+`Cohere-command-r-plus-08-2024` |
+chat-completion | - Input: text (131,072 tokens) - Output: text (4,096 tokens) - Languages: `en` , `fr` , `es` , `it` , `de` , `pt-br` , `ja` , `ko` , `zh-cn` , and `ar` - Tool calling: Yes - Response formats: Text, JSON |
+`Cohere-command-r-08-2024` |
+chat-completion | - Input: text (131,072 tokens) - Output: text (4,096 tokens) - Languages: `en` , `fr` , `es` , `it` , `de` , `pt-br` , `ja` , `ko` , `zh-cn` , and `ar` - Tool calling: Yes - Response formats: Text, JSON |
+`Cohere-embed-v3-english` |
+embeddings | - Input: text and images (512 tokens) - Output: Vector (1024 dim.) - Languages: `en` |
+`Cohere-embed-v3-multilingual` |
+embeddings | - Input: text (512 tokens) - Output: Vector (1024 dim.) - Languages: `en` , `fr` , `es` , `it` , `de` , `pt-br` , `ja` , `ko` , `zh-cn` , and `ar` |
+
+### Cohere rerank
+
+| Model | Type | Capabilities | API Reference | Project type |
+|---|---|---|---|---|
+|
+
+text classification
+
+**Input:**text-
+
+**Output:**text-
+
+**Languages:**English, Chinese, French, German, Indonesian, Italian, Portuguese, Russian, Spanish, Arabic, Dutch, Hindi, Japanese, Vietnamese[Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank)For more details on pricing for Cohere rerank models, see [Pricing for Cohere rerank models](../../concepts/models-inference-examples?view=foundry-classic#pricing-for-cohere-rerank-models).
+
+See [the Cohere model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere/?cid=learnDocs).
+
+## Meta
+
+Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range in scale to include:
+
+- Small language models (SLMs) like 1B and 3B Base and Instruct models for on-device and edge inferencing
+- Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
+- High-performance models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
+
+| Model | Type | Capabilities | Project type |
+|---|---|---|---|
+|
+
+**Input:**text and image (128,000 tokens)-
+
+**Output:**(8,192 tokens)-
+
+**Languages:**`en`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text[Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta/?cid=learnDocs)**Input:**text and image (128,000 tokens)-
+
+**Output:**(8,192 tokens)-
+
+**Languages:**`en`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text[Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta/?cid=learnDocs)**Input:**text (131,072 tokens)-
+
+**Output:**(8,192 tokens)-
+
+**Languages:**`en`
+
+, `de`
+
+, `fr`
+
+, `it`
+
+, `pt`
+
+, `hi`
+
+, `es`
+
+, and `th`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text[Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs)**Input:**text (131,072 tokens)-
+
+**Output:**(8,192 tokens)-
+
+**Languages:**`en`
+
+, `de`
+
+, `fr`
+
+, `it`
+
+, `pt`
+
+, `hi`
+
+, `es`
+
+, and `th`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text[Llama-4-Scout-17B-16E-Instruct](https://aka.ms/aifoundry/landing/llama-4-scout-17b-16e-instruct)**Input:**text and image (128,000 tokens)-
+
+**Output:**text (8,192 tokens)-
+
+**Tool calling:**No-
+
+**Response formats:**Text| Model | Type | Capabilities |
+|---|---|---|
+`Llama-3.2-11B-Vision-Instruct` |
+chat-completion | - Input: text and image (128,000 tokens) - Output: (8,192 tokens) - Languages: `en` - Tool calling: No - Response formats: Text |
+`Llama-3.2-90B-Vision-Instruct` |
+chat-completion | - Input: text and image (128,000 tokens) - Output: (8,192 tokens) - Languages: `en` - Tool calling: No - Response formats: Text |
+`Meta-Llama-3.1-405B-Instruct` |
+chat-completion | - Input: text (131,072 tokens) - Output: (8,192 tokens) - Languages: `en` , `de` , `fr` , `it` , `pt` , `hi` , `es` , and `th` - Tool calling: No - Response formats: Text |
+`Meta-Llama-3.1-8B-Instruct` |
+chat-completion | - Input: text (131,072 tokens) - Output: (8,192 tokens) - Languages: `en` , `de` , `fr` , `it` , `pt` , `hi` , `es` , and `th` - Tool calling: No - Response formats: Text |
+`Llama-4-Scout-17B-16E-Instruct` |
+chat-completion | - Input: text and image (128,000 tokens) - Output: text (8,192 tokens) - Tool calling: No - Response formats: Text |
+
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available as [models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic&pivots=azure-direct-others).
+
+## Microsoft
+
+Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more.
+
+| Model | Type | Capabilities | Project type |
+|---|---|---|---|
+|
+
+**Input:**text (131,072 tokens)-
+
+**Output:**(4,096 tokens)-
+
+**Languages:**`ar`
+
+, `zh`
+
+, `cs`
+
+, `da`
+
+, `nl`
+
+, `en`
+
+, `fi`
+
+, `fr`
+
+, `de`
+
+, `he`
+
+, `hu`
+
+, `it`
+
+, `ja`
+
+, `ko`
+
+, `no`
+
+, `pl`
+
+, `pt`
+
+, `ru`
+
+, `es`
+
+, `sv`
+
+, `th`
+
+, `tr`
+
+, and `uk`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text[Phi-4-multimodal-instruct](https://ai.azure.com/explore/models/Phi-4-multimodal-instruct/version/1/registry/azureml/?cid=learnDocs)**Input:**text, images, and audio (131,072 tokens)-
+
+**Output:**(4,096 tokens)-
+
+**Languages:**`ar`
+
+, `zh`
+
+, `cs`
+
+, `da`
+
+, `nl`
+
+, `en`
+
+, `fi`
+
+, `fr`
+
+, `de`
+
+, `he`
+
+, `hu`
+
+, `it`
+
+, `ja`
+
+, `ko`
+
+, `no`
+
+, `pl`
+
+, `pt`
+
+, `ru`
+
+, `es`
+
+, `sv`
+
+, `th`
+
+, `tr`
+
+, and `uk`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text[Phi-4](https://ai.azure.com/explore/models/Phi-4/version/2/registry/azureml/?cid=learnDocs)**Input:**text (16,384 tokens)-
+
+**Output:**(16,384 tokens)-
+
+**Languages:**`en`
+
+, `ar`
+
+, `bn`
+
+, `cs`
+
+, `da`
+
+, `de`
+
+, `el`
+
+, `es`
+
+, `fa`
+
+, `fi`
+
+, `fr`
+
+, `gu`
+
+, `ha`
+
+, `he`
+
+, `hi`
+
+, `hu`
+
+, `id`
+
+, `it`
+
+, `ja`
+
+, `jv`
+
+, `kn`
+
+, `ko`
+
+, `ml`
+
+, `mr`
+
+, `nl`
+
+, `no`
+
+, `or`
+
+, `pa`
+
+, `pl`
+
+, `ps`
+
+, `pt`
+
+, `ro`
+
+, `ru`
+
+, `sv`
+
+, `sw`
+
+, `ta`
+
+, `te`
+
+, `th`
+
+, `tl`
+
+, `tr`
+
+, `uk`
+
+, `ur`
+
+, `vi`
+
+, `yo`
+
+, and `zh`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text[Phi-4-reasoning](https://ai.azure.com/explore/models/Phi-4-reasoning/version/1/registry/azureml/?cid=learnDocs)**Input:**text (32,768 tokens)-
+
+**Output:**text (32,768 tokens)-
+
+**Languages:**`en`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text[Phi-4-mini-reasoning](https://ai.azure.com/explore/models/Phi-4-mini-reasoning/version/1/registry/azureml/?cid=learnDocs)**Input:**text (128,000 tokens)-
+
+**Output:**text (128,000 tokens)-
+
+**Languages:**`en`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text| Model | Type | Capabilities |
+|---|---|---|
+`Phi-4-mini-instruct` |
+chat-completion | - Input: text (131,072 tokens) - Output: (4,096 tokens) - Languages: `ar` , `zh` , `cs` , `da` , `nl` , `en` , `fi` , `fr` , `de` , `he` , `hu` , `it` , `ja` , `ko` , `no` , `pl` , `pt` , `ru` , `es` , `sv` , `th` , `tr` , and `uk` - Tool calling: No - Response formats: Text |
+`Phi-4-multimodal-instruct` |
+chat-completion | - Input: text, images, and audio (131,072 tokens) - Output: (4,096 tokens) - Languages: `ar` , `zh` , `cs` , `da` , `nl` , `en` , `fi` , `fr` , `de` , `he` , `hu` , `it` , `ja` , `ko` , `no` , `pl` , `pt` , `ru` , `es` , `sv` , `th` , `tr` , and `uk` - Tool calling: No - Response formats: Text |
+`Phi-4` |
+chat-completion | - Input: text (16,384 tokens) - Output: (16,384 tokens) - Languages: `en` , `ar` , `bn` , `cs` , `da` , `de` , `el` , `es` , `fa` , `fi` , `fr` , `gu` , `ha` , `he` , `hi` , `hu` , `id` , `it` , `ja` , `jv` , `kn` , `ko` , `ml` , `mr` , `nl` , `no` , `or` , `pa` , `pl` , `ps` , `pt` , `ro` , `ru` , `sv` , `sw` , `ta` , `te` , `th` , `tl` , `tr` , `uk` , `ur` , `vi` , `yo` , and `zh` - Tool calling: No - Response formats: Text |
+`Phi-4-reasoning` |
+chat-completion with reasoning content | - Input: text (32,768 tokens) - Output: text (32,768 tokens) - Languages: `en` - Tool calling: No - Response formats: Text |
+`Phi-4-mini-reasoning` |
+chat-completion with reasoning content | - Input: text (128,000 tokens) - Output: text (128,000 tokens) - Languages: `en` - Tool calling: No - Response formats: Text |
+
+See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). Microsoft models are also available as [models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic&pivots=azure-direct-others).
+
+## Mistral AI
+
+Mistral AI offers two categories of models: premium models such as Mistral Large 2411 and Ministral 3B, and open models such as Mistral Nemo.
+
+| Model | Type | Capabilities | Project type |
+|---|---|---|---|
+|
+
+**Input:**text (262,144 tokens)-
+
+**Output:**text (4,096 tokens)-
+
+**Languages:**en-
+
+**Tool calling:**No-
+
+**Response formats:**Text[Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral/?cid=learnDocs)**Input:**text (131,072 tokens)-
+
+**Output:**text (4,096 tokens)-
+
+**Languages:**fr, de, es, it, and en-
+
+**Tool calling:**Yes-
+
+**Response formats:**Text, JSON[Mistral-small-2503](https://ai.azure.com/explore/models/Mistral-small-2503/version/1/registry/azureml-mistral/?cid=learnDocs)**Input:**text (32,768 tokens)-
+
+**Output:**text (4,096 tokens)-
+
+**Languages:**fr, de, es, it, and en-
+
+**Tool calling:**Yes-
+
+**Response formats:**Text, JSON[Mistral-medium-2505](https://aka.ms/aistudio/landing/mistral-medium-2505?cid=learnDocs)**Input:**text (128,000 tokens), image-
+
+**Output:**text (128,000 tokens)-
+
+**Tool calling:**No-
+
+**Response formats:**Text, JSON[mistralai-Mistral-7B-Instruct-v01](https://ai.azure.com/explore/models/mistralai-Mistral-7B-Instruct-v01/version/11/registry/azureml/?cid=learnDocs)**Input:**text-
+
+**Output:**text-
+
+**Languages:**en-
+
+**Response formats:**Text[mistralai-Mistral-7B-Instruct-v0-2](https://ai.azure.com/explore/models/mistralai-Mistral-7B-Instruct-v0-2/version/6/registry/azureml/?cid=learnDocs)**Input:**text-
+
+**Output:**text-
+
+**Languages:**en-
+
+**Response formats:**Text[mistralai-Mixtral-8x7B-Instruct-v01](https://ai.azure.com/explore/models/mistralai-Mixtral-8x7B-Instruct-v01/version/10/registry/azureml/?cid=learnDocs)**Input:**text-
+
+**Output:**text-
+
+**Languages:**en-
+
+**Response formats:**Text[mistralai-Mixtral-8x22B-Instruct-v0-1](https://ai.azure.com/explore/models/mistralai-Mixtral-8x22B-Instruct-v0-1/version/5/registry/azureml/?cid=learnDocs)**Input:**text (64,000 tokens)-
+
+**Output:**text (4,096 tokens)-
+
+**Languages:**fr, it, de, es, en-
+
+**Response formats:**Text| Model | Type | Capabilities |
+|---|---|---|
+`Codestral-2501` |
+chat-completion | - Input: text (262,144 tokens) - Output: text (4,096 tokens) - Languages: en - Tool calling: No - Response formats: Text |
+`Ministral-3B` |
+chat-completion | - Input: text (131,072 tokens) - Output: text (4,096 tokens) - Languages: fr, de, es, it, and en - Tool calling: Yes - Response formats: Text, JSON |
+`Mistral-small-2503` |
+chat-completion | - Input: text (32,768 tokens) - Output: text (4,096 tokens) - Languages: fr, de, es, it, and en - Tool calling: Yes - Response formats: Text, JSON |
+`Mistral-medium-2505` |
+chat-completion | - Input: text (128,000 tokens), image - Output: text (128,000 tokens) - Tool calling: No - Response formats: Text, JSON |
+
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs). Mistral models are also available as [models sold directly by Azure](models-sold-directly-by-azure?view=foundry-classic&pivots=azure-direct-others).
+
+## Nixtla
+
+Nixtla's TimeGEN-1 is a generative pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 produces accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
+
+To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
+
+| Model | Type | Capabilities | Inference API | Project type |
+|---|---|---|---|---|
+|
+
+**Input:**Time series data as JSON or dataframes (with support for multivariate input)-
+
+**Output:**Time series data as JSON-
+
+**Tool calling:**No-
+
+**Response formats:**JSON[Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast)For more details on pricing for Nixtla models, see [Nixtla](../../concepts/models-inference-examples?view=foundry-classic#nixtla).
+
+## NTT Data
+
+**tsuzumi** is an autoregressive language-optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
+
+| Model | Type | Capabilities | Project type |
+|---|---|---|---|
+|
+
+**Input:**text (8,192 tokens)-
+
+**Output:**text (8,192 tokens)-
+
+**Languages:**`en`
+
+and `jp`
+
+-
+
+**Tool calling:**No-
+
+**Response formats:**Text## Stability AI
+
+The Stability AI collection of image generation models includes Stable Image Core, Stable Image Ultra, and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large accepts both image and text input.
+
+| Model | Type | Capabilities | Project type |
+|---|---|---|---|
+|
+
+**Input:**text and image (1,000 tokens and 1 image)-
+
+**Output:**One Image-
+
+**Tool calling:**No-
+
+**Response formats**: Image (PNG and JPG)[Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs)**Input:**text (1,000 tokens)-
+
+**Output:**One Image-
+
+**Tool calling:**No-
+
+**Response formats:**Image (PNG and JPG)[Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs)**Input:**text (1,000 tokens)-
+
+**Output:**One Image-
+
+**Tool calling:**No-
+
+**Response formats:**Image (PNG and JPG)| Model | Type | Capabilities |
+|---|---|---|
+`Stable Diffusion 3.5 Large` |
+Image generation | - Input: text and image (1,000 tokens and 1 image) - Output: One Image - Tool calling: No - Response formats: Image (PNG and JPG) |
+`Stable Image Core` |
+Image generation | - Input: text (1,000 tokens) - Output: One Image - Tool calling: No - Response formats: Image (PNG and JPG) |
+`Stable Image Ultra` |
+Image generation | - Input: text (1,000 tokens) - Output: One Image - Tool calling: No - Response formats: Image (PNG and JPG) |
+
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Stability+AI/?cid=learnDocs).
+
+## Open and custom models
+
+The model catalog offers a larger selection of models from a wider range of providers. For these models, you can't use the option for [standard deployment in Microsoft Foundry resources](../../concepts/deployments-overview?view=foundry-classic#standard-deployment-in-foundry-resources), where models are provided as APIs. Instead, to deploy these models, you might need to host them on your infrastructure, create an AI hub, and provide the underlying compute quota to host the models.
+
+Furthermore, these models can be open-access or IP protected. In both cases, you have to deploy them in managed compute offerings in Foundry. To get started, see [How-to: Deploy to Managed compute](../../how-to/deploy-models-managed?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/content-filter -->
@@ -3213,7 +3241,9 @@ Foundry Models sold directly by Azure also include select models from top model 
 ,`DeepSeek-R1`
 
 - Moonshot AI:
-`Kimi-K2-Thinking`
+`Kimi-K2.5`
+
+,`Kimi-K2-Thinking`
 
 - Meta:
 `Llama-4-Maverick-17B-128E-Instruct-FP8`
@@ -5081,17 +5111,25 @@ See [the Mistral model collection in the Foundry portal](https://ai.azure.com/ex
 
 ## Moonshot AI models sold directly by Azure
 
-Moonshot AI models include Kimi K2 Thinking, the latest, most capable version of open-source thinking model. Kimi K2 was built as a thinking agent that reasons step-by-step while dynamically invoking tools. It sets a new state-of-the-art on Humanity's Last Exam (HLE), BrowseComp, and other benchmarks by dramatically scaling multi-step reasoning depth and maintaining stable tool-use across 200–300 sequential calls.
-
-Key capabilities of Kimi K2 Thinking include:
-
-**Deep Thinking & Tool Orchestration:**End-to-end trained to interleave chain-of-thought reasoning with function calls, enabling autonomous research, coding, and writing workflows that last hundreds of steps without drift.**Native INT4 Quantization:**Quantization-Aware Training (QAT) is employed in post-training stage to achieve lossless 2x speed-up in low-latency mode.**Stable Long-Horizon Agency:**Maintains coherent goal-directed behavior across up to 200–300 consecutive tool invocations, surpassing prior models that degrade after 30–50 steps.
+Moonshot AI models include Kimi K2.5 and Kimi K2 Thinking. Kimi K2.5 is a multimodal reasoning model that accepts text and image input, while Kimi K2 Thinking is the latest, most capable version of open-source thinking model.
 
 | Model | Type | Capabilities | Deployment type (region availability) | Project type |
 |---|---|---|---|---|
 |
 
-[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text (262,144 tokens)-
+[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text and image (262,144 tokens)-
+
+**Output:**text (262,144 tokens)-
+
+**Languages:**`en`
+
+and `zh`
+
+-
+
+**Tool calling:**Yes-
+
+**Response formats:**Text[Kimi-K2-Thinking](https://ai.azure.com/explore/models/Kimi-K2-Thinking/version/1/registry/azureml-moonshotai/?cid=learnDocs)[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text (262,144 tokens)-
 
 **Output:**text (262,144 tokens)-
 
@@ -5105,6 +5143,11 @@ and `zh`
 
 **Response formats:**Text| Model | Type | Capabilities | Deployment type (region availability) |
 |---|---|---|---|
+`Kimi-K2.5` |
+chat-completion
+|
+- Input: text and image (262,144 tokens) - Output: text (262,144 tokens) - Languages: `en` and `zh` - Tool calling: Yes - Response formats: Text |
+- Global standard (all regions) |
 `Kimi-K2-Thinking` |
 chat-completion
 |
@@ -5349,7 +5392,9 @@ Foundry Models sold directly by Azure also include select models from top model 
 ,`DeepSeek-R1`
 
 - Moonshot AI:
-`Kimi-K2-Thinking`
+`Kimi-K2.5`
+
+,`Kimi-K2-Thinking`
 
 - Meta:
 `Llama-4-Maverick-17B-128E-Instruct-FP8`
@@ -7217,17 +7262,25 @@ See [the Mistral model collection in the Foundry portal](https://ai.azure.com/ex
 
 ## Moonshot AI models sold directly by Azure
 
-Moonshot AI models include Kimi K2 Thinking, the latest, most capable version of open-source thinking model. Kimi K2 was built as a thinking agent that reasons step-by-step while dynamically invoking tools. It sets a new state-of-the-art on Humanity's Last Exam (HLE), BrowseComp, and other benchmarks by dramatically scaling multi-step reasoning depth and maintaining stable tool-use across 200–300 sequential calls.
-
-Key capabilities of Kimi K2 Thinking include:
-
-**Deep Thinking & Tool Orchestration:**End-to-end trained to interleave chain-of-thought reasoning with function calls, enabling autonomous research, coding, and writing workflows that last hundreds of steps without drift.**Native INT4 Quantization:**Quantization-Aware Training (QAT) is employed in post-training stage to achieve lossless 2x speed-up in low-latency mode.**Stable Long-Horizon Agency:**Maintains coherent goal-directed behavior across up to 200–300 consecutive tool invocations, surpassing prior models that degrade after 30–50 steps.
+Moonshot AI models include Kimi K2.5 and Kimi K2 Thinking. Kimi K2.5 is a multimodal reasoning model that accepts text and image input, while Kimi K2 Thinking is the latest, most capable version of open-source thinking model.
 
 | Model | Type | Capabilities | Deployment type (region availability) | Project type |
 |---|---|---|---|---|
 |
 
-[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text (262,144 tokens)-
+[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text and image (262,144 tokens)-
+
+**Output:**text (262,144 tokens)-
+
+**Languages:**`en`
+
+and `zh`
+
+-
+
+**Tool calling:**Yes-
+
+**Response formats:**Text[Kimi-K2-Thinking](https://ai.azure.com/explore/models/Kimi-K2-Thinking/version/1/registry/azureml-moonshotai/?cid=learnDocs)[(with reasoning content)](../how-to/use-chat-reasoning?view=foundry-classic)**Input:**text (262,144 tokens)-
 
 **Output:**text (262,144 tokens)-
 
@@ -7241,6 +7294,11 @@ and `zh`
 
 **Response formats:**Text| Model | Type | Capabilities | Deployment type (region availability) |
 |---|---|---|---|
+`Kimi-K2.5` |
+chat-completion
+|
+- Input: text and image (262,144 tokens) - Output: text (262,144 tokens) - Languages: `en` and `zh` - Tool calling: Yes - Response formats: Text |
+- Global standard (all regions) |
 `Kimi-K2-Thinking` |
 chat-completion
 |
@@ -8884,12 +8942,20 @@ Anthropic's Claude models bring advanced conversational AI capabilities to Micro
 
 In this article, you learn how to:
 
-- Deploy Claude models (Opus 4.5, Sonnet 4.5, Haiku 4.5, and Opus 4.1) in Microsoft Foundry
+- Deploy Claude models in Microsoft Foundry
 - Authenticate by using Microsoft Entra ID or API keys
 - Call the Claude Messages API from Python, JavaScript, or REST
 - Choose the right Claude model for your use case.
 
-To learn more about Claude models, see [Available Claude models](#available-claude-models).
+Claude models in Foundry include:
+
+| Model family | Models |
+|---|---|
+| Claude Opus | `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview) |
+| Claude Sonnet | `claude-sonnet-4-5` (preview) |
+| Claude Haiku | `claude-haiku-4-5` (preview) |
+
+To learn more about the individual models, see [Available Claude models](#available-claude-models).
 
 Important
 
@@ -8984,15 +9050,23 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
 
 ## Available Claude models
 
-Foundry supports Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 models through global standard deployment. These models have key capabilities:
+Foundry supports Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models have key capabilities:
 
-**Extended thinking**: Enhanced reasoning for complex tasks.**Image and text input**: Strong vision for analyzing charts, graphs, technical diagrams, reports, and other visual assets.**Code generation**: Advanced code generation, analysis, and debugging for Claude Sonnet 4.5 and Claude Opus 4.1.
+**Extended thinking**: Enhanced reasoning for complex tasks.**Image and text input**: Strong vision for analyzing charts, graphs, technical diagrams, reports, and other visual assets.**Code generation**: Advanced code generation, analysis, and debugging.
 
 For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners?view=foundry-classic#anthropic).
+
+### Claude Opus 4.6 (preview)
+
+Claude Opus 4.6 is the latest version of Anthropic's most intelligent model, and the world's best model for coding, enterprise agents, and professional work. With a 1M token context window (beta) and 128K max output, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
 
 ### Claude Opus 4.5 (preview)
 
 Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader in coding, agents, computer use, and enterprise workflows. With a 200K token context window and 64K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use tasks.
+
+### Claude Opus 4.1 (preview)
+
+Claude Opus 4.1 is an industry leader for coding. It delivers sustained performance on long-running tasks that require focused effort and thousands of steps, significantly expanding what AI agents can solve.
 
 ### Claude Sonnet 4.5 (preview)
 
@@ -9002,10 +9076,6 @@ Claude Sonnet 4.5 is a highly capable model designed for building real-world age
 
 Claude Haiku 4.5 delivers near-frontier performance for a wide range of use cases. It stands out as one of the best coding and agent models, with the right speed and cost to power free products and scaled subagents.
 
-### Claude Opus 4.1 (preview)
-
-Claude Opus 4.1 is an industry leader for coding. It delivers sustained performance on long-running tasks that require focused effort and thousands of steps, significantly expanding what AI agents can solve.
-
 ## Advanced features and capabilities of Claude models
 
 Claude in Foundry Models supports advanced features and capabilities.
@@ -9013,7 +9083,7 @@ Claude in Foundry Models supports advanced features and capabilities.
 
 Some of the **Core capabilities** that Foundry supports are:
 
-**1 million token context window:**An extended context window that processes larger documents and longer conversations.**Agent skills:**Extend Claude's capabilities with skills.**Citations:**Ground Claude's responses in source documents.**Context editing:**Automatically manage conversation context with configurable strategies.**Extended thinking:**Enhanced reasoning capabilities for complex tasks.**PDF support:**Process and analyze text and visual content from PDF documents.**Prompt caching:**Provide Claude with more background knowledge and example outputs to reduce costs and latency.
+**Large context window:**An extended context window that processes larger documents and longer conversations.**Agent skills:**Extend Claude's capabilities with skills.**Citations:**Ground Claude's responses in source documents.**Context editing:**Automatically manage conversation context with configurable strategies.**Extended thinking:**Enhanced reasoning capabilities for complex tasks.**PDF support:**Process and analyze text and visual content from PDF documents.**Prompt caching:**Provide Claude with more background knowledge and example outputs to reduce costs and latency.
 
 Some of the **Tools** that Foundry supports are:
 
@@ -9036,7 +9106,7 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 | Model | Deployment type | Default RPM | Default TPM | Enterprise and MCA-E RPM | Enterprise and MCA-E TPM |
 |---|---|---|---|---|---|
-| claude-haiku-4-5 |
+| claude-opus-4-6 |
 |
 
 To increase your quota beyond the default limits, submit a request through the [quota increase request form](https://aka.ms/oai/stuquotarequest).
@@ -9051,17 +9121,13 @@ To optimize your usage and avoid rate limiting:
 
 When using Claude models in Foundry, consider these responsible AI practices:
 
-Configure AI content safety during model inference, because Foundry doesn't provide built-in content filtering for Claude models at deployment time. To learn how to create and use content filters, see
+- Configure AI content safety during model inference, because Foundry doesn't provide built-in content filtering for Claude models at deployment time. To learn how to create and use content filters, see
+[Configure content filtering for Foundry Models](configure-content-filters?view=foundry-classic).
 
-[Configure content filtering for Foundry Models](configure-content-filters?view=foundry-classic).Ensure your applications comply with
+- Configure AI content safety during model inference, because Foundry doesn't provide built-in content filtering for Claude models at deployment time.
 
-[Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for[Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card),[Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf),[Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), and[Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf).
-
-Configure AI content safety during model inference, as Foundry doesn't provide built-in content filtering for Claude models at deployment time.
-
-Ensure your applications comply with
-
-[Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for[Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card),[Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf),[Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), and[Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf).
+- Ensure your applications comply with
+[Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for[Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card),[Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card),[Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf),[Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and[Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
 
 ## Best practices
 
@@ -9071,7 +9137,7 @@ Follow these best practices when working with Claude models in Foundry:
 
 Choose the appropriate Claude model based on your specific requirements:
 
-**Claude Opus 4.5**: Best performance across coding, agents, computer use, and enterprise workflows.**Claude Sonnet 4.5**: Balanced performance and capabilities, production workflows.**Claude Haiku 4.5**: Speed and cost optimization, high-volume processing.**Claude Opus 4.1**: Complex reasoning and enterprise applications.
+**Claude Opus 4.6**: Most intelligent model for building agents, coding, and enterprise workflows.**Claude Opus 4.5**: Best performance across coding, agents, computer use, and enterprise workflows.**Claude Opus 4.1**: Complex reasoning and enterprise applications.**Claude Sonnet 4.5**: Balanced performance and capabilities, production workflows.**Claude Haiku 4.5**: Speed and cost optimization, high-volume processing.
 
 #### Prompt engineering
 
@@ -13198,7 +13264,7 @@ console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
 
 
 ```
-Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries/regions have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country/region. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
 Answer: The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
 Model: DeepSeek-R1
 Usage:
@@ -13487,7 +13553,7 @@ System.out.println("\tCompletion tokens: " + response.getValue().getUsage().getC
 
 
 ```
-Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries/regions have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country/region. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
 Answer: The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
 Model: DeepSeek-R1
 Usage:
@@ -13736,7 +13802,7 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 
 
 ```
-Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries/regions have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country/region. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
 Answer: The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
 Model: DeepSeek-R1
 Usage:
@@ -13978,7 +14044,7 @@ The response is as follows, where you can see the model's usage statistics:
 "index": 0,
 "message": {
 "role": "assistant",
-"reasoning_content": "Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.\n",
+"reasoning_content": "Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries/regions have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country/region. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.\n",
 "content": "The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.",
 "tool_calls": null
 },

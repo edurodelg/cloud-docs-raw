@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-05T08:42:06.983502
+merged_at: 2026-02-06T17:00:26.023765
 merged_files: 7
 ---
 
@@ -244,9 +244,9 @@ Access to this page requires authorization. You can try [changing directories].
 
 As your organization scales from isolated copilots to autonomous multi-agent fleets, maintaining visibility and control becomes critical. The Foundry Control Plane provides a unified command center where you can monitor all agents, models, and tools across your enterprise from build to production. Fleet monitoring serves multiple roles:
 
-**Team managers**gain oversight of agent operations and team productivity**Administrators**enforce governance policies and track compliance posture**Cost managers**optimize spending and identify resource inefficiencies**Security teams**monitor for prohibited behaviors and policy violations
+**Team managers**gain oversight of agent operations and team productivity.**Administrators**enforce governance policies and track compliance posture.**Cost managers**optimize spending and identify resource inefficiencies.**Security teams**monitor for prohibited behaviors and policy violations.
 
-This article shows you how to use the Foundry Control Plane's capabilities to track agent health, performance, compliance, and cost efficiency at scale. With centralized monitoring, you can identify issues early, optimize resource consumption, and ensure your AI systems operate safely and reliably.
+This article shows you how to use the Foundry Control Plane's capabilities to track agent health, performance, compliance, and cost efficiency at scale. By using centralized monitoring, you can identify problems early, optimize resource consumption, and ensure your AI systems operate safely and reliably.
 
 Important
 
@@ -263,7 +263,7 @@ An Azure account with an active subscription. If you don't have one, create a
 
 - You need the following permissions:
 - Read access to the project and subscription you want to view data for.
-[Log Analytics Reader](/en-us/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader)role (or above) on the Azure Application Insights resource associated with your agent.[Cost Management reader](https://go.microsoft.com/fwlink/?linkid=2345241)role.
+[Log Analytics Reader](/en-us/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader)role or higher on the Azure Application Insights resource associated with your agent.[Cost Management reader](https://go.microsoft.com/fwlink/?linkid=2345241)role.
 
 
 Note
@@ -272,24 +272,24 @@ This capability is available only in the Foundry (new) portal. Look for in the p
 
 ## How monitoring works
 
-Control Plane discovers all the agents you have access to and uses the Azure Application Insights associated with the resources hosting your agent to help you monitor and diagnose your agents.
+Control Plane discovers all the agents you can access. It uses the Azure Application Insights associated with the resources that host your agent to help you monitor and diagnose your agents.
 
 Control Plane supports:
 
 - Foundry agents, including
 [prompt-based agents](../agents/overview?view=foundry),[workflows](../agents/concepts/workflow?view=foundry), and[hosted-agents](../agents/concepts/hosted-agents?view=foundry). [Azure SRE Agent](/en-us/azure/sre-agent/)[Azure Logic App agent loops](/en-us/azure/logic-apps/agent-workflows-concepts)[Custom agents](register-custom-agent?view=foundry)registered manually
 
-Because Control Plane aggregates information across resources within the subscription, different users may see different agents listed depending on their access.
+Because Control Plane aggregates information across resources within the subscription, different users see different agents listed depending on their access.
 
 Control Plane **aggregates logs and metrics available across each of the Azure Application Insights** connected to each of the agents:
 
-Control Plane requires agents to log diagnostic information following OpenTelemetry standard with semantic conventions for Generative AI applications. Configuring Azure Application Insights on each resource isn't mandatory but **it's strongly advisable**. When such telemetry is available, Control Plane can:
+Control Plane requires agents to log diagnostic information following OpenTelemetry standard with [semantic conventions for Generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/) applications. You don't need to configure Azure Application Insights on each resource but **it's strongly advisable**. When Control Plane has this telemetry, it can:
 
-**Fleet health metrics**: Track active agents, run completion rates, and error trends across your entire fleet**Cost and performance tracking**: Monitor token usage, budget consumption, and resource efficiency across all agents**Anomaly detection**: Identify cost spikes, performance degradation, and emerging issues through trend analysis**Drill-down analysis**: Navigate from fleet-level metrics to individual agent traces and logs for detailed investigation
+**Fleet health metrics**: Track active agents, run completion rates, and error trends across your entire fleet.**Cost and performance tracking**: Monitor token usage, budget consumption, and resource efficiency across all agents.**Anomaly detection**: Identify cost spikes, performance degradation, and emerging issues through trend analysis.**Drill-down analysis**: Navigate from fleet-level metrics to individual agent traces and logs for detailed investigation.
 
 Important
 
-Agents running on resource without Azure Application Insights don't have health metrics, cost tracking, or drill-down traces.
+Agents running on resources without Azure Application Insights don't have health metrics, cost tracking, or drill-down traces.
 
 ## Configure monitoring
 
@@ -297,7 +297,7 @@ Follow these steps for each project where you want to configure monitoring:
 
 Select
 
-**Operate**>**Admin console**.Under
+**Operate**>**Admin**.Under
 
 **All projects**, use the search box to look for your project.Select the project.
 
@@ -305,20 +305,20 @@ Select the tab
 
 **Connected resources**.Ensure there's a resource associated under the category
 
-**Application Insights**.If there is no resource associated, add one by selecting
+**Application Insights**.If there's no resource associated, add one by selecting
 
 **Add connection**and select**Application Insights**.Tip
 
-You can sink traces to either different Azure Application Insight resources or to the same one depending on your governance and security requirements.
+You can sink traces to either different Azure Application Insights resources or to the same one depending on your governance and security requirements.
 
 Your project is configured for observability and tracing.
 
 
 ### Permissions
 
-Once you configured observability, ensure you have the following permissions:
+After you configure observability, make sure you have the following permissions:
 
-[Log Analytics Reader](/en-us/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader)role (or above) on the Azure Application Insights resource.[Cost Management reader](https://go.microsoft.com/fwlink/?linkid=2345241)role.
+[Log Analytics Reader](/en-us/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader)role (or higher) on the Azure Application Insights resource.[Cost Management reader](https://go.microsoft.com/fwlink/?linkid=2345241)role.
 
 ## View metrics
 
@@ -333,7 +333,7 @@ Sign in to
 
 **Overview**pane displays common metrics and insights for all discovered agents within the subscription by default:Use the project drop-down to scope down the metrics to specific projects if needed.
 
-Configure the dates range you are seeing using the date selectors located in the upper right corner.
+Configure the dates range you are seeing by using the date selectors located in the upper right corner.
 
 
 ## View agents' metrics
@@ -349,9 +349,9 @@ Sign in to
 
 **Assets**in the left pane.Select the
 
-**Agents**tab.You can see the details of agents discovered within the subscription. See
+**Agents**tab.You see the details of agents discovered within the subscription. See
 
-[agent inventory](how-to-manage-agents?view=foundry#agents-inventory)to learn about the details of this page.To view more granular information on the performance of an individual agent, the side panel provides quick insights into the selected agent's health and recent activity. You can use it to identify issues and take corrective actions.
+[agent inventory](how-to-manage-agents?view=foundry#agents-inventory)to learn about the details of this page.To view more granular information on the performance of an individual agent, the side panel provides quick insights into the selected agent's health and recent activity. Use it to identify problems and take corrective actions.
 
 In this section, you see:
 
@@ -375,17 +375,21 @@ Access to this page requires authorization. You can try [signing in](#) or [chan
 
 Access to this page requires authorization. You can try [changing directories].
 
-The **Microsoft Foundry Control Plane** is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. The Foundry Control Plane serves as your central location for managing every aspect of your AI fleet, from build to production.
+The **Microsoft Foundry Control Plane** is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. Use the Foundry Control Plane as your central location for managing every aspect of your AI fleet, from build to production.
 
-As organizations evolve from isolated copilots to autonomous multi-agent fleets, they need unified oversight. The Foundry Control Plane provides the visibility, governance, and control needed to scale with confidence.
+As your organization evolves from isolated copilots to autonomous multi-agent fleets, you need unified oversight. The Foundry Control Plane provides the visibility, governance, and control you need to scale with confidence.
+
+In this article, you learn what the Foundry Control Plane offers, including fleet management, observability, compliance enforcement, and security capabilities.
 
 Important
 
 Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-## Core Functionalities
+## Core functionalities
 
 The Foundry Control Plane consolidates **inventory, observability, compliance, and security** into one role-aware interface. It integrates seamlessly with Microsoft security and governance systems (Defender, Purview, Microsoft Entra) to deliver **trust at scale**.
+
+The following diagram shows how the Foundry Control Plane provides unified fleet visibility with agents, models, and tools listed across projects in a subscription:
 
 The Foundry Control Plane allows you to:
 
@@ -400,7 +404,7 @@ Visualize fleet health through intuitive dashboards that surface trends and anom
 
 ### Observe, protect, and improve
 
-Correlate alerts, evaluation results, and trace data to pinpoint issues instantly.
+Correlate alerts, evaluation results, and trace data to pinpoint problems instantly.
 
 [Continuously evaluate](../how-to/continuous-evaluation-agents?view=foundry)agent performance, quality, and risk dimensions such as[Task Adherence, Intent Resolution, Tool Call Success](../concepts/evaluation-evaluators/agent-evaluators?view=foundry),[Groundedness](../concepts/evaluation-evaluators/rag-evaluators?view=foundry), Sensitive Data Leakage, and Jailbreak/XPIA exposure.Use the
 
@@ -471,7 +475,7 @@ Policy Management in Foundry allows administrators and developers alike to embed
 
 Use this tab to view, adjust, and request quotas.
 
-The **Quota** tab allows customers to easily see their model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps manage resources effectively.
+The **Quota** tab shows your model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps you manage resources effectively.
 
 ### Admin
 
@@ -493,13 +497,16 @@ Together, these capabilities make **Admin** the Control Plane's administrative b
 
 ## Get started
 
-The Foundry Control Plane is a feature available in the Foundry (new) portal. To get started:
+The Foundry Control Plane is a feature available in the Foundry (new) portal. To get started, complete these steps:
 
-- Configure AI Gateway in your Foundry projects to enable advanced governance features.[Configure AI Gateway](../configuration/enable-ai-api-management-gateway-portal?view=foundry)- Configure observability features in your project to enable metrics and diagnostic information.[Configure monitoring for your agents fleet](monitoring-across-fleet?view=foundry)- See which agents are available in your subscription and manage them in a centralized location.[Discover agents in your subscription](how-to-manage-agents?view=foundry)- Extend your governance surface by bringing third-party or external agents into the Foundry Control Plane registry.[Register custom Agents](register-custom-agent?view=foundry)
+| Step | Description |
+|---|---|
+| 1.
+|
 
-## Related content
+[Configure monitoring for your agents fleet](monitoring-across-fleet?view=foundry)[Discover agents in your subscription](how-to-manage-agents?view=foundry)[Register custom agents](register-custom-agent?view=foundry)## Related content
 
-- Learn how to enforce Responsible AI policies, integrate Defender and Purview signals, and respond to compliance alerts.[Ensure Compliance and Security](how-to-manage-compliance-security?view=foundry)- Analyze cost drivers, token usage, and resource consumption to achieve higher ROI from your agent fleet.[Optimize model cost and performance](how-to-optimize-cost-performance?view=foundry)
+[Ensure compliance and security](how-to-manage-compliance-security?view=foundry)- Enforce Responsible AI policies, integrate Defender and Purview signals, and respond to compliance alerts.[Optimize model cost and performance](how-to-optimize-cost-performance?view=foundry)- Analyze cost drivers, token usage, and resource consumption to maximize ROI from your agent fleet.[Manage agents across platforms](how-to-manage-agents?view=foundry)- Track and manage agents from supported platforms in one unified view.[Set up continuous evaluation](../how-to/continuous-evaluation-agents?view=foundry)- Monitor agent performance, quality, and risk dimensions automatically.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/control-plane/how-to-manage-agents -->
@@ -933,7 +940,7 @@ Access to this page requires authorization. You can try [signing in](#) or [chan
 
 Access to this page requires authorization. You can try [changing directories].
 
-The Microsoft Foundry Control Plane provides centralized management and observability for agents running across different platforms and infrastructures. You can register custom agents—running in Azure compute services or other cloud environments—to gain visibility into their operations and control their behavior.
+The Microsoft Foundry Control Plane provides centralized management and observability for agents running across different platforms and infrastructures. You can register custom agents running in Azure compute services or other cloud environments to gain visibility into their operations and control their behavior.
 
 This article shows you how to register a custom agent in the Foundry Control Plane. You learn how to configure your agent for registration, set up telemetry collection, and use the Control Plane's management capabilities.
 
@@ -967,7 +974,7 @@ You can register a custom agent in the Control Plane. Develop the agent in the t
 
 When you register a custom agent, Foundry uses Azure API Management to act as a proxy for communications to your agent, so it can control access and monitor activity.
 
-When you register a custom agent the resulting architecture is as follows:
+When you register a custom agent, the resulting architecture is as follows:
 
 ### Verify your agent
 
@@ -977,12 +984,12 @@ Verify that your agent meets the requirements for registration:
 - The network where you deploy the Foundry resource can reach the agent's endpoint.
 - The agent communicates by using one of the supported protocols: either general HTTP or specifically A2A.
 - Your agent emits telemetry by using the OpenTelemetry semantic conventions for GenAI solutions (or you don't need this capability).
-- You can configure the endpoint that end users use to communicate with the agent. Once an agent is registered in Control Plane, a new URL is generated.
+- You can configure the endpoint that end users use to communicate with the agent. Once you register an agent in Control Plane, it generates a new URL.
 **Clients and end users must use this URL to communicate with the agent**.
 
 ### Prepare your Foundry project
 
-Custom agents are added to Foundry projects. Before registering the agent, let's make sure you configured the project correctly.
+Add custom agents to Foundry projects. Before registering the agent, make sure you configured the project correctly.
 
 -
 Sign in to
@@ -995,9 +1002,9 @@ Select
 
 **AI Gateway**tab.The page lists all the AI Gateways configured and mapped to a Foundry resource. Check if the Foundry resource you want to use has an AI Gateway associated.
 
-If the Foundry resource you want to use doesn't have an AI Gateway configured (it isn't listed), add one using the option
+If the Foundry resource you want to use doesn't have an AI Gateway configured (it isn't listed), add one by using the
 
-**Add AI Gateway**. AI Gateway is free to set up and unlocks powerful governance features like security, telemetry, and rate limits for your agents, tools, and models.For more details about how to configure AI Gateway, see
+**Add AI Gateway**option. AI Gateway is free to set up and unlocks powerful governance features like security, telemetry, and rate limits for your agents, tools, and models.For more details about how to configure AI Gateway, see
 
 [Create an AI Gateway](../configuration/enable-ai-api-management-gateway-portal?view=foundry#create-an-ai-gateway).
 
@@ -1013,7 +1020,7 @@ Select the tab
 
 **Connected resources**.Ensure there is a resource associated under the category
 
-**Application Insights**.If there is no resource associated, add one by selecting
+**Application Insights**.If there's no resource associated, add one by selecting
 
 **Add connection**and select**Application Insights**.Your project is configured for observability and tracing.
 
@@ -1040,7 +1047,7 @@ as clients generally add it.Yes **Protocol**The communication protocol supported
 
 for spans with operation name`create_agent`
 
-. If you don't specify this, the system uses the**Agent name**value to find traces and logs that this new agent reports.No **Admin portal URL**The administration portal URL where you can perform further administration operations for this agent. Foundry can store this value for easy access convenience. Foundry doesn't have any access to perform operations directly to such management portal. No Then, configure how you want the agent to show up in the Control Plane:
+. If you don't specify this value, the system uses the**Agent name**value to find traces and logs that this new agent reports.No **Admin portal URL**The administration portal URL where you can perform further administration operations for this agent. Foundry can store this value for easy access convenience. Foundry doesn't have any access to perform operations directly to such management portal. No Then, configure how you want the agent to show up in the Control Plane:
 
 Property Description Required **Project**The project where you register the agent. Foundry uses the AI Gateway configured in the resource where the project lives to configure the inbound endpoint to the agent. You can only select projects with AI Gateway enabled in their resources. If you don't see any, [configure AI Gateway in your Foundry resource](../configuration/enable-ai-api-management-gateway-portal?view=foundry#create-an-ai-gateway). It's also advisable to configure Azure Application Insights in the selected project. Foundry uses the project's Azure Application Insights resource to sink traces and logs.Yes **Agent name**The name of the agent as you want it to appear in Foundry. The system might also use this name to find relevant traces and logs in Azure Application Insights if you don't specify a different value in the field **OpenTelemetry Agent ID**.Yes **Description**A clear description about this agent. No Save the changes.
 
@@ -1056,7 +1063,7 @@ When you register your agent in Foundry, you get a new URL for your clients to u
 
 To distribute the new URL for your clients to call the agent:
 
-Select the custom agent using the radio selector.
+Select the custom agent by using the radio selector.
 
 On the details panel on the right, under
 
@@ -1110,7 +1117,7 @@ Select
 
 ## Enable telemetry for your agent
 
-Foundry uses the OpenTelemetry open standard to understand what agents are doing. If your project has Azure Application Insights configured, Foundry logs requests into Azure Application Insights by default. This telemetry is also used to compute:
+Foundry uses the OpenTelemetry open standard to understand what agents are doing. If your project has Azure Application Insights configured, Foundry logs requests into Azure Application Insights by default. Foundry also uses this telemetry to compute:
 
 - Runs
 - Error rate
@@ -1128,7 +1135,9 @@ Select
 
 **Assets**in the left pane.Select the agent.
 
-**Traces**sections show up.You see one entry for each HTTP call made to the agent's endpoint.
+The
+
+**Traces**sections appear.You see one entry for each HTTP call made to the agent's endpoint.
 
 To see the details, select an entry:
 
@@ -1138,18 +1147,18 @@ In this example, you can see how clients use the new agent's endpoint to communi
 
 `/runs/stream`
 
-.Notice in this example that no further details besides the HTTP post are present in the trace. This is because no further instrumentation was added to the agent's code. See the next section to learn how to instrument your code and gain further details like tool calls, LLM calls, etc.
+.In this example, the trace doesn't include any details besides the HTTP post. The agent's code doesn't include any further instrumentation. For more information about how to instrument your code and gain further details like tool calls, LLM calls, and more, see the next section.
 
 
 ### Instrument custom code agents
 
-If you build your agent with custom code, you need to instrument your solution to emit traces according to the OpenTelemetry standard and sink them to Azure Application Insights. Instrumentation allows Foundry to have access to higher level of detail about what your agent is doing.
+If you build your agent with custom code, instrument your solution to emit traces according to the OpenTelemetry standard and send them to Azure Application Insights. Instrumentation gives Foundry access to detailed information about what your agent is doing.
 
 Send traces to the Azure Application Insights resource of your project by using its instrumentation key. To get the instrumentation key associated with your project, follow the instructions at [Enable tracing in your project](../how-to/develop/trace-application?view=foundry#enable-tracing-in-your-project).
 
 In this example, you configure an agent developed with LangGraph to emit traces in the OpenTelemetry standard. The tracer captures all agent operations, including tool calls and model interactions, and sends them to Azure Application Insights for monitoring.
 
-This code uses [langchain-azure-ai](http://pypi.org/project/langchain-azure-ai) package. Learn how to instrument specific solutions with OpenTelemetry depending on the programming language and the framework used in your solution at [Language APIs & SDKs.](https://opentelemetry.io/docs/languages/).
+This code uses the [langchain-azure-ai](http://pypi.org/project/langchain-azure-ai) package. For guidance on instrumenting specific solutions with OpenTelemetry, depending on the programming language and framework used in your solution, see [Language APIs & SDKs](https://opentelemetry.io/docs/languages/).
 
 ```
 pip install -U langchain-azure-ai[opentelemetry]
@@ -1187,17 +1196,17 @@ You can pass the connection string to Azure Application Insights by using the en
 
 ### Instrumenting platform solutions
 
-If your agent runs on a platform solution that supports OpenTelemetry but doesn't support Azure Application Insights, you need to deploy an OpenTelemetry Collector and configure your software to send OTLP data to the Collector (standard OpenTelemetry configuration).
+If your agent runs on a platform solution that supports OpenTelemetry but doesn't support Azure Application Insights, deploy an OpenTelemetry Collector and configure your software to send OTLP data to the Collector (standard OpenTelemetry configuration).
 
 Configure the Collector with the Azure Monitor exporter to forward data to Application Insights by using your connection string. For details about how to implement, see [Configure Azure Monitor OpenTelemetry](/en-us/azure/azure-monitor/app/opentelemetry-configuration).
 
 ### Troubleshooting traces
 
-If you don't see traces, check the following:
+If you don't see traces, check the following items:
 
 - The project where you register your agent has Azure Application Insights configured. If you configured Azure Application Insights
-**after**you registered the custom agent, you need to**unregister**the agent and register it again. Azure Application Insights configuration is not automatically updated after registration if changed. - You configure the agent (running on its infrastructure) to send traces to Azure Application Insights and you are using
-**the same**Azure Application Insights resource than your project. - Instrumentation complies with OpenTelemetry semantic conventions for Generative AI.
+**after**you registered the custom agent, you need to**unregister**the agent and register it again. Azure Application Insights configuration isn't automatically updated after registration if changed. - You configure the agent (running on its infrastructure) to send traces to Azure Application Insights and you're using
+**the same**Azure Application Insights resource as your project. - Instrumentation complies with OpenTelemetry semantic conventions for Generative AI.
 - Traces include spans with attributes
 `operation="create_agent"`
 
