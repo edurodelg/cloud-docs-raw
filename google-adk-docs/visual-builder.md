@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/visual-builder/
-fetched_at: 2026-02-05T08:15:59.638772
+fetched_at: 2026-02-06T16:34:46.563580
 ---
 
 # Visual Builder for agents¶
