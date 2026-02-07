@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/copy-ami-permissions.html
-fetched_at: 2026-02-06T16:39:49.336366
+fetched_at: 2026-02-08T00:50:53.672632
 ---
 
 # Grant permissions to copy Amazon EC2 AMIs
