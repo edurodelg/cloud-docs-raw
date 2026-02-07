@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/foundation-iac.html
-fetched_at: 2026-02-06T16:35:34.062549
+fetched_at: 2026-02-08T00:46:38.035865
 ---
 
 # Using Lambda with infrastructure as code (IaC)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/concepts-how-lambda-runs-code.html
-fetched_at: 2026-02-06T16:34:28.951749
+fetched_at: 2026-02-08T00:45:40.296789
 ---
 
 # Running code with Lambda
