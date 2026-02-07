@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.Accessing.html
-fetched_at: 2026-02-06T16:46:21.793200
+fetched_at: 2026-02-08T00:57:23.774084
 ---
 
 # Differences in accessing a relational (SQL)

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.Indexes.html
-fetched_at: 2026-02-06T16:47:01.492523
+fetched_at: 2026-02-08T00:58:03.864415
 ---
 
 # Differences between a relational (SQL) database and

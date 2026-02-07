@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-6.html
-fetched_at: 2026-02-06T16:45:21.743407
+fetched_at: 2026-02-08T00:56:24.098243
 ---
 
 # Step 6: (Optional) Delete your DynamoDB table to clean up

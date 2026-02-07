@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/dynamodb-resources-first-time-users.html
-fetched_at: 2026-02-06T16:44:11.601594
+fetched_at: 2026-02-08T00:55:13.962465
 ---
 
 # Amazon DynamoDB resources for first-time users

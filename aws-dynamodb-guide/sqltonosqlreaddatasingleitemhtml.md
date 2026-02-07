@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.ReadData.SingleItem.html
-fetched_at: 2026-02-06T16:46:46.395645
+fetched_at: 2026-02-08T00:57:48.800675
 ---
 
 # Differences in reading an item

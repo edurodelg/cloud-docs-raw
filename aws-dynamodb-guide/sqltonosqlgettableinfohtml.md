@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.GetTableInfo.html
-fetched_at: 2026-02-06T16:46:31.383297
+fetched_at: 2026-02-08T00:57:33.787056
 ---
 
 # Differences between getting table information

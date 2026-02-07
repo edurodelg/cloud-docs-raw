@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.UpdateData.html
-fetched_at: 2026-02-06T16:47:06.616763
+fetched_at: 2026-02-08T00:58:08.856625
 ---
 
 # Differences between a relational (SQL) database
