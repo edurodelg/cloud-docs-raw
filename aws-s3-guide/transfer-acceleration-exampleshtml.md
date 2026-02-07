@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration-examples.html
-fetched_at: 2026-02-06T16:43:07.712544
+fetched_at: 2026-02-08T00:54:10.584358
 ---
 
 # Enabling and using S3 Transfer Acceleration

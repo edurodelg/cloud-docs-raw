@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/view-bucket-properties.html
-fetched_at: 2026-02-06T16:41:47.502540
+fetched_at: 2026-02-08T00:52:50.433965
 ---
 
 # Viewing the properties for an S3 general purpose bucket
