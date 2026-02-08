@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/tsguide.html
-fetched_at: 2026-02-06T16:55:30.103512
+fetched_at: 2026-02-08T01:06:01.367305
 ---
 
 # Google TypeScript Style Guide
