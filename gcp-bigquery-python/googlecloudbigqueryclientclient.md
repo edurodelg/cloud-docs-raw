@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.client.Client
-fetched_at: 2026-02-06T16:58:51.008447
+fetched_at: 2026-02-08T01:10:33.608137
 ---
 
 # Class Client (3.40.0)
