@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.bucket.Bucket
-fetched_at: 2026-02-06T16:56:38.629508
+fetched_at: 2026-02-08T01:08:16.558141
 ---
 
 # Class Bucket (3.8.0)

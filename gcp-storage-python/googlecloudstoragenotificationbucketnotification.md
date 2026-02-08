@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.notification.BucketNotification
-fetched_at: 2026-02-06T16:57:30.583971
+fetched_at: 2026-02-08T01:09:13.561098
 ---
 
 # Class BucketNotification (3.8.0)

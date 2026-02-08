@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/summary_overview
-fetched_at: 2026-02-06T16:55:45.929757
+fetched_at: 2026-02-08T01:07:19.625722
 ---
 
 # Google Cloud Storage API

@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.fileio.SlidingBuffer
-fetched_at: 2026-02-06T16:57:21.067955
+fetched_at: 2026-02-08T01:09:03.396340
 ---
 
 # Class SlidingBuffer (3.8.0)

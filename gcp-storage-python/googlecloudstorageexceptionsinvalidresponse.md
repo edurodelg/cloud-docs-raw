@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.exceptions.InvalidResponse
-fetched_at: 2026-02-06T16:57:11.848419
+fetched_at: 2026-02-08T01:08:51.114243
 ---
 
 # Class InvalidResponse (3.8.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.acl.ObjectACL
-fetched_at: 2026-02-06T16:56:16.851033
+fetched_at: 2026-02-08T01:07:51.538502
 ---
 
 # Class ObjectACL (3.8.0)
