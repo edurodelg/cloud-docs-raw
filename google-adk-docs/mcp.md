@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/adk-docs/mcp/
-fetched_at: 2026-02-06T16:38:17.329969
+fetched_at: 2026-02-08T00:48:13.912134
 ---
 
 # Model Context Protocol (MCP)¶
@@ -22,56 +22,21 @@ MCP follows a client-server architecture, defining how data (resources), interac
 
 ADK helps you both use and consume MCP tools in your agents, whether you're trying to build a tool to call an MCP service, or exposing an MCP server for other developers or agents to interact with your tools.
 
-Refer to the [MCP Tools documentation](/adk-docs/tools-custom/mcp-tools/) for code samples
+See [Tools and Integrations](/adk-docs/integrations/) for pre-built
+MCP tools you can use in your agents. Refer to the
+[MCP Tools documentation](/adk-docs/tools-custom/mcp-tools/) for code samples
 and design patterns that help you use ADK together with MCP servers, including:
 
 **Using Existing MCP Servers within ADK**: An ADK agent can act as an MCP client and use tools provided by external MCP servers.**Exposing ADK Tools via an MCP Server**: How to build an MCP server that wraps ADK tools, making them accessible to any MCP client.
 
-## MCP Toolbox for Databases[¶](#mcp-toolbox-for-databases)
-
-[MCP Toolbox for Databases](https://github.com/googleapis/genai-toolbox) is an
-open-source MCP server that securely exposes your backend data sources as a
-set of pre-built, production-ready tools for Gen AI agents. It functions as a
-universal abstraction layer, allowing your ADK agent to securely query, analyze,
-and retrieve information from a wide array of databases with built-in support.
-
-The MCP Toolbox server includes a comprehensive library of connectors, ensuring that agents can safely interact with your complex data estate.
-
-### Supported Data Sources[¶](#supported-data-sources)
-
-MCP Toolbox provides out-of-the-box toolsets for the following databases and data platforms:
-
-#### Google Cloud[¶](#google-cloud)
-
-[BigQuery](https://googleapis.github.io/genai-toolbox/resources/sources/bigquery/)(including tools for SQL execution, schema discovery, and AI-powered time series forecasting)[AlloyDB](https://googleapis.github.io/genai-toolbox/resources/sources/alloydb-pg/)(PostgreSQL-compatible, with tools for both standard queries and natural language queries)[AlloyDB Admin](https://googleapis.github.io/genai-toolbox/resources/sources/alloydb-admin/)[Spanner](https://googleapis.github.io/genai-toolbox/resources/sources/spanner/)(supporting both GoogleSQL and PostgreSQL dialects)- Cloud SQL (with dedicated support for
-[Cloud SQL for PostgreSQL](https://googleapis.github.io/genai-toolbox/resources/sources/cloud-sql-pg/),[Cloud SQL for MySQL](https://googleapis.github.io/genai-toolbox/resources/sources/cloud-sql-mysql/), and[Cloud SQL for SQL Server](https://googleapis.github.io/genai-toolbox/resources/sources/cloud-sql-mssql/)) [Cloud SQL Admin](https://googleapis.github.io/genai-toolbox/resources/sources/cloud-sql-admin/)[Firestore](https://googleapis.github.io/genai-toolbox/resources/sources/firestore/)[Bigtable](https://googleapis.github.io/genai-toolbox/resources/sources/bigtable/)[Dataplex](https://googleapis.github.io/genai-toolbox/resources/sources/dataplex/)(for data discovery and metadata search)[Cloud Monitoring](https://googleapis.github.io/genai-toolbox/resources/sources/cloud-monitoring/)
-
-#### Relational & SQL Databases[¶](#relational-sql-databases)
-
-[PostgreSQL](https://googleapis.github.io/genai-toolbox/resources/sources/postgres/)(generic)[MySQL](https://googleapis.github.io/genai-toolbox/resources/sources/mysql/)(generic)[Microsoft SQL Server](https://googleapis.github.io/genai-toolbox/resources/sources/mssql/)(generic)[ClickHouse](https://googleapis.github.io/genai-toolbox/resources/sources/clickhouse/)[TiDB](https://googleapis.github.io/genai-toolbox/resources/sources/tidb/)[OceanBase](https://googleapis.github.io/genai-toolbox/resources/sources/oceanbase/)[Firebird](https://googleapis.github.io/genai-toolbox/resources/sources/firebird/)[SQLite](https://googleapis.github.io/genai-toolbox/resources/sources/sqlite/)[YugabyteDB](https://googleapis.github.io/genai-toolbox/resources/sources/yugabytedb/)
-
-#### NoSQL & Key-Value Stores[¶](#nosql-key-value-stores)
-
-#### Graph Databases[¶](#graph-databases)
-
-#### Data Platforms & Federation[¶](#data-platforms-federation)
-
-[Looker](https://googleapis.github.io/genai-toolbox/resources/sources/looker/)(for running Looks, queries, and building dashboards via the Looker API)[Trino](https://googleapis.github.io/genai-toolbox/resources/sources/trino/)(for running federated queries across multiple sources)
-
-#### Other[¶](#other)
-
-### Documentation[¶](#documentation)
-
-Refer to the
-[MCP Toolbox for Databases](/adk-docs/tools/google-cloud/mcp-toolbox-for-databases/)
-documentation on how you can use ADK together with the MCP Toolbox for
-Databases. For getting started with the MCP Toolbox for Databases, a blog post [Tutorial : MCP Toolbox for Databases - Exposing Big Query Datasets](https://medium.com/google-cloud/tutorial-mcp-toolbox-for-databases-exposing-big-query-datasets-9321f0064f4e) and Codelab [MCP Toolbox for Databases:Making BigQuery datasets available to MCP clients](https://codelabs.developers.google.com/mcp-toolbox-bigquery-dataset?hl=en#0) are also available.
-
 ## ADK Agent and FastMCP server[¶](#adk-agent-and-fastmcp-server)
 
-[FastMCP](https://github.com/jlowin/fastmcp) handles all the complex MCP protocol details and server management, so you can focus on building great tools. It's designed to be high-level and Pythonic; in most cases, decorating a function is all you need.
+ADK uses [FastMCP](https://github.com/jlowin/fastmcp) to handle all the
+complex MCP protocol details and server management, so you can focus on
+building great tools. It's designed to be high-level and Pythonic; in most
+cases, decorating a function is all you need.
 
-Refer to the [MCP Tools documentation](/adk-docs/tools-custom/mcp-tools/) documentation on
+Refer to the [MCP Tools](/adk-docs/tools-custom/mcp-tools/) documentation on
 how you can use ADK together with the FastMCP server running on Cloud Run.
 
 ## MCP Servers for Google Cloud Genmedia[¶](#mcp-servers-for-google-cloud-genmedia)

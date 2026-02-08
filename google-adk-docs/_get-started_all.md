@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-06T16:54:52.494049
+merged_at: 2026-02-08T01:05:21.912027
 merged_files: 9
 ---
 
@@ -697,8 +697,8 @@ project file:
 <dependencies>
 <dependency>
 <groupId>com.google.adk</groupId>
-<artifactId>adk-core</artifactId>
-<version>0.3.0</version>
+<artifactId>google-adk</artifactId>
+<version>0.5.0</version>
 </dependency>
 </dependencies>
 

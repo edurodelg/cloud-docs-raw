@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-06T16:54:52.689191
+merged_at: 2026-02-08T01:05:22.000408
 merged_files: 3
 ---
 
@@ -1568,7 +1568,7 @@ returning content or if `end_invocation`
 
 was set during the agent's run.
 
-**Purpose:** Useful for cleanup tasks, post-execution validation, logging the completion of an agent's activity, modifying final state, or augmenting/replacing the agent's final output.
+**Purpose:** Useful for cleanup tasks, post-execution validation, logging the completion of an agent's activity, modifying final state, or augmenting the agent's final output.
 
 ## Code
 
@@ -2041,7 +2041,7 @@ sessionId, event.errorMessage().orElse("Unknown error"));
 
 , the callback returns a*new*`types.Content`
 
-object. This tells the ADK framework to**replace**the agent's original output with the content returned by the callback. - If the flag is
+object. This tells the ADK framework to**append**the agent's original output with the content returned by the callback. - If the flag is
 `False`
 
 (or not set), the callback returns`None`
@@ -2053,7 +2053,7 @@ or an empty object. This tells the ADK framework to**use**the original output ge
 *without*the`add_concluding_note: True`
 
 state, the callback allows the agent's original output ("Processing complete!") to be used. - In the session
-*with*that state flag, the callback intercepts the agent's original output and replaces it with its own message ("Concluding note added...").
+*with*that state flag, the callback intercepts the agent's original output and appends it with its own message ("Concluding note added...").
 
 - In the session
 **Understanding Callbacks:**This highlights how`after_`

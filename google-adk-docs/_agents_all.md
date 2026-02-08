@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-06T16:54:52.504070
+merged_at: 2026-02-08T01:05:21.920941
 merged_files: 7
 ---
 
@@ -1905,7 +1905,7 @@ LlmAgent.builder()
 .build();
 
 
-Learn more about Tools in the [Tools](../../tools/) section.
+Learn more about Tools in [Custom Tools](/adk-docs/tools-custom/).
 
 ## Advanced Configuration & Control[¶](#advanced-configuration-control)
 
@@ -5246,7 +5246,8 @@ Allows an [ LlmAgent](../llm-agents/) to treat another
 
 `BaseAgent`
 
-instance as a callable function or [Tool](../../tools/).
+instance as a callable function or
+[Tool](/adk-docs/tools-custom/).
 
 **Mechanism:**Wrap the target agent instance in`AgentTool`
 
