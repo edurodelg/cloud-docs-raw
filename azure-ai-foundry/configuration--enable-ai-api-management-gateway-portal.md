@@ -1,6 +1,6 @@
 ---
 source_url: https://learn.microsoft.com/en-us/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal
-fetched_at: 2026-02-06T16:52:31.528508
+fetched_at: 2026-02-08T01:03:23.434980
 ---
 
 # Configure AI Gateway in your Foundry resources

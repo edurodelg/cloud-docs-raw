@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-06T17:00:26.267022
+merged_at: 2026-02-08T01:11:03.771357
 merged_files: 4
 ---
 
@@ -8159,7 +8159,11 @@ The `scope`
 
 parameter controls how memory is partitioned. Each scope in the memory store keeps an isolated collection of memory items. For example, if you create a customer support agent with memory, each customer should have their own individual memory.
 
-As a developer, you choose the key used to store and retrieve memory items, such as a UUID or a unique user ID in your system.
+As a developer, you choose the key used to store and retrieve memory items. You can pass a static value, such as a universally unique identifier (UUID) or another stable identifier from your system.
+
+Alternatively, when you specify `{{$userId}}`
+
+as the scope, the system automatically extracts the tenant ID (TID) and object ID (OID) from the request authentication header. This approach gives each authenticated user their own isolated memory partition, eliminating the need to manage identifiers manually.
 
 ## Create a memory store
 
@@ -8253,7 +8257,7 @@ to control how and when memories are updated.
 # Continue from the previous Python snippets.
 from azure.ai.projects.models import MemorySearchTool, PromptAgentDefinition
 # Set scope to associate the memories with
-# You can also use "{{$userId}}" to take the oid of the request authentication header
+# You can also use "{{$userId}}" to take the TID and OID of the request authentication header
 scope = "user_123"
 openai_client = project_client.get_openai_client()
 # Create memory search tool

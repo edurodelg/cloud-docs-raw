@@ -1,5 +1,5 @@
 ---
-merged_at: 2026-02-06T17:00:26.086169
+merged_at: 2026-02-08T01:11:03.668240
 merged_files: 6
 ---
 
@@ -702,6 +702,20 @@ This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?
 
 🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
 
+Important
+
+Azure OpenAI On Your Data is deprecated and approaching retirement.
+
+Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following GPT‑4o model versions:
+
+- GPT‑4o (2024‑05‑13)
+- GPT‑4o (2024‑08‑06)
+- GPT‑4o (2024‑11‑20)
+
+[Once the GPT‑4o (2024‑11‑20) model is deprecated](../concepts/model-retirements?view=foundry-classic#current-models), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
+
+We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview?view=foundry-classic) with [Foundry IQ](../../agents/concepts/what-is-foundry-iq?view=foundry&preserve-view=true) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../agents/how-to/foundry-iq-connect?view=foundry-classic).
+
 The configurable options of Pinecone when using Azure OpenAI On Your Data. This data source is supported starting in API version `2024-02-15-preview`
 
 .
@@ -892,6 +906,20 @@ Note
 This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
 
 🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Important
+
+Azure OpenAI On Your Data is deprecated and approaching retirement.
+
+Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following GPT‑4o model versions:
+
+- GPT‑4o (2024‑05‑13)
+- GPT‑4o (2024‑08‑06)
+- GPT‑4o (2024‑11‑20)
+
+[Once the GPT‑4o (2024‑11‑20) model is deprecated](../concepts/model-retirements?view=foundry-classic#current-models), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
+
+We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview?view=foundry-classic) with [Foundry IQ](../../agents/concepts/what-is-foundry-iq?view=foundry&preserve-view=true) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../agents/how-to/foundry-iq-connect?view=foundry-classic).
 
 The configurable options of Azure Cosmos DB for MongoDB vCore when using Azure OpenAI On Your Data. This data source is supported in API version `2024-02-01`
 
@@ -1126,6 +1154,20 @@ Note
 This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
 
 🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Important
+
+Azure OpenAI On Your Data is deprecated and approaching retirement.
+
+Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following GPT‑4o model versions:
+
+- GPT‑4o (2024‑05‑13)
+- GPT‑4o (2024‑08‑06)
+- GPT‑4o (2024‑11‑20)
+
+[Once the GPT‑4o (2024‑11‑20) model is deprecated](../concepts/model-retirements?view=foundry-classic#current-models), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
+
+We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview?view=foundry-classic) with [Foundry IQ](../../agents/concepts/what-is-foundry-iq?view=foundry&preserve-view=true) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../agents/how-to/foundry-iq-connect?view=foundry-classic).
 
 The configurable options for Elasticsearch when using Azure OpenAI On Your Data. This data source is supported starting in API version `2024-02-15-preview`
 
@@ -1386,6 +1428,20 @@ Note
 This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
 
 🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Important
+
+Azure OpenAI On Your Data is deprecated and approaching retirement.
+
+Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following GPT‑4o model versions:
+
+- GPT‑4o (2024‑05‑13)
+- GPT‑4o (2024‑08‑06)
+- GPT‑4o (2024‑11‑20)
+
+[Once the GPT‑4o (2024‑11‑20) model is deprecated](../concepts/model-retirements?view=foundry-classic#current-models), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
+
+We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview?view=foundry-classic) with [Foundry IQ](../../agents/concepts/what-is-foundry-iq?view=foundry&preserve-view=true) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../agents/how-to/foundry-iq-connect?view=foundry-classic).
 
 The configurable options of Azure AI Search when using Azure OpenAI On Your Data. This data source is supported in API version `2024-02-01`
 
@@ -1675,6 +1731,20 @@ This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?
 
 🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
 
+Important
+
+Azure OpenAI On Your Data is deprecated and approaching retirement.
+
+Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following GPT‑4o model versions:
+
+- GPT‑4o (2024‑05‑13)
+- GPT‑4o (2024‑08‑06)
+- GPT‑4o (2024‑11‑20)
+
+[Once the GPT‑4o (2024‑11‑20) model is deprecated](../concepts/model-retirements?view=foundry-classic#current-models), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
+
+We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview?view=foundry-classic) with [Foundry IQ](../../agents/concepts/what-is-foundry-iq?view=foundry&preserve-view=true) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../agents/how-to/foundry-iq-connect?view=foundry-classic).
+
 This article provides reference documentation for Python and REST for the new Azure OpenAI On Your Data API. The latest API version is `2024-05-01-preview`
 
 [Swagger spec](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-05-01-preview).
@@ -1700,7 +1770,7 @@ is changed to`deployment_name`
 
 is changed to`azure_search`
 
-. - The citations and intent is moved from assistant message's context tool messages to assistant message's context root level with explicit
+. - The citations and intent are moved from assistant message's context tool messages to assistant message's context root level with explicit
 [schema defined](#context).
 
 ```
@@ -7920,6 +7990,20 @@ This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?
 
 🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
 
+Important
+
+Azure OpenAI On Your Data is deprecated and approaching retirement.
+
+Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following GPT‑4o model versions:
+
+- GPT‑4o (2024‑05‑13)
+- GPT‑4o (2024‑08‑06)
+- GPT‑4o (2024‑11‑20)
+
+[Once the GPT‑4o (2024‑11‑20) model is deprecated](model-retirements?view=foundry-classic#current-models), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
+
+We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview?view=foundry-classic) with [Foundry IQ](../../agents/concepts/what-is-foundry-iq?view=foundry&preserve-view=true) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../agents/how-to/foundry-iq-connect?view=foundry-classic).
+
 Use this article to learn about Azure OpenAI On Your Data, which makes it easier for developers to connect, ingest and ground their enterprise data to create personalized copilots (preview) rapidly. It enhances user comprehension, expedites task completion, improves operational efficiency, and aids decision-making.
 
 ## What is Azure OpenAI On Your Data
@@ -8405,47 +8489,21 @@ Each user message can translate to multiple search queries, all of which get sen
 
 ## Regional availability and model support
 
-Note
+Important
 
-- The following models are not supported by Azure OpenAI On Your Data:
-- o1 models
-- o3 models
-- model-router
-- GPT 4.1 models
-- GPT 5 and 5.1 models
+Azure OpenAI On Your Data is deprecated and approaching retirement.
 
-- Azure OpenAI On Your Data only supports the
-`text-embedding-ada-002`
+Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following GPT‑4o model versions:
 
-embedding model for vector search. See the[Azure OpenAI documentation](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&pivots=azure-openai&tabs=global-standard-aoai.md#model-summary-table-and-region-availability)for a list of supported regions.
+- GPT‑4o (2024‑05‑13)
+- GPT‑4o (2024‑08‑06)
+- GPT‑4o (2024‑11‑20)
 
-| Region | `gpt-35-turbo-16k (0613)` |
-`gpt-35-turbo (1106)` |
-`gpt-4-32k (0613)` |
-`gpt-4 (1106-preview)` |
-`gpt-4 (0125-preview)` |
-`gpt-4 (0613)` |
-`gpt-4o` ** |
-`gpt-4 (turbo-2024-04-09)` |
-|---|---|---|---|---|---|---|---|---|
-| Australia East | ✅ | ✅ | ✅ | ✅ | ✅ | |||
-| Canada East | ✅ | ✅ | ✅ | ✅ | ✅ | |||
-| East US | ✅ | ✅ | ✅ | |||||
-| East US 2 | ✅ | ✅ | ✅ | ✅ | ||||
-| France Central | ✅ | ✅ | ✅ | ✅ | ✅ | |||
-| Japan East | ✅ | |||||||
-| North Central US | ✅ | ✅ | ✅ | |||||
-| Norway East | ✅ | ✅ | ||||||
-| South Central US | ✅ | ✅ | ||||||
-| South India | ✅ | ✅ | ||||||
-| Sweden Central | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ||
-| Switzerland North | ✅ | ✅ | ✅ | |||||
-| UK South | ✅ | ✅ | ✅ | ✅ | ||||
-| West US | ✅ | ✅ | ✅ |
+[Once the GPT‑4o (2024‑11‑20) model is deprecated](model-retirements?view=foundry-classic#current-models), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
 
-**This is a text-only implementation
+We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview?view=foundry-classic) with [Foundry IQ](../../agents/concepts/what-is-foundry-iq?view=foundry&preserve-view=true) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../agents/how-to/foundry-iq-connect?view=foundry-classic).
 
-If your Azure OpenAI resource is in another region, you won't be able to use Azure OpenAI On Your Data.
+See the [model summary table](../../foundry-models/concepts/models-sold-directly-by-azure?view=foundry&preserve-view=true#model-summary-table-and-region-availability) for regional availability.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/prompt-engineering -->
@@ -11016,111 +11074,6 @@ for the value `length`
 before parsing the response. The model might generate partial JSON. This means that output from the model was larger than the available max_tokens that were set as part of the request, or the conversation itself exceeded the token limit.
 
 JSON mode produces JSON that is valid and parses without error. However, there's no guarantee for output to match a specific schema, even if requested in the prompt.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/azure-developer-cli -->
-
-# Use the Azure Developer CLI to deploy resources for Azure OpenAI On Your Data
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-Use this article to learn how to automate resource deployment for Azure OpenAI On Your Data. The Azure Developer CLI (`azd`
-
-) is an open-source command-line tool that streamlines provisioning and deploying resources to Azure by using a template system. The template contains infrastructure files to provision the necessary Azure OpenAI resources and configurations. The source code for the template can be found on [GitHub](https://github.com/Azure-Samples/openai-chat-your-own-data/tree/main).
-
-## Prerequisites
-
-- An Azure subscription.
-[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - The Azure Developer CLI
-[installed](/en-us/azure/developer/azure-developer-cli/install-azd)on your machine. - Ability to assign permissions at the Subscription level (Owner or User Access Administrator).
-
-## Clone and initialize the Azure Developer CLI template
-
-For the steps ahead, clone and initialize the template:
-
-`azd init --template openai-chat-your-own-data`
-
-The
-
-`azd init`
-
-command prompts you to create an environment name. This value is used as a prefix for all Azure resources that Azure Developer CLI creates. The name:- Must be unique across all Azure subscriptions.
-- Must be 3 to 24 characters.
-- Can contain numbers and lowercase letters only.
-
-
-## Use the template to deploy resources
-
-Sign in to Azure:
-
-`azd auth login`
-
-Provision and deploy the Azure OpenAI resource to Azure:
-
-`azd up`
-
-The Azure Developer CLI prompts you for the following information:
-
-`Subscription`
-
-: The Azure subscription that your resources are deployed to.`Location`
-
-: The Azure region where your resources are deployed.
-
-Note
-
-- The sample
-`azd`
-
-template deploys a`gpt-4o-mini`
-
-model. A recommended region for this template is East US, because different Azure regions support different OpenAI models. For more details about model support by region, go to the[Azure OpenAI Models](/en-us/azure/ai-foundry/openai/concepts/models)support page. - If you want to deploy a different model, you can edit the variables in the
-`infra/main.bicep`
-
-file.
-
-The provisioning process might take several minutes. Wait for the task to finish before you proceed to the next steps.
-
-Select the link in the
-
-`azd`
-
-outputs to go to the new resource group in the Azure portal. The following top-level resources should appear:- An Azure OpenAI with a deployed model
-- An Azure Storage account that you can use to upload your own data files
-- An Azure AI Search service configured with the proper indexes and data sources
-
-
-## Upload data to the storage account
-
-The `azd`
-
-template provisioned all of the required resources for you to chat with your own data, but you still need to upload the data files that you want to make available to your Foundry Tool:
-
-- Go to the new storage account in the Azure portal.
-- On the left menu, select
-**Storage browser**. - Select
-**Blob containers**, and then go to the**File uploads**container. - Select the
-**Upload**button at the top of the pane. - In the flyout menu that opens, upload your data.
-
-Note
-
-The search indexer is set to run every five minutes to index the data in the storage account. You can wait a few minutes for the uploaded data to be indexed, or you can manually run the indexer from the search service page.
-
-## Connect or create an application
-
-After you run the `azd`
-
-template and upload your data, you're ready to start using Azure OpenAI On Your Data. For code samples that you can use to build your applications, see the [quickstart article](../use-your-data-quickstart?view=foundry-classic).
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching -->
@@ -14917,446 +14870,6 @@ app.run(port=8000)
 ## Next steps
 
 You now know how to get a call connected over SIP. The next step is building your real-time application prompts to server your customers.
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/migration -->
-
-# Migrating to the OpenAI Python API library 1.x
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-Important
-
-For the latest API examples refer to the [API lifecycle article](../api-version-lifecycle?view=foundry-classic).
-
-OpenAI released a new version of the [OpenAI Python API library](https://github.com/openai/openai-python/). This guide is supplemental to [OpenAI's migration guide](https://github.com/openai/openai-python/discussions/742) and will help bring you up to speed on the changes specific to Azure OpenAI.
-
-Note
-
-This guidance is no longer recommended. To take advantage of the latest v1 API refer to the [Python programming language guide](../supported-languages?view=foundry-classic).
-
-## Updates
-
-- This is a new version of the OpenAI Python API library.
-- Starting on November 6, 2023
-`pip install openai`
-
-and`pip install openai --upgrade`
-
-will install`version 1.x`
-
-of the OpenAI Python library. - Upgrading from
-`version 0.28.1`
-
-to`version 1.x`
-
-is a breaking change, you'll need to test and update your code. - Auto-retry with backoff if there's an error
-- Proper types (for mypy/pyright/editors)
-- You can now instantiate a client, instead of using a global default.
-- Switch to explicit client instantiation
-[Name changes](#name-changes)
-
-## Known issues
-
-`DALL-E3`
-
-is[fully supported with the latest 1.x release](../dall-e-quickstart?view=foundry-classic).`DALL-E2`
-
-can be used with 1.x by making the[following modifications to your code](#dall-e-fix).`embeddings_utils.py`
-
-which was used to provide functionality like cosine similarity for semantic text search is[no longer part of the OpenAI Python API library](https://github.com/openai/openai-python/issues/676).- You should also check the active
-[GitHub Issues](https://github.com/openai/openai-python/issues/)for the OpenAI Python library.
-
-## Test before you migrate
-
-Important
-
-Automatic migration of your code using `openai migrate`
-
-isn't supported with Azure OpenAI.
-
-As this is a new version of the library with breaking changes, you should test your code extensively against the new release before migrating any production applications to rely on version 1.x. You should also review your code and internal processes to make sure that you're following best practices and pinning your production code to only versions that you have fully tested.
-
-To make the migration process easier, we're updating existing code examples in our docs for Python to a tabbed experience:
-
-```
-pip install openai --upgrade
-```
-
-
-This provides context for what has changed and allows you to test the new library in parallel while continuing to provide support for version `0.28.1`
-
-. If you upgrade to `1.x`
-
-and realize you need to temporarily revert back to the previous version, you can always `pip uninstall openai`
-
-and then reinstall targeted to `0.28.1`
-
-with `pip install openai==0.28.1`
-
-.
-
-## Chat completions
-
-You need to set the `model`
-
-variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name results in an error unless you chose a deployment name that's identical to the underlying model name.
-
-```
-import os
-from openai import AzureOpenAI
-client = AzureOpenAI(
-azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
-api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-api_version="2024-02-01"
-)
-response = client.chat.completions.create(
-model="gpt-35-turbo", # model = "deployment_name"
-messages=[
-{"role": "system", "content": "You are a helpful assistant."},
-{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-{"role": "user", "content": "Do other Azure services support this too?"}
-]
-)
-print(response.choices[0].message.content)
-```
-
-
-Additional examples can be found in our [in-depth Chat Completion article](chatgpt?view=foundry-classic).
-
-## Completions
-
-```
-import os
-from openai import AzureOpenAI
-client = AzureOpenAI(
-api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-api_version="2024-02-01",
-azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-)
-deployment_name='REPLACE_WITH_YOUR_DEPLOYMENT_NAME' #This will correspond to the custom name you chose for your deployment when you deployed a model.
-# Send a completion call to generate an answer
-print('Sending a test completion job')
-start_phrase = 'Write a tagline for an ice cream shop. '
-response = client.completions.create(model=deployment_name, prompt=start_phrase, max_tokens=10) # model = "deployment_name"
-print(response.choices[0].text)
-```
-
-
-## Embeddings
-
-```
-import os
-from openai import AzureOpenAI
-client = AzureOpenAI(
-api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-api_version = "2024-02-01",
-azure_endpoint =os.getenv("AZURE_OPENAI_ENDPOINT")
-)
-response = client.embeddings.create(
-input = "Your text string goes here",
-model= "text-embedding-ada-002" # model = "deployment_name".
-)
-print(response.model_dump_json(indent=2))
-```
-
-
-Additional examples including how to handle semantic text search without `embeddings_utils.py`
-
-can be found in our [embeddings tutorial](../tutorials/embeddings?view=foundry-classic).
-
-## Async
-
-OpenAI doesn't support calling asynchronous methods in the module-level client, instead you should instantiate an async client.
-
-```
-import os
-import asyncio
-from openai import AsyncAzureOpenAI
-async def main():
-client = AsyncAzureOpenAI(
-api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-api_version = "2024-02-01",
-azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-)
-response = await client.chat.completions.create(model="gpt-35-turbo", messages=[{"role": "user", "content": "Hello world"}]) # model = model deployment name
-print(response.model_dump_json(indent=2))
-asyncio.run(main())
-```
-
-
-## Authentication
-
-```
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from openai import AzureOpenAI
-token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
-api_version = "2024-02-01"
-endpoint = "https://my-resource.openai.azure.com"
-client = AzureOpenAI(
-api_version=api_version,
-azure_endpoint=endpoint,
-azure_ad_token_provider=token_provider,
-)
-completion = client.chat.completions.create(
-model="deployment-name", # model = "deployment_name"
-messages=[
-{
-"role": "user",
-"content": "How do I output all files in a directory using Python?",
-},
-],
-)
-print(completion.model_dump_json(indent=2))
-```
-
-
-## Use your data
-
-For the full configuration steps that are required to make these code examples work, consult the [use your data quickstart](../use-your-data-quickstart?view=foundry-classic).
-
-```
-import os
-import openai
-import dotenv
-dotenv.load_dotenv()
-endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
-api_key = os.environ.get("AZURE_OPENAI_API_KEY")
-deployment = os.environ.get("AZURE_OPEN_AI_DEPLOYMENT_ID")
-client = openai.AzureOpenAI(
-base_url=f"{endpoint}/openai/deployments/{deployment}/extensions",
-api_key=api_key,
-api_version="2023-08-01-preview",
-)
-completion = client.chat.completions.create(
-model=deployment, # model = "deployment_name"
-messages=[
-{
-"role": "user",
-"content": "How is Azure machine learning different than Azure OpenAI?",
-},
-],
-extra_body={
-"dataSources": [
-{
-"type": "AzureCognitiveSearch",
-"parameters": {
-"endpoint": os.environ["AZURE_AI_SEARCH_ENDPOINT"],
-"key": os.environ["AZURE_AI_SEARCH_API_KEY"],
-"indexName": os.environ["AZURE_AI_SEARCH_INDEX"]
-}
-}
-]
-}
-)
-print(completion.model_dump_json(indent=2))
-```
-
-
-## DALL-E fix
-
-```
-import time
-import json
-import httpx
-import openai
-class CustomHTTPTransport(httpx.HTTPTransport):
-def handle_request(
-self,
-request: httpx.Request,
-) -> httpx.Response:
-if "images/generations" in request.url.path and request.url.params[
-"api-version"
-] in [
-"2023-06-01-preview",
-"2023-07-01-preview",
-"2023-08-01-preview",
-"2023-09-01-preview",
-"2023-10-01-preview",
-]:
-request.url = request.url.copy_with(path="/openai/images/generations:submit")
-response = super().handle_request(request)
-operation_location_url = response.headers["operation-location"]
-request.url = httpx.URL(operation_location_url)
-request.method = "GET"
-response = super().handle_request(request)
-response.read()
-timeout_secs: int = 120
-start_time = time.time()
-while response.json()["status"] not in ["succeeded", "failed"]:
-if time.time() - start_time > timeout_secs:
-timeout = {"error": {"code": "Timeout", "message": "Operation polling timed out."}}
-return httpx.Response(
-status_code=400,
-headers=response.headers,
-content=json.dumps(timeout).encode("utf-8"),
-request=request,
-)
-time.sleep(int(response.headers.get("retry-after")) or 10)
-response = super().handle_request(request)
-response.read()
-if response.json()["status"] == "failed":
-error_data = response.json()
-return httpx.Response(
-status_code=400,
-headers=response.headers,
-content=json.dumps(error_data).encode("utf-8"),
-request=request,
-)
-result = response.json()["result"]
-return httpx.Response(
-status_code=200,
-headers=response.headers,
-content=json.dumps(result).encode("utf-8"),
-request=request,
-)
-return super().handle_request(request)
-client = openai.AzureOpenAI(
-azure_endpoint="<azure_endpoint>",
-api_key="<api_key>",
-api_version="<api_version>",
-http_client=httpx.Client(
-transport=CustomHTTPTransport(),
-),
-)
-image = client.images.generate(prompt="a cute baby seal")
-print(image.data[0].url)
-```
-
-
-## Name changes
-
-Note
-
-All `a*`
-
-methods have been removed; the async client must be used instead.
-
-| OpenAI Python 0.28.1 | OpenAI Python 1.x |
-|---|---|
-`openai.api_base` |
-`openai.base_url` |
-`openai.proxy` |
-`openai.proxies` |
-`openai.InvalidRequestError` |
-`openai.BadRequestError` |
-`openai.Audio.transcribe()` |
-`client.audio.transcriptions.create()` |
-`openai.Audio.translate()` |
-`client.audio.translations.create()` |
-`openai.ChatCompletion.create()` |
-`client.chat.completions.create()` |
-`openai.Completion.create()` |
-`client.completions.create()` |
-`openai.Edit.create()` |
-`client.edits.create()` |
-`openai.Embedding.create()` |
-`client.embeddings.create()` |
-`openai.File.create()` |
-`client.files.create()` |
-`openai.File.list()` |
-`client.files.list()` |
-`openai.File.retrieve()` |
-`client.files.retrieve()` |
-`openai.File.download()` |
-`client.files.retrieve_content()` |
-`openai.FineTune.cancel()` |
-`client.fine_tunes.cancel()` |
-`openai.FineTune.list()` |
-`client.fine_tunes.list()` |
-`openai.FineTune.list_events()` |
-`client.fine_tunes.list_events()` |
-`openai.FineTune.stream_events()` |
-`client.fine_tunes.list_events(stream=True)` |
-`openai.FineTune.retrieve()` |
-`client.fine_tunes.retrieve()` |
-`openai.FineTune.delete()` |
-`client.fine_tunes.delete()` |
-`openai.FineTune.create()` |
-`client.fine_tunes.create()` |
-`openai.FineTuningJob.create()` |
-`client.fine_tuning.jobs.create()` |
-`openai.FineTuningJob.cancel()` |
-`client.fine_tuning.jobs.cancel()` |
-`openai.FineTuningJob.delete()` |
-`client.fine_tuning.jobs.create()` |
-`openai.FineTuningJob.retrieve()` |
-`client.fine_tuning.jobs.retrieve()` |
-`openai.FineTuningJob.list()` |
-`client.fine_tuning.jobs.list()` |
-`openai.FineTuningJob.list_events()` |
-`client.fine_tuning.jobs.list_events()` |
-`openai.Image.create()` |
-`client.images.generate()` |
-`openai.Image.create_variation()` |
-`client.images.create_variation()` |
-`openai.Image.create_edit()` |
-`client.images.edit()` |
-`openai.Model.list()` |
-`client.models.list()` |
-`openai.Model.delete()` |
-`client.models.delete()` |
-`openai.Model.retrieve()` |
-`client.models.retrieve()` |
-`openai.Moderation.create()` |
-`client.moderations.create()` |
-`openai.api_resources` |
-`openai.resources` |
-
-### Removed
-
-`openai.api_key_path`
-
-`openai.app_info`
-
-`openai.debug`
-
-`openai.log`
-
-`openai.OpenAIError`
-
-`openai.Audio.transcribe_raw()`
-
-`openai.Audio.translate_raw()`
-
-`openai.ErrorObject`
-
-`openai.Customer`
-
-`openai.api_version`
-
-`openai.verify_ssl_certs`
-
-`openai.api_type`
-
-`openai.enable_telemetry`
-
-`openai.ca_bundle_path`
-
-`openai.requestssession`
-
-(OpenAI now uses`httpx`
-
-)`openai.aiosession`
-
-(OpenAI now uses`httpx`
-
-)`openai.Deployment`
-
-(Previously used for Azure OpenAI)`openai.Engine`
-
-`openai.File.find_matching_files()`
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/role-based-access-control -->
@@ -21040,371 +20553,6 @@ You can also delete a deployment in Foundry portal, or use [Azure CLI](/en-us/cl
 ## Next steps
 
 ---
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/on-your-data-configuration -->
-
-# Network and access configuration for Azure OpenAI On Your Data
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-Use this article to learn how to configure networking and access when using Azure OpenAI On Your Data with Microsoft Entra ID role-based access control, virtual networks, and private endpoints.
-
-## Data ingestion architecture
-
-When you use Azure OpenAI On Your Data to ingest data from Azure blob storage, local files or URLs into Azure AI Search, the following process is used to process the data.
-
-- Steps 1 and 2 are only used for file upload.
-- Downloading URLs to your blob storage is not illustrated in this diagram. After web pages are downloaded from the internet and uploaded to blob storage, steps 3 onward are the same.
-- One indexer, one index, and one data source in the Azure AI Search resource is created using prebuilt skills and
-[integrated vectorization](/en-us/azure/search/vector-search-integrated-vectorization). - Azure AI Search handles the extraction, chunking, and vectorization of chunked documents through integrated vectorization. If a scheduling interval is specified, the indexer will run accordingly.
-
-For the managed identities used in service calls, only system assigned managed identities are supported. User assigned managed identities aren't supported.
-
-## Inference architecture
-
-When you send API calls to chat with an Azure OpenAI model on your data, the service needs to retrieve the index fields during inference to perform fields mapping. Therefore the service requires the Azure OpenAI identity to have the `Search Service Contributor`
-
-role for the search service even during inference.
-
-If an embedding dependency is provided in the inference request, Azure OpenAI will vectorize the rewritten query, and both query and vector are sent to Azure AI Search for vector search.
-
-## Document-level access control
-
-Note
-
-Document-level access control is supported for Azure AI search only.
-
-Azure OpenAI On Your Data lets you restrict the documents that can be used in responses for different users with Azure AI Search [security filters](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad). When you enable document level access, Azure AI Search will trim the search results based on user Microsoft Entra group membership specified in the filter. You can only enable document-level access on existing Azure AI Search indexes. To enable document-level access:
-
-To register your application and create users and groups, follow the steps in the
-
-[Azure AI Search documentation](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad).[Index your documents with their permitted groups](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad#index-document-with-their-permitted-groups). Be sure that your new[security fields](/en-us/azure/search/search-security-trimming-for-azure-search#create-security-field)have the schema:`{"name": "group_ids", "type": "Collection(Edm.String)", "filterable": true }`
-
-`group_ids`
-
-is the default field name. If you use a different field name like`my_group_ids`
-
-, you can map the field in[index field mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping).Make sure each sensitive document in the index has this security field value set to the permitted groups of the document.
-
-In the
-
-[Microsoft Foundry portal](https://ai.azure.com/portal), add your data source. In the[index field mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping)section, you can map zero or one value to the**permitted groups**field, as long as the schema is compatible. If the**permitted groups**field isn't mapped, document level access is disabled.
-
-**Foundry portal**
-
-Once the Azure AI Search index is connected, your responses in the studio have document access based on the Microsoft Entra permissions of the logged in user.
-
-**API**
-
-When using the API, pass the `filter`
-
-parameter in each API request. For example:
-
-Important
-
-Use API keys with caution. Don't include the API key directly in your code, and never post it publicly. If you use an API key, store it securely in Azure Key Vault. For more information about using API keys securely in your apps, see [API keys with Azure Key Vault](/en-us/azure/key-vault/general/apps-api-keys-secrets).
-
-For more information about AI services security, see [Authenticate requests to Azure AI services](/en-us/azure/ai-services/authentication).
-
-For more information about security, see [Authenticate requests](/en-us/azure/ai-services/authentication).
-
-```
-{
-"messages": [
-{
-"role": "user",
-"content": "who is my manager?"
-}
-],
-"data_sources": [
-{
-"type": "azure_search",
-"parameters": {
-"endpoint": "<AZURE_AI_SEARCH_ENDPOINT>",
-"key": "<AZURE_AI_SEARCH_API_KEY>",
-"index_name": "<AZURE_AI_SEARCH_INDEX>",
-"filter": "my_group_ids/any(g:search.in(g, 'group_id1, group_id2'))"
-}
-}
-]
-}
-```
-
-
-`my_group_ids`
-
-is the field name that you selected for**Permitted groups**during[fields mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping).`group_id1, group_id2`
-
-are groups attributed to the logged in user. The client application can retrieve and cache users' groups using the[Microsoft Graph API](/en-us/graph/api/user-list-transitivememberof).
-
-## Resource configuration
-
-Use the following sections to configure your resources for optimal secure usage. Even if you plan to only secure part of your resources, you still need to follow all the steps.
-
-This article describes network settings related to disabling public network for Azure OpenAI resources, Azure AI search resources, and storage accounts. Using selected networks with IP rules is not supported, because the services' IP addresses are dynamic.
-
-## Create resource group
-
-Create a resource group, so you can organize all the relevant resources. The resources in the resource group include but are not limited to:
-
-- One Virtual network
-- Three key services: one Azure OpenAI, one Azure AI Search, one Storage Account
-- Three Private endpoints, each is linked to one key service
-- Three Network interfaces, each is associated with one private endpoint
-- One Virtual network gateway, for the access from on-premises client machines
-- One Web App with virtual network integrated
-- One Private DNS zone, so the Web App finds the IP of your Azure OpenAI
-
-## Create virtual network
-
-The virtual network has three subnets.
-
-- The first subnet is used for the virtual network gateway.
-- The second subnet is used for the private endpoints for the three key services.
-- The third subnet is empty, and used for Web App outbound virtual network integration.
-
-## Configure Azure OpenAI
-
-### Enabled custom subdomain
-
-The [custom subdomain](/en-us/azure/ai-services/cognitive-services-custom-subdomains) is required for Microsoft Entra ID based authentication, and private DNS zone. If the Azure OpenAI resource is created using ARM template, the custom subdomain must be specified explicitly.
-
-### Enable managed identity
-
-To allow your Azure AI Search and Storage Account to recognize your Azure OpenAI in Foundry Models via Microsoft Entra ID authentication, you need to assign a managed identity for your Azure OpenAI in Foundry Models. The easiest way is to toggle on system assigned managed identity on Azure portal.
-[
-](../media/use-your-data/openai-managed-identity.png?view=foundry-classic#lightbox)
-
-To set the managed identities via the management API, see [the management API reference documentation](/en-us/rest/api/aiservices/accountmanagement/accounts/update#identity).
-
-```
-"identity": {
-"principalId": "<YOUR-PRINCIPAL-ID>",
-"tenantId": "<YOUR-TENNANT-ID>",
-"type": "SystemAssigned, UserAssigned",
-"userAssignedIdentities": {
-"/subscriptions/<YOUR-SUBSCIRPTION-ID>/resourceGroups/my-resource-group",
-"principalId": "<YOUR-PRINCIPAL-ID>",
-"clientId": "<YOUR-CLIENT-ID>"
-}
-}
-```
-
-
-### Enable trusted service
-
-To allow your Azure AI Search to call your Azure OpenAI `embedding model, while Azure OpenAI has no public network access, you need to set up Azure OpenAI to bypass Azure AI Search as a trusted service based on managed identity. Azure OpenAI identifies the traffic from your Azure AI Search by verifying the claims in the JSON Web Token (JWT). Azure AI Search must use the system assigned managed identity authentication to call the embedding endpoint.
-
-Set `networkAcls.bypass`
-
-as `AzureServices`
-
-from the management API. For more information, see [Virtual networks article](/en-us/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#grant-access-to-trusted-azure-services-for-azure-openai).
-
-This step can be skipped only if you have a [shared private link](#create-shared-private-link) for your Azure AI Search resource.
-
-### Disable public network access
-
-You can disable public network access of your Azure OpenAI resource in the Azure portal.
-
-To allow access to your Azure OpenAI from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#use-private-endpoints) that connect to your Azure OpenAI resource.
-
-## Configure Azure AI Search
-
-You can use basic pricing tier and higher for the search resource. It's not necessary, but if you use the S2 pricing tier, [advanced options](#create-shared-private-link) are available.
-
-### Enable managed identity
-
-To allow your other resources to recognize the Azure AI Search using Microsoft Entra ID authentication, you need to assign a managed identity for your Azure AI Search. The easiest way is to toggle on the system assigned managed identity in the Azure portal.
-
-### Enable role-based access control
-
-As Azure OpenAI uses managed identity to access Azure AI Search, you need to enable role-based access control in your Azure AI Search. To do it on Azure portal, select **Both** or **Role-based access control** in the **Keys** tab in the Azure portal.
-
-For more information, see the [Azure AI Search RBAC article](/en-us/azure/search/search-security-enable-roles).
-
-### Disable public network access
-
-You can disable public network access of your Azure AI Search resource in the Azure portal.
-
-To allow access to your Azure AI Search resource from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/search/service-create-private-endpoint) that connect to your Azure AI Search resource.
-
-### Enable trusted service
-
-You can enable trusted service of your search resource from Azure portal.
-
-Go to your search resource's network tab. With the public network access set to **disabled**, select **Allow Azure services on the trusted services list to access this search service.**
-
-You can also use the REST API to enable trusted service. This example uses the Azure CLI and the `jq`
-
-tool.
-
-```
-rid=/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/providers/Microsoft.Search/searchServices/<YOUR-RESOURCE-NAME>
-apiVersion=2024-03-01-Preview
-#store the resource properties in a variable
-az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" > search.json
-#replace bypass with AzureServices using jq
-jq '.properties.networkRuleSet.bypass = "AzureServices"' search.json > search_updated.json
-#apply the updated properties to the resource
-az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" \
---method PUT \
---body @search_updated.json
-```
-
-
-### Create shared private link
-
-Tip
-
-If you are using a basic or standard pricing tier, or if it is your first time to setup all of your resources securely, you should skip this advanced topic.
-
-This section is only applicable for S2 pricing tier search resource, because it requires [private endpoint support for indexers with a skill set](/en-us/azure/search/search-limits-quotas-capacity#shared-private-link-resource-limits).
-
-To create shared private link from your search resource connecting to your Azure OpenAI resource, see the [search documentation](/en-us/azure/search/search-indexer-howto-access-private). Select **Resource type** as `Microsoft.CognitiveServices/accounts`
-
-and **Group ID** as `openai_account`
-
-.
-
-With shared the private link, [step 8](#data-ingestion-architecture) of the data ingestion architecture diagram is changed from **bypass trusted service** to **shared private link**.
-
-## Configure Storage Account
-
-### Enable trusted service
-
-To allow access to your Storage Account from Azure OpenAI and Azure AI Search, you need to set up Storage Account to bypass your Azure OpenAI and Azure AI Search as [trusted services based on managed identity](/en-us/azure/storage/common/storage-network-security?tabs=azure-portal#trusted-access-based-on-a-managed-identity).
-
-In the Azure portal, navigate to your storage account networking tab, choose "Selected networks", and then select **Allow Azure services on the trusted services list to access this storage account** and click Save.
-
-### Disable public network access
-
-You can disable public network access of your Storage Account in the Azure portal.
-
-To allow access to your Storage Account from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/storage/common/storage-private-endpoints) that connect to your blob storage.
-
-## Role assignments
-
-So far you have already setup each resource work independently. Next you need to allow the services to authorize each other.
-
-| Role | Assignee | Resource | Description |
-|---|---|---|---|
-`Search Index Data Reader` |
-Azure OpenAI | Azure AI Search | Inference service queries the data from the index. |
-`Search Service Contributor` |
-Azure OpenAI | Azure AI Search | Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
-`Storage Blob Data Contributor` |
-Azure OpenAI | Storage Account | Reads from the input container, and writes the preprocessed result to the output container. |
-`Cognitive Services OpenAI Contributor` |
-Azure AI Search | Azure OpenAI, Microsoft Foundry Project | Allows the Azure AI Search resource access to the Azure OpenAI embedding endpoint. This role must be assigned on both the Azure OpenAI resource and the Microsoft Foundry project. |
-`Storage Blob Data Reader` |
-Azure AI Search | Storage Account | Reads document blobs and chunk blobs. |
-`Reader` |
-Foundry Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within a Foundry Project. |
-`Cognitive Services OpenAI User` |
-Web app | Azure OpenAI | Inference. |
-
-In the above table, the `Assignee`
-
-means the system assigned managed identity of that resource.
-
-The admin needs to have the `Owner`
-
-role on these resources to add role assignments.
-
-See the [Azure RBAC documentation](/en-us/azure/role-based-access-control/role-assignments-portal) for instructions on setting these roles in the Azure portal. You can use the [available script on GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/main/scripts/role_assignment.sh) to add the role assignments programmatically.
-
-To enable the developers to use these resources to build applications, the admin needs to add the developers' identity with the following role assignments to the resources.
-
-| Role | Resource | Description |
-|---|---|---|
-`Cognitive Services OpenAI Contributor` |
-Azure OpenAI | Call public ingestion API from
-`Contributor` role is not enough, because if you only have `Contributor` role, you cannot call data plane API via Microsoft Entra ID authentication, and Microsoft Entra ID authentication is required in the secure setup described in this article. |
-
-`Contributor`
-
-[Foundry portal](https://ai.azure.com/?cid=learnDocs).`Contributor`
-
-[Foundry portal](https://ai.azure.com/?cid=learnDocs).`Contributor`
-
-`Role Based Access Control Administrator`
-
-## Configure gateway and client
-
-To access the Azure OpenAI from your on-premises client machines, one of the approaches is to configure Azure VPN Gateway and Azure VPN Client.
-
-Follow [this guideline](/en-us/azure/vpn-gateway/tutorial-create-gateway-portal#VNetGateway) to create virtual network gateway for your virtual network.
-
-Follow [this guideline](/en-us/azure/vpn-gateway/openvpn-azure-ad-tenant#enable-authentication) to add point-to-site configuration, and enable Microsoft Entra ID based authentication. Download the Azure VPN Client profile configuration package, unzip, and import the `AzureVPN/azurevpnconfig.xml`
-
-file to your Azure VPN client.
-
-Configure your local machine `hosts`
-
-file to point your resources host names to the private IPs in your virtual network. The `hosts`
-
-file is located at `C:\Windows\System32\drivers\etc`
-
-for Windows, and at `/etc/hosts`
-
-on Linux. Example:
-
-```
-10.0.0.5 contoso.openai.azure.com
-10.0.0.6 contoso.search.windows.net
-10.0.0.7 contoso.blob.core.windows.net
-```
-
-
-## Foundry portal
-
-You should be able to use all [Foundry portal](https://ai.azure.com/?cid=learnDocs) features, including both ingestion and inference, from your on-premises client machines.
-
-## Web app
-
-The web app communicates with your Azure OpenAI resource. Since your Azure OpenAI resource has public network disabled, the web app needs to be set up to use the private endpoint in your virtual network to access your Azure OpenAI resource.
-
-The web app needs to resolve your Azure OpenAI host name to the private IP of the private endpoint for Azure OpenAI. So, you need to configure the private DNS zone for your virtual network first.
-
-[Create private DNS zone](/en-us/azure/dns/private-dns-getstarted-portal#create-a-private-dns-zone)in your resource group.[Add a DNS record](/en-us/azure/dns/private-dns-getstarted-portal#create-an-additional-dns-record). The IP is the private IP of the private endpoint for your Azure OpenAI resource, and you can get the IP address from the network interface associated with the private endpoint for your Azure OpenAI.[Link the private DNS zone to your virtual network](/en-us/azure/dns/private-dns-getstarted-portal#link-the-virtual-network)so the web app integrated in this virtual network can use this private DNS zone.
-
-When deploying the web app from [Foundry portal](https://ai.azure.com/?cid=learnDocs), select the same location with the virtual network, and select a proper SKU, so it can support the [virtual network integration feature](/en-us/azure/app-service/overview-vnet-integration).
-
-After the web app is deployed, from the Azure portal networking tab, configure the web app outbound traffic virtual network integration, choose the third subnet that you reserved for web app.
-
-## Using the API
-
-Make sure your sign-in credential has `Cognitive Services OpenAI Contributor`
-
-role on your Azure OpenAI resource, and run `az login`
-
-first.
-
-### Ingestion API
-
-See the [ingestion API reference article](/en-us/rest/api/azureopenai/ingestion-jobs?context=/azure/ai-foundry/openai/context/context) for details on the request and response objects used by the ingestion API.
-
-### Inference API
-
-See the [inference API reference article](../references/on-your-data?view=foundry-classic) for details on the request and response objects used by the inference API.
-
-## Use Microsoft Defender for Cloud
-
-You can now integrate [Microsoft Defender for Cloud](/en-us/azure/defender-for-cloud/defender-for-cloud-introduction) (preview) with your Azure resources to protect your applications. Microsoft Defender for Cloud protects your applications with [threat protection for AI workloads](/en-us/azure/defender-for-cloud/ai-threat-protection) , providing teams with evidence-based security alerts enriched with Microsoft threat intelligence signals and enables teams to strengthen their [security posture](/en-us/azure/defender-for-cloud/ai-security-posture) with integrated security best-practice recommendations.
-
-Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EXzLewuFRArQPJzR1tntlURThQR0hYU1MyRVRNODNMV1hBOUEzVlk3NC4u) to apply for access.
-
----
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/reasoning -->
 
 # Azure OpenAI reasoning models
@@ -22054,6 +21202,385 @@ to the beginning of your developer message, you can experiment with adding a mor
 
 
 Depending on your expected output you may need to customize your initial developer message further to target your specific use case.
+
+---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/on-your-data-configuration -->
+
+# Network and access configuration for Azure OpenAI On Your Data
+
+Note
+
+Access to this page requires authorization. You can try [signing in](#) or [changing directories].
+
+Access to this page requires authorization. You can try [changing directories].
+
+Note
+
+This document refers to the [Microsoft Foundry (classic)](../../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
+
+🔍 [View the Microsoft Foundry (new) documentation](../../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
+
+Important
+
+Azure OpenAI On Your Data is deprecated and approaching retirement.
+
+Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following GPT‑4o model versions:
+
+- GPT‑4o (2024‑05‑13)
+- GPT‑4o (2024‑08‑06)
+- GPT‑4o (2024‑11‑20)
+
+[Once the GPT‑4o (2024‑11‑20) model is deprecated](../concepts/model-retirements?view=foundry-classic#current-models), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
+
+We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview?view=foundry-classic) with [Foundry IQ](../../agents/concepts/what-is-foundry-iq?view=foundry&preserve-view=true) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../agents/how-to/foundry-iq-connect?view=foundry-classic).
+
+Use this article to learn how to configure networking and access when using Azure OpenAI On Your Data with Microsoft Entra ID role-based access control, virtual networks, and private endpoints.
+
+## Data ingestion architecture
+
+When you use Azure OpenAI On Your Data to ingest data from Azure blob storage, local files or URLs into Azure AI Search, the following process is used to process the data.
+
+- Steps 1 and 2 are only used for file upload.
+- Downloading URLs to your blob storage is not illustrated in this diagram. After web pages are downloaded from the internet and uploaded to blob storage, steps 3 onward are the same.
+- One indexer, one index, and one data source in the Azure AI Search resource is created using prebuilt skills and
+[integrated vectorization](/en-us/azure/search/vector-search-integrated-vectorization). - Azure AI Search handles the extraction, chunking, and vectorization of chunked documents through integrated vectorization. If a scheduling interval is specified, the indexer will run accordingly.
+
+For the managed identities used in service calls, only system assigned managed identities are supported. User assigned managed identities aren't supported.
+
+## Inference architecture
+
+When you send API calls to chat with an Azure OpenAI model on your data, the service needs to retrieve the index fields during inference to perform fields mapping. Therefore the service requires the Azure OpenAI identity to have the `Search Service Contributor`
+
+role for the search service even during inference.
+
+If an embedding dependency is provided in the inference request, Azure OpenAI will vectorize the rewritten query, and both query and vector are sent to Azure AI Search for vector search.
+
+## Document-level access control
+
+Note
+
+Document-level access control is supported for Azure AI search only.
+
+Azure OpenAI On Your Data lets you restrict the documents that can be used in responses for different users with Azure AI Search [security filters](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad). When you enable document level access, Azure AI Search will trim the search results based on user Microsoft Entra group membership specified in the filter. You can only enable document-level access on existing Azure AI Search indexes. To enable document-level access:
+
+To register your application and create users and groups, follow the steps in the
+
+[Azure AI Search documentation](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad).[Index your documents with their permitted groups](/en-us/azure/search/search-security-trimming-for-azure-search-with-aad#index-document-with-their-permitted-groups). Be sure that your new[security fields](/en-us/azure/search/search-security-trimming-for-azure-search#create-security-field)have the schema:`{"name": "group_ids", "type": "Collection(Edm.String)", "filterable": true }`
+
+`group_ids`
+
+is the default field name. If you use a different field name like`my_group_ids`
+
+, you can map the field in[index field mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping).Make sure each sensitive document in the index has this security field value set to the permitted groups of the document.
+
+In the
+
+[Microsoft Foundry portal](https://ai.azure.com/portal), add your data source. In the[index field mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping)section, you can map zero or one value to the**permitted groups**field, as long as the schema is compatible. If the**permitted groups**field isn't mapped, document level access is disabled.
+
+**Foundry portal**
+
+Once the Azure AI Search index is connected, your responses in the studio have document access based on the Microsoft Entra permissions of the logged in user.
+
+**API**
+
+When using the API, pass the `filter`
+
+parameter in each API request. For example:
+
+Important
+
+Use API keys with caution. Don't include the API key directly in your code, and never post it publicly. If you use an API key, store it securely in Azure Key Vault. For more information about using API keys securely in your apps, see [API keys with Azure Key Vault](/en-us/azure/key-vault/general/apps-api-keys-secrets).
+
+For more information about AI services security, see [Authenticate requests to Azure AI services](/en-us/azure/ai-services/authentication).
+
+For more information about security, see [Authenticate requests](/en-us/azure/ai-services/authentication).
+
+```
+{
+"messages": [
+{
+"role": "user",
+"content": "who is my manager?"
+}
+],
+"data_sources": [
+{
+"type": "azure_search",
+"parameters": {
+"endpoint": "<AZURE_AI_SEARCH_ENDPOINT>",
+"key": "<AZURE_AI_SEARCH_API_KEY>",
+"index_name": "<AZURE_AI_SEARCH_INDEX>",
+"filter": "my_group_ids/any(g:search.in(g, 'group_id1, group_id2'))"
+}
+}
+]
+}
+```
+
+
+`my_group_ids`
+
+is the field name that you selected for**Permitted groups**during[fields mapping](../concepts/use-your-data?view=foundry-classic#index-field-mapping).`group_id1, group_id2`
+
+are groups attributed to the logged in user. The client application can retrieve and cache users' groups using the[Microsoft Graph API](/en-us/graph/api/user-list-transitivememberof).
+
+## Resource configuration
+
+Use the following sections to configure your resources for optimal secure usage. Even if you plan to only secure part of your resources, you still need to follow all the steps.
+
+This article describes network settings related to disabling public network for Azure OpenAI resources, Azure AI search resources, and storage accounts. Using selected networks with IP rules is not supported, because the services' IP addresses are dynamic.
+
+## Create resource group
+
+Create a resource group, so you can organize all the relevant resources. The resources in the resource group include but are not limited to:
+
+- One Virtual network
+- Three key services: one Azure OpenAI, one Azure AI Search, one Storage Account
+- Three Private endpoints, each is linked to one key service
+- Three Network interfaces, each is associated with one private endpoint
+- One Virtual network gateway, for the access from on-premises client machines
+- One Web App with virtual network integrated
+- One Private DNS zone, so the Web App finds the IP of your Azure OpenAI
+
+## Create virtual network
+
+The virtual network has three subnets.
+
+- The first subnet is used for the virtual network gateway.
+- The second subnet is used for the private endpoints for the three key services.
+- The third subnet is empty, and used for Web App outbound virtual network integration.
+
+## Configure Azure OpenAI
+
+### Enabled custom subdomain
+
+The [custom subdomain](/en-us/azure/ai-services/cognitive-services-custom-subdomains) is required for Microsoft Entra ID based authentication, and private DNS zone. If the Azure OpenAI resource is created using ARM template, the custom subdomain must be specified explicitly.
+
+### Enable managed identity
+
+To allow your Azure AI Search and Storage Account to recognize your Azure OpenAI in Foundry Models via Microsoft Entra ID authentication, you need to assign a managed identity for your Azure OpenAI in Foundry Models. The easiest way is to toggle on system assigned managed identity on Azure portal.
+[
+](../media/use-your-data/openai-managed-identity.png?view=foundry-classic#lightbox)
+
+To set the managed identities via the management API, see [the management API reference documentation](/en-us/rest/api/aiservices/accountmanagement/accounts/update#identity).
+
+```
+"identity": {
+"principalId": "<YOUR-PRINCIPAL-ID>",
+"tenantId": "<YOUR-TENNANT-ID>",
+"type": "SystemAssigned, UserAssigned",
+"userAssignedIdentities": {
+"/subscriptions/<YOUR-SUBSCIRPTION-ID>/resourceGroups/my-resource-group",
+"principalId": "<YOUR-PRINCIPAL-ID>",
+"clientId": "<YOUR-CLIENT-ID>"
+}
+}
+```
+
+
+### Enable trusted service
+
+To allow your Azure AI Search to call your Azure OpenAI `embedding model, while Azure OpenAI has no public network access, you need to set up Azure OpenAI to bypass Azure AI Search as a trusted service based on managed identity. Azure OpenAI identifies the traffic from your Azure AI Search by verifying the claims in the JSON Web Token (JWT). Azure AI Search must use the system assigned managed identity authentication to call the embedding endpoint.
+
+Set `networkAcls.bypass`
+
+as `AzureServices`
+
+from the management API. For more information, see [Virtual networks article](/en-us/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#grant-access-to-trusted-azure-services-for-azure-openai).
+
+This step can be skipped only if you have a [shared private link](#create-shared-private-link) for your Azure AI Search resource.
+
+### Disable public network access
+
+You can disable public network access of your Azure OpenAI resource in the Azure portal.
+
+To allow access to your Azure OpenAI from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#use-private-endpoints) that connect to your Azure OpenAI resource.
+
+## Configure Azure AI Search
+
+You can use basic pricing tier and higher for the search resource. It's not necessary, but if you use the S2 pricing tier, [advanced options](#create-shared-private-link) are available.
+
+### Enable managed identity
+
+To allow your other resources to recognize the Azure AI Search using Microsoft Entra ID authentication, you need to assign a managed identity for your Azure AI Search. The easiest way is to toggle on the system assigned managed identity in the Azure portal.
+
+### Enable role-based access control
+
+As Azure OpenAI uses managed identity to access Azure AI Search, you need to enable role-based access control in your Azure AI Search. To do it on Azure portal, select **Both** or **Role-based access control** in the **Keys** tab in the Azure portal.
+
+For more information, see the [Azure AI Search RBAC article](/en-us/azure/search/search-security-enable-roles).
+
+### Disable public network access
+
+You can disable public network access of your Azure AI Search resource in the Azure portal.
+
+To allow access to your Azure AI Search resource from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/search/service-create-private-endpoint) that connect to your Azure AI Search resource.
+
+### Enable trusted service
+
+You can enable trusted service of your search resource from Azure portal.
+
+Go to your search resource's network tab. With the public network access set to **disabled**, select **Allow Azure services on the trusted services list to access this search service.**
+
+You can also use the REST API to enable trusted service. This example uses the Azure CLI and the `jq`
+
+tool.
+
+```
+rid=/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/providers/Microsoft.Search/searchServices/<YOUR-RESOURCE-NAME>
+apiVersion=2024-03-01-Preview
+#store the resource properties in a variable
+az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" > search.json
+#replace bypass with AzureServices using jq
+jq '.properties.networkRuleSet.bypass = "AzureServices"' search.json > search_updated.json
+#apply the updated properties to the resource
+az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" \
+--method PUT \
+--body @search_updated.json
+```
+
+
+### Create shared private link
+
+Tip
+
+If you are using a basic or standard pricing tier, or if it is your first time to set up all of your resources securely, you should skip this advanced topic.
+
+This section is only applicable for S2 pricing tier search resource, because it requires [private endpoint support for indexers with a skill set](/en-us/azure/search/search-limits-quotas-capacity#shared-private-link-resource-limits).
+
+To create shared private link from your search resource connecting to your Azure OpenAI resource, see the [search documentation](/en-us/azure/search/search-indexer-howto-access-private). Select **Resource type** as `Microsoft.CognitiveServices/accounts`
+
+and **Group ID** as `openai_account`
+
+.
+
+With shared the private link, [step 8](#data-ingestion-architecture) of the data ingestion architecture diagram is changed from **bypass trusted service** to **shared private link**.
+
+## Configure Storage Account
+
+### Enable trusted service
+
+To allow access to your Storage Account from Azure OpenAI and Azure AI Search, you need to set up Storage Account to bypass your Azure OpenAI and Azure AI Search as [trusted services based on managed identity](/en-us/azure/storage/common/storage-network-security?tabs=azure-portal#trusted-access-based-on-a-managed-identity).
+
+In the Azure portal, navigate to your storage account networking tab, choose "Selected networks", and then select **Allow Azure services on the trusted services list to access this storage account** and click Save.
+
+### Disable public network access
+
+You can disable public network access of your Storage Account in the Azure portal.
+
+To allow access to your Storage Account from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/en-us/azure/storage/common/storage-private-endpoints) that connect to your blob storage.
+
+## Role assignments
+
+So far you have already setup each resource work independently. Next you need to allow the services to authorize each other.
+
+| Role | Assignee | Resource | Description |
+|---|---|---|---|
+`Search Index Data Reader` |
+Azure OpenAI | Azure AI Search | Inference service queries the data from the index. |
+`Search Service Contributor` |
+Azure OpenAI | Azure AI Search | Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
+`Storage Blob Data Contributor` |
+Azure OpenAI | Storage Account | Reads from the input container, and writes the preprocessed result to the output container. |
+`Cognitive Services OpenAI Contributor` |
+Azure AI Search | Azure OpenAI, Microsoft Foundry Project | Allows the Azure AI Search resource access to the Azure OpenAI embedding endpoint. This role must be assigned on both the Azure OpenAI resource and the Microsoft Foundry project. |
+`Storage Blob Data Reader` |
+Azure AI Search | Storage Account | Reads document blobs and chunk blobs. |
+`Reader` |
+Foundry Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within a Foundry Project. |
+`Cognitive Services OpenAI User` |
+Web app | Azure OpenAI | Inference. |
+
+In the above table, the `Assignee`
+
+means the system assigned managed identity of that resource.
+
+The admin needs to have the `Owner`
+
+role on these resources to add role assignments.
+
+See the [Azure RBAC documentation](/en-us/azure/role-based-access-control/role-assignments-portal) for instructions on setting these roles in the Azure portal. You can use the [available script on GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/main/scripts/role_assignment.sh) to add the role assignments programmatically.
+
+To enable the developers to use these resources to build applications, the admin needs to add the developers' identity with the following role assignments to the resources.
+
+| Role | Resource | Description |
+|---|---|---|
+`Cognitive Services OpenAI Contributor` |
+Azure OpenAI | Call public ingestion API from
+`Contributor` role is not enough, because if you only have `Contributor` role, you cannot call data plane API via Microsoft Entra ID authentication, and Microsoft Entra ID authentication is required in the secure setup described in this article. |
+
+`Contributor`
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs).`Contributor`
+
+[Foundry portal](https://ai.azure.com/?cid=learnDocs).`Contributor`
+
+`Role Based Access Control Administrator`
+
+## Configure gateway and client
+
+To access the Azure OpenAI from your on-premises client machines, one of the approaches is to configure Azure VPN Gateway and Azure VPN Client.
+
+Follow [this guideline](/en-us/azure/vpn-gateway/tutorial-create-gateway-portal#VNetGateway) to create virtual network gateway for your virtual network.
+
+Follow [this guideline](/en-us/azure/vpn-gateway/openvpn-azure-ad-tenant#enable-authentication) to add point-to-site configuration, and enable Microsoft Entra ID based authentication. Download the Azure VPN Client profile configuration package, unzip, and import the `AzureVPN/azurevpnconfig.xml`
+
+file to your Azure VPN client.
+
+Configure your local machine `hosts`
+
+file to point your resources host names to the private IPs in your virtual network. The `hosts`
+
+file is located at `C:\Windows\System32\drivers\etc`
+
+for Windows, and at `/etc/hosts`
+
+on Linux. Example:
+
+```
+10.0.0.5 contoso.openai.azure.com
+10.0.0.6 contoso.search.windows.net
+10.0.0.7 contoso.blob.core.windows.net
+```
+
+
+## Foundry portal
+
+You should be able to use all [Foundry portal](https://ai.azure.com/?cid=learnDocs) features, including both ingestion and inference, from your on-premises client machines.
+
+## Web app
+
+The web app communicates with your Azure OpenAI resource. Since your Azure OpenAI resource has public network disabled, the web app needs to be set up to use the private endpoint in your virtual network to access your Azure OpenAI resource.
+
+The web app needs to resolve your Azure OpenAI host name to the private IP of the private endpoint for Azure OpenAI. So, you need to configure the private DNS zone for your virtual network first.
+
+[Create private DNS zone](/en-us/azure/dns/private-dns-getstarted-portal#create-a-private-dns-zone)in your resource group.[Add a DNS record](/en-us/azure/dns/private-dns-getstarted-portal#create-an-additional-dns-record). The IP is the private IP of the private endpoint for your Azure OpenAI resource, and you can get the IP address from the network interface associated with the private endpoint for your Azure OpenAI.[Link the private DNS zone to your virtual network](/en-us/azure/dns/private-dns-getstarted-portal#link-the-virtual-network)so the web app integrated in this virtual network can use this private DNS zone.
+
+When deploying the web app from [Foundry portal](https://ai.azure.com/?cid=learnDocs), select the same location with the virtual network, and select a proper SKU, so it can support the [virtual network integration feature](/en-us/azure/app-service/overview-vnet-integration).
+
+After the web app is deployed, from the Azure portal networking tab, configure the web app outbound traffic virtual network integration, choose the third subnet that you reserved for web app.
+
+## Using the API
+
+Make sure your sign-in credential has `Cognitive Services OpenAI Contributor`
+
+role on your Azure OpenAI resource, and run `az login`
+
+first.
+
+### Ingestion API
+
+See the [ingestion API reference article](/en-us/rest/api/azureopenai/ingestion-jobs?context=/azure/ai-foundry/openai/context/context) for details on the request and response objects used by the ingestion API.
+
+### Inference API
+
+See the [inference API reference article](../references/on-your-data?view=foundry-classic) for details on the request and response objects used by the inference API.
+
+## Use Microsoft Defender for Cloud
+
+You can now integrate [Microsoft Defender for Cloud](/en-us/azure/defender-for-cloud/defender-for-cloud-introduction) (preview) with your Azure resources to protect your applications. Microsoft Defender for Cloud protects your applications with [threat protection for AI workloads](/en-us/azure/defender-for-cloud/ai-threat-protection) , providing teams with evidence-based security alerts enriched with Microsoft threat intelligence signals and enables teams to strengthen their [security posture](/en-us/azure/defender-for-cloud/ai-security-posture) with integrated security best-practice recommendations.
+
+Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EXzLewuFRArQPJzR1tntlURThQR0hYU1MyRVRNODNMV1hBOUEzVlk3NC4u) to apply for access.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/create-resource -->
@@ -40883,6 +40410,1025 @@ Select
 [Language and voice support for the Speech service](../../ai-services/speech-service/language-support?view=foundry-classic)
 
 ---
+<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/use-your-data-quickstart -->
+
+# Microsoft Foundry quickstart
+
+The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
+
+In the portal, you can explore a rich catalog of cutting-edge models from many different providers. For this tutorial, search and then select the **gpt-4o** model.
+
+Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
+
+Substitute your endpoint for the `endpoint`
+
+in this code:
+
+```
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+project = AIProjectClient(
+endpoint="https://your-foundry-resource-name.ai.azure.com/api/projects/project-name",
+credential=DefaultAzureCredential(),
+)
+models = project.get_openai_client(api_version="2024-10-21")
+response = models.chat.completions.create(
+model="gpt-4o",
+messages=[
+{"role": "system", "content": "You are a helpful writing assistant"},
+{"role": "user", "content": "Write me a poem about flowers"},
+],
+)
+print(response.choices[0].message.content)
+```
+
+
+```
+using System.ClientModel.Primitives;
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Chat;
+#pragma warning disable OPENAI001
+string projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_INFERENCE")!;
+string modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL")!;
+BearerTokenPolicy tokenPolicy = new(
+new DefaultAzureCredential(),
+"https://ai.azure.com/.default");
+OpenAIClient openAIClient = new(
+authenticationPolicy: tokenPolicy,
+options: new OpenAIClientOptions()
+{
+Endpoint = new($"{projectEndpoint}/openai/v1"),
+});
+ChatClient chatClient = openAIClient.GetChatClient(modelDeploymentName);
+ChatCompletion completion = await chatClient.CompleteChatAsync(
+[
+new SystemChatMessage("You are a helpful assistant."),
+new UserChatMessage("How many feet are in a mile?")
+]);
+Console.WriteLine(completion.Content[0].Text);
+```
+
+
+```
+// Get the Azure AI endpoint and deployment name from environment variables
+const endpoint = process.env.PROJECT_ENDPOINT as string;
+const deployment = process.env.MODEL_DEPLOYMENT_NAME || 'gpt-4o';
+// Create an Azure OpenAI Client
+const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
+const client = await project.getAzureOpenAIClient({
+// The API version should match the version of the Azure OpenAI resource
+apiVersion: "2024-12-01-preview"
+});
+// Create a chat completion
+const chatCompletion = await client.chat.completions.create({
+model: deployment,
+messages: [
+{ role: "system", content: "You are a helpful writing assistant" },
+{ role: "user", content: "Write me a poem about flowers" },
+],
+});
+console.log(`\n==================== 🌷 COMPLETIONS POEM ====================\n`);
+console.log(chatCompletion.choices[0].message.content);
+```
+
+
+```
+package com.azure.ai.foundry.samples;
+import com.azure.ai.inference.ChatCompletionsClient;
+import com.azure.ai.inference.ChatCompletionsClientBuilder;
+import com.azure.ai.inference.models.ChatCompletions;
+import com.azure.core.credential.AzureKeyCredential;
+import com.azure.core.credential.TokenCredential;
+import com.azure.core.exception.HttpResponseException;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+/**
+* Sample demonstrating non-streaming chat completion functionality
+* using the Azure AI Inference SDK, wired to your AOAI project endpoint.
+*
+* Environment variables:
+* - PROJECT_ENDPOINT: Required. Your Azure AI project endpoint.
+* - AZURE_AI_API_KEY: Optional. Your API key (falls back to DefaultAzureCredential).
+* - AZURE_MODEL_DEPLOYMENT_NAME: Optional. Model deployment name (default: "phi-4").
+* - AZURE_MODEL_API_PATH: Optional. API path segment (default: "deployments").
+* - CHAT_PROMPT: Optional. The prompt to send (uses a default if not provided).
+*
+* SDK Features Demonstrated:
+* - Using the Azure AI Inference SDK (com.azure:azure-ai-inference:1.0.0-beta.5)
+* - Creating a ChatCompletionsClient with Azure or API key authentication
+* - Configuring endpoint paths for different model deployments
+* - Using the simplified complete() method for quick completions
+* - Accessing response content through strongly-typed objects
+* - Implementing proper error handling for service requests
+* - Choosing between DefaultAzureCredential and AzureKeyCredential
+*
+*/
+public class ChatCompletionSample {
+private static final ClientLogger logger = new ClientLogger(ChatCompletionSample.class);
+public static void main(String[] args) {
+// 1) Read and validate the project endpoint
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+if (projectEndpoint == null || projectEndpoint.isBlank()) {
+logger.error("PROJECT_ENDPOINT is required but not set");
+return;
+}
+// 2) Optional auth + model settings
+String apiKey = System.getenv("AZURE_AI_API_KEY");
+String deploymentName = System.getenv("AZURE_MODEL_DEPLOYMENT_NAME");
+String apiPath = System.getenv("AZURE_MODEL_API_PATH");
+String prompt = System.getenv("CHAT_PROMPT");
+if (deploymentName == null || deploymentName.isBlank()) {
+deploymentName = "phi-4";
+logger.info("No AZURE_MODEL_DEPLOYMENT_NAME provided, using default: {}", deploymentName);
+}
+if (apiPath == null || apiPath.isBlank()) {
+apiPath = "deployments";
+logger.info("No AZURE_MODEL_API_PATH provided, using default: {}", apiPath);
+}
+if (prompt == null || prompt.isBlank()) {
+prompt = "What best practices should I follow when asking an AI model to review Java code?";
+logger.info("No CHAT_PROMPT provided, using default prompt: {}", prompt);
+}
+try {
+// 3) Build the full inference endpoint URL
+String fullEndpoint = projectEndpoint.endsWith("/")
+? projectEndpoint
+: projectEndpoint + "/";
+fullEndpoint += apiPath + "/" + deploymentName;
+logger.info("Using inference endpoint: {}", fullEndpoint);
+// 4) Create the client with key or token credential :contentReference[oaicite:0]{index=0}
+ChatCompletionsClient client;
+if (apiKey != null && !apiKey.isBlank()) {
+logger.info("Authenticating using API key");
+client = new ChatCompletionsClientBuilder()
+.credential(new AzureKeyCredential(apiKey))
+.endpoint(fullEndpoint)
+.buildClient();
+} else {
+logger.info("Authenticating using DefaultAzureCredential");
+TokenCredential credential = new DefaultAzureCredentialBuilder().build();
+client = new ChatCompletionsClientBuilder()
+.credential(credential)
+.endpoint(fullEndpoint)
+.buildClient();
+}
+// 5) Send a simple chat completion request
+logger.info("Sending chat completion request with prompt: {}", prompt);
+ChatCompletions completions = client.complete(prompt);
+// 6) Process the response
+String content = completions.getChoice().getMessage().getContent();
+logger.info("Received response from model");
+System.out.println("\nResponse from AI assistant:\n" + content);
+} catch (HttpResponseException e) {
+// Handle API errors
+int status = e.getResponse().getStatusCode();
+logger.error("Service error {}: {}", status, e.getMessage());
+if (status == 401 || status == 403) {
+logger.error("Authentication failed. Check API key or Azure credentials.");
+} else if (status == 404) {
+logger.error("Deployment not found. Verify deployment name and endpoint.");
+} else if (status == 429) {
+logger.error("Rate limit exceeded. Please retry later.");
+}
+} catch (Exception e) {
+// Handle all other exceptions
+logger.error("Error in chat completion: {}", e.getMessage(), e);
+}
+}
+}
+```
+
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME`
+
+with your values:
+
+```
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-10-21' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json' \
+-d '{
+"messages": [
+{"role": "system",
+"content": "You are a helpful writing assistant"},
+{"role": "user",
+"content": "Write me a poem about flowers"}
+],
+"model": "gpt-4o"
+}'
+```
+
+
+- In the chat playground, fill in the prompt and select
+**Send**.
+- The model returns a response in the
+**Response** pane.
+
+Create an agent and chat with it.
+
+Substitute your endpoint for the `endpoint`
+
+in this code:
+
+```
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import ListSortOrder, FilePurpose
+project = AIProjectClient(
+endpoint="https://your-foundry-resource-name.ai.azure.com/api/projects/project-name",
+credential=DefaultAzureCredential(),
+)
+agent = project.agents.create_agent(
+model="gpt-4o",
+name="my-agent",
+instructions="You are a helpful writing assistant")
+thread = project.agents.threads.create()
+message = project.agents.messages.create(
+thread_id=thread.id,
+role="user",
+content="Write me a poem about flowers")
+run = project.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+if run.status == "failed":
+# Check if you got "Rate limit is exceeded.", then you want to get more quota
+print(f"Run failed: {run.last_error}")
+# Get messages from the thread
+messages = project.agents.messages.list(thread_id=thread.id)
+# Get the last message from the sender
+messages = project.agents.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+for message in messages:
+if message.run_id == run.id and message.text_messages:
+print(f"{message.role}: {message.text_messages[-1].text.value}")
+# Delete the agent once done
+project.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+
+```
+using Azure;
+using Azure.Identity;
+using Azure.AI.Agents.Persistent;
+// Creating the Client for agents
+var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL");
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+// Create an Agent with toolResources and process Agent run
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "SDK Test Agent - Tutor",
+instructions: "You are a personal electronics tutor. Write and run code to answer questions.",
+tools: new List<ToolDefinition> { new CodeInterpreterToolDefinition() });
+// Create thread for communication
+PersistentAgentThread thread = client.Threads.CreateThread();
+// Create message to thread
+PersistentThreadMessage messageResponse = client.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"I need to solve the equation `3x + 11 = 14`. Can you help me?");
+// Run the Agent
+ThreadRun run = client.Runs.CreateRun(thread, agent);
+// Wait for the run to complete
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = client.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress);
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+// Print the messages in the thread
+WriteMessages(messages);
+// Delete the thread and agent after use
+client.Threads.DeleteThread(thread.Id);
+client.Administration.DeleteAgent(agent.Id);
+// Temporary function to use a list of messages in the thread and write them to the console.
+static void WriteMessages(IEnumerable<PersistentThreadMessage> messages)
+{
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+Console.Write(textItem.Text);
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}");
+}
+Console.WriteLine();
+}
+}
+}
+```
+
+
+```
+const endpoint = process.env.PROJECT_ENDPOINT as string;
+const deployment = process.env.MODEL_DEPLOYMENT_NAME || 'gpt-4o';
+const client = new AIProjectClient(endpoint, new DefaultAzureCredential());
+// Create an Agent
+const agent = await client.agents.createAgent(deployment, {
+name: 'my-agent',
+instructions: 'You are a helpful agent'
+});
+console.log(`\n==================== 🕵️ POEM AGENT ====================`);
+// Create a thread and message
+const thread = await client.agents.threads.create();
+const prompt = 'Write me a poem about flowers';
+console.log(`\n---------------- 📝 User Prompt ---------------- \n${prompt}`);
+await client.agents.messages.create(thread.id, 'user', prompt);
+// Create run
+let run = await client.agents.runs.create(thread.id, agent.id);
+// Wait for run to complete
+console.log(`\n---------------- 🚦 Run Status ----------------`);
+while (['queued', 'in_progress', 'requires_action'].includes(run.status)) {
+// Avoid adding a lot of messages to the console
+await new Promise((resolve) => setTimeout(resolve, 1000));
+run = await client.agents.runs.get(thread.id, run.id);
+console.log(`Run status: ${run.status}`);
+}
+console.log('\n---------------- 📊 Token Usage ----------------');
+console.table([run.usage]);
+const messagesIterator = await client.agents.messages.list(thread.id);
+const assistantMessage = await getAssistantMessage(messagesIterator);
+console.log('\n---------------- 💬 Response ----------------');
+printAssistantMessage(assistantMessage);
+// Clean up
+console.log(`\n---------------- 🧹 Clean Up Poem Agent ----------------`);
+await client.agents.deleteAgent(agent.id);
+console.log(`Deleted Agent, Agent ID: ${agent.id}`);
+```
+
+
+```
+package com.azure.ai.foundry.samples;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateThreadAndRunOptions;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.core.credential.TokenCredential;
+import com.azure.core.exception.HttpResponseException;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+/**
+* Sample demonstrating how to work with Azure AI Agents using the Azure AI Agents Persistent SDK.
+*
+* This sample shows how to:
+* - Set up authentication with Azure credentials
+* - Create a persistent agent with custom instructions
+* - Start a thread and run with the agent
+* - Access various properties of the agent and thread run
+* - Work with the PersistentAgentsClient and PersistentAgentsAdministrationClient
+*
+* Environment variables:
+* - AZURE_ENDPOINT: Optional fallback. The base endpoint for your Azure AI service if PROJECT_ENDPOINT is not provided.
+* - PROJECT_ENDPOINT: Required. The endpoint for your Azure AI Project.
+* - MODEL_DEPLOYMENT_NAME: Optional. The model deployment name (defaults to "gpt-4o").
+* - AGENT_NAME: Optional. The name to give to the created agent (defaults to "java-quickstart-agent").
+* - AGENT_INSTRUCTIONS: Optional. The instructions for the agent (defaults to a helpful assistant).
+*
+* Note: This sample requires proper Azure authentication. It uses DefaultAzureCredential which supports
+* multiple authentication methods including environment variables, managed identities, and interactive login.
+*
+* SDK Features Demonstrated:
+* - Using the Azure AI Agents Persistent SDK (com.azure:azure-ai-agents-persistent:1.0.0-beta.2)
+* - Creating an authenticated client with DefaultAzureCredential
+* - Using the PersistentAgentsClientBuilder pattern for client instantiation
+* - Working with the PersistentAgentsAdministrationClient for agent management
+* - Creating agents with specific configurations (name, model, instructions)
+* - Starting threads and runs for agent conversations
+* - Working with agent state and thread management
+* - Accessing agent and thread run properties
+* - Implementing proper error handling for Azure service interactions
+*/
+public class AgentSample {
+private static final ClientLogger logger = new ClientLogger(AgentSample.class);
+public static void main(String[] args) {
+// Load environment variables with better error handling, supporting both .env and system environment variables
+String endpoint = System.getenv("AZURE_ENDPOINT");
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+String agentName = System.getenv("AGENT_NAME");
+String instructions = System.getenv("AGENT_INSTRUCTIONS");
+// Check for required endpoint configuration
+if (projectEndpoint == null && endpoint == null) {
+String errorMessage = "Environment variables not configured. Required: either PROJECT_ENDPOINT or AZURE_ENDPOINT must be set.";
+logger.error("ERROR: {}", errorMessage);
+logger.error("Please set your environment variables or create a .env file. See README.md for details.");
+return;
+}
+// Use AZURE_ENDPOINT as fallback if PROJECT_ENDPOINT not set
+if (projectEndpoint == null) {
+projectEndpoint = endpoint;
+logger.info("Using AZURE_ENDPOINT as PROJECT_ENDPOINT: {}", projectEndpoint);
+}
+// Set defaults for optional parameters with informative logging
+if (modelName == null) {
+modelName = "gpt-4o";
+logger.info("No MODEL_DEPLOYMENT_NAME provided, using default: {}", modelName);
+}
+if (agentName == null) {
+agentName = "java-quickstart-agent";
+logger.info("No AGENT_NAME provided, using default: {}", agentName);
+}
+if (instructions == null) {
+instructions = "You are a helpful assistant that provides clear and concise information.";
+logger.info("No AGENT_INSTRUCTIONS provided, using default instructions");
+}
+// Create Azure credential with DefaultAzureCredentialBuilder
+// This supports multiple authentication methods including environment variables,
+// managed identities, and interactive browser login
+logger.info("Building DefaultAzureCredential");
+TokenCredential credential = new DefaultAzureCredentialBuilder().build();
+try {
+// Build the general agents client
+logger.info("Creating PersistentAgentsClient with endpoint: {}", projectEndpoint);
+PersistentAgentsClient agentsClient = new PersistentAgentsClientBuilder()
+.endpoint(projectEndpoint)
+.credential(credential)
+.buildClient();
+// Derive the administration client
+logger.info("Getting PersistentAgentsAdministrationClient");
+PersistentAgentsAdministrationClient adminClient =
+agentsClient.getPersistentAgentsAdministrationClient();
+// Create an agent
+logger.info("Creating agent with name: {}, model: {}", agentName, modelName);
+PersistentAgent agent = adminClient.createAgent(
+new CreateAgentOptions(modelName)
+.setName(agentName)
+.setInstructions(instructions)
+);
+logger.info("Agent created: ID={}, Name={}", agent.getId(), agent.getName());
+logger.info("Agent model: {}", agent.getModel());
+// Start a thread/run on the general client
+logger.info("Creating thread and run with agent ID: {}", agent.getId());
+ThreadRun runResult = agentsClient.createThreadAndRun(
+new CreateThreadAndRunOptions(agent.getId())
+);
+logger.info("ThreadRun created: ThreadId={}", runResult.getThreadId());
+// List available getters on ThreadRun for informational purposes
+logger.info("\nAvailable getters on ThreadRun:");
+for (var method : ThreadRun.class.getMethods()) {
+if (method.getName().startsWith("get")) {
+logger.info(" - {}", method.getName());
+}
+}
+logger.info("\nDemo completed successfully!");
+} catch (HttpResponseException e) {
+// Handle service-specific errors with detailed information
+int statusCode = e.getResponse().getStatusCode();
+logger.error("Service error {}: {}", statusCode, e.getMessage());
+logger.error("Refer to the Azure AI Agents documentation for troubleshooting information.");
+} catch (Exception e) {
+// Handle general exceptions
+logger.error("Error in agent sample: {}", e.getMessage(), e);
+}
+}
+}
+```
+
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME`
+
+and `YOUR-PROJECT-NAME`
+
+with your values:
+
+```
+# Create agent
+curl --request POST --url "https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/assistants?api-version=v1" \
+-h "authorization: Bearer $AZURE_AI_AUTH_TOKEN" \
+-h "content-type: application/json" \
+-d '{
+"model": "gpt-4o",
+"name": "my-agent",
+"instructions": "You are a helpful writing assistant"
+}'
+#Lets say agent ID created is asst_123456789. Use this to run the agent
+# Create thread
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/threads?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json'
+#Lets say thread ID created is thread_123456789. Use this in the next step
+# Create message using thread ID
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/threads/thread_123456789/messages?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json' \
+-d '{
+"role": "user",
+"content": "Write me a poem about flowers"
+}'
+# Run thread with the agent - use both agent id and thread id
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/threads/thread_123456789/runs?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json' \
+--data '{
+"assistant_id": "asst_123456789"
+}'
+# List the messages in the thread using thread ID
+curl --request GET --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/threads/thread_123456789/messages?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json'
+# Delete agent once done using agent id
+curl --request DELETE --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/assistants/asst_123456789?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json'
+```
+
+
+When you're ready to try an agent, a default agent is created for you. To chat with this agent:
+
+- In the left pane, select
+**Playgrounds**.
+- In the
+**Agents playground** card, select **Let's go**.
+- Add instructions, such as, "You are a helpful writing assistant."
+- Start chatting with your agent, for example, "Write me a poem about flowers."
+
+Agents have powerful capabilities through the use of tools. Let's add a file search tool that enables us to do knowledge retrieval.
+
+Substitute your endpoint for the `endpoint`
+
+in this code:
+
+```
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import ListSortOrder, FileSearchTool
+project = AIProjectClient(
+endpoint="https://your-foundry-resource-name.ai.azure.com/api/projects/project-name",
+credential=DefaultAzureCredential(),
+)
+# Upload file and create vector store
+file = project.agents.files.upload(file_path="./product_info_1.md", purpose=FilePurpose.AGENTS)
+vector_store = project.agents.vector_stores.create_and_poll(file_ids=[file.id], name="my_vectorstore")
+# Create file search tool and agent
+file_search = FileSearchTool(vector_store_ids=[vector_store.id])
+agent = project.agents.create_agent(
+model="gpt-4o",
+name="my-assistant",
+instructions="You are a helpful assistant and can search information from uploaded files",
+tools=file_search.definitions,
+tool_resources=file_search.resources,
+)
+# Create thread and process user message
+thread = project.agents.threads.create()
+project.agents.messages.create(thread_id=thread.id, role="user", content="Hello, what Contoso products do you know?")
+run = project.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+# Handle run status
+if run.status == "failed":
+print(f"Run failed: {run.last_error}")
+# Print thread messages
+messages = project.agents.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+for message in messages:
+if message.run_id == run.id and message.text_messages:
+print(f"{message.role}: {message.text_messages[-1].text.value}")
+# Cleanup resources
+project.agents.vector_stores.delete(vector_store.id)
+project.agents.files.delete(file_id=file.id)
+project.agents.delete_agent(agent.id)
+```
+
+
+```
+using Azure;
+using Azure.Identity;
+using Azure.AI.Agents.Persistent;
+// Creating the Client for agents and vector stores
+var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL");
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+PersistentAgentFileInfo uploadedAgentFile = client.Files.UploadFile(
+filePath: "product_info_1.md",
+purpose: PersistentAgentFilePurpose.Agents);
+// Create a vector store with the file and wait for it to be processed.
+// If you do not specify a vector store, create_message will create a vector store with a default expiration policy of seven days after they were last active
+Dictionary<string, string> fileIds = new()
+{
+{ uploadedAgentFile.Id, uploadedAgentFile.Filename }
+};
+PersistentAgentsVectorStore vectorStore = client.VectorStores.CreateVectorStore(
+name: "my_vector_store");
+// Add file ID to vector store.
+VectorStoreFile vctFile = client.VectorStores.CreateVectorStoreFile(
+vectorStoreId: vectorStore.Id,
+fileId: uploadedAgentFile.Id
+);
+Console.WriteLine($"Added file to vector store. The id file in the vector store is {vctFile.Id}.");
+FileSearchToolResource fileSearchToolResource = new FileSearchToolResource();
+fileSearchToolResource.VectorStoreIds.Add(vectorStore.Id);
+// Create an Agent with toolResources and process Agent run
+PersistentAgent agent = client.Administration.CreateAgent(
+model: modelDeploymentName,
+name: "SDK Test Agent - Retrieval",
+instructions: "You are a helpful agent that can help fetch data from files you know about.",
+tools: new List<ToolDefinition> { new FileSearchToolDefinition() },
+toolResources: new ToolResources() { FileSearch = fileSearchToolResource });
+// Create thread for communication
+PersistentAgentThread thread = client.Threads.CreateThread();
+// Create message to thread
+PersistentThreadMessage messageResponse = client.Messages.CreateMessage(
+thread.Id,
+MessageRole.User,
+"Can you give me information on how to mount the product?");
+// Run the Agent
+ThreadRun run = client.Runs.CreateRun(thread, agent);
+// Wait for the run to complete
+// This is a blocking call, so it will wait until the run is completed
+do
+{
+Thread.Sleep(TimeSpan.FromMilliseconds(500));
+run = client.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+|| run.Status == RunStatus.InProgress);
+// Create a list of messages in the thread and write them to the console.
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
+threadId: thread.Id,
+order: ListSortOrder.Ascending
+);
+WriteMessages(messages, fileIds);
+// Delete the thread and agent after use
+client.VectorStores.DeleteVectorStore(vectorStore.Id);
+client.Files.DeleteFile(uploadedAgentFile.Id);
+client.Threads.DeleteThread(thread.Id);
+client.Administration.DeleteAgent(agent.Id);
+// Helper method to write messages to the console
+static void WriteMessages(IEnumerable<PersistentThreadMessage> messages, Dictionary<string, string> fileIds)
+{
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+foreach (MessageContent contentItem in threadMessage.ContentItems)
+{
+if (contentItem is MessageTextContent textItem)
+{
+if (threadMessage.Role == MessageRole.Agent && textItem.Annotations.Count > 0)
+{
+string strMessage = textItem.Text;
+foreach (MessageTextAnnotation annotation in textItem.Annotations)
+{
+if (annotation is MessageTextFilePathAnnotation pathAnnotation)
+{
+strMessage = replaceReferences(fileIds, pathAnnotation.FileId, pathAnnotation.Text, strMessage);
+}
+else if (annotation is MessageTextFileCitationAnnotation citationAnnotation)
+{
+strMessage = replaceReferences(fileIds, citationAnnotation.FileId, citationAnnotation.Text, strMessage);
+}
+}
+Console.Write(strMessage);
+}
+else
+{
+Console.Write(textItem.Text);
+}
+}
+else if (contentItem is MessageImageFileContent imageFileItem)
+{
+Console.Write($"<image from ID: {imageFileItem.FileId}");
+}
+Console.WriteLine();
+}
+}
+}
+// Helper method to replace file references in the text
+static string replaceReferences(Dictionary<string, string> fileIds, string fileID, string placeholder, string text)
+{
+if (fileIds.TryGetValue(fileID, out string replacement))
+return text.Replace(placeholder, $" [{replacement}]");
+else
+return text.Replace(placeholder, $" [{fileID}]");
+}
+```
+
+
+```
+// Upload a file named product_info_1.md
+console.log(`\n==================== 🕵️ FILE AGENT ====================`);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const filePath = path.join(__dirname, '../data/product_info_1.md');
+const fileStream = fs.createReadStream(filePath);
+fileStream.on('data', (chunk: string | Buffer) => {
+console.log(`Read ${chunk.length} bytes of data.`);
+});
+const file = await client.agents.files.upload(fileStream, 'assistants', {
+fileName: 'product_info_1.md'
+});
+console.log(`Uploaded file, ID: ${file.id}`);
+const vectorStore = await client.agents.vectorStores.create({
+fileIds: [file.id], // Associate the uploaded file with the vector store
+name: 'my_vectorstore'
+});
+console.log('\n---------------- 🗃️ Vector Store Info ----------------');
+console.table([
+{
+'Vector Store ID': vectorStore.id,
+'Usage (bytes)': vectorStore.usageBytes,
+'File Count': vectorStore.fileCounts?.total ?? 'N/A'
+}
+]);
+// Create an Agent and a FileSearch tool
+const fileSearchTool = ToolUtility.createFileSearchTool([vectorStore.id]);
+const fileAgent = await client.agents.createAgent(deployment, {
+name: 'my-file-agent',
+instructions: 'You are a helpful assistant and can search information from uploaded files',
+tools: [fileSearchTool.definition],
+toolResources: fileSearchTool.resources
+});
+// Create a thread and message
+const fileSearchThread = await client.agents.threads.create({ toolResources: fileSearchTool.resources });
+const filePrompt = 'What are the steps to setup the TrailMaster X4 Tent?';
+console.log(`\n---------------- 📝 User Prompt ---------------- \n${filePrompt}`);
+await client.agents.messages.create(fileSearchThread.id, 'user', filePrompt);
+// Create run
+let fileSearchRun = await client.agents.runs.create(fileSearchThread.id, fileAgent.id).stream();
+for await (const eventMessage of fileSearchRun) {
+if (eventMessage.event === DoneEvent.Done) {
+console.log(`Run completed: ${eventMessage.data}`);
+}
+if (eventMessage.event === ErrorEvent.Error) {
+console.log(`An error occurred. ${eventMessage.data}`);
+}
+}
+const fileSearchMessagesIterator = await client.agents.messages.list(fileSearchThread.id);
+const fileAssistantMessage = await getAssistantMessage(fileSearchMessagesIterator);
+console.log(`\n---------------- 💬 Response ---------------- \n`);
+printAssistantMessage(fileAssistantMessage);
+// Clean up
+console.log(`\n---------------- 🧹 Clean Up File Agent ----------------`);
+client.agents.vectorStores.delete(vectorStore.id);
+client.agents.files.delete(file.id);
+client.agents.deleteAgent(fileAgent.id);
+console.log(`Deleted VectorStore, File, and FileAgent. FileAgent ID: ${fileAgent.id}`);
+```
+
+
+```
+package com.azure.ai.foundry.samples;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateThreadAndRunOptions;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.core.exception.HttpResponseException;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+/**
+* Sample demonstrating agent creation with document capabilities using Azure AI Agents Persistent SDK.
+*
+* This sample shows how to:
+* - Set up authentication with Azure credentials
+* - Create a temporary document file for demonstration purposes
+* - Create a persistent agent with custom instructions for document search
+* - Start a thread and run with the agent that can access document content
+* - Work with file-based knowledge sources for agent interactions
+*
+* Environment variables:
+* - AZURE_ENDPOINT: Optional fallback. The base endpoint for your Azure AI service if PROJECT_ENDPOINT is not provided.
+* - PROJECT_ENDPOINT: Required. The endpoint for your Azure AI Project.
+* - MODEL_DEPLOYMENT_NAME: Optional. The model deployment name (defaults to "gpt-4o").
+* - AGENT_NAME: Optional. The name to give to the created agent (defaults to "java-file-search-agent").
+* - AGENT_INSTRUCTIONS: Optional. The instructions for the agent (defaults to document-focused instructions).
+*
+* Note: This sample demonstrates the creation of an agent that can process document content.
+* In a real-world scenario, you might want to integrate with Azure AI Search or similar services
+* for more advanced document processing capabilities.
+*
+* SDK Features Demonstrated:
+* - Using the Azure AI Agents Persistent SDK (com.azure:azure-ai-agents-persistent:1.0.0-beta.2)
+* - Creating an authenticated client with DefaultAzureCredential
+* - Using the PersistentAgentsClientBuilder for client instantiation
+* - Working with the PersistentAgentsAdministrationClient for agent management
+* - Creating temporary document files for agent access
+* - Adding document knowledge sources to agents
+* - Creating document-aware agents that can search and reference content
+* - Starting threads and runs for document-based Q&A
+* - Error handling for Azure service and file operations
+*/
+public class FileSearchAgentSample {
+private static final ClientLogger logger = new ClientLogger(FileSearchAgentSample.class);
+public static void main(String[] args) {
+// Load environment variables with proper error handling
+String endpoint = System.getenv("AZURE_ENDPOINT");
+String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+String agentName = System.getenv("AGENT_NAME");
+String instructions = System.getenv("AGENT_INSTRUCTIONS");
+// Check for required endpoint configuration
+if (projectEndpoint == null && endpoint == null) {
+String errorMessage = "Environment variables not configured. Required: either PROJECT_ENDPOINT or AZURE_ENDPOINT must be set.";
+logger.error("ERROR: {}", errorMessage);
+logger.error("Please set your environment variables or create a .env file. See README.md for details.");
+return;
+}
+// Set defaults for optional parameters
+if (modelName == null) {
+modelName = "gpt-4o";
+logger.info("No MODEL_DEPLOYMENT_NAME provided, using default: {}", modelName);
+}
+if (agentName == null) {
+agentName = "java-file-search-agent";
+logger.info("No AGENT_NAME provided, using default: {}", agentName);
+}
+if (instructions == null) {
+instructions = "You are a helpful assistant that can answer questions about documents.";
+logger.info("No AGENT_INSTRUCTIONS provided, using default instructions: {}", instructions);
+}
+logger.info("Building DefaultAzureCredential");
+var credential = new DefaultAzureCredentialBuilder().build();
+// Use AZURE_ENDPOINT as fallback if PROJECT_ENDPOINT not set
+String finalEndpoint = projectEndpoint != null ? projectEndpoint : endpoint;
+logger.info("Using endpoint: {}", finalEndpoint);
+try {
+// Build the general agents client with proper error handling
+logger.info("Creating PersistentAgentsClient with endpoint: {}", finalEndpoint);
+PersistentAgentsClient agentsClient = new PersistentAgentsClientBuilder()
+.endpoint(finalEndpoint)
+.credential(credential)
+.buildClient();
+// Derive the administration client
+logger.info("Getting PersistentAgentsAdministrationClient");
+PersistentAgentsAdministrationClient adminClient =
+agentsClient.getPersistentAgentsAdministrationClient();
+// Create sample document for demonstration
+Path tmpFile = createSampleDocument();
+logger.info("Created sample document at: {}", tmpFile);
+String filePreview = Files.readString(tmpFile).substring(0, 200) + "...";
+logger.info("{}", filePreview);
+// Create the agent with proper configuration
+logger.info("Creating agent with name: {}, model: {}", agentName, modelName);
+PersistentAgent agent = adminClient.createAgent(
+new CreateAgentOptions(modelName)
+.setName(agentName)
+.setInstructions(instructions)
+);
+logger.info("Agent ID: {}", agent.getId());
+logger.info("Agent model: {}", agent.getModel());
+// Start a thread and run on the general client
+logger.info("Creating thread and run with agent ID: {}", agent.getId());
+ThreadRun threadRun = agentsClient.createThreadAndRun(
+new CreateThreadAndRunOptions(agent.getId())
+);
+logger.info("ThreadRun ID: {}", threadRun.getThreadId());
+// Display success message
+logger.info("\nDemo completed successfully!");
+} catch (HttpResponseException e) {
+// Handle service-specific errors with detailed information
+int statusCode = e.getResponse().getStatusCode();
+logger.error("Service error {}: {}", statusCode, e.getMessage());
+logger.error("Refer to the Azure AI Agents documentation for troubleshooting information.");
+} catch (IOException e) {
+// Handle IO exceptions specifically for file operations
+logger.error("I/O error while creating sample document: {}", e.getMessage(), e);
+} catch (Exception e) {
+// Handle general exceptions
+logger.error("Error in file search agent sample: {}", e.getMessage(), e);
+}
+}
+/**
+* Creates a sample markdown document with cloud computing information.
+*
+* This method demonstrates:
+* - Creating a temporary file that will be automatically deleted when the JVM exits
+* - Writing structured markdown content to the file
+* - Logging file creation and preview of content
+*
+* In a real application, you might read existing files or create more complex documents.
+* You could also upload them to a document storage service for persistent access.
+*
+* @return Path to the created temporary file
+* @throws IOException if an I/O error occurs during file creation or writing
+*/
+private static Path createSampleDocument() throws IOException {
+logger.info("Creating sample document");
+String content = """
+# Cloud Computing Overview
+Cloud computing is the delivery of computing services over the internet, including servers, storage,
+databases, networking, software, analytics, and intelligence. Cloud services offer faster innovation,
+flexible resources, and economies of scale.
+## Key Cloud Service Models
+1. **Infrastructure as a Service (IaaS)** - Provides virtualized computing resources
+2. **Platform as a Service (PaaS)** - Provides hardware and software tools over the internet
+3. **Software as a Service (SaaS)** - Delivers software applications over the internet
+## Major Cloud Providers
+- Microsoft Azure
+- Amazon Web Services (AWS)
+- Google Cloud Platform (GCP)
+- IBM Cloud
+## Benefits of Cloud Computing
+- Cost efficiency
+- Scalability
+- Reliability
+- Performance
+- Security
+""";
+Path tempFile = Files.createTempFile("cloud-doc", ".md");
+Files.writeString(tempFile, content);
+logger.info("Sample document created at: {}", tempFile);
+return tempFile;
+}
+}
+```
+
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME`
+
+and `YOUR-PROJECT-NAME`
+
+with your values:
+
+```
+#Upload the file
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/files?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-f purpose="assistant" \
+-f file="@product_info_1.md" #File object (not file name) to be uploaded.
+#Lets say file ID created is assistant-123456789. Use this in the next step
+# create vector store
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/vector_stores?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json' \
+-d '{
+"name": "my_vectorstore",
+"file_ids": ["assistant-123456789"]
+}'
+#Lets say Vector Store ID created is vs_123456789. Use this in the next step
+# Create Agent for File Search
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/assistants?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json' \
+-d '{
+"model": "gpt-4o",
+"name": "my-assistant",
+"instructions": "You are a helpful assistant and can search information from uploaded files",
+"tools": [{"type": "file_search"}],
+"tool_resources": {"file_search": {"vector_store_ids": ["vs_123456789"]}}
+}'
+#Lets say agent ID created is asst_123456789. Use this to run the agent
+# Create thread
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/threads?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json'
+#Lets say thread ID created is thread_123456789. Use this in the next step
+# Create message using thread ID
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/threads/thread_123456789/messages?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json' \
+-d '{
+"role": "user",
+"content": "Hello, what Contoso products do you know?"
+}'
+# Run thread with the agent - use both agent id and thread id
+curl --request POST --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/threads/thread_123456789/runs?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json' \
+--data '{
+"assistant_id": "asst_123456789"
+}'
+# List the messages in the thread using thread ID
+curl --request GET --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/threads/thread_123456789/messages?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json'
+# Delete agent once done using agent id
+curl --request DELETE --url 'https://YOUR-FOUNDRY-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR-PROJECT-NAME/assistants/asst_123456789?api-version=v1' \
+-h 'authorization: Bearer $AZURE_AI_AUTH_TOKEN' \
+-h 'content-type: application/json'
+```
+
+
+- In your agent's
+**Setup** pane, scroll down if necessary to find **Knowledge**.
+- Select
+**Add**.
+- Select
+**Files** to upload the product_info_1.md file.
+- Select
+**Select local files** under **Add files**.
+- Select
+**Upload and save**.
+- Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
+- Ask a question, such as, "Hello, what Contoso products do you know?"
+- To add more files, select the
+**...** on the AgentVectorStore, then select **Manage**.
+
+If you no longer need any of the resources you created, delete the resource group associated with your project.
+
+---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/monitor-openai-reference -->
 
 # Azure OpenAI monitoring data reference
@@ -48214,7 +48760,7 @@ POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYM
 
 ## Data plane inference
 
-The rest of the article covers the latest GA release of the Azure OpenAI data plane inference specification, `2024-10-21`
+The rest of the article covers the GA release of the Azure OpenAI data plane inference specification, `2024-10-21`
 
 .
 
@@ -50607,1622 +51153,6 @@ Is not currently part of the latest Azure OpenAI GA version of the Azure OpenAI 
 
 Learn about [Models, and fine-tuning with the REST API](/en-us/rest/api/azureopenai/fine-tuning).
 Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic).
-
----
-<!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/use-your-data-quickstart -->
-
-# Quickstart: Chat with Azure OpenAI models using your own data
-
-Note
-
-Access to this page requires authorization. You can try [signing in](#) or [changing directories].
-
-Access to this page requires authorization. You can try [changing directories].
-
-Note
-
-This document refers to the [Microsoft Foundry (classic)](../what-is-foundry?view=foundry-classic#microsoft-foundry-portals) portal.
-
-🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry?view=foundry&preserve-view=true) to learn about the new portal.
-
-In this quickstart, you use your own data with Azure OpenAI models to create a powerful, conversational AI platform that enables faster and more accurate communication.
-
-Important
-
-There are new ways to build conversational solutions with your own data. For the latest recommended approach, see [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval?view=foundry-classic).
-
-## Prerequisites
-
-- Download the example data from
-[GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf)if you don't have your own data.
-
-## Add your data using Microsoft Foundry portal
-
-Tip
-
-Alternatively, you can [use the Azure Developer CLI](how-to/azure-developer-cli?view=foundry-classic) to programmatically create the resources needed for Azure OpenAI On Your Data.
-
-To add your data using the portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. Select your Azure OpenAI resource. If you have a Foundry resource, you can
-
-[create a Foundry project](../how-to/create-projects?view=foundry-classic).From the left pane, select
-
-**Playgrounds**>**Chat**.In the
-
-**Setup**pane, select your model deployment.Select
-
-**Add your data**>**Add a data source**.On the
-
-**Data source**page:Under
-
-**Select data source**, select**Upload files (preview)**.Tip
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Data source options](concepts/use-your-data?view=foundry-classic#supported-data-sources)and[Supported file types and formats](concepts/use-your-data?view=foundry-classic#data-formats-and-file-types). - For documents and datasets with long text, we recommend that you use the
-[data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395).
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228)(CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select**Turn on CORS**.Select your Azure AI Search resource.
-
-Enter a name for your new index.
-
-Select the checkbox that acknowledges the billing effects of using Azure AI Search.
-
-Select
-
-**Next**.
-
-On the
-
-**Upload files**page:Select
-
-**Browse for a file**, and then select your own data or the sample data you downloaded from the[prerequisites](#prerequisites).Select
-
-**Upload files**.Select
-
-**Next**.
-
-On the
-
-**Data management**page:Choose whether to enable
-
-[semantic search or vector search](concepts/use-your-data?view=foundry-classic#search-types)for your index.Important
-
-[Semantic search](/en-us/azure/search/semantic-search-overview#availability-and-pricing)and[vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see[Choose a tier](/en-us/azure/search/search-sku-tier)and[Service limits](/en-us/azure/search/search-limits-quotas-capacity).- To help improve the quality of the information retrieval and model response, we recommend that you enable
-[semantic search](/en-us/azure/search/semantic-search-overview)for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
-
-Select
-
-**Next**.
-
-On the
-
-**Data connection**page:Choose whether to authenticate using a
-
-**System assigned managed identity**or an**API key**.Select
-
-**Next**.
-
-Review your configurations, and then select
-
-**Save and close**.You can now chat with the model, which uses your data to construct the response.
-
-
-## Chat playground
-
-Start exploring Azure OpenAI capabilities with a no-code approach through the chat playground. It's simply a text box where you can submit a prompt to generate a completion. From this page, you can quickly iterate and experiment with the capabilities.
-
-The playground gives you options to tailor your chat experience. On the top menu, you can select **Deploy** to determine which model generates a response using the search results from your index. You choose the number of past messages to include as conversation history for future generated responses. [Conversation history](concepts/use-your-data?view=foundry-classic#conversation-history-for-better-results) gives context to generate related responses but also consumes [token usage](concepts/use-your-data?view=foundry-classic#token-usage-estimation-for-azure-openai-on-your-data). The input token progress indicator keeps track of the token count of the question you submit.
-
-The **Advanced settings** on the left are [runtime parameters](concepts/use-your-data?view=foundry-classic#runtime-parameters), which give you control over retrieval and search relevant information from your data. A good use case is when you want to make sure responses are generated only based on your data or you find the model cannot generate a response based on existed information on your data.
-
-**Strictness**determines the system's aggressiveness in filtering search documents based on their similarity scores. Setting strictness to 5 indicates that the system will aggressively filter out documents, applying a very high similarity threshold.[Semantic search](concepts/use-your-data?view=foundry-classic#search-types)can be helpful in this scenario because the ranking models do a better job of inferring the intent of the query. Lower levels of strictness produce more verbose answers, but might also include information that isn't in your index. This is set to 3 by default.**Retrieved documents**is an integer that can be set to 3, 5, 10, or 20, and controls the number of document chunks provided to the large language model for formulating the final response. By default, this is set to 5.When
-
-**Limit responses to your data**is enabled, the model attempts to only rely on your documents for responses. This is set to true by default.
-
-
-Send your first query. The chat models perform best in question and answer exercises. For example, "*What are my available health plans?*" or "*What is the health plus option?*".
-
-Queries that require data analysis would probably fail, such as "*Which health plan is most popular?*". Queries that require information about all of your data will also likely fail, such as "*How many documents have I uploaded?*". Remember that the search engine looks for chunks having exact or similar terms, phrases, or construction to the query. And while the model might understand the question, if search results are chunks from the data set, it's not the right information to answer that kind of question.
-
-Chats are constrained by the number of documents (chunks) returned in the response (limited to 3-20 in Foundry portal playground). As you can imagine, posing a question about "all of the titles" requires a full scan of the entire vector store.
-
-## Deploy your model
-
-Once you're satisfied with the experience, you can deploy a web app directly from the portal by selecting the **Deploy to** button.
-
-This gives you the option to either deploy to a standalone web application, or a copilot in Copilot Studio (preview) if you're [using your own data](concepts/use-your-data?view=foundry-classic#deploy-to-a-copilot-preview-teams-app-preview-or-web-app) on the model.
-
-As an example, if you choose to deploy a web app:
-
-The first time you deploy a web app, you should select **Create a new web app**. Choose a name for the app, which will
-become part of the app URL. For example, `https://<appname>.azurewebsites.net`
-
-.
-
-Select your subscription, resource group, location, and pricing plan for the published app. To
-update an existing app, select **Publish to an existing web app** and choose the name of your previous
-app from the dropdown menu.
-
-If you choose to deploy a web app, see the [important considerations](how-to/use-web-app?view=foundry-classic#important-considerations) for using it.
-
-## Prerequisites
-
-- An Azure subscription -
-[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). - Download the example data from
-[GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf)if you don't have your own data. - The
-[.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-
-## Add your data using Microsoft Foundry portal
-
-Tip
-
-Alternatively, you can [use the Azure Developer CLI](how-to/azure-developer-cli?view=foundry-classic) to programmatically create the resources needed for Azure OpenAI On Your Data.
-
-To add your data using the portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. Select your Azure OpenAI resource. If you have a Foundry resource, you can
-
-[create a Foundry project](../how-to/create-projects?view=foundry-classic).From the left pane, select
-
-**Playgrounds**>**Chat**.In the
-
-**Setup**pane, select your model deployment.Select
-
-**Add your data**>**Add a data source**.On the
-
-**Data source**page:Under
-
-**Select data source**, select**Upload files (preview)**.Tip
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Data source options](concepts/use-your-data?view=foundry-classic#supported-data-sources)and[Supported file types and formats](concepts/use-your-data?view=foundry-classic#data-formats-and-file-types). - For documents and datasets with long text, we recommend that you use the
-[data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395).
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228)(CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select**Turn on CORS**.Select your Azure AI Search resource.
-
-Enter a name for your new index.
-
-Select the checkbox that acknowledges the billing effects of using Azure AI Search.
-
-Select
-
-**Next**.
-
-On the
-
-**Upload files**page:Select
-
-**Browse for a file**, and then select your own data or the sample data you downloaded from the[prerequisites](#prerequisites).Select
-
-**Upload files**.Select
-
-**Next**.
-
-On the
-
-**Data management**page:Choose whether to enable
-
-[semantic search or vector search](concepts/use-your-data?view=foundry-classic#search-types)for your index.Important
-
-[Semantic search](/en-us/azure/search/semantic-search-overview#availability-and-pricing)and[vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see[Choose a tier](/en-us/azure/search/search-sku-tier)and[Service limits](/en-us/azure/search/search-limits-quotas-capacity).- To help improve the quality of the information retrieval and model response, we recommend that you enable
-[semantic search](/en-us/azure/search/semantic-search-overview)for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
-
-Select
-
-**Next**.
-
-On the
-
-**Data connection**page:Choose whether to authenticate using a
-
-**System assigned managed identity**or an**API key**.Select
-
-**Next**.
-
-Review your configurations, and then select
-
-**Save and close**.You can now chat with the model, which uses your data to construct the response.
-
-
-## Retrieve resource information
-
-You need to retrieve the following information to authenticate your application with your Azure OpenAI resource. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. See [Add your data using Microsoft Foundry portal](use-your-data-quickstart?view=foundry-classic&pivots=programming-language-studio).
-
-| Variable name | Value |
-|---|---|
-`AZURE_OPENAI_ENDPOINT` |
-This value can be found in the Keys & Endpoint section when examining your Azure OpenAI resource from the Azure portal. An example endpoint is: `https://my-resource.openai.azure.com` . |
-`AZURE_OPENAI_DEPLOYMENT_NAME` |
-This value corresponds to the custom name you chose for your deployment when you deployed a model. This value can be found under Resource Management > Deployments in the Azure portal. |
-`AZURE_AI_SEARCH_ENDPOINT` |
-This value can be found in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-`AZURE_AI_SEARCH_INDEX` |
-This value corresponds to the name of the index you created to store your data. You can find it in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-
-Learn more about [keyless authentication](/en-us/azure/ai-services/authentication) and [setting environment variables](/en-us/azure/ai-services/cognitive-services-environment-variables).
-
-From the project directory, open the *Program.cs* file and replace its contents with the following code:
-
-```
-using System;
-using Azure.AI.OpenAI;
-using System.ClientModel;
-using Azure.AI.OpenAI.Chat;
-using OpenAI.Chat;
-using static System.Environment;
-string azureOpenAIEndpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
-string azureOpenAIKey = GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
-string deploymentName = GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT_NAME");
-string searchEndpoint = GetEnvironmentVariable("AZURE_AI_SEARCH_ENDPOINT");
-string searchKey = GetEnvironmentVariable("AZURE_AI_SEARCH_API_KEY");
-string searchIndex = GetEnvironmentVariable("AZURE_AI_SEARCH_INDEX");
-AzureOpenAIClient openAIClient = new(
-new Uri(azureOpenAIEndpoint),
-new ApiKeyCredential(azureOpenAIKey));
-ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
-// Extension methods to use data sources with options are subject to SDK surface changes. Suppress the
-// warning to acknowledge and this and use the subject-to-change AddDataSource method.
-#pragma warning disable AOAI001
-ChatCompletionOptions options = new();
-options.AddDataSource(new AzureSearchChatDataSource()
-{
-Endpoint = new Uri(searchEndpoint),
-IndexName = searchIndex,
-Authentication = DataSourceAuthentication.FromApiKey(searchKey),
-});
-ChatCompletion completion = chatClient.CompleteChat(
-[
-new UserChatMessage("What health plans are available?"),
-],
-options);
-ChatMessageContext onYourDataContext = completion.GetMessageContext();
-if (onYourDataContext?.Intent is not null)
-{
-Console.WriteLine($"Intent: {onYourDataContext.Intent}");
-}
-foreach (ChatCitation citation in onYourDataContext?.Citations ?? [])
-{
-Console.WriteLine($"Citation: {citation.Content}");
-}
-```
-
-
-Important
-
-For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/en-us/azure/key-vault/general/overview). For more information about credential security, see this [security](../../ai-services/security-features?view=foundry-classic) article.
-
-```
-dotnet run Program.cs
-```
-
-
-## Output
-
-```
-Contoso Electronics offers two health plans: Northwind Health Plus and Northwind Standard [doc1]. Northwind Health Plus is a comprehensive plan that provides coverage for medical, vision, and dental services, prescription drug coverage, mental health and substance abuse coverage, and coverage for preventive care services. It also offers coverage for emergency services, both in-network and out-of-network. On the other hand, Northwind Standard is a basic plan that provides coverage for medical, vision, and dental services, prescription drug coverage, and coverage for preventive care services. However, it does not offer coverage for emergency services, mental health and substance abuse coverage, or out-of-network services [doc1].
-Intent: ["What are the available health plans?", "List of health plans available", "Health insurance options", "Types of health plans offered"]
-Citation:
-Contoso Electronics plan and benefit packages
-Thank you for your interest in the Contoso electronics plan and benefit packages. Use this document to
-learn more about the various options available to you...// Omitted for brevity
-```
-
-
-This will wait until the model has generated its entire response before printing the results.
-
-[Source code](https://github.com/spring-projects-experimental/spring-ai)| [Source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai) | [Sample](https://github.com/rd-1-2022/ai-azure-retrieval-augmented-generation)
-
-## Prerequisites
-
-[Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)[Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)[Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)- An
-[Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)or deployed in a[supported region and with a supported model](concepts/use-your-data?view=foundry-classic#regional-availability-and-model-support).- Be sure that you're assigned at least the
-[Cognitive Services Contributor](how-to/role-based-access-control?view=foundry-classic#cognitive-services-contributor)role for the Azure OpenAI resource.
-
-- Be sure that you're assigned at least the
-- Download the example data from
-[GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf)if you don't have your own data.
-
-## Add your data using Microsoft Foundry portal
-
-Tip
-
-Alternatively, you can [use the Azure Developer CLI](how-to/azure-developer-cli?view=foundry-classic) to programmatically create the resources needed for Azure OpenAI On Your Data.
-
-To add your data using the portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. Select your Azure OpenAI resource. If you have a Foundry resource, you can
-
-[create a Foundry project](../how-to/create-projects?view=foundry-classic).From the left pane, select
-
-**Playgrounds**>**Chat**.In the
-
-**Setup**pane, select your model deployment.Select
-
-**Add your data**>**Add a data source**.On the
-
-**Data source**page:Under
-
-**Select data source**, select**Upload files (preview)**.Tip
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Data source options](concepts/use-your-data?view=foundry-classic#supported-data-sources)and[Supported file types and formats](concepts/use-your-data?view=foundry-classic#data-formats-and-file-types). - For documents and datasets with long text, we recommend that you use the
-[data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395).
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228)(CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select**Turn on CORS**.Select your Azure AI Search resource.
-
-Enter a name for your new index.
-
-Select the checkbox that acknowledges the billing effects of using Azure AI Search.
-
-Select
-
-**Next**.
-
-On the
-
-**Upload files**page:Select
-
-**Browse for a file**, and then select your own data or the sample data you downloaded from the[prerequisites](#prerequisites).Select
-
-**Upload files**.Select
-
-**Next**.
-
-On the
-
-**Data management**page:Choose whether to enable
-
-[semantic search or vector search](concepts/use-your-data?view=foundry-classic#search-types)for your index.Important
-
-[Semantic search](/en-us/azure/search/semantic-search-overview#availability-and-pricing)and[vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see[Choose a tier](/en-us/azure/search/search-sku-tier)and[Service limits](/en-us/azure/search/search-limits-quotas-capacity).- To help improve the quality of the information retrieval and model response, we recommend that you enable
-[semantic search](/en-us/azure/search/semantic-search-overview)for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
-
-Select
-
-**Next**.
-
-On the
-
-**Data connection**page:Choose whether to authenticate using a
-
-**System assigned managed identity**or an**API key**.Select
-
-**Next**.
-
-Review your configurations, and then select
-
-**Save and close**.You can now chat with the model, which uses your data to construct the response.
-
-
-## Retrieve required variables
-
-To successfully make a call against Azure OpenAI, you need the following variables. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. For more information, see [Add your data using Microsoft Foundry](use-your-data-quickstart?view=foundry-classic&pivots=programming-language-studio).
-
-| Variable name | Value |
-|---|---|
-`AZURE_OPENAI_ENDPOINT` |
-You can find this value in the Keys & Endpoint section when examining your Azure OpenAI resource from the Azure portal. Alternatively, you can find the value in Foundry > Chat playground > Code view. An example endpoint is: `https://my-resource.openai.azure.com` . |
-`AZURE_OPENAI_API_KEY` |
-You can find this value in Resource management > Keys & Endpoint section when examining your Azure OpenAI resource from the Azure portal. You can use either `KEY1` or `KEY2` . Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption. |
-`AZURE_OPEN_AI_DEPLOYMENT_ID` |
-This value corresponds to the custom name you chose for your deployment when you deployed a model. You can find this value under Resource Management > Deployments in the Azure portal or alternatively under Management > Deployments in Foundry portal. |
-`AZURE_AI_SEARCH_ENDPOINT` |
-You can find this value in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-`AZURE_AI_SEARCH_API_KEY` |
-You can find this value in the Settings > Keys section when examining your Azure AI Search resource from the Azure portal. You can use either the primary admin key or secondary admin key. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption. |
-`AZURE_AI_SEARCH_INDEX` |
-This value corresponds to the name of the index you created to store your data. You can find it in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-
-### Environment variables
-
-Create and assign persistent environment variables for your key and endpoint.
-
-Important
-
-Use API keys with caution. Don't include the API key directly in your code, and never post it publicly. If you use an API key, store it securely in Azure Key Vault. For more information about using API keys securely in your apps, see [API keys with Azure Key Vault](/en-us/azure/key-vault/general/apps-api-keys-secrets).
-
-For more information about AI services security, see [Authenticate requests to Azure AI services](/en-us/azure/ai-services/authentication).
-
-Note
-
-Spring AI defaults the model name to `gpt-35-turbo`
-
-. It's only necessary to provide the `SPRING_AI_AZURE_OPENAI_MODEL`
-
-value if you've deployed a model with a different name.
-
-```
-export SPRING_AI_AZURE_OPENAI_ENDPOINT=REPLACE_WITH_YOUR_AOAI_ENDPOINT_VALUE_HERE
-export SPRING_AI_AZURE_OPENAI_API_KEY=REPLACE_WITH_YOUR_AOAI_KEY_VALUE_HERE
-export SPRING_AI_AZURE_COGNITIVE_SEARCH_ENDPOINT=REPLACE_WITH_YOUR_AZURE_SEARCH_RESOURCE_VALUE_HERE
-export SPRING_AI_AZURE_COGNITIVE_SEARCH_API_KEY=REPLACE_WITH_YOUR_AZURE_SEARCH_RESOURCE_KEY_VALUE_HERE
-export SPRING_AI_AZURE_COGNITIVE_SEARCH_INDEX=REPLACE_WITH_YOUR_INDEX_NAME_HERE
-export SPRING_AI_AZURE_OPENAI_MODEL=REPLACE_WITH_YOUR_MODEL_NAME_HERE
-```
-
-
-## Create a new Spring application
-
-Spring AI doesn't currently support the `AzureCognitiveSearchChatExtensionConfiguration`
-
-options that allow an Azure AI query to encapsulate the [Retrieval Augmented Generation (RAG)](/en-us/azure/search/retrieval-augmented-generation-overview) method and hide the details from the user. As an alternative, you can still invoke the RAG method directly in your application to query data in your Azure AI Search index and use retrieved documents to augment your query.
-
-Spring AI supports a VectorStore abstraction, and you can wrap Azure AI Search can be wrapped in a Spring AI VectorStore implementation for querying your custom data. The following project implements a custom VectorStore backed by Azure AI Search and directly executes RAG operations.
-
-In a Bash window, create a new directory for your app, and navigate to it.
-
-```
-mkdir ai-custom-data-demo && cd ai-custom-data-demo
-```
-
-
-Run the `spring init`
-
-command from your working directory. This command creates a standard directory structure for your Spring project including the main Java class source file and the *pom.xml* file used for managing Maven based projects.
-
-```
-spring init -a ai-custom-data-demo -n AICustomData --force --build maven -x
-```
-
-
-The generated files and folders resemble the following structure:
-
-```
-ai-custom-data-demo/
-|-- pom.xml
-|-- mvn
-|-- mvn.cmd
-|-- HELP.md
-|-- src/
-|-- main/
-| |-- resources/
-| | |-- application.properties
-| |-- java/
-| |-- com/
-| |-- example/
-| |-- aicustomdatademo/
-| |-- AiCustomDataApplication.java
-|-- test/
-|-- java/
-|-- com/
-|-- example/
-|-- aicustomdatademo/
-|-- AiCustomDataApplicationTests.java
-```
-
-
-## Edit Spring application
-
-Edit the
-
-*pom.xml*file.From the root of the project directory, open the
-
-*pom.xml*file in your preferred editor or IDE and overwrite the file with following content:`<?xml version="1.0" encoding="UTF-8"?> <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"> <modelVersion>4.0.0</modelVersion> <parent> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-parent</artifactId> <version>3.2.0</version> <relativePath/> <!-- lookup parent from repository --> </parent> <groupId>com.example</groupId> <artifactId>ai-custom-data-demo</artifactId> <version>0.0.1-SNAPSHOT</version> <name>AICustomData</name> <description>Demo project for Spring Boot</description> <properties> <java.version>17</java.version> </properties> <dependencies> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter</artifactId> </dependency> <dependency> <groupId>org.springframework.experimental.ai</groupId> <artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId> <version>0.7.0-SNAPSHOT</version> </dependency> <dependency> <groupId>com.azure</groupId> <artifactId>azure-search-documents</artifactId> <version>11.6.0-beta.10</version> <exclusions> <!-- exclude this to avoid changing the default serializer and the null-value behavior --> <exclusion> <groupId>com.azure</groupId> <artifactId>azure-core-serializer-json-jackson</artifactId> </exclusion> </exclusions> </dependency> <dependency> <groupId>org.projectlombok</groupId> <artifactId>lombok</artifactId> <optional>true</optional> </dependency> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-test</artifactId> <scope>test</scope> </dependency> </dependencies> <build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> </plugin> </plugins> </build> <repositories> <repository> <id>spring-snapshots</id> <name>Spring Snapshots</name> <url>https://repo.spring.io/snapshot</url> <releases> <enabled>false</enabled> </releases> </repository> </repositories> </project>`
-
-From the
-
-*src/main/java/com/example/aicustomdatademo*folder, open*AiCustomDataApplication.java*in your preferred editor or IDE and paste in the following code:`package com.example.aicustomdatademo; import java.util.Collections; import java.util.List; import java.util.Map; import java.util.Optional; import java.util.stream.Collectors; import org.springframework.ai.client.AiClient; import org.springframework.ai.document.Document; import org.springframework.ai.embedding.EmbeddingClient; import org.springframework.ai.prompt.Prompt; import org.springframework.ai.prompt.SystemPromptTemplate; import org.springframework.ai.prompt.messages.MessageType; import org.springframework.ai.prompt.messages.UserMessage; import org.springframework.ai.vectorstore.VectorStore; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.beans.factory.annotation.Value; import org.springframework.boot.CommandLineRunner; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.context.annotation.Bean; import com.azure.core.credential.AzureKeyCredential; import com.azure.core.util.Context; import com.azure.search.documents.SearchClient; import com.azure.search.documents.SearchClientBuilder; import com.azure.search.documents.models.IndexingResult; import com.azure.search.documents.models.SearchOptions; import com.azure.search.documents.models.RawVectorQuery; import lombok.AllArgsConstructor; import lombok.NoArgsConstructor; import lombok.Builder; import lombok.Data; import lombok.extern.jackson.Jacksonized; @SpringBootApplication public class AiCustomDataApplication implements CommandLineRunner { private static final String ROLE_INFO_KEY = "role"; private static final String template = """ You are a helpful assistant. Use the information from the DOCUMENTS section to augment answers. DOCUMENTS: {documents} """; @Value("${spring.ai.azure.cognitive-search.endpoint}") private String acsEndpoint; @Value("${spring.ai.azure.cognitive-search.api-key}") private String acsApiKey; @Value("${spring.ai.azure.cognitive-search.index}") private String acsIndexName; @Autowired private AiClient aiClient; @Autowired private EmbeddingClient embeddingClient; public static void main(String[] args) { SpringApplication.run(AiCustomDataApplication.class, args); } @Override public void run(String... args) throws Exception { System.out.println(String.format("Sending custom data prompt to Foundry Tool. One moment please...\r\n")); final var store = vectorStore(embeddingClient); final String question = "What are my available health plans?"; final var candidateDocs = store.similaritySearch(question); final var userMessage = new UserMessage(question); final String docPrompts = candidateDocs.stream().map(entry -> entry.getContent()).collect(Collectors.joining("\n")); final SystemPromptTemplate promptTemplate = new SystemPromptTemplate(template); final var systemMessage = promptTemplate.createMessage(Map.of("documents", docPrompts)); final var prompt = new Prompt(List.of(systemMessage, userMessage)); final var resps = aiClient.generate(prompt); System.out.println(String.format("Prompt created %d generated response(s).", resps.getGenerations().size())); resps.getGenerations().stream() .forEach(gen -> { final var role = gen.getInfo().getOrDefault(ROLE_INFO_KEY, MessageType.ASSISTANT.getValue()); System.out.println(String.format("Generated response from \"%s\": %s", role, gen.getText())); }); } @Bean public VectorStore vectorStore(EmbeddingClient embeddingClient) { final SearchClient searchClient = new SearchClientBuilder() .endpoint(acsEndpoint) .credential(new AzureKeyCredential(acsApiKey)) .indexName(acsIndexName) .buildClient(); return new AzureCognitiveSearchVectorStore(searchClient, embeddingClient); } public static class AzureCognitiveSearchVectorStore implements VectorStore { private static final int DEFAULT_TOP_K = 4; private static final Double DEFAULT_SIMILARITY_THRESHOLD = 0.0; private SearchClient searchClient; private final EmbeddingClient embeddingClient; public AzureCognitiveSearchVectorStore(SearchClient searchClient, EmbeddingClient embeddingClient) { this.searchClient = searchClient; this.embeddingClient = embeddingClient; } @Override public void add(List<Document> documents) { final var docs = documents.stream().map(document -> { final var embeddings = embeddingClient.embed(document); return new DocEntry(document.getId(), "", document.getContent(), embeddings); }).toList(); searchClient.uploadDocuments(docs); } @Override public Optional<Boolean> delete(List<String> idList) { final List<DocEntry> docIds = idList.stream().map(id -> DocEntry.builder().id(id).build()) .toList(); var results = searchClient.deleteDocuments(docIds); boolean resSuccess = true; for (IndexingResult result : results.getResults()) if (!result.isSucceeded()) { resSuccess = false; break; } return Optional.of(resSuccess); } @Override public List<Document> similaritySearch(String query) { return similaritySearch(query, DEFAULT_TOP_K); } @Override public List<Document> similaritySearch(String query, int k) { return similaritySearch(query, k, DEFAULT_SIMILARITY_THRESHOLD); } @Override public List<Document> similaritySearch(String query, int k, double threshold) { final var searchQueryVector = new RawVectorQuery() .setVector(toFloatList(embeddingClient.embed(query))) .setKNearestNeighborsCount(k) .setFields("contentVector"); final var searchResults = searchClient.search(null, new SearchOptions().setVectorQueries(searchQueryVector), Context.NONE); return searchResults.stream() .filter(r -> r.getScore() >= threshold) .map(r -> { final DocEntry entry = r.getDocument(DocEntry.class); final Document doc = new Document(entry.getId(), entry.getContent(), Collections.emptyMap()); doc.setEmbedding(entry.getContentVector()); return doc; }) .collect(Collectors.toList()); } private List<Float> toFloatList(List<Double> doubleList) { return doubleList.stream().map(Double::floatValue).toList(); } } @Data @Builder @Jacksonized @AllArgsConstructor @NoArgsConstructor static class DocEntry { private String id; private String hash; private String content; private List<Double> contentVector; } }`
-
-Important
-
-For production, use a secure way of storing and accessing your credentials like
-
-[Azure Key Vault](/en-us/azure/key-vault/general/overview). For more information about credential security, see this[security](../../ai-services/security-features?view=foundry-classic)article.Navigate back to the project root folder, and run the app by using the following command:
-
-`./mvnw spring-boot:run`
-
-
-## Output
-
-```
-. ____ _ __ _ _
-/\\ / ___'_ __ _ _(_)_ __ __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-\\/ ___)| |_)| | | | | || (_| | ) ) ) )
-' |____| .__|_| |_|_| |_\__, | / / / /
-=========|_|==============|___/=/_/_/_/
-:: Spring Boot :: (v3.1.5)
-2023-11-07T14:40:45.250-06:00 INFO 18557 --- [ main] c.e.a.AiCustomDataApplication : No active profile set, falling back to 1 default profile: "default"
-2023-11-07T14:40:46.035-06:00 INFO 18557 --- [ main] c.e.a.AiCustomDataApplication : Started AiCustomDataApplication in 1.095 seconds (process running for 1.397)
-Sending custom data prompt to Foundry Tool. One moment please...
-Prompt created 1 generated response(s).
-Generated response from "assistant": The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans.
-```
-
-
-[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
-
-## Prerequisites
-
-An Azure subscription -
-
-[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).[Azure CLI](/en-us/cli/azure/install-azure-cli)used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.An Azure OpenAI resource deployed in a
-
-[supported region and with a supported model](concepts/use-your-data?view=foundry-classic#regional-availability-and-model-support).Be sure that you're assigned at least the
-
-[Cognitive Services Contributor](how-to/role-based-access-control?view=foundry-classic#cognitive-services-contributor)role for the Azure OpenAI resource.Download the example data from
-
-[GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf)if you don't have your own data.
-
-### Microsoft Entra ID prerequisites
-
-For the recommended keyless authentication with Microsoft Entra ID, you need to:
-
-- Install the
-[Azure CLI](/en-us/cli/azure/install-azure-cli)used for keyless authentication with Microsoft Entra ID. - Assign the
-`Cognitive Services User`
-
-role to your user account. You can assign roles in the Azure portal under**Access control (IAM)**>**Add role assignment**.
-
-## Add your data using Microsoft Foundry portal
-
-Tip
-
-Alternatively, you can [use the Azure Developer CLI](how-to/azure-developer-cli?view=foundry-classic) to programmatically create the resources needed for Azure OpenAI On Your Data.
-
-To add your data using the portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. Select your Azure OpenAI resource. If you have a Foundry resource, you can
-
-[create a Foundry project](../how-to/create-projects?view=foundry-classic).From the left pane, select
-
-**Playgrounds**>**Chat**.In the
-
-**Setup**pane, select your model deployment.Select
-
-**Add your data**>**Add a data source**.On the
-
-**Data source**page:Under
-
-**Select data source**, select**Upload files (preview)**.Tip
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Data source options](concepts/use-your-data?view=foundry-classic#supported-data-sources)and[Supported file types and formats](concepts/use-your-data?view=foundry-classic#data-formats-and-file-types). - For documents and datasets with long text, we recommend that you use the
-[data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395).
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228)(CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select**Turn on CORS**.Select your Azure AI Search resource.
-
-Enter a name for your new index.
-
-Select the checkbox that acknowledges the billing effects of using Azure AI Search.
-
-Select
-
-**Next**.
-
-On the
-
-**Upload files**page:Select
-
-**Browse for a file**, and then select your own data or the sample data you downloaded from the[prerequisites](#prerequisites).Select
-
-**Upload files**.Select
-
-**Next**.
-
-On the
-
-**Data management**page:Choose whether to enable
-
-[semantic search or vector search](concepts/use-your-data?view=foundry-classic#search-types)for your index.Important
-
-[Semantic search](/en-us/azure/search/semantic-search-overview#availability-and-pricing)and[vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see[Choose a tier](/en-us/azure/search/search-sku-tier)and[Service limits](/en-us/azure/search/search-limits-quotas-capacity).- To help improve the quality of the information retrieval and model response, we recommend that you enable
-[semantic search](/en-us/azure/search/semantic-search-overview)for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
-
-Select
-
-**Next**.
-
-On the
-
-**Data connection**page:Choose whether to authenticate using a
-
-**System assigned managed identity**or an**API key**.Select
-
-**Next**.
-
-Review your configurations, and then select
-
-**Save and close**.You can now chat with the model, which uses your data to construct the response.
-
-
-## Retrieve resource information
-
-You need to retrieve the following information to authenticate your application with your Azure OpenAI resource. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. See [Add your data using Microsoft Foundry portal](use-your-data-quickstart?view=foundry-classic&pivots=programming-language-studio).
-
-| Variable name | Value |
-|---|---|
-`AZURE_OPENAI_ENDPOINT` |
-This value can be found in the Keys & Endpoint section when examining your Azure OpenAI resource from the Azure portal. An example endpoint is: `https://my-resource.openai.azure.com` . |
-`AZURE_OPENAI_DEPLOYMENT_NAME` |
-This value corresponds to the custom name you chose for your deployment when you deployed a model. This value can be found under Resource Management > Deployments in the Azure portal. |
-`AZURE_AI_SEARCH_ENDPOINT` |
-This value can be found in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-`AZURE_AI_SEARCH_INDEX` |
-This value corresponds to the name of the index you created to store your data. You can find it in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-
-Learn more about [keyless authentication](/en-us/azure/ai-services/authentication) and [setting environment variables](/en-us/azure/ai-services/cognitive-services-environment-variables).
-
-## Set up
-
-Create a new folder
-
-`use-data-quickstart`
-
-and go to the quickstart folder with the following command:`mkdir use-data-quickstart && cd use-data-quickstart`
-
-Create the
-
-`package.json`
-
-with the following command:`npm init -y`
-
-Install the OpenAI client library for JavaScript with:
-
-`npm install openai`
-
-For the
-
-**recommended**passwordless authentication:`npm install @azure/identity`
-
-
-## Add the JavaScript code
-
-Create the
-
-`index.js`
-
-file with the following code:`const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity"); const { AzureOpenAI } = require("openai"); // Set the Azure and AI Search values from environment variables const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint"; const searchEndpoint = process.env.AZURE_AI_SEARCH_ENDPOINT || "Your search endpoint"; const searchIndex = process.env.AZURE_AI_SEARCH_INDEX || "Your search index"; // keyless authentication const credential = new DefaultAzureCredential(); const scope = "https://cognitiveservices.azure.com/.default"; const azureADTokenProvider = getBearerTokenProvider(credential, scope); // Required Azure OpenAI deployment name and API version const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4"; const apiVersion = process.env.OPENAI_API_VERSION || "2024-10-21"; function getClient() { return new AzureOpenAI({ endpoint, azureADTokenProvider, deployment: deploymentName, apiVersion, }); } async function main() { const client = getClient(); const messages = [ { role: "user", content: "What are my available health plans?" }, ]; console.log(`Message: ${messages.map((m) => m.content).join("\n")}`); const events = await client.chat.completions.create({ stream: true, messages: [ { role: "user", content: "What's the most common feedback we received from our customers about the product?", }, ], max_tokens: 128, model: "", data_sources: [ { type: "azure_search", parameters: { endpoint: searchEndpoint, index_name: searchIndex, authentication: { type: "api_key", key: searchKey, }, }, }, ], }); let response = ""; for await (const event of events) { for (const choice of event.choices) { const newText = choice.delta?.content; if (newText) { response += newText; // To see streaming results as they arrive, uncomment line below // console.log(newText); } } } console.log(response); } main().catch((err) => { console.error("The sample encountered an error:", err); });`
-
-Sign in to Azure with the following command:
-
-`az login`
-
-Run the JavaScript file.
-
-`node index.js`
-
-
-## Output
-
-```
-Message: What are my available health plans?
-The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans.
-```
-
-
-[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
-
-## Prerequisites
-
-An Azure subscription -
-
-[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).[Azure CLI](/en-us/cli/azure/install-azure-cli)used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.An Azure OpenAI resource deployed in a
-
-[supported region and with a supported model](concepts/use-your-data?view=foundry-classic#regional-availability-and-model-support).Be sure that you're assigned at least the
-
-[Cognitive Services Contributor](how-to/role-based-access-control?view=foundry-classic#cognitive-services-contributor)role for the Azure OpenAI resource.Download the example data from
-
-[GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf)if you don't have your own data.
-
-### Microsoft Entra ID prerequisites
-
-For the recommended keyless authentication with Microsoft Entra ID, you need to:
-
-- Install the
-[Azure CLI](/en-us/cli/azure/install-azure-cli)used for keyless authentication with Microsoft Entra ID. - Assign the
-`Cognitive Services User`
-
-role to your user account. You can assign roles in the Azure portal under**Access control (IAM)**>**Add role assignment**.
-
-## Add your data using Microsoft Foundry portal
-
-Tip
-
-Alternatively, you can [use the Azure Developer CLI](how-to/azure-developer-cli?view=foundry-classic) to programmatically create the resources needed for Azure OpenAI On Your Data.
-
-To add your data using the portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. Select your Azure OpenAI resource. If you have a Foundry resource, you can
-
-[create a Foundry project](../how-to/create-projects?view=foundry-classic).From the left pane, select
-
-**Playgrounds**>**Chat**.In the
-
-**Setup**pane, select your model deployment.Select
-
-**Add your data**>**Add a data source**.On the
-
-**Data source**page:Under
-
-**Select data source**, select**Upload files (preview)**.Tip
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Data source options](concepts/use-your-data?view=foundry-classic#supported-data-sources)and[Supported file types and formats](concepts/use-your-data?view=foundry-classic#data-formats-and-file-types). - For documents and datasets with long text, we recommend that you use the
-[data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395).
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228)(CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select**Turn on CORS**.Select your Azure AI Search resource.
-
-Enter a name for your new index.
-
-Select the checkbox that acknowledges the billing effects of using Azure AI Search.
-
-Select
-
-**Next**.
-
-On the
-
-**Upload files**page:Select
-
-**Browse for a file**, and then select your own data or the sample data you downloaded from the[prerequisites](#prerequisites).Select
-
-**Upload files**.Select
-
-**Next**.
-
-On the
-
-**Data management**page:Choose whether to enable
-
-[semantic search or vector search](concepts/use-your-data?view=foundry-classic#search-types)for your index.Important
-
-[Semantic search](/en-us/azure/search/semantic-search-overview#availability-and-pricing)and[vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see[Choose a tier](/en-us/azure/search/search-sku-tier)and[Service limits](/en-us/azure/search/search-limits-quotas-capacity).- To help improve the quality of the information retrieval and model response, we recommend that you enable
-[semantic search](/en-us/azure/search/semantic-search-overview)for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
-
-Select
-
-**Next**.
-
-On the
-
-**Data connection**page:Choose whether to authenticate using a
-
-**System assigned managed identity**or an**API key**.Select
-
-**Next**.
-
-Review your configurations, and then select
-
-**Save and close**.You can now chat with the model, which uses your data to construct the response.
-
-
-## Retrieve resource information
-
-You need to retrieve the following information to authenticate your application with your Azure OpenAI resource. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. See [Add your data using Microsoft Foundry portal](use-your-data-quickstart?view=foundry-classic&pivots=programming-language-studio).
-
-| Variable name | Value |
-|---|---|
-`AZURE_OPENAI_ENDPOINT` |
-This value can be found in the Keys & Endpoint section when examining your Azure OpenAI resource from the Azure portal. An example endpoint is: `https://my-resource.openai.azure.com` . |
-`AZURE_OPENAI_DEPLOYMENT_NAME` |
-This value corresponds to the custom name you chose for your deployment when you deployed a model. This value can be found under Resource Management > Deployments in the Azure portal. |
-`AZURE_AI_SEARCH_ENDPOINT` |
-This value can be found in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-`AZURE_AI_SEARCH_INDEX` |
-This value corresponds to the name of the index you created to store your data. You can find it in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-
-Learn more about [keyless authentication](/en-us/azure/ai-services/authentication) and [setting environment variables](/en-us/azure/ai-services/cognitive-services-environment-variables).
-
-## Set up
-
-Create a new folder
-
-`use-data-quickstart`
-
-and go to the quickstart folder with the following command:`mkdir use-data-quickstart && cd use-data-quickstart`
-
-Create the
-
-`package.json`
-
-with the following command:`npm init -y`
-
-Update the
-
-`package.json`
-
-to ECMAScript with the following command:`npm pkg set type=module`
-
-Install the OpenAI client library for JavaScript with:
-
-`npm install openai`
-
-For the
-
-**recommended**passwordless authentication:`npm install @azure/identity`
-
-
-## Add the TypeScript code
-
-Create the
-
-`index.ts`
-
-file with the following code:`import { AzureOpenAI } from "openai"; import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity"; import "@azure/openai/types"; // Set the Azure and AI Search values from environment variables const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint"; const searchEndpoint = process.env.AZURE_AI_SEARCH_ENDPOINT || "Your search endpoint"; const searchIndex = process.env.AZURE_AI_SEARCH_INDEX || "Your search index"; // keyless authentication const credential = new DefaultAzureCredential(); const scope = "https://cognitiveservices.azure.com/.default"; const azureADTokenProvider = getBearerTokenProvider(credential, scope); // Required Azure OpenAI deployment name and API version const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4"; const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01-preview"; function getClient(): AzureOpenAI { return new AzureOpenAI({ endpoint, azureADTokenProvider, deployment: deploymentName, apiVersion, }); } async function main() { const client = getClient(); const messages = [ { role: "user", content: "What are my available health plans?" }, ]; console.log(`Message: ${messages.map((m) => m.content).join("\n")}`); const events = await client.chat.completions.create({ stream: true, messages: [ { role: "user", content: "What's the most common feedback we received from our customers about the product?", }, ], max_tokens: 128, model: "", data_sources: [ { type: "azure_search", parameters: { endpoint: searchEndpoint, index_name: searchIndex, authentication: { type: "api_key", key: searchKey, }, }, }, ], }); let response = ""; for await (const event of events) { for (const choice of event.choices) { const newText = choice.delta?.content; if (newText) { response += newText; // To see streaming results as they arrive, uncomment line below // console.log(newText); } } } console.log(response); } main().catch((err) => { console.error("The sample encountered an error:", err); });`
-
-Create the
-
-`tsconfig.json`
-
-file to transpile the TypeScript code and copy the following code for ECMAScript.`{ "compilerOptions": { "module": "NodeNext", "target": "ES2022", // Supports top-level await "moduleResolution": "NodeNext", "skipLibCheck": true, // Avoid type errors from node_modules "strict": true // Enable strict type-checking options }, "include": ["*.ts"] }`
-
-Transpile from TypeScript to JavaScript.
-
-`tsc`
-
-Sign in to Azure with the following command:
-
-`az login`
-
-Run the code with the following command:
-
-`node index.js`
-
-
-Important
-
-For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/en-us/azure/key-vault/general/overview). For more information about credential security, see this [security](../../ai-services/security-features?view=foundry-classic) article.
-
-## Output
-
-```
-Message: What are my available health plans?
-The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans.
-```
-
-
-## Prerequisites
-
-[Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)[Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)[Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)- An
-[Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)deployed in a[supported region and with a supported model](concepts/use-your-data?view=foundry-classic#regional-availability-and-model-support).- Be sure that you're assigned at least the
-[Cognitive Services Contributor](how-to/role-based-access-control?view=foundry-classic#cognitive-services-contributor)role for the Azure OpenAI resource.
-
-- Be sure that you're assigned at least the
-- Download the example data from
-[GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf)if you don't have your own data.
-
-[Reference](https://platform.openai.com/docs/api-reference?lang=python) | [Source code](https://github.com/openai/openai-python) | [Package (pypi)](https://pypi.org/project/openai/) | [Samples](https://github.com/openai/openai-cookbook/)
-
-These links reference the OpenAI API for Python. There's no Azure-specific OpenAI Python SDK. [Learn how to switch between the OpenAI services and Azure OpenAI](/en-us/azure/ai-foundry/openai/how-to/switching-endpoints).
-
-## Add your data using Microsoft Foundry portal
-
-Tip
-
-Alternatively, you can [use the Azure Developer CLI](how-to/azure-developer-cli?view=foundry-classic) to programmatically create the resources needed for Azure OpenAI On Your Data.
-
-To add your data using the portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. Select your Azure OpenAI resource. If you have a Foundry resource, you can
-
-[create a Foundry project](../how-to/create-projects?view=foundry-classic).From the left pane, select
-
-**Playgrounds**>**Chat**.In the
-
-**Setup**pane, select your model deployment.Select
-
-**Add your data**>**Add a data source**.On the
-
-**Data source**page:Under
-
-**Select data source**, select**Upload files (preview)**.Tip
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Data source options](concepts/use-your-data?view=foundry-classic#supported-data-sources)and[Supported file types and formats](concepts/use-your-data?view=foundry-classic#data-formats-and-file-types). - For documents and datasets with long text, we recommend that you use the
-[data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395).
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228)(CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select**Turn on CORS**.Select your Azure AI Search resource.
-
-Enter a name for your new index.
-
-Select the checkbox that acknowledges the billing effects of using Azure AI Search.
-
-Select
-
-**Next**.
-
-On the
-
-**Upload files**page:Select
-
-**Browse for a file**, and then select your own data or the sample data you downloaded from the[prerequisites](#prerequisites).Select
-
-**Upload files**.Select
-
-**Next**.
-
-On the
-
-**Data management**page:Choose whether to enable
-
-[semantic search or vector search](concepts/use-your-data?view=foundry-classic#search-types)for your index.Important
-
-[Semantic search](/en-us/azure/search/semantic-search-overview#availability-and-pricing)and[vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see[Choose a tier](/en-us/azure/search/search-sku-tier)and[Service limits](/en-us/azure/search/search-limits-quotas-capacity).- To help improve the quality of the information retrieval and model response, we recommend that you enable
-[semantic search](/en-us/azure/search/semantic-search-overview)for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
-
-Select
-
-**Next**.
-
-On the
-
-**Data connection**page:Choose whether to authenticate using a
-
-**System assigned managed identity**or an**API key**.Select
-
-**Next**.
-
-Review your configurations, and then select
-
-**Save and close**.You can now chat with the model, which uses your data to construct the response.
-
-
-## Retrieve resource information
-
-You need to retrieve the following information to authenticate your application with your Azure OpenAI resource. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. See [Add your data using Microsoft Foundry portal](use-your-data-quickstart?view=foundry-classic&pivots=programming-language-studio).
-
-| Variable name | Value |
-|---|---|
-`AZURE_OPENAI_ENDPOINT` |
-This value can be found in the Keys & Endpoint section when examining your Azure OpenAI resource from the Azure portal. An example endpoint is: `https://my-resource.openai.azure.com` . |
-`AZURE_OPENAI_DEPLOYMENT_NAME` |
-This value corresponds to the custom name you chose for your deployment when you deployed a model. This value can be found under Resource Management > Deployments in the Azure portal. |
-`AZURE_AI_SEARCH_ENDPOINT` |
-This value can be found in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-`AZURE_AI_SEARCH_INDEX` |
-This value corresponds to the name of the index you created to store your data. You can find it in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-
-Learn more about [keyless authentication](/en-us/azure/ai-services/authentication) and [setting environment variables](/en-us/azure/ai-services/cognitive-services-environment-variables).
-
-## Create a Python environment
-
-- Create a new folder named
-*openai-python*for your project and a new Python code file named*main.py*. Change into that directory:
-
-```
-mkdir openai-python
-cd openai-python
-```
-
-
-- Install the following Python Libraries:
-
-```
-pip install openai
-pip install python-dotenv
-```
-
-
-## Create the Python app
-
-- From the project directory, open the
-*main.py*file and add the following code:
-
-```
-import os
-import openai
-import dotenv
-dotenv.load_dotenv()
-endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
-api_key = os.environ.get("AZURE_OPENAI_API_KEY")
-deployment = os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME")
-client = openai.AzureOpenAI(
-azure_endpoint=endpoint,
-api_key=api_key,
-api_version="2024-10-21",
-)
-completion = client.chat.completions.create(
-model=deployment,
-messages=[
-{
-"role": "user",
-"content": "What are my available health plans?",
-},
-],
-extra_body={
-"data_sources":[
-{
-"type": "azure_search",
-"parameters": {
-"endpoint": os.environ["AZURE_AI_SEARCH_ENDPOINT"],
-"index_name": os.environ["AZURE_AI_SEARCH_INDEX"],
-"authentication": {
-"type": "api_key",
-"key": os.environ["AZURE_AI_SEARCH_API_KEY"],
-}
-}
-}
-],
-}
-)
-print(f"{completion.choices[0].message.role}: {completion.choices[0].message.content}")
-```
-
-
-Important
-
-For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/en-us/azure/key-vault/general/overview). For more information about credential security, see this [security](../../ai-services/security-features?view=foundry-classic) article.
-
-- Execute the following command:
-
-```
-python main.py
-```
-
-
-The application prints the response in a JSON format suitable for use in many scenarios. It includes both answers to your query and citations from your uploaded files.
-
-## Prerequisites
-
-[Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)[Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)[Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)- An
-[Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)deployed in a[supported region and with a supported model](concepts/use-your-data?view=foundry-classic#regional-availability-and-model-support).- Be sure that you're assigned at least the
-[Cognitive Services Contributor](how-to/role-based-access-control?view=foundry-classic#cognitive-services-contributor)role for the Azure OpenAI resource.
-
-- Be sure that you're assigned at least the
-- Download the example data from
-[GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf)if you don't have your own data.
-
-## Add your data using Microsoft Foundry portal
-
-Tip
-
-Alternatively, you can [use the Azure Developer CLI](how-to/azure-developer-cli?view=foundry-classic) to programmatically create the resources needed for Azure OpenAI On Your Data.
-
-To add your data using the portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. Select your Azure OpenAI resource. If you have a Foundry resource, you can
-
-[create a Foundry project](../how-to/create-projects?view=foundry-classic).From the left pane, select
-
-**Playgrounds**>**Chat**.In the
-
-**Setup**pane, select your model deployment.Select
-
-**Add your data**>**Add a data source**.On the
-
-**Data source**page:Under
-
-**Select data source**, select**Upload files (preview)**.Tip
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Data source options](concepts/use-your-data?view=foundry-classic#supported-data-sources)and[Supported file types and formats](concepts/use-your-data?view=foundry-classic#data-formats-and-file-types). - For documents and datasets with long text, we recommend that you use the
-[data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395).
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228)(CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select**Turn on CORS**.Select your Azure AI Search resource.
-
-Enter a name for your new index.
-
-Select the checkbox that acknowledges the billing effects of using Azure AI Search.
-
-Select
-
-**Next**.
-
-On the
-
-**Upload files**page:Select
-
-**Browse for a file**, and then select your own data or the sample data you downloaded from the[prerequisites](#prerequisites).Select
-
-**Upload files**.Select
-
-**Next**.
-
-On the
-
-**Data management**page:Choose whether to enable
-
-[semantic search or vector search](concepts/use-your-data?view=foundry-classic#search-types)for your index.Important
-
-[Semantic search](/en-us/azure/search/semantic-search-overview#availability-and-pricing)and[vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see[Choose a tier](/en-us/azure/search/search-sku-tier)and[Service limits](/en-us/azure/search/search-limits-quotas-capacity).- To help improve the quality of the information retrieval and model response, we recommend that you enable
-[semantic search](/en-us/azure/search/semantic-search-overview)for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
-
-Select
-
-**Next**.
-
-On the
-
-**Data connection**page:Choose whether to authenticate using a
-
-**System assigned managed identity**or an**API key**.Select
-
-**Next**.
-
-Review your configurations, and then select
-
-**Save and close**.You can now chat with the model, which uses your data to construct the response.
-
-
-## Retrieve resource information
-
-You need to retrieve the following information to authenticate your application with your Azure OpenAI resource. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. See [Add your data using Microsoft Foundry portal](use-your-data-quickstart?view=foundry-classic&pivots=programming-language-studio).
-
-| Variable name | Value |
-|---|---|
-`AZURE_OPENAI_ENDPOINT` |
-This value can be found in the Keys & Endpoint section when examining your Azure OpenAI resource from the Azure portal. An example endpoint is: `https://my-resource.openai.azure.com` . |
-`AZURE_OPENAI_DEPLOYMENT_NAME` |
-This value corresponds to the custom name you chose for your deployment when you deployed a model. This value can be found under Resource Management > Deployments in the Azure portal. |
-`AZURE_AI_SEARCH_ENDPOINT` |
-This value can be found in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-`AZURE_AI_SEARCH_INDEX` |
-This value corresponds to the name of the index you created to store your data. You can find it in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-
-Learn more about [keyless authentication](/en-us/azure/ai-services/authentication) and [setting environment variables](/en-us/azure/ai-services/cognitive-services-environment-variables).
-
-## Example PowerShell commands
-
-The Azure OpenAI chat models are optimized to work with inputs formatted as a conversation. The `messages`
-
-variable passes an array of dictionaries with different roles in the conversation delineated by system, user, tool, and assistant. The `dataSources`
-
-variable connects to your Azure Cognitive Search index, and enables Azure OpenAI models to respond using your data.
-
-To trigger a response from the model, you should end with a user message indicating that it's the assistant's turn to respond.
-
-Tip
-
-There are several parameters you can use to change the model's response, such as `temperature`
-
-or `top_p`
-
-. See the [reference documentation](reference?view=foundry-classic#completions-extensions) for more information.
-
-```
-# Azure OpenAI metadata variables
-$openai = @{
-api_key = $Env:AZURE_OPENAI_API_KEY
-api_base = $Env:AZURE_OPENAI_ENDPOINT # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-api_version = '2023-07-01-preview' # this may change in the future
-name = 'YOUR-DEPLOYMENT-NAME-HERE' #This will correspond to the custom name you chose for your deployment when you deployed a model.
-}
-$acs = @{
-search_endpoint = 'YOUR ACS ENDPOINT' # your endpoint should look like the following https://YOUR_RESOURCE_NAME.search.windows.net/
-search_key = 'YOUR-ACS-KEY-HERE' # or use the Get-Secret cmdlet to retrieve the value
-search_index = 'YOUR-INDEX-NAME-HERE' # the name of your ACS index
-}
-# Completion text
-$body = @{
-dataSources = @(
-@{
-type = 'AzureCognitiveSearch'
-parameters = @{
-endpoint = $acs.search_endpoint
-key = $acs.search_key
-indexName = $acs.search_index
-}
-}
-)
-messages = @(
-@{
-role = 'user'
-content = 'What are my available health plans?'
-}
-)
-} | convertto-json -depth 5
-# Header for authentication
-$headers = [ordered]@{
-'api-key' = $openai.api_key
-}
-# Send a completion call to generate an answer
-$url = "$($openai.api_base)/openai/deployments/$($openai.name)/extensions/chat/completions?api-version=$($openai.api_version)"
-$response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'
-return $response.choices.messages[1].content
-```
-
-
-### Example output
-
-```
-The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans.
-```
-
-
-Important
-
-For production, use a secure way of storing and accessing your credentials like [The PowerShell Secret Management with Azure Key Vault](/en-us/powershell/utility-modules/secretmanagement/how-to/using-azure-keyvault). For more information about credential security, see this [security](../../ai-services/security-features?view=foundry-classic) article.
-
-## Chat with your model using a web app
-
-To start chatting with the Azure OpenAI model that uses your data, you can deploy a web app using [Microsoft Foundry portal](concepts/use-your-data?view=foundry-classic#deploy-to-a-copilot-preview-teams-app-preview-or-web-app) or example code we [provide on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395). This app deploys using Azure app service, and provides a user interface for sending queries. This app can be used with Azure OpenAI models that use your data, or models that don't use your data. See the readme file in the repo for instructions on requirements, setup, and deployment. You can optionally customize the [frontend and backend logic](how-to/use-web-app?view=foundry-classic#customizing-the-application-using-environment-variables) of the web app by making changes to the source code.
-
-## Prerequisites
-
-[Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)[Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)[Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)- An
-[Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)deployed in a[supported region and with a supported model](concepts/use-your-data?view=foundry-classic#regional-availability-and-model-support).- Be sure that you're assigned at least the
-[Cognitive Services Contributor](how-to/role-based-access-control?view=foundry-classic#cognitive-services-contributor)role for the Azure OpenAI resource.
-
-- Be sure that you're assigned at least the
-- Download the example data from
-[GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf)if you don't have your own data.
-
-[Reference](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go) | [Source code](https://github.com/Azure/azure-sdk-for-go) | [Package (Go)](https://pkg.go.dev/github.com/azure/azure-dev) | [Samples](https://github.com/azure-samples/azure-sdk-for-go-samples)
-
-## Add your data using Microsoft Foundry portal
-
-Tip
-
-Alternatively, you can [use the Azure Developer CLI](how-to/azure-developer-cli?view=foundry-classic) to programmatically create the resources needed for Azure OpenAI On Your Data.
-
-To add your data using the portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. Select your Azure OpenAI resource. If you have a Foundry resource, you can
-
-[create a Foundry project](../how-to/create-projects?view=foundry-classic).From the left pane, select
-
-**Playgrounds**>**Chat**.In the
-
-**Setup**pane, select your model deployment.Select
-
-**Add your data**>**Add a data source**.On the
-
-**Data source**page:Under
-
-**Select data source**, select**Upload files (preview)**.Tip
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Data source options](concepts/use-your-data?view=foundry-classic#supported-data-sources)and[Supported file types and formats](concepts/use-your-data?view=foundry-classic#data-formats-and-file-types). - For documents and datasets with long text, we recommend that you use the
-[data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395).
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228)(CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select**Turn on CORS**.Select your Azure AI Search resource.
-
-Enter a name for your new index.
-
-Select the checkbox that acknowledges the billing effects of using Azure AI Search.
-
-Select
-
-**Next**.
-
-On the
-
-**Upload files**page:Select
-
-**Browse for a file**, and then select your own data or the sample data you downloaded from the[prerequisites](#prerequisites).Select
-
-**Upload files**.Select
-
-**Next**.
-
-On the
-
-**Data management**page:Choose whether to enable
-
-[semantic search or vector search](concepts/use-your-data?view=foundry-classic#search-types)for your index.Important
-
-[Semantic search](/en-us/azure/search/semantic-search-overview#availability-and-pricing)and[vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see[Choose a tier](/en-us/azure/search/search-sku-tier)and[Service limits](/en-us/azure/search/search-limits-quotas-capacity).- To help improve the quality of the information retrieval and model response, we recommend that you enable
-[semantic search](/en-us/azure/search/semantic-search-overview)for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
-
-Select
-
-**Next**.
-
-On the
-
-**Data connection**page:Choose whether to authenticate using a
-
-**System assigned managed identity**or an**API key**.Select
-
-**Next**.
-
-Review your configurations, and then select
-
-**Save and close**.You can now chat with the model, which uses your data to construct the response.
-
-
-### Microsoft Entra ID prerequisites
-
-For the recommended keyless authentication with Microsoft Entra ID, you need to:
-
-- Install the
-[Azure CLI](/en-us/cli/azure/install-azure-cli)used for keyless authentication with Microsoft Entra ID. - Assign the
-`Cognitive Services User`
-
-role to your user account. You can assign roles in the Azure portal under**Access control (IAM)**>**Add role assignment**.
-
-## Set up
-
-Create a new folder
-
-`dall-e-quickstart`
-
-and go to the quickstart folder with the following command:`mkdir dall-e-quickstart && cd dall-e-quickstart`
-
-For the
-
-**recommended**keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:`az login`
-
-
-## Retrieve resource information
-
-You need to retrieve the following information to authenticate your application with your Azure OpenAI resource. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. See [Add your data using Microsoft Foundry portal](use-your-data-quickstart?view=foundry-classic&pivots=programming-language-studio).
-
-| Variable name | Value |
-|---|---|
-`AZURE_OPENAI_ENDPOINT` |
-This value can be found in the Keys & Endpoint section when examining your Azure OpenAI resource from the Azure portal. An example endpoint is: `https://my-resource.openai.azure.com` . |
-`AZURE_OPENAI_DEPLOYMENT_NAME` |
-This value corresponds to the custom name you chose for your deployment when you deployed a model. This value can be found under Resource Management > Deployments in the Azure portal. |
-`AZURE_AI_SEARCH_ENDPOINT` |
-This value can be found in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-`AZURE_AI_SEARCH_INDEX` |
-This value corresponds to the name of the index you created to store your data. You can find it in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-
-Learn more about [keyless authentication](/en-us/azure/ai-services/authentication) and [setting environment variables](/en-us/azure/ai-services/cognitive-services-environment-variables).
-
-## Run the quickstart
-
-The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `NewDefaultAzureCredential`
-
-implementation with `NewKeyCredential`
-
-.
-
-```
-azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
-credential, err := azidentity.NewDefaultAzureCredential(nil)
-client, err := azopenai.NewClient(azureOpenAIEndpoint, credential, nil)
-```
-
-
-To run the sample:
-
-Create a new file named
-
-*quickstart.go*. Copy the following code into the*quickstart.go*file.`package main import ( "context" "fmt" "log" "os" "github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai" "github.com/Azure/azure-sdk-for-go/sdk/azcore" "github.com/Azure/azure-sdk-for-go/sdk/azcore/to" ) func main() { azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT") credential, err := azidentity.NewDefaultAzureCredential(nil) client, err := azopenai.NewClient(azureOpenAIEndpoint, credential, nil) modelDeploymentID := os.Getenv("AZURE_OPENAI_DEPLOYMENT_NAME") // Azure AI Search configuration searchIndex := os.Getenv("AZURE_AI_SEARCH_INDEX") searchEndpoint := os.Getenv("AZURE_AI_SEARCH_ENDPOINT") searchAPIKey := os.Getenv("AZURE_AI_SEARCH_API_KEY") if modelDeploymentID == "" || azureOpenAIEndpoint == "" || searchIndex == "" || searchEndpoint == "" || searchAPIKey == "" { fmt.Fprintf(os.Stderr, "Skipping example, environment variables missing\n") return } client, err := azopenai.NewClientWithKeyCredential(azureOpenAIEndpoint, credential, nil) if err != nil { // Implement application specific error handling logic. log.Printf("ERROR: %s", err) return } resp, err := client.GetChatCompletions(context.TODO(), azopenai.ChatCompletionsOptions{ Messages: []azopenai.ChatRequestMessageClassification{ &azopenai.ChatRequestUserMessage{Content: azopenai.NewChatRequestUserMessageContent("What are my available health plans?")}, }, MaxTokens: to.Ptr[int32](512), AzureExtensionsOptions: []azopenai.AzureChatExtensionConfigurationClassification{ &azopenai.AzureSearchChatExtensionConfiguration{ // This allows Azure OpenAI to use an Azure AI Search index. // Answers are based on the model's pretrained knowledge // and the latest information available in the designated data source. Parameters: &azopenai.AzureSearchChatExtensionParameters{ Endpoint: &searchEndpoint, IndexName: &searchIndex, Authentication: &azopenai.OnYourDataAPIKeyAuthenticationOptions{ Key: &searchAPIKey, }, }, }, }, DeploymentName: &modelDeploymentID, }, nil) if err != nil { // Implement application specific error handling logic. log.Printf("ERROR: %s", err) return } fmt.Fprintf(os.Stderr, "Extensions Context Role: %s\nExtensions Context (length): %d\n", *resp.Choices[0].Message.Role, len(*resp.Choices[0].Message.Content)) fmt.Fprintf(os.Stderr, "ChatRole: %s\nChat content: %s\n", *resp.Choices[0].Message.Role, *resp.Choices[0].Message.Content, ) }`
-
-Run the following command to create a new Go module:
-
-`go mod init quickstart.go`
-
-Run
-
-`go mod tidy`
-
-to install the required dependencies:`go mod tidy`
-
-Run the following command to run the sample:
-
-`go run quickstart.go`
-
-
-The application prints the response including both answers to your query and citations from your uploaded files.
-
-## Prerequisites
-
-[Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)[Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)[Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)- An
-[Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)deployed in a[supported region and with a supported model](concepts/use-your-data?view=foundry-classic#regional-availability-and-model-support).- Be sure that you're assigned at least the
-[Cognitive Services Contributor](how-to/role-based-access-control?view=foundry-classic#cognitive-services-contributor)role for the Azure OpenAI resource.
-
-- Be sure that you're assigned at least the
-- Download the example data from
-[GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf)if you don't have your own data.
-
-## Add your data using Microsoft Foundry portal
-
-Tip
-
-Alternatively, you can [use the Azure Developer CLI](how-to/azure-developer-cli?view=foundry-classic) to programmatically create the resources needed for Azure OpenAI On Your Data.
-
-To add your data using the portal:
-
--
-Sign in to
-
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the**New Foundry**toggle is off. These steps refer to**Foundry (classic)**. Select your Azure OpenAI resource. If you have a Foundry resource, you can
-
-[create a Foundry project](../how-to/create-projects?view=foundry-classic).From the left pane, select
-
-**Playgrounds**>**Chat**.In the
-
-**Setup**pane, select your model deployment.Select
-
-**Add your data**>**Add a data source**.On the
-
-**Data source**page:Under
-
-**Select data source**, select**Upload files (preview)**.Tip
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Data source options](concepts/use-your-data?view=foundry-classic#supported-data-sources)and[Supported file types and formats](concepts/use-your-data?view=foundry-classic#data-formats-and-file-types). - For documents and datasets with long text, we recommend that you use the
-[data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395).
-
-- This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see
-[Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228)(CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select**Turn on CORS**.Select your Azure AI Search resource.
-
-Enter a name for your new index.
-
-Select the checkbox that acknowledges the billing effects of using Azure AI Search.
-
-Select
-
-**Next**.
-
-On the
-
-**Upload files**page:Select
-
-**Browse for a file**, and then select your own data or the sample data you downloaded from the[prerequisites](#prerequisites).Select
-
-**Upload files**.Select
-
-**Next**.
-
-On the
-
-**Data management**page:Choose whether to enable
-
-[semantic search or vector search](concepts/use-your-data?view=foundry-classic#search-types)for your index.Important
-
-[Semantic search](/en-us/azure/search/semantic-search-overview#availability-and-pricing)and[vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see[Choose a tier](/en-us/azure/search/search-sku-tier)and[Service limits](/en-us/azure/search/search-limits-quotas-capacity).- To help improve the quality of the information retrieval and model response, we recommend that you enable
-[semantic search](/en-us/azure/search/semantic-search-overview)for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
-
-Select
-
-**Next**.
-
-On the
-
-**Data connection**page:Choose whether to authenticate using a
-
-**System assigned managed identity**or an**API key**.Select
-
-**Next**.
-
-Review your configurations, and then select
-
-**Save and close**.You can now chat with the model, which uses your data to construct the response.
-
-
-## Retrieve resource information
-
-You need to retrieve the following information to authenticate your application with your Azure OpenAI resource. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. See [Add your data using Microsoft Foundry portal](use-your-data-quickstart?view=foundry-classic&pivots=programming-language-studio).
-
-| Variable name | Value |
-|---|---|
-`AZURE_OPENAI_ENDPOINT` |
-This value can be found in the Keys & Endpoint section when examining your Azure OpenAI resource from the Azure portal. An example endpoint is: `https://my-resource.openai.azure.com` . |
-`AZURE_OPENAI_DEPLOYMENT_NAME` |
-This value corresponds to the custom name you chose for your deployment when you deployed a model. This value can be found under Resource Management > Deployments in the Azure portal. |
-`AZURE_AI_SEARCH_ENDPOINT` |
-This value can be found in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-`AZURE_AI_SEARCH_INDEX` |
-This value corresponds to the name of the index you created to store your data. You can find it in the Overview section when examining your Azure AI Search resource from the Azure portal. |
-
-Learn more about [keyless authentication](/en-us/azure/ai-services/authentication) and [setting environment variables](/en-us/azure/ai-services/cognitive-services-environment-variables).
-
-## Example cURL commands
-
-The Azure OpenAI chat models are optimized to work with inputs formatted as a conversation. The `messages`
-
-variable passes an array of dictionaries with different roles in the conversation delineated by system, user, tool, and assistant. The `dataSources`
-
-variable connects to your Azure AI Search index, and enables Azure OpenAI models to respond using your data.
-
-To trigger a response from the model, you should end with a user message indicating that it's the assistant's turn to respond.
-
-Tip
-
-There are several parameters you can use to change the model's response, such as `temperature`
-
-or `top_p`
-
-. See the [reference documentation](reference?view=foundry-classic#completions-extensions) for more information.
-
-```
-curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYMENT_NAME/chat/completions?api-version=2024-10-21 \
--H "Content-Type: application/json" \
--H "api-key: $AZURE_OPENAI_API_KEY" \
--d \
-'
-{
-"data_sources": [
-{
-"type": "azure_search",
-"parameters": {
-"endpoint": "'$AZURE_AI_SEARCH_ENDPOINT'",
-"index_name": "'$AZURE_AI_SEARCH_INDEX'",
-"authentication": {
-"type": "api_key",
-"key": "'$AZURE_AI_SEARCH_API_KEY'"
-}
-}
-}
-],
-"messages": [
-{
-"role": "user",
-"content": "What are my available health plans?"
-}
-]
-}
-'
-```
-
-
-### Example output
-
-```
-{
-"id": "12345678-1a2b-3c4e5f-a123-12345678abcd",
-"model": "gpt-4",
-"created": 1709835345,
-"object": "extensions.chat.completion",
-"choices": [
-{
-"index": 0,
-"finish_reason": "stop",
-"message": {
-"role": "assistant",
-"content": "The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans. [doc1].",
-"end_turn": true,
-"context": {
-"citations": [
-{
-"content": "...",
-"title": "...",
-"url": "https://mysearch.blob.core.windows.net/xyz/001.txt",
-"filepath": "001.txt",
-"chunk_id": "0"
-}
-],
-"intent": "[\"Available health plans\"]"
-}
-}
-}
-],
-"usage": {
-"prompt_tokens": 3779,
-"completion_tokens": 105,
-"total_tokens": 3884
-},
-"system_fingerprint": "fp_65792305e4"
-}
-```
-
-
-## Chat with your model using a web app
-
-To start chatting with the Azure OpenAI model that uses your data, you can deploy a web app using [Microsoft Foundry portal](concepts/use-your-data?view=foundry-classic#deploy-to-a-copilot-preview-teams-app-preview-or-web-app) or example code we [provide on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395). This app deploys using Azure app service, and provides a user interface for sending queries. This app can be used with Azure OpenAI models that use your data, or models that don't use your data. See the readme file in the repo for instructions on requirements, setup, and deployment. You can optionally customize the [frontend and backend logic](how-to/use-web-app?view=foundry-classic#customizing-the-application-using-environment-variables) of the web app by making changes to the source code.
-
-## Clean up resources
-
-If you want to clean up and remove an Azure OpenAI or Azure AI Search resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 ---
 <!-- Source: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/authoring-reference-preview -->
