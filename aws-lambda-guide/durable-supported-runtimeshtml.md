@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-supported-runtimes.html
-fetched_at: 2026-02-08T00:47:47.992162
+fetched_at: 2026-02-09T09:13:57.694781
 ---
 
 # Supported runtimes for durable functions

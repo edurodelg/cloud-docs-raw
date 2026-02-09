@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/durable-best-practices.html
-fetched_at: 2026-02-08T00:48:23.198893
+fetched_at: 2026-02-09T09:14:32.700462
 ---
 
 # Best practices for Lambda durable functions

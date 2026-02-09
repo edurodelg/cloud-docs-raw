@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/lambda-managed-instances-getting-started.html
-fetched_at: 2026-02-08T00:48:33.274530
+fetched_at: 2026-02-09T09:14:42.748668
 ---
 
 # Getting started with Lambda Managed Instances

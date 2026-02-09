@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/example-apps.html
-fetched_at: 2026-02-08T00:46:02.909660
+fetched_at: 2026-02-09T09:12:13.315060
 ---
 
 # Getting started with example applications and patterns

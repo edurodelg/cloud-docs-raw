@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/lambda/latest/dg/order-processing-app.html
-fetched_at: 2026-02-08T00:46:17.912326
+fetched_at: 2026-02-09T09:12:28.575831
 ---
 
 # Creating an Order Processing System with Lambda Durable Functions
