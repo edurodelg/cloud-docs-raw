@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-3.html
-fetched_at: 2026-02-08T00:56:09.283236
+fetched_at: 2026-02-09T09:22:23.080927
 ---
 
 # Step 3: Read data from a DynamoDB table

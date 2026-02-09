@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.ReadData.Query.html
-fetched_at: 2026-02-08T00:57:53.811462
+fetched_at: 2026-02-09T09:24:08.078235
 ---
 
 # Differences in querying a table

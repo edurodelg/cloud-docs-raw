@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.CreateTable.html
-fetched_at: 2026-02-08T00:57:28.793079
+fetched_at: 2026-02-09T09:23:43.120799
 ---
 
 # Differences between a relational (SQL) database
