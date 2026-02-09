@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html
-fetched_at: 2026-02-08T00:52:01.021799
+fetched_at: 2026-02-09T09:18:14.531202
 ---
 
 # Getting started with Amazon S3

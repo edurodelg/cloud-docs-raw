@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/uploading-downloading-objects.html
-fetched_at: 2026-02-08T00:54:40.592271
+fetched_at: 2026-02-09T09:20:54.595568
 ---
 
 # Working with objects in

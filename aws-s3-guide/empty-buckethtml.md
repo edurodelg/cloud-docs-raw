@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/empty-bucket.html
-fetched_at: 2026-02-08T00:53:00.472463
+fetched_at: 2026-02-09T09:19:14.358963
 ---
 
 # Emptying a general purpose bucket

@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/add-object-metadata.html
-fetched_at: 2026-02-08T00:55:00.630932
+fetched_at: 2026-02-09T09:21:14.435868
 ---
 
 # Editing object metadata in the Amazon S3 console

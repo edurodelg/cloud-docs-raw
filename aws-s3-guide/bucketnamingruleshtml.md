@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
-fetched_at: 2026-02-08T00:52:27.422542
+fetched_at: 2026-02-09T09:18:39.332879
 ---
 
 # General purpose bucket naming rules

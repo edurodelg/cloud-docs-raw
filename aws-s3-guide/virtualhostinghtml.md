@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html
-fetched_at: 2026-02-08T00:52:40.480436
+fetched_at: 2026-02-09T09:18:54.396028
 ---
 
 # Virtual hosting of general purpose buckets
