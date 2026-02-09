@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.batch.MIMEApplicationHTTP
-fetched_at: 2026-02-08T01:07:59.987305
+fetched_at: 2026-02-09T09:34:23.990936
 ---
 
 # Class MIMEApplicationHTTP (3.8.0)

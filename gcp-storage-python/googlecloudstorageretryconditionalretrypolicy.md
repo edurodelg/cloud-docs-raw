@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.retry.ConditionalRetryPolicy
-fetched_at: 2026-02-08T01:09:18.616435
+fetched_at: 2026-02-09T09:35:32.539568
 ---
 
 # Class ConditionalRetryPolicy (3.8.0)

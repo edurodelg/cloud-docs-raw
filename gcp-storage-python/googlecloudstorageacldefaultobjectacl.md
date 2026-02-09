@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.acl.DefaultObjectACL
-fetched_at: 2026-02-08T01:07:48.982777
+fetched_at: 2026-02-09T09:34:12.823489
 ---
 
 # Class DefaultObjectACL (3.8.0)

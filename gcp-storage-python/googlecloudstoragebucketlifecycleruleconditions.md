@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.bucket.LifecycleRuleConditions
-fetched_at: 2026-02-08T01:08:25.111511
+fetched_at: 2026-02-09T09:34:44.876075
 ---
 
 # Class LifecycleRuleConditions (3.8.0)
