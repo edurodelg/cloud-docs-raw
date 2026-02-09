@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.worker_pools.WorkerPoolsAsyncClient
-fetched_at: 2026-02-08T01:00:51.121055
+fetched_at: 2026-02-09T09:27:15.812856
 ---
 
 # Class WorkerPoolsAsyncClient (0.15.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.instances.InstancesAsyncClient
-fetched_at: 2026-02-08T00:59:24.824282
+fetched_at: 2026-02-09T09:25:40.600757
 ---
 
 # Class InstancesAsyncClient (0.15.0)

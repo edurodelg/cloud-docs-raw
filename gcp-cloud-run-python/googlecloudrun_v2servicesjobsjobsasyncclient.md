@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.jobs.JobsAsyncClient
-fetched_at: 2026-02-08T00:59:45.178538
+fetched_at: 2026-02-09T09:26:02.938930
 ---
 
 # Class JobsAsyncClient (0.15.0)

@@ -1,6 +1,6 @@
 ---
 source_url: https://cloud.google.com/python/docs/reference/run/latest/google.cloud.run_v2.services.services.ServicesClient
-fetched_at: 2026-02-08T01:00:21.710973
+fetched_at: 2026-02-09T09:26:46.405253
 ---
 
 # Class ServicesClient (0.15.0)
