@@ -1,6 +1,6 @@
 ---
 source_url: https://google.github.io/styleguide/shellguide.html
-fetched_at: 2026-02-08T01:05:59.077550
+fetched_at: 2026-02-09T09:32:13.843196
 ---
 
 # styleguide
