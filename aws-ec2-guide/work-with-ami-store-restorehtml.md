@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/work-with-ami-store-restore.html
-fetched_at: 2026-02-08T00:51:07.268528
+fetched_at: 2026-02-09T09:17:16.200789
 ---
 
 # Create a store image task

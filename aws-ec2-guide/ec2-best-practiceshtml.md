@@ -1,6 +1,6 @@
 ---
 source_url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-best-practices.html
-fetched_at: 2026-02-08T00:48:47.211592
+fetched_at: 2026-02-09T09:14:56.346487
 ---
 
 # Best practices for Amazon EC2
